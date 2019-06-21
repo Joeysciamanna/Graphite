@@ -1,6 +1,5 @@
 package ch.g_7.javaengine2d.grid.test;
 
-import java.awt.Color;
 import java.io.IOException;
 
 import javax.swing.text.FieldView;
@@ -13,6 +12,7 @@ import ch.g_7.javaengine2d.process.Processor;
 import ch.g_7.javaengine2d.render.BasicGridRenderer;
 import ch.g_7.javaengine2d.render.BasicGridShaderProgram;
 import ch.g_7.javaengine2d.texture.Texture;
+import ch.g_7.javaengine2d.util.Color;
 
 public class Test implements GameLogic {
 
@@ -33,8 +33,8 @@ public class Test implements GameLogic {
 	public void init() {
 		engine.getWindow().setVisible(true);
 		engine.getWindow().setBackgroundColor(new Color(java.awt.Color.ORANGE));
-		GridPanel gridPanel = new GridPanel(10, 10);
-		engine.setDimension(gridPanel.getDimension());
+		
+	
 		
 	}
 	
