@@ -60,9 +60,8 @@ public class BasicGridRenderer extends AbstractRenderer {
 				
 				// Set model view matrix for this item
 		    	Pos3d pos = object.getPosition();
-		        modelViewMatrix.identity().translate(new Vector3f(pos.getX(), pos.getY(), pos.getZ()-1)).
-		        scale(object.getScale())
-		        .rotateZ(object.getRotation());
+		        modelViewMatrix.identity().translate(new Vector3f(pos.getX(), pos.getY(), pos.getZ()-1))
+		        .scale(object.getScale());
 		        Matrix4f viewCurr = new Matrix4f(viewMatrix);
 		        modelViewMatrix = viewCurr.mul(modelViewMatrix);
 				
