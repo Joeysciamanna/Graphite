@@ -35,6 +35,8 @@ import org.joml.Vector4f;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.system.MemoryStack;
 
+import com.sun.javafx.geom.Vec4f;
+
 
 public abstract class AbstractShaderProgram {
 
@@ -78,16 +80,13 @@ public abstract class AbstractShaderProgram {
             glUniformMatrix4fv(uniforms.get(uniformName), false, fb);
         }
     }
-
+    
     protected final void setUniform(String uniformName, Vector4f value) {
         try (MemoryStack stack = MemoryStack.stackPush()) {
             // Dump the matrix into a float buffer
             FloatBuffer fb = stack.mallocFloat(4);
-            fb.put(value.x);
-            fb.put(value.y);
-            fb.put(value.z);
-            fb.put(value.w);
-            GL20.glUniform4fv(uniforms.get(uniformName), new float[] {value.x,value.y,value.z,value.w});
+            value.get(fb);
+            GL20.glUniform4fv(uniforms.get(uniformName), fb);
         }
     }
     

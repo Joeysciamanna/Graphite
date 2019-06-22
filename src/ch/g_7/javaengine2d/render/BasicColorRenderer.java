@@ -23,16 +23,16 @@ import ch.g_7.javaengine2d.core.Dimension;
 import ch.g_7.javaengine2d.core.Window;
 import ch.g_7.javaengine2d.util.Pos3d;
 
-public class BasicGridRenderer extends AbstractRenderer {
+public class BasicColorRenderer extends AbstractRenderer {
     
-	private BasicGridShaderProgram shaderProgram;
+	private BasicColorShaderProgram shaderProgram;
 
 
 	private Matrix4f viewMatrix;
 	
 	private Matrix4f modelViewMatrix;
 	
-	public BasicGridRenderer(BasicGridShaderProgram shaderProgram) {
+	public BasicColorRenderer(BasicColorShaderProgram shaderProgram) {
 		this.shaderProgram = shaderProgram;
 		viewMatrix = new Matrix4f();
 		modelViewMatrix = new Matrix4f();
@@ -51,8 +51,6 @@ public class BasicGridRenderer extends AbstractRenderer {
 	    
 	    viewMatrix.identity();
 	    viewMatrix.translate(-camera.getPosition().getX(), -camera.getPosition().getY(),-camera.getPosition().getZ());
-
-		shaderProgram.setTextureSampler(0);
 	    
 		// Render each gameItem
 		for (AbstractGameObject object : dimension.getGameObjects()) {
@@ -67,16 +65,8 @@ public class BasicGridRenderer extends AbstractRenderer {
 				
 			
 				shaderProgram.setModelViewMatrix(modelViewMatrix);
-
-				//shaderProgram.setColor(object.getLight().toVector());
-						
+				shaderProgram.setColor(object.getViewModel().getColor());
 				
-				// Render the mes for this game item
-				// Activate firs texture bank
-				glActiveTexture(GL_TEXTURE0);
-				// Bind the texture
-				glBindTexture(GL_TEXTURE_2D, object.getViewModel().getTexture().getId());
-
 				// Draw the mesh
 				glBindVertexArray(object.getViewModel().getMesh().getVaoId());
 				glEnableVertexAttribArray(0);
@@ -88,7 +78,6 @@ public class BasicGridRenderer extends AbstractRenderer {
 				glDisableVertexAttribArray(0);
 				glDisableVertexAttribArray(1);
 				glBindVertexArray(0);
-
 			}
 
 		}

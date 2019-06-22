@@ -17,6 +17,11 @@ public class BasicViewModel extends AbstractViewModel {
 		this.mesh = mesh;
 	}
 	
+	public BasicViewModel(Color color, AbstractMesh mesh) {
+		this.color = color;
+		this.mesh = mesh;
+	}
+	
 	@Override
 	public Texture getTexture() {
 		return texture;

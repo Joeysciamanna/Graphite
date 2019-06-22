@@ -4,11 +4,11 @@ import java.io.IOException;
 
 import org.joml.Matrix4f;
 
-public class BasicGridShaderProgram extends AbstractShaderProgram{
+public class BasicTextureShaderProgram extends AbstractShaderProgram{
 
 
-	public BasicGridShaderProgram() throws IOException  {
-		super("C:/Users/Joey Sciamanna/git/Java2DEngine/res/shaders/vertex.vs", "C:/Users/Joey Sciamanna/git/Java2DEngine/res/shaders/fragment.fs");
+	public BasicTextureShaderProgram() throws IOException  {
+		super("C:/Users/Joey Sciamanna/git/Java2DEngine/res/shaders/texture_vertex.sh", "C:/Users/Joey Sciamanna/git/Java2DEngine/res/shaders/texture_fragment.sh");
 	}
 
 	@Override

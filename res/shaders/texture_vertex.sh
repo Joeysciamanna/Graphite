@@ -6,7 +6,7 @@ layout (location=1) in vec2 texCoord;
 out vec2 outTexCoord;
 
 uniform mat4 model_view_matrix;
-uniform vec3 lightSourcePositions[100];
+
 
 void main(){
 	
