@@ -26,7 +26,6 @@ public class GameEngine {
     public void init() {
     	window.init();
 		window.getCamera().getRenderer().init();
-		
 		gameLogic.init();
     }
     
