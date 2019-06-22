@@ -8,9 +8,7 @@ public class BasicGridShaderProgram extends AbstractShaderProgram{
 
 
 	public BasicGridShaderProgram() throws IOException  {
-		//PC super("C:/Users/Joey Sciamanna/git/GridEngine/res/shaders/vertex.vs", "C:/Users/Joey Sciamanna/git/GridEngine/res/shaders/fragment.fs");
-		super("C:/workspace/java/Grid/GridEngine/res/shaders/vertex.vs", "C:/workspace/java/Grid/GridEngine/res/shaders/fragment.fs");
-		//BBC: super("C:/Dev/Workspace/JavaLWJGL/GridEngine/res/shaders/vertex.vs", "C:/Dev/Workspace/JavaLWJGL/GridEngine/res/shaders/fragment.fs");
+		super("C:/Users/Joey Sciamanna/git/Java2DEngine/res/shaders/vertex.vs", "C:/Users/Joey Sciamanna/git/Java2DEngine/res/shaders/fragment.fs");
 	}
 
 	@Override

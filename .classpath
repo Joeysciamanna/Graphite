@@ -2,6 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="src" path="res"/>
 	<classpathentry kind="lib" path="lib/joml-1.9.13-javadoc.jar"/>
 	<classpathentry kind="lib" path="lib/joml-1.9.13-sources.jar"/>
 	<classpathentry kind="lib" path="lib/joml-1.9.13.jar"/>

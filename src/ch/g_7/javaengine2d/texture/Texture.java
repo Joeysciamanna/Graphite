@@ -14,6 +14,7 @@ import static org.lwjgl.stb.STBImage.stbi_failure_reason;
 import static org.lwjgl.stb.STBImage.stbi_image_free;
 import static org.lwjgl.stb.STBImage.stbi_load;
 
+import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 
@@ -23,7 +24,7 @@ public class Texture {
 
 	private int id;
 
-	public Texture(String absolutePath) throws Exception {
+	public Texture(String absolutePath) throws IOException {
 		id = loadTexture(absolutePath);
 	}
 
@@ -31,7 +32,7 @@ public class Texture {
         return id;
     }
 
-    private static int loadTexture(String absolutePath) throws Exception {
+    private static int loadTexture(String absolutePath) throws IOException {
     	if(TexturePool.get(absolutePath)!=null) {
     		return TexturePool.get(absolutePath);
     	}
@@ -46,7 +47,7 @@ public class Texture {
 
             buf = stbi_load(absolutePath, w, h, channels, 4);
             if (buf == null) {
-                throw new Exception("Image file [" + absolutePath  + "] not loaded: " + stbi_failure_reason());
+                throw new IOException("Image file [" + absolutePath  + "] not loaded: " + stbi_failure_reason());
             }
 
             width = w.get();
