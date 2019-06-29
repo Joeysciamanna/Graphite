@@ -25,25 +25,14 @@ public class Test implements GameLogic {
 		engine.start();
 	}
 
-	@Override
+
 	public void init(Engine engine) {
 		engine.getWindow().setVisible(true);
-		engine.getWindow().setBackgroundColor(new Color(java.awt.Color.ORANGE));
+		engine.getWindow().setBackgroundColor(new Color(java.awt.Color.GRAY));
 
-		engine.getDimension().add(new BasicGameEntity(new Pos3d(0, 0, 0), new BasicViewModel(new Color(255, 0, 255, 0), new SquareMesh(1))));                        
+		engine.getDimension().add(new BasicGameEntity(new Pos3d(0, 0, 0), new BasicViewModel(new Color(0,0,255,0), new SquareMesh(1))));                        
 
 	}
-	
-	
-
-
-
-	
-	
-	
-	
-	
-	
 	
 	
 
