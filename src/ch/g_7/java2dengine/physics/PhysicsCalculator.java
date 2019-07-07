@@ -14,7 +14,7 @@ public class PhysicsCalculator implements Process<Engine, Void>{
 			for (PhysicsEntity physicsEntity : colliderClasses) {
 				for (PhysicsEntity physicsEntity2 : colliderClasses) {
 					if(!physicsEntity.equals(physicsEntity2)) {
-						physicsEntity.oc
+				
 					}
 				}
 			}

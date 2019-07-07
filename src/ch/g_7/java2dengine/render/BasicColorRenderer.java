@@ -60,7 +60,7 @@ public class BasicColorRenderer extends AbstractRenderer {
 				// Set model view matrix for this item
 		    	Pos3d pos = object.getPosition();
 		        modelViewMatrix.identity().translate(new Vector3f(pos.getX(), pos.getY(), pos.getZ()))
-		        .scale(object.getScale());
+		        .scale(object.getScale()).rotateZ(object.getRotation());
 		        Matrix4f viewCurr = new Matrix4f(viewMatrix);
 		        modelViewMatrix = viewCurr.mul(modelViewMatrix);
 				
