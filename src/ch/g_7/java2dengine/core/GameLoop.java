@@ -2,19 +2,19 @@ package ch.g_7.java2dengine.core;
 
 import ch.g_7.java2dengine.process.Process;
 import ch.g_7.java2dengine.process.ProcessIntervalBuffer;
-import ch.g_7.java2dengine.process.ProcessListIntervall;
+import ch.g_7.java2dengine.process.ProcessIntervallBufferList;
 import ch.g_7.java2dengine.process.ProcessQueue;
 
 public class GameLoop implements Runnable{
 
 	private Engine engine;
 	private ProcessQueue<Engine, Void> processQueue;
-	private ProcessListIntervall<Engine> processIntervallList;
+	private ProcessIntervallBufferList<Engine> intervallBufferList;
 	private boolean running = true;
 	
 	public GameLoop(Engine engine) {
 		processQueue = new ProcessQueue<>();
-		processIntervallList = new ProcessListIntervall<>();
+		intervallBufferList = new ProcessIntervallBufferList<>();
 		this.engine = engine;
 	}
 	
@@ -22,13 +22,12 @@ public class GameLoop implements Runnable{
     public void run() {
         try {
         	engine.init();
-        	processIntervallList.run(engine);
+        	
             while (running && !engine.getWindow().windowShouldClose()) {
-            	
             	engine.getWindow().getCamera().getRenderer().render(engine.getWindow(), engine.getWindow().getCamera(), engine.getDimension());
             	engine.getWindow().update();
                 processQueue.runAsync(engine);
-               
+                intervallBufferList.runAsync(engine);
             }
 
         } catch (Exception excp) {
@@ -44,7 +43,7 @@ public class GameLoop implements Runnable{
     }
 
     public void addProcessInterval(ProcessIntervalBuffer<Engine> process) {
-    	processIntervallList.add(process);
+    	intervallBufferList.add(process);
     }
     
 	public void setRunning(boolean running) {

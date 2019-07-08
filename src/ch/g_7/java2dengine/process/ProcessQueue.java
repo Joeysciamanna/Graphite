@@ -39,8 +39,8 @@ public class ProcessQueue<T,V> implements Process<T, List<V>>{
 		return values;
 	}
 	
-	public List<V> runAsync(T t) {
-		return new AsyncProcess<T,List<V>>(this).run(t);
+	public void runAsync(T t) {
+		new AsyncProcess<T,List<V>>(this).run(t);
 	}
 
 

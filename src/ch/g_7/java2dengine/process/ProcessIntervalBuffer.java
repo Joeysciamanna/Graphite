@@ -9,7 +9,7 @@ public class ProcessIntervalBuffer<T> implements Process<T, Void>{
 	private long intervall;
 	private long callBuffer;
 	private long lastCall;
-	
+	private boolean enabled;
 	
 	public ProcessIntervalBuffer(Process<T, Void> process, long intervall, long callBuffer) {
 		this(process, intervall);
@@ -19,20 +19,25 @@ public class ProcessIntervalBuffer<T> implements Process<T, Void>{
 	public ProcessIntervalBuffer(Process<T, Void> process, long intervall) {
 		this.process = process;
 		this.intervall = intervall;
-		resetLasCall();
+		enabled = true;
+		resetLastCall();
 	}
 	
 
 	@Override
 	public Void run(T t) {
-		long actTime = System.currentTimeMillis();
-		long div = actTime - lastCall;
-		long missedCalls;
-		if((missedCalls = div/intervall)>0) {
-			for(int i = 0; i < (missedCalls+callBuffer); i++) {
-				process.run(t);
+		if(enabled) {
+			long actTime = System.currentTimeMillis();
+			long div = actTime - lastCall;
+			long missedCalls;
+			if((missedCalls = div/intervall)>0) {
+				for(int i = 0; i < (missedCalls+callBuffer); i++) {
+					process.run(t);
+				}
+				lastCall = actTime - (div%intervall) + (callBuffer*intervall);
 			}
-			lastCall = actTime - (div%intervall) + (callBuffer*intervall);
+		} else {
+			resetLastCall();
 		}
 		return null;
 	}
@@ -57,7 +62,15 @@ public class ProcessIntervalBuffer<T> implements Process<T, Void>{
 		this.callBuffer = callBuffer;
 	}
 
-	private void resetLasCall() {
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+	
+	public boolean isEnabled() {
+		return enabled;
+	}
+	
+	private void resetLastCall() {
 		lastCall =  System.currentTimeMillis();
 	}
 }

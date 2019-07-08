@@ -8,13 +8,13 @@ public class Physics implements Initializable{
 
 	private PhysicsCalculator physicsCalculator;
 	private ColliderClasses colliderClasses;
-	private boolean enabled = true;
 	private ProcessIntervalBuffer<Engine> physicsCalculationProccess;
 	
 	public Physics() {
 		physicsCalculator = new PhysicsCalculator();
 		colliderClasses = new ColliderClasses();
 		physicsCalculationProccess = new ProcessIntervalBuffer<Engine>(physicsCalculator, 20);
+		setEnabled(false);
 	}
 	
 	public ColliderClasses getColliderClasses() {
@@ -26,11 +26,11 @@ public class Physics implements Initializable{
 	}
 	
 	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
+		this.physicsCalculationProccess.setEnabled(enabled);
 	}
 	
 	public boolean isEnabled() {
-		return enabled;
+		return this.physicsCalculationProccess.isEnabled();
 	}
 
 	@Override

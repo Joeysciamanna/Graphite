@@ -7,7 +7,7 @@ public abstract class PhysicsEntity extends BasicGameEntity{
 
 	private Force force;
 	
-	public void onCollider(PhysicsEntity entity, Pos2d position) {}
+	public void onCollide(PhysicsEntity entity, Pos2d position) {}
 	
 	public Force getForce() {
 		return force;
