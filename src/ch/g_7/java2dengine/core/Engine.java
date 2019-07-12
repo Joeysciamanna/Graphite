@@ -1,21 +1,21 @@
 package ch.g_7.java2dengine.core;
 
-import ch.g_7.java2dengine.physics.Physics;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Engine {
 	
 	private Dimension dimension;
 	private GameLoop gameLoop;
 	private Window window;
-	private Physics physics;
-	private GameLogic gameLogic;
+	private Queue<Initializable> initializables;
 	
-	public Engine(Window window,GameLogic gameLogic) {
+	public Engine(Window window, Initializable gameLogic) {
 		dimension = new Dimension();
 		gameLoop = new GameLoop(this);
-		physics = new Physics();
+		initializables = new LinkedList<>();
+		initializables.add(gameLogic);
 		this.window = window;
-		this.gameLogic = gameLogic;
 	}
 	
     public void start() {
@@ -30,8 +30,9 @@ public class Engine {
     public void init() {
     	window.init(this);
 		window.getCamera().getRenderer().init(this);
-		gameLogic.init(this);
-		physics.init(this);
+		while (!initializables.isEmpty()) {
+			initializables.poll().init(this);
+		}
     }
     
     public void stop() {
@@ -60,10 +61,6 @@ public class Engine {
 	
 	public GameLoop getGameLoop() {
 		return gameLoop;
-	}
-	
-	public Physics getPhysics() {
-		return physics;
 	}
 	
 }

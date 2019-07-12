@@ -19,6 +19,7 @@ public class ProcessIntervalBuffer<T> implements Process<T, Void>{
 	public ProcessIntervalBuffer(Process<T, Void> process, long intervall) {
 		this.process = process;
 		this.intervall = intervall;
+		this.callBuffer = 20;
 		resetLasCall();
 	}
 	
