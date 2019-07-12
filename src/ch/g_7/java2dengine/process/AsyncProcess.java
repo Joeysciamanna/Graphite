@@ -5,10 +5,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-public class AsyncProcess<T, V> implements Process<T, V>, Runnable{
+public class AsyncProcess<T, V> implements Process<T, Void>{
 
 	private Process<T, V> process;
-	private T input;
 	private V output;
 	
 	public AsyncProcess(Process<T, V> process) {
@@ -16,19 +15,14 @@ public class AsyncProcess<T, V> implements Process<T, V>, Runnable{
 	}
 	
 	@Override
-	public V run(T t) {
-		Thread thread = new Thread(this);
-		thread.start();
-		return output;
+	public Void run(T t) {
+		new Thread(() -> output = process.run(t)).start();
+		return null;
 	}
 	
 	public V getOutput() {
 		return output;
 	}
 
-	@Override
-	public void run() {
-		output = process.run(input);
-	}
 	
 }
