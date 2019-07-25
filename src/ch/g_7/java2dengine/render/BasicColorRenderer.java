@@ -51,7 +51,7 @@ public class BasicColorRenderer extends AbstractRenderer {
 		shaderProgram.bind();
 	    
 	    viewMatrix.identity();
-	    viewMatrix.translate(-camera.getPosition().getX(), -camera.getPosition().getY(),-camera.getPosition().getZ());
+	    viewMatrix.translate((float)-camera.getPosition().getX(),(float)-camera.getPosition().getY(),(float)-camera.getPosition().getZ());
 	    
 		// Render each gameItem
 		for (AbstractGameEntity object : dimension.getGameObjects()) {
@@ -59,7 +59,7 @@ public class BasicColorRenderer extends AbstractRenderer {
 				
 				// Set model view matrix for this item
 		    	Pos3d pos = object.getPosition();
-		        modelViewMatrix.identity().translate(new Vector3f(pos.getX(), pos.getY(), pos.getZ()))
+		        modelViewMatrix.identity().translate(new Vector3f((float) pos.getX(),(float) pos.getY(), (float) pos.getZ()))
 		        .scale(object.getScale()).rotateZ(object.getRotation());
 		        Matrix4f viewCurr = new Matrix4f(viewMatrix);
 		        modelViewMatrix = viewCurr.mul(modelViewMatrix);

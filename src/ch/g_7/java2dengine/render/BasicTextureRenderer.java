@@ -51,7 +51,7 @@ public class BasicTextureRenderer extends AbstractRenderer {
 		shaderProgram.bind();
 	    
 	    viewMatrix.identity();
-	    viewMatrix.translate(-camera.getPosition().getX(), -camera.getPosition().getY(),-camera.getPosition().getZ());
+	    viewMatrix.translate((float)-camera.getPosition().getX(),(float) -camera.getPosition().getY(),(float)-camera.getPosition().getZ());
 
 		shaderProgram.setTextureSampler(0);
 	    
@@ -61,7 +61,7 @@ public class BasicTextureRenderer extends AbstractRenderer {
 				
 				// Set model view matrix for this item
 		    	Pos3d pos = object.getPosition();
-		        modelViewMatrix.identity().translate(new Vector3f(pos.getX(), pos.getY(), pos.getZ()))
+		        modelViewMatrix.identity().translate(new Vector3f((float) pos.getX(),(float) pos.getY(),(float) pos.getZ()))
 		        .scale(object.getScale());
 		        Matrix4f viewCurr = new Matrix4f(viewMatrix);
 		        modelViewMatrix = viewCurr.mul(modelViewMatrix);

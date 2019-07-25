@@ -2,11 +2,11 @@ package ch.g_7.java2dengine.util;
 
 public class Pos2d {
 
-	private float x,y;
+	private double x,y;
 	
 	public Pos2d() {}
 	
-	public Pos2d(float x, float y) {
+	public Pos2d(double x, double y) {
 		this.x = x;
 		this.y = y;
 	}
@@ -21,19 +21,19 @@ public class Pos2d {
 		return "Pos2d[" + x + ", " + y + "]";
 	}
 	
-	public float getX() {
+	public double getX() {
 		return x;
 	}
 	
-	public float getY() {
+	public double getY() {
 		return y;
 	}
 	
-	public void setX(float x) {
+	public void setX(double x) {
 		this.x = x;
 	}
 	
-	public void setY(float y) {
+	public void setY(double y) {
 		this.y = y;
 	}
 	

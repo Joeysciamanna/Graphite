@@ -5,6 +5,7 @@ import java.util.Queue;
 
 public class Engine {
 	
+	private static Engine instance;
 	private Dimension dimension;
 	private GameLoop gameLoop;
 	private Window window;
@@ -15,6 +16,7 @@ public class Engine {
 		gameLoop = new GameLoop(this);
 		initializables = new LinkedList<>();
 		initializables.add(gameLogic);
+		instance = this;
 		this.window = window;
 	}
 	
@@ -61,6 +63,10 @@ public class Engine {
 	
 	public GameLoop getGameLoop() {
 		return gameLoop;
+	}
+	
+	public static Engine getInstance() {
+		return instance;
 	}
 	
 }

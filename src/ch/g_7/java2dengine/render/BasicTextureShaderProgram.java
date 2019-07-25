@@ -8,7 +8,7 @@ public class BasicTextureShaderProgram extends AbstractShaderProgram{
 
 
 	public BasicTextureShaderProgram() throws IOException  {
-		super("\"D:/Users/zsciaj/git/Java2DEngine/res/shaders/texture_vertex.sh", "\"D:/Users/zsciaj/git/Java2DEngine/res/shaders/texture_fragment.sh");
+		super("D:/Users/zsciaj/git/Java2DEngine/res/shaders/texture_vertex.sh", "D:/Users/zsciaj/git/Java2DEngine/res/shaders/texture_fragment.sh");
 	}
 
 	@Override
