@@ -40,7 +40,7 @@ public class BasicTextureRenderer extends AbstractRenderer {
 	}
 
 	@Override
-	public void init(Engine engine) {
+	public void init() {
 		shaderProgram.init();
 	}
 

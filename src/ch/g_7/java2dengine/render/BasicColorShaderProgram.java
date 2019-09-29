@@ -11,7 +11,7 @@ public class BasicColorShaderProgram extends AbstractShaderProgram{
 
 
 	public BasicColorShaderProgram() throws IOException  {
-		super("C:/Users/Joey Sciamanna/git/Java2DEngine/res/shaders/color_vertex.sh", "C:/Users/Joey Sciamanna/git/Java2DEngine/res/shaders/color_fragment.sh");
+		super("C:/Users/Joey Sciamanna/git/Graphite/res/shaders/color_vertex.sh", "C:/Users/Joey Sciamanna/git/Graphite/res/shaders/color_fragment.sh");
 //		super("D:/Users/zsciaj/git/Java2DEngine/res/shaders/color_vertex.sh", "D:/Users/zsciaj/git/Java2DEngine/res/shaders/color_fragment.sh");
 	}
 

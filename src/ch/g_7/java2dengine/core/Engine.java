@@ -9,13 +9,12 @@ public class Engine {
 	private Dimension dimension;
 	private GameLoop gameLoop;
 	private Window window;
-	private Queue<Initializable> initializables;
+	private GameLogic gameLogic;
 	
-	public Engine(Window window, Initializable gameLogic) {
+	public Engine(Window window, GameLogic gameLogic) {
 		dimension = new Dimension();
 		gameLoop = new GameLoop(this);
-		initializables = new LinkedList<>();
-		initializables.add(gameLogic);
+		this.gameLogic = gameLogic;
 		instance = this;
 		this.window = window;
 	}
@@ -30,11 +29,9 @@ public class Engine {
     }
     
     public void init() {
-    	window.init(this);
-		window.getCamera().getRenderer().init(this);
-		while (!initializables.isEmpty()) {
-			initializables.poll().init(this);
-		}
+    	window.init();
+		window.getCamera().getRenderer().init();
+		gameLogic.init(this);
     }
     
     public void stop() {
@@ -42,8 +39,11 @@ public class Engine {
     }
     
     public void close() {
+    	gameLogic.close();
     	
     }
+    
+    
     
     public Window getWindow() {
 		return window;

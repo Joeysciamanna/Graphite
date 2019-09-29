@@ -18,7 +18,7 @@ import ch.g_7.java2dengine.util.Color;
 import ch.g_7.java2dengine.util.Dimension2d;
 import ch.g_7.java2dengine.util.Pos3d;
 
-public class Test implements Initializable {
+public class Test implements GameLogic {
 	
 	public static void main(String[] args) throws IOException {
 		BasicColorShaderProgram shaderProgram = new BasicColorShaderProgram();
@@ -35,7 +35,7 @@ public class Test implements Initializable {
 		engine.getWindow().setBackgroundColor(new Color(java.awt.Color.GRAY));
 		BasicGameEntity entity = new BasicGameEntity(new Pos3d(0, 0, 0), new BasicViewModel(new Color(0,0,255,0), new SquareMesh(1)));
 		engine.getDimension().add(entity);
-		engine.getGameLoop().addProcessInterval(new ProcessIntervalBuffer<Engine>(new DirectionalMover(new Dimension2d(0.01, 0.01), entity), 20));
+		engine.getGameLoop().addProcessInterval(new ProcessIntervalBuffer<Engine>(new DirectionalMover(new Dimension2d(0.01, 0.00), entity), 20));
 	}
 	
 	

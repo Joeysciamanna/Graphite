@@ -42,7 +42,7 @@ import org.lwjgl.opengl.GL;
 import ch.g_7.java2dengine.base.object.Camera;
 import ch.g_7.java2dengine.util.Color;
 
-public class Window implements KeyListner, Initializable {
+public class Window implements KeyListner {
 
 	private final String title;
 
@@ -84,8 +84,8 @@ public class Window implements KeyListner, Initializable {
 
 	}
 
-	@Override
-	public void init(Engine engine) {
+	
+	public void init() {
 		
 		windowId = glfwCreateWindow(width, height, title, NULL, NULL);
 		if (windowId == NULL) {
