@@ -1,4 +1,4 @@
-package ch.g_7.graphite.render;
+package ch.g_7.graphite.rendering.shaderprogram;
 
 import java.io.IOException;
 
@@ -11,8 +11,8 @@ public class BasicShaderProgram extends AbstractShaderProgram{
 
 
 	public BasicShaderProgram() throws IOException  {
-		super("shaders/texture_vertex.sh", "shaders/texture_fragment.sh");
-//		super("C:/Users/Joey Sciamanna/git/Graphite/src/main/resources/shaders/texture_vertex.sh", "C:/Users/Joey Sciamanna/git/Graphitesrc/main/resources/shaders/texture_fragment.sh");
+//		super("D:/Users/zsciaj/git/Java2DEngine/res/shaders/texture_vertex.sh", "D:/Users/zsciaj/git/Java2DEngine/res/shaders/texture_fragment.sh");
+		super("C:/Users/Joey Sciamanna/git/Graphite/res/shaders/texture_vertex.sh", "C:/Users/Joey Sciamanna/git/Graphite/res/shaders/texture_fragment.sh");
 	}
 
 	@Override

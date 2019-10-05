@@ -53,13 +53,10 @@ public class Window implements KeyListner, Initializable {
 	private int width;
 	private int height;
 	
-	private Camera camera;
-
-	public Window(String title, int width, int height, Camera camera) {
+	public Window(String title, int width, int height) {
 		this.title = title;
 		this.width = width;
 		this.height = height;
-		this.camera = camera;
 		keyListners = new ArrayList<KeyListner>();
 	}
 	
@@ -101,7 +98,7 @@ public class Window implements KeyListner, Initializable {
 		glfwSetKeyCallback(windowId, (window, key, scancode, action, mods) -> {
 			onKeyPress(window, key, scancode, action, mods);
 		});
-
+		
 		center();
 
 		requestFocus();
@@ -110,14 +107,6 @@ public class Window implements KeyListner, Initializable {
 
 		setBackgroundColor(new Color(0, 0, 0, 0));
 		glEnable(GL_DEPTH_TEST);
-	}
-
-	public Camera getCamera() {
-		return camera;
-	}
-	
-	public void setCamera(Camera camera) {
-		this.camera = camera;
 	}
 	
 	@Override

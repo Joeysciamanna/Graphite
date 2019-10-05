@@ -1,4 +1,4 @@
-package ch.g_7.graphite.render;
+package ch.g_7.graphite.rendering.renderer;
 
 import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.GL_DEPTH_BUFFER_BIT;
@@ -19,9 +19,10 @@ import org.joml.Vector3f;
 
 import ch.g_7.graphite.base.object.AbstractGameEntity;
 import ch.g_7.graphite.base.object.Camera;
-import ch.g_7.graphite.core.Dimension;
 import ch.g_7.graphite.core.Engine;
 import ch.g_7.graphite.core.Window;
+import ch.g_7.graphite.rendering.Dimension;
+import ch.g_7.graphite.rendering.shaderprogram.BasicShaderProgram;
 import ch.g_7.graphite.util.Pos3d;
 
 public class BasicRenderer extends AbstractRenderer {
@@ -78,20 +79,21 @@ public class BasicRenderer extends AbstractRenderer {
 					// Bind the texture
 					glBindTexture(GL_TEXTURE_2D, object.getViewModel().getTexture().getId());
 				}
-				
-				// Draw the mesh
-				glBindVertexArray(object.getViewModel().getMesh().getVaoId());
-				glEnableVertexAttribArray(0);
-				glEnableVertexAttribArray(1);
+					// Draw the mesh
+					glBindVertexArray(object.getViewModel().getMesh().getVaoId());
+					glEnableVertexAttribArray(0);
+					glEnableVertexAttribArray(1);
+	
+					glDrawElements(GL_TRIANGLES, object.getViewModel().getMesh().getVertexCount(), GL_UNSIGNED_INT, 0);
+	
 
-				glDrawElements(GL_TRIANGLES, object.getViewModel().getMesh().getVertexCount(), GL_UNSIGNED_INT, 0);
-			
-				if(object.getViewModel().getTexture() != null) {
-					// Restore state
-					glDisableVertexAttribArray(0);
-					glDisableVertexAttribArray(1);
-					glBindVertexArray(0);
-				}
+				
+					if(object.getViewModel().getTexture() != null) {
+						// Restore state
+						glDisableVertexAttribArray(0);
+						glDisableVertexAttribArray(1);
+						glBindVertexArray(0);
+					}
 			}
 
 		}

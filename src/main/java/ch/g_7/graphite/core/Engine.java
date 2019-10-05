@@ -3,6 +3,8 @@ package ch.g_7.graphite.core;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import ch.g_7.graphite.rendering.Dimension;
+
 public class Engine {
 	
 	private static Engine instance;
@@ -47,10 +49,6 @@ public class Engine {
     
     public Window getWindow() {
 		return window;
-	}
-    
-    public void setWindow(Window window) {
-		this.window = window;
 	}
 	
 	public void setDimension(Dimension dimension) {
