@@ -33,7 +33,9 @@ public class Test implements Initializable {
 		engine.getWindow().setVisible(true);
 		engine.getWindow().setBackgroundColor(new Color(java.awt.Color.GRAY));
 		BasicGameEntity entity = new BasicGameEntity(new Pos3d(0, 0, 0), new BasicViewModel(new Color(0,0,255,0), new SquareMesh(1)));
+//		BasicGameEntity entity2 = new BasicGameEntity(new Pos3d(0, 0, 0.9), new BasicViewModel(new Color(0,0,255,0), new SquareMesh(1)));
 		engine.getDimension().add(entity);
+//		engine.getDimension().add(entity2);
 		engine.getGameLoop().addProcessInterval(new ProcessIntervalBuffer<Engine>(new DirectionalMover(new Dimension2d(0.01, 0.01), entity), 20));
 	}
 	
