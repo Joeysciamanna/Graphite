@@ -1,4 +1,4 @@
-package ch.g_7.graphite.render;
+package ch.g_7.graphite.rendering.renderer;
 
 import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.GL_DEPTH_BUFFER_BIT;
@@ -19,9 +19,10 @@ import org.joml.Vector3f;
 
 import ch.g_7.graphite.base.object.AbstractGameEntity;
 import ch.g_7.graphite.base.object.Camera;
-import ch.g_7.graphite.core.Dimension;
 import ch.g_7.graphite.core.Engine;
 import ch.g_7.graphite.core.Window;
+import ch.g_7.graphite.rendering.Dimension;
+import ch.g_7.graphite.rendering.shaderprogram.BasicShaderProgram;
 import ch.g_7.graphite.util.Pos3d;
 
 public class BasicRenderer extends AbstractRenderer {

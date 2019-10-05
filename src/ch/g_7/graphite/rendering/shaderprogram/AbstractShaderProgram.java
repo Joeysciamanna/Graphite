@@ -1,4 +1,4 @@
-package ch.g_7.graphite.render;
+package ch.g_7.graphite.rendering.shaderprogram;
 
 import static org.lwjgl.opengl.GL20.GL_COMPILE_STATUS;
 import static org.lwjgl.opengl.GL20.GL_FRAGMENT_SHADER;

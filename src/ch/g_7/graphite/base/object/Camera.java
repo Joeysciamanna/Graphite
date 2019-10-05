@@ -1,6 +1,6 @@
 package ch.g_7.graphite.base.object;
 
-import ch.g_7.graphite.render.AbstractRenderer;
+import ch.g_7.graphite.rendering.renderer.AbstractRenderer;
 import ch.g_7.graphite.util.Pos3d;
 
 public class Camera {

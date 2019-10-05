@@ -1,4 +1,4 @@
-package ch.g_7.graphite.render;
+package ch.g_7.graphite.rendering.shaderprogram;
 
 import java.io.IOException;
 
