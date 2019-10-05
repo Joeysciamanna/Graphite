@@ -1,0 +1,39 @@
+package ch.g_7.graphite.render;
+
+import java.io.IOException;
+
+import org.joml.Matrix4f;
+import org.joml.Vector4f;
+
+import ch.g_7.graphite.util.Color;
+
+public class BasicShaderProgram extends AbstractShaderProgram{
+
+
+	public BasicShaderProgram() throws IOException  {
+		super("shaders/texture_vertex.sh", "shaders/texture_fragment.sh");
+//		super("C:/Users/Joey Sciamanna/git/Graphite/src/main/resources/shaders/texture_vertex.sh", "C:/Users/Joey Sciamanna/git/Graphitesrc/main/resources/shaders/texture_fragment.sh");
+	}
+
+	@Override
+	public void init() {
+		super.init();
+        createUniform("model_view_matrix");
+        createUniform("texture_sampler");
+        createUniform("color");
+	}
+
+	
+	public void setModelViewMatrix(Matrix4f matrix) {
+		setUniform("model_view_matrix", matrix);
+	}
+
+	public void setTextureSampler(int value) {
+		setUniform("texture_sampler", value);
+	}
+	
+	public void setColor(Color value) {
+		setUniform("color", new Vector4f(value.getR(), value.getG(), value.getB(), value.getA()));
+	}
+
+}

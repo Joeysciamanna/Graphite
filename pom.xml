@@ -1,0 +1,144 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>ch.g_7</groupId>
+	<artifactId>Graphite</artifactId>
+	<version>0.0.1</version>
+	<packaging>jar</packaging>
+
+	<name>Graphite</name>
+
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>12</maven.compiler.source>
+		<java.version>12</java.version>
+		<lwjgl.version>3.2.3</lwjgl.version>
+		<joml.version>1.9.17</joml.version>
+		<lwjgl.natives>natives-windows</lwjgl.natives>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.lwjgl</groupId>
+				<artifactId>lwjgl-bom</artifactId>
+				<version>${lwjgl.version}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+
+
+
+
+	<dependencies>
+		<dependency>
+			<groupId>org.lwjgl</groupId>
+			<artifactId>lwjgl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.lwjgl</groupId>
+			<artifactId>lwjgl-assimp</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.lwjgl</groupId>
+			<artifactId>lwjgl-glfw</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.lwjgl</groupId>
+			<artifactId>lwjgl-openal</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.lwjgl</groupId>
+			<artifactId>lwjgl-opengl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.lwjgl</groupId>
+			<artifactId>lwjgl-stb</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.lwjgl</groupId>
+			<artifactId>lwjgl</artifactId>
+			<classifier>${lwjgl.natives}</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.lwjgl</groupId>
+			<artifactId>lwjgl-assimp</artifactId>
+			<classifier>${lwjgl.natives}</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.lwjgl</groupId>
+			<artifactId>lwjgl-glfw</artifactId>
+			<classifier>${lwjgl.natives}</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.lwjgl</groupId>
+			<artifactId>lwjgl-openal</artifactId>
+			<classifier>${lwjgl.natives}</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.lwjgl</groupId>
+			<artifactId>lwjgl-opengl</artifactId>
+			<classifier>${lwjgl.natives}</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.lwjgl</groupId>
+			<artifactId>lwjgl-stb</artifactId>
+			<classifier>${lwjgl.natives}</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.joml</groupId>
+			<artifactId>joml</artifactId>
+			<version>${joml.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>ch.g_7</groupId>
+			<artifactId>Util</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+	</dependencies>
+
+
+	<repositories>
+		<repository>
+			<id>rp-w1</id>
+			<url>http://ftp.g-7.ch:1001/maven/</url>
+		</repository>
+	</repositories>
+
+	<build>
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ftp</artifactId>
+				<version>3.0.0</version>
+			</extension>
+		</extensions>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.0</version>
+				<configuration>
+					<release>12</release>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<distributionManagement>
+		<repository>
+			<id>rp-w1</id>
+			<url>ftp://192.168.1.107:21/</url>
+<!-- 			<url>ftp://ftp.g-7.ch:1002/</url> -->
+		</repository>
+	</distributionManagement>
+
+</project>
