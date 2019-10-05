@@ -14,6 +14,8 @@ import static org.lwjgl.opengl.GL20.glDisableVertexAttribArray;
 import static org.lwjgl.opengl.GL20.glEnableVertexAttribArray;
 import static org.lwjgl.opengl.GL30.glBindVertexArray;
 
+import java.util.List;
+
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
@@ -22,10 +24,11 @@ import ch.g_7.graphite.base.object.Camera;
 import ch.g_7.graphite.core.Engine;
 import ch.g_7.graphite.core.Window;
 import ch.g_7.graphite.rendering.Dimension;
+import ch.g_7.graphite.rendering.Renderable;
 import ch.g_7.graphite.rendering.shaderprogram.BasicShaderProgram;
 import ch.g_7.graphite.util.Pos3d;
 
-public class BasicRenderer extends AbstractRenderer {
+public class BasicRenderer implements IRenderer<AbstractGameEntity> {
     
 	private BasicShaderProgram shaderProgram;
  
@@ -41,12 +44,12 @@ public class BasicRenderer extends AbstractRenderer {
 	}
 
 	@Override
-	public void init(Engine engine) {
+	public void open() {
 		shaderProgram.init();
 	}
 
 	@Override
-	public void render(Window window, Camera camera, Dimension dimension) {
+	public void render(List<AbstractGameEntity> renderables, Window window, Camera camera) {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		shaderProgram.bind();
@@ -57,7 +60,7 @@ public class BasicRenderer extends AbstractRenderer {
 		shaderProgram.setTextureSampler(0);
 	    
 		// Render each gameItem
-		for (AbstractGameEntity object : dimension.getGameObjects()) {
+		for (AbstractGameEntity object : renderables) {
 			if (object.render()) {
 				
 				// Set model view matrix for this item
@@ -105,5 +108,7 @@ public class BasicRenderer extends AbstractRenderer {
 	public void close() {
 		shaderProgram.close();
 	}
+
+
 
 }

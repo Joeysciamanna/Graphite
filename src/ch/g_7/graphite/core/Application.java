@@ -1,7 +1,10 @@
 package ch.g_7.graphite.core;
 
+import java.util.List;
+
 import ch.g_7.graphite.base.object.Camera;
 import ch.g_7.graphite.rendering.Dimension;
+import ch.g_7.util.process.TaskQueue;
 
 public abstract class Application implements Runnable {
 
@@ -13,6 +16,9 @@ public abstract class Application implements Runnable {
 
 	private Thread thread;
 
+	private TaskQueue<Application, Void> taskQueue;
+	
+	
 	private boolean running;
 	
 
@@ -40,11 +46,12 @@ public abstract class Application implements Runnable {
 	@Override
 	public final void run() {
 		try {
+			window.init(engine);
 			init();
-
 			while (running && !window.windowShouldClose()) {
 				dimension.render(window, camera);
 				window.update();
+				taskQueue.run(this);
 			}
 
 		} catch (Exception excp) {
@@ -53,6 +60,11 @@ public abstract class Application implements Runnable {
 			close();
 		}
 	}
+	
+	public final void addSingleExecutionTask(Task<Application, Void> task) {
+		taskQueue.add(task);
+	}
+	
 	
 	protected void close(){}
 

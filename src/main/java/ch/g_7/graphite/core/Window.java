@@ -41,8 +41,10 @@ import org.lwjgl.opengl.GL;
 
 import ch.g_7.graphite.base.object.Camera;
 import ch.g_7.graphite.util.Color;
+import ch.g_7.util.stuff.Openable;
+import ch.g_7.util.stuff.Passable;
 
-public class Window implements KeyListner, Initializable {
+public class Window implements KeyListner, Passable{
 
 	private final String title;
 
@@ -82,7 +84,7 @@ public class Window implements KeyListner, Initializable {
 	}
 
 	@Override
-	public void init(Engine engine) {
+	public void open() {
 		
 		windowId = glfwCreateWindow(width, height, title, NULL, NULL);
 		if (windowId == NULL) {

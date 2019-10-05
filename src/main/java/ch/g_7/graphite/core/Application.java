@@ -40,8 +40,8 @@ public abstract class Application implements Runnable {
 	@Override
 	public final void run() {
 		try {
+			window.init();
 			init();
-
 			while (running && !window.windowShouldClose()) {
 				dimension.render(window, camera);
 				window.update();
