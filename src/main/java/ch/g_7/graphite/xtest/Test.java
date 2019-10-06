@@ -1,6 +1,8 @@
-package ch.g_7.graphite.test;
+package ch.g_7.graphite.xtest;
 
 import org.joml.Vector3f;
+
+import com.sun.java.swing.plaf.windows.resources.windows;
 
 import ch.g_7.graphite.base.entity.BasicGameObject;
 import ch.g_7.graphite.base.mesh.Mesh;
@@ -29,6 +31,7 @@ public class Test extends Application {
 		BasicViewModel viewModel = new BasicViewModel(new Color(255, 0, 0, 0), mesh);
 		BasicGameObject gameObject = new BasicGameObject(viewModel, new Vector3f(0, 0, 0));
 		getDimension().addObj(gameObject, RenderClass.BASIC_GAME_OBJECTS);
+		getWindow().setVisible(true);
 	}
 	
 	

@@ -10,9 +10,9 @@ import ch.g_7.graphite.util.Color;
 public class BasicShaderProgram extends AbstractShaderProgram{
 
 
-	public BasicShaderProgram() throws IOException  {
+	public BasicShaderProgram()  {
 //		super("D:/Users/zsciaj/git/Java2DEngine/res/shaders/texture_vertex.sh", "D:/Users/zsciaj/git/Java2DEngine/res/shaders/texture_fragment.sh");
-		super("C:/Users/Joey Sciamanna/git/Graphite/res/shaders/texture_vertex.sh", "C:/Users/Joey Sciamanna/git/Graphite/res/shaders/texture_fragment.sh");
+		super("shaders/texture_vertex.sh", "shaders/texture_fragment.sh");
 	}
 
 	@Override

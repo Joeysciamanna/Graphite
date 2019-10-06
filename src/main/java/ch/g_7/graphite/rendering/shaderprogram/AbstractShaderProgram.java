@@ -35,8 +35,12 @@ import org.joml.Vector4f;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.system.MemoryStack;
 
+import ch.g_7.util.stream.StreamUtil;
+import ch.g_7.util.stuff.Initializable;
+import ch.g_7.util.stuff.SecureRunner;
 
-public abstract class AbstractShaderProgram {
+
+public abstract class AbstractShaderProgram implements Initializable, AutoCloseable{
 
 	protected final Map<String, Integer> uniforms;
 	
@@ -46,13 +50,13 @@ public abstract class AbstractShaderProgram {
 
     private int fragmentShaderId;
     
-    private String vertexCode;
+    private String vertexCodePath;
     
-    private String fragmentCode;
+    private String fragmentCodePath;
     
-    public AbstractShaderProgram(String vertexCodePath, String fragmentCodePath) throws IOException {
-    	vertexCode = loadCode(vertexCodePath);
-    	fragmentCode = loadCode(fragmentCodePath);
+    public AbstractShaderProgram(String vertexCodePath, String fragmentCodePath) {
+    	this.vertexCodePath = vertexCodePath;
+    	this.fragmentCodePath = fragmentCodePath;
     	uniforms = new HashMap<>();
 	}
     
@@ -60,13 +64,15 @@ public abstract class AbstractShaderProgram {
     	uniforms = new HashMap<>();
     }
 
+    @Override
     public void init() {
         programId = glCreateProgram();
         if (programId == 0) {
             throw new RuntimeException("Could not create Shader");
         }
-        vertexShaderId = createShader(vertexCode, GL_VERTEX_SHADER);
-        fragmentShaderId = createShader(fragmentCode, GL_FRAGMENT_SHADER);
+        SecureRunner<String, String> codeLoader = new SecureRunner<>((s) -> StreamUtil.readString(s, this));
+        vertexShaderId = createShader(codeLoader.run(vertexCodePath), GL_VERTEX_SHADER);
+        fragmentShaderId = createShader(codeLoader.run(fragmentCodePath), GL_FRAGMENT_SHADER);
         link();
     }
     
@@ -141,6 +147,7 @@ public abstract class AbstractShaderProgram {
         glUseProgram(0);
     }
 
+    @Override
     public void close() {
         unbind();
         if (programId != 0) {
@@ -148,8 +155,4 @@ public abstract class AbstractShaderProgram {
         }
     }
     
-    public final static String loadCode(String shaderFilePath) throws IOException {
-        byte[] encoded = Files.readAllBytes(Paths.get(shaderFilePath));
-        return new String(encoded, "UTF-8");
-    }
 }

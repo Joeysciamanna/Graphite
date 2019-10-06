@@ -1,11 +1,11 @@
 package ch.g_7.graphite.core;
 
-import ch.g_7.graphite.base.object.Camera;
+import ch.g_7.graphite.base.entity.Camera;
 import ch.g_7.graphite.rendering.Dimension;
 
 public abstract class Application implements Runnable {
 
-	private final Dimension dimension;
+	private Dimension dimension;
 
 	private final Window window;
 
@@ -19,10 +19,12 @@ public abstract class Application implements Runnable {
 	public Application(String name) {
 		this.dimension = new Dimension();
 		this.window = new Window(name, 200, 200);
+		this.camera = new Camera();
 	}
 
 	public final void setRunning(boolean running) {
 		if (running && !this.running) {
+			this.running = true;
 			String osName = System.getProperty("os.name");
 			if (osName.contains("Mac")) {
 				run();
@@ -31,7 +33,7 @@ public abstract class Application implements Runnable {
 				thread.start();
 			}
 		} else if (!running && this.running) {
-			running = false;
+			this.running = false;
 			thread = null;
 		}
 
@@ -46,9 +48,8 @@ public abstract class Application implements Runnable {
 				dimension.render(window, camera);
 				window.update();
 			}
-
-		} catch (Exception excp) {
-			excp.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		} finally {
 			close();
 		}
@@ -57,4 +58,21 @@ public abstract class Application implements Runnable {
 	protected void close(){}
 
 	protected abstract void init();
+	
+	public Dimension getDimension() {
+		return dimension;
+	}
+	
+	public void setDimension(Dimension dimension) {
+		this.dimension = dimension;
+	}
+	
+	public Camera getCamera() {
+		return camera;
+	}
+	
+	public Window getWindow() {
+		return window;
+	}
+	
 }

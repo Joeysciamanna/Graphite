@@ -14,61 +14,55 @@ import static org.lwjgl.opengl.GL20.glDisableVertexAttribArray;
 import static org.lwjgl.opengl.GL20.glEnableVertexAttribArray;
 import static org.lwjgl.opengl.GL30.glBindVertexArray;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.joml.Matrix4f;
-import org.joml.Vector3f;
 
-import ch.g_7.graphite.base.object.AbstractGameEntity;
-import ch.g_7.graphite.base.object.Camera;
-import ch.g_7.graphite.core.Engine;
+import ch.g_7.graphite.base.entity.Camera;
+import ch.g_7.graphite.base.entity.IGameObject;
 import ch.g_7.graphite.core.Window;
 import ch.g_7.graphite.rendering.Dimension;
-import ch.g_7.graphite.rendering.Renderable;
 import ch.g_7.graphite.rendering.shaderprogram.BasicShaderProgram;
-import ch.g_7.graphite.util.Pos3d;
 
-public class BasicRenderer implements IRenderer<AbstractGameEntity> {
+public class BasicRenderer implements IRenderer<IGameObject> {
     
 	private BasicShaderProgram shaderProgram;
  
-
 	private Matrix4f viewMatrix;
 	
 	private Matrix4f modelViewMatrix;
 	
-	public BasicRenderer(BasicShaderProgram shaderProgram) {
-		this.shaderProgram = shaderProgram;
+
+	public BasicRenderer() {
+		shaderProgram = new BasicShaderProgram();
 		viewMatrix = new Matrix4f();
 		modelViewMatrix = new Matrix4f();
 	}
 
 	@Override
-	public void open() {
+	public void init() {
 		shaderProgram.init();
 	}
 
 	@Override
-	public void render(List<AbstractGameEntity> renderables, Window window, Camera camera) {
+	public void render(List<IGameObject> renderables, Dimension dimension, Window window, Camera camera) {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		shaderProgram.bind();
 	    
 	    viewMatrix.identity();
-	    viewMatrix.translate((float)-camera.getPosition().getX(),(float) -camera.getPosition().getY(),(float)-camera.getPosition().getZ());
+	    viewMatrix.translate((float)-camera.getPosition().x,(float) -camera.getPosition().y,(float)-camera.getPosition().z);
 	        
 		shaderProgram.setTextureSampler(0);
 	    
 		// Render each gameItem
-		for (AbstractGameEntity object : renderables) {
-			if (object.render()) {
+		for (IGameObject object : renderables) {
+		
 				
 				// Set model view matrix for this item
-		    	Pos3d pos = object.getPosition();
-		        modelViewMatrix.identity().translate(new Vector3f((float) pos.getX(),(float) pos.getY(),(float) pos.getZ()))
-		        .scale(object.getScale());
 		        Matrix4f viewCurr = new Matrix4f(viewMatrix);
-		        modelViewMatrix = viewCurr.mul(modelViewMatrix);
+		        modelViewMatrix = viewCurr.mul(object.getModelViewMatrix());
 				
 			
 				shaderProgram.setModelViewMatrix(modelViewMatrix);
@@ -90,14 +84,13 @@ public class BasicRenderer implements IRenderer<AbstractGameEntity> {
 					glDrawElements(GL_TRIANGLES, object.getViewModel().getMesh().getVertexCount(), GL_UNSIGNED_INT, 0);
 	
 
-				
 					if(object.getViewModel().getTexture() != null) {
 						// Restore state
 						glDisableVertexAttribArray(0);
 						glDisableVertexAttribArray(1);
 						glBindVertexArray(0);
 					}
-			}
+			
 
 		}
 

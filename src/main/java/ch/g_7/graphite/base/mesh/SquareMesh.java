@@ -1,6 +1,6 @@
 package ch.g_7.graphite.base.mesh;
 
-public class SquareMesh extends AbstractMesh{
+public class SquareMesh extends Mesh{
 	
 
 	public SquareMesh(float sideLength) {
