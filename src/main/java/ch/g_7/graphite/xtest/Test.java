@@ -2,8 +2,6 @@ package ch.g_7.graphite.xtest;
 
 import org.joml.Vector3f;
 
-import com.sun.java.swing.plaf.windows.resources.windows;
-
 import ch.g_7.graphite.base.entity.BasicGameObject;
 import ch.g_7.graphite.base.mesh.Mesh;
 import ch.g_7.graphite.base.mesh.SquareMesh;
