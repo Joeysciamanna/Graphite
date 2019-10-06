@@ -4,6 +4,7 @@ import org.joml.Vector3f;
 
 import ch.g_7.graphite.base.entity.BasicGameObject;
 import ch.g_7.graphite.base.mesh.Mesh;
+import ch.g_7.graphite.base.mesh.MeshFactory;
 import ch.g_7.graphite.base.mesh.SquareMesh;
 import ch.g_7.graphite.base.viewmodel.BasicViewModel;
 import ch.g_7.graphite.core.Application;
@@ -25,7 +26,7 @@ public class Test extends Application {
 
 	@Override
 	protected void init() {
-		Mesh mesh = new SquareMesh(0.5f);
+		Mesh mesh = MeshFactory.getRegular(4, 0.5f);
 		BasicViewModel viewModel = new BasicViewModel(new Color(255, 0, 0, 0), mesh);
 		BasicGameObject gameObject = new BasicGameObject(viewModel, new Vector3f(0, 0, 0));
 		getDimension().addObj(gameObject, RenderClass.BASIC_GAME_OBJECTS);
