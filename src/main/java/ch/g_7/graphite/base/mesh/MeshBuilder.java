@@ -44,6 +44,11 @@ public class MeshBuilder {
 		setCenter(new Vector2d(getWidth()/2,getHeight()/2));
 		return this;
 	}
+	
+	public MeshBuilder centerTopLeft() {
+		setCenter(new Vector2d(0,-getHeight()));
+		return this;
+	}
 
 	public MeshBuilder setCenter(Vector2d point) {
 		for (Vector2d p : points) {

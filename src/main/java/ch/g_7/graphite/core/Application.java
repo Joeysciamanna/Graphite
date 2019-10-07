@@ -1,5 +1,9 @@
 package ch.g_7.graphite.core;
 
+import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
+import static org.lwjgl.opengl.GL11.GL_DEPTH_BUFFER_BIT;
+import static org.lwjgl.opengl.GL11.glClear;
+
 import ch.g_7.graphite.base.entity.object.Camera;
 import ch.g_7.graphite.rendering.Dimension;
 
@@ -45,6 +49,7 @@ public abstract class Application implements Runnable {
 			window.init();
 			init();
 			while (running && !window.windowShouldClose()) {
+				glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 				dimension.render(window, camera);
 				window.update();
 			}

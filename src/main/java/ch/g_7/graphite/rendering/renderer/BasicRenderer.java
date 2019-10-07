@@ -46,7 +46,6 @@ public class BasicRenderer implements IRenderer<IGameObject> {
 
 	@Override
 	public void render(List<IGameObject> renderables, Dimension dimension, Window window, Camera camera) {
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		shaderProgram.bind();
 	    

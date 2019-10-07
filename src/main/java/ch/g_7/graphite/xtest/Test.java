@@ -1,8 +1,10 @@
 package ch.g_7.graphite.xtest;
 
+import org.joml.Vector2f;
 import org.joml.Vector3f;
 
 import ch.g_7.graphite.base.entity.object.BasicGameObject;
+import ch.g_7.graphite.base.entity.ui.BasicUIPanel;
 import ch.g_7.graphite.base.mesh.Mesh;
 import ch.g_7.graphite.base.mesh.MeshFactory;
 import ch.g_7.graphite.base.viewmodel.BasicViewModel;
@@ -26,16 +28,21 @@ public class Test extends Application {
 	@Override
 	
 	protected void init() {
-//		Mesh mesh1 = MeshFactory.getRegular(8, 1);
-//		BasicViewModel viewModel1 = new BasicViewModel(new Color(255, 0, 0, 0), mesh1);
-//		BasicGameObject gameObject1 = new BasicGameObject(viewModel1, new Vector3f(-0.5f, -0.5f, 0));
-//		getDimension().addObj(gameObject1, RenderClass.BASIC_GAME_OBJECTS);
+		Mesh mesh1 = MeshFactory.getRegular(4, 0.5f).centerTopLeft().build();
+		BasicViewModel viewModel1 = new BasicViewModel(new Color(255, 0, 0, 0), mesh1);
+		BasicUIPanel uiPanel = new BasicUIPanel(viewModel1, new Vector2f(0, 0));
+		getDimension().addObj(uiPanel, RenderClass.UI_PANELS);
+		
+		
+		Mesh mesh2 = MeshFactory.getRegular(4, 0.5f).build();
+		BasicViewModel viewModel2 = new BasicViewModel(new Color(255, 0, 0, 0), mesh2);
+		BasicGameObject gameObject = new BasicGameObject(viewModel2, new Vector3f(0, 0, 0));
+		getDimension().addObj(gameObject, RenderClass.BASIC_GAME_OBJECTS);
 //		
-//		
-		Mesh mesh2 = MeshFactory.getRegular(7, 0.3f).center().build();
-		BasicViewModel viewModel2 = new BasicViewModel(new Color(0, 255, 0, 0), mesh2);
-		BasicGameObject gameObject2 = new BasicGameObject(viewModel2, new Vector3f(0, 0, 0));
-		getDimension().addObj(gameObject2, RenderClass.BASIC_GAME_OBJECTS);
+//		Mesh mesh2 = MeshFactory.getRegular(7, 0.3f).center().build();
+//		BasicViewModel viewModel2 = new BasicViewModel(new Color(0, 255, 0, 0), mesh2);
+//		BasicGameObject gameObject2 = new BasicGameObject(viewModel2, new Vector3f(0, 0, 0));
+//		getDimension().addObj(gameObject2, RenderClass.BASIC_GAME_OBJECTS);
 //		
 //		System.out.println("\n\n");
 //		System.out.println("\n\n");
@@ -43,6 +50,8 @@ public class Test extends Application {
 //		Mesh mesh = new SquareMesh(0.5f);
 
 	
+		
+		
 		
 		getWindow().setVisible(true);
 		getWindow().setSize(500, 500);

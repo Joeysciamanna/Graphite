@@ -8,12 +8,13 @@ out vec4 outColor;
 
 uniform vec4 color;
 
-uniform mat4 model_view_matrix;
+uniform vec2 window_size;
 
 
 void main(){
 	
-    gl_Position =  model_view_matrix * vec4(position.xy, 0.1, 1.0);
+	vec2 i = window_size;
+    gl_Position = vec4(position.x - 1, position.y + 1, 0, 1);
     outTexCoord = texCoord;
     outColor = color;
 }

@@ -13,7 +13,7 @@ public interface IUIPanel extends Renderable {
 	
 	public Vector2f getPosition();
 	
-	public Vector2f getRotation();
+	public double getRotation();
 	
 	public double getScale();
 	
