@@ -7,7 +7,7 @@ import java.util.Map;
 
 import ch.g_7.graphite.base.entity.object.Camera;
 import ch.g_7.graphite.base.entity.object.IGameObject;
-import ch.g_7.graphite.base.entity.ui.IUIPanel;
+import ch.g_7.graphite.base.ui.IUIPanel;
 import ch.g_7.graphite.core.Window;
 import ch.g_7.graphite.rendering.renderer.BasicRenderer;
 import ch.g_7.graphite.rendering.renderer.IRenderer;
@@ -21,19 +21,21 @@ public final class RenderClass<T extends Renderable> implements Initializable{
 	public static final RenderClass<IUIPanel> UI_PANELS;
 	
 	static {
-		BASIC_GAME_OBJECTS = create(new BasicRenderer(), "BASIC_GAME_OBJECTS");
-		UI_PANELS = create(new UIRenderer(), "UI_PANELS");
+		BASIC_GAME_OBJECTS = create(new BasicRenderer(), "BASIC_GAME_OBJECTS", 1);
+		UI_PANELS = create(new UIRenderer(), "UI_PANELS", 10);
 	}
 	
-	protected List<T> renderables;
+
 	
-	protected IRenderer<T> renderer;
+	private List<T> renderables;
+	private IRenderer<T> renderer;
+	private int prirority;
+	private String name;
 	
-	protected String name;
-	
-	private RenderClass(IRenderer<T> renderer, String name, int size) {
+	private RenderClass(IRenderer<T> renderer, String name, int prirority, int size) {
 		this.renderables = new ArrayList<>(size);
 		this.renderer = renderer;
+		this.prirority = prirority;
 		this.name = name;
 	}
 	
@@ -45,24 +47,26 @@ public final class RenderClass<T extends Renderable> implements Initializable{
 		return renderables;
 	}
 	
-
+	public int getPrirority() {
+		return prirority;
+	}
+	
 	public boolean equals(RenderClass<?> renderClass) {
 		return name.equals(renderClass.name);
 	}
 	
-	
 	@SuppressWarnings("unchecked")
-	public static <T extends Renderable>  RenderClass<T> create(IRenderer<T> renderer, String name, int size) {
+	public static <T extends Renderable>  RenderClass<T> create(IRenderer<T> renderer, String name, int prirority, int size) {
 		if(RENDER_CLASSES.containsKey(name)) {
 			return (RenderClass<T>) RENDER_CLASSES.get(name);
 		}
-		RenderClass<T> renderClass = new RenderClass<>(renderer, name, size);
+		RenderClass<T> renderClass = new RenderClass<>(renderer, name, prirority, size);
 		RENDER_CLASSES.put(name, renderClass);
 		return renderClass;
 	}
 	
-	public static <T extends Renderable> RenderClass<T> create(IRenderer<T> renderer, String name) {
-		return create(renderer, name, 20);
+	public static <T extends Renderable> RenderClass<T> create(IRenderer<T> renderer, String name, int prirority) {
+		return create(renderer, name, prirority, 20);
 	}
 	
 	public void render(Dimension dimension, Window window, Camera camera) {

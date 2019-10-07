@@ -21,7 +21,7 @@ import org.joml.Vector2i;
 
 import ch.g_7.graphite.base.entity.object.Camera;
 import ch.g_7.graphite.base.entity.object.IGameObject;
-import ch.g_7.graphite.base.entity.ui.IUIPanel;
+import ch.g_7.graphite.base.ui.IUIPanel;
 import ch.g_7.graphite.core.Window;
 import ch.g_7.graphite.rendering.Dimension;
 import ch.g_7.graphite.rendering.shaderprogram.UIShaderProgram;

@@ -11,6 +11,7 @@ public final class Dimension {
 	
 	private List<RenderClass<?>> renderClasses;
 	
+	private short renderCount;
 	
 	public Dimension() {
 		renderClasses = new ArrayList<>(20);
@@ -30,8 +31,11 @@ public final class Dimension {
 	
 	public void render(Window window, Camera camera) {
 		for (RenderClass<?> renderClass : renderClasses) {
-			renderClass.render(this, window, camera);
+			if(renderCount%renderClass.getPrirority()==0) {
+				renderClass.render(this, window, camera);
+			}
 		}
+		renderCount++;
 	}
 	
 	

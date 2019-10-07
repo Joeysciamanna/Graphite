@@ -4,9 +4,9 @@ import org.joml.Vector2f;
 import org.joml.Vector3f;
 
 import ch.g_7.graphite.base.entity.object.BasicGameObject;
-import ch.g_7.graphite.base.entity.ui.BasicUIPanel;
 import ch.g_7.graphite.base.mesh.Mesh;
 import ch.g_7.graphite.base.mesh.MeshFactory;
+import ch.g_7.graphite.base.ui.UIPanel;
 import ch.g_7.graphite.base.viewmodel.BasicViewModel;
 import ch.g_7.graphite.core.Application;
 import ch.g_7.graphite.rendering.RenderClass;
@@ -30,7 +30,7 @@ public class Test extends Application {
 	protected void init() {
 		Mesh mesh1 = MeshFactory.getRegular(4, 0.5f).centerTopLeft().build();
 		BasicViewModel viewModel1 = new BasicViewModel(new Color(255, 0, 0, 0), mesh1);
-		BasicUIPanel uiPanel = new BasicUIPanel(viewModel1, new Vector2f(0, 0));
+		UIPanel uiPanel = new UIPanel(viewModel1, new Vector2f(0, 0));
 		getDimension().addObj(uiPanel, RenderClass.UI_PANELS);
 		
 		
