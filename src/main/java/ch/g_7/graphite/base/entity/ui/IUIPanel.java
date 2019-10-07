@@ -9,12 +9,14 @@ import ch.g_7.graphite.rendering.Renderable;
 
 public interface IUIPanel extends Renderable {
 
+	public Matrix4f getModelViewMatrix();
+	
 	public IViewModel getViewModel();
 	
 	public Vector2f getPosition();
 	
-	public double getRotation();
+	public float getRotation();
 	
-	public double getScale();
+	public float getScale();
 	
 }

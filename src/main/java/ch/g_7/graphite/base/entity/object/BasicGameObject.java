@@ -57,7 +57,7 @@ public class BasicGameObject implements IGameObject{
 	}
 
 	@Override
-	public double getScale() {
+	public float getScale() {
 		return scale;
 	}
 	

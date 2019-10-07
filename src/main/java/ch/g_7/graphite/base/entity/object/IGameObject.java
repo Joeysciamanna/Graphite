@@ -16,6 +16,6 @@ public interface IGameObject extends Renderable {
 	
 	public Matrix4f getModelViewMatrix();
 	
-	public double getScale();
+	public float getScale();
 	
 }

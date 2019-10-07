@@ -81,13 +81,10 @@ public class BasicRenderer implements IRenderer<IGameObject> {
 	
 					glDrawElements(GL_TRIANGLES, object.getViewModel().getMesh().getVertexCount(), GL_UNSIGNED_INT, 0);
 	
-
-					if(object.getViewModel().getTexture() != null) {
-						// Restore state
-						glDisableVertexAttribArray(0);
-						glDisableVertexAttribArray(1);
-						glBindVertexArray(0);
-					}
+					glDisableVertexAttribArray(0);
+					glDisableVertexAttribArray(1);
+					glBindVertexArray(0);
+					
 			
 
 		}
