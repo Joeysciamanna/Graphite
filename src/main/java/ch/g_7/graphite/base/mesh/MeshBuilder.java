@@ -46,7 +46,7 @@ public class MeshBuilder {
 	}
 	
 	public MeshBuilder centerTopLeft() {
-		setCenter(new Vector2d(0,-getHeight()));
+		setCenter(new Vector2d(getBounds().minX, getBounds().maxY));
 		return this;
 	}
 
