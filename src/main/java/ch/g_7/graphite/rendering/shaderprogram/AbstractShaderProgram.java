@@ -59,10 +59,7 @@ public abstract class AbstractShaderProgram implements Initializable, AutoClosea
     	this.fragmentCodePath = fragmentCodePath;
     	uniforms = new HashMap<>();
 	}
-    
-    public AbstractShaderProgram() {
-    	uniforms = new HashMap<>();
-    }
+ 
 
     @Override
     public void init() {

@@ -35,6 +35,7 @@ import static org.lwjgl.system.MemoryUtil.NULL;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
@@ -83,7 +84,6 @@ public class Window implements KeyListner, Initializable{
 
 	@Override
 	public void init() {
-		
 		windowId = glfwCreateWindow(width, height, title, NULL, NULL);
 		if (windowId == NULL) {
 			throw new RuntimeException("Failed to create the GLFW window");
@@ -99,12 +99,18 @@ public class Window implements KeyListner, Initializable{
 			onKeyPress(window, key, scancode, action, mods);
 		});
 		
+		GLFW.glfwSetWindowSize(windowId, width, height);
+		
 		center();
 
 		requestFocus();
-
+		
 		GL.createCapabilities();
 
+		setSize(width, height);
+		
+		
+		
 		setBackgroundColor(new Color(0, 0, 0, 0));
 		glEnable(GL_DEPTH_TEST);
 	}
@@ -143,6 +149,7 @@ public class Window implements KeyListner, Initializable{
 
 	public void setSize(int width, int height) {
 		glViewport(0, 0, width, height);
+		GLFW.glfwSetWindowSize(windowId, width, height);
 		this.width = width;
 		this.height = height;
 	}

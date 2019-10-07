@@ -1,6 +1,6 @@
 package ch.g_7.graphite.core;
 
-import ch.g_7.graphite.base.entity.Camera;
+import ch.g_7.graphite.base.entity.object.Camera;
 import ch.g_7.graphite.rendering.Dimension;
 
 public abstract class Application implements Runnable {

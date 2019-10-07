@@ -5,20 +5,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import ch.g_7.graphite.base.entity.Camera;
-import ch.g_7.graphite.base.entity.IGameObject;
+import ch.g_7.graphite.base.entity.object.Camera;
+import ch.g_7.graphite.base.entity.object.IGameObject;
+import ch.g_7.graphite.base.entity.ui.IUIPanel;
 import ch.g_7.graphite.core.Window;
 import ch.g_7.graphite.rendering.renderer.BasicRenderer;
 import ch.g_7.graphite.rendering.renderer.IRenderer;
+import ch.g_7.graphite.rendering.renderer.UIRenderer;
 import ch.g_7.util.stuff.Initializable;
 
 public final class RenderClass<T extends Renderable> implements Initializable{
 	
 	private static final Map<String, RenderClass<?>> RENDER_CLASSES = new HashMap<>();
 	public static final RenderClass<IGameObject> BASIC_GAME_OBJECTS;
+	public static final RenderClass<IUIPanel> UI_PANELS;
 	
 	static {
 		BASIC_GAME_OBJECTS = create(new BasicRenderer(), "BASIC_GAME_OBJECTS");
+		UI_PANELS = create(new UIRenderer(), "UI_PANELS");
 	}
 	
 	protected List<T> renderables;

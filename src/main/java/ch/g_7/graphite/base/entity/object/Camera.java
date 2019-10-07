@@ -1,4 +1,4 @@
-package ch.g_7.graphite.base.entity;
+package ch.g_7.graphite.base.entity.object;
 
 import org.joml.Vector3d;
 

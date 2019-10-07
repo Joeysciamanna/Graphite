@@ -3,7 +3,7 @@ package ch.g_7.graphite.rendering;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.g_7.graphite.base.entity.Camera;
+import ch.g_7.graphite.base.entity.object.Camera;
 import ch.g_7.graphite.core.Window;
 
 public final class Dimension {

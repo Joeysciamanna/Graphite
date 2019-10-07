@@ -20,43 +20,36 @@ import org.joml.Matrix4f;
 
 import ch.g_7.graphite.base.entity.object.Camera;
 import ch.g_7.graphite.base.entity.object.IGameObject;
+import ch.g_7.graphite.base.entity.ui.IUIPanel;
 import ch.g_7.graphite.core.Window;
 import ch.g_7.graphite.rendering.Dimension;
-import ch.g_7.graphite.rendering.shaderprogram.BasicShaderProgram;
+import ch.g_7.graphite.rendering.shaderprogram.UIShaderProgram;
 
-public class BasicRenderer implements IRenderer<IGameObject> {
-    
-	private BasicShaderProgram shaderProgram;
- 
-	private Matrix4f viewMatrix;
-	
-	private Matrix4f modelViewMatrix;
+public class UIRenderer implements IRenderer<IUIPanel>{
+
+	private UIShaderProgram shaderProgram;
 	
 
-	public BasicRenderer() {
-		shaderProgram = new BasicShaderProgram();
-		viewMatrix = new Matrix4f();
-		modelViewMatrix = new Matrix4f();
+	public UIRenderer() {
+		shaderProgram = new UIShaderProgram();
 	}
 
+	
 	@Override
 	public void init() {
 		shaderProgram.init();
 	}
-
+	
 	@Override
-	public void render(List<IGameObject> renderables, Dimension dimension, Window window, Camera camera) {
+	public void render(List<IUIPanel> renderables, Dimension dimension, Window window, Camera camera) {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		shaderProgram.bind();
-	    
-	    viewMatrix.identity();
-	    viewMatrix.translate((float)-camera.getPosition().x,(float) -camera.getPosition().y,(float)-camera.getPosition().z);
 	        
 		shaderProgram.setTextureSampler(0);
 	    
 		// Render each gameItem
-		for (IGameObject object : renderables) {
+		for (IUIPanel uiPanel : renderables) {
 		
 				
 				// Set model view matrix for this item
@@ -97,10 +90,8 @@ public class BasicRenderer implements IRenderer<IGameObject> {
 	}
 
 	@Override
-	public void close() {
+	public void close() throws Exception {
 		shaderProgram.close();
 	}
-
-
 
 }

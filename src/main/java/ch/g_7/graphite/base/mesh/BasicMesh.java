@@ -5,6 +5,16 @@ public class BasicMesh extends Mesh {
 	
 	public BasicMesh(float[] positions, int[] indices) {
 		setVertices(positions, indices);
+		setTextureCoordinates(new float[] {
+				0,0,
+		        0,0,
+		        0,0,
+		        0,0,
+		        0,0,
+		        0,0,
+		        0,0,
+		        0,0,
+		         });
 	}
 
 	

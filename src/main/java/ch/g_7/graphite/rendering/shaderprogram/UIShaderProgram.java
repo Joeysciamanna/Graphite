@@ -1,17 +1,14 @@
 package ch.g_7.graphite.rendering.shaderprogram;
 
-import java.io.IOException;
-
 import org.joml.Matrix4f;
 import org.joml.Vector4f;
 
 import ch.g_7.graphite.util.Color;
 
-public class BasicShaderProgram extends AbstractShaderProgram{
+public class UIShaderProgram extends AbstractShaderProgram{
 
-
-	public BasicShaderProgram()  {
-		super("shaders/basic_vertex.sp", "shaders/basic_fragment.sp");
+	public UIShaderProgram()  {
+		super("shaders/ui_vertex.sp", "shaders/ui_fragment.sp");
 	}
 
 	@Override
