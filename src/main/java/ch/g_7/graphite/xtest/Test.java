@@ -3,7 +3,7 @@ package ch.g_7.graphite.xtest;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 
-import ch.g_7.graphite.base.entity.object.BasicGameObject;
+import ch.g_7.graphite.base.entity.BasicGameObject;
 import ch.g_7.graphite.base.mesh.Mesh;
 import ch.g_7.graphite.base.mesh.MeshFactory;
 import ch.g_7.graphite.base.ui.UIPanel;

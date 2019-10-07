@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import ch.g_7.graphite.base.entity.object.Camera;
-import ch.g_7.graphite.base.entity.object.IGameObject;
+import ch.g_7.graphite.base.entity.Camera;
+import ch.g_7.graphite.base.entity.IGameObject;
 import ch.g_7.graphite.base.ui.IUIPanel;
 import ch.g_7.graphite.core.Window;
 import ch.g_7.graphite.rendering.renderer.BasicRenderer;

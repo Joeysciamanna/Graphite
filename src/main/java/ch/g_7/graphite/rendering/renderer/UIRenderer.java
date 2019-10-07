@@ -17,10 +17,12 @@ import static org.lwjgl.opengl.GL30.glBindVertexArray;
 import java.util.List;
 
 import org.joml.Matrix4f;
+import org.joml.Vector2f;
 import org.joml.Vector2i;
+import org.joml.Vector3f;
 
-import ch.g_7.graphite.base.entity.object.Camera;
-import ch.g_7.graphite.base.entity.object.IGameObject;
+import ch.g_7.graphite.base.entity.Camera;
+import ch.g_7.graphite.base.entity.IGameObject;
 import ch.g_7.graphite.base.ui.IUIPanel;
 import ch.g_7.graphite.core.Window;
 import ch.g_7.graphite.rendering.Dimension;
@@ -29,9 +31,12 @@ import ch.g_7.graphite.rendering.shaderprogram.UIShaderProgram;
 public class UIRenderer implements IRenderer<IUIPanel> {
 
 	private UIShaderProgram shaderProgram;
+	
+	private Matrix4f modelViewMatrix;
 
 	public UIRenderer() {
 		shaderProgram = new UIShaderProgram();
+		modelViewMatrix = new Matrix4f();
 	}
 
 	@Override
@@ -51,26 +56,26 @@ public class UIRenderer implements IRenderer<IUIPanel> {
 		for (IUIPanel uiPanel : renderables) {
 
 			// Set model view matrix for this item
-	
+			modelViewMatrix.identity().translate(new Vector3f(uiPanel.getPosition(), 0)).scaleXY(uiPanel.getSize().x, uiPanel.getSize().y);
+			
 
+			shaderProgram.setColor(uiPanel.getColor());
 
-			shaderProgram.setColor(uiPanel.getViewModel().getColor());
-
-			if (uiPanel.getViewModel().getTexture() != null) {
+			if (uiPanel.getTexture() != null) {
 				// Render the mes for this game item
 				// Activate firs texture bank
 				glActiveTexture(GL_TEXTURE0);
 				// Bind the texture
-				glBindTexture(GL_TEXTURE_2D, uiPanel.getViewModel().getTexture().getId());
+				glBindTexture(GL_TEXTURE_2D, uiPanel.getTexture().getId());
 			}
 			// Draw the mesh
-			glBindVertexArray(uiPanel.getViewModel().getMesh().getVaoId());
+			glBindVertexArray(uiPanel.getMesh().getVaoId());
 			glEnableVertexAttribArray(0);
 			glEnableVertexAttribArray(1);
 
-			glDrawElements(GL_TRIANGLES, uiPanel.getViewModel().getMesh().getVertexCount(), GL_UNSIGNED_INT, 0);
+			glDrawElements(GL_TRIANGLES, uiPanel.getMesh().getVertexCount(), GL_UNSIGNED_INT, 0);
 
-			if (uiPanel.getViewModel().getTexture() != null) {
+			if (uiPanel.getTexture() != null) {
 				// Restore state
 				glDisableVertexAttribArray(0);
 				glDisableVertexAttribArray(1);
