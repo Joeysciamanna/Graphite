@@ -23,6 +23,7 @@ import static org.lwjgl.glfw.GLFW.glfwSetWindowPos;
 import static org.lwjgl.glfw.GLFW.glfwShowWindow;
 import static org.lwjgl.glfw.GLFW.glfwSwapBuffers;
 import static org.lwjgl.glfw.GLFW.glfwWindowHint;
+import static org.lwjgl.glfw.GLFW.glfwSwapInterval;
 import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
 import static org.lwjgl.opengl.GL11.GL_DEPTH_TEST;
 import static org.lwjgl.opengl.GL11.GL_FALSE;
@@ -79,7 +80,6 @@ public class Window implements KeyListner, Initializable{
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-
 	}
 
 	@Override
@@ -102,14 +102,14 @@ public class Window implements KeyListner, Initializable{
 		GLFW.glfwSetWindowSize(windowId, width, height);
 		
 		center();
-
+	
 		requestFocus();
 		
 		GL.createCapabilities();
 
 		setSize(width, height);
 		
-		
+//		glfwSwapInterval(0);
 		
 		setBackgroundColor(new Color(0, 0, 0, 0));
 		glEnable(GL_DEPTH_TEST);
