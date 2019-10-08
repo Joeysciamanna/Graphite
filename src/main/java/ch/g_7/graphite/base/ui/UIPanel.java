@@ -2,22 +2,18 @@ package ch.g_7.graphite.base.ui;
 
 import java.util.List;
 
-import org.joml.Matrix3f;
-import org.joml.Matrix4f;
-import org.joml.Rectanglef;
+import org.joml.Vector2d;
 import org.joml.Vector2f;
-import org.joml.Vector3f;
 
 import ch.g_7.graphite.base.mesh.Mesh;
 import ch.g_7.graphite.base.mesh.MeshFactory;
 import ch.g_7.graphite.base.texture.Texture;
-import ch.g_7.graphite.base.viewmodel.IViewModel;
 import ch.g_7.graphite.util.Color;
 
 public class UIPanel implements IUIPanel{
 
 	
-	private static final Mesh SQUARE_MESH = MeshFactory.getSquare(1).build();
+	private static final Mesh SQUARE_MESH = MeshFactory.getSquare(1).centerTopLeft().build();
 	
 	private Vector2f position;
 	private Vector2f size;
@@ -31,6 +27,7 @@ public class UIPanel implements IUIPanel{
 	public UIPanel(Vector2f position, Vector2f size) {
 		this.position = position;
 		this.size = size;
+		this.color = new Color(255, 0, 0, 0);
 	}
 	
 	public void add(UIPanel uiPanel) {

@@ -1,7 +1,5 @@
 package ch.g_7.graphite.rendering.shaderprogram;
 
-import java.io.IOException;
-
 import org.joml.Matrix4f;
 import org.joml.Vector4f;
 

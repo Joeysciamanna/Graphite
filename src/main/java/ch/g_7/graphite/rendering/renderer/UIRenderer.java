@@ -1,12 +1,9 @@
 package ch.g_7.graphite.rendering.renderer;
 
-import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
-import static org.lwjgl.opengl.GL11.GL_DEPTH_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
 import static org.lwjgl.opengl.GL11.GL_TRIANGLES;
 import static org.lwjgl.opengl.GL11.GL_UNSIGNED_INT;
 import static org.lwjgl.opengl.GL11.glBindTexture;
-import static org.lwjgl.opengl.GL11.glClear;
 import static org.lwjgl.opengl.GL11.glDrawElements;
 import static org.lwjgl.opengl.GL13.GL_TEXTURE0;
 import static org.lwjgl.opengl.GL13.glActiveTexture;
@@ -17,12 +14,10 @@ import static org.lwjgl.opengl.GL30.glBindVertexArray;
 import java.util.List;
 
 import org.joml.Matrix4f;
-import org.joml.Vector2f;
 import org.joml.Vector2i;
 import org.joml.Vector3f;
 
 import ch.g_7.graphite.base.entity.Camera;
-import ch.g_7.graphite.base.entity.IGameObject;
 import ch.g_7.graphite.base.ui.IUIPanel;
 import ch.g_7.graphite.core.Window;
 import ch.g_7.graphite.rendering.Dimension;
@@ -51,13 +46,13 @@ public class UIRenderer implements IRenderer<IUIPanel> {
 
 		shaderProgram.setTextureSampler(0);
 
-		shaderProgram.setWindowSize(new Vector2i(window.getWidth(), window.getHeight()));
+		
 		// Render each gameItem
 		for (IUIPanel uiPanel : renderables) {
 
 			// Set model view matrix for this item
-			modelViewMatrix.identity().translate(new Vector3f(uiPanel.getPosition(), 0)).scaleXY(uiPanel.getSize().x, uiPanel.getSize().y);
-			
+			modelViewMatrix.identity().translate(new Vector3f(uiPanel.getPosition().x,uiPanel.getPosition().y, 0)).scaleXY(uiPanel.getSize().x, uiPanel.getSize().y);
+			shaderProgram.setModelViewMatrix(modelViewMatrix);
 
 			shaderProgram.setColor(uiPanel.getColor());
 

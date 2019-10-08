@@ -1,5 +1,6 @@
 package ch.g_7.graphite.xtest;
 
+import org.joml.Vector2d;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 
@@ -28,21 +29,19 @@ public class Test extends Application {
 	@Override
 	
 	protected void init() {
-		Mesh mesh1 = MeshFactory.getRegular(4, 0.5f).centerTopLeft().build();
-		BasicViewModel viewModel1 = new BasicViewModel(new Color(255, 0, 0, 0), mesh1);
-		UIPanel uiPanel = new UIPanel(viewModel1, new Vector2f(0, 0));
+		UIPanel uiPanel = new UIPanel(new Vector2f(0, 0), new Vector2f(1, 1));
 		getDimension().addObj(uiPanel, RenderClass.UI_PANELS);
 		
 		
-		Mesh mesh2 = MeshFactory.getRegular(4, 0.5f).build();
+		Mesh mesh2 = MeshFactory.getSquare(1).build();
 		BasicViewModel viewModel2 = new BasicViewModel(new Color(255, 0, 0, 0), mesh2);
 		BasicGameObject gameObject = new BasicGameObject(viewModel2, new Vector3f(0, 0, 0));
 		getDimension().addObj(gameObject, RenderClass.BASIC_GAME_OBJECTS);
-//		
-//		Mesh mesh2 = MeshFactory.getRegular(7, 0.3f).center().build();
-//		BasicViewModel viewModel2 = new BasicViewModel(new Color(0, 255, 0, 0), mesh2);
-//		BasicGameObject gameObject2 = new BasicGameObject(viewModel2, new Vector3f(0, 0, 0));
-//		getDimension().addObj(gameObject2, RenderClass.BASIC_GAME_OBJECTS);
+		
+		Mesh mesh3 = MeshFactory.getRegular(4, 0.3f).build();
+		BasicViewModel viewModel3 = new BasicViewModel(new Color(0, 255, 0, 0), mesh3);
+		BasicGameObject gameObject3 = new BasicGameObject(viewModel3, new Vector3f(0, 0, 0));
+		getDimension().addObj(gameObject3, RenderClass.BASIC_GAME_OBJECTS);
 //		
 //		System.out.println("\n\n");
 //		System.out.println("\n\n");

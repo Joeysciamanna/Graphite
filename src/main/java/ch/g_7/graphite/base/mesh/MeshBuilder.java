@@ -9,11 +9,13 @@ import org.joml.Vector2d;
 public class MeshBuilder {
 
 	private List<Vector2d> points;
+	private Vector2d center;
 	int angle = 90;
 	
 	public MeshBuilder() {
 		points = new ArrayList<>();
 		points.add(new Vector2d(0, 0));
+		center = new Vector2d(0, 0);
 	}
 	
 	public MeshBuilder setAngle(int angle) {

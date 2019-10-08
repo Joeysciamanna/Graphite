@@ -22,7 +22,7 @@ public final class RenderClass<T extends Renderable> implements Initializable{
 	
 	static {
 		BASIC_GAME_OBJECTS = create(new BasicRenderer(), "BASIC_GAME_OBJECTS", 1);
-		UI_PANELS = create(new UIRenderer(), "UI_PANELS", 10);
+		UI_PANELS = create(new UIRenderer(), "UI_PANELS", 1);
 	}
 	
 

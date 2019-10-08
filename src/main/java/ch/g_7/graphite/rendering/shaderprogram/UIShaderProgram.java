@@ -1,7 +1,6 @@
 package ch.g_7.graphite.rendering.shaderprogram;
 
 import org.joml.Matrix4f;
-import org.joml.Vector2f;
 import org.joml.Vector2i;
 import org.joml.Vector4f;
 
@@ -16,14 +15,14 @@ public class UIShaderProgram extends AbstractShaderProgram{
 	@Override
 	public void init() {
 		super.init();
-        createUniform("window_size");
+        createUniform("model_view_matrix");
         createUniform("texture_sampler");
         createUniform("color");
 	}
 
 	
-	public void setWindowSize(Vector2i size) {
-		setUniform("window_size", size);
+	public void setModelViewMatrix(Matrix4f modelViewMatrix) {
+		setUniform("model_view_matrix", modelViewMatrix);
 	}
 
 	public void setTextureSampler(int value) {
