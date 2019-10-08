@@ -6,6 +6,7 @@ import org.joml.Vector2d;
 import org.joml.Vector2f;
 
 import ch.g_7.graphite.base.mesh.Mesh;
+import ch.g_7.graphite.base.mesh.MeshBuilder;
 import ch.g_7.graphite.base.mesh.MeshFactory;
 import ch.g_7.graphite.base.texture.Texture;
 import ch.g_7.graphite.util.Color;
@@ -13,7 +14,7 @@ import ch.g_7.graphite.util.Color;
 public class UIPanel implements IUIPanel{
 
 	
-	private static final Mesh SQUARE_MESH = MeshFactory.getSquare(1).centerTopLeft().build();
+	private static final Mesh SQUARE_MESH = MeshFactory.getSquare(1).setCenter(MeshBuilder.CENTER_TOP_LEFT).build();
 	
 	private Vector2f position;
 	private Vector2f size;
