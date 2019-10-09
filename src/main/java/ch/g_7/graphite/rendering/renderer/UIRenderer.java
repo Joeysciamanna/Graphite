@@ -50,7 +50,7 @@ public class UIRenderer implements IRenderer<IUIPanel> {
 		for (IUIPanel uiPanel : renderables) {
 
 			// Set model view matrix for this item
-			modelViewMatrix.identity().translate(new Vector3f(uiPanel.getPosition().x() - 1 , uiPanel.getPosition().y()*-1 + 1, 0)).scaleXY(uiPanel.getSize().x(), uiPanel.getSize().y());
+			modelViewMatrix.identity().translate(new Vector3f(uiPanel.getPosition().x() - 1 , uiPanel.getPosition().y()*-1 + 1, 0.9f)).scaleXY(uiPanel.getSize().x(), uiPanel.getSize().y());
 			shaderProgram.setModelViewMatrix(modelViewMatrix);
 
 			shaderProgram.setColor(uiPanel.getColor());

@@ -40,11 +40,7 @@ public class UIPanel implements IUIPanel{
 		this.color = new Color(255, 255, 255, 0);
 	}
 	
-	
 
-
-	
-	
 	@Override
 	public void recalculate(Vector2ic screenSize) {
 		recalculate(width, screenSize, ScreenDimension.X_AXIS);
@@ -68,7 +64,7 @@ public class UIPanel implements IUIPanel{
 
 	@Override
 	public final Vector2fc getSize() {
-		return father == null ? size : size.add(father.getSize());
+		return size;
 	}
 	
 	public ScreenDimension getWidth() {
