@@ -3,7 +3,7 @@ package ch.g_7.graphite.base.ui;
 import org.joml.Vector2fc;
 import org.joml.Vector2ic;
 
-public class ScrennDimension {
+public class ScreenDimension {
 	
 	public static final byte X_AXIS = 0;
 	public static final byte Y_AXIS = 1;
@@ -15,14 +15,14 @@ public class ScrennDimension {
 	private float value;
 	
 	
-	public ScrennDimension(int value) {
+	public ScreenDimension(int value) {
 		this.value = value;
 	}
 	
-	public ScrennDimension() {}
+	public ScreenDimension() {}
 	
 	
-	public ScrennDimension recalculate(Vector2ic screenSize, Vector2fc fatherSize, byte axis) {
+	public ScreenDimension recalculate(Vector2ic screenSize, Vector2fc fatherSize, byte axis) {
 		if(axis == X_AXIS) {
 			recalculate(screenSize.x(), fatherSize == null ? 2 : fatherSize.x());
 		}else {
@@ -32,7 +32,7 @@ public class ScrennDimension {
 	}
 	
 	
-	public ScrennDimension recalculate(int screenSize, float fatherSize) {
+	public ScreenDimension recalculate(int screenSize, float fatherSize) {
 		value = 0;
 		value += (float) pixel * 2 / screenSize;
 		value += percentageOfFather / 50 * 2 / fatherSize;
@@ -40,7 +40,7 @@ public class ScrennDimension {
 		return this;
 	}
 	
-	public ScrennDimension reset() {
+	public ScreenDimension reset() {
 		percentageOfWindow = 0;
 		percentageOfFather = 0;
 		pixel = 0;
@@ -48,17 +48,17 @@ public class ScrennDimension {
 		return this;
 	}
 	
-	public ScrennDimension setPercentageOfFather(float percentageOfFather) {
+	public ScreenDimension setPercentageOfFather(float percentageOfFather) {
 		this.percentageOfFather = percentageOfFather;
 		return this;
 	}
 	
-	public ScrennDimension setPercentageOfWindow(float percentageOfWindow) {
+	public ScreenDimension setPercentageOfWindow(float percentageOfWindow) {
 		this.percentageOfWindow = percentageOfWindow;
 		return this;
 	}
 	
-	public ScrennDimension setPixel(int pixel) {
+	public ScreenDimension setPixel(int pixel) {
 		this.pixel = pixel;
 		return this;
 	}

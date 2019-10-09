@@ -16,12 +16,12 @@ public class UIPanel implements IUIPanel{
 	private static final Mesh SQUARE_MESH = MeshFactory.getSquare(1).setCenter(MeshBuilder.CENTER_TOP_LEFT).build();
 	
 
-	protected ScrennDimension width;
-	protected ScrennDimension height;
+	protected ScreenDimension width;
+	protected ScreenDimension height;
 	protected Vector2f size;
 	
-	protected ScrennDimension x;
-	protected ScrennDimension y;
+	protected ScreenDimension x;
+	protected ScreenDimension y;
 	protected Vector2f position;
 	
 	protected IUIPanel father;
@@ -31,10 +31,10 @@ public class UIPanel implements IUIPanel{
 	
 	
 	public UIPanel() {
-		this.width = new ScrennDimension();
-		this.height = new ScrennDimension();
-		this.x = new ScrennDimension();
-		this.y = new ScrennDimension();
+		this.width = new ScreenDimension();
+		this.height = new ScreenDimension();
+		this.x = new ScreenDimension();
+		this.y = new ScreenDimension();
 		this.size = new Vector2f(1, 1);
 		this.position = new Vector2f(0, 0);
 		this.color = new Color(255, 255, 255, 0);
@@ -47,17 +47,17 @@ public class UIPanel implements IUIPanel{
 	
 	@Override
 	public void recalculate(Vector2ic screenSize) {
-		recalculate(width, screenSize, ScrennDimension.X_AXIS);
-		recalculate(height, screenSize, ScrennDimension.Y_AXIS);
+		recalculate(width, screenSize, ScreenDimension.X_AXIS);
+		recalculate(height, screenSize, ScreenDimension.Y_AXIS);
 		
-		recalculate(x, screenSize, ScrennDimension.X_AXIS);
-		recalculate(y, screenSize, ScrennDimension.Y_AXIS);
+		recalculate(x, screenSize, ScreenDimension.X_AXIS);
+		recalculate(y, screenSize, ScreenDimension.Y_AXIS);
 		
 		this.size = new Vector2f(width.getValue(), height.getValue());
 		this.position = new Vector2f(x.getValue(), y.getValue());
 	}
 	
-	private void recalculate(ScrennDimension dimension, Vector2ic screenSize, byte axis) {
+	private void recalculate(ScreenDimension dimension, Vector2ic screenSize, byte axis) {
 		dimension.recalculate(screenSize, father == null ? null : father.getSize(), axis);
 	}
 	
@@ -71,19 +71,19 @@ public class UIPanel implements IUIPanel{
 		return father == null ? size : size.add(father.getSize());
 	}
 	
-	public ScrennDimension getWidth() {
+	public ScreenDimension getWidth() {
 		return width;
 	}
 	
-	public void setWidth(ScrennDimension width) {
+	public void setWidth(ScreenDimension width) {
 		this.width = width;
 	}
 	
-	public ScrennDimension getHeight() {
+	public ScreenDimension getHeight() {
 		return height;
 	}
 	
-	public void setHeight(ScrennDimension height) {
+	public void setHeight(ScreenDimension height) {
 		this.height = height;
 	}
 
@@ -92,19 +92,19 @@ public class UIPanel implements IUIPanel{
 		return father == null ? position : position.add(father.getPosition());
 	}
 	
-	public ScrennDimension getX() {
+	public ScreenDimension getX() {
 		return x;
 	}
 	
-	public void setX(ScrennDimension x) {
+	public void setX(ScreenDimension x) {
 		this.x = x;
 	}
 	
-	public ScrennDimension getY() {
+	public ScreenDimension getY() {
 		return y;
 	}
 	
-	public void setY(ScrennDimension y) {
+	public void setY(ScreenDimension y) {
 		this.y = y;
 	}
 	
