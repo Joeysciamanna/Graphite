@@ -58,7 +58,7 @@ public class ListPanel extends UIPanel {
 			panel.getY().reset();
 			panel.getX().reset().add(nextPos);
 			nextPos.add(panel.getWidth()).add(spaceHolder);
-		}else {
+		} else {
 			panel.getX().reset();
 			panel.getY().reset().add(nextPos);
 			nextPos.add(panel.getHeight()).add(spaceHolder);
