@@ -32,7 +32,7 @@ public class UIPanel implements IUIPanel{
 	protected Color color;
 	protected Texture texture;
 
-	protected boolean visible;
+	protected boolean visible = true;
 	
 	public UIPanel() {
 		this.width = new ScreenDimension();
@@ -117,6 +117,10 @@ public class UIPanel implements IUIPanel{
 		return color;
 	}
 
+	public void setColor(Color color) {
+		this.color = color;
+	}
+	
 	@Override
 	public Texture getTexture() {
 		return texture;

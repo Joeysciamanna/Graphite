@@ -34,10 +34,12 @@ public class ScreenDimension {
 	public ScreenDimension recalculate(int screenSize, float fatherSize) {
 		value = 0;
 		value += (float) pixel * 2 / screenSize;
-		value += percentageOfFather / 50 * 2 / fatherSize;
+		value += fatherSize * (percentageOfFather == 0 ? 0 : (percentageOfFather/100));
 		value += percentageOfWindow * 2 / 100;
 		return this;
 	}
+	
+
 	
 	public ScreenDimension reset() {
 		percentageOfWindow = 0;
