@@ -1,6 +1,7 @@
 package ch.g_7.graphite.base.ui;
 
-import org.joml.Vector2f;
+import org.joml.Vector2fc;
+import org.joml.Vector2ic;
 
 import ch.g_7.graphite.base.mesh.Mesh;
 import ch.g_7.graphite.base.texture.Texture;
@@ -11,11 +12,13 @@ public interface IUIPanel extends Renderable {
 	
 	public Mesh getMesh();
 	
-	public Vector2f getSize();
+	public Vector2fc getSize();
 	
-	public Vector2f getPosition();
+	public Vector2fc getPosition();
 	
 	public Color getColor();
 	
 	public Texture getTexture();
+	
+	public void recalculate(Vector2ic screenSize);
 }

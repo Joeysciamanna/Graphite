@@ -1,6 +1,7 @@
 package ch.g_7.graphite.base.entity;
 
 import org.joml.Vector3d;
+import org.joml.Vector3dc;
 
 public class Camera {
 
@@ -10,7 +11,7 @@ public class Camera {
 		this.position = new Vector3d();
 	}
 	
-	public Vector3d getPosition() {
+	public Vector3dc getPosition() {
 		return position;
 	}
 	

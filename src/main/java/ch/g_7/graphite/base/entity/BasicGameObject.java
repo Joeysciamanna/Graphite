@@ -1,7 +1,9 @@
 package ch.g_7.graphite.base.entity;
 
 import org.joml.Matrix4f;
+import org.joml.Matrix4fc;
 import org.joml.Vector3f;
+import org.joml.Vector3fc;
 
 import ch.g_7.graphite.base.viewmodel.IViewModel;
 
@@ -25,7 +27,7 @@ public class BasicGameObject implements IGameObject{
 	}
 
 	@Override
-	public Matrix4f getModelViewMatrix() {
+	public Matrix4fc getModelViewMatrix() {
 		return new Matrix4f().translate(position).rotateXYZ(rotation).scale(scale);
 	}
 
@@ -39,7 +41,7 @@ public class BasicGameObject implements IGameObject{
 	}
 	
 	@Override
-	public Vector3f getPosition() {
+	public Vector3fc getPosition() {
 		return position;
 	}
 	
@@ -48,7 +50,7 @@ public class BasicGameObject implements IGameObject{
 	}
 
 	@Override
-	public Vector3f getRotation() {
+	public Vector3fc getRotation() {
 		return rotation;
 	}
 	

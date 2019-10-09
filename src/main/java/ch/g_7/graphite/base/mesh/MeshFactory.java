@@ -20,8 +20,6 @@ public class MeshFactory {
 		MeshBuilder builder = new MeshBuilder();
 		builder.forward(side1).turn(90).forward(side2).turn(90).forward(side1);
 		return builder;
-		
-		
 	}
 	
 

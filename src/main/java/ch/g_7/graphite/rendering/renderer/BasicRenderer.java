@@ -46,8 +46,8 @@ public class BasicRenderer implements IRenderer<IGameObject> {
 		shaderProgram.bind();
 
 		viewMatrix.identity();
-		viewMatrix.translate((float) -camera.getPosition().x, (float) -camera.getPosition().y,
-				(float) -camera.getPosition().z);
+		viewMatrix.translate((float) -camera.getPosition().x(), (float) -camera.getPosition().y(),
+				(float) -camera.getPosition().z());
 
 		shaderProgram.setTextureSampler(0);
 

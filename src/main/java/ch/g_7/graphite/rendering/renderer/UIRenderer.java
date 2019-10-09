@@ -14,7 +14,6 @@ import static org.lwjgl.opengl.GL30.glBindVertexArray;
 import java.util.List;
 
 import org.joml.Matrix4f;
-import org.joml.Vector2i;
 import org.joml.Vector3f;
 
 import ch.g_7.graphite.base.entity.Camera;
@@ -51,7 +50,7 @@ public class UIRenderer implements IRenderer<IUIPanel> {
 		for (IUIPanel uiPanel : renderables) {
 
 			// Set model view matrix for this item
-			modelViewMatrix.identity().translate(new Vector3f(uiPanel.getPosition().x,uiPanel.getPosition().y, 0)).scaleXY(uiPanel.getSize().x, uiPanel.getSize().y);
+			modelViewMatrix.identity().translate(new Vector3f(uiPanel.getPosition().x() - 1 , uiPanel.getPosition().y() + 1, 0)).scaleXY(uiPanel.getSize().x(), uiPanel.getSize().y());
 			shaderProgram.setModelViewMatrix(modelViewMatrix);
 
 			shaderProgram.setColor(uiPanel.getColor());
