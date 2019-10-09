@@ -14,6 +14,12 @@ public class ScreenDimension {
 	
 	private float value;
 	
+	public ScreenDimension(float value) {
+		this.value = value;
+	}
+	
+	public ScreenDimension() {}
+	
 	
 	public ScreenDimension recalculate(Vector2ic screenSize, Vector2fc fatherSize, byte axis) {
 		if(axis == X_AXIS) {
@@ -41,18 +47,42 @@ public class ScreenDimension {
 		return this;
 	}
 	
-	public ScreenDimension setPercentageOfFather(float percentageOfFather) {
-		this.percentageOfFather = percentageOfFather;
+	
+	public ScreenDimension add(ScreenDimension dimension) {
+		addPercentageOfFather(dimension.percentageOfFather);
+		addPercentageOfWindow(dimension.percentageOfWindow);
+		addPixel(dimension.pixel);
 		return this;
 	}
 	
-	public ScreenDimension setPercentageOfWindow(float percentageOfWindow) {
-		this.percentageOfWindow = percentageOfWindow;
+//	public ScreenDimension setPercentageOfFather(float percentageOfFather) {
+//		this.percentageOfFather = percentageOfFather;
+//		return this;
+//	}
+	
+	public ScreenDimension addPercentageOfFather(float percentageOfFather) {
+		this.percentageOfFather += percentageOfFather;
 		return this;
 	}
 	
-	public ScreenDimension setPixel(int pixel) {
-		this.pixel = pixel;
+	
+//	public ScreenDimension setPercentageOfWindow(float percentageOfWindow) {
+//		this.percentageOfWindow = percentageOfWindow;
+//		return this;
+//	}
+	
+	public ScreenDimension addPercentageOfWindow(float percentageOfWindow) {
+		this.percentageOfWindow += percentageOfWindow;
+		return this;
+	}
+	
+//	public ScreenDimension setPixel(int pixel) {
+//		this.pixel = pixel;
+//		return this;
+//	}
+	
+	public ScreenDimension addPixel(int pixel) {
+		this.pixel += pixel;
 		return this;
 	}
 	

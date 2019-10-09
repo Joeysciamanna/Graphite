@@ -1,5 +1,8 @@
 package ch.g_7.graphite.base.ui;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.joml.Vector2f;
 import org.joml.Vector2fc;
 import org.joml.Vector2ic;
@@ -28,7 +31,8 @@ public class UIPanel implements IUIPanel{
 	
 	protected Color color;
 	protected Texture texture;
-	
+
+	protected boolean visible;
 	
 	public UIPanel() {
 		this.width = new ScreenDimension();
@@ -43,17 +47,21 @@ public class UIPanel implements IUIPanel{
 
 	@Override
 	public void recalculate(Vector2ic screenSize) {
-		recalculate(width, screenSize, ScreenDimension.X_AXIS);
-		recalculate(height, screenSize, ScreenDimension.Y_AXIS);
+		recalculateDimension(width, screenSize, ScreenDimension.X_AXIS);
+		recalculateDimension(height, screenSize, ScreenDimension.Y_AXIS);
 		
-		recalculate(x, screenSize, ScreenDimension.X_AXIS);
-		recalculate(y, screenSize, ScreenDimension.Y_AXIS);
+		recalculateDimension(x, screenSize, ScreenDimension.X_AXIS);
+		recalculateDimension(y, screenSize, ScreenDimension.Y_AXIS);
 		
 		this.size = new Vector2f(width.getValue(), height.getValue());
 		this.position = new Vector2f(x.getValue(), y.getValue());
+		
+		for (IUIPanel child : getChilds()) {
+			child.recalculate(screenSize);
+		}
 	}
 	
-	private void recalculate(ScreenDimension dimension, Vector2ic screenSize, byte axis) {
+	protected void recalculateDimension(ScreenDimension dimension, Vector2ic screenSize, byte axis) {
 		dimension.recalculate(screenSize, father == null ? null : father.getSize(), axis);
 	}
 	
@@ -114,12 +122,25 @@ public class UIPanel implements IUIPanel{
 		return texture;
 	}
 	
-	protected void setFather(IUIPanel father) {
+	public final void setFather(IUIPanel father) {
 		this.father = father;
 	}
 	
 	public IUIPanel getFather() {
 		return father;
 	}
+	
+	@Override
+	public boolean isVisible() {
+		return visible;
+	}
+	
+	public void setVisible(boolean visible) {
+		this.visible = visible;
+	}
 
+	@Override
+	public List<IUIPanel> getChilds() {
+		return new ArrayList<>();
+	}
 }

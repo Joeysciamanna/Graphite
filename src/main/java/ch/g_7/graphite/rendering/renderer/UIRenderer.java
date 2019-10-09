@@ -45,40 +45,50 @@ public class UIRenderer implements IRenderer<IUIPanel> {
 
 		shaderProgram.setTextureSampler(0);
 
-		
 		// Render each gameItem
-		for (IUIPanel uiPanel : renderables) {
-
-			// Set model view matrix for this item
-			modelViewMatrix.identity().translate(new Vector3f(uiPanel.getPosition().x() - 1 , uiPanel.getPosition().y()*-1 + 1, 0.9f)).scaleXY(uiPanel.getSize().x(), uiPanel.getSize().y());
-			shaderProgram.setModelViewMatrix(modelViewMatrix);
-
-			shaderProgram.setColor(uiPanel.getColor());
-
-			if (uiPanel.getTexture() != null) {
-				// Render the mes for this game item
-				// Activate firs texture bank
-				glActiveTexture(GL_TEXTURE0);
-				// Bind the texture
-				glBindTexture(GL_TEXTURE_2D, uiPanel.getTexture().getId());
+		for (IUIPanel panel : renderables) {
+			if(panel.isVisible()) {
+				render(panel);
 			}
-			// Draw the mesh
-			glBindVertexArray(uiPanel.getMesh().getVaoId());
-			glEnableVertexAttribArray(0);
-			glEnableVertexAttribArray(1);
-
-			glDrawElements(GL_TRIANGLES, uiPanel.getMesh().getVertexCount(), GL_UNSIGNED_INT, 0);
-
-			if (uiPanel.getTexture() != null) {
-				// Restore state
-				glDisableVertexAttribArray(0);
-				glDisableVertexAttribArray(1);
-				glBindVertexArray(0);
-			}
-
 		}
 
 		shaderProgram.unbind();
+	}
+	
+	
+	private void render(IUIPanel panel) {
+		// Set model view matrix for this item
+		modelViewMatrix.identity().translate(new Vector3f(panel.getPosition().x() - 1 , panel.getPosition().y()*-1 + 1, 0.9f)).scaleXY(panel.getSize().x(), panel.getSize().y());
+		shaderProgram.setModelViewMatrix(modelViewMatrix);
+
+		shaderProgram.setColor(panel.getColor());
+
+		if (panel.getTexture() != null) {
+			// Render the mes for this game item
+			// Activate firs texture bank
+			glActiveTexture(GL_TEXTURE0);
+			// Bind the texture
+			glBindTexture(GL_TEXTURE_2D, panel.getTexture().getId());
+		}
+		// Draw the mesh
+		glBindVertexArray(panel.getMesh().getVaoId());
+		glEnableVertexAttribArray(0);
+		glEnableVertexAttribArray(1);
+
+		glDrawElements(GL_TRIANGLES, panel.getMesh().getVertexCount(), GL_UNSIGNED_INT, 0);
+
+		if (panel.getTexture() != null) {
+			// Restore state
+			glDisableVertexAttribArray(0);
+			glDisableVertexAttribArray(1);
+			glBindVertexArray(0);
+		}
+		
+		for (IUIPanel child : panel.getChilds()) {
+			if(child.isVisible()) {
+				render(child);
+			}
+		}
 	}
 
 	@Override
