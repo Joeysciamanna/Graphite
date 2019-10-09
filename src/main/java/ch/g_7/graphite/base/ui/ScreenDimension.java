@@ -15,13 +15,6 @@ public class ScreenDimension {
 	private float value;
 	
 	
-	public ScreenDimension(int value) {
-		this.value = value;
-	}
-	
-	public ScreenDimension() {}
-	
-	
 	public ScreenDimension recalculate(Vector2ic screenSize, Vector2fc fatherSize, byte axis) {
 		if(axis == X_AXIS) {
 			recalculate(screenSize.x(), fatherSize == null ? 2 : fatherSize.x());
