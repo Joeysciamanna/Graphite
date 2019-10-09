@@ -6,7 +6,7 @@ import org.joml.Vector3fc;
 import ch.g_7.graphite.base.viewmodel.IViewModel;
 import ch.g_7.graphite.rendering.Renderable;
 
-public interface IGameObject extends Renderable {
+public interface IEntity extends Renderable {
 
 	public IViewModel getViewModel();
 	

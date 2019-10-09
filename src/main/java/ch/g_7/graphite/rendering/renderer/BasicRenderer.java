@@ -16,12 +16,12 @@ import java.util.List;
 import org.joml.Matrix4f;
 
 import ch.g_7.graphite.base.entity.Camera;
-import ch.g_7.graphite.base.entity.IGameObject;
+import ch.g_7.graphite.base.entity.IEntity;
 import ch.g_7.graphite.core.Window;
 import ch.g_7.graphite.rendering.Dimension;
 import ch.g_7.graphite.rendering.shaderprogram.BasicShaderProgram;
 
-public class BasicRenderer implements IRenderer<IGameObject> {
+public class BasicRenderer implements IRenderer<IEntity> {
 
 	private BasicShaderProgram shaderProgram;
 
@@ -41,7 +41,7 @@ public class BasicRenderer implements IRenderer<IGameObject> {
 	}
 
 	@Override
-	public void render(List<IGameObject> renderables, Dimension dimension, Window window, Camera camera) {
+	public void render(List<IEntity> renderables, Dimension dimension, Window window, Camera camera) {
 
 		shaderProgram.bind();
 
@@ -52,7 +52,7 @@ public class BasicRenderer implements IRenderer<IGameObject> {
 		shaderProgram.setTextureSampler(0);
 
 		// Render each gameItem
-		for (IGameObject object : renderables) {
+		for (IEntity object : renderables) {
 
 			// Set model view matrix for this item
 			Matrix4f viewCurr = new Matrix4f(viewMatrix);

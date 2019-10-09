@@ -22,13 +22,13 @@ public class Test extends Application {
 	protected void init() {
 		UIPanel uiPanel = new UIPanel();
 		
-		uiPanel.getWidth().setPercentageOfWindow(50);
-		uiPanel.getHeight().setPercentageOfWindow(50).setPercentageOfFather(25);
+		uiPanel.getWidth().setPercentageOfWindow(10);
+		uiPanel.getHeight().setPercentageOfWindow(94);
 		
-		uiPanel.getX().setPercentageOfWindow(25);
-//		uiPanel.getY().setPercentageOfWindow(50);
+		uiPanel.getX().setPercentageOfWindow(2);
+		uiPanel.getY().setPercentageOfWindow(2);
 
-		uiPanel.recalculate(getWindow().getSize());
+		
 		getDimension().addObj(uiPanel, RenderClass.UI_PANELS);
 //		
 //		
@@ -74,6 +74,7 @@ public class Test extends Application {
 		
 		getWindow().setVisible(true);
 		getWindow().setSize(500, 500);
+		uiPanel.recalculate(getWindow().getSize());
 	}
 	
 	

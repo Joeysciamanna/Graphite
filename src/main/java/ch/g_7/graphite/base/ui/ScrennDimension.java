@@ -24,7 +24,7 @@ public class ScrennDimension {
 	
 	public ScrennDimension recalculate(Vector2ic screenSize, Vector2fc fatherSize, byte axis) {
 		if(axis == X_AXIS) {
-			recalculate(screenSize.x() , fatherSize == null ? 2 : fatherSize.x());
+			recalculate(screenSize.x(), fatherSize == null ? 2 : fatherSize.x());
 		}else {
 			recalculate(screenSize.y(), fatherSize == null ? 2 : fatherSize.y());
 		}
@@ -34,7 +34,7 @@ public class ScrennDimension {
 	
 	public ScrennDimension recalculate(int screenSize, float fatherSize) {
 		value = 0;
-		value += pixel * 2 / screenSize;
+		value += (float) pixel * 2 / screenSize;
 		value += percentageOfFather / 50 * 2 / fatherSize;
 		value += percentageOfWindow * 2 / 100;
 		return this;

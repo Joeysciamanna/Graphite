@@ -7,7 +7,7 @@ import org.joml.Vector3fc;
 
 import ch.g_7.graphite.base.viewmodel.IViewModel;
 
-public class BasicGameObject implements IGameObject{
+public class BasicEntity implements IEntity{
 
 	private IViewModel viewModel;
 	private Vector3f position;
@@ -15,14 +15,14 @@ public class BasicGameObject implements IGameObject{
 	private float scale;
 	
 	
-	public BasicGameObject(IViewModel viewModel, Vector3f position, Vector3f rotation, float scale) {
+	public BasicEntity(IViewModel viewModel, Vector3f position, Vector3f rotation, float scale) {
 		this.viewModel = viewModel;
 		this.position = position;
 		this.rotation = rotation;
 		this.scale = scale;
 	}
 	
-	public BasicGameObject(IViewModel viewModel, Vector3f position) {
+	public BasicEntity(IViewModel viewModel, Vector3f position) {
 		this(viewModel, position, new Vector3f(), 1);
 	}
 

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import ch.g_7.graphite.base.entity.Camera;
-import ch.g_7.graphite.base.entity.IGameObject;
+import ch.g_7.graphite.base.entity.IEntity;
 import ch.g_7.graphite.base.ui.IUIPanel;
 import ch.g_7.graphite.core.Window;
 import ch.g_7.graphite.rendering.renderer.BasicRenderer;
@@ -17,7 +17,7 @@ import ch.g_7.util.stuff.Initializable;
 public final class RenderClass<T extends Renderable> implements Initializable{
 	
 	private static final Map<String, RenderClass<?>> RENDER_CLASSES = new HashMap<>();
-	public static final RenderClass<IGameObject> BASIC_GAME_OBJECTS;
+	public static final RenderClass<IEntity> BASIC_GAME_OBJECTS;
 	public static final RenderClass<IUIPanel> UI_PANELS;
 	
 	static {
