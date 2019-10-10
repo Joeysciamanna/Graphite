@@ -44,13 +44,16 @@ public class Test extends Application {
 		gridLayoutPanel.getRowsCellPlaceHolder().addPF(1);
 		inventory.add(gridLayoutPanel);
 		
-		for (int i = 1; i<=width*height; i++) {
-			UIPanel panel1 = new UIPanel();
-			panel1.setColor(new Color((255/(3*height))*i, 255/i, 255-i, 0));
-			gridLayoutPanel.add(panel1);
+		for (int x = 0; x<width; x++) {
+			for(int y = 0; y<height; y++) {
+				UIPanel panel1 = new UIPanel();
+				panel1.setColor(new Color((255/(3*height))*x, (255/(3*width))*y, 255/(x+y+1), 0));
+				gridLayoutPanel.add(panel1, x, y);
+			}
 		}
-		
-
+		UIPanel panel1 = new UIPanel();
+		panel1.setColor(new Color(255, 0 ,0 ,0));
+		gridLayoutPanel.add(panel1, 2, 2);
 		
 		
 		

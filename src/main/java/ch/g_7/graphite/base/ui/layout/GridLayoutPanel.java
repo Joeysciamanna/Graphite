@@ -37,6 +37,9 @@ public class GridLayoutPanel extends UIPanel{
 	}
 	
 	public void add(IUIPanel panel, int x, int y) {
+		if(childs[x][y] != null) {
+			childList.remove(childs[x][y]);
+		}
 		childs[x][y] = panel;
 		childList.add(panel);
 		panel.setFather(this);
@@ -52,7 +55,6 @@ public class GridLayoutPanel extends UIPanel{
 				}
 			}
 		}
-		
 	}
 	
 	private void place(IUIPanel panel, int x, int y) {
