@@ -8,14 +8,14 @@ import org.joml.Vector2i;
 import ch.g_7.graphite.base.ui.IUIPanel;
 import ch.g_7.graphite.base.ui.UIPanel;
 
-public class GridAreaMergeLayoutPanel extends UIPanel {
+public class GridMergeLayoutPanel extends UIPanel {
 
 	private Vector2i gridSize;
 
 	private final IUIPanel[][] childs;
 	private List<IUIPanel> childList;
 
-	public GridAreaMergeLayoutPanel(int colums, int rows) {
+	public GridMergeLayoutPanel(int colums, int rows) {
 		this.gridSize = new Vector2i(colums, rows);
 		this.childs = new IUIPanel[colums][rows];
 		this.childList = new ArrayList<>();

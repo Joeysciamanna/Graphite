@@ -6,9 +6,14 @@ import ch.g_7.graphite.base.entity.BasicEntity;
 import ch.g_7.graphite.base.mesh.Mesh;
 import ch.g_7.graphite.base.mesh.MeshBuilder;
 import ch.g_7.graphite.base.mesh.MeshFactory;
+import ch.g_7.graphite.base.ui.ScreenDimension;
 import ch.g_7.graphite.base.ui.UIPanel;
 import ch.g_7.graphite.base.ui.UIRootContainer;
-import ch.g_7.graphite.base.ui.layout.GridAreaMergeLayoutPanel;
+import ch.g_7.graphite.base.ui.layout.AligementLayoutPanel;
+import ch.g_7.graphite.base.ui.layout.CenterLayoutPanel;
+import ch.g_7.graphite.base.ui.layout.GridLayoutPanel;
+import ch.g_7.graphite.base.ui.layout.ListLayoutPanel;
+import ch.g_7.graphite.base.ui.layout.SpaceSharingLayoutPanel;
 import ch.g_7.graphite.base.viewmodel.BasicViewModel;
 import ch.g_7.graphite.core.Application;
 import ch.g_7.graphite.rendering.RenderClass;
@@ -32,18 +37,6 @@ public class Test extends Application {
 		UIRootContainer inventory = new UIRootContainer(getWindow());
 		
 		
-		GridAreaMergeLayoutPanel gridAreaMergeLayoutPanel = new GridAreaMergeLayoutPanel(10, 10);
-		gridAreaMergeLayoutPanel.getHeight().addPF(100);
-		gridAreaMergeLayoutPanel.getWidth().addPW(100);
-		inventory.add(gridAreaMergeLayoutPanel);
-		
-		UIPanel panel1 = new UIPanel();
-		panel1.setColor(new Color(0, 255, 0, 0));
-		gridAreaMergeLayoutPanel.add(panel1, 0, 0, 5, 9);
-		
-		UIPanel panel2 = new UIPanel();
-		panel2.setColor(new Color(255, 0, 0, 0));
-		gridAreaMergeLayoutPanel.add(panel2, 5, 0, 3, 8);
 		
 		
 		
@@ -70,7 +63,8 @@ public class Test extends Application {
 		
 		
 		
-
+		
+		
 //		AligementLayoutPanel aligementLayoutPanel = new AligementLayoutPanel();
 //		aligementLayoutPanel.getHeight().addPF(100);
 //		aligementLayoutPanel.getWidth().addPW(100);
