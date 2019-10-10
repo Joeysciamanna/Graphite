@@ -9,6 +9,7 @@ import ch.g_7.graphite.base.mesh.MeshFactory;
 import ch.g_7.graphite.base.ui.ScreenDimension;
 import ch.g_7.graphite.base.ui.UIPanel;
 import ch.g_7.graphite.base.ui.UIRootContainer;
+import ch.g_7.graphite.base.ui.layout.CenterLayoutPanel;
 import ch.g_7.graphite.base.ui.layout.GridLayoutPanel;
 import ch.g_7.graphite.base.ui.layout.ListLayoutPanel;
 import ch.g_7.graphite.base.viewmodel.BasicViewModel;
@@ -33,31 +34,43 @@ public class Test extends Application {
 	protected void init() {
 		UIRootContainer inventory = new UIRootContainer(getWindow());
 		
+		CenterLayoutPanel centerLayoutPanel = new CenterLayoutPanel();
+		centerLayoutPanel.getHeight().addPF(100);
+		centerLayoutPanel.getWidth().addPW(100);
+		centerLayoutPanel.getBorderLeft().addPF(25);
+		centerLayoutPanel.getBorderTop().addPF(25);
+		inventory.add(centerLayoutPanel);
 		
-		
-		int height = 5;
-		int width = 5;
-		GridLayoutPanel gridLayoutPanel = new GridLayoutPanel(width, height);
-		gridLayoutPanel.getHeight().addPF(100);
-		gridLayoutPanel.getWidth().addPW(100);
-		gridLayoutPanel.getColumCellPlaceHolder().addPF(1);
-		gridLayoutPanel.getRowsCellPlaceHolder().addPF(1);
-		inventory.add(gridLayoutPanel);
-		
-		for (int x = 0; x<width; x++) {
-			for(int y = 0; y<height; y++) {
-				UIPanel panel1 = new UIPanel();
-				panel1.setColor(new Color((255/(3*height))*x, (255/(3*width))*y, 255/(x+y+1), 0));
-				gridLayoutPanel.add(panel1, x, y);
-			}
-		}
 		UIPanel panel1 = new UIPanel();
-		panel1.setColor(new Color(255, 0 ,0 ,0));
-		gridLayoutPanel.add(panel1, 2, 2);
+		panel1.setColor(new Color(0, 255, 0, 0));
+		panel1.getHeight().addPF(50);
+		panel1.getWidth().addPF(50);
+		centerLayoutPanel.set(panel1);
 		
 		
 		
 		
+//		int height = 5;
+//		int width = 5;
+//		GridLayoutPanel gridLayoutPanel = new GridLayoutPanel(width, height);
+//		gridLayoutPanel.getHeight().addPF(100);
+//		gridLayoutPanel.getWidth().addPW(100);
+//		gridLayoutPanel.getColumCellPlaceHolder().addPF(1);
+//		gridLayoutPanel.getRowsCellPlaceHolder().addPF(1);
+//		inventory.add(gridLayoutPanel);
+//		
+//		for (int x = 0; x<width; x++) {
+//			for(int y = 0; y<height; y++) {
+//				UIPanel panel1 = new UIPanel();
+//				panel1.setColor(new Color((255/(3*height))*x, (255/(3*width))*y, 255/(x+y+1), 0));
+//				gridLayoutPanel.add(panel1, x, y);
+//			}
+//		}
+//		UIPanel panel1 = new UIPanel();
+//		panel1.setColor(new Color(255, 0 ,0 ,0));
+//		gridLayoutPanel.add(panel1, 2, 2);
+		
+	
 		
 		
 //		ListPanel listPanel = new ListPanel(ListPanel.Y_AXIS);

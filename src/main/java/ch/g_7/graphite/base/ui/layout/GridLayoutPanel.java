@@ -1,6 +1,5 @@
 package ch.g_7.graphite.base.ui.layout;
 
-import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +38,7 @@ public class GridLayoutPanel extends UIPanel{
 	public void add(IUIPanel panel, int x, int y) {
 		if(childs[x][y] != null) {
 			childList.remove(childs[x][y]);
+			childs[x][y] = null;
 		}
 		childs[x][y] = panel;
 		childList.add(panel);
@@ -58,11 +58,11 @@ public class GridLayoutPanel extends UIPanel{
 	}
 	
 	private void place(IUIPanel panel, int x, int y) {
-		panel.getWidth().reset().addPF((float)100/gridSize.x).remove(new ScreenDimension().add(columCellPlaceHolder).multiply(gridSize.x-1));
-		panel.getHeight().reset().addPF((float)100/gridSize.y).remove(new ScreenDimension().add(rowsCellPlaceHolder).multiply(gridSize.y-1));
+		panel.getWidth().reset().addPF((float)100/gridSize.x).remove(columCellPlaceHolder.clone().multiply(gridSize.x-1));
+		panel.getHeight().reset().addPF((float)100/gridSize.y).remove(rowsCellPlaceHolder.clone().multiply(gridSize.y-1));
 		
-		panel.getX().reset().addPF((float)100/gridSize.x * x).add(new ScreenDimension().add(columCellPlaceHolder).multiply(x));
-		panel.getY().reset().addPF((float)100/gridSize.y * y).add(new ScreenDimension().add(rowsCellPlaceHolder).multiply(y));
+		panel.getX().reset().addPF((float)100/gridSize.x * x).add(columCellPlaceHolder.clone().multiply(x));
+		panel.getY().reset().addPF((float)100/gridSize.y * y).add(rowsCellPlaceHolder.clone().multiply(y));
 
 		requestRecalculation(this);
 	}

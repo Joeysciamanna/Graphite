@@ -30,6 +30,10 @@ public class ScreenDimension {
 		return this;
 	}
 	
+	public ScreenDimension clone() {
+		return new ScreenDimension().add(this);
+	}
+	
 	public ScreenDimension recalculate(int screenSize, float fatherSize) {
 		value = 0;
 		value += (float) pixel * 2 / screenSize;
@@ -60,7 +64,7 @@ public class ScreenDimension {
 		return this;
 	}
 	
-	public ScreenDimension multiply(int factor) {
+	public ScreenDimension multiply(float factor) {
 		pW *= factor;
 		pF *= factor;
 		pixel *= factor;
