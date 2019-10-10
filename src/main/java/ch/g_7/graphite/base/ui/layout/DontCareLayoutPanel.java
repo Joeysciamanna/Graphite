@@ -35,6 +35,10 @@ public class DontCareLayoutPanel extends UIPanel {
 		place(panel);
 	}
 	
+	public void remove(IUIPanel panel) {
+		childs.remove(panel);
+	}
+	
 	private void place(IUIPanel panel) {
 		panel.getX().add(borderLeft);
 		panel.getY().add(borderTop);

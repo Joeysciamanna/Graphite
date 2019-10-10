@@ -31,6 +31,13 @@ public class AligementLayoutPanel extends UIPanel {
 		panel.setFather(this);
 		place(panel, position);
 	}
+	
+
+	public void remove(byte position) {
+		IUIPanel panel = childs[position];
+		childs[position] = null;
+		childList.remove(panel);
+	}
 
 	private void place(IUIPanel panel, byte position) {
 		switch (position) {

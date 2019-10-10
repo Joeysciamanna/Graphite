@@ -35,6 +35,12 @@ public class GridLayoutPanel extends UIPanel{
 		super.recalculate(screenSize);
 	}
 	
+	public void remove(int x, int y) {
+		IUIPanel panel = childs[x][y];
+		childs[x][y] = null;
+		childList.remove(panel);
+	}
+	
 	public void add(IUIPanel panel, int x, int y) {
 		if(childs[x][y] != null) {
 			childList.remove(childs[x][y]);

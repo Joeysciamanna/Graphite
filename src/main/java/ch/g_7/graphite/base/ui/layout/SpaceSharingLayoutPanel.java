@@ -20,6 +20,16 @@ public class SpaceSharingLayoutPanel extends UIPanel {
 		this.childs = new ArrayList<>();
 	}
 	
+	public void removeMainPanel() {
+		childs.remove(mainPanel);
+		mainPanel = null;
+	}
+	
+	public void removeAdjustablePanel() {
+		childs.remove(adjustablePanel);
+		adjustablePanel = null;
+	}
+	
 	public void setMainPanel(IUIPanel mainPanel) {
 		if(this.mainPanel!=null) {
 			childs.remove(this.mainPanel);

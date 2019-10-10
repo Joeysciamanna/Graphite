@@ -6,14 +6,9 @@ import ch.g_7.graphite.base.entity.BasicEntity;
 import ch.g_7.graphite.base.mesh.Mesh;
 import ch.g_7.graphite.base.mesh.MeshBuilder;
 import ch.g_7.graphite.base.mesh.MeshFactory;
-import ch.g_7.graphite.base.ui.ScreenDimension;
 import ch.g_7.graphite.base.ui.UIPanel;
 import ch.g_7.graphite.base.ui.UIRootContainer;
-import ch.g_7.graphite.base.ui.layout.AligementLayoutPanel;
-import ch.g_7.graphite.base.ui.layout.CenterLayoutPanel;
-import ch.g_7.graphite.base.ui.layout.GridLayoutPanel;
-import ch.g_7.graphite.base.ui.layout.ListLayoutPanel;
-import ch.g_7.graphite.base.ui.layout.SpaceSharingLayoutPanel;
+import ch.g_7.graphite.base.ui.layout.GridAreaMergeLayoutPanel;
 import ch.g_7.graphite.base.viewmodel.BasicViewModel;
 import ch.g_7.graphite.core.Application;
 import ch.g_7.graphite.rendering.RenderClass;
@@ -36,22 +31,19 @@ public class Test extends Application {
 	protected void init() {
 		UIRootContainer inventory = new UIRootContainer(getWindow());
 		
-		SpaceSharingLayoutPanel sharingLayoutPanel = new SpaceSharingLayoutPanel();
-		sharingLayoutPanel.getHeight().addPF(100);
-		sharingLayoutPanel.getWidth().addPW(100);
-		inventory.add(sharingLayoutPanel);
+		
+		GridAreaMergeLayoutPanel gridAreaMergeLayoutPanel = new GridAreaMergeLayoutPanel(10, 10);
+		gridAreaMergeLayoutPanel.getHeight().addPF(100);
+		gridAreaMergeLayoutPanel.getWidth().addPW(100);
+		inventory.add(gridAreaMergeLayoutPanel);
 		
 		UIPanel panel1 = new UIPanel();
 		panel1.setColor(new Color(0, 255, 0, 0));
-		panel1.getHeight().addPF(50);
-		panel1.getWidth().addPF(50);
-		sharingLayoutPanel.setMainPanel(panel1);
+		gridAreaMergeLayoutPanel.add(panel1, 0, 0, 5, 9);
 		
 		UIPanel panel2 = new UIPanel();
 		panel2.setColor(new Color(255, 0, 0, 0));
-		panel2.getHeight().addPF(25);
-		panel2.getWidth().addPF(25);
-		sharingLayoutPanel.setAdjustablePanel(panel2, SpaceSharingLayoutPanel.Y_AXIS);
+		gridAreaMergeLayoutPanel.add(panel2, 5, 0, 3, 8);
 		
 		
 		
@@ -59,8 +51,26 @@ public class Test extends Application {
 		
 		
 		
+//		SpaceSharingLayoutPanel sharingLayoutPanel = new SpaceSharingLayoutPanel();
+//		sharingLayoutPanel.getHeight().addPF(100);
+//		sharingLayoutPanel.getWidth().addPW(100);
+//		inventory.add(sharingLayoutPanel);
+//		
+//		UIPanel panel1 = new UIPanel();
+//		panel1.setColor(new Color(0, 255, 0, 0));
+//		panel1.getHeight().addPF(50);
+//		panel1.getWidth().addPF(50);
+//		sharingLayoutPanel.setMainPanel(panel1);
+//		
+//		UIPanel panel2 = new UIPanel();
+//		panel2.setColor(new Color(255, 0, 0, 0));
+//		panel2.getHeight().addPF(25);
+//		panel2.getWidth().addPF(25);
+//		sharingLayoutPanel.setAdjustablePanel(panel2, SpaceSharingLayoutPanel.Y_AXIS);
 		
 		
+		
+
 //		AligementLayoutPanel aligementLayoutPanel = new AligementLayoutPanel();
 //		aligementLayoutPanel.getHeight().addPF(100);
 //		aligementLayoutPanel.getWidth().addPW(100);

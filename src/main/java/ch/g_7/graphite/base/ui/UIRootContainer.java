@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.joml.Vector2f;
-import org.joml.Vector2i;
 import org.joml.Vector2ic;
 
 import ch.g_7.graphite.core.Window;
