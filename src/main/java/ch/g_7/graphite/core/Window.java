@@ -50,7 +50,8 @@ public class Window implements KeyListner, Initializable{
 	private final String title;
 
 	private List<KeyListner> keyListners;
-
+	private List<ResizeListner> resizeListners;
+	
 	private long windowId;
 
 	private int width;
@@ -60,7 +61,8 @@ public class Window implements KeyListner, Initializable{
 		this.title = title;
 		this.width = width;
 		this.height = height;
-		keyListners = new ArrayList<KeyListner>();
+		keyListners = new ArrayList<>();
+		resizeListners = new ArrayList<>();
 	}
 	
 	public long getWindowId() {
@@ -135,6 +137,24 @@ public class Window implements KeyListner, Initializable{
 		glfwMakeContextCurrent(windowId);
 	}
 
+	public void setSize(int width, int height) {
+		glViewport(0, 0, width, height);
+		GLFW.glfwSetWindowSize(windowId, width, height);
+		this.width = width;
+		this.height = height;
+		for (ResizeListner resizeListner : resizeListners) {
+			resizeListner.onResize(width, height);
+		}
+	}
+	
+	public void addResizeListner(ResizeListner resizeListner) {
+		resizeListners.add(resizeListner);
+	}
+
+	public void removeResizeListner(ResizeListner resizeListner) {
+		resizeListners.remove(resizeListner);
+	}
+	
 	public void setVisible(boolean visible) {
 		if (visible) {
 			glfwShowWindow(windowId);
@@ -146,13 +166,6 @@ public class Window implements KeyListner, Initializable{
 	public void center() {
 		GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 		glfwSetWindowPos(windowId, (vidmode.width() - width) / 2, (vidmode.height() - height) / 2);
-	}
-
-	public void setSize(int width, int height) {
-		glViewport(0, 0, width, height);
-		GLFW.glfwSetWindowSize(windowId, width, height);
-		this.width = width;
-		this.height = height;
 	}
 
 	public void setBackgroundColor(Color color) {

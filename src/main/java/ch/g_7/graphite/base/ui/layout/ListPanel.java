@@ -65,6 +65,7 @@ public class ListPanel extends UIPanel {
 		}
 		panel.getX().add(borderLeft);
 		panel.getY().add(borderTop);
+		requestRecalculation(this);
 	}
 	
 	

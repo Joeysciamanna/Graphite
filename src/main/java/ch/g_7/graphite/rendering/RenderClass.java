@@ -7,7 +7,7 @@ import java.util.Map;
 
 import ch.g_7.graphite.base.entity.Camera;
 import ch.g_7.graphite.base.entity.IEntity;
-import ch.g_7.graphite.base.ui.IUIPanel;
+import ch.g_7.graphite.base.ui.IUIRootContainer;
 import ch.g_7.graphite.core.Window;
 import ch.g_7.graphite.rendering.renderer.BasicRenderer;
 import ch.g_7.graphite.rendering.renderer.IRenderer;
@@ -19,7 +19,7 @@ public final class RenderClass<T extends Renderable> implements Initializable, A
 	private static final Map<String, RenderClass<?>> RENDER_CLASSES = new HashMap<>();
 	
 	public static final RenderClass<IEntity> BASIC_GAME_OBJECTS;
-	public static final RenderClass<IUIPanel> UI_PANELS;
+	public static final RenderClass<IUIRootContainer> UI_PANELS;
 	
 	static {
 		BASIC_GAME_OBJECTS = create(new BasicRenderer(), "BASIC_GAME_OBJECTS");

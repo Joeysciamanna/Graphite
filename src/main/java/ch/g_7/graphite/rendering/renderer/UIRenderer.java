@@ -18,11 +18,12 @@ import org.joml.Vector3f;
 
 import ch.g_7.graphite.base.entity.Camera;
 import ch.g_7.graphite.base.ui.IUIPanel;
+import ch.g_7.graphite.base.ui.IUIRootContainer;
 import ch.g_7.graphite.core.Window;
 import ch.g_7.graphite.rendering.Dimension;
 import ch.g_7.graphite.rendering.shaderprogram.UIShaderProgram;
 
-public class UIRenderer implements IRenderer<IUIPanel> {
+public class UIRenderer implements IRenderer<IUIRootContainer> {
 
 	private UIShaderProgram shaderProgram;
 	
@@ -39,16 +40,18 @@ public class UIRenderer implements IRenderer<IUIPanel> {
 	}
 
 	@Override
-	public void render(List<IUIPanel> renderables, Dimension dimension, Window window, Camera camera) {
+	public void render(List<IUIRootContainer> renderables, Dimension dimension, Window window, Camera camera) {
 
 		shaderProgram.bind();
 
 		shaderProgram.setTextureSampler(0);
 
 		// Render each gameItem
-		for (IUIPanel panel : renderables) {
-			if(panel.isVisible()) {
-				render(panel);
+		for (IUIRootContainer container : renderables) {
+			if(container.isVisible()) {
+				for (IUIPanel panel : container.getChilds()) {
+					render(panel);
+				}
 			}
 		}
 
@@ -65,7 +68,7 @@ public class UIRenderer implements IRenderer<IUIPanel> {
 		}
 		
 		// Set model view matrix for this item
-		modelViewMatrix.identity().translate(new Vector3f(panel.getPosition().x() - 1 , panel.getPosition().y()*-1 + 1, 0.9f)).scaleXY(panel.getSize().x(), panel.getSize().y());
+		modelViewMatrix.identity().translate(new Vector3f(panel.getPosition().x() - 1 , panel.getPosition().y()*-1 + 1, -0.9f)).scaleXY(panel.getSize().x(), panel.getSize().y());
 		shaderProgram.setModelViewMatrix(modelViewMatrix);
 
 		shaderProgram.setColor(panel.getColor());
