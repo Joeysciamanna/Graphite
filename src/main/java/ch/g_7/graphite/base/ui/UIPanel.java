@@ -147,4 +147,17 @@ public class UIPanel implements IUIPanel{
 	public List<IUIPanel> getChilds() {
 		return new ArrayList<>();
 	}
+
+
+	@Override
+	public void close() {
+		if(texture!=null) {
+			texture.close();
+		}
+		SQUARE_MESH.close();
+	}
+
+
+	@Override
+	public void init() {}
 }

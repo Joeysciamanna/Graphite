@@ -6,12 +6,10 @@ import java.util.List;
 import ch.g_7.graphite.base.entity.Camera;
 import ch.g_7.graphite.core.Window;
 
-public final class Dimension {
+public final class Dimension implements AutoCloseable {
 
 	
 	private List<RenderClass<?>> renderClasses;
-	
-	private short renderCount;
 	
 	public Dimension() {
 		renderClasses = new ArrayList<>(20);
@@ -22,6 +20,7 @@ public final class Dimension {
 			renderClasses.add(renderClass);
 			renderClass.init();
 		}
+		renderable.init();
 		renderClass.add(renderable);
 	}
 	
@@ -31,12 +30,17 @@ public final class Dimension {
 	
 	public void render(Window window, Camera camera) {
 		for (RenderClass<?> renderClass : renderClasses) {
-			if(renderCount%renderClass.getPrirority()==0) {
-				renderClass.render(this, window, camera);
-			}
+			renderClass.render(this, window, camera);
 		}
-		renderCount++;
 	}
+
+	@Override
+	public void close() {
+		for (RenderClass<?> renderClass : renderClasses) {
+			renderClass.close();
+		}
+	}
+	
 	
 	
 }

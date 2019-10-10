@@ -49,4 +49,12 @@ public class BasicViewModel implements IViewModel{
 		this.color = color;
 	}
 
+	@Override
+	public void close() {
+		if(texture!=null) {
+			texture.close();
+		}
+		mesh.close();
+	}
+
 }

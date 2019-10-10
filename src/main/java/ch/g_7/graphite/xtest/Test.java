@@ -29,7 +29,7 @@ public class Test extends Application {
 
 		listPanel.setBorderLeft(new ScreenDimension().addPercentageOfFather(5));
 		listPanel.setBorderTop(new ScreenDimension().addPercentageOfFather(5));
-		listPanel.setSpaceHolder(new ScreenDimension().addPixel(12));
+		listPanel.setSpaceHolder(new ScreenDimension().addPercentageOfFather(7.5f));
 		
 		
 		UIPanel panel1 = new UIPanel();

@@ -7,7 +7,7 @@ import org.joml.Vector3fc;
 
 import ch.g_7.graphite.base.viewmodel.IViewModel;
 
-public class BasicEntity implements IEntity{
+public class BasicEntity implements IEntity {
 
 	private IViewModel viewModel;
 	private Vector3f position;
@@ -66,5 +66,13 @@ public class BasicEntity implements IEntity{
 	public void setScale(float scale) {
 		this.scale = scale;
 	}
+
+	@Override
+	public void close() {
+		viewModel.close();
+	}
+
+	@Override
+	public void init() {}
 
 }

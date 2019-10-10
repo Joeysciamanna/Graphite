@@ -93,7 +93,7 @@ public class UIRenderer implements IRenderer<IUIPanel> {
 	}
 
 	@Override
-	public void close() throws Exception {
+	public void close() {
 		shaderProgram.close();
 	}
 

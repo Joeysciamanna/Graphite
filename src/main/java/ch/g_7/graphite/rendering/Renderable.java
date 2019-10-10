@@ -1,7 +1,10 @@
 package ch.g_7.graphite.rendering;
 
-public interface Renderable {
+import ch.g_7.util.stuff.Initializable;
 
+public interface Renderable extends AutoCloseable, Initializable {
 
+	@Override
+	void close();
 	
 }

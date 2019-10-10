@@ -12,4 +12,6 @@ public interface IRenderer<T extends Renderable> extends Initializable, AutoClos
 	
 	void render(List<T> renderables, Dimension dimension, Window window, Camera camera);
 
+	@Override
+	void close();
 }
