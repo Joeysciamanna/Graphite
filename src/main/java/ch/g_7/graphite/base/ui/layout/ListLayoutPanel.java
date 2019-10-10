@@ -78,23 +78,11 @@ public class ListLayoutPanel extends UIPanel {
 		return borderLeft;
 	}
 	
-	public void setBorderLeft(ScreenDimension borderLeft) {
-		this.borderLeft = borderLeft;
-	}
-	
 	public ScreenDimension getBorderTop() {
 		return borderTop;
 	}
 	
-	public void setBorderTop(ScreenDimension borderTop) {
-		this.borderTop = borderTop;
-	}
-	
 	public ScreenDimension getSpaceHolder() {
 		return placeHolder;
-	}
-	
-	public void setSpaceHolder(ScreenDimension spaceHolder) {
-		this.placeHolder = spaceHolder;
 	}
 }

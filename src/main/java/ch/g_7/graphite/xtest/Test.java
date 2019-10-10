@@ -9,6 +9,7 @@ import ch.g_7.graphite.base.mesh.MeshFactory;
 import ch.g_7.graphite.base.ui.ScreenDimension;
 import ch.g_7.graphite.base.ui.UIPanel;
 import ch.g_7.graphite.base.ui.UIRootContainer;
+import ch.g_7.graphite.base.ui.layout.GridLayoutPanel;
 import ch.g_7.graphite.base.ui.layout.ListLayoutPanel;
 import ch.g_7.graphite.base.viewmodel.BasicViewModel;
 import ch.g_7.graphite.core.Application;
@@ -32,19 +33,28 @@ public class Test extends Application {
 	protected void init() {
 		UIRootContainer inventory = new UIRootContainer(getWindow());
 		
-		UIPanel panel1 = new UIPanel();
-		panel1.setColor(new Color(255, 0, 0, 0));
-		panel1.getHeight().addPW(50);
-		panel1.getWidth().addPW(95);
-		inventory.add(panel1);
 		
 		
-		UIPanel panel2 = new UIPanel();
-		panel2.setColor(new Color(0, 255, 0, 0));
-		panel2.getY().addPW(50);
-		panel2.getHeight().addPW(50);
-		panel2.getWidth().addPW(100).removePixel(50);
-		inventory.add(panel2);
+		int height = 5;
+		int width = 5;
+		GridLayoutPanel gridLayoutPanel = new GridLayoutPanel(width, height);
+		gridLayoutPanel.getHeight().addPF(100);
+		gridLayoutPanel.getWidth().addPW(100);
+		gridLayoutPanel.getColumCellPlaceHolder().addPF(1);
+		gridLayoutPanel.getRowsCellPlaceHolder().addPF(1);
+		inventory.add(gridLayoutPanel);
+		
+		for (int i = 1; i<=width*height; i++) {
+			UIPanel panel1 = new UIPanel();
+			panel1.setColor(new Color((255/(3*height))*i, 255/i, 255-i, 0));
+			gridLayoutPanel.add(panel1);
+		}
+		
+
+		
+		
+		
+		
 		
 		
 //		ListPanel listPanel = new ListPanel(ListPanel.Y_AXIS);

@@ -25,6 +25,8 @@ public class GridLayoutPanel extends UIPanel{
 		this.gridSize = new Vector2i(colums, rows);
 		this.childs = new IUIPanel[colums][rows];
 		this.childList = new ArrayList<>();
+		this.columCellPlaceHolder = new ScreenDimension();
+		this.rowsCellPlaceHolder = new ScreenDimension();
 	}
 	
 	@Override
@@ -42,21 +44,23 @@ public class GridLayoutPanel extends UIPanel{
 	}
 	
 	public void add(IUIPanel panel) {
-		for (int x = 0; x < childs.length; x++) {
-			for (int y = 0; y < childs[x].length; y++) {
-				if (childs[x][y] == null) {
+		for (int y = 0; y < childs[0].length; y++) {
+			for (int x = 0; x < childs.length; x++) {
+				if(childs[x][y] == null) {
 					add(panel, x, y);
+					return;
 				}
 			}
 		}
+		
 	}
 	
 	private void place(IUIPanel panel, int x, int y) {
-		panel.getWidth().reset().addPF(100/gridSize.x).remove(new ScreenDimension().add(columCellPlaceHolder).multiply(gridSize.x-1));
-		panel.getHeight().reset().addPF(100/gridSize.y).remove(new ScreenDimension().add(rowsCellPlaceHolder).multiply(gridSize.y-1));
+		panel.getWidth().reset().addPF((float)100/gridSize.x).remove(new ScreenDimension().add(columCellPlaceHolder).multiply(gridSize.x-1));
+		panel.getHeight().reset().addPF((float)100/gridSize.y).remove(new ScreenDimension().add(rowsCellPlaceHolder).multiply(gridSize.y-1));
 		
-		panel.getX().reset().addPF(100/gridSize.x * x).add(new ScreenDimension().add(columCellPlaceHolder).multiply(x));
-		panel.getY().reset().addPF(100/gridSize.y * y).add(new ScreenDimension().add(rowsCellPlaceHolder).multiply(y));
+		panel.getX().reset().addPF((float)100/gridSize.x * x).add(new ScreenDimension().add(columCellPlaceHolder).multiply(x));
+		panel.getY().reset().addPF((float)100/gridSize.y * y).add(new ScreenDimension().add(rowsCellPlaceHolder).multiply(y));
 
 		requestRecalculation(this);
 	}
@@ -67,5 +71,12 @@ public class GridLayoutPanel extends UIPanel{
 		return childList;
 	}
 
+	public ScreenDimension getColumCellPlaceHolder() {
+		return columCellPlaceHolder;
+	}
 	
+	public ScreenDimension getRowsCellPlaceHolder() {
+		return rowsCellPlaceHolder;
+	}
+
 }
