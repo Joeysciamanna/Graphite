@@ -33,7 +33,7 @@ public class UIPanel extends UIContainer implements IUIPanel{
 	}
 	
 	@Override
-	public void requestRecalculation(IUIContainer container) {
+	public final void requestRecalculation(IUIContainer container) {
 		if(getFather()!=null) {
 			getFather().requestRecalculation(container);
 		}
@@ -88,7 +88,5 @@ public class UIPanel extends UIContainer implements IUIPanel{
 	public List<IUIPanel> getChilds() {
 		return new ArrayList<>();
 	}
-
-
 
 }

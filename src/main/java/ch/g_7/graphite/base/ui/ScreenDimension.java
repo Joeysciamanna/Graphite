@@ -30,7 +30,6 @@ public class ScreenDimension {
 		return this;
 	}
 	
-	
 	public ScreenDimension recalculate(int screenSize, float fatherSize) {
 		value = 0;
 		value += (float) pixel * 2 / screenSize;
@@ -38,8 +37,6 @@ public class ScreenDimension {
 		value += pW * 2 / 100;
 		return this;
 	}
-	
-
 	
 	public ScreenDimension reset() {
 		pW = 0;
@@ -49,7 +46,6 @@ public class ScreenDimension {
 		return this;
 	}
 	
-	
 	public ScreenDimension add(ScreenDimension dimension) {
 		addPF(dimension.pF);
 		addPW(dimension.pW);
@@ -57,10 +53,19 @@ public class ScreenDimension {
 		return this;
 	}
 	
-//	public ScreenDimension setPercentageOfFather(float percentageOfFather) {
-//		this.percentageOfFather = percentageOfFather;
-//		return this;
-//	}
+	public ScreenDimension remove(ScreenDimension dimension) {
+		removePF(dimension.pF);
+		removePW(dimension.pW);
+		removePixel(dimension.pixel);
+		return this;
+	}
+	
+	public ScreenDimension multiply(int factor) {
+		pW *= factor;
+		pF *= factor;
+		pixel *= factor;
+		return this;
+	}
 	
 	public ScreenDimension addPF(float percentageOfFather) {
 		this.pF += percentageOfFather;
@@ -72,11 +77,6 @@ public class ScreenDimension {
 		return this;
 	}
 	
-//	public ScreenDimension setPercentageOfWindow(float percentageOfWindow) {
-//		this.percentageOfWindow = percentageOfWindow;
-//		return this;
-//	}
-	
 	public ScreenDimension addPW(float percentageOfWindow) {
 		this.pW += percentageOfWindow;
 		return this;
@@ -86,11 +86,6 @@ public class ScreenDimension {
 		this.pW -= percentageOfWindow;
 		return this;
 	}
-	
-//	public ScreenDimension setPixel(int pixel) {
-//		this.pixel = pixel;
-//		return this;
-//	}
 	
 	public ScreenDimension addPixel(int pixel) {
 		this.pixel += pixel;

@@ -17,7 +17,7 @@ public class ListLayoutPanel extends UIPanel {
 	
 	private ScreenDimension borderLeft;
 	private ScreenDimension borderTop;
-	private ScreenDimension spaceHolder;
+	private ScreenDimension placeHolder;
 	
 	private byte axis;
 	
@@ -31,7 +31,7 @@ public class ListLayoutPanel extends UIPanel {
 		this.childs = new ArrayList<>();
 		this.borderLeft = new ScreenDimension();
 		this.borderTop = new ScreenDimension();
-		this.spaceHolder = new ScreenDimension();
+		this.placeHolder = new ScreenDimension();
 		this.nextPos = new ScreenDimension();
 	}
 	
@@ -40,28 +40,28 @@ public class ListLayoutPanel extends UIPanel {
 	public void recalculate(Vector2ic screenSize) {
 		recalculateDimension(borderLeft, screenSize, X_AXIS);
 		recalculateDimension(borderTop, screenSize, Y_AXIS);	
-		recalculateDimension(spaceHolder, screenSize, axis);
+		recalculateDimension(placeHolder, screenSize, axis);
 		recalculateDimension(nextPos, screenSize, axis);
 		super.recalculate(screenSize);
 	}
 	
 	
-	public void add(UIPanel panel) {
+	public void add(IUIPanel panel) {
 		childs.add(panel);
 		panel.setFather(this);
 		place(panel);
 	}
 	
 	
-	private void place(UIPanel panel) {
+	private void place(IUIPanel panel) {
 		if(axis == X_AXIS) {
 			panel.getY().reset();
 			panel.getX().reset().add(nextPos);
-			nextPos.add(panel.getWidth()).add(spaceHolder);
+			nextPos.add(panel.getWidth()).add(placeHolder);
 		} else {
 			panel.getX().reset();
 			panel.getY().reset().add(nextPos);
-			nextPos.add(panel.getHeight()).add(spaceHolder);
+			nextPos.add(panel.getHeight()).add(placeHolder);
 		}
 		panel.getX().add(borderLeft);
 		panel.getY().add(borderTop);
@@ -91,10 +91,10 @@ public class ListLayoutPanel extends UIPanel {
 	}
 	
 	public ScreenDimension getSpaceHolder() {
-		return spaceHolder;
+		return placeHolder;
 	}
 	
 	public void setSpaceHolder(ScreenDimension spaceHolder) {
-		this.spaceHolder = spaceHolder;
+		this.placeHolder = spaceHolder;
 	}
 }
