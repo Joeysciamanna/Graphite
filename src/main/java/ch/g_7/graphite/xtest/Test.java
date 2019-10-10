@@ -13,6 +13,7 @@ import ch.g_7.graphite.base.ui.layout.AligementLayoutPanel;
 import ch.g_7.graphite.base.ui.layout.CenterLayoutPanel;
 import ch.g_7.graphite.base.ui.layout.GridLayoutPanel;
 import ch.g_7.graphite.base.ui.layout.ListLayoutPanel;
+import ch.g_7.graphite.base.ui.layout.SpaceSharingLayoutPanel;
 import ch.g_7.graphite.base.viewmodel.BasicViewModel;
 import ch.g_7.graphite.core.Application;
 import ch.g_7.graphite.rendering.RenderClass;
@@ -35,16 +36,41 @@ public class Test extends Application {
 	protected void init() {
 		UIRootContainer inventory = new UIRootContainer(getWindow());
 		
-		AligementLayoutPanel aligementLayoutPanel = new AligementLayoutPanel();
-		aligementLayoutPanel.getHeight().addPF(100);
-		aligementLayoutPanel.getWidth().addPW(100);
-		inventory.add(aligementLayoutPanel);
+		SpaceSharingLayoutPanel sharingLayoutPanel = new SpaceSharingLayoutPanel();
+		sharingLayoutPanel.getHeight().addPF(100);
+		sharingLayoutPanel.getWidth().addPW(100);
+		inventory.add(sharingLayoutPanel);
 		
 		UIPanel panel1 = new UIPanel();
 		panel1.setColor(new Color(0, 255, 0, 0));
 		panel1.getHeight().addPF(50);
 		panel1.getWidth().addPF(50);
-		aligementLayoutPanel.add(panel1, AligementLayoutPanel.TOP_RIGHT);
+		sharingLayoutPanel.setMainPanel(panel1);
+		
+		UIPanel panel2 = new UIPanel();
+		panel2.setColor(new Color(255, 0, 0, 0));
+		panel2.getHeight().addPF(25);
+		panel2.getWidth().addPF(25);
+		sharingLayoutPanel.setAdjustablePanel(panel2, SpaceSharingLayoutPanel.Y_AXIS);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+//		AligementLayoutPanel aligementLayoutPanel = new AligementLayoutPanel();
+//		aligementLayoutPanel.getHeight().addPF(100);
+//		aligementLayoutPanel.getWidth().addPW(100);
+//		inventory.add(aligementLayoutPanel);
+//		
+//		UIPanel panel1 = new UIPanel();
+//		panel1.setColor(new Color(0, 255, 0, 0));
+//		panel1.getHeight().addPF(50);
+//		panel1.getWidth().addPF(50);
+//		aligementLayoutPanel.add(panel1, AligementLayoutPanel.TOP_RIGHT);
 		
 		
 		
