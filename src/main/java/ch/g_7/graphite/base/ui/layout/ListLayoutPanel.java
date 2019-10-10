@@ -9,7 +9,7 @@ import ch.g_7.graphite.base.ui.IUIPanel;
 import ch.g_7.graphite.base.ui.ScreenDimension;
 import ch.g_7.graphite.base.ui.UIPanel;
 
-public class ListPanel extends UIPanel {
+public class ListLayoutPanel extends UIPanel {
 
 	public static final byte X_AXIS = 0;
 	public static final byte Y_AXIS = 1;
@@ -26,7 +26,7 @@ public class ListPanel extends UIPanel {
 	private List<IUIPanel> childs;
 
 	
-	public ListPanel(byte axis) {
+	public ListLayoutPanel(byte axis) {
 		this.axis = axis;
 		this.childs = new ArrayList<>();
 		this.borderLeft = new ScreenDimension();

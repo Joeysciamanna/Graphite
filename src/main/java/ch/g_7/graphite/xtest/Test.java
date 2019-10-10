@@ -9,7 +9,7 @@ import ch.g_7.graphite.base.mesh.MeshFactory;
 import ch.g_7.graphite.base.ui.ScreenDimension;
 import ch.g_7.graphite.base.ui.UIPanel;
 import ch.g_7.graphite.base.ui.UIRootContainer;
-import ch.g_7.graphite.base.ui.layout.ListPanel;
+import ch.g_7.graphite.base.ui.layout.ListLayoutPanel;
 import ch.g_7.graphite.base.viewmodel.BasicViewModel;
 import ch.g_7.graphite.core.Application;
 import ch.g_7.graphite.rendering.RenderClass;
