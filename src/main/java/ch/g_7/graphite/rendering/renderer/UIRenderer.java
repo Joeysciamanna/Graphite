@@ -57,6 +57,13 @@ public class UIRenderer implements IRenderer<IUIPanel> {
 	
 	
 	private void render(IUIPanel panel) {
+		
+		for (IUIPanel child : panel.getChilds()) {
+			if(child.isVisible()) {
+				render(child);
+			}
+		}
+		
 		// Set model view matrix for this item
 		modelViewMatrix.identity().translate(new Vector3f(panel.getPosition().x() - 1 , panel.getPosition().y()*-1 + 1, 0.9f)).scaleXY(panel.getSize().x(), panel.getSize().y());
 		shaderProgram.setModelViewMatrix(modelViewMatrix);
@@ -82,12 +89,6 @@ public class UIRenderer implements IRenderer<IUIPanel> {
 			glDisableVertexAttribArray(0);
 			glDisableVertexAttribArray(1);
 			glBindVertexArray(0);
-		}
-		
-		for (IUIPanel child : panel.getChilds()) {
-			if(child.isVisible()) {
-				render(child);
-			}
 		}
 	}
 

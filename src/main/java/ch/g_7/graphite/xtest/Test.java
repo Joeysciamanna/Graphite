@@ -1,5 +1,6 @@
 package ch.g_7.graphite.xtest;
 
+import ch.g_7.graphite.base.ui.ScreenDimension;
 import ch.g_7.graphite.base.ui.UIPanel;
 import ch.g_7.graphite.base.ui.layout.ListPanel;
 import ch.g_7.graphite.core.Application;
@@ -26,18 +27,28 @@ public class Test extends Application {
 		listPanel.getHeight().addPercentageOfFather(100);
 		listPanel.getWidth().addPercentageOfWindow(50);
 
+		listPanel.setBorderLeft(new ScreenDimension().addPercentageOfFather(5));
+		listPanel.setBorderTop(new ScreenDimension().addPercentageOfFather(5));
+		listPanel.setSpaceHolder(new ScreenDimension().addPixel(12));
+		
+		
 		UIPanel panel1 = new UIPanel();
 		panel1.setColor(new Color(0, 255, 0, 0));
 		panel1.getHeight().addPercentageOfFather(25);
-		panel1.getWidth().addPercentageOfFather(75);
+		panel1.getWidth().addPercentageOfFather(90);
 		listPanel.add(panel1);
 		
 		UIPanel panel2 = new UIPanel();
 		panel2.setColor(new Color(255, 0, 0, 0));
 		panel2.getHeight().addPercentageOfFather(25);
-		panel2.getWidth().addPercentageOfFather(75);
+		panel2.getWidth().addPercentageOfFather(90);
 		listPanel.add(panel2);
 
+		UIPanel panel3 = new UIPanel();
+		panel3.setColor(new Color(0, 0, 255, 0));
+		panel3.getHeight().addPercentageOfFather(25);
+		panel3.getWidth().addPercentageOfFather(90);
+		listPanel.add(panel3);
 		
 		getDimension().addObj(listPanel, RenderClass.UI_PANELS);
 //		
@@ -84,11 +95,11 @@ public class Test extends Application {
 	
 		getWindow().setVisible(true);
 		getWindow().setSize(500, 500);
-		
 		listPanel.recalculate(getWindow().getSize());
+		
+
 	}
-	
-	
+		
 
 	
 
