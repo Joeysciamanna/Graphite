@@ -32,34 +32,48 @@ public class Test extends Application {
 	protected void init() {
 		UIRootContainer inventory = new UIRootContainer(getWindow());
 		
-		ListPanel listPanel = new ListPanel(ListPanel.Y_AXIS);
-		listPanel.getHeight().addPF(100);
-		listPanel.getWidth().addPW(50);
-		inventory.add(listPanel);
-		inventory.recalculate();
-		
-		listPanel.setBorderLeft(new ScreenDimension().addPF(5));
-		listPanel.setBorderTop(new ScreenDimension().addPixel(100));
-		listPanel.setSpaceHolder(new ScreenDimension().addPF(7.5f));
-		
-		
 		UIPanel panel1 = new UIPanel();
-		panel1.setColor(new Color(0, 255, 0, 0));
-		panel1.getHeight().addPF(25);
-		panel1.getWidth().addPF(90);
-		listPanel.add(panel1);
+		panel1.setColor(new Color(255, 0, 0, 0));
+		panel1.getHeight().addPW(50);
+		panel1.getWidth().addPW(95);
+		inventory.add(panel1);
+		
 		
 		UIPanel panel2 = new UIPanel();
-		panel2.setColor(new Color(255, 0, 0, 0));
-		panel2.getHeight().addPF(25);
-		panel2.getWidth().addPF(90);
-		listPanel.add(panel2);
-
-		UIPanel panel3 = new UIPanel();
-		panel3.setColor(new Color(0, 0, 255, 0));
-		panel3.getHeight().addPF(25);
-		panel3.getWidth().addPF(90);
-		listPanel.add(panel3);
+		panel2.setColor(new Color(0, 255, 0, 0));
+		panel2.getY().addPW(50);
+		panel2.getHeight().addPW(50);
+		panel2.getWidth().addPW(100).removePixel(50);
+		inventory.add(panel2);
+		
+		
+//		ListPanel listPanel = new ListPanel(ListPanel.Y_AXIS);
+//		listPanel.getHeight().addPF(100);
+//		listPanel.getWidth().addPW(50);
+//		inventory.add(listPanel);
+//		
+//		listPanel.setBorderLeft(new ScreenDimension().addPF(5));
+//		listPanel.setBorderTop(new ScreenDimension().addPixel(100));
+//		listPanel.setSpaceHolder(new ScreenDimension().addPF(7.5f));
+//		
+//		
+//		UIPanel panel1 = new UIPanel();
+//		panel1.setColor(new Color(0, 255, 0, 0));
+//		panel1.getHeight().addPF(25);
+//		panel1.getWidth().addPF(90);
+//		listPanel.add(panel1);
+//		
+//		UIPanel panel2 = new UIPanel();
+//		panel2.setColor(new Color(255, 0, 0, 0));
+//		panel2.getHeight().addPF(25);
+//		panel2.getWidth().addPF(90);
+//		listPanel.add(panel2);
+//
+//		UIPanel panel3 = new UIPanel();
+//		panel3.setColor(new Color(0, 0, 255, 0));
+//		panel3.getHeight().addPF(25);
+//		panel3.getWidth().addPF(90);
+//		listPanel.add(panel3);
 		
 		getDimension().addObj(inventory, RenderClass.UI_PANELS);
 	
