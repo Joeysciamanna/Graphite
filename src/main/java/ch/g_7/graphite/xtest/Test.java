@@ -27,7 +27,7 @@ public class Test extends Application {
 	@Override
 	
 	protected void init() {
-		UIRootContainer inventory = new UIRootContainer(getWindow());
+//		UIRootContainer inventory = new UIRootContainer(getWindow());
 		
 		
 		
@@ -140,7 +140,7 @@ public class Test extends Application {
 //		panel3.getWidth().addPF(90);
 //		listPanel.add(panel3);
 		
-		getDimension().addObj(inventory, RenderClass.UI_PANELS);
+//		getDimension().addObj(inventory, RenderClass.UI_PANELS);
 	
 //		
 //		

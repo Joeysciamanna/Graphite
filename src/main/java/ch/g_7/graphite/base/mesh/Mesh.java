@@ -19,18 +19,25 @@ import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.joml.Vector3f;
+import org.joml.Vector3fc;
 import org.lwjgl.system.MemoryUtil;
 
 public abstract class Mesh implements AutoCloseable {
 
-	protected int vaoId;
-	protected final List<Integer> vboIdList;
-	protected int vertexCount;
+	private int vaoId;
+	private final List<Integer> vboIdList;
+	private int vertexCount;
+
+	private List<Vector3fc> points;
+	private List<Vector3fc> normals;
 
 	
 	public Mesh() {
 		vboIdList = new ArrayList<Integer>();
 		vaoId = glGenVertexArrays();
+		points = new ArrayList<>();
+		normals = new ArrayList<>();
 	}
 
 	public int getVertexCount() {
@@ -67,6 +74,10 @@ public abstract class Mesh implements AutoCloseable {
 				MemoryUtil.memFree(textCoordsBuffer);
 			}
 		}
+	}
+	
+	public void setNormals(List<Vector3fc> normals) {
+		this.normals = normals;
 	}
 
 	protected void setVertices(float[] positions, int[] indices) {
@@ -105,6 +116,10 @@ public abstract class Mesh implements AutoCloseable {
 				MemoryUtil.memFree(indicesBuffer);
 			}
 		}
+		for (int i = 0; i < positions.length; i+=3) {
+			this.points.add(new Vector3f(positions[i], positions[i+1], positions[i+2]));
+		}
+		
 	}
 
 	public void close() {
@@ -119,5 +134,13 @@ public abstract class Mesh implements AutoCloseable {
 		// Delete the VAO
 		glBindVertexArray(0);
 		glDeleteVertexArrays(vaoId);
+	}
+	
+	public List<Vector3fc> getNormals() {
+		return normals;
+	}
+	
+	public List<Vector3fc> getPoints() {
+		return points;
 	}
 }

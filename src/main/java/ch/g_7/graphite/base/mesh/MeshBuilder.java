@@ -135,7 +135,8 @@ public class MeshBuilder {
 		for (int j = 0; j < realIndices.length; j++) {
 			realIndices[j] = indices.get(j);
 		}
-
+		
+		
 		return new BasicMesh(positions, realIndices);
 	}
 
