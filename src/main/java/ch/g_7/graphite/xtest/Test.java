@@ -6,11 +6,8 @@ import ch.g_7.graphite.base.entity.BasicEntity;
 import ch.g_7.graphite.base.mesh.AbstractMesh;
 import ch.g_7.graphite.base.mesh.MeshBuilder;
 import ch.g_7.graphite.base.mesh.MeshFactory;
-import ch.g_7.graphite.base.ui.UIRootContainer;
 import ch.g_7.graphite.base.viewmodel.BasicViewModel;
 import ch.g_7.graphite.core.Application;
-import ch.g_7.graphite.physics2d.ColissionClass;
-import ch.g_7.graphite.physics2d.PhysicsWorld;
 import ch.g_7.graphite.rendering.RenderClass;
 import ch.g_7.graphite.util.Color;
 
