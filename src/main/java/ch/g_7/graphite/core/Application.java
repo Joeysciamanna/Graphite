@@ -29,13 +29,13 @@ public abstract class Application implements Runnable {
 	public final void setRunning(boolean running) {
 		if (running && !this.running) {
 			this.running = true;
-			String osName = System.getProperty("os.name");
-			if (osName.contains("Mac")) {
-				run();
-			} else {
+//			String osName = System.getProperty("os.name");
+//			if (osName.contains("Mac")) {
+//				run();
+//			} else {
 				thread = new Thread(this);
 				thread.start();
-			}
+//			}
 		} else if (!running && this.running) {
 			this.running = false;
 			thread = null;
