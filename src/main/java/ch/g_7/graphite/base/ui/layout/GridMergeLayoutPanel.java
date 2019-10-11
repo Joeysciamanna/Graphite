@@ -24,6 +24,9 @@ public class GridMergeLayoutPanel extends UIPanel {
 	public void add(IUIPanel panel, int x, int y, int width, int height) {
 		for (int i = x; i < x + width; i++) {
 			for (int j = y; j < y + height; j++) {
+				if(childs[i][j] != null) {
+					remove(i, j);
+				}
 				childs[i][j] = panel;
 			}
 		}
