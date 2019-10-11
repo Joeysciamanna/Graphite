@@ -18,6 +18,7 @@ public class PhysicsCalculator implements Task<Void, Void> {
 	@Override
 	public Void run(Void arg0) {
 		for (int i = 0; i < bodies.size(); i++) {
+			Vector3fc max = bodies.get(i).get
 			for (int j = i + 1; j < bodies.size(); j++) {
 				for (Vector3fc point : bodies.get(i).getPoints()) {
 					

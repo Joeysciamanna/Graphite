@@ -6,7 +6,6 @@ import org.joml.Vector3fc;
 
 public interface IBody {
 
-	
 	void move(Vector3fc distance);
 	
 	float getBounceMultiplyer();
@@ -22,5 +21,9 @@ public interface IBody {
 	List<Vector3fc> getPoints();
 	
 	Vector3fc getCenterOfMass();
+	
+	Vector3fc getMaxPoint();
+	
+	Vector3fc getMinPoint();
 	
 }
