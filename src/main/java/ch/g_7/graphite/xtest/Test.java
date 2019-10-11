@@ -3,7 +3,7 @@ package ch.g_7.graphite.xtest;
 import org.joml.Vector3f;
 
 import ch.g_7.graphite.base.entity.BasicEntity;
-import ch.g_7.graphite.base.mesh.Mesh;
+import ch.g_7.graphite.base.mesh.AbstractMesh;
 import ch.g_7.graphite.base.mesh.MeshBuilder;
 import ch.g_7.graphite.base.mesh.MeshFactory;
 import ch.g_7.graphite.base.ui.UIRootContainer;
@@ -150,12 +150,12 @@ public class Test extends Application {
 //		getDimension().addObj(gameObject, RenderClass.BASIC_GAME_OBJECTS);
 		
 		
-		Mesh mesh1 = MeshFactory.getRegular(4, 0.3f).setCenter(MeshBuilder.CENTER_BUTTOM_LEFT).build();
+		AbstractMesh mesh1 = MeshFactory.getRegular(4, 0.3f).setCenter(MeshBuilder.CENTER_BUTTOM_LEFT).build();
 		BasicViewModel viewModel1 = new BasicViewModel(new Color(255, 0, 0, 0), mesh1);
 		BasicEntity gameObject1 = new BasicEntity(viewModel1, new Vector3f(0, 0, 0));
 		getDimension().addObj(gameObject1, RenderClass.BASIC_GAME_OBJECTS);
 
-		Mesh mesh2 = MeshFactory.getRegular(4, 0.3f).setCenter(MeshBuilder.CENTER_BUTTOM_RIGHT).build();
+		AbstractMesh mesh2 = MeshFactory.getRegular(4, 0.3f).setCenter(MeshBuilder.CENTER_BUTTOM_RIGHT).build();
 		BasicViewModel viewModel2 = new BasicViewModel(new Color(0, 255, 0, 0), mesh2);
 		BasicEntity gameObject2 = new BasicEntity(viewModel2, new Vector3f(0, 0, 0));
 		getDimension().addObj(gameObject2, RenderClass.BASIC_GAME_OBJECTS);
@@ -165,12 +165,12 @@ public class Test extends Application {
 //		BasicEntity gameObject3 = new BasicEntity(viewModel3, new Vector3f(0, 0, 0));
 //		getDimension().addObj(gameObject3, RenderClass.BASIC_GAME_OBJECTS);
 		
-		Mesh mesh4 = MeshFactory.getRegular(4, 0.3f).setCenter(MeshBuilder.CENTER_TOP_LEFT).build();
+		AbstractMesh mesh4 = MeshFactory.getRegular(4, 0.3f).setCenter(MeshBuilder.CENTER_TOP_LEFT).build();
 		BasicViewModel viewModel4 = new BasicViewModel(new Color(255, 255, 0, 0), mesh4);
 		BasicEntity gameObject4 = new BasicEntity(viewModel4, new Vector3f(0, 0, 0));
 		getDimension().addObj(gameObject4, RenderClass.BASIC_GAME_OBJECTS);
 		
-		Mesh mesh5 = MeshFactory.getRegular(4, 0.3f).setCenter(MeshBuilder.CENTER_TOP_RIGHT).build();
+		AbstractMesh mesh5 = MeshFactory.getRegular(4, 0.3f).setCenter(MeshBuilder.CENTER_TOP_RIGHT).build();
 		BasicViewModel viewModel5 = new BasicViewModel(new Color(0, 0, 255, 0), mesh5);
 		BasicEntity gameObject5 = new BasicEntity(viewModel5, new Vector3f(0, 0, 0));
 		getDimension().addObj(gameObject5, RenderClass.BASIC_GAME_OBJECTS);

@@ -21,6 +21,6 @@ public interface IBody {
 	
 	List<Vector3fc> getPoints();
 	
-	List<Vector3fc> getNormals();
+	Vector3fc getCenterOfMass();
 	
 }

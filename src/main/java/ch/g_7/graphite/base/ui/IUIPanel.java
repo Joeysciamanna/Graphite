@@ -1,12 +1,12 @@
 package ch.g_7.graphite.base.ui;
 
-import ch.g_7.graphite.base.mesh.Mesh;
+import ch.g_7.graphite.base.mesh.AbstractMesh;
 import ch.g_7.graphite.base.texture.Texture;
 import ch.g_7.graphite.util.Color;
 
 public interface IUIPanel extends IUIContainer {
 
-	Mesh getMesh();
+	AbstractMesh getMesh();
 
 	Color getColor();
 

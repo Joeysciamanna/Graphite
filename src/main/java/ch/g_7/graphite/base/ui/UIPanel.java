@@ -6,7 +6,7 @@ import java.util.List;
 import org.joml.Vector2fc;
 import org.joml.Vector2ic;
 
-import ch.g_7.graphite.base.mesh.Mesh;
+import ch.g_7.graphite.base.mesh.AbstractMesh;
 import ch.g_7.graphite.base.mesh.MeshBuilder;
 import ch.g_7.graphite.base.mesh.MeshFactory;
 import ch.g_7.graphite.base.texture.Texture;
@@ -15,7 +15,7 @@ import ch.g_7.graphite.util.Color;
 public class UIPanel extends UIContainer implements IUIPanel{
 
 	
-	private static final Mesh SQUARE_MESH = MeshFactory.getSquare(1).setCenter(MeshBuilder.CENTER_TOP_LEFT).build();
+	private static final AbstractMesh SQUARE_MESH = MeshFactory.getSquare(1).setCenter(MeshBuilder.CENTER_TOP_LEFT).build();
 	
 	protected IUIContainer father;
 	
@@ -51,7 +51,7 @@ public class UIPanel extends UIContainer implements IUIPanel{
 	}
 	
 	@Override
-	public Mesh getMesh() {
+	public AbstractMesh getMesh() {
 		return SQUARE_MESH;
 	}
 

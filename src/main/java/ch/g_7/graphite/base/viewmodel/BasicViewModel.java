@@ -1,23 +1,23 @@
 package ch.g_7.graphite.base.viewmodel;
 
-import ch.g_7.graphite.base.mesh.Mesh;
+import ch.g_7.graphite.base.mesh.AbstractMesh;
 import ch.g_7.graphite.base.texture.Texture;
 import ch.g_7.graphite.util.Color;
 
 public class BasicViewModel implements IViewModel{
 
-	protected Mesh mesh;
+	protected AbstractMesh mesh;
 	protected Texture texture;
 	protected Color color;
 	
 	public BasicViewModel() {}
 	
-	public BasicViewModel(Texture texture, Mesh mesh) {
+	public BasicViewModel(Texture texture, AbstractMesh mesh) {
 		this.texture = texture;
 		this.mesh = mesh;
 	}
 	
-	public BasicViewModel(Color color, Mesh mesh) {
+	public BasicViewModel(Color color, AbstractMesh mesh) {
 		this.color = color;
 		this.mesh = mesh;
 	}
@@ -32,11 +32,11 @@ public class BasicViewModel implements IViewModel{
 	}
 
 	@Override
-	public Mesh getMesh() {
+	public AbstractMesh getMesh() {
 		return mesh;
 	}
 	
-	public void setMesh(Mesh mesh) {
+	public void setMesh(AbstractMesh mesh) {
 		this.mesh = mesh;
 	}
 	

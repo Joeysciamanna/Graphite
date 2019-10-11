@@ -1,7 +1,12 @@
 package ch.g_7.graphite.base.mesh;
 
-public class BasicMesh extends Mesh {
+import java.util.List;
 
+import org.joml.Vector3fc;
+
+public class BasicMesh extends AbstractMesh {
+
+	private List<Vector3fc> points;
 	
 	public BasicMesh(float[] positions, int[] indices) {
 		setVertices(positions, indices);
@@ -15,6 +20,12 @@ public class BasicMesh extends Mesh {
 		        0,0,
 		        0,0,
 		         });
+	}
+	
+	
+	@Override
+	public List<Vector3fc> getPoints() {
+		return points;
 	}
 
 	

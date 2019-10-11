@@ -103,7 +103,7 @@ public class MeshBuilder {
 	 * It works, don't touch it!!
 	 * @return
 	 */
-	public Mesh build() {
+	public AbstractMesh build() {
 		float[] positions = new float[points.size() * 3];
 		for (int i = 0; i < points.size(); i++) {
 			positions[i * 3 + 0] = (float) points.get(i).x;
