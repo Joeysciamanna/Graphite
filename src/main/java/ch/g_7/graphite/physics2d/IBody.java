@@ -1,4 +1,4 @@
-package ch.g_7.graphite.physics;
+package ch.g_7.graphite.physics2d;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public interface IBody {
 	
 	float addForce();
 	
-	float getForce();
+	Vector3fc getForce();
 	
 	float setForce();
 	

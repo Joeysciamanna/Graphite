@@ -1,4 +1,4 @@
-package ch.g_7.graphite.physics;
+package ch.g_7.graphite.physics2d;
 
 import java.util.List;
 
@@ -18,10 +18,16 @@ public class PhysicsCalculator implements Task<Void, Void> {
 	@Override
 	public Void run(Void arg0) {
 		for (int i = 0; i < bodies.size(); i++) {
-			Vector3fc max = bodies.get(i).get
+			IBody body1 = bodies.get(i);
+			Vector3fc max = body1.getMaxPoint();
+			Vector3fc min = body1.getMinPoint();
 			for (int j = i + 1; j < bodies.size(); j++) {
-				for (Vector3fc point : bodies.get(i).getPoints()) {
-					
+				IBody body2 = bodies.get(j);
+				for (Vector3fc point :body2.getPoints()) {
+					if(point.x() < max.x() && point.y() < max.y() && point.z() < max.z() &&
+							point.x() > min.x() && point.y() > min.y() && point.z() > min.z()) {
+						Vector3fc = body1.getForce().
+					}
 				}
 				// compare list.get(i) and list.get(j)
 			}

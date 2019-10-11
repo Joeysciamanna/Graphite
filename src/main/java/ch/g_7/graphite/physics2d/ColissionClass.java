@@ -1,4 +1,4 @@
-package ch.g_7.graphite.physics;
+package ch.g_7.graphite.physics2d;
 
 import java.util.ArrayList;
 import java.util.List;
