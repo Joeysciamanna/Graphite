@@ -8,9 +8,10 @@ import ch.g_7.graphite.base.ui.UIPanel;
 
 public class AligementLayoutPanel extends UIPanel {
 	
-	public static final byte TOP_LEFT = 0;
-	public static final byte TOP_RIGHT = 1;
-	public static final byte BUTTON_LEFT = 2;
+	public static final byte TOP= 0;
+	public static final byte LEFT = 1;
+	public static final byte RIGHT = 2;
+	public static final byte BUTTOM = 3;
 
 	
 	private IUIPanel[] childs;
@@ -41,15 +42,23 @@ public class AligementLayoutPanel extends UIPanel {
 
 	private void place(IUIPanel panel, byte position) {
 		switch (position) {
-		case TOP_LEFT:
+		case TOP:
+			panel.getWidth().reset().addPF(100);
 			panel.getX().reset();
 			panel.getY().reset();
 		break;
-		case TOP_RIGHT:
+		case LEFT:
+			panel.getHeight().reset().addPF(100);
+			panel.getX().reset();
+			panel.getY().reset();
+		break;
+		case RIGHT:
+			panel.getHeight().reset().addPF(100);
 			panel.getX().reset().addPF(100).remove(panel.getWidth());
 			panel.getY().reset();
 		break;
-		case BUTTON_LEFT:
+		case BUTTOM:
+			panel.getWidth().reset().addPF(100);
 			panel.getX().reset();
 			panel.getY().reset().addPF(100).remove(panel.getHeight());
 		break;

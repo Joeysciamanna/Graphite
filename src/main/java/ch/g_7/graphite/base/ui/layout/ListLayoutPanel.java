@@ -55,10 +55,12 @@ public class ListLayoutPanel extends UIPanel {
 	
 	private void place(IUIPanel panel) {
 		if(axis == X_AXIS) {
+			panel.getHeight().reset().add(getHeight()).remove(borderTop.clone().multiply(2));
 			panel.getY().reset();
 			panel.getX().reset().add(nextPos);
 			nextPos.add(panel.getWidth()).add(placeHolder);
 		} else {
+			panel.getWidth().reset().add(getWidth()).remove(borderLeft.clone().multiply(2));
 			panel.getX().reset();
 			panel.getY().reset().add(nextPos);
 			nextPos.add(panel.getHeight()).add(placeHolder);

@@ -8,14 +8,14 @@ import ch.g_7.graphite.rendering.Renderable;
 
 public interface IEntity extends Renderable {
 
-	public IViewModel getViewModel();
-	
-	public Vector3fc getPosition();
-	
-	public Vector3fc getRotation();
-	
-	public Matrix4fc getModelViewMatrix();
-	
-	public float getScale();
-	
+	IViewModel getViewModel();
+
+	Vector3fc getPosition();
+
+	Vector3fc getRotation();
+
+	Matrix4fc getModelViewMatrix();
+
+	float getScale();
+
 }
