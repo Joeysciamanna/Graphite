@@ -2,12 +2,12 @@ package ch.g_7.graphite.xtest;
 
 import org.joml.Vector3f;
 
-import ch.g_7.graphite.base.entity.BasicEntity;
-import ch.g_7.graphite.base.mesh.AbstractMesh;
-import ch.g_7.graphite.base.mesh.MeshBuilder;
-import ch.g_7.graphite.base.mesh.MeshFactory;
-import ch.g_7.graphite.base.viewmodel.BasicViewModel;
 import ch.g_7.graphite.core.Application;
+import ch.g_7.graphite.ingame.entity2d.BasicEntity;
+import ch.g_7.graphite.ingame.mesh2d.AbstractMesh;
+import ch.g_7.graphite.ingame.mesh2d.MeshBuilder;
+import ch.g_7.graphite.ingame.mesh2d.MeshFactory;
+import ch.g_7.graphite.ingame.viewmodel2d.BasicViewModel;
 import ch.g_7.graphite.rendering.RenderClass;
 import ch.g_7.graphite.util.Color;
 
