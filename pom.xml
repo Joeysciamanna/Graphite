@@ -102,6 +102,11 @@
 			<artifactId>Util</artifactId>
 			<version>0.0.1</version>
 		</dependency>
+		<dependency>
+			<groupId>org.dyn4j</groupId>
+			<artifactId>dyn4j</artifactId>
+			<version>3.3.0</version>
+		</dependency>
 	</dependencies>
 
 
@@ -137,7 +142,7 @@
 		<repository>
 			<id>rp-w1</id>
 			<url>ftp://192.168.1.107:21/</url>
-<!-- 			<url>ftp://ftp.g-7.ch:1002/</url> -->
+			<!-- <url>ftp://ftp.g-7.ch:1002/</url> -->
 		</repository>
 	</distributionManagement>
 

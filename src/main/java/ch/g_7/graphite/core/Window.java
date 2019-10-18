@@ -56,6 +56,7 @@ public class Window implements KeyListner, Initializable{
 
 	private int width;
 	private int height;
+	private boolean resized;
 	
 	public Window(String title, int width, int height) {
 		this.title = title;
@@ -93,7 +94,7 @@ public class Window implements KeyListner, Initializable{
 		}
 		// Setup resize callback
 		glfwSetFramebufferSizeCallback(windowId, (window, width, height) -> {
-			setSize(width, height);
+			resized = true;
 		});
 		
 		// Setup a key callback. It will be called every time a key is pressed, repeated
@@ -145,6 +146,7 @@ public class Window implements KeyListner, Initializable{
 		for (ResizeListner resizeListner : resizeListners) {
 			resizeListner.onResize(width, height);
 		}
+		resized = false;
 	}
 	
 	public void addResizeListner(ResizeListner resizeListner) {
@@ -197,6 +199,9 @@ public class Window implements KeyListner, Initializable{
 	}
 
 	public void update() {
+		if(resized) {
+			setSize(width, height);
+		}
 		glfwSwapBuffers(windowId);
 		glfwPollEvents();
 	}
