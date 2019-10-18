@@ -1,4 +1,4 @@
-package ch.g_7.graphite.ingame.mesh2d;
+package ch.g_7.graphite.ingame.mesh;
 
 public class MeshFactory {
 

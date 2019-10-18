@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import ch.g_7.graphite.core.Window;
-import ch.g_7.graphite.ingame.entity2d.Camera;
-import ch.g_7.graphite.ingame.entity2d.IEntity;
+import ch.g_7.graphite.ingame.entity.Camera;
+import ch.g_7.graphite.ingame.entity.IEntity;
 import ch.g_7.graphite.ingame.ui.IUIRootContainer;
 import ch.g_7.graphite.rendering.renderer.BasicRenderer;
 import ch.g_7.graphite.rendering.renderer.IRenderer;

@@ -1,4 +1,4 @@
-package ch.g_7.graphite.ingame.mesh2d;
+package ch.g_7.graphite.ingame.mesh;
 
 import static org.lwjgl.opengl.GL11.GL_FLOAT;
 import static org.lwjgl.opengl.GL15.GL_ARRAY_BUFFER;

@@ -6,9 +6,9 @@ import java.util.List;
 import org.joml.Vector2fc;
 import org.joml.Vector2ic;
 
-import ch.g_7.graphite.ingame.mesh2d.AbstractMesh;
-import ch.g_7.graphite.ingame.mesh2d.MeshBuilder;
-import ch.g_7.graphite.ingame.mesh2d.MeshFactory;
+import ch.g_7.graphite.ingame.mesh.AbstractMesh;
+import ch.g_7.graphite.ingame.mesh.MeshBuilder;
+import ch.g_7.graphite.ingame.mesh.MeshFactory;
 import ch.g_7.graphite.ingame.texture.Texture;
 import ch.g_7.graphite.util.Color;
 

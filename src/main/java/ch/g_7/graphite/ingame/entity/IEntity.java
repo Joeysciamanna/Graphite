@@ -1,4 +1,4 @@
-package ch.g_7.graphite.ingame.entity2d;
+package ch.g_7.graphite.ingame.entity;
 
 import org.joml.Matrix4fc;
 import org.joml.Vector3fc;

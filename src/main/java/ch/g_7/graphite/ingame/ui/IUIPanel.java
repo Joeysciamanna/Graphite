@@ -1,6 +1,6 @@
 package ch.g_7.graphite.ingame.ui;
 
-import ch.g_7.graphite.ingame.mesh2d.AbstractMesh;
+import ch.g_7.graphite.ingame.mesh.AbstractMesh;
 import ch.g_7.graphite.ingame.texture.Texture;
 import ch.g_7.graphite.util.Color;
 
