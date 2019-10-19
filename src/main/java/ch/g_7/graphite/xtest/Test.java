@@ -7,7 +7,7 @@ import ch.g_7.graphite.ingame.entity.BasicEntity;
 import ch.g_7.graphite.ingame.mesh.AbstractMesh;
 import ch.g_7.graphite.ingame.mesh.MeshBuilder;
 import ch.g_7.graphite.ingame.mesh.MeshFactory;
-import ch.g_7.graphite.ingame.viewmodel2d.BasicViewModel;
+import ch.g_7.graphite.ingame.viewmodel.BasicViewModel;
 import ch.g_7.graphite.rendering.RenderClass;
 import ch.g_7.graphite.util.Color;
 

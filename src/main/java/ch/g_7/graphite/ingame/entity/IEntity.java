@@ -3,7 +3,7 @@ package ch.g_7.graphite.ingame.entity;
 import org.joml.Matrix4fc;
 import org.joml.Vector3fc;
 
-import ch.g_7.graphite.ingame.viewmodel2d.IViewModel;
+import ch.g_7.graphite.ingame.viewmodel.IViewModel;
 import ch.g_7.graphite.rendering.Renderable;
 
 public interface IEntity extends Renderable {

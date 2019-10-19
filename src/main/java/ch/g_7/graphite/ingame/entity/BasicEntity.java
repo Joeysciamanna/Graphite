@@ -5,7 +5,7 @@ import org.joml.Matrix4fc;
 import org.joml.Vector3f;
 import org.joml.Vector3fc;
 
-import ch.g_7.graphite.ingame.viewmodel2d.IViewModel;
+import ch.g_7.graphite.ingame.viewmodel.IViewModel;
 
 public class BasicEntity implements IEntity {
 

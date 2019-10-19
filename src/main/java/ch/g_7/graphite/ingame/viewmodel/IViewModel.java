@@ -1,4 +1,4 @@
-package ch.g_7.graphite.ingame.viewmodel2d;
+package ch.g_7.graphite.ingame.viewmodel;
 
 import ch.g_7.graphite.ingame.mesh.AbstractMesh;
 import ch.g_7.graphite.ingame.texture.Texture;
