@@ -1,14 +1,27 @@
 package ch.g_7.graphite.core;
 
+import static org.lwjgl.glfw.GLFW.glfwInit;
 import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.GL_DEPTH_BUFFER_BIT;
+import static org.lwjgl.opengl.GL11.GL_DEPTH_TEST;
 import static org.lwjgl.opengl.GL11.glClear;
+import static org.lwjgl.opengl.GL11.glClearColor;
+import static org.lwjgl.opengl.GL11.glEnable;
 
-import ch.g_7.graphite.ingame.entity.Camera;
+import java.io.Closeable;
+
+import org.lwjgl.glfw.GLFWErrorCallback;
+import org.lwjgl.opengl.GL;
+
 import ch.g_7.graphite.rendering.Dimension;
+import ch.g_7.graphite.util.Color;
+import ch.g_7.util.stuff.Initializable;
 
 public abstract class Application implements Runnable {
 
+	private static boolean exists;
+	
+	
 	private Dimension dimension;
 
 	private final Window window;
@@ -42,14 +55,24 @@ public abstract class Application implements Runnable {
 		}
 
 	}
+	
+	public void start() {
+		setRunning(true);
+	}
+	
+	public void stop() {
+		setRunning(false);
+	}
 
 	@Override
 	public final void run() {
 		try {
-			window.init();
 			init();
+			window.init();
+			
+			initGame();
 			while (running && !window.windowShouldClose()) {
-				glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+				
 				dimension.render(window, camera);
 				window.update();
 			}
@@ -60,10 +83,21 @@ public abstract class Application implements Runnable {
 			close();
 		}
 	}
+
+	protected void init() {
+		if(exists) {
+			throw new IllegalStateException("Only one Engine can exist at the same time");
+		}
+		exists = true;
+		
+
+		
+
+	}
 	
 	protected void close(){}
 
-	protected abstract void init();
+	protected abstract void initGame();
 	
 	public Dimension getDimension() {
 		return dimension;
@@ -80,5 +114,6 @@ public abstract class Application implements Runnable {
 	public Window getWindow() {
 		return window;
 	}
+	
 	
 }

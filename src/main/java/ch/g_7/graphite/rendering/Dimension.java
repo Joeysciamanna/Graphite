@@ -3,8 +3,8 @@ package ch.g_7.graphite.rendering;
 import java.util.ArrayList;
 import java.util.List;
 
+import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.Window;
-import ch.g_7.graphite.ingame.entity.Camera;
 
 public final class Dimension implements AutoCloseable {
 

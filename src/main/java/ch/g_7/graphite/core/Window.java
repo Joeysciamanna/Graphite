@@ -6,7 +6,9 @@ import static org.lwjgl.glfw.GLFW.GLFW_OPENGL_CORE_PROFILE;
 import static org.lwjgl.glfw.GLFW.GLFW_OPENGL_FORWARD_COMPAT;
 import static org.lwjgl.glfw.GLFW.GLFW_OPENGL_PROFILE;
 import static org.lwjgl.glfw.GLFW.GLFW_PRESS;
+import static org.lwjgl.glfw.GLFW.glfwSetWindowPosCallback;
 import static org.lwjgl.glfw.GLFW.GLFW_RESIZABLE;
+import static org.lwjgl.glfw.GLFW.glfwSwapInterval;
 import static org.lwjgl.glfw.GLFW.GLFW_VISIBLE;
 import static org.lwjgl.glfw.GLFW.glfwCreateWindow;
 import static org.lwjgl.glfw.GLFW.glfwDefaultWindowHints;
@@ -24,9 +26,12 @@ import static org.lwjgl.glfw.GLFW.glfwShowWindow;
 import static org.lwjgl.glfw.GLFW.glfwSwapBuffers;
 import static org.lwjgl.glfw.GLFW.glfwWindowHint;
 import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
+import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
+import static org.lwjgl.opengl.GL11.GL_DEPTH_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.GL_DEPTH_TEST;
 import static org.lwjgl.opengl.GL11.GL_FALSE;
 import static org.lwjgl.opengl.GL11.GL_TRUE;
+import static org.lwjgl.opengl.GL11.glClear;
 import static org.lwjgl.opengl.GL11.glClearColor;
 import static org.lwjgl.opengl.GL11.glEnable;
 import static org.lwjgl.opengl.GL11.glViewport;
@@ -40,6 +45,7 @@ import org.joml.Vector2ic;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
+import org.lwjgl.glfw.GLFWWindowPosCallback;
 import org.lwjgl.opengl.GL;
 
 import ch.g_7.graphite.util.Color;
@@ -58,16 +64,16 @@ public class Window implements KeyListner, Initializable{
 	private int height;
 	private boolean resized;
 	
+	private int x;
+	private int y;
+	private boolean repositioned;
+	
 	public Window(String title, int width, int height) {
 		this.title = title;
 		this.width = width;
 		this.height = height;
 		keyListners = new ArrayList<>();
 		resizeListners = new ArrayList<>();
-	}
-	
-	public long getWindowId() {
-		return windowId;
 	}
 
 	static {
@@ -92,70 +98,70 @@ public class Window implements KeyListner, Initializable{
 		if (windowId == NULL) {
 			throw new RuntimeException("Failed to create the GLFW window");
 		}
-		// Setup resize callback
-		glfwSetFramebufferSizeCallback(windowId, (window, width, height) -> {
-			resized = true;
-		});
 		
-		// Setup a key callback. It will be called every time a key is pressed, repeated
-		// or released.
-		glfwSetKeyCallback(windowId, (window, key, scancode, action, mods) -> {
-			onKeyPress(window, key, scancode, action, mods);
-		});
+		glfwSetFramebufferSizeCallback(windowId, (window, width, height) -> setSize(width, height));
 		
-		GLFW.glfwSetWindowSize(windowId, width, height);
+		glfwSetWindowPosCallback(windowId, (window, x, y)-> setPosition(x, y));
 		
-		center();
-	
-		requestFocus();
+		glfwSetKeyCallback(windowId, (window, key, scancode, action, mods) -> onKeyPress(window, key, scancode, action, mods));
+		
+		glfwMakeContextCurrent(windowId);
+		
 		
 		GL.createCapabilities();
-
+		glEnable(GL_DEPTH_TEST);
+		
 		setSize(width, height);
 		
-//		glfwSwapInterval(0);
+		GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+		setPosition((vidmode.width() - width) / 2, (vidmode.height() - height) / 2);
 		
-		setBackgroundColor(new Color(0, 0, 0, 0));
-		glEnable(GL_DEPTH_TEST);
+		
 	}
 	
-	@Override
-	public void onKeyPress(long window, int key, int scancode, int action, int mods) {
-		for (KeyListner keyListner : keyListners) {
-			keyListner.onKeyPress(window, key, scancode, action, mods);
+	public void update() {
+		resize();
+		reposition();
+
+		
+		
+		
+		glfwSwapBuffers(windowId);
+		glfwPollEvents();
+		
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	}
+	
+	private void resize() {
+		if(resized) {
+			glViewport(0, 0, width, height);
+			GLFW.glfwSetWindowSize(windowId, width, height);
+			for (ResizeListner resizeListner : resizeListners) {
+				resizeListner.onResize(width, height);
+			}
+			resized = false;
 		}
-	}
-
-	public void addKeyListner(KeyListner keyListner) {
-		keyListners.add(keyListner);
-	}
-
-	public void removeKeyListner(KeyListner keyListner) {
-		keyListners.remove(keyListner);
-	}
-
-	public void requestFocus() {
-		glfwMakeContextCurrent(windowId);
 	}
 
 	public void setSize(int width, int height) {
-		glViewport(0, 0, width, height);
-		GLFW.glfwSetWindowSize(windowId, width, height);
 		this.width = width;
 		this.height = height;
-		for (ResizeListner resizeListner : resizeListners) {
-			resizeListner.onResize(width, height);
-		}
-		resized = false;
-	}
-	
-	public void addResizeListner(ResizeListner resizeListner) {
-		resizeListners.add(resizeListner);
+		this.resized = true;
 	}
 
-	public void removeResizeListner(ResizeListner resizeListner) {
-		resizeListners.remove(resizeListner);
+	public void reposition() {
+		if(repositioned) {
+			glfwSetWindowPos(windowId, x, y);
+		}
 	}
+	
+	public void setPosition(int x, int y) {
+		this.x = x;
+		this.y = y;
+		this.repositioned = true;
+	}
+	
+
 	
 	public void setVisible(boolean visible) {
 		if (visible) {
@@ -164,14 +170,37 @@ public class Window implements KeyListner, Initializable{
 			glfwHideWindow(windowId);
 		}
 	}
-
-	public void center() {
-		GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
-		glfwSetWindowPos(windowId, (vidmode.width() - width) / 2, (vidmode.height() - height) / 2);
+	
+	@Override
+	public void onKeyPress(long window, int key, int scancode, int action, int mods) {
+		for (KeyListner keyListner : keyListners) {
+			keyListner.onKeyPress(window, key, scancode, action, mods);
+		}
+		
 	}
 
 	public void setBackgroundColor(Color color) {
 		glClearColor(color.getR(), color.getG(), color.getB(), color.getA());
+	}
+
+	public long getWindowId() {
+		return windowId;
+	}
+	
+	public void addKeyListner(KeyListner keyListner) {
+		keyListners.add(keyListner);
+	}
+
+	public void removeKeyListner(KeyListner keyListner) {
+		keyListners.remove(keyListner);
+	}
+	
+	public void addResizeListner(ResizeListner resizeListner) {
+		resizeListners.add(resizeListner);
+	}
+
+	public void removeResizeListner(ResizeListner resizeListner) {
+		resizeListners.remove(resizeListner);
 	}
 
 	public boolean isKeyPressed(int keyCode) {
@@ -198,12 +227,5 @@ public class Window implements KeyListner, Initializable{
 		return new Vector2i(width,  height);
 	}
 
-	public void update() {
-		if(resized) {
-			setSize(width, height);
-		}
-		glfwSwapBuffers(windowId);
-		glfwPollEvents();
-	}
 
 }

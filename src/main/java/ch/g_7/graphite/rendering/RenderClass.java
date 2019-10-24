@@ -5,10 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.Window;
-import ch.g_7.graphite.ingame.entity.Camera;
-import ch.g_7.graphite.ingame.entity.IEntity;
-import ch.g_7.graphite.ingame.ui.IUIRootContainer;
+import ch.g_7.graphite.entity.object.IObject;
+import ch.g_7.graphite.entity.ui.IUIRootContainer;
 import ch.g_7.graphite.rendering.renderer.BasicRenderer;
 import ch.g_7.graphite.rendering.renderer.IRenderer;
 import ch.g_7.graphite.rendering.renderer.UIRenderer;
@@ -18,7 +18,7 @@ public final class RenderClass<T extends Renderable> implements Initializable, A
 	
 	private static final Map<String, RenderClass<?>> RENDER_CLASSES = new HashMap<>();
 	
-	public static final RenderClass<IEntity> BASIC_GAME_OBJECTS;
+	public static final RenderClass<IObject> BASIC_GAME_OBJECTS;
 	public static final RenderClass<IUIRootContainer> UI_PANELS;
 	
 	static {

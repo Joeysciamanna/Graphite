@@ -16,10 +16,10 @@ import java.util.List;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
+import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.Window;
-import ch.g_7.graphite.ingame.entity.Camera;
-import ch.g_7.graphite.ingame.ui.IUIPanel;
-import ch.g_7.graphite.ingame.ui.IUIRootContainer;
+import ch.g_7.graphite.entity.ui.IUIPanel;
+import ch.g_7.graphite.entity.ui.IUIRootContainer;
 import ch.g_7.graphite.rendering.Dimension;
 import ch.g_7.graphite.rendering.shaderprogram.UIShaderProgram;
 
