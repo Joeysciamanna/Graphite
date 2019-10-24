@@ -1,6 +1,6 @@
 package ch.g_7.graphite.entity.ui;
 
-import ch.g_7.graphite.core.ResizeListner;
+import ch.g_7.graphite.core.window.ResizeListner;
 
 public interface IUIRootContainer extends IUIContainer, ResizeListner {
 

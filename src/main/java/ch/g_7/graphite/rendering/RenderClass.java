@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import ch.g_7.graphite.core.Camera;
-import ch.g_7.graphite.core.Window;
+import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.entity.object.IObject;
 import ch.g_7.graphite.entity.ui.IUIRootContainer;
 import ch.g_7.graphite.rendering.renderer.BasicRenderer;

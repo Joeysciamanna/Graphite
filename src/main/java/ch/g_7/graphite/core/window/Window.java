@@ -1,4 +1,4 @@
-package ch.g_7.graphite.core;
+package ch.g_7.graphite.core.window;
 
 import static org.lwjgl.glfw.GLFW.GLFW_CONTEXT_VERSION_MAJOR;
 import static org.lwjgl.glfw.GLFW.GLFW_CONTEXT_VERSION_MINOR;
@@ -50,13 +50,17 @@ import org.lwjgl.opengl.GL;
 
 import ch.g_7.graphite.util.Color;
 import ch.g_7.util.stuff.Initializable;
+import ch.g_7.util.task.TaskInputBuffer;
 
-public class Window implements KeyListner, Initializable{
+public class Window implements Initializable{
 
 	private final String title;
 
 	private List<KeyListner> keyListners;
 	private List<ResizeListner> resizeListners;
+	
+	private TaskInputBuffer<KeyAction> keyPressBuffer;
+
 	
 	private long windowId;
 
@@ -74,6 +78,8 @@ public class Window implements KeyListner, Initializable{
 		this.height = height;
 		keyListners = new ArrayList<>();
 		resizeListners = new ArrayList<>();
+		keyPressBuffer = new TaskInputBuffer<KeyAction>((i)->{keyListners.forEach((l)->l.onKeyPress(i)); return null;});
+		
 	}
 
 	static {
@@ -103,7 +109,7 @@ public class Window implements KeyListner, Initializable{
 		
 		glfwSetWindowPosCallback(windowId, (window, x, y)-> setPosition(x, y));
 		
-		glfwSetKeyCallback(windowId, (window, key, scancode, action, mods) -> onKeyPress(window, key, scancode, action, mods));
+		glfwSetKeyCallback(windowId, (window, key, scancode, action, mods) -> keyPressBuffer.add(new KeyAction(window, key, scancode, action, mods)));
 		
 		glfwMakeContextCurrent(windowId);
 		
@@ -169,14 +175,6 @@ public class Window implements KeyListner, Initializable{
 		} else {
 			glfwHideWindow(windowId);
 		}
-	}
-	
-	@Override
-	public void onKeyPress(long window, int key, int scancode, int action, int mods) {
-		for (KeyListner keyListner : keyListners) {
-			keyListner.onKeyPress(window, key, scancode, action, mods);
-		}
-		
 	}
 
 	public void setBackgroundColor(Color color) {

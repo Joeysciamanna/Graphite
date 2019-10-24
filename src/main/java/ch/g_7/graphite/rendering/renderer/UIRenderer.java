@@ -17,7 +17,7 @@ import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
 import ch.g_7.graphite.core.Camera;
-import ch.g_7.graphite.core.Window;
+import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.entity.ui.IUIPanel;
 import ch.g_7.graphite.entity.ui.IUIRootContainer;
 import ch.g_7.graphite.rendering.Dimension;

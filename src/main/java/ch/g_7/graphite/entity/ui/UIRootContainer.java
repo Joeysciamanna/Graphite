@@ -6,7 +6,7 @@ import java.util.List;
 import org.joml.Vector2f;
 import org.joml.Vector2ic;
 
-import ch.g_7.graphite.core.Window;
+import ch.g_7.graphite.core.window.Window;
 
 public class UIRootContainer extends UIContainer implements IUIRootContainer{
 

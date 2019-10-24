@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ch.g_7.graphite.core.Camera;
-import ch.g_7.graphite.core.Window;
+import ch.g_7.graphite.core.window.Window;
 
 public final class Dimension implements AutoCloseable {
 

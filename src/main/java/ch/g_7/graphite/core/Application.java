@@ -13,14 +13,15 @@ import java.io.Closeable;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
 
+import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.rendering.Dimension;
 import ch.g_7.graphite.util.Color;
 import ch.g_7.util.stuff.Initializable;
+import ch.g_7.util.task.TaskIntervalBuffer;
 
 public abstract class Application implements Runnable {
 
 	private static boolean exists;
-	
 	
 	private Dimension dimension;
 
@@ -32,7 +33,6 @@ public abstract class Application implements Runnable {
 
 	private boolean running;
 	
-
 	public Application(String name) {
 		this.dimension = new Dimension();
 		this.window = new Window(name, 200, 200);
@@ -89,6 +89,7 @@ public abstract class Application implements Runnable {
 			throw new IllegalStateException("Only one Engine can exist at the same time");
 		}
 		exists = true;
+		
 		
 
 		

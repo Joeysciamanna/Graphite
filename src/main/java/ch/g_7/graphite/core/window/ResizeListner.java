@@ -1,4 +1,4 @@
-package ch.g_7.graphite.core;
+package ch.g_7.graphite.core.window;
 
 public interface ResizeListner {
 
