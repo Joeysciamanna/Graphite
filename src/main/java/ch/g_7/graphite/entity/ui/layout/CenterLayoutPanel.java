@@ -10,24 +10,13 @@ import ch.g_7.graphite.entity.ui.ScreenDimension;
 import ch.g_7.graphite.entity.ui.UIPanel;
 
 public class CenterLayoutPanel extends UIPanel{
-
-	private ScreenDimension borderLeft;
-	private ScreenDimension borderTop;
 	
 	private List<IUIPanel> child;
 	
 	public CenterLayoutPanel() {
-		this.borderLeft = new ScreenDimension();
-		this.borderTop = new ScreenDimension();
 		this.child = new ArrayList<>(1);
 	}
 	
-	@Override
-	public void recalculate(Vector2ic screenSize) {
-		recalculateDimension(borderLeft, screenSize, ScreenDimension.X_AXIS);
-		recalculateDimension(borderTop, screenSize, ScreenDimension.Y_AXIS);
-		super.recalculate(screenSize);
-	}
 	
 	
 	public void set(IUIPanel panel) {
@@ -40,8 +29,8 @@ public class CenterLayoutPanel extends UIPanel{
 	}
 	
 	private void place(IUIPanel panel) {
-		panel.getX().reset().add(borderLeft).addPF(50).remove(panel.getWidth().clone().multiply(0.5f));
-		panel.getY().reset().add(borderTop).addPF(50).remove(panel.getHeight().clone().multiply(0.5f));
+		panel.getX().reset().addPF(50).remove(panel.getWidth().clone().multiply(0.5f));
+		panel.getY().reset().addPF(50).remove(panel.getHeight().clone().multiply(0.5f));
 		requestRecalculation(this);
 	}
 	
@@ -51,11 +40,4 @@ public class CenterLayoutPanel extends UIPanel{
 		return child;
 	}
 	
-	public ScreenDimension getBorderLeft() {
-		return borderLeft;
-	}
-	
-	public ScreenDimension getBorderTop() {
-		return borderTop;
-	}
 }

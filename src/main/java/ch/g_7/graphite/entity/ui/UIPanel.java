@@ -29,7 +29,7 @@ public class UIPanel extends UIContainer implements IUIPanel{
 	
 	@Override
 	protected void recalculateDimension(ScreenDimension dimension, Vector2ic screenSize, byte axis) {
-		dimension.recalculate(screenSize, getFather().getSize(), axis);
+		dimension.recalculate(screenSize, getFather().getSize().toVector(), axis);
 	}
 	
 	@Override

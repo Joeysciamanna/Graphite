@@ -10,22 +10,15 @@ import ch.g_7.graphite.entity.ui.ScreenDimension;
 import ch.g_7.graphite.entity.ui.UIPanel;
 
 public class DontCareLayoutPanel extends UIPanel {
-
-	private ScreenDimension borderLeft;
-	private ScreenDimension borderTop;
 	
 	private List<IUIPanel> childs;
 	
 	public DontCareLayoutPanel() {
 		this.childs = new ArrayList<>();
-		this.borderLeft = new ScreenDimension();
-		this.borderTop = new ScreenDimension();
 	}
 	
 	@Override
 	public void recalculate(Vector2ic screenSize) {
-		recalculateDimension(borderLeft, screenSize, ScreenDimension.X_AXIS);
-		recalculateDimension(borderTop, screenSize, ScreenDimension.Y_AXIS);
 		super.recalculate(screenSize);
 	}
 	
@@ -40,8 +33,6 @@ public class DontCareLayoutPanel extends UIPanel {
 	}
 	
 	private void place(IUIPanel panel) {
-		panel.getX().add(borderLeft);
-		panel.getY().add(borderTop);
 		requestRecalculation(this);
 	}
 
@@ -50,11 +41,4 @@ public class DontCareLayoutPanel extends UIPanel {
 		return childs;
 	}
 	
-	public ScreenDimension getBorderLeft() {
-		return borderLeft;
-	}
-	
-	public ScreenDimension getBorderTop() {
-		return borderTop;
-	}
 }

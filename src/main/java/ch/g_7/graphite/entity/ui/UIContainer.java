@@ -6,44 +6,38 @@ import org.joml.Vector2ic;
 
 public abstract class UIContainer implements IUIContainer{
 
-	protected ScreenDimension width;
-	protected ScreenDimension height;
-	protected Vector2f size;
+	protected ScreenDimension2d maxSize;
+	protected ScreenDimension2d minSize;
+	protected ScreenDimension2d preferedSize;
+	protected ScreenDimension2d size;
 	
-	protected ScreenDimension x;
-	protected ScreenDimension y;
-	protected Vector2f position;
+	protected ScreenDimension2d position;
 	
 	protected boolean visible;
 	
 	
 	public UIContainer() {
-		this.width = new ScreenDimension();
-		this.height = new ScreenDimension();
-		this.x = new ScreenDimension();
-		this.y = new ScreenDimension();
-		this.size = new Vector2f(1, 1);
-		this.position = new Vector2f(0, 0);
+		this.maxSize = new ScreenDimension2d();
+		this.minSize = new ScreenDimension2d();
+		this.preferedSize = new ScreenDimension2d();
+		this.size = new ScreenDimension2d();
+		
+		this.position = new ScreenDimension2d();
 		this.visible = true;
 	}
 	
 	@Override
 	public void recalculate(Vector2ic screenSize) {
-		recalculateDimension(width, screenSize, ScreenDimension.X_AXIS);
-		recalculateDimension(height, screenSize, ScreenDimension.Y_AXIS);
-		
-		recalculateDimension(x, screenSize, ScreenDimension.X_AXIS);
-		recalculateDimension(y, screenSize, ScreenDimension.Y_AXIS);
-		
-		this.size = new Vector2f(width.getValue(), height.getValue());
-		this.position = new Vector2f(x.getValue(), y.getValue());
-		
+		recalculateDimension(position, screenSize);
+		recalculateDimension(size, screenSize);
+
 		for (IUIPanel child : getChilds()) {
 			child.recalculate(screenSize);
 		}
 	}
 	
 	protected abstract void recalculateDimension(ScreenDimension dimension, Vector2ic screenSize, byte axis);
+	protected abstract void recalculateDimension(ScreenDimension2d dimension, Vector2ic screenSize);
 	
 	@Override
 	public void close() {
@@ -63,30 +57,33 @@ public abstract class UIContainer implements IUIContainer{
 	public boolean isVisible() {
 		return visible;
 	}
-
-	@Override
-	public Vector2fc getSize() {
-		return size;
-	}
-
-	public ScreenDimension getWidth() {
-		return width;
-	}
-	
-	public ScreenDimension getHeight() {
-		return height;
-	}
 	
 	@Override
-	public Vector2fc getPosition() {
+	public ScreenDimension2d getPosition() {
 		return position;
 	}
 
-	public ScreenDimension getX() {
-		return x;
+	@Override
+	public ScreenDimension2d getMaxSize() {
+		return maxSize;
 	}
 	
-	public ScreenDimension getY() {
-		return y;
+	@Override
+	public ScreenDimension2d getMinSize() {
+		return minSize;
 	}
+	
+	@Override
+	public ScreenDimension2d getPreferedSize() {
+		return preferedSize;
+	}
+	
+	@Override
+	public ScreenDimension2d getSize() {
+		return size;
+	}
+	
+ 
+	
+
 }

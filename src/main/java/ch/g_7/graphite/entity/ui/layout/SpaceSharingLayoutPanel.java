@@ -8,8 +8,10 @@ import ch.g_7.graphite.entity.ui.UIPanel;
 
 public class SpaceSharingLayoutPanel extends UIPanel {
 
-	public static final byte X_AXIS = 0;
-	public static final byte Y_AXIS = 1;
+	public static final byte TOP = 0;
+	public static final byte LEFT = 1;
+	public static final byte RIGHT = 2;
+	public static final byte BUTTOM = 3;
 
 	private List<IUIPanel> childs;
 
@@ -30,31 +32,53 @@ public class SpaceSharingLayoutPanel extends UIPanel {
 		adjustablePanel = null;
 	}
 
-	public void setMainPanel(IUIPanel mainPanel) {
+	public void setMainPanel(IUIPanel mainPanel, byte stickySide) {
 		if (this.mainPanel != null) {
 			childs.remove(this.mainPanel);
 		}
 		this.mainPanel = mainPanel;
 		childs.add(mainPanel);
 		mainPanel.setFather(this);
-		placeMainPanel(mainPanel);
+		placeMainPanel(mainPanel, stickySide);
 	}
 
-	public void setAdjustablePanel(IUIPanel adjustablePanel, byte stickyAxis) {
+
+	private void placeMainPanel(IUIPanel mainPanel, byte stickySide) {
+		switch (stickySide) {
+		case TOP:
+			mainPanel.getY().reset();
+			mainPanel.getWi
+			break;
+		case LEFT:
+			mainPanel.getY().add(mainPanel.getHeight());
+			mainPanel.getHeight().remove(mainPanel.getHeight());
+			break;
+		case RIGHT:
+			mainPanel.getY().add(mainPanel.getHeight());
+			mainPanel.getHeight().remove(mainPanel.getHeight());
+			break;
+		case BUTTOM:
+			mainPanel.getY().add(mainPanel.getHeight());
+			mainPanel.getHeight().remove(mainPanel.getHeight());
+			break;
+		}
+		
+		
+		mainPanel.getX().reset();
+		mainPanel.getY().reset();
+		requestRecalculation(this);
+	}
+	
+	public void setAdjustablePanel(IUIPanel adjustablePanel, byte stickySide) {
 		if (this.adjustablePanel != null) {
 			childs.remove(this.adjustablePanel);
 		}
 		this.adjustablePanel = adjustablePanel;
 		childs.add(adjustablePanel);
 		adjustablePanel.setFather(this);
-		placeAdjustablePanel(adjustablePanel, stickyAxis);
+		placeAdjustablePanel(adjustablePanel, stickySide);
 	}
 
-	private void placeMainPanel(IUIPanel mainPanel) {
-		mainPanel.getX().reset();
-		mainPanel.getY().reset();
-		requestRecalculation(this);
-	}
 
 	private void placeAdjustablePanel(IUIPanel adjustablePanel, byte stickyAxis) {
 		adjustablePanel.getWidth().reset().addPF(100);

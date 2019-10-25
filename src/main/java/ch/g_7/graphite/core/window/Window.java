@@ -6,9 +6,7 @@ import static org.lwjgl.glfw.GLFW.GLFW_OPENGL_CORE_PROFILE;
 import static org.lwjgl.glfw.GLFW.GLFW_OPENGL_FORWARD_COMPAT;
 import static org.lwjgl.glfw.GLFW.GLFW_OPENGL_PROFILE;
 import static org.lwjgl.glfw.GLFW.GLFW_PRESS;
-import static org.lwjgl.glfw.GLFW.glfwSetWindowPosCallback;
 import static org.lwjgl.glfw.GLFW.GLFW_RESIZABLE;
-import static org.lwjgl.glfw.GLFW.glfwSwapInterval;
 import static org.lwjgl.glfw.GLFW.GLFW_VISIBLE;
 import static org.lwjgl.glfw.GLFW.glfwCreateWindow;
 import static org.lwjgl.glfw.GLFW.glfwDefaultWindowHints;
@@ -22,6 +20,7 @@ import static org.lwjgl.glfw.GLFW.glfwPollEvents;
 import static org.lwjgl.glfw.GLFW.glfwSetFramebufferSizeCallback;
 import static org.lwjgl.glfw.GLFW.glfwSetKeyCallback;
 import static org.lwjgl.glfw.GLFW.glfwSetWindowPos;
+import static org.lwjgl.glfw.GLFW.glfwSetWindowPosCallback;
 import static org.lwjgl.glfw.GLFW.glfwShowWindow;
 import static org.lwjgl.glfw.GLFW.glfwSwapBuffers;
 import static org.lwjgl.glfw.GLFW.glfwWindowHint;
@@ -45,7 +44,6 @@ import org.joml.Vector2ic;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
-import org.lwjgl.glfw.GLFWWindowPosCallback;
 import org.lwjgl.opengl.GL;
 
 import ch.g_7.graphite.util.Color;
@@ -78,8 +76,7 @@ public class Window implements Initializable{
 		this.height = height;
 		keyListners = new ArrayList<>();
 		resizeListners = new ArrayList<>();
-		keyPressBuffer = new TaskInputBuffer<KeyAction>((i)->{keyListners.forEach((l)->l.onKeyPress(i)); return null;});
-		
+		keyPressBuffer = new TaskInputBuffer<KeyAction>((i)->keyListners.forEach((l)->l.onKeyPress(i)));
 	}
 
 	static {
@@ -130,12 +127,15 @@ public class Window implements Initializable{
 		reposition();
 
 		
-		
-		
 		glfwSwapBuffers(windowId);
 		glfwPollEvents();
 		
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	}
+	
+	
+	public void pullEvents() {
+		keyPressBuffer.run(null);
 	}
 	
 	private void resize() {
