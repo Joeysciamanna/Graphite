@@ -47,16 +47,15 @@ public class ListLayoutPanel extends UIPanel {
 	
 	
 	private void place(IUIPanel panel) {
+		panel.getPosition().reset();
+		panel.getMinSize().reset();
+		panel.getMaxSize().reset().addPF(100);
 		if(axis == X_AXIS) {
-			panel.getHeight().reset().add(getHeight());
-			panel.getY().reset();
-			panel.getX().reset().add(nextPos);
-			nextPos.add(panel.getWidth()).add(placeHolder);
+			panel.getPosition().getXAxis().add(nextPos);
+			nextPos.add(panel.getSize().getXAxis()).add(placeHolder);
 		} else {
-			panel.getWidth().reset().add(getWidth());
-			panel.getX().reset();
-			panel.getY().reset().add(nextPos);
-			nextPos.add(panel.getHeight()).add(placeHolder);
+			panel.getPosition().getYAxis().add(nextPos);
+			nextPos.add(panel.getSize().getYAxis()).add(placeHolder);
 		}
 		requestRecalculation(this);
 	}

@@ -3,11 +3,9 @@ package ch.g_7.graphite.entity.ui.layout;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.joml.Vector2ic;
-
 import ch.g_7.graphite.entity.ui.IUIPanel;
 import ch.g_7.graphite.entity.ui.UIPanel;
-import ch.g_7.graphite.entity.ui.dimension.ScreenDimension;
+import ch.g_7.graphite.entity.ui.dimension.ScaledScreenDimension;
 
 public class CenterLayoutPanel extends UIPanel{
 	
@@ -32,9 +30,10 @@ public class CenterLayoutPanel extends UIPanel{
 		panel.getMaxSize().reset().addPF(100);
 		panel.getMinSize().reset();
 
-		panel.getPosition().reset().addPF(50).add(panel.getSize())
-		panel.getX().reset().addPF(50).remove(panel.getWidth().clone().multiply(0.5f));
-		panel.getY().reset().addPF(50).remove(panel.getHeight().clone().multiply(0.5f));
+		panel.getPosition().reset().addPF(50)
+			.applyX((s)->s.remove(new ScaledScreenDimension(panel.getSize().getXAxis(), 0.5f)))
+			.applyY((s)->s.remove(new ScaledScreenDimension(panel.getSize().getYAxis(), 0.5f)));
+		
 		requestRecalculation(this);
 	}
 	

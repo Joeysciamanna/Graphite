@@ -20,7 +20,6 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer{
 		this.window = window;
 		this.window.addResizeListner(this);
 		this.childs = new ArrayList<>();
-		this.size.reset().addPF(100);
 	}
 	
 	@Override

@@ -11,10 +11,10 @@ public class Color {
 	}
 	
 	public Color(int r, int g, int b, int a) {
-		this.r = (float)(r+1)/256;
-		this.g = (float)(g+1)/256;
-		this.b = (float)(b+1)/256;
-		this.a = (float)(a+1)/256;
+		this.r = (float)(r)/256;
+		this.g = (float)(g)/256;
+		this.b = (float)(b)/256;
+		this.a = (float)(a)/256;
 	}
 	
 	public Color(float r, float g, float b, float a) {
@@ -24,6 +24,10 @@ public class Color {
 		this.a = a;
 	}
 	
+	@Override
+	public String toString() {
+		return "Color[" + r*256 +" "+ g*256 +" "+ b*256 +" "+ a*256 +"]";
+	}
 	public float getR() {
 		return r;
 	}

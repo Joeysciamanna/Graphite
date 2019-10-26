@@ -7,6 +7,7 @@ import org.joml.Vector2i;
 
 import ch.g_7.graphite.entity.ui.IUIPanel;
 import ch.g_7.graphite.entity.ui.UIPanel;
+import ch.g_7.graphite.entity.ui.dimension.ScaledScreenDimension;
 
 public class GridMergeLayoutPanel extends UIPanel {
 
@@ -36,11 +37,14 @@ public class GridMergeLayoutPanel extends UIPanel {
 	}
 
 	private void place(IUIPanel panel, int x, int y, int width, int height) {
-		panel.getWidth().reset().addPF((float) 100 / gridSize.x * width);
-		panel.getHeight().reset().addPF((float) 100 / gridSize.y * height);
+		panel.getMaxSize().reset().applyX((s)->s.addPF((float) 100 / gridSize.x * width));
+		panel.getMinSize().reset().applyX((s)->s.addPF((float) 100 / gridSize.x * width));
+		
+		panel.getMaxSize().reset().applyY((s)->s.addPF((float) 100 / gridSize.y * width));
+		panel.getMinSize().reset().applyY((s)->s.addPF((float) 100 / gridSize.y * width));
 
-		panel.getX().reset().addPF((float) 100 / gridSize.x * x);
-		panel.getY().reset().addPF((float) 100 / gridSize.y * y);
+		panel.getPosition().applyX((s)->s.addPF((float) 100 / gridSize.x * x));
+		panel.getPosition().applyY((s)->s.addPF((float) 100 / gridSize.y * y));
 
 		requestRecalculation(this);
 	}

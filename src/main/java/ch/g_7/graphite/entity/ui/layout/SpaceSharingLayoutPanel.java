@@ -12,10 +12,12 @@ public class SpaceSharingLayoutPanel extends UIPanel {
 	public static final byte LEFT = 1;
 	public static final byte RIGHT = 2;
 	public static final byte BUTTOM = 3;
-
+	
+	
 	private List<IUIPanel> childs;
 
 	private IUIPanel mainPanel;
+	private byte mainPanelPosition;
 	private IUIPanel adjustablePanel;
 
 	public SpaceSharingLayoutPanel() {
@@ -44,55 +46,50 @@ public class SpaceSharingLayoutPanel extends UIPanel {
 
 
 	private void placeMainPanel(IUIPanel mainPanel, byte stickySide) {
+		mainPanel.getPosition().reset();
+		mainPanel.getMaxSize().reset().addPF(100).remove(mainPanel.getPosition());
+		mainPanel.getMinSize().reset();
+		
 		switch (stickySide) {
-		case TOP:
-			mainPanel.getY().reset();
-			mainPanel.getWi
-			break;
-		case LEFT:
-			mainPanel.getY().add(mainPanel.getHeight());
-			mainPanel.getHeight().remove(mainPanel.getHeight());
-			break;
 		case RIGHT:
-			mainPanel.getY().add(mainPanel.getHeight());
-			mainPanel.getHeight().remove(mainPanel.getHeight());
+			mainPanel.getPosition().getXAxis().addPF(100).remove(mainPanel.getSize().getXAxis());
 			break;
 		case BUTTOM:
-			mainPanel.getY().add(mainPanel.getHeight());
-			mainPanel.getHeight().remove(mainPanel.getHeight());
+			mainPanel.getPosition().getYAxis().addPF(100).remove(mainPanel.getSize().getYAxis());
 			break;
 		}
-		
-		
-		mainPanel.getX().reset();
-		mainPanel.getY().reset();
+		mainPanelPosition = stickySide;
 		requestRecalculation(this);
 	}
 	
-	public void setAdjustablePanel(IUIPanel adjustablePanel, byte stickySide) {
+	public void setAdjustablePanel(IUIPanel adjustablePanel) {
 		if (this.adjustablePanel != null) {
 			childs.remove(this.adjustablePanel);
 		}
 		this.adjustablePanel = adjustablePanel;
 		childs.add(adjustablePanel);
 		adjustablePanel.setFather(this);
-		placeAdjustablePanel(adjustablePanel, stickySide);
+		placeAdjustablePanel(adjustablePanel);
 	}
 
 
-	private void placeAdjustablePanel(IUIPanel adjustablePanel, byte stickyAxis) {
-		adjustablePanel.getWidth().reset().addPF(100);
-		adjustablePanel.getHeight().reset().addPF(100);
-		adjustablePanel.getX().reset();
-		adjustablePanel.getY().reset();
-		switch (stickyAxis) {
-		case X_AXIS:
-			adjustablePanel.getX().add(mainPanel.getWidth());
-			adjustablePanel.getWidth().remove(mainPanel.getWidth());
+	private void placeAdjustablePanel(IUIPanel adjustablePanel) {
+		adjustablePanel.getPosition().reset();
+		adjustablePanel.getMaxSize().reset();
+		adjustablePanel.getMinSize().reset();
+		adjustablePanel.getMaxSize().addPF(100).remove(mainPanel.getSize());
+		switch (mainPanelPosition) {
+		case TOP:
+			adjustablePanel.getPosition().getYAxis().add(mainPanel.getSize().getYAxis());
 			break;
-		case Y_AXIS:
-			adjustablePanel.getY().add(mainPanel.getHeight());
-			adjustablePanel.getHeight().remove(mainPanel.getHeight());
+		case BUTTOM:
+			adjustablePanel.getPosition().getYAxis().addPF(100).remove(mainPanel.getSize().getYAxis());
+			break;
+		case LEFT:
+			adjustablePanel.getPosition().getXAxis().add(mainPanel.getSize().getXAxis());
+			break;
+		case RIGHT:
+			adjustablePanel.getPosition().getXAxis().addPF(100).remove(mainPanel.getSize().getXAxis());
 			break;
 		}
 		requestRecalculation(this);

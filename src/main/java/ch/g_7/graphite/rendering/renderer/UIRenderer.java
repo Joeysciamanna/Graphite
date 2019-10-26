@@ -68,7 +68,7 @@ public class UIRenderer implements IRenderer<IUIRootContainer> {
 		}
 		
 		// Set model view matrix for this item
-		modelViewMatrix.identity().translate(new Vector3f(panel.getPosition().x() - 1 , panel.getPosition().y()*-1 + 1, -0.9f)).scaleXY(panel.getSize().x(), panel.getSize().y());
+		modelViewMatrix.identity().translate(new Vector3f(panel.getPosition().getXValue() - 1 , panel.getPosition().getYValue()*-1 + 1, -0.9f)).scaleXY(panel.getSize().getXValue(), panel.getSize().getYValue());
 		shaderProgram.setModelViewMatrix(modelViewMatrix);
 
 		shaderProgram.setColor(panel.getColor());

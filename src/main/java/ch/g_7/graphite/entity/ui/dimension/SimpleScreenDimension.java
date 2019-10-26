@@ -12,8 +12,8 @@ public class SimpleScreenDimension extends AbstractScreenDimension{
 	public static final byte Y_AXIS = 1;
 	
 	
-	private List<SimpleScreenDimension> adds;
-	private List<SimpleScreenDimension> removes;
+	private List<IROScreenDimension> adds;
+	private List<IROScreenDimension> rems;
 	
 	private float pf;
 	private float pw;
@@ -24,7 +24,7 @@ public class SimpleScreenDimension extends AbstractScreenDimension{
 	public SimpleScreenDimension(float value) {
 		this.value = value;
 		this.adds = new ArrayList<>();
-		this.removes = new ArrayList<>();
+		this.rems = new ArrayList<>();
 	}
 	
 	public SimpleScreenDimension() {
@@ -58,33 +58,29 @@ public class SimpleScreenDimension extends AbstractScreenDimension{
 
 	@Override
 	protected void setPW(float pw) {
-		return pw;
+		this.pw = pw;
 	}
 
 	@Override
 	protected float getPF() {
-		// TODO Auto-generated method stub
-		return 0;
+		return pf;
 	}
 
 	@Override
-	protected float setPF(float pf) {
-		// TODO Auto-generated method stub
-		return 0;
+	protected void setPF(float pf) {
+		this.pf = pf;
 	}
 
 	@Override
-	protected List<IScreenDimension> getAdds() {
-		// TODO Auto-generated method stub
-		return null;
+	protected List<IROScreenDimension> getAdds() {
+		return adds;
 	}
 
 	@Override
-	protected List<IScreenDimension> getRems() {
-		// TODO Auto-generated method stub
-		return null;
+	protected List<IROScreenDimension> getRems() {
+		return rems;
 	}
-	
+
 	
 
 	

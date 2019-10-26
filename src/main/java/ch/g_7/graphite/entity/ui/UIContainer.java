@@ -7,6 +7,7 @@ import org.joml.Vector2fc;
 import org.joml.Vector2ic;
 
 import ch.g_7.graphite.entity.ui.dimension.SimpleScreenDimension;
+import ch.g_7.graphite.entity.ui.dimension.IROScreenDimension2d;
 import ch.g_7.graphite.entity.ui.dimension.ScreenDimension2d;
 
 public abstract class UIContainer implements IUIContainer{
@@ -22,9 +23,9 @@ public abstract class UIContainer implements IUIContainer{
 	
 	
 	public UIContainer() {
-		this.maxSize = new ScreenDimension2d();
+		this.maxSize = new ScreenDimension2d().addPF(100);
 		this.minSize = new ScreenDimension2d();
-		this.preferedSize = new ScreenDimension2d();
+		this.preferedSize = new ScreenDimension2d().addPF(100);
 		this.size = new ScreenDimension2d();
 		
 		this.position = new ScreenDimension2d();
@@ -39,21 +40,20 @@ public abstract class UIContainer implements IUIContainer{
 		recalculateDimension(minSize, screenSize);
 		recalculateDimension(preferedSize, screenSize);
 		
-		
-		this.size.reset();
+		this.size.reset().add(preferedSize);
 	
 		if(preferedSize.getXValue() < minSize.getXValue() || preferedSize.getXValue() > maxSize.getXValue()) {
 			if(Math.abs(preferedSize.getXValue()-maxSize.getXValue()) < Math.abs(minSize.getXValue()-preferedSize.getXValue())){
-				size.getXAxis().add(maxSize.getXAxis());
+				size.getXAxis().reset().add(maxSize.getXAxis());
 			}else {
-				size.getXAxis().add(minSize.getXAxis());
+				size.getXAxis().reset().add(minSize.getXAxis());
 			}
 		}
 		if(preferedSize.getYValue() < minSize.getYValue() || preferedSize.getYValue() > maxSize.getYValue()) {
 			if(Math.abs(preferedSize.getYValue()-maxSize.getYValue()) < Math.abs(minSize.getYValue()-preferedSize.getYValue())){
-				size.getYAxis().add(maxSize.getYAxis());
+				size.getYAxis().reset().add(maxSize.getYAxis());
 			}else {
-				size.getYAxis().add(minSize.getYAxis());
+				size.getYAxis().reset().add(minSize.getYAxis());
 			}
 		}
 		recalculateDimension(size, screenSize);
@@ -61,6 +61,17 @@ public abstract class UIContainer implements IUIContainer{
 		for (IUIPanel child : getChilds()) {
 			child.recalculate(screenSize);
 		}
+		
+		
+		
+		System.out.println(getClass().getSimpleName() + "  --------------------");
+		System.out.println("position: " + position.toVector());
+		System.out.println("maxSize: " + maxSize.toVector());
+		System.out.println("minSize: " + minSize.toVector());
+		System.out.println("preferedSize: " + preferedSize.toVector());
+		System.out.println("size: " + size.toVector());
+		System.out.println("color: " + ( this instanceof UIPanel ? ((UIPanel)this).getColor() : "no color" ));
+		System.out.println();
 	}
 	
 	protected abstract void recalculateDimension(SimpleScreenDimension dimension, Vector2ic screenSize, byte axis);
@@ -85,9 +96,8 @@ public abstract class UIContainer implements IUIContainer{
 		return visible;
 	}
 	
-	
 	@Override
-	public ScreenDimension2d getSize() {
+	public IROScreenDimension2d getSize() {
 		return size;
 	}
 	

@@ -1,81 +1,76 @@
 package ch.g_7.graphite.entity.ui.dimension;
 
+import java.util.List;
+
 import org.joml.Vector2fc;
 import org.joml.Vector2ic;
 
-public class ScaledScreenDimension implements IScreenDimension{
+public class ScaledScreenDimension extends AbstractScreenDimension{
 
-	@Override
-	public IScreenDimension recalculate(Vector2ic screenSize, Vector2fc fatherSize, byte axis) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	private AbstractScreenDimension dimension;
+	private float factor;
+
+	public ScaledScreenDimension(AbstractScreenDimension dimension, float factor) {
+		this.dimension = dimension;
+		this.factor = factor;
 	}
-
-	@Override
-	public IScreenDimension recalculate(int screenSize, float fatherSize) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public IScreenDimension reset() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public IScreenDimension add(SimpleScreenDimension dimension) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public IScreenDimension remove(SimpleScreenDimension dimension) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public IScreenDimension addPF(float percentageOfFather) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public IScreenDimension removePF(float percentageOfFather) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public IScreenDimension addPW(float percentageOfWindow) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public IScreenDimension removePW(float percentageOfWindow) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public IScreenDimension addPixel(int pixel) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public IScreenDimension removePixel(int pixel) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	
+	public void setFactor(float factor) {
+		this.factor = factor;
 	}
 
 	@Override
 	public float getValue() {
-		// TODO Auto-generated method stub
-		return 0;
+		return dimension.getValue() * factor;
 	}
 
+	@Override
+	protected void setValue(int value) {
+		dimension.setValue(value);
+	}
+
+	@Override
+	protected int getPixel() {
+		return dimension.getPixel();
+	}
+
+	@Override
+	protected void setPixel(int pixel) {
+		dimension.setPixel(pixel);
+	}
+
+	@Override
+	protected float getPW() {
+		return dimension.getPW();
+	}
+
+	@Override
+	protected void setPW(float pw) {
+		dimension.setPW(pw);
+	}
+
+	@Override
+	protected float getPF() {
+		return dimension.getPF();
+	}
+
+	@Override
+	protected void setPF(float pf) {
+		dimension.setPF(pf);
+	}
+
+	@Override
+	protected List<IROScreenDimension> getAdds() {
+		return dimension.getAdds();
+	}
+
+	@Override
+	protected List<IROScreenDimension> getRems() {
+		return dimension.getRems();
+	}
+
+	
 	
 }

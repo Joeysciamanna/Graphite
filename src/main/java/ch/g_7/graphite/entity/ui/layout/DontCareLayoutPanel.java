@@ -33,6 +33,9 @@ public class DontCareLayoutPanel extends UIPanel {
 	}
 	
 	private void place(IUIPanel panel) {
+		panel.getMaxSize().reset().addPF(100).remove(panel.getPosition());
+		panel.getMinSize().reset();
+		
 		requestRecalculation(this);
 	}
 

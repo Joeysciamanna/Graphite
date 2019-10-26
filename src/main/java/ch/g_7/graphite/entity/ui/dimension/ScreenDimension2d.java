@@ -6,15 +6,16 @@ import org.joml.Vector2ic;
 
 import ch.g_7.util.task.Task.VoidTask;
 
-public class ScreenDimension2d {
+public class ScreenDimension2d implements IROScreenDimension2d{
 
-	private final SimpleScreenDimension xAxis;
-	private final SimpleScreenDimension yAxis;
+	private final AbstractScreenDimension xAxis;
+	private final AbstractScreenDimension yAxis;
+	private final Vector2f vector;
 	
-	
-	public ScreenDimension2d(SimpleScreenDimension xAxis, SimpleScreenDimension yAxis) {
+	public ScreenDimension2d(AbstractScreenDimension xAxis, AbstractScreenDimension yAxis) {
 		this.xAxis = xAxis;
 		this.yAxis = yAxis;
+		this.vector = new Vector2f(getXValue(), getYValue());
 	}
 	
 	public ScreenDimension2d(float xAxis, float yAxis) {
@@ -29,9 +30,11 @@ public class ScreenDimension2d {
 		this(new SimpleScreenDimension(), new SimpleScreenDimension());
 	}
 	
+	@Override
 	public ScreenDimension2d recalculate(Vector2ic screenSize, Vector2fc fatherSize) {
-		xAxis.recalculate(screenSize, fatherSize, SimpleScreenDimension.X_AXIS);
-		xAxis.recalculate(screenSize, fatherSize, SimpleScreenDimension.Y_AXIS);
+		xAxis.recalculate(screenSize, fatherSize, AbstractScreenDimension.X_AXIS);
+		yAxis.recalculate(screenSize, fatherSize, AbstractScreenDimension.Y_AXIS);
+		vector.set(getXValue(), getYValue());
 		return this;
 	}
 	
@@ -42,49 +45,54 @@ public class ScreenDimension2d {
 		return this;
 	}
 	
-	public SimpleScreenDimension getXAxis() {
+	@Override
+	public AbstractScreenDimension getXAxis() {
 		return xAxis;
 	}
 	
-	public SimpleScreenDimension getYAxis() {
+	@Override
+	public AbstractScreenDimension getYAxis() {
 		return yAxis;
 	}
 	
+	@Override
 	public float getXValue() {
 		return xAxis.getValue();
 	}
 
+	@Override
 	public float getYValue() {
 		return yAxis.getValue();
 	}
 	
+	@Override
 	public Vector2f toVector() {
-		return new Vector2f(getXValue(), getYValue());
+		return vector;
 	}
 
-	public ScreenDimension2d applyX(VoidTask<SimpleScreenDimension> screenDimension) {
+	public ScreenDimension2d applyX(VoidTask<AbstractScreenDimension> screenDimension) {
 		screenDimension.runVoid(xAxis);
 		return this;
 	}
 	
-	public ScreenDimension2d applyY(VoidTask<SimpleScreenDimension> screenDimension) {
+	public ScreenDimension2d applyY(VoidTask<AbstractScreenDimension> screenDimension) {
 		screenDimension.runVoid(yAxis);
 		return this;
 	}
 	
-	public ScreenDimension2d apply(VoidTask<SimpleScreenDimension> screenDimension) {
+	public ScreenDimension2d apply(VoidTask<AbstractScreenDimension> screenDimension) {
 		screenDimension.runVoid(xAxis);
 		screenDimension.runVoid(yAxis);
 		return this;
 	}
 	
-	public ScreenDimension2d add(ScreenDimension2d dimension2d) {
+	public ScreenDimension2d add(IROScreenDimension2d dimension2d) {
 		xAxis.add(dimension2d.getXAxis());
 		yAxis.add(dimension2d.getYAxis());
 		return this;
 	}
 	
-	public ScreenDimension2d remove(ScreenDimension2d dimension2d) {
+	public ScreenDimension2d remove(IROScreenDimension2d dimension2d) {
 		xAxis.remove(dimension2d.getXAxis());
 		yAxis.remove(dimension2d.getYAxis());
 		return this;

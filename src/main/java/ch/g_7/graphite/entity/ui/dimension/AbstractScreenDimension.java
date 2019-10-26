@@ -6,11 +6,12 @@ import java.util.List;
 import org.joml.Vector2fc;
 import org.joml.Vector2ic;
 
-public abstract class AbstractScreenDimension implements IScreenDimension{
+public abstract class AbstractScreenDimension implements IROScreenDimension{
 
+	public static final byte X_AXIS = 0;
+	public static final byte Y_AXIS = 1;
 	
-
-	
+	@Override
 	public AbstractScreenDimension recalculate(Vector2ic screenSize, Vector2fc fatherSize, byte axis) {
 		if(axis == X_AXIS) {
 			recalculate(screenSize.x(), fatherSize.x());
@@ -20,23 +21,25 @@ public abstract class AbstractScreenDimension implements IScreenDimension{
 		return this;
 	}
 	
+	@Override
 	public AbstractScreenDimension recalculate(int screenSize, float fatherSize) {
 		int value = 0;
 		value += (float) getPixel() * 2 / screenSize;
 		value += fatherSize * (getPF() == 0 ? 0 : (getPF()/100));
 		value += getPW() * 2 / 100;
 		
-		for (IScreenDimension screenDimension : getAdds()) {
+		for (IROScreenDimension screenDimension : getAdds()) {
 			screenDimension.recalculate(screenSize, fatherSize);
 			value += screenDimension.getValue();
 		}
-		for (IScreenDimension screenDimension : getRems()) {
+		for (IROScreenDimension screenDimension : getRems()) {
 			screenDimension.recalculate(screenSize, fatherSize);
 			value -= screenDimension.getValue();
 		}
 		setValue(value);
 		return this;
 	}
+	
 	
 	public AbstractScreenDimension reset() {
 		setPixel(0);
@@ -46,42 +49,51 @@ public abstract class AbstractScreenDimension implements IScreenDimension{
 		return this;
 	}
 	
-	public AbstractScreenDimension add(SimpleScreenDimension dimension) {
+	
+	public AbstractScreenDimension add(IROScreenDimension dimension) {
 		getAdds().add(dimension);
 		return this;
 	}
 	
-	public AbstractScreenDimension remove(SimpleScreenDimension dimension) {
+	
+	public AbstractScreenDimension remove(IROScreenDimension dimension) {
 		getRems().add(dimension);
 		return this;
 	}
+	
 	
 	public AbstractScreenDimension addPF(float pf) {
 		setPF(getPF()+pf);
 		return this;
 	}
 	
+	
 	public AbstractScreenDimension removePF(float pf) {
 		setPF(getPF()-pf);
 		return this;
 	}
+	
 	
 	public AbstractScreenDimension addPW(float pw) {
 		setPW(getPW()+pw);
 		return this;
 	}
 	
+	
 	public AbstractScreenDimension removePW(float pw) {
 		setPW(getPW()-pw);
 		return this;
 	}
+	
 	
 	public AbstractScreenDimension addPixel(int pixel) {
 		setPixel(getPixel()+pixel);
 		return this;
 	}
 	
+	
 	public AbstractScreenDimension removePixel(int pixel) {
+		setPixel(getPixel()-pixel);
 		return this;
 	}
 	
@@ -89,6 +101,7 @@ public abstract class AbstractScreenDimension implements IScreenDimension{
 	 * from 0 to 2
 	 * @return
 	 */
+	@Override
 	public abstract float getValue();
 	protected abstract void setValue(int value);
 	
@@ -101,6 +114,6 @@ public abstract class AbstractScreenDimension implements IScreenDimension{
 	protected abstract float getPF();
 	protected abstract void setPF(float pf);
 	
-	protected abstract List<IScreenDimension> getAdds();
-	protected abstract List<IScreenDimension> getRems();
+	protected abstract List<IROScreenDimension> getAdds();
+	protected abstract List<IROScreenDimension> getRems();
 }

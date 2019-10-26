@@ -6,6 +6,7 @@ import org.joml.Vector2fc;
 import org.joml.Vector2ic;
 
 import ch.g_7.graphite.core.window.Window;
+import ch.g_7.graphite.entity.ui.dimension.IROScreenDimension2d;
 import ch.g_7.graphite.entity.ui.dimension.ScreenDimension2d;
 import ch.g_7.graphite.rendering.Renderable;
 
@@ -42,7 +43,7 @@ public interface IUIContainer extends Renderable {
 	/**
 	 * Calculated by System
 	 */
-	ScreenDimension2d getSize();
+	IROScreenDimension2d getSize();
 	
 	
 }
