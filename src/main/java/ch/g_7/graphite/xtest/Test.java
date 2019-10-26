@@ -52,10 +52,16 @@ public class Test extends Application {
 		
 		inventory.recalculate();
 		
+		inventory.recalculate();
+		
 		System.out.println(panel2.getMaxSize().toVector());
 		System.out.println(panel2.getMinSize().toVector());
 		System.out.println(panel2.getPreferedSize().toVector());
 		System.out.println(panel2.getSize().toVector());
+		
+		inventory.recalculate();
+		
+		inventory.recalculate();
 		
 //		AligementLayoutPanel aligementLayoutPanel = new AligementLayoutPanel();
 //		aligementLayoutPanel.getPreferedSize().addPW(100);
