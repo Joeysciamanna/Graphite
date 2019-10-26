@@ -34,27 +34,28 @@ public class Test extends Application {
 		
 		
 		UIRootContainer inventory = new UIRootContainer(getWindow());
+		getDimension().addObj(inventory, RenderClass.UI_PANELS);
 		
-		
-//		SpaceSharingLayoutPanel sharingLayoutPanel = new SpaceSharingLayoutPanel();
-//		sharingLayoutPanel.getPreferedSize().reset().addPW(100);
-//		inventory.add(sharingLayoutPanel);
+		SpaceSharingLayoutPanel sharingLayoutPanel = new SpaceSharingLayoutPanel();
+		sharingLayoutPanel.getPreferedSize().reset().addPW(100);
+		inventory.add(sharingLayoutPanel);
 		
 		UIPanel panel1 = new UIPanel();
 		panel1.setColor(new Color(0, 255, 0, 0));
-		panel1.getPreferedSize().reset();
-		inventory.add(panel1);
-//		sharingLayoutPanel.setMainPanel(panel1, SpaceSharingLayoutPanel.LEFT);
+		panel1.getPreferedSize().reset().addPF(50);
+		sharingLayoutPanel.setMainPanel(panel1, SpaceSharingLayoutPanel.LEFT);
 		
-//		UIPanel panel2 = new UIPanel();
-//		panel2.setColor(new Color(255, 0, 0, 0));
-//		panel2.getPreferedSize().reset().addPF(25);
-//		sharingLayoutPanel.setAdjustablePanel(panel2);
+		UIPanel panel2 = new UIPanel();
+		panel2.setColor(new Color(255, 0, 0, 0));
+		panel2.getPreferedSize().reset().addPF(25); //50 does work ???? wired
+		sharingLayoutPanel.setAdjustablePanel(panel2);
 		
-		getDimension().addObj(inventory, RenderClass.UI_PANELS);
 		inventory.recalculate();
-//		inventory.recalculate();
 		
+		System.out.println(panel2.getMaxSize().toVector());
+		System.out.println(panel2.getMinSize().toVector());
+		System.out.println(panel2.getPreferedSize().toVector());
+		System.out.println(panel2.getSize().toVector());
 		
 //		AligementLayoutPanel aligementLayoutPanel = new AligementLayoutPanel();
 //		aligementLayoutPanel.getPreferedSize().addPW(100);

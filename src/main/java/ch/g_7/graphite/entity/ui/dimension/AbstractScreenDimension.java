@@ -44,8 +44,10 @@ public abstract class AbstractScreenDimension implements IROScreenDimension{
 	public AbstractScreenDimension reset() {
 		setPixel(0);
 		setPW(0);
-		setPW(0);
+		setPF(0);
 		setValue(0);
+		getAdds().clear();
+		getRems().clear();
 		return this;
 	}
 	

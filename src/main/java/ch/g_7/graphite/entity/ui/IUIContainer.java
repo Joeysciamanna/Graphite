@@ -22,23 +22,7 @@ public interface IUIContainer extends Renderable {
 
 	Window getWindow();
 	
-	
 	ScreenDimension2d getPosition();
-	
-	/**
-	 * Set by system
-	 */
-	ScreenDimension2d getMaxSize();
-	
-	/**
-	 * Set by system
-	 */
-	ScreenDimension2d getMinSize();
-	
-	/**
-	 * Set by User
-	 */
-	ScreenDimension2d getPreferedSize();
 	
 	/**
 	 * Calculated by System

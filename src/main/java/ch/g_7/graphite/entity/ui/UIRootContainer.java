@@ -19,12 +19,16 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer{
 	public UIRootContainer(Window window) {
 		this.window = window;
 		this.window.addResizeListner(this);
+		this.size.addPW(100);
 		this.childs = new ArrayList<>();
 	}
 	
 	@Override
 	public void recalculate() {
+		System.out.println(System.currentTimeMillis());
 		recalculate(window.getSize());
+		System.out.println(System.currentTimeMillis());
+		System.out.println();
 	}
 	
 	@Override

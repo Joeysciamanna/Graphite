@@ -17,8 +17,12 @@ import ch.g_7.graphite.util.Color;
 
 public class UIPanel extends UIContainer implements IUIPanel{
 
-	
 	private static final AbstractMesh SQUARE_MESH = MeshFactory.getSquare(1).setCenter(MeshBuilder.CENTER_TOP_LEFT).build();
+	
+	
+	protected final ScreenDimension2d maxSize;
+	protected final ScreenDimension2d minSize;
+	protected final ScreenDimension2d preferedSize;
 	
 	protected IUIContainer father;
 	
@@ -27,8 +31,45 @@ public class UIPanel extends UIContainer implements IUIPanel{
 
 	
 	public UIPanel() {
+		this.maxSize = new ScreenDimension2d().addPF(100);
+		this.minSize = new ScreenDimension2d();
+		this.preferedSize = new ScreenDimension2d().addPF(100);
 		this.color = new Color(255, 255, 255, 0);
 	}
+	
+	
+	@Override
+	public void recalculate(Vector2ic screenSize) {
+	
+		recalculateDimension(maxSize, screenSize);
+		recalculateDimension(minSize, screenSize);
+		recalculateDimension(preferedSize, screenSize);
+		
+		this.size.reset();
+		
+		if(preferedSize.getXValue() > maxSize.getXValue() || preferedSize.getXValue() < minSize.getXValue()) {
+			if(preferedSize.getXValue()-maxSize.getXValue()>preferedSize.getXValue()-minSize.getXValue()) {
+				size.getXAxis().add(minSize.getXAxis());
+			}else {
+				size.getXAxis().add(maxSize.getXAxis());
+			}
+		}else {
+			size.getXAxis().add(preferedSize.getXAxis());
+		}
+		if(preferedSize.getYValue() > maxSize.getYValue() || preferedSize.getYValue() < minSize.getYValue()) {
+			if(preferedSize.getYValue()-maxSize.getYValue()>preferedSize.getYValue()-minSize.getYValue()) {
+				size.getYAxis().add(minSize.getYAxis());
+			}else {
+				size.getYAxis().add(maxSize.getYAxis());
+			}
+		}else {
+			size.getYAxis().add(preferedSize.getYAxis());
+		}
+		
+
+		super.recalculate(screenSize);
+	}
+	
 	
 	@Override
 	protected void recalculateDimension(SimpleScreenDimension dimension, Vector2ic screenSize, byte axis) {
@@ -101,6 +142,22 @@ public class UIPanel extends UIContainer implements IUIPanel{
 	public Window getWindow() {
 		return  getFather() == null ? null : father.getWindow();
 	}
+
+	@Override
+	public ScreenDimension2d getMaxSize() {
+		return maxSize;
+	}
+	
+	@Override
+	public ScreenDimension2d getMinSize() {
+		return minSize;
+	}
+	
+	@Override
+	public ScreenDimension2d getPreferedSize() {
+		return preferedSize;
+	}
+
 
 
 }

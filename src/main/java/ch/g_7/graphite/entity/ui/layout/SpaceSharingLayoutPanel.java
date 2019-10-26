@@ -75,9 +75,9 @@ public class SpaceSharingLayoutPanel extends UIPanel {
 
 	private void placeAdjustablePanel(IUIPanel adjustablePanel) {
 		adjustablePanel.getPosition().reset();
-		adjustablePanel.getMaxSize().reset();
+		adjustablePanel.getMaxSize().reset().addPF(100).remove(mainPanel.getSize());
 		adjustablePanel.getMinSize().reset();
-		adjustablePanel.getMaxSize().addPF(100).remove(mainPanel.getSize());
+
 		switch (mainPanelPosition) {
 		case TOP:
 			adjustablePanel.getPosition().getYAxis().add(mainPanel.getSize().getYAxis());

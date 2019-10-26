@@ -6,9 +6,9 @@ import org.joml.Vector2ic;
 public interface IROScreenDimension {
 
 	
-	public AbstractScreenDimension recalculate(Vector2ic screenSize, Vector2fc fatherSize, byte axis);
+	public IROScreenDimension recalculate(Vector2ic screenSize, Vector2fc fatherSize, byte axis);
 	
-	public AbstractScreenDimension recalculate(int screenSize, float fatherSize);
+	public IROScreenDimension recalculate(int screenSize, float fatherSize);
 	
 	public float getValue();
 

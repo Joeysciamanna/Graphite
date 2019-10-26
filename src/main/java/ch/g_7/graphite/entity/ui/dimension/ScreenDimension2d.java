@@ -10,12 +10,10 @@ public class ScreenDimension2d implements IROScreenDimension2d{
 
 	private final AbstractScreenDimension xAxis;
 	private final AbstractScreenDimension yAxis;
-	private final Vector2f vector;
 	
 	public ScreenDimension2d(AbstractScreenDimension xAxis, AbstractScreenDimension yAxis) {
 		this.xAxis = xAxis;
 		this.yAxis = yAxis;
-		this.vector = new Vector2f(getXValue(), getYValue());
 	}
 	
 	public ScreenDimension2d(float xAxis, float yAxis) {
@@ -34,7 +32,6 @@ public class ScreenDimension2d implements IROScreenDimension2d{
 	public ScreenDimension2d recalculate(Vector2ic screenSize, Vector2fc fatherSize) {
 		xAxis.recalculate(screenSize, fatherSize, AbstractScreenDimension.X_AXIS);
 		yAxis.recalculate(screenSize, fatherSize, AbstractScreenDimension.Y_AXIS);
-		vector.set(getXValue(), getYValue());
 		return this;
 	}
 	
@@ -66,8 +63,8 @@ public class ScreenDimension2d implements IROScreenDimension2d{
 	}
 	
 	@Override
-	public Vector2f toVector() {
-		return vector;
+	public Vector2fc toVector() {
+		return new Vector2f(getXValue(), getYValue());
 	}
 
 	public ScreenDimension2d applyX(VoidTask<AbstractScreenDimension> screenDimension) {

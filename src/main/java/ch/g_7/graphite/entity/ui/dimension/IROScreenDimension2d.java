@@ -9,13 +9,13 @@ public interface IROScreenDimension2d {
 	
 	public ScreenDimension2d recalculate(Vector2ic screenSize, Vector2fc fatherSize);
 	
-	public AbstractScreenDimension getXAxis();
+	public IROScreenDimension getXAxis();
 	
-	public AbstractScreenDimension getYAxis();
+	public IROScreenDimension getYAxis();
 	
 	public float getXValue();
 
 	public float getYValue();
 	
-	public Vector2f toVector();
+	public Vector2fc toVector();
 }
