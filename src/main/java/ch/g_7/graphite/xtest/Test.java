@@ -42,7 +42,7 @@ public class Test extends Application {
 		
 		UIPanel panel1 = new UIPanel();
 		panel1.setColor(new Color(0, 255, 0, 0));
-		panel1.getPreferedSize().reset().addPF(50);
+		panel1.getPreferedSize().reset();
 		inventory.add(panel1);
 //		sharingLayoutPanel.setMainPanel(panel1, SpaceSharingLayoutPanel.LEFT);
 		
@@ -52,8 +52,8 @@ public class Test extends Application {
 //		sharingLayoutPanel.setAdjustablePanel(panel2);
 		
 		getDimension().addObj(inventory, RenderClass.UI_PANELS);
-		
 		inventory.recalculate();
+//		inventory.recalculate();
 		
 		
 //		AligementLayoutPanel aligementLayoutPanel = new AligementLayoutPanel();

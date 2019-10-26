@@ -42,38 +42,52 @@ public abstract class UIContainer implements IUIContainer{
 		
 		this.size.reset();
 	
-		
-		if(preferedSize.getXValue() < minSize.getXValue() || preferedSize.getXValue() > maxSize.getXValue()) {
-			if(preferedSize.getXValue()-maxSize.getXValue() < minSize.getXValue()-preferedSize.getXValue()){
-				size.getXAxis().add(maxSize.getXAxis());
-			}else {
-				size.getXAxis().add(minSize.getXAxis());
-			}
-		}else {
-			size.getXAxis().add(preferedSize.getXAxis());
-		}
-		if(preferedSize.getYValue() < minSize.getYValue() || preferedSize.getYValue() > maxSize.getYValue()) {
-			if(preferedSize.getYValue()-maxSize.getYValue() < minSize.getYValue()-preferedSize.getYValue()){
-				size.getYAxis().add(maxSize.getYAxis());
-			}else {
-				size.getYAxis().add(minSize.getYAxis());
-			}
-		}else {
-			size.getXAxis().add(preferedSize.getXAxis());
-		}
-		
-		recalculateDimension(size, screenSize);
-		
-		
 		System.out.println(getClass().getSimpleName() + "  --------------------");
+		
 		System.out.println("position: " + position.toVector());
 		System.out.println("maxSize: " + maxSize.toVector());
 		System.out.println("minSize: " + minSize.toVector());
 		System.out.println("preferedSize: " + preferedSize.toVector());
 		System.out.println("size: " + size.toVector());
-		System.out.println("color: " + ( this instanceof UIPanel ? ((UIPanel)this).getColor() : "no color" ));
+		
+		
+		
+		if(preferedSize.getXValue() > maxSize.getXValue() || preferedSize.getXValue() < minSize.getXValue()) {
+			if(preferedSize.getXValue()-maxSize.getXValue()>preferedSize.getXValue()-minSize.getXValue()) {
+				System.out.println("X min");
+				size.getXAxis().add(minSize.getXAxis());
+			}else {
+				System.out.println("X max");
+				size.getXAxis().add(maxSize.getXAxis());
+			}
+		}else {
+			size.getXAxis().add(preferedSize.getXAxis());
+		}
+		if(preferedSize.getYValue() > maxSize.getYValue() || preferedSize.getYValue() < minSize.getYValue()) {
+			if(preferedSize.getYValue()-maxSize.getYValue()>preferedSize.getYValue()-minSize.getYValue()) {
+				System.out.println("Y min");
+				size.getYAxis().add(minSize.getYAxis());
+			}else {
+				System.out.println("Y max");
+				size.getYAxis().add(maxSize.getYAxis());
+			}
+		}else {
+			size.getYAxis().add(preferedSize.getYAxis());
+		}
+		
+		recalculateDimension(size, screenSize);
+		
+		
 		System.out.println();
-
+		System.out.println("position: " + position.toVector());
+		System.out.println("maxSize: " + maxSize.toVector());
+		System.out.println("minSize: " + minSize.toVector());
+		System.out.println("preferedSize: " + preferedSize.toVector());
+		System.out.println("size: " + size.toVector());
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		
 		for (IUIPanel child : getChilds()) {
 			child.recalculate(screenSize);
 		}

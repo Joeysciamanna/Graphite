@@ -63,8 +63,6 @@ public class UIPanel extends UIContainer implements IUIPanel{
 		return SQUARE_MESH;
 	}
 
-
-	
 	@Override
 	public Color getColor() {
 		return color;
