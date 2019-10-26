@@ -17,6 +17,7 @@ public interface IUIPanel extends IUIContainer {
 	
 	IUIContainer getFather();
 	
+	void recalculateSize();
 	
 	/**
 	 * Set by system

@@ -30,10 +30,10 @@ public class GridLayoutPanel extends UIPanel{
 	}
 	
 	@Override
-	public void recalculate(Vector2ic screenSize) {
+	public void recalculateDimensions(Vector2ic screenSize) {
 		recalculateDimension(columCellPlaceHolder, screenSize, SimpleScreenDimension.X_AXIS);
 		recalculateDimension(rowsCellPlaceHolder, screenSize, SimpleScreenDimension.Y_AXIS);	
-		super.recalculate(screenSize);
+		super.recalculateDimensions(screenSize);
 	}
 	
 	public void remove(int x, int y) {
@@ -74,7 +74,7 @@ public class GridLayoutPanel extends UIPanel{
 		panel.getPosition().applyX((s)->s.addPF((float)100/gridSize.x * x).add(new ScaledScreenDimension(columCellPlaceHolder, x)));
 		panel.getPosition().applyY((s)->s.addPF((float)100/gridSize.y * y).add(new ScaledScreenDimension(rowsCellPlaceHolder,  y)));
 
-		requestRecalculation(this);
+		requestDimensionRecalculation(this);
 	}
 	
 	

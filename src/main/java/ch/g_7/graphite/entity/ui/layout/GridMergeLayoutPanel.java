@@ -46,7 +46,7 @@ public class GridMergeLayoutPanel extends UIPanel {
 		panel.getPosition().applyX((s)->s.addPF((float) 100 / gridSize.x * x));
 		panel.getPosition().applyY((s)->s.addPF((float) 100 / gridSize.y * y));
 
-		requestRecalculation(this);
+		requestDimensionRecalculation(this);
 	}
 
 	public void remove(int x, int y) {

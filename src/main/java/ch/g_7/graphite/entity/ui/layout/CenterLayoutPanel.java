@@ -34,7 +34,7 @@ public class CenterLayoutPanel extends UIPanel{
 			.applyX((s)->s.remove(new ScaledScreenDimension(panel.getSize().getXAxis(), 0.5f)))
 			.applyY((s)->s.remove(new ScaledScreenDimension(panel.getSize().getYAxis(), 0.5f)));
 		
-		requestRecalculation(this);
+		requestDimensionRecalculation(this);
 	}
 	
 	

@@ -32,10 +32,10 @@ public class ListLayoutPanel extends UIPanel {
 	
 	
 	@Override
-	public void recalculate(Vector2ic screenSize) {
+	public void recalculateDimensions(Vector2ic screenSize) {
 		recalculateDimension(placeHolder, screenSize, axis);
 		recalculateDimension(nextPos, screenSize, axis);
-		super.recalculate(screenSize);
+		super.recalculateDimensions(screenSize);
 	}
 	
 	
@@ -57,7 +57,7 @@ public class ListLayoutPanel extends UIPanel {
 			panel.getPosition().getYAxis().add(nextPos);
 			nextPos.add(panel.getSize().getYAxis()).add(placeHolder);
 		}
-		requestRecalculation(this);
+		requestDimensionRecalculation(this);
 	}
 	
 	

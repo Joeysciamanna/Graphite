@@ -25,10 +25,7 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer{
 	
 	@Override
 	public void recalculate() {
-		System.out.println(System.currentTimeMillis());
-		recalculate(window.getSize());
-		System.out.println(System.currentTimeMillis());
-		System.out.println();
+		recalculateDimensions(window.getSize());
 	}
 	
 	@Override
@@ -42,8 +39,8 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer{
 	}
 	
 	@Override
-	public void requestRecalculation(IUIContainer container) {
-		container.recalculate(window.getSize());
+	public void requestDimensionRecalculation(IUIContainer container) {
+		container.recalculateDimensions(window.getSize());
 	}
 	
 	@Override

@@ -53,7 +53,7 @@ public class AligementLayoutPanel extends UIPanel {
 			panel.getPosition().applyY((s)->s.addPF(100).remove(panel.getSize().getYAxis()));
 		break;
 		}
-		requestRecalculation(this);
+		requestDimensionRecalculation(this);
 	}
 	
 	@Override

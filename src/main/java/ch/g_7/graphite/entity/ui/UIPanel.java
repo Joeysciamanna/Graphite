@@ -19,10 +19,11 @@ public class UIPanel extends UIContainer implements IUIPanel{
 
 	private static final AbstractMesh SQUARE_MESH = MeshFactory.getSquare(1).setCenter(MeshBuilder.CENTER_TOP_LEFT).build();
 	
-	
 	protected final ScreenDimension2d maxSize;
 	protected final ScreenDimension2d minSize;
 	protected final ScreenDimension2d preferedSize;
+	private boolean resized;
+	
 	
 	protected IUIContainer father;
 	
@@ -39,12 +40,23 @@ public class UIPanel extends UIContainer implements IUIPanel{
 	
 	
 	@Override
-	public void recalculate(Vector2ic screenSize) {
-	
+	public void recalculateDimensions(Vector2ic screenSize) {
 		recalculateDimension(maxSize, screenSize);
 		recalculateDimension(minSize, screenSize);
 		recalculateDimension(preferedSize, screenSize);
+
+		if(resized) {
+			recalculateSize();
+			resized = false;
+		}
 		
+		super.recalculateDimensions(screenSize);
+
+	}
+	
+	
+	@Override
+	public void recalculateSize() {
 		this.size.reset();
 		
 		if(preferedSize.getXValue() > maxSize.getXValue() || preferedSize.getXValue() < minSize.getXValue()) {
@@ -65,9 +77,6 @@ public class UIPanel extends UIContainer implements IUIPanel{
 		}else {
 			size.getYAxis().add(preferedSize.getYAxis());
 		}
-		
-
-		super.recalculate(screenSize);
 	}
 	
 	
@@ -82,9 +91,9 @@ public class UIPanel extends UIContainer implements IUIPanel{
 	}
 	
 	@Override
-	public final void requestRecalculation(IUIContainer container) {
+	public final void requestDimensionRecalculation(IUIContainer container) {
 		if(getFather()!=null) {
-			getFather().requestRecalculation(container);
+			getFather().requestDimensionRecalculation(container);
 		}
 	}
 	
@@ -123,7 +132,6 @@ public class UIPanel extends UIContainer implements IUIPanel{
 		this.father = father;
 	}
 	
-	
 	public IUIContainer getFather() {
 		return father;
 	}
@@ -145,16 +153,19 @@ public class UIPanel extends UIContainer implements IUIPanel{
 
 	@Override
 	public ScreenDimension2d getMaxSize() {
+		resized = true;
 		return maxSize;
 	}
 	
 	@Override
 	public ScreenDimension2d getMinSize() {
+		resized = true;
 		return minSize;
 	}
 	
 	@Override
 	public ScreenDimension2d getPreferedSize() {
+		resized = true;
 		return preferedSize;
 	}
 
