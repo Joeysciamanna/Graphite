@@ -40,28 +40,29 @@ public abstract class UIContainer implements IUIContainer{
 		recalculateDimension(minSize, screenSize);
 		recalculateDimension(preferedSize, screenSize);
 		
-		this.size.reset().add(preferedSize);
+		this.size.reset();
 	
+		
 		if(preferedSize.getXValue() < minSize.getXValue() || preferedSize.getXValue() > maxSize.getXValue()) {
-			if(Math.abs(preferedSize.getXValue()-maxSize.getXValue()) < Math.abs(minSize.getXValue()-preferedSize.getXValue())){
-				size.getXAxis().reset().add(maxSize.getXAxis());
+			if(preferedSize.getXValue()-maxSize.getXValue() < minSize.getXValue()-preferedSize.getXValue()){
+				size.getXAxis().add(maxSize.getXAxis());
 			}else {
-				size.getXAxis().reset().add(minSize.getXAxis());
+				size.getXAxis().add(minSize.getXAxis());
 			}
+		}else {
+			size.getXAxis().add(preferedSize.getXAxis());
 		}
 		if(preferedSize.getYValue() < minSize.getYValue() || preferedSize.getYValue() > maxSize.getYValue()) {
-			if(Math.abs(preferedSize.getYValue()-maxSize.getYValue()) < Math.abs(minSize.getYValue()-preferedSize.getYValue())){
-				size.getYAxis().reset().add(maxSize.getYAxis());
+			if(preferedSize.getYValue()-maxSize.getYValue() < minSize.getYValue()-preferedSize.getYValue()){
+				size.getYAxis().add(maxSize.getYAxis());
 			}else {
-				size.getYAxis().reset().add(minSize.getYAxis());
+				size.getYAxis().add(minSize.getYAxis());
 			}
+		}else {
+			size.getXAxis().add(preferedSize.getXAxis());
 		}
+		
 		recalculateDimension(size, screenSize);
-		
-		for (IUIPanel child : getChilds()) {
-			child.recalculate(screenSize);
-		}
-		
 		
 		
 		System.out.println(getClass().getSimpleName() + "  --------------------");
@@ -72,6 +73,12 @@ public abstract class UIContainer implements IUIContainer{
 		System.out.println("size: " + size.toVector());
 		System.out.println("color: " + ( this instanceof UIPanel ? ((UIPanel)this).getColor() : "no color" ));
 		System.out.println();
+
+		for (IUIPanel child : getChilds()) {
+			child.recalculate(screenSize);
+		}
+		
+
 	}
 	
 	protected abstract void recalculateDimension(SimpleScreenDimension dimension, Vector2ic screenSize, byte axis);
