@@ -1,17 +1,22 @@
 package ch.g_7.graphite.entity.ui;
 
+import java.util.List;
+
 import org.joml.Vector2f;
 import org.joml.Vector2fc;
 import org.joml.Vector2ic;
 
+import ch.g_7.graphite.entity.ui.dimension.SimpleScreenDimension;
+import ch.g_7.graphite.entity.ui.dimension.ScreenDimension2d;
+
 public abstract class UIContainer implements IUIContainer{
 
-	protected ScreenDimension2d maxSize;
-	protected ScreenDimension2d minSize;
-	protected ScreenDimension2d preferedSize;
-	protected ScreenDimension2d size;
+	protected final ScreenDimension2d maxSize;
+	protected final ScreenDimension2d minSize;
+	protected final ScreenDimension2d preferedSize;
+	protected final ScreenDimension2d size;
 	
-	protected ScreenDimension2d position;
+	protected final ScreenDimension2d position;
 	
 	protected boolean visible;
 	
@@ -29,14 +34,36 @@ public abstract class UIContainer implements IUIContainer{
 	@Override
 	public void recalculate(Vector2ic screenSize) {
 		recalculateDimension(position, screenSize);
+		
+		recalculateDimension(maxSize, screenSize);
+		recalculateDimension(minSize, screenSize);
+		recalculateDimension(preferedSize, screenSize);
+		
+		
+		this.size.reset();
+	
+		if(preferedSize.getXValue() < minSize.getXValue() || preferedSize.getXValue() > maxSize.getXValue()) {
+			if(Math.abs(preferedSize.getXValue()-maxSize.getXValue()) < Math.abs(minSize.getXValue()-preferedSize.getXValue())){
+				size.getXAxis().add(maxSize.getXAxis());
+			}else {
+				size.getXAxis().add(minSize.getXAxis());
+			}
+		}
+		if(preferedSize.getYValue() < minSize.getYValue() || preferedSize.getYValue() > maxSize.getYValue()) {
+			if(Math.abs(preferedSize.getYValue()-maxSize.getYValue()) < Math.abs(minSize.getYValue()-preferedSize.getYValue())){
+				size.getYAxis().add(maxSize.getYAxis());
+			}else {
+				size.getYAxis().add(minSize.getYAxis());
+			}
+		}
 		recalculateDimension(size, screenSize);
-
+		
 		for (IUIPanel child : getChilds()) {
 			child.recalculate(screenSize);
 		}
 	}
 	
-	protected abstract void recalculateDimension(ScreenDimension dimension, Vector2ic screenSize, byte axis);
+	protected abstract void recalculateDimension(SimpleScreenDimension dimension, Vector2ic screenSize, byte axis);
 	protected abstract void recalculateDimension(ScreenDimension2d dimension, Vector2ic screenSize);
 	
 	@Override
@@ -58,11 +85,12 @@ public abstract class UIContainer implements IUIContainer{
 		return visible;
 	}
 	
+	
 	@Override
-	public ScreenDimension2d getPosition() {
-		return position;
+	public ScreenDimension2d getSize() {
+		return size;
 	}
-
+	
 	@Override
 	public ScreenDimension2d getMaxSize() {
 		return maxSize;
@@ -77,13 +105,11 @@ public abstract class UIContainer implements IUIContainer{
 	public ScreenDimension2d getPreferedSize() {
 		return preferedSize;
 	}
-	
+
 	@Override
-	public ScreenDimension2d getSize() {
-		return size;
+	public ScreenDimension2d getPosition() {
+		return position;
 	}
-	
- 
-	
+
 
 }

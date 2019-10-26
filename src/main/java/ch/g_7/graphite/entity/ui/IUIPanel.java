@@ -15,4 +15,7 @@ public interface IUIPanel extends IUIContainer {
 	void setFather(IUIContainer container);
 	
 	IUIContainer getFather();
+	
+
+	
 }

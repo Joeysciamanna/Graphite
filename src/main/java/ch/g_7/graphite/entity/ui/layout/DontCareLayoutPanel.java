@@ -6,8 +6,8 @@ import java.util.List;
 import org.joml.Vector2ic;
 
 import ch.g_7.graphite.entity.ui.IUIPanel;
-import ch.g_7.graphite.entity.ui.ScreenDimension;
 import ch.g_7.graphite.entity.ui.UIPanel;
+import ch.g_7.graphite.entity.ui.dimension.SimpleScreenDimension;
 
 public class DontCareLayoutPanel extends UIPanel {
 	

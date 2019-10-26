@@ -7,6 +7,8 @@ import org.joml.Vector2f;
 import org.joml.Vector2ic;
 
 import ch.g_7.graphite.core.window.Window;
+import ch.g_7.graphite.entity.ui.dimension.SimpleScreenDimension;
+import ch.g_7.graphite.entity.ui.dimension.ScreenDimension2d;
 
 public class UIRootContainer extends UIContainer implements IUIRootContainer{
 
@@ -18,10 +20,7 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer{
 		this.window = window;
 		this.window.addResizeListner(this);
 		this.childs = new ArrayList<>();
-		this.size = new Vector2f(window.getSize());
-		this.position = new Vector2f();
-		getWidth().addPW(100);
-		getHeight().addPW(100);
+		this.size.reset().addPF(100);
 	}
 	
 	@Override
@@ -30,8 +29,13 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer{
 	}
 	
 	@Override
-	protected void recalculateDimension(ScreenDimension dimension, Vector2ic screenSize, byte axis) {
+	protected void recalculateDimension(SimpleScreenDimension dimension, Vector2ic screenSize, byte axis) {
 		dimension.recalculate(screenSize, new Vector2f(2, 2), axis);
+	}
+	
+	@Override
+	protected void recalculateDimension(ScreenDimension2d dimension, Vector2ic screenSize) {
+		dimension.recalculate(screenSize, new Vector2f(2, 2));
 	}
 	
 	@Override
@@ -64,6 +68,11 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer{
 	public void close() {
 		window.removeResizeListner(this);
 		super.close();
+	}
+
+	@Override
+	public Window getWindow() {
+		return window;
 	}
 
 }

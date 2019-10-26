@@ -6,10 +6,13 @@ import java.util.List;
 import org.joml.Vector2fc;
 import org.joml.Vector2ic;
 
+import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.entity.mesh.AbstractMesh;
 import ch.g_7.graphite.entity.mesh.MeshBuilder;
 import ch.g_7.graphite.entity.mesh.MeshFactory;
 import ch.g_7.graphite.entity.texture.Texture;
+import ch.g_7.graphite.entity.ui.dimension.SimpleScreenDimension;
+import ch.g_7.graphite.entity.ui.dimension.ScreenDimension2d;
 import ch.g_7.graphite.util.Color;
 
 public class UIPanel extends UIContainer implements IUIPanel{
@@ -28,8 +31,13 @@ public class UIPanel extends UIContainer implements IUIPanel{
 	}
 	
 	@Override
-	protected void recalculateDimension(ScreenDimension dimension, Vector2ic screenSize, byte axis) {
+	protected void recalculateDimension(SimpleScreenDimension dimension, Vector2ic screenSize, byte axis) {
 		dimension.recalculate(screenSize, getFather().getSize().toVector(), axis);
+	}
+	
+	@Override
+	protected void recalculateDimension(ScreenDimension2d dimension, Vector2ic screenSize) {
+		dimension.recalculate(screenSize, getFather().getSize().toVector());
 	}
 	
 	@Override
@@ -55,10 +63,7 @@ public class UIPanel extends UIContainer implements IUIPanel{
 		return SQUARE_MESH;
 	}
 
-	@Override
-	public Vector2fc getPosition() {
-		return getFather() == null ? position : position.add(getFather().getPosition());
-	}
+
 	
 	@Override
 	public Color getColor() {
@@ -88,5 +93,16 @@ public class UIPanel extends UIContainer implements IUIPanel{
 	public List<IUIPanel> getChilds() {
 		return new ArrayList<>();
 	}
+	
+	@Override
+	public ScreenDimension2d getPosition() {
+		return getFather() == null ? position : position.add(getFather().getPosition());
+	}
+
+	@Override
+	public Window getWindow() {
+		return  getFather() == null ? null : father.getWindow();
+	}
+
 
 }

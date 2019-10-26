@@ -7,15 +7,15 @@ import org.joml.Vector2i;
 import org.joml.Vector2ic;
 
 import ch.g_7.graphite.entity.ui.IUIPanel;
-import ch.g_7.graphite.entity.ui.ScreenDimension;
 import ch.g_7.graphite.entity.ui.UIPanel;
+import ch.g_7.graphite.entity.ui.dimension.SimpleScreenDimension;
 
 public class GridLayoutPanel extends UIPanel{
 
 	private Vector2i gridSize;
 
-	private ScreenDimension columCellPlaceHolder;
-	private ScreenDimension rowsCellPlaceHolder;
+	private SimpleScreenDimension columCellPlaceHolder;
+	private SimpleScreenDimension rowsCellPlaceHolder;
 	
 	private final IUIPanel[][] childs;
 	private List<IUIPanel> childList;
@@ -24,14 +24,14 @@ public class GridLayoutPanel extends UIPanel{
 		this.gridSize = new Vector2i(colums, rows);
 		this.childs = new IUIPanel[colums][rows];
 		this.childList = new ArrayList<>();
-		this.columCellPlaceHolder = new ScreenDimension();
-		this.rowsCellPlaceHolder = new ScreenDimension();
+		this.columCellPlaceHolder = new SimpleScreenDimension();
+		this.rowsCellPlaceHolder = new SimpleScreenDimension();
 	}
 	
 	@Override
 	public void recalculate(Vector2ic screenSize) {
-		recalculateDimension(columCellPlaceHolder, screenSize, ScreenDimension.X_AXIS);
-		recalculateDimension(rowsCellPlaceHolder, screenSize, ScreenDimension.Y_AXIS);	
+		recalculateDimension(columCellPlaceHolder, screenSize, SimpleScreenDimension.X_AXIS);
+		recalculateDimension(rowsCellPlaceHolder, screenSize, SimpleScreenDimension.Y_AXIS);	
 		super.recalculate(screenSize);
 	}
 	
@@ -79,11 +79,11 @@ public class GridLayoutPanel extends UIPanel{
 		return childList;
 	}
 
-	public ScreenDimension getColumCellPlaceHolder() {
+	public SimpleScreenDimension getColumCellPlaceHolder() {
 		return columCellPlaceHolder;
 	}
 	
-	public ScreenDimension getRowsCellPlaceHolder() {
+	public SimpleScreenDimension getRowsCellPlaceHolder() {
 		return rowsCellPlaceHolder;
 	}
 

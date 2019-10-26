@@ -38,26 +38,19 @@ public class AligementLayoutPanel extends UIPanel {
 	}
 
 	private void place(IUIPanel panel, byte position) {
+		panel.getMaxSize().reset().addPF(100);
+		panel.getMinSize().reset();
+		panel.getPosition().reset();
 		switch (position) {
 		case TOP:
-			panel.getWidth().reset().addPF(100);
-			panel.getX().reset();
-			panel.getY().reset();
 			break;
 		case LEFT:
-			panel.getHeight().reset().addPF(100);
-			panel.getX().reset();
-			panel.getY().reset();
 			break;
 		case RIGHT:
-			panel.getHeight().reset().addPF(100);
-			panel.getX().reset().addPF(100).remove(panel.getWidth());
-			panel.getY().reset();
+			panel.getPosition().applyX((s)->s.addPF(100).remove(panel.getSize().getXAxis()));
 		break;
 		case BUTTOM:
-			panel.getWidth().reset().addPF(100);
-			panel.getX().reset();
-			panel.getY().reset().addPF(100).remove(panel.getHeight());
+			panel.getPosition().applyY((s)->s.addPF(100).remove(panel.getSize().getYAxis()));
 		break;
 		}
 		requestRecalculation(this);

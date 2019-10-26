@@ -6,19 +6,19 @@ import java.util.List;
 import org.joml.Vector2ic;
 
 import ch.g_7.graphite.entity.ui.IUIPanel;
-import ch.g_7.graphite.entity.ui.ScreenDimension;
 import ch.g_7.graphite.entity.ui.UIPanel;
+import ch.g_7.graphite.entity.ui.dimension.SimpleScreenDimension;
 
 public class ListLayoutPanel extends UIPanel {
 
 	public static final byte X_AXIS = 0;
 	public static final byte Y_AXIS = 1;
 	
-	private ScreenDimension placeHolder;
+	private SimpleScreenDimension placeHolder;
 	
 	private byte axis;
 	
-	private ScreenDimension nextPos;
+	private SimpleScreenDimension nextPos;
 	
 	private List<IUIPanel> childs;
 
@@ -26,8 +26,8 @@ public class ListLayoutPanel extends UIPanel {
 	public ListLayoutPanel(byte axis) {
 		this.axis = axis;
 		this.childs = new ArrayList<>();
-		this.placeHolder = new ScreenDimension();
-		this.nextPos = new ScreenDimension();
+		this.placeHolder = new SimpleScreenDimension();
+		this.nextPos = new SimpleScreenDimension();
 	}
 	
 	
@@ -67,7 +67,7 @@ public class ListLayoutPanel extends UIPanel {
 		return childs;
 	}
 	
-	public ScreenDimension getSpaceHolder() {
+	public SimpleScreenDimension getSpaceHolder() {
 		return placeHolder;
 	}
 }
