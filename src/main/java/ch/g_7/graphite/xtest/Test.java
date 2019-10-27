@@ -47,14 +47,18 @@ public class Test extends Application {
 		
 		UIPanel panel2 = new UIPanel();
 		panel2.setColor(new Color(255, 0, 0, 0));
-		panel2.getPreferedSize().reset().apply((s)->s.addPW(50)); //50 does work ???? wired
+		panel2.getPreferedSize().reset().apply((s)->s.addPixel(25));
 		sharingLayoutPanel.setAdjustablePanel(panel2);
 		
 		inventory.recalculate();
-
+//		inventory.recalculate();
 		
-		System.out.println(panel2.getSize().toVector());
+		panel2.recalculateSize(); //Why???
 		
+//		System.out.println(panel2.getSize().toVector());
+//		System.out.println(panel2.getMaxSize().toVector());
+//		System.out.println(panel2.getMinSize().toVector());
+//		System.out.println(panel2.getPreferedSize().toVector());
 		
 //		AligementLayoutPanel aligementLayoutPanel = new AligementLayoutPanel();
 //		aligementLayoutPanel.getPreferedSize().addPW(100);

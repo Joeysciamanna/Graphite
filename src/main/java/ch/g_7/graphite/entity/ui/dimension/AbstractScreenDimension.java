@@ -23,7 +23,7 @@ public abstract class AbstractScreenDimension implements IROScreenDimension{
 	
 	@Override
 	public AbstractScreenDimension recalculate(int screenSize, float fatherSize) {
-		int value = 0;
+		float value = 0;
 		value += (float) getPixel() * 2 / screenSize;
 		value += fatherSize * (getPF() == 0 ? 0 : (getPF()/100));
 		value += getPW() * 2 / 100;
@@ -105,7 +105,7 @@ public abstract class AbstractScreenDimension implements IROScreenDimension{
 	 */
 	@Override
 	public abstract float getValue();
-	protected abstract void setValue(int value);
+	protected abstract void setValue(float value);
 	
 	protected abstract int getPixel();
 	protected abstract void setPixel(int pixel);

@@ -37,7 +37,7 @@ public class SimpleScreenDimension extends AbstractScreenDimension{
 	}
 
 	@Override
-	protected void setValue(int value) {
+	protected void setValue(float value) {
 		this.value = value;
 	}
 
