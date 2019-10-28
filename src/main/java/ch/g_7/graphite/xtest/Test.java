@@ -37,7 +37,7 @@ public class Test extends Application {
 		getDimension().addObj(inventory, RenderClass.UI_PANELS);
 		
 		SpaceSharingLayoutPanel sharingLayoutPanel = new SpaceSharingLayoutPanel();
-		sharingLayoutPanel.getPreferedSize().reset().addPW(100);
+		sharingLayoutPanel.getPreferedSize().reset().addPF(100);
 		inventory.add(sharingLayoutPanel);
 		
 		UIPanel panel1 = new UIPanel();
@@ -50,10 +50,10 @@ public class Test extends Application {
 		panel2.getPreferedSize().reset().apply((s)->s.addPixel(25));
 		sharingLayoutPanel.setAdjustablePanel(panel2);
 		
-		inventory.recalculate();
+//		inventory.recalculate();
 //		inventory.recalculate();
 		
-		panel2.recalculateSize(); //Why???
+//		panel2.recalculateSize(); //Why???
 		
 //		System.out.println(panel2.getSize().toVector());
 //		System.out.println(panel2.getMaxSize().toVector());

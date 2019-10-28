@@ -41,20 +41,22 @@ public class UIPanel extends UIContainer implements IUIPanel{
 	
 	@Override
 	public void recalculateDimensions(Vector2ic screenSize) {
-
-		recalculateDimension(maxSize, screenSize);
-		recalculateDimension(minSize, screenSize);
-		recalculateDimension(preferedSize, screenSize);
 		
 		if(resized) {
 			recalculateSize();
 			resized = false;
 		}
 		
+		recalculateDimension(maxSize, screenSize);
+		recalculateDimension(minSize, screenSize);
+		recalculateDimension(preferedSize, screenSize);
+		
+		super.recalculateDimensions(screenSize);
+
 	
 
 	
-		super.recalculateDimensions(screenSize);
+	
 
 	}
 	
