@@ -50,10 +50,11 @@ public class Test extends Application {
 		panel2.getPreferedSize().reset().apply((s)->s.addPixel(25));
 		sharingLayoutPanel.setAdjustablePanel(panel2);
 		
-//		inventory.recalculate();
+
 //		inventory.recalculate();
 		
-//		panel2.recalculateSize(); //Why???
+		panel2.recalculateSize(); //Why???
+		inventory.recalculate();
 		
 //		System.out.println(panel2.getSize().toVector());
 //		System.out.println(panel2.getMaxSize().toVector());
