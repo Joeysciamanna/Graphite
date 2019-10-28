@@ -53,7 +53,7 @@ public class Test extends Application {
 
 //		inventory.recalculate();
 		
-		panel2.recalculateSize(); //Why???
+//		panel2.recalculateSize(); //Why???
 		inventory.recalculate();
 		
 //		System.out.println(panel2.getSize().toVector());

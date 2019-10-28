@@ -39,8 +39,17 @@ public class UIPanel extends UIContainer implements IUIPanel{
 	}
 	
 	
+	
+	private int count = 0;
 	@Override
 	public void recalculateDimensions(Vector2ic screenSize) {
+		
+		System.out.println(getClass().getSimpleName() + " -------------------------- " + count++);
+		System.out.println("maxSize: " + maxSize.toVector());
+		System.out.println("minSize: " + minSize.toVector());
+		System.out.println("preferedSize: " + preferedSize.toVector());
+		System.out.println("size: " + size.toVector());
+		System.out.println();
 		
 		if(resized) {
 			recalculateSize();
@@ -51,12 +60,17 @@ public class UIPanel extends UIContainer implements IUIPanel{
 		recalculateDimension(minSize, screenSize);
 		recalculateDimension(preferedSize, screenSize);
 		
+	
+		System.out.println("maxSize: " + maxSize.toVector());
+		System.out.println("minSize: " + minSize.toVector());
+		System.out.println("preferedSize: " + preferedSize.toVector());
+		System.out.println("size: " + size.toVector());
+		System.out.println();
+		System.out.println();
+		System.out.println();
+	
+
 		super.recalculateDimensions(screenSize);
-
-	
-
-	
-	
 
 	}
 	
