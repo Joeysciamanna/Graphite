@@ -2,6 +2,7 @@ package ch.g_7.graphite.entity.ui;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 import org.joml.Vector2f;
 import org.joml.Vector2ic;
@@ -41,8 +42,10 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer{
 	
 
 	@Override
-	public void asyncOnResize(ResizeAction action) {
-		recalculate();
+	public void onResize(ResizeAction action) {
+		CompletableFuture.runAsync(() -> {
+			recalculate();
+		});
 	}
 	
 	@Override

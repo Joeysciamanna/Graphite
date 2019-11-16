@@ -14,14 +14,6 @@ public interface IUIRootContainer extends IUIContainer, ResizeListner {
 	
 	void recalculate();
 
-	@Override
-	default void onResize(ResizeAction action) {
-		CompletableFuture.runAsync(() -> {
-			asyncOnResize(action);
-		});
-	}
-	
-	void asyncOnResize(ResizeAction action);
 
 
 }
