@@ -1,6 +1,13 @@
 package ch.g_7.graphite.core.window;
 
-public interface ResizeListner {
+import ch.g_7.util.task.Task.VoidTask;
 
-	void onResize(int width, int height);
+public interface ResizeListner extends VoidTask<ResizeAction>{
+
+	@Override
+	default void runVoid(ResizeAction action) {
+		onResize(action);
+	}
+	
+	void onResize(ResizeAction action);
 }

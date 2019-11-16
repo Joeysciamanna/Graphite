@@ -6,6 +6,7 @@ import java.util.List;
 import org.joml.Vector2f;
 import org.joml.Vector2ic;
 
+import ch.g_7.graphite.core.window.ResizeAction;
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.entity.ui.dimension.SimpleScreenDimension;
 import ch.g_7.graphite.entity.ui.dimension.ScreenDimension2d;
@@ -44,7 +45,7 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer{
 	}
 	
 	@Override
-	public void onResize(int width, int height) {
+	public void onResize(ResizeAction action) {
 		recalculate();
 	}
 	
@@ -74,5 +75,6 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer{
 	public Window getWindow() {
 		return window;
 	}
+
 
 }

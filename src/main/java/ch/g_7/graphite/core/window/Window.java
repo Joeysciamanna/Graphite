@@ -49,13 +49,13 @@ import org.lwjgl.opengl.GL;
 import ch.g_7.graphite.util.Color;
 import ch.g_7.util.stuff.Initializable;
 import ch.g_7.util.task.TaskInputBuffer;
+import ch.g_7.util.task.ValueChangeNotifier;
 
-public class Window implements Initializable{
+public class Window implements Initializable, ResizeListner{
 
 	private final String title;
 
 	private List<KeyListner> keyListners;
-	private List<ResizeListner> resizeListners;
 	
 	private TaskInputBuffer<KeyAction> keyPressBuffer;
 
@@ -64,7 +64,7 @@ public class Window implements Initializable{
 
 	private int width;
 	private int height;
-	private boolean resized;
+	private ValueChangeNotifier<ResizeAction> resizeNotifier;
 	
 	private int x;
 	private int y;
@@ -75,8 +75,9 @@ public class Window implements Initializable{
 		this.width = width;
 		this.height = height;
 		keyListners = new ArrayList<>();
-		resizeListners = new ArrayList<>();
 		keyPressBuffer = new TaskInputBuffer<KeyAction>((i)->keyListners.forEach((l)->l.onKeyPress(i)));
+		resizeNotifier = new ValueChangeNotifier<>();
+		resizeNotifier.addListner(this);
 	}
 
 	static {
@@ -102,7 +103,7 @@ public class Window implements Initializable{
 			throw new RuntimeException("Failed to create the GLFW window");
 		}
 		
-		glfwSetFramebufferSizeCallback(windowId, (window, width, height) -> setSize(width, height));
+		glfwSetFramebufferSizeCallback(windowId, (window, width, height) -> resizeNotifier.valueChanged(new ResizeAction(window, width, height)));
 		
 		glfwSetWindowPosCallback(windowId, (window, x, y)-> setPosition(x, y));
 		
@@ -123,7 +124,7 @@ public class Window implements Initializable{
 	}
 	
 	public void update() {
-		resize();
+		resizeNotifier.runSimple();
 		reposition();
 
 		
@@ -138,21 +139,14 @@ public class Window implements Initializable{
 		keyPressBuffer.run(null);
 	}
 	
-	private void resize() {
-		if(resized) {
-			glViewport(0, 0, width, height);
-			GLFW.glfwSetWindowSize(windowId, width, height);
-			for (ResizeListner resizeListner : resizeListners) {
-				resizeListner.onResize(width, height);
-			}
-			resized = false;
-		}
+	@Override
+	public void onResize(ResizeAction action) {
+		glViewport(0, 0, width, height);
+		GLFW.glfwSetWindowSize(windowId, width, height);
 	}
 
 	public void setSize(int width, int height) {
-		this.width = width;
-		this.height = height;
-		this.resized = true;
+		resizeNotifier.valueChanged(new ResizeAction(windowId, width, height));
 	}
 
 	public void reposition() {
@@ -194,11 +188,11 @@ public class Window implements Initializable{
 	}
 	
 	public void addResizeListner(ResizeListner resizeListner) {
-		resizeListners.add(resizeListner);
+		resizeNotifier.addListner(resizeListner);
 	}
 
 	public void removeResizeListner(ResizeListner resizeListner) {
-		resizeListners.remove(resizeListner);
+		resizeNotifier.removeListner(resizeListner);
 	}
 
 	public boolean isKeyPressed(int keyCode) {
