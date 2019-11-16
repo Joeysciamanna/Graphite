@@ -18,8 +18,8 @@ public class DontCareLayoutPanel extends UIPanel {
 	}
 	
 	@Override
-	public void recalculateDimensions(Vector2ic screenSize) {
-		super.recalculateDimensions(screenSize);
+	public void recalculate(Vector2ic screenSize) {
+		super.recalculate(screenSize);
 	}
 	
 	public void add(IUIPanel panel) {

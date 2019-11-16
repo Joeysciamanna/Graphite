@@ -15,7 +15,7 @@ public interface IUIContainer extends Renderable {
 
 	List<IUIPanel> getChilds();
 
-	void recalculateDimensions(Vector2ic screenSize);
+	void recalculate(Vector2ic screenSize);
 	
 	void requestDimensionRecalculation(IUIContainer container);
 

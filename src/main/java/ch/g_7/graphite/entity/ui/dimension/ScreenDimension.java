@@ -122,6 +122,11 @@ public class ScreenDimension implements IScreenDimension{
 	}
 	
 	@Override
+	public String toString() {
+		return "ScreenDimension[PW: " + getPW() + ", PF: " + getPF() + ", Pixel: " + getPixel() + "] " + getValue();
+	}
+	
+	@Override
 	public float getValue() {
 		return value;
 	}

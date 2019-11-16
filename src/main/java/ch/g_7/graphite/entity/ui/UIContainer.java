@@ -31,7 +31,7 @@ public abstract class UIContainer implements IUIContainer{
 	}
 	
 	@Override
-	public void recalculateDimensions(Vector2ic screenSize) {
+	public void recalculate(Vector2ic screenSize) {
 		
 		recalculateDimension(width, screenSize);
 		recalculateDimension(height, screenSize);
@@ -41,7 +41,7 @@ public abstract class UIContainer implements IUIContainer{
 		position.set(x.getValue(), y.getValue());
 		
 		for (IUIPanel child : getChilds()) {
-			child.recalculateDimensions(screenSize);
+			child.recalculate(screenSize);
 		}
 
 	}
