@@ -27,12 +27,13 @@ public class CenterLayoutPanel extends UIPanel{
 	}
 	
 	private void place(IUIPanel panel) {
-		panel.getMaxSize().reset().addPF(100);
-		panel.getMinSize().reset();
-
-		panel.getPosition().reset().addPF(50)
-			.applyX((s)->s.remove(new ScaledScreenDimension(panel.getSize().getXAxis(), 0.5f)))
-			.applyY((s)->s.remove(new ScaledScreenDimension(panel.getSize().getYAxis(), 0.5f)));
+		panel.getMaxWidth().reset().addPF(100);
+		panel.getMaxHeight().reset().addPF(100);
+		panel.getMinWidth().reset();
+		panel.getMinHeight().reset();
+		
+		panel.getX().addPF(50).remove(new ScaledScreenDimension(panel.getWidth(), 0.5f));
+		panel.getY().addPF(50).remove(new ScaledScreenDimension(panel.getHeight(), 0.5f));
 		
 		requestDimensionRecalculation(this);
 	}

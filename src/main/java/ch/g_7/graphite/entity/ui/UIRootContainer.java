@@ -8,8 +8,7 @@ import org.joml.Vector2ic;
 
 import ch.g_7.graphite.core.window.ResizeAction;
 import ch.g_7.graphite.core.window.Window;
-import ch.g_7.graphite.entity.ui.dimension.SimpleScreenDimension;
-import ch.g_7.graphite.entity.ui.dimension.ScreenDimension2d;
+import ch.g_7.graphite.entity.ui.dimension.ScreenDimension;
 
 public class UIRootContainer extends UIContainer implements IUIRootContainer{
 
@@ -20,7 +19,8 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer{
 	public UIRootContainer(Window window) {
 		this.window = window;
 		this.window.addResizeListner(this);
-		this.size.addPW(100);
+		this.width.addPW(100);
+		this.height.addPW(100);
 		this.childs = new ArrayList<>();
 	}
 	
@@ -30,12 +30,7 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer{
 	}
 	
 	@Override
-	protected void recalculateDimension(SimpleScreenDimension dimension, Vector2ic screenSize, byte axis) {
-		dimension.recalculate(screenSize, new Vector2f(2, 2), axis);
-	}
-	
-	@Override
-	protected void recalculateDimension(ScreenDimension2d dimension, Vector2ic screenSize) {
+	protected void recalculateDimension(ScreenDimension dimension, Vector2ic screenSize) {
 		dimension.recalculate(screenSize, new Vector2f(2, 2));
 	}
 	
@@ -44,8 +39,9 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer{
 		container.recalculateDimensions(window.getSize());
 	}
 	
+
 	@Override
-	public void onResize(ResizeAction action) {
+	public void asyncOnResize(ResizeAction action) {
 		recalculate();
 	}
 	

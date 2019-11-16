@@ -141,8 +141,8 @@ public class Window implements Initializable, ResizeListner{
 	
 	@Override
 	public void onResize(ResizeAction action) {
-		glViewport(0, 0, width, height);
-		GLFW.glfwSetWindowSize(windowId, width, height);
+		glViewport(0, 0, action.getWidth(), action.getHeight());
+		GLFW.glfwSetWindowSize(windowId, action.getWidth(), action.getHeight());
 	}
 
 	public void setSize(int width, int height) {

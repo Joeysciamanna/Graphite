@@ -7,7 +7,7 @@ import org.joml.Vector2ic;
 
 import ch.g_7.graphite.entity.ui.IUIPanel;
 import ch.g_7.graphite.entity.ui.UIPanel;
-import ch.g_7.graphite.entity.ui.dimension.SimpleScreenDimension;
+import ch.g_7.graphite.entity.ui.dimension.ScreenDimension;
 
 public class DontCareLayoutPanel extends UIPanel {
 	
@@ -33,8 +33,11 @@ public class DontCareLayoutPanel extends UIPanel {
 	}
 	
 	private void place(IUIPanel panel) {
-		panel.getMaxSize().reset().addPF(100).remove(panel.getPosition());
-		panel.getMinSize().reset();
+		panel.getMaxWidth().addPF(100).remove(panel.getX());
+		panel.getMaxHeight().addPF(100).remove(panel.getY());
+	
+		panel.getMinWidth().reset();
+		panel.getMinHeight().reset();
 		
 		requestDimensionRecalculation(this);
 	}

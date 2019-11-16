@@ -11,19 +11,23 @@ import ch.g_7.graphite.entity.mesh.AbstractMesh;
 import ch.g_7.graphite.entity.mesh.MeshBuilder;
 import ch.g_7.graphite.entity.mesh.MeshFactory;
 import ch.g_7.graphite.entity.texture.Texture;
-import ch.g_7.graphite.entity.ui.dimension.SimpleScreenDimension;
-import ch.g_7.graphite.entity.ui.dimension.ScreenDimension2d;
+import ch.g_7.graphite.entity.ui.dimension.ScreenDimension;
 import ch.g_7.graphite.util.Color;
 
 public class UIPanel extends UIContainer implements IUIPanel{
 
 	private static final AbstractMesh SQUARE_MESH = MeshFactory.getSquare(1).setCenter(MeshBuilder.CENTER_TOP_LEFT).build();
 	
-	protected final ScreenDimension2d maxSize;
-	protected final ScreenDimension2d minSize;
-	protected final ScreenDimension2d preferedSize;
-	private boolean resized;
+	protected final ScreenDimension maxWidth;
+	protected final ScreenDimension maxHeight;
 	
+	protected final ScreenDimension minWidth;
+	protected final ScreenDimension minHeight;
+	
+	protected final ScreenDimension preferedWidth;
+	protected final ScreenDimension preferedHeight;
+	
+	private boolean resized;
 	
 	protected IUIContainer father;
 	
@@ -32,43 +36,33 @@ public class UIPanel extends UIContainer implements IUIPanel{
 
 	
 	public UIPanel() {
-		this.maxSize = new ScreenDimension2d().addPF(100);
-		this.minSize = new ScreenDimension2d();
-		this.preferedSize = new ScreenDimension2d().addPF(100);
+		this.maxWidth = new ScreenDimension(ScreenDimension.X_AXIS).addPF(100);
+		this.maxHeight = new ScreenDimension(ScreenDimension.Y_AXIS).addPF(100);
+		
+		this.minWidth = new ScreenDimension(ScreenDimension.X_AXIS);
+		this.minHeight = new ScreenDimension(ScreenDimension.Y_AXIS);
+		
+		this.preferedWidth = new ScreenDimension(ScreenDimension.X_AXIS).addPF(100);
+		this.preferedHeight = new ScreenDimension(ScreenDimension.Y_AXIS).addPF(100);
+		
 		this.color = new Color(255, 255, 255, 0);
 	}
 	
-	
-	
-	private int count = 0;
+
 	@Override
 	public void recalculateDimensions(Vector2ic screenSize) {
-		
-		System.out.println(getClass().getSimpleName() + " -------------------------- " + count++);
-		System.out.println("maxSize: " + maxSize.toVector());
-		System.out.println("minSize: " + minSize.toVector());
-		System.out.println("preferedSize: " + preferedSize.toVector());
-		System.out.println("size: " + size.toVector());
-		System.out.println();
 		
 		if(resized) {
 			recalculateSize();
 			resized = false;
 		}
 		
-		recalculateDimension(maxSize, screenSize);
-		recalculateDimension(minSize, screenSize);
-		recalculateDimension(preferedSize, screenSize);
-		
-	
-		System.out.println("maxSize: " + maxSize.toVector());
-		System.out.println("minSize: " + minSize.toVector());
-		System.out.println("preferedSize: " + preferedSize.toVector());
-		System.out.println("size: " + size.toVector());
-		System.out.println();
-		System.out.println();
-		System.out.println();
-	
+		recalculateDimension(maxWidth, screenSize);
+		recalculateDimension(maxHeight, screenSize);
+		recalculateDimension(minWidth, screenSize);
+		recalculateDimension(minHeight, screenSize);
+		recalculateDimension(preferedWidth, screenSize);
+		recalculateDimension(preferedHeight, screenSize);
 
 		super.recalculateDimensions(screenSize);
 
@@ -77,38 +71,36 @@ public class UIPanel extends UIContainer implements IUIPanel{
 	
 	@Override
 	public void recalculateSize() {
-		this.size.reset();
+		this.width.reset();
+		this.height.reset();
 		
-		if(preferedSize.getXValue() > maxSize.getXValue() || preferedSize.getXValue() < minSize.getXValue()) {
-			if(preferedSize.getXValue()-maxSize.getXValue()>preferedSize.getXValue()-minSize.getXValue()) {
-				size.getXAxis().add(minSize.getXAxis());
+		if(preferedWidth.getValue() > maxWidth.getValue() || preferedWidth.getValue() < minWidth.getValue()) {
+			if(preferedWidth.getValue()-maxWidth.getValue()>preferedWidth.getValue()-minWidth.getValue()) {
+				width.add(minWidth);
 			}else {
-				size.getXAxis().add(maxSize.getXAxis());
+				width.add(maxWidth);
 			}
 		}else {
-			size.getXAxis().add(preferedSize.getXAxis());
+			width.add(preferedWidth);
 		}
-		if(preferedSize.getYValue() > maxSize.getYValue() || preferedSize.getYValue() < minSize.getYValue()) {
-			if(preferedSize.getYValue()-maxSize.getYValue()>preferedSize.getYValue()-minSize.getYValue()) {
-				size.getYAxis().add(minSize.getYAxis());
+		if(preferedHeight.getValue() > maxHeight.getValue() || preferedHeight.getValue() < minHeight.getValue()) {
+			if(preferedHeight.getValue()-maxHeight.getValue()>preferedHeight.getValue()-minHeight.getValue()) {
+				height.add(minHeight);
 			}else {
-				size.getYAxis().add(maxSize.getYAxis());
+				height.add(maxHeight);
 			}
 		}else {
-			size.getYAxis().add(preferedSize.getYAxis());
+			height.add(preferedHeight);
 		}
 	}
 	
 	
 	@Override
-	protected void recalculateDimension(SimpleScreenDimension dimension, Vector2ic screenSize, byte axis) {
-		dimension.recalculate(screenSize, getFather().getSize().toVector(), axis);
+	protected void recalculateDimension(ScreenDimension dimension, Vector2ic screenSize) {
+		dimension.recalculate(screenSize, getFather().getSize());
 	}
 	
-	@Override
-	protected void recalculateDimension(ScreenDimension2d dimension, Vector2ic screenSize) {
-		dimension.recalculate(screenSize, getFather().getSize().toVector());
-	}
+
 	
 	@Override
 	public final void requestDimensionRecalculation(IUIContainer container) {
@@ -162,32 +154,53 @@ public class UIPanel extends UIContainer implements IUIPanel{
 	}
 	
 	@Override
-	public ScreenDimension2d getPosition() {
+	public Vector2fc getPosition() {
 		return getFather() == null ? position : position.add(getFather().getPosition());
 	}
 
 	@Override
 	public Window getWindow() {
-		return  getFather() == null ? null : father.getWindow();
+		return getFather() == null ? null : father.getWindow();
 	}
 
 	@Override
-	public ScreenDimension2d getMaxSize() {
-		resized = true;
-		return maxSize;
+	public ScreenDimension getMaxWidth() {
+		return maxWidth;
 	}
-	
+
+
 	@Override
-	public ScreenDimension2d getMinSize() {
-		resized = true;
-		return minSize;
+	public ScreenDimension getMaxHeight() {
+		return maxHeight;
 	}
-	
+
+
 	@Override
-	public ScreenDimension2d getPreferedSize() {
-		resized = true;
-		return preferedSize;
+	public ScreenDimension getMinWidth() {
+		return minWidth;
 	}
+
+
+	@Override
+	public ScreenDimension getMinHeight() {
+		return minHeight;
+	}
+
+
+	@Override
+	public ScreenDimension getPreferedWidth() {
+		return preferedWidth;
+	}
+
+
+	@Override
+	public ScreenDimension getPreferedHeight() {
+		return preferedHeight;
+	}
+
+
+
+
 
 
 

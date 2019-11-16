@@ -37,15 +37,16 @@ public class GridMergeLayoutPanel extends UIPanel {
 	}
 
 	private void place(IUIPanel panel, int x, int y, int width, int height) {
-		panel.getMaxSize().reset().applyX((s)->s.addPF((float) 100 / gridSize.x * width));
-		panel.getMinSize().reset().applyX((s)->s.addPF((float) 100 / gridSize.x * width));
+
+		panel.getMaxWidth().reset().addPF((float) 100 / gridSize.x * width);
+		panel.getMinWidth().reset().addPF((float) 100 / gridSize.x * width);
+
+		panel.getMaxHeight().reset().addPF((float) 100 / gridSize.y * width);
+		panel.getMinHeight().reset().addPF((float) 100 / gridSize.y * width);
 		
-		panel.getMaxSize().reset().applyY((s)->s.addPF((float) 100 / gridSize.y * width));
-		panel.getMinSize().reset().applyY((s)->s.addPF((float) 100 / gridSize.y * width));
-
-		panel.getPosition().applyX((s)->s.addPF((float) 100 / gridSize.x * x));
-		panel.getPosition().applyY((s)->s.addPF((float) 100 / gridSize.y * y));
-
+		panel.getX().reset().addPF((float) 100 / gridSize.x * x);
+		panel.getY().reset().addPF((float) 100 / gridSize.y * y);
+		
 		requestDimensionRecalculation(this);
 	}
 

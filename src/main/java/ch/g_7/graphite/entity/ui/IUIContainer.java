@@ -6,8 +6,7 @@ import org.joml.Vector2fc;
 import org.joml.Vector2ic;
 
 import ch.g_7.graphite.core.window.Window;
-import ch.g_7.graphite.entity.ui.dimension.IROScreenDimension2d;
-import ch.g_7.graphite.entity.ui.dimension.ScreenDimension2d;
+import ch.g_7.graphite.entity.ui.dimension.ScreenDimension;
 import ch.g_7.graphite.rendering.Renderable;
 
 public interface IUIContainer extends Renderable {
@@ -22,12 +21,13 @@ public interface IUIContainer extends Renderable {
 
 	Window getWindow();
 	
-	ScreenDimension2d getPosition();
 	
-	/**
-	 * Calculated by System
-	 */
-	IROScreenDimension2d getSize();
+	ScreenDimension getWidth();
+	ScreenDimension getHeight();
+	Vector2fc getSize();
 	
+	ScreenDimension getX();
+	ScreenDimension getY();
+	Vector2fc getPosition();
 	
 }

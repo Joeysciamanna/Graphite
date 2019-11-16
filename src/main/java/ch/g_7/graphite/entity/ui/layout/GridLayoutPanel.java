@@ -9,14 +9,14 @@ import org.joml.Vector2ic;
 import ch.g_7.graphite.entity.ui.IUIPanel;
 import ch.g_7.graphite.entity.ui.UIPanel;
 import ch.g_7.graphite.entity.ui.dimension.ScaledScreenDimension;
-import ch.g_7.graphite.entity.ui.dimension.SimpleScreenDimension;
+import ch.g_7.graphite.entity.ui.dimension.ScreenDimension;
 
 public class GridLayoutPanel extends UIPanel{
 
 	private Vector2i gridSize;
 
-	private SimpleScreenDimension columCellPlaceHolder;
-	private SimpleScreenDimension rowsCellPlaceHolder;
+	private ScreenDimension columCellPlaceHolder;
+	private ScreenDimension rowsCellPlaceHolder;
 	
 	private final IUIPanel[][] childs;
 	private List<IUIPanel> childList;
@@ -25,14 +25,14 @@ public class GridLayoutPanel extends UIPanel{
 		this.gridSize = new Vector2i(colums, rows);
 		this.childs = new IUIPanel[colums][rows];
 		this.childList = new ArrayList<>();
-		this.columCellPlaceHolder = new SimpleScreenDimension();
-		this.rowsCellPlaceHolder = new SimpleScreenDimension();
+		this.columCellPlaceHolder = new ScreenDimension(ScreenDimension.X_AXIS);
+		this.rowsCellPlaceHolder = new ScreenDimension(ScreenDimension.Y_AXIS);
 	}
 	
 	@Override
 	public void recalculateDimensions(Vector2ic screenSize) {
-		recalculateDimension(columCellPlaceHolder, screenSize, SimpleScreenDimension.X_AXIS);
-		recalculateDimension(rowsCellPlaceHolder, screenSize, SimpleScreenDimension.Y_AXIS);	
+		recalculateDimension(columCellPlaceHolder, screenSize);
+		recalculateDimension(rowsCellPlaceHolder, screenSize);	
 		super.recalculateDimensions(screenSize);
 	}
 	
@@ -65,14 +65,15 @@ public class GridLayoutPanel extends UIPanel{
 	}
 	
 	private void place(IUIPanel panel, int x, int y) {
-		panel.getMaxSize().reset().applyX((s)->s.addPF((float)100/gridSize.x).remove(new ScaledScreenDimension(columCellPlaceHolder, gridSize.x-1)));
-		panel.getMinSize().reset().applyX((s)->s.addPF((float)100/gridSize.x).remove(new ScaledScreenDimension(columCellPlaceHolder, gridSize.x-1)));
+
+		panel.getMaxWidth().reset().addPF((float)100/gridSize.x).remove(new ScaledScreenDimension(columCellPlaceHolder, gridSize.x-1));
+		panel.getMinWidth().reset().addPF((float)100/gridSize.x).remove(new ScaledScreenDimension(columCellPlaceHolder, gridSize.x-1));
 		
-		panel.getMaxSize().reset().applyY((s)->s.addPF((float)100/gridSize.y).remove(new ScaledScreenDimension(rowsCellPlaceHolder,  gridSize.y-1)));
-		panel.getMinSize().reset().applyY((s)->s.addPF((float)100/gridSize.y).remove(new ScaledScreenDimension(rowsCellPlaceHolder,  gridSize.y-1)));
+		panel.getMaxHeight().reset().addPF((float)100/gridSize.y).remove(new ScaledScreenDimension(rowsCellPlaceHolder, gridSize.y-1));
+		panel.getMinHeight().reset().addPF((float)100/gridSize.y).remove(new ScaledScreenDimension(rowsCellPlaceHolder, gridSize.y-1));
 		
-		panel.getPosition().applyX((s)->s.addPF((float)100/gridSize.x * x).add(new ScaledScreenDimension(columCellPlaceHolder, x)));
-		panel.getPosition().applyY((s)->s.addPF((float)100/gridSize.y * y).add(new ScaledScreenDimension(rowsCellPlaceHolder,  y)));
+		panel.getX().reset().addPF((float)100/gridSize.x * x).add(new ScaledScreenDimension(columCellPlaceHolder, x));
+		panel.getY().reset().addPF((float)100/gridSize.y * y).add(new ScaledScreenDimension(rowsCellPlaceHolder,  y));
 
 		requestDimensionRecalculation(this);
 	}
@@ -83,11 +84,11 @@ public class GridLayoutPanel extends UIPanel{
 		return childList;
 	}
 
-	public SimpleScreenDimension getColumCellPlaceHolder() {
+	public ScreenDimension getColumCellPlaceHolder() {
 		return columCellPlaceHolder;
 	}
 	
-	public SimpleScreenDimension getRowsCellPlaceHolder() {
+	public ScreenDimension getRowsCellPlaceHolder() {
 		return rowsCellPlaceHolder;
 	}
 

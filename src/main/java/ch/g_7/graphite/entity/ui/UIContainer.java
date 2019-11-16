@@ -1,35 +1,44 @@
 package ch.g_7.graphite.entity.ui;
 
-import java.util.List;
-
 import org.joml.Vector2f;
 import org.joml.Vector2fc;
 import org.joml.Vector2ic;
 
-import ch.g_7.graphite.entity.ui.dimension.SimpleScreenDimension;
-import ch.g_7.graphite.entity.ui.dimension.IROScreenDimension2d;
-import ch.g_7.graphite.entity.ui.dimension.ScreenDimension2d;
+import ch.g_7.graphite.entity.ui.dimension.ScreenDimension;
 
 public abstract class UIContainer implements IUIContainer{
 
 
-	protected final ScreenDimension2d size;
-	protected final ScreenDimension2d position;
+	protected final ScreenDimension width;
+	protected final ScreenDimension height;
+	protected final Vector2f size;
+	
+	protected final ScreenDimension x;
+	protected final ScreenDimension y;
+	protected final Vector2f position;
 	
 	protected boolean visible;
 	
 	
 	public UIContainer() {
-		this.size = new ScreenDimension2d();
-		this.position = new ScreenDimension2d();
+		this.width = new ScreenDimension(ScreenDimension.X_AXIS);
+		this.height = new ScreenDimension(ScreenDimension.Y_AXIS);
+		this.size = new Vector2f();
+		this.x = new ScreenDimension(ScreenDimension.X_AXIS);
+		this.y = new ScreenDimension(ScreenDimension.Y_AXIS);
+		this.position = new Vector2f();
 		this.visible = true;
 	}
 	
 	@Override
 	public void recalculateDimensions(Vector2ic screenSize) {
 		
-		recalculateDimension(position, screenSize);
-		recalculateDimension(size, screenSize);
+		recalculateDimension(width, screenSize);
+		recalculateDimension(height, screenSize);
+		size.set(width.getValue(), height.getValue());
+		recalculateDimension(x, screenSize);
+		recalculateDimension(y, screenSize);
+		position.set(x.getValue(), y.getValue());
 		
 		for (IUIPanel child : getChilds()) {
 			child.recalculateDimensions(screenSize);
@@ -37,8 +46,7 @@ public abstract class UIContainer implements IUIContainer{
 
 	}
 	
-	protected abstract void recalculateDimension(SimpleScreenDimension dimension, Vector2ic screenSize, byte axis);
-	protected abstract void recalculateDimension(ScreenDimension2d dimension, Vector2ic screenSize);
+	protected abstract void recalculateDimension(ScreenDimension dimension, Vector2ic screenSize);
 	
 	@Override
 	public void close() {
@@ -60,14 +68,32 @@ public abstract class UIContainer implements IUIContainer{
 	}
 	
 	@Override
-	public IROScreenDimension2d getSize() {
-		return size;
+	public ScreenDimension getWidth() {
+		return width;
 	}
 	
 	@Override
-	public ScreenDimension2d getPosition() {
-		return position;
+	public ScreenDimension getHeight() {
+		return height;
+	}
+	
+	@Override
+	public ScreenDimension getX() {
+		return x;
+	}
+	
+	@Override
+	public ScreenDimension getY() {
+		return y;
+	}
+	
+	@Override
+	public Vector2fc getSize() {
+		return size;
 	}
 
-
+	@Override
+	public Vector2fc getPosition() {
+		return position;
+	}
 }

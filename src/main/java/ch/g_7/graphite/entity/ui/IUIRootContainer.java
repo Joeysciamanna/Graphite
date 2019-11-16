@@ -1,10 +1,12 @@
 package ch.g_7.graphite.entity.ui;
 
+import java.util.concurrent.CompletableFuture;
+
 import ch.g_7.graphite.core.window.ResizeAction;
 import ch.g_7.graphite.core.window.ResizeListner;
 import ch.g_7.util.task.Task.AsyncTask;
 
-public interface IUIRootContainer extends IUIContainer, ResizeListner, AsyncTask<ResizeAction> {
+public interface IUIRootContainer extends IUIContainer, ResizeListner {
 
 	void add(IUIPanel panel);
 	
@@ -13,13 +15,13 @@ public interface IUIRootContainer extends IUIContainer, ResizeListner, AsyncTask
 	void recalculate();
 
 	@Override
-	default void runVoid(ResizeAction action) {
-		AsyncTask.super.runVoid(action);
+	default void onResize(ResizeAction action) {
+		CompletableFuture.runAsync(() -> {
+			asyncOnResize(action);
+		});
 	}
+	
+	void asyncOnResize(ResizeAction action);
 
-	@Override
-	default void runAsync(ResizeAction action) {
-		onResize(action);
-	}
 
 }

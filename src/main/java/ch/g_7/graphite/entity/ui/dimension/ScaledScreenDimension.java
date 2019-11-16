@@ -1,17 +1,15 @@
 package ch.g_7.graphite.entity.ui.dimension;
 
-import java.util.List;
-
 import org.joml.Vector2fc;
 import org.joml.Vector2ic;
 
-public class ScaledScreenDimension implements IROScreenDimension{
+public class ScaledScreenDimension implements IScreenDimension{
 
 	
-	private IROScreenDimension dimension;
+	private IScreenDimension dimension;
 	private float factor;
 
-	public ScaledScreenDimension(IROScreenDimension dimension, float factor) {
+	public ScaledScreenDimension(IScreenDimension dimension, float factor) {
 		this.dimension = dimension;
 		this.factor = factor;
 	}
@@ -21,8 +19,8 @@ public class ScaledScreenDimension implements IROScreenDimension{
 	}
 
 	@Override
-	public ScaledScreenDimension recalculate(Vector2ic screenSize, Vector2fc fatherSize, byte axis) {
-		dimension.recalculate(screenSize, fatherSize, axis);
+	public ScaledScreenDimension recalculate(Vector2ic screenSize, Vector2fc fatherSize) {
+		dimension.recalculate(screenSize, fatherSize);
 		return this;
 	}
 

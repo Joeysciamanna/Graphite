@@ -7,18 +7,18 @@ import org.joml.Vector2ic;
 
 import ch.g_7.graphite.entity.ui.IUIPanel;
 import ch.g_7.graphite.entity.ui.UIPanel;
-import ch.g_7.graphite.entity.ui.dimension.SimpleScreenDimension;
+import ch.g_7.graphite.entity.ui.dimension.ScreenDimension;
 
 public class ListLayoutPanel extends UIPanel {
 
 	public static final byte X_AXIS = 0;
 	public static final byte Y_AXIS = 1;
 	
-	private SimpleScreenDimension placeHolder;
+	private ScreenDimension placeHolder;
 	
 	private byte axis;
 	
-	private SimpleScreenDimension nextPos;
+	private ScreenDimension nextPos;
 	
 	private List<IUIPanel> childs;
 
@@ -26,15 +26,15 @@ public class ListLayoutPanel extends UIPanel {
 	public ListLayoutPanel(byte axis) {
 		this.axis = axis;
 		this.childs = new ArrayList<>();
-		this.placeHolder = new SimpleScreenDimension();
-		this.nextPos = new SimpleScreenDimension();
+		this.placeHolder = new ScreenDimension(axis);
+		this.nextPos = new ScreenDimension(axis);
 	}
 	
 	
 	@Override
 	public void recalculateDimensions(Vector2ic screenSize) {
-		recalculateDimension(placeHolder, screenSize, axis);
-		recalculateDimension(nextPos, screenSize, axis);
+		recalculateDimension(placeHolder, screenSize);
+		recalculateDimension(nextPos, screenSize);
 		super.recalculateDimensions(screenSize);
 	}
 	
@@ -47,15 +47,19 @@ public class ListLayoutPanel extends UIPanel {
 	
 	
 	private void place(IUIPanel panel) {
-		panel.getPosition().reset();
-		panel.getMinSize().reset();
-		panel.getMaxSize().reset().addPF(100);
+		panel.getMaxWidth().reset().addPF(100);
+		panel.getMaxHeight().reset().addPF(100);
+		panel.getMinWidth().reset();
+		panel.getMinHeight().reset();
+		panel.getX().reset();
+		panel.getY().reset();
+		//TODO possible pass by reference issue
 		if(axis == X_AXIS) {
-			panel.getPosition().getXAxis().add(nextPos);
-			nextPos.add(panel.getSize().getXAxis()).add(placeHolder);
+			panel.getX().add(nextPos);
+			nextPos.add(panel.getWidth()).add(placeHolder);
 		} else {
-			panel.getPosition().getYAxis().add(nextPos);
-			nextPos.add(panel.getSize().getYAxis()).add(placeHolder);
+			panel.getY().add(nextPos);
+			nextPos.add(panel.getHeight()).add(placeHolder);
 		}
 		requestDimensionRecalculation(this);
 	}
@@ -66,7 +70,7 @@ public class ListLayoutPanel extends UIPanel {
 		return childs;
 	}
 	
-	public SimpleScreenDimension getSpaceHolder() {
+	public ScreenDimension getSpaceHolder() {
 		return placeHolder;
 	}
 }

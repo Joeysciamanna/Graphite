@@ -37,17 +37,22 @@ public class Test extends Application {
 		getDimension().addObj(inventory, RenderClass.UI_PANELS);
 		
 		SpaceSharingLayoutPanel sharingLayoutPanel = new SpaceSharingLayoutPanel();
-		sharingLayoutPanel.getPreferedSize().reset().addPF(100);
+		sharingLayoutPanel.getPreferedWidth().reset().addPF(100);
+		sharingLayoutPanel.getPreferedHeight().reset().addPF(100);
 		inventory.add(sharingLayoutPanel);
 		
 		UIPanel panel1 = new UIPanel();
 		panel1.setColor(new Color(0, 255, 0, 0));
-		panel1.getPreferedSize().reset().addPF(50);
+		panel1.getPreferedWidth().reset().addPF(50);
+		panel1.getPreferedHeight().reset().addPF(50);
+//		panel1.getPreferedSize().reset().addPF(50);
 		sharingLayoutPanel.setMainPanel(panel1, SpaceSharingLayoutPanel.TOP);
 		
 		UIPanel panel2 = new UIPanel();
 		panel2.setColor(new Color(255, 0, 0, 0));
-		panel2.getPreferedSize().reset().apply((s)->s.addPixel(25));
+		panel2.getPreferedWidth().reset().addPixel(30);
+		panel2.getPreferedHeight().reset().addPixel(30);
+//		panel2.getPreferedSize().reset().apply((s)->s.addPixel(25));
 		sharingLayoutPanel.setAdjustablePanel(panel2);
 		
 

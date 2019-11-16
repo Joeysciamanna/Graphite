@@ -46,16 +46,19 @@ public class SpaceSharingLayoutPanel extends UIPanel {
 
 
 	private void placeMainPanel(IUIPanel mainPanel, byte stickySide) {
-		mainPanel.getPosition().reset();
-		mainPanel.getMaxSize().reset().addPF(100).remove(mainPanel.getPosition());
-		mainPanel.getMinSize().reset();
-		
+		mainPanel.getMaxWidth().reset().addPF(100);
+		mainPanel.getMaxHeight().reset().addPF(100);
+		mainPanel.getMinWidth().reset();
+		mainPanel.getMinHeight().reset();
+		mainPanel.getX().reset();
+		mainPanel.getY().reset();
+
 		switch (stickySide) {
 		case RIGHT:
-			mainPanel.getPosition().getXAxis().addPF(100).remove(mainPanel.getSize().getXAxis());
+			mainPanel.getX().addPF(100).remove(mainPanel.getWidth());
 			break;
 		case BUTTOM:
-			mainPanel.getPosition().getYAxis().addPF(100).remove(mainPanel.getSize().getYAxis());
+			mainPanel.getY().addPF(100).remove(mainPanel.getHeight());
 			break;
 		}
 		mainPanelPosition = stickySide;
@@ -74,22 +77,26 @@ public class SpaceSharingLayoutPanel extends UIPanel {
 
 
 	private void placeAdjustablePanel(IUIPanel adjustablePanel) {
-		adjustablePanel.getPosition().reset();
-		adjustablePanel.getMaxSize().reset().addPF(100).remove(mainPanel.getSize());
-		adjustablePanel.getMinSize().reset();
+		adjustablePanel.getMaxWidth().reset().addPF(100).remove(mainPanel.getWidth());
+		adjustablePanel.getMaxHeight().reset().addPF(100).remove(mainPanel.getHeight());
+		adjustablePanel.getMinWidth().reset();
+		adjustablePanel.getMinHeight().reset();
+		adjustablePanel.getX().reset();
+		adjustablePanel.getY().reset();
+		
 
 		switch (mainPanelPosition) {
 		case TOP:
-			adjustablePanel.getPosition().getYAxis().add(mainPanel.getSize().getYAxis());
+			adjustablePanel.getY().add(mainPanel.getHeight());
 			break;
 		case BUTTOM:
-			adjustablePanel.getPosition().getYAxis().addPF(100).remove(mainPanel.getSize().getYAxis());
+			adjustablePanel.getY().addPF(100).remove(mainPanel.getHeight());
 			break;
 		case LEFT:
-			adjustablePanel.getPosition().getXAxis().add(mainPanel.getSize().getXAxis());
+			adjustablePanel.getX().add(mainPanel.getWidth());
 			break;
 		case RIGHT:
-			adjustablePanel.getPosition().getXAxis().addPF(100).remove(mainPanel.getSize().getXAxis());
+			adjustablePanel.getX().addPF(100).remove(mainPanel.getWidth());
 			break;
 		}
 		requestDimensionRecalculation(this);

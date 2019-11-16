@@ -2,7 +2,7 @@ package ch.g_7.graphite.entity.ui;
 
 import ch.g_7.graphite.entity.mesh.AbstractMesh;
 import ch.g_7.graphite.entity.texture.Texture;
-import ch.g_7.graphite.entity.ui.dimension.ScreenDimension2d;
+import ch.g_7.graphite.entity.ui.dimension.ScreenDimension;
 import ch.g_7.graphite.util.Color;
 
 public interface IUIPanel extends IUIContainer {
@@ -20,18 +20,24 @@ public interface IUIPanel extends IUIContainer {
 	void recalculateSize();
 	
 	/**
-	 * Set by system
+	 * Set by system, only change if you now what you are doing
 	 */
-	ScreenDimension2d getMaxSize();
+	ScreenDimension getMaxWidth();
+	/**
+	 * Set by system, only change if you now what you are doing
+	 */
+	ScreenDimension getMaxHeight();
 	
 	/**
-	 * Set by system
+	 * Set by system, only change if you now what you are doing
 	 */
-	ScreenDimension2d getMinSize();
-	
+	ScreenDimension getMinWidth();
 	/**
-	 * Set by User
+	 * Set by system, only change if you now what you are doing
 	 */
-	ScreenDimension2d getPreferedSize();
+	ScreenDimension getMinHeight();
 	
+	
+	ScreenDimension getPreferedWidth();
+	ScreenDimension getPreferedHeight();
 }
