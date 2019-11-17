@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 import org.joml.Vector2f;
+import org.joml.Vector2i;
 import org.joml.Vector2ic;
 
 import ch.g_7.graphite.core.window.ResizeAction;
@@ -44,7 +45,7 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer{
 	@Override
 	public void onResize(ResizeAction action) {
 		CompletableFuture.runAsync(() -> {
-			recalculate();
+			recalculate(new Vector2i(action.getWidth(), action.getHeight()));
 		});
 	}
 	

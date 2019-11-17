@@ -46,7 +46,7 @@ public class ScreenDimension implements IScreenDimension{
 	@Override
 	public ScreenDimension recalculate(int screenSize, float fatherSize) {
 		float value = 0;
-		value += (float) getPixel() * 2 / screenSize;
+		value += (float) getPixel() * 2f / screenSize;
 		value += fatherSize * (getPF() == 0 ? 0 : (getPF()/100));
 		value += getPW() * 2 / 100;
 		

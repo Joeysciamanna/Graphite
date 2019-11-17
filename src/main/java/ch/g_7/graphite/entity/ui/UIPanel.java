@@ -51,19 +51,22 @@ public class UIPanel extends UIContainer implements IUIPanel{
 
 	@Override
 	public void recalculate(Vector2ic screenSize) {
-		System.out.println("recalculating:\t" + getClass().getSimpleName() + (getClass().getSimpleName().equals("UIPanel") ? getColor() : ""));
+		System.out.println("recalculating:\t" + getClass().getSimpleName() + " " + (getClass().getSimpleName().equals("UIPanel") ? getColor() : ""));
+		
 		if(resized) {
+			recalculateDimension(maxWidth, screenSize);
+			recalculateDimension(maxHeight, screenSize);
+			recalculateDimension(minWidth, screenSize);
+			recalculateDimension(minHeight, screenSize);
+			recalculateDimension(preferedWidth, screenSize);
+			recalculateDimension(preferedHeight, screenSize);
+			
 			recalculateSize();
 			resized = false;
 		}
 		
-		recalculateDimension(maxWidth, screenSize);
-		recalculateDimension(maxHeight, screenSize);
-		recalculateDimension(minWidth, screenSize);
-		recalculateDimension(minHeight, screenSize);
-		recalculateDimension(preferedWidth, screenSize);
-		recalculateDimension(preferedHeight, screenSize);
-		System.out.println("\t size:\t" + preferedWidth + " / " + preferedHeight);
+		System.out.println("\tsize:      " + preferedWidth + " / " + preferedHeight);
+		
 		super.recalculate(screenSize);
 
 	}
@@ -92,7 +95,7 @@ public class UIPanel extends UIContainer implements IUIPanel{
 		}else {
 			height.add(preferedHeight);
 		}
-		System.out.println("       resize:\t" + getClass().getSimpleName());
+//		System.out.println("       resize:\t" + getClass().getSimpleName());
 	}
 	
 	

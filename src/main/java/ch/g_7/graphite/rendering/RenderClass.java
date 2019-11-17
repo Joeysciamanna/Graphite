@@ -19,11 +19,11 @@ public final class RenderClass<T extends Renderable> implements Initializable, A
 	private static final Map<String, RenderClass<?>> RENDER_CLASSES = new HashMap<>();
 	
 	public static final RenderClass<IObject> BASIC_GAME_OBJECTS;
-	public static final RenderClass<IUIRootContainer> UI_PANELS;
+	public static final RenderClass<IUIRootContainer> UI;
 	
 	static {
 		BASIC_GAME_OBJECTS = create(new BasicRenderer(), "BASIC_GAME_OBJECTS");
-		UI_PANELS = create(new UIRenderer(), "UI_PANELS");
+		UI = create(new UIRenderer(), "UI_PANELS");
 	}
 	
 
