@@ -1,8 +1,11 @@
 package ch.g_7.graphite.xtest;
 
 import ch.g_7.graphite.core.Application;
+import ch.g_7.graphite.entity.ui.UIPanel;
 import ch.g_7.graphite.entity.ui.UIRootContainer;
+import ch.g_7.graphite.entity.ui.layout.GridLayoutPanel;
 import ch.g_7.graphite.rendering.RenderClass;
+import ch.g_7.graphite.util.Color;
 
 public class Test extends Application {
 
@@ -77,26 +80,24 @@ public class Test extends Application {
 		
 		
 		
-//		int height = 10;
-//		int width = 5;
-//		GridLayoutPanel gridLayoutPanel = new GridLayoutPanel(width, height);
-//		gridLayoutPanel.getPreferedWidth().reset().addPW(100);
-//		gridLayoutPanel.getPreferedHeight().reset().addPF(100);
+		int height = 5;
+		int width = 5;
+		GridLayoutPanel gridLayoutPanel = new GridLayoutPanel(width, height);
+		gridLayoutPanel.getPreferedWidth().reset().addPW(100);
+		gridLayoutPanel.getPreferedHeight().reset().addPF(100);
 //		gridLayoutPanel.getColumCellPlaceHolder().reset().addPixel(1);
 //		gridLayoutPanel.getRowsCellPlaceHolder().reset().addPixel(1);
-//		inventory.add(gridLayoutPanel);
-//		
-//		for (int x = 0; x<width; x++) {
-//			for(int y = 0; y<height; y++) {
-//				UIPanel panel1 = new UIPanel();
-//				panel1.setColor(new Color((255/(3*height))*x, (255/(3*width))*y, 255/(x+y+1), 0));
-//				gridLayoutPanel.add(panel1, x, y);
-//			}
-//		}
-//		gridLayoutPanel.recalculate();
-//		UIPanel panel1 = new UIPanel();
-//		panel1.setColor(new Color(255, 0 ,0 ,0));
-//		gridLayoutPanel.add(panel1, 2, 2);
+		inventory.add(gridLayoutPanel);
+		
+		for (int x = 0; x<width; x++) {
+			for(int y = 0; y<height; y++) {
+				UIPanel panel1 = new UIPanel();
+				panel1.setColor(new Color((255/(3*height))*x, (255/(3*width))*y, 255/(x+y+1), 0));
+				gridLayoutPanel.add(panel1, x, y);
+			}
+		}
+
+
 		
 	
 		

@@ -16,7 +16,12 @@ public class GridLayoutPanel extends UIPanel{
 	private Vector2i gridSize;
 
 	private ScreenDimension columCellPlaceHolder;
-	private ScreenDimension rowsCellPlaceHolder;
+	private ScreenDimension rowCellPlaceHolder;
+	
+	private float panelWidth;
+	private float panelHeight;
+	private ScaledScreenDimension columPlaceHolderPerCell;
+	private ScaledScreenDimension rowPlaceHolderPerCell;
 	
 	private final IUIPanel[][] childs;
 	private List<IUIPanel> childList;
@@ -26,13 +31,18 @@ public class GridLayoutPanel extends UIPanel{
 		this.childs = new IUIPanel[colums][rows];
 		this.childList = new ArrayList<>();
 		this.columCellPlaceHolder = new ScreenDimension(ScreenDimension.X_AXIS);
-		this.rowsCellPlaceHolder = new ScreenDimension(ScreenDimension.Y_AXIS);
+		this.rowCellPlaceHolder = new ScreenDimension(ScreenDimension.Y_AXIS);
+		
+		this.panelWidth = (float) 100/gridSize.x;
+		this.panelHeight = (float) 100/gridSize.y;
+		this.columPlaceHolderPerCell = new ScaledScreenDimension(columCellPlaceHolder, (float)(gridSize.x-1)/gridSize.x);
+		this.rowPlaceHolderPerCell = new ScaledScreenDimension(rowCellPlaceHolder, (float)(gridSize.y-1)/gridSize.y);
 	}
 	
 	@Override
 	public void recalculate(Vector2ic screenSize) {
 		recalculateDimension(columCellPlaceHolder, screenSize);
-		recalculateDimension(rowsCellPlaceHolder, screenSize);	
+		recalculateDimension(rowCellPlaceHolder, screenSize);
 		super.recalculate(screenSize);
 	}
 	
@@ -55,8 +65,8 @@ public class GridLayoutPanel extends UIPanel{
 	}
 	
 	public void add(IUIPanel panel) {
-		for (int y = 0; y < childs[0].length; y++) {
-			for (int x = 0; x < childs.length; x++) {
+		for (int y = 0; y < gridSize.y; y++) {
+			for (int x = 0; x < gridSize.x; x++) {
 				if(childs[x][y] == null) {
 					add(panel, x, y);
 					return;
@@ -65,19 +75,18 @@ public class GridLayoutPanel extends UIPanel{
 		}
 	}
 	
+	
+	
 	private void place(IUIPanel panel, int x, int y) {
-
-		// VERY WIRED, CELL PLACE HOLDER IS INCORECT (1 PIXEL IS MORE THEN 1 PIXEL)?!?! TODO
-		// EVEN WIRDER, IN LISTLAYOUTPANEL THIS WORKS
 		
-		panel.getMaxWidth().reset().addPF(100/(float)gridSize.x).remove(new ScaledScreenDimension(columCellPlaceHolder, gridSize.x-1));
-		panel.getMinWidth().reset().addPF(100/(float)gridSize.x).remove(new ScaledScreenDimension(columCellPlaceHolder, gridSize.x-1));
+		panel.getMaxWidth().reset().addPF(panelWidth).remove(columPlaceHolderPerCell);
+		panel.getMinWidth().reset().addPF(panelWidth).remove(columPlaceHolderPerCell);
 		
-		panel.getMaxHeight().reset().addPF(100/(float)gridSize.y).remove(new ScaledScreenDimension(rowsCellPlaceHolder, gridSize.y-1));
-		panel.getMinHeight().reset().addPF(100/(float)gridSize.y).remove(new ScaledScreenDimension(rowsCellPlaceHolder, gridSize.y-1));
+		panel.getMaxHeight().reset().addPF(panelHeight).remove(rowPlaceHolderPerCell);
+		panel.getMinHeight().reset().addPF(panelHeight).remove(rowPlaceHolderPerCell);
 		
-		panel.getX().reset().addPF(100/(float)gridSize.x * x).add(new ScaledScreenDimension(columCellPlaceHolder, x));
-		panel.getY().reset().addPF(100/(float)gridSize.y * y).add(new ScaledScreenDimension(rowsCellPlaceHolder,  y));
+		panel.getX().reset().addPF((float) 100f/gridSize.x * x).add(new ScaledScreenDimension(columPlaceHolderPerCell, x));
+		panel.getY().reset().addPF((float) 100f/gridSize.y * y).add(new ScaledScreenDimension(rowPlaceHolderPerCell,  y));
 
 		requestRecalculation(this);
 	}
@@ -93,7 +102,7 @@ public class GridLayoutPanel extends UIPanel{
 	}
 	
 	public ScreenDimension getRowsCellPlaceHolder() {
-		return rowsCellPlaceHolder;
+		return rowCellPlaceHolder;
 	}
 
 }

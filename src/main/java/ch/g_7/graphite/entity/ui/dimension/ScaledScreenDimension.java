@@ -36,7 +36,6 @@ public class ScaledScreenDimension implements IScreenDimension{
 	}
 
 
-
 	
 	
 }

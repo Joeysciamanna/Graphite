@@ -51,11 +51,9 @@ public class ScreenDimension implements IScreenDimension{
 		value += pw * 2 / 100;
 		
 		for (IScreenDimension screenDimension : getAdds()) {
-//			screenDimension.recalculate(screenSize, fatherSize);
 			value += screenDimension.getValue();
 		}
 		for (IScreenDimension screenDimension : getRems()) {
-//			screenDimension.recalculate(screenSize, fatherSize);
 			value -= screenDimension.getValue();
 		}
 		this.value = value;
