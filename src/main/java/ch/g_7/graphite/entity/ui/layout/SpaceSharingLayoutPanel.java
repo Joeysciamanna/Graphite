@@ -90,13 +90,13 @@ public class SpaceSharingLayoutPanel extends UIPanel {
 			adjustablePanel.getY().add(mainPanel.getHeight());
 			break;
 		case BUTTOM:
-			adjustablePanel.getY().addPF(100).remove(mainPanel.getHeight());
+			adjustablePanel.getY().addPF(100).remove(mainPanel.getHeight()).remove(adjustablePanel.getWidth());
 			break;
 		case LEFT:
 			adjustablePanel.getX().add(mainPanel.getWidth());
 			break;
 		case RIGHT:
-			adjustablePanel.getX().addPF(100).remove(mainPanel.getWidth());
+			adjustablePanel.getX().addPF(100).remove(mainPanel.getWidth()).remove(adjustablePanel.getWidth());
 			break;
 		}
 		requestDimensionRecalculation(this);

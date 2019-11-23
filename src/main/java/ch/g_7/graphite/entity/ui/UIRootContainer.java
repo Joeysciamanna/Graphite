@@ -76,5 +76,13 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer{
 		return window;
 	}
 
+	@Override
+	public ScreenDimension getHeight() {
+		return super.getHeight();
+	}
 
+	@Override
+	public void init() {
+		recalculate();
+	}
 }

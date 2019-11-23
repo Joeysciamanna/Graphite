@@ -1,18 +1,9 @@
 package ch.g_7.graphite.xtest;
 
-import org.joml.Vector3f;
-
 import ch.g_7.graphite.core.Application;
-import ch.g_7.graphite.entity.mesh.AbstractMesh;
-import ch.g_7.graphite.entity.mesh.MeshBuilder;
-import ch.g_7.graphite.entity.mesh.MeshFactory;
-import ch.g_7.graphite.entity.object.BasicObject;
 import ch.g_7.graphite.entity.ui.UIPanel;
 import ch.g_7.graphite.entity.ui.UIRootContainer;
-import ch.g_7.graphite.entity.ui.layout.AligementLayoutPanel;
-import ch.g_7.graphite.entity.ui.layout.CenterLayoutPanel;
 import ch.g_7.graphite.entity.ui.layout.SpaceSharingLayoutPanel;
-import ch.g_7.graphite.entity.viewmodel.BasicViewModel;
 import ch.g_7.graphite.rendering.RenderClass;
 import ch.g_7.graphite.util.Color;
 
@@ -45,7 +36,7 @@ public class Test extends Application {
 		panel1.setColor(new Color(0, 255, 0, 0));
 		panel1.getPreferedWidth().reset().addPixel(30);
 		panel1.getPreferedHeight().reset().addPixel(30);
-		sharingLayoutPanel.setMainPanel(panel1, SpaceSharingLayoutPanel.TOP);
+		sharingLayoutPanel.setMainPanel(panel1, SpaceSharingLayoutPanel.BUTTOM);
 
 		
 		UIPanel panel2 = new UIPanel();
@@ -54,10 +45,10 @@ public class Test extends Application {
 		panel2.getPreferedHeight().reset().addPF(50);;
 		sharingLayoutPanel.setAdjustablePanel(panel2);
 
-
+		System.out.println("------------------------------------------------------");
 //		inventory.recalculate();
-		sharingLayoutPanel.setResized(true);
-		inventory.recalculate();
+//		sharingLayoutPanel.setResized(true);
+	
 //		inventory.recalculate();
 		
 //		System.out.println(panel2.getSize().toVector());
