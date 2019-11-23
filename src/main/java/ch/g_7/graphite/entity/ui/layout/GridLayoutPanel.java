@@ -40,17 +40,18 @@ public class GridLayoutPanel extends UIPanel{
 		IUIPanel panel = childs[x][y];
 		childs[x][y] = null;
 		childList.remove(panel);
+		panel.close();
 	}
 	
 	public void add(IUIPanel panel, int x, int y) {
 		if(childs[x][y] != null) {
-			childList.remove(childs[x][y]);
-			childs[x][y] = null;
+			remove(x, y);
 		}
 		childs[x][y] = panel;
 		childList.add(panel);
 		panel.setFather(this);
 		place(panel, x, y);
+		panel.init();
 	}
 	
 	public void add(IUIPanel panel) {
@@ -66,16 +67,19 @@ public class GridLayoutPanel extends UIPanel{
 	
 	private void place(IUIPanel panel, int x, int y) {
 
-		panel.getMaxWidth().reset().addPF((float)100/gridSize.x).remove(new ScaledScreenDimension(columCellPlaceHolder, gridSize.x-1));
-		panel.getMinWidth().reset().addPF((float)100/gridSize.x).remove(new ScaledScreenDimension(columCellPlaceHolder, gridSize.x-1));
+		// VERY WIRED, CELL PLACE HOLDER IS INCORECT (1 PIXEL IS MORE THEN 1 PIXEL)?!?! TODO
+		// EVEN WIRDER, IN LISTLAYOUTPANEL THIS WORKS
 		
-		panel.getMaxHeight().reset().addPF((float)100/gridSize.y).remove(new ScaledScreenDimension(rowsCellPlaceHolder, gridSize.y-1));
-		panel.getMinHeight().reset().addPF((float)100/gridSize.y).remove(new ScaledScreenDimension(rowsCellPlaceHolder, gridSize.y-1));
+		panel.getMaxWidth().reset().addPF(100/(float)gridSize.x).remove(new ScaledScreenDimension(columCellPlaceHolder, gridSize.x-1));
+		panel.getMinWidth().reset().addPF(100/(float)gridSize.x).remove(new ScaledScreenDimension(columCellPlaceHolder, gridSize.x-1));
 		
-		panel.getX().reset().addPF((float)100/gridSize.x * x).add(new ScaledScreenDimension(columCellPlaceHolder, x));
-		panel.getY().reset().addPF((float)100/gridSize.y * y).add(new ScaledScreenDimension(rowsCellPlaceHolder,  y));
+		panel.getMaxHeight().reset().addPF(100/(float)gridSize.y).remove(new ScaledScreenDimension(rowsCellPlaceHolder, gridSize.y-1));
+		panel.getMinHeight().reset().addPF(100/(float)gridSize.y).remove(new ScaledScreenDimension(rowsCellPlaceHolder, gridSize.y-1));
+		
+		panel.getX().reset().addPF(100/(float)gridSize.x * x).add(new ScaledScreenDimension(columCellPlaceHolder, x));
+		panel.getY().reset().addPF(100/(float)gridSize.y * y).add(new ScaledScreenDimension(rowsCellPlaceHolder,  y));
 
-		requestDimensionRecalculation(this);
+		requestRecalculation(this);
 	}
 	
 	

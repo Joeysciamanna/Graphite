@@ -14,7 +14,7 @@ import ch.g_7.graphite.entity.texture.Texture;
 import ch.g_7.graphite.entity.ui.dimension.ScreenDimension;
 import ch.g_7.graphite.util.Color;
 
-public class UIPanel extends UIContainer implements IUIPanel{
+public class UIPanel extends UIContainer implements IUIPanel {
 
 	private static final AbstractMesh SQUARE_MESH = MeshFactory.getSquare(1).setCenter(MeshBuilder.CENTER_TOP_LEFT).build();
 	
@@ -51,8 +51,6 @@ public class UIPanel extends UIContainer implements IUIPanel{
 
 	@Override
 	public void recalculate(Vector2ic screenSize) {
-		System.out.println("recalculating:\t" + getClass().getSimpleName() + " " + (getClass().getSimpleName().equals("UIPanel") ? getColor() : ""));
-		
 		if(resized) {
 			recalculateDimension(maxWidth, screenSize);
 			recalculateDimension(maxHeight, screenSize);
@@ -62,13 +60,8 @@ public class UIPanel extends UIContainer implements IUIPanel{
 			recalculateDimension(preferedHeight, screenSize);
 			
 			recalculateSize();
-			for (IUIPanel child : getChilds()) {
-				child.setResized(true);
-			}
-			resized = false;
 		}
-		
-		
+	
 		super.recalculate(screenSize);
 
 	}
@@ -102,23 +95,22 @@ public class UIPanel extends UIContainer implements IUIPanel{
 	
 	@Override
 	protected void recalculateDimension(ScreenDimension dimension, Vector2ic screenSize) {
-		System.out.println("Recalculate Dimension: " + dimension + " | " + screenSize + " | " + getFather().getSize());
 		dimension.recalculate(screenSize, getFather().getSize());
 	}
 	
 
 	
 	@Override
-	public final void requestDimensionRecalculation(IUIContainer container) {
+	public final void requestRecalculation(IUIContainer container) {
 		if(getFather()!=null) {
-			getFather().requestDimensionRecalculation(container);
+			getFather().requestRecalculation(container);
 		}
 	}
 	
 	
 	@Override
 	public void recalculate() {
-		requestDimensionRecalculation(this);
+		requestRecalculation(this);
 	}
 	
 	@Override

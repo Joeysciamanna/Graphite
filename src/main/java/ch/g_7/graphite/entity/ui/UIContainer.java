@@ -56,13 +56,9 @@ public abstract class UIContainer implements IUIContainer{
 			panel.close();
 		}
 	}
-
+	
 	@Override
-	public void init() {
-		for (IUIPanel panel : getChilds()) {
-			panel.init();
-		}
-	}
+	public void init() {}
 	
 	@Override
 	public boolean isVisible() {

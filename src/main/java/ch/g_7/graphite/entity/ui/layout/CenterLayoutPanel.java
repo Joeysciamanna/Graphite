@@ -9,21 +9,20 @@ import ch.g_7.graphite.entity.ui.dimension.ScaledScreenDimension;
 
 public class CenterLayoutPanel extends UIPanel{
 	
-	private List<IUIPanel> child;
+	private List<IUIPanel> childs;
 	
 	public CenterLayoutPanel() {
-		this.child = new ArrayList<>(1);
+		this.childs = new ArrayList<>(1);
 	}
 	
 	
 	
 	public void set(IUIPanel panel) {
-		if(!child.isEmpty()) {
-			child.clear();
-		}
-		child.add(panel);
+		clear();
+		childs.add(panel);
 		panel.setFather(this);
 		place(panel);
+		panel.init();
 	}
 	
 	private void place(IUIPanel panel) {
@@ -35,13 +34,20 @@ public class CenterLayoutPanel extends UIPanel{
 		panel.getX().addPF(50).remove(new ScaledScreenDimension(panel.getWidth(), 0.5f));
 		panel.getY().addPF(50).remove(new ScaledScreenDimension(panel.getHeight(), 0.5f));
 		
-		requestDimensionRecalculation(this);
+		requestRecalculation(this);
+	}
+	
+	public void clear() {
+		if(!childs.isEmpty()) {
+			childs.get(0).close();
+			childs.clear();
+		}
 	}
 	
 	
 	@Override
 	public List<IUIPanel> getChilds() {
-		return child;
+		return childs;
 	}
 	
 }

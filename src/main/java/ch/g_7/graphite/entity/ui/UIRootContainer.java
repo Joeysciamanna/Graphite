@@ -37,7 +37,7 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer{
 	}
 	
 	@Override
-	public void requestDimensionRecalculation(IUIContainer container) {
+	public void requestRecalculation(IUIContainer container) {
 		container.recalculate(window.getSize());
 	}
 	
@@ -58,6 +58,7 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer{
 	public void add(IUIPanel panel) {
 		childs.add(panel);
 		panel.setFather(this);
+		panel.init();
 	}
 	
 	@Override

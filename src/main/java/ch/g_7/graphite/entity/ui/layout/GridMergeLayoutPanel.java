@@ -34,6 +34,7 @@ public class GridMergeLayoutPanel extends UIPanel {
 		childList.add(panel);
 		panel.setFather(this);
 		place(panel, x, y, width, height);
+		panel.init();
 	}
 
 	private void place(IUIPanel panel, int x, int y, int width, int height) {
@@ -47,7 +48,7 @@ public class GridMergeLayoutPanel extends UIPanel {
 		panel.getX().reset().addPF((float) 100 / gridSize.x * x);
 		panel.getY().reset().addPF((float) 100 / gridSize.y * y);
 		
-		requestDimensionRecalculation(this);
+		requestRecalculation(this);
 	}
 
 	public void remove(int x, int y) {
@@ -57,11 +58,13 @@ public class GridMergeLayoutPanel extends UIPanel {
 				if (panel == null || panel.equals(childs[i][j])) {
 					panel = childs[i][j];
 					childs[i][j] = null;
+					break;
 				}
 
 			}
 		}
 		childList.remove(panel);
+		panel.close();
 	}
 
 	@Override

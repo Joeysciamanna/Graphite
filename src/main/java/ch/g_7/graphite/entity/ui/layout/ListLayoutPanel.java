@@ -2,11 +2,13 @@ package ch.g_7.graphite.entity.ui.layout;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.joml.Vector2ic;
 
 import ch.g_7.graphite.entity.ui.IUIPanel;
 import ch.g_7.graphite.entity.ui.UIPanel;
+import ch.g_7.graphite.entity.ui.dimension.ScaledScreenDimension;
 import ch.g_7.graphite.entity.ui.dimension.ScreenDimension;
 
 public class ListLayoutPanel extends UIPanel {
@@ -15,10 +17,8 @@ public class ListLayoutPanel extends UIPanel {
 	public static final byte Y_AXIS = 1;
 	
 	private ScreenDimension placeHolder;
-	
+
 	private byte axis;
-	
-	private ScreenDimension nextPos;
 	
 	private List<IUIPanel> childs;
 
@@ -27,14 +27,12 @@ public class ListLayoutPanel extends UIPanel {
 		this.axis = axis;
 		this.childs = new ArrayList<>();
 		this.placeHolder = new ScreenDimension(axis);
-		this.nextPos = new ScreenDimension(axis);
 	}
 	
 	
 	@Override
 	public void recalculate(Vector2ic screenSize) {
 		recalculateDimension(placeHolder, screenSize);
-		recalculateDimension(nextPos, screenSize);
 		super.recalculate(screenSize);
 	}
 	
@@ -42,26 +40,30 @@ public class ListLayoutPanel extends UIPanel {
 	public void add(IUIPanel panel) {
 		childs.add(panel);
 		panel.setFather(this);
-		place(panel);
+		place(panel, childs.size()-1);
+		panel.init();
 	}
+
 	
-	
-	private void place(IUIPanel panel) {
+	private void place(IUIPanel panel, int index) {
 		panel.getMaxWidth().reset().addPF(100);
 		panel.getMaxHeight().reset().addPF(100);
 		panel.getMinWidth().reset();
 		panel.getMinHeight().reset();
 		panel.getX().reset();
 		panel.getY().reset();
-		//TODO possible pass by reference issue
+		List<IUIPanel> bofore = childs.stream().limit(index).collect(Collectors.toList());
 		if(axis == X_AXIS) {
-			panel.getX().add(nextPos);
-			nextPos.add(panel.getWidth()).add(placeHolder);
+			bofore.forEach((p)-> panel.getX().add(p.getWidth()));
+			panel.getX().add(new ScaledScreenDimension(placeHolder, index));
+			panel.getMinHeight().reset().addPF(100);
+			
 		} else {
-			panel.getY().add(nextPos);
-			nextPos.add(panel.getHeight()).add(placeHolder);
+			bofore.forEach((p)-> panel.getY().add(p.getHeight()));
+			panel.getY().add(new ScaledScreenDimension(placeHolder, index));
+			panel.getMinWidth().reset().addPF(100);
 		}
-		requestDimensionRecalculation(this);
+		requestRecalculation(this);
 	}
 	
 	
@@ -70,7 +72,7 @@ public class ListLayoutPanel extends UIPanel {
 		return childs;
 	}
 	
-	public ScreenDimension getSpaceHolder() {
+	public ScreenDimension getPlaceHolder() {
 		return placeHolder;
 	}
 }

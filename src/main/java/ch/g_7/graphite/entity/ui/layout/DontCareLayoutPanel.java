@@ -26,10 +26,12 @@ public class DontCareLayoutPanel extends UIPanel {
 		childs.add(panel);
 		panel.setFather(this);
 		place(panel);
+		panel.init();
 	}
 	
 	public void remove(IUIPanel panel) {
 		childs.remove(panel);
+		panel.close();
 	}
 	
 	private void place(IUIPanel panel) {
@@ -39,7 +41,7 @@ public class DontCareLayoutPanel extends UIPanel {
 		panel.getMinWidth().reset();
 		panel.getMinHeight().reset();
 		
-		requestDimensionRecalculation(this);
+		requestRecalculation(this);
 	}
 
 	@Override

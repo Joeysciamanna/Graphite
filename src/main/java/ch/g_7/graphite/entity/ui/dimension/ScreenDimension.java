@@ -21,7 +21,7 @@ public class ScreenDimension implements IScreenDimension{
 	private float value;
 	private byte axis;
 	
-	public ScreenDimension(float value, byte axis) {
+	public ScreenDimension(byte axis, float value) {
 		this.value = value;
 		this.axis = axis;
 		this.adds = new ArrayList<>();
@@ -29,7 +29,7 @@ public class ScreenDimension implements IScreenDimension{
 	}
 	
 	public ScreenDimension(byte axis) {
-		this(0, axis);
+		this(axis, 0);
 	}
 
 	
@@ -46,27 +46,37 @@ public class ScreenDimension implements IScreenDimension{
 	@Override
 	public ScreenDimension recalculate(int screenSize, float fatherSize) {
 		float value = 0;
-		value += (float) getPixel() * 2f / screenSize;
-		value += fatherSize * (getPF() == 0 ? 0 : (getPF()/100));
-		value += getPW() * 2 / 100;
+		value += (float) pixel * 2f / screenSize;
+		value += fatherSize * (pf == 0 ? 0 : (pf/100));
+		value += pw * 2 / 100;
 		
 		for (IScreenDimension screenDimension : getAdds()) {
-			screenDimension.recalculate(screenSize, fatherSize);
+//			screenDimension.recalculate(screenSize, fatherSize);
 			value += screenDimension.getValue();
 		}
 		for (IScreenDimension screenDimension : getRems()) {
-			screenDimension.recalculate(screenSize, fatherSize);
+//			screenDimension.recalculate(screenSize, fatherSize);
 			value -= screenDimension.getValue();
 		}
 		this.value = value;
 		return this;
 	}
 	
+	@Override
+	public ScreenDimension clone() {
+		ScreenDimension clone = new ScreenDimension(axis, value);
+		clone.addPF(pf);
+		clone.addPW(pw);
+		clone.addPixel(pixel);
+		adds.forEach(clone::add);
+		rems.forEach(clone::remove);
+		return clone;
+	}
 	
 	public ScreenDimension reset() {
-		setPixel(0);
-		setPW(0);
-		setPF(0);
+		pixel = 0;
+		pw = 0;
+		pf = 0;
 		value = 0;
 		getAdds().clear();
 		getRems().clear();
@@ -87,74 +97,46 @@ public class ScreenDimension implements IScreenDimension{
 	
 	
 	public ScreenDimension addPF(float pf) {
-		setPF(getPF()+pf);
+		this.pf+=pf;
 		return this;
 	}
 	
 	
 	public ScreenDimension removePF(float pf) {
-		setPF(getPF()-pf);
+		this.pf-=pf;
 		return this;
 	}
 	
 	
 	public ScreenDimension addPW(float pw) {
-		setPW(getPW()+pw);
+		this.pw+=pw;
 		return this;
 	}
 	
 	
 	public ScreenDimension removePW(float pw) {
-		setPW(getPW()-pw);
+		this.pw-=pw;
 		return this;
 	}
 	
 	
 	public ScreenDimension addPixel(int pixel) {
-		setPixel(getPixel()+pixel);
+		this.pixel+=pixel;
 		return this;
 	}
 	
 	
 	public ScreenDimension removePixel(int pixel) {
-		setPixel(getPixel()-pixel);
+		this.pixel-=pixel;
 		return this;
 	}
 	
 	@Override
 	public String toString() {
-		return "ScreenDimension[PW: " + getPW() + ", PF: " + getPF() + ", Pixel: " + getPixel() + "] " + getValue();
+		return "ScreenDimension[PW: " + pw + ", PF: " + pf + ", Pixel: " + pixel + "] " + getValue();
 	}
 	
-	@Override
-	public float getValue() {
-		return value;
-	}
-	
-	protected int getPixel() {
-		return pixel;
-	}
-	
-	protected void setPixel(int pixel) {
-		this.pixel = pixel;
-	}
-	
-	protected float getPW() {
-		return pw;
-	}
-	
-	protected void setPW(float pw) {
-		this.pw = pw;
-	}
 
-	protected float getPF() {
-		return pf;
-	}
-
-	protected void setPF(float pf) {
-		this.pf = pf;
-	}
-	
 	protected List<IScreenDimension> getAdds() {
 		return adds;
 	}
@@ -165,5 +147,10 @@ public class ScreenDimension implements IScreenDimension{
 
 	public byte getAxis() {
 		return axis;
+	}
+
+	@Override
+	public float getValue() {
+		return value;
 	}
 }

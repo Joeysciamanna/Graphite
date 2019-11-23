@@ -17,24 +17,26 @@ public class AligementLayoutPanel extends UIPanel {
 	private List<IUIPanel> childList;
 
 	public AligementLayoutPanel() {
-		this.childs = new IUIPanel[3];
+		this.childs = new IUIPanel[4];
 		this.childList = new ArrayList<>();
 	}
 
 	public void add(IUIPanel panel, byte position) {
 		if (childs[position] != null) {
-			childList.remove(childs[position]);
+			remove(position);
 		}
 		childs[position] = panel;
 		childList.add(panel);
 		panel.setFather(this);
 		place(panel, position);
+		panel.init();
 	}
 
 	public void remove(byte position) {
 		IUIPanel panel = childs[position];
 		childs[position] = null;
 		childList.remove(panel);
+		panel.close();
 	}
 
 	private void place(IUIPanel panel, byte position) {
@@ -56,7 +58,7 @@ public class AligementLayoutPanel extends UIPanel {
 			panel.getY().addPF(100).remove(panel.getHeight());
 		break;
 		}
-		requestDimensionRecalculation(this);
+		requestRecalculation(this);
 	}
 	
 	@Override

@@ -19,7 +19,7 @@ public interface IUIContainer extends Renderable {
 	
 	void recalculate();
 	
-	void requestDimensionRecalculation(IUIContainer container);
+	void requestRecalculation(IUIContainer container);
 
 	Window getWindow();
 	
