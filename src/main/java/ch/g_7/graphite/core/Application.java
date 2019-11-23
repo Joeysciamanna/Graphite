@@ -1,23 +1,7 @@
 package ch.g_7.graphite.core;
 
-import static org.lwjgl.glfw.GLFW.glfwInit;
-import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
-import static org.lwjgl.opengl.GL11.GL_DEPTH_BUFFER_BIT;
-import static org.lwjgl.opengl.GL11.GL_DEPTH_TEST;
-import static org.lwjgl.opengl.GL11.glClear;
-import static org.lwjgl.opengl.GL11.glClearColor;
-import static org.lwjgl.opengl.GL11.glEnable;
-
-import java.io.Closeable;
-
-import org.lwjgl.glfw.GLFWErrorCallback;
-import org.lwjgl.opengl.GL;
-
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.rendering.Dimension;
-import ch.g_7.graphite.util.Color;
-import ch.g_7.util.stuff.Initializable;
-import ch.g_7.util.task.TaskIntervalBuffer;
 
 public abstract class Application implements Runnable {
 

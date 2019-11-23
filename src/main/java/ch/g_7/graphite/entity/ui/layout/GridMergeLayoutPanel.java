@@ -7,7 +7,6 @@ import org.joml.Vector2i;
 
 import ch.g_7.graphite.entity.ui.IUIPanel;
 import ch.g_7.graphite.entity.ui.UIPanel;
-import ch.g_7.graphite.entity.ui.dimension.ScaledScreenDimension;
 
 public class GridMergeLayoutPanel extends UIPanel {
 

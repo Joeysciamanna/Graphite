@@ -3,7 +3,6 @@ package ch.g_7.graphite.entity.mesh;
 import java.io.Closeable;
 import java.util.List;
 
-import org.joml.Rectanglef;
 import org.joml.Vector3fc;
 
 import ch.g_7.util.stuff.Initializable;

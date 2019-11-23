@@ -19,9 +19,6 @@ import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.joml.Rectangled;
-import org.joml.Rectanglef;
-import org.joml.Vector2d;
 import org.joml.Vector3f;
 import org.joml.Vector3fc;
 import org.lwjgl.system.MemoryUtil;
