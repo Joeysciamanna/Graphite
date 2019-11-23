@@ -62,10 +62,12 @@ public class UIPanel extends UIContainer implements IUIPanel{
 			recalculateDimension(preferedHeight, screenSize);
 			
 			recalculateSize();
+			for (IUIPanel child : getChilds()) {
+				child.setResized(true);
+			}
 			resized = false;
 		}
 		
-		System.out.println("\tsize:      " + preferedWidth + " / " + preferedHeight);
 		
 		super.recalculate(screenSize);
 
@@ -95,12 +97,12 @@ public class UIPanel extends UIContainer implements IUIPanel{
 		}else {
 			height.add(preferedHeight);
 		}
-//		System.out.println("       resize:\t" + getClass().getSimpleName());
 	}
 	
 	
 	@Override
 	protected void recalculateDimension(ScreenDimension dimension, Vector2ic screenSize) {
+		System.out.println("Recalculate Dimension: " + dimension + " | " + screenSize + " | " + getFather().getSize());
 		dimension.recalculate(screenSize, getFather().getSize());
 	}
 	
@@ -113,6 +115,12 @@ public class UIPanel extends UIContainer implements IUIPanel{
 		}
 	}
 	
+	
+	@Override
+	public void recalculate() {
+		requestDimensionRecalculation(this);
+	}
+	
 	@Override
 	public void close() {
 		if(getTexture()!=null) {
@@ -122,6 +130,11 @@ public class UIPanel extends UIContainer implements IUIPanel{
 			getMesh().close();
 		}
 		super.close();
+	}
+	
+	@Override
+	public void setResized(boolean resized) {
+		this.resized = resized;
 	}
 	
 	@Override

@@ -19,6 +19,8 @@ public interface IUIPanel extends IUIContainer {
 	
 	void recalculateSize();
 	
+	void setResized(boolean resized);
+	
 	/**
 	 * Set by system, only change if you now what you are doing
 	 */

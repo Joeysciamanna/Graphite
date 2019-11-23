@@ -12,8 +12,4 @@ public interface IUIRootContainer extends IUIContainer, ResizeListner {
 	
 	void remove(IUIPanel panel);
 	
-	void recalculate();
-
-
-
 }

@@ -55,9 +55,9 @@ public class Test extends Application {
 		sharingLayoutPanel.setAdjustablePanel(panel2);
 
 
+//		inventory.recalculate();
+		sharingLayoutPanel.setResized(true);
 		inventory.recalculate();
-		
-//		panel2.recalculateSize(); //Why???
 //		inventory.recalculate();
 		
 //		System.out.println(panel2.getSize().toVector());

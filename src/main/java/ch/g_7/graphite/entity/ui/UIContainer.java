@@ -41,11 +41,6 @@ public abstract class UIContainer implements IUIContainer{
 		position.set(x.getValue(), y.getValue());
 		
 		
-		if(this instanceof UIPanel) {
-			System.out.println("\tReal size: " + width + " / " + height);
-		}
-		
-		
 		
 		for (IUIPanel child : getChilds()) {
 			child.recalculate(screenSize);
