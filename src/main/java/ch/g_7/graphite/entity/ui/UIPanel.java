@@ -27,7 +27,7 @@ public class UIPanel extends UIContainer implements IUIPanel {
 	protected final ScreenDimension preferedWidth;
 	protected final ScreenDimension preferedHeight;
 	
-	private boolean resized;
+	private boolean resized = true;
 	
 	protected IUIContainer father;
 	

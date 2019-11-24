@@ -33,9 +33,6 @@
 	</dependencyManagement>
 
 
-
-
-
 	<dependencies>
 		<dependency>
 			<groupId>org.lwjgl</groupId>
@@ -100,12 +97,7 @@
 		<dependency>
 			<groupId>ch.g_7</groupId>
 			<artifactId>Util</artifactId>
-			<version>0.0.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.dyn4j</groupId>
-			<artifactId>dyn4j</artifactId>
-			<version>3.3.0</version>
+			<version>0.1.0</version>
 		</dependency>
 	</dependencies>
 

@@ -22,7 +22,6 @@ public class BasicMesh extends AbstractMesh {
 		        0,0,
 		        0,0,
 		         });
-		
 	}
 	
 	

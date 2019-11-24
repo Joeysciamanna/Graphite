@@ -65,6 +65,10 @@ public abstract class UIContainer implements IUIContainer{
 		return visible;
 	}
 	
+	public void setVisible(boolean visible) {
+		this.visible = visible;
+	}
+	
 	@Override
 	public ScreenDimension getWidth() {
 		return width;

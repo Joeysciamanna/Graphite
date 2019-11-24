@@ -2,6 +2,8 @@ package ch.g_7.graphite.core;
 
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.rendering.Dimension;
+import ch.g_7.util.task.TaskList;
+import ch.g_7.util.task.TaskQueue;
 
 public abstract class Application implements Runnable {
 
@@ -16,6 +18,7 @@ public abstract class Application implements Runnable {
 	private Thread thread;
 
 	private boolean running;
+	
 	
 	public Application(String name) {
 		this.dimension = new Dimension();
@@ -40,14 +43,6 @@ public abstract class Application implements Runnable {
 
 	}
 	
-	public void start() {
-		setRunning(true);
-	}
-	
-	public void stop() {
-		setRunning(false);
-	}
-
 	@Override
 	public final void run() {
 		try {
@@ -67,17 +62,21 @@ public abstract class Application implements Runnable {
 			close();
 		}
 	}
-
+	
 	protected void init() {
 		if(exists) {
 			throw new IllegalStateException("Only one Engine can exist at the same time");
 		}
 		exists = true;
-		
-		
-
-		
-
+	}
+	
+	
+	public void start() {
+		setRunning(true);
+	}
+	
+	public void stop() {
+		setRunning(false);
 	}
 	
 	protected void close(){}

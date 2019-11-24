@@ -14,7 +14,7 @@ import ch.g_7.graphite.rendering.renderer.IRenderer;
 import ch.g_7.graphite.rendering.renderer.UIRenderer;
 import ch.g_7.util.stuff.Initializable;
 
-public final class RenderClass<T extends Renderable> implements Initializable, AutoCloseable{
+public class RenderClass<T extends Renderable> implements Initializable, AutoCloseable{
 	
 	private static final Map<String, RenderClass<?>> RENDER_CLASSES = new HashMap<>();
 	

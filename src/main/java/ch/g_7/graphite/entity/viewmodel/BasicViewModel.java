@@ -10,8 +10,6 @@ public class BasicViewModel implements IViewModel{
 	protected Texture texture;
 	protected Color color;
 	
-	public BasicViewModel() {}
-	
 	public BasicViewModel(Texture texture, AbstractMesh mesh) {
 		this.texture = texture;
 		this.mesh = mesh;
