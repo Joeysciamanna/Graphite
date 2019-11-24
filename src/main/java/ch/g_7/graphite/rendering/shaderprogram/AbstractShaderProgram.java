@@ -100,6 +100,13 @@ public abstract class AbstractShaderProgram implements Initializable, AutoClosea
         }
     }
     
+    protected final void setUniform(String uniformName, boolean value) {
+        try (MemoryStack stack = MemoryStack.stackPush()) {
+            // Dump the matrix into a float buffer
+            GL20.glUniform1i(uniforms.get(uniformName), value ? 1 : 0);
+        }
+    }
+    
     protected final void setUniform(String uniformName, int value) {
         glUniform1i(uniforms.get(uniformName), value);
     }

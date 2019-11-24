@@ -79,6 +79,9 @@ public class UIRenderer implements IRenderer<IUIRootContainer> {
 			glActiveTexture(GL_TEXTURE0);
 			// Bind the texture
 			glBindTexture(GL_TEXTURE_2D, panel.getTexture().getId());
+			shaderProgram.setTextureEnabled(true);
+		}else {
+			shaderProgram.setTextureEnabled(false);
 		}
 		// Draw the mesh
 		glBindVertexArray(panel.getMesh().getVaoId());

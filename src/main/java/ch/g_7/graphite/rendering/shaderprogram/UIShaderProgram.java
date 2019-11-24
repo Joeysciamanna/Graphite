@@ -17,6 +17,7 @@ public class UIShaderProgram extends AbstractShaderProgram{
         createUniform("model_view_matrix");
         createUniform("texture_sampler");
         createUniform("color");
+        createUniform("textureEnabled");
 	}
 
 	
@@ -32,4 +33,7 @@ public class UIShaderProgram extends AbstractShaderProgram{
 		setUniform("color", new Vector4f(value.getR(), value.getG(), value.getB(), value.getA()));
 	}
 
+	public void setTextureEnabled(boolean value) {
+		setUniform("color", value);
+	}
 }
