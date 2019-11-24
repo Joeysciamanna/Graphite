@@ -1,7 +1,8 @@
 #version 330
 
-in vec2 outTexCoord;
-in vec4 outColor;
+in vec2 fragmentInTexCoord;
+in vec4 fragmentInColor;
+flat in int fragmentInTextureEnabled;
 
 out vec4 fragColor;
 
@@ -9,5 +10,8 @@ uniform sampler2D texture_sampler;
 
 void main()
 {
-    fragColor = texture(texture_sampler, outTexCoord) + outColor;
+    fragColor = fragmentInColor;
+    if (fragmentInTextureEnabled == 1){
+		fragColor += texture(texture_sampler, fragmentInTexCoord);
+	}
 }

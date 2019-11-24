@@ -68,6 +68,10 @@ public class BasicRenderer implements IRenderer<IObject> {
 				glActiveTexture(GL_TEXTURE0);
 				// Bind the texture
 				glBindTexture(GL_TEXTURE_2D, object.getViewModel().getTexture().getId());
+				
+				shaderProgram.setTextureEnabled(true);
+			}else {
+				shaderProgram.setTextureEnabled(false);
 			}
 			// Draw the mesh
 			glBindVertexArray(object.getViewModel().getMesh().getVaoId());
