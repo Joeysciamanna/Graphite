@@ -8,8 +8,8 @@ import org.joml.Vector2ic;
 
 import ch.g_7.graphite.entity.ui.IUIPanel;
 import ch.g_7.graphite.entity.ui.UIPanel;
-import ch.g_7.graphite.entity.ui.dimension.ScaledScreenDimension;
-import ch.g_7.graphite.entity.ui.dimension.ScreenDimension;
+import ch.g_7.graphite.entity.ui.util.ScaledScreenDimension;
+import ch.g_7.graphite.entity.ui.util.ScreenDimension;
 
 public class ListLayoutPanel extends UIPanel {
 

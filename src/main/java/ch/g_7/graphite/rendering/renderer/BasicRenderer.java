@@ -43,6 +43,7 @@ public class BasicRenderer implements IRenderer<IObject> {
 	@Override
 	public void render(List<IObject> renderables, Dimension dimension, Window window, Camera camera) {
 
+		
 		shaderProgram.bind();
 
 		viewMatrix.identity();

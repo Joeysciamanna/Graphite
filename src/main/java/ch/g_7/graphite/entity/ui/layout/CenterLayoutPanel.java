@@ -5,7 +5,7 @@ import java.util.List;
 
 import ch.g_7.graphite.entity.ui.IUIPanel;
 import ch.g_7.graphite.entity.ui.UIPanel;
-import ch.g_7.graphite.entity.ui.dimension.ScaledScreenDimension;
+import ch.g_7.graphite.entity.ui.util.ScaledScreenDimension;
 
 public class CenterLayoutPanel extends UIPanel{
 	

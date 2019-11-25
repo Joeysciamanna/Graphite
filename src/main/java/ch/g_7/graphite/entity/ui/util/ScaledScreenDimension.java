@@ -1,4 +1,4 @@
-package ch.g_7.graphite.entity.ui.dimension;
+package ch.g_7.graphite.entity.ui.util;
 
 import org.joml.Vector2fc;
 import org.joml.Vector2ic;

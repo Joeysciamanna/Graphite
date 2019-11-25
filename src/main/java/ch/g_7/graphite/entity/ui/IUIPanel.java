@@ -2,7 +2,7 @@ package ch.g_7.graphite.entity.ui;
 
 import ch.g_7.graphite.entity.mesh.AbstractMesh;
 import ch.g_7.graphite.entity.texture.Texture;
-import ch.g_7.graphite.entity.ui.dimension.ScreenDimension;
+import ch.g_7.graphite.entity.ui.util.ScreenDimension;
 import ch.g_7.graphite.util.Color;
 
 public interface IUIPanel extends IUIContainer {
@@ -42,4 +42,6 @@ public interface IUIPanel extends IUIContainer {
 	
 	ScreenDimension getPreferedWidth();
 	ScreenDimension getPreferedHeight();
+
+	void setLevel(int indexOf);
 }

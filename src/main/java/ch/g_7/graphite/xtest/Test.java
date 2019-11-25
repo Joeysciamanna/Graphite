@@ -30,35 +30,43 @@ public class Test extends Application {
 	
 	protected void initGame() {
 		
-//		UIRootContainer inventory = new UIRootContainer(getWindow());
-//		getDimension().addObj(inventory, RenderClass.UI);
-//		
-//		
-//		CenterLayoutPanel centerLayoutPanel = new CenterLayoutPanel();
-//		centerLayoutPanel.setColor(new Color(255, 255, 0, 25));
-//		centerLayoutPanel.getPreferedWidth().reset().addPF(100);
-//		centerLayoutPanel.getPreferedHeight().reset().addPF(50);
-//		inventory.add(centerLayoutPanel);
-//		
-//		
-//		UIPanel panel1 = new UIPanel();
-//		panel1.getPreferedWidth().reset().addPF(50);
-//		panel1.getPreferedHeight().reset().addPF(50);
-//		panel1.setColor(new Color(0, 255, 0, 25));
-//		centerLayoutPanel.set(panel1);
+		UIRootContainer inventory = new UIRootContainer(getWindow());
+		getDimension().addObj(inventory, RenderClass.UI);
+		
+		UIPanel panel2 = new UIPanel();
+		panel2.getPreferedWidth().reset().addPF(50);
+		panel2.getPreferedHeight().reset().addPF(50);
+		panel2.getX().addPF(25);
+		panel2.getY().addPF(25);
+		panel2.setColor(new Color(255, 0, 0, 100));
+		inventory.add(panel2);
+		
+		CenterLayoutPanel centerLayoutPanel = new CenterLayoutPanel();
+		centerLayoutPanel.getPreferedWidth().reset().addPF(50);
+		centerLayoutPanel.getPreferedHeight().reset().addPF(50);
+		inventory.add(centerLayoutPanel);
+		
+		UIPanel panel1 = new UIPanel();
+		panel1.getPreferedWidth().reset().addPF(100);
+		panel1.getPreferedHeight().reset().addPF(100);
+		panel1.setColor(new Color(0, 255, 0, 25));
+		centerLayoutPanel.set(panel1);
+		
+
 		
 		
-		AbstractMesh mesh1 = MeshFactory.getSquare(1).setCenter(MeshBuilder.CENTER_MIDDLE).build();
-		BasicViewModel viewModel1 = new BasicViewModel(new Color(255, 155, 0, 100), mesh1);
-		BasicObject object1 = new BasicObject(viewModel1, new Vector3f());
-		object1.setPosition(new Vector3f(0, 0, 0.9f));
-		getDimension().addObj(object1, RenderClass.BASIC_GAME_OBJECTS);
-		
-		AbstractMesh mesh2 = MeshFactory.getSquare(1).setCenter(MeshBuilder.CENTER_BUTTOM_RIGHT).build();
-		BasicViewModel viewModel2 = new BasicViewModel(new Color(0, 155, 0, 100), mesh2);
-		BasicObject object2 = new BasicObject(viewModel2, new Vector3f());
-		getDimension().addObj(object2, RenderClass.BASIC_GAME_OBJECTS);
-		
+//		
+//		AbstractMesh mesh1 = MeshFactory.getSquare(1).setCenter(MeshBuilder.CENTER_MIDDLE).build();
+//		BasicViewModel viewModel1 = new BasicViewModel(new Color(255, 155, 0, 100), mesh1);
+//		BasicObject object1 = new BasicObject(viewModel1, new Vector3f());
+//		object1.setPosition(new Vector3f(0, 0, 0.9f));
+//		getDimension().addObj(object1, RenderClass.BASIC_GAME_OBJECTS);
+//		
+//		AbstractMesh mesh2 = MeshFactory.getSquare(1).setCenter(MeshBuilder.CENTER_TOP_LEFT).build();
+//		BasicViewModel viewModel2 = new BasicViewModel(new Color(0, 155, 0, 100), mesh2);
+//		BasicObject object2 = new BasicObject(viewModel2, new Vector3f());
+//		getDimension().addObj(object2, RenderClass.BASIC_GAME_OBJECTS);
+//		
 	
 		getWindow().setVisible(true);
 		getWindow().setSize(500, 500);

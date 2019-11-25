@@ -42,6 +42,7 @@ public class UIRenderer implements IRenderer<IUIRootContainer> {
 	@Override
 	public void render(List<IUIRootContainer> renderables, Dimension dimension, Window window, Camera camera) {
 
+		
 		shaderProgram.bind();
 
 		shaderProgram.setTextureSampler(0);
@@ -60,12 +61,6 @@ public class UIRenderer implements IRenderer<IUIRootContainer> {
 	
 	
 	private void render(IUIPanel panel) {
-		
-		for (IUIPanel child : panel.getChilds()) {
-			if(child.isVisible()) {
-				render(child);
-			}
-		}
 		
 		// Set model view matrix for this item
 		modelViewMatrix.identity().translate(new Vector3f(panel.getPosition().x() - 1 , panel.getPosition().y()*-1 + 1, -0.9f)).scaleXY(panel.getSize().x(), panel.getSize().y());
@@ -96,6 +91,14 @@ public class UIRenderer implements IRenderer<IUIRootContainer> {
 			glDisableVertexAttribArray(1);
 			glBindVertexArray(0);
 		}
+		
+		for (IUIPanel child : panel.getChilds()) {
+			if(child.isVisible()) {
+				render(child);
+			}
+		}
+		
+
 	}
 
 	@Override

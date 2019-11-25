@@ -4,7 +4,7 @@ import org.joml.Vector2f;
 import org.joml.Vector2fc;
 import org.joml.Vector2ic;
 
-import ch.g_7.graphite.entity.ui.dimension.ScreenDimension;
+import ch.g_7.graphite.entity.ui.util.ScreenDimension;
 
 public abstract class UIContainer implements IUIContainer{
 

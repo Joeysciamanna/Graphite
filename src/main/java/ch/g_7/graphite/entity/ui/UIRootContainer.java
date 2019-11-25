@@ -10,7 +10,7 @@ import org.joml.Vector2ic;
 
 import ch.g_7.graphite.core.window.ResizeAction;
 import ch.g_7.graphite.core.window.Window;
-import ch.g_7.graphite.entity.ui.dimension.ScreenDimension;
+import ch.g_7.graphite.entity.ui.util.ScreenDimension;
 
 public class UIRootContainer extends UIContainer implements IUIRootContainer{
 

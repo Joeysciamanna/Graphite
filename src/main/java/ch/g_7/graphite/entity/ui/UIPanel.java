@@ -11,7 +11,7 @@ import ch.g_7.graphite.entity.mesh.AbstractMesh;
 import ch.g_7.graphite.entity.mesh.MeshBuilder;
 import ch.g_7.graphite.entity.mesh.MeshFactory;
 import ch.g_7.graphite.entity.texture.Texture;
-import ch.g_7.graphite.entity.ui.dimension.ScreenDimension;
+import ch.g_7.graphite.entity.ui.util.ScreenDimension;
 import ch.g_7.graphite.util.Color;
 
 public class UIPanel extends UIContainer implements IUIPanel {

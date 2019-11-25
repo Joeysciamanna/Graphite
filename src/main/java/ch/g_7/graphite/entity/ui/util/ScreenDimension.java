@@ -1,4 +1,4 @@
-package ch.g_7.graphite.entity.ui.dimension;
+package ch.g_7.graphite.entity.ui.util;
 
 import java.util.ArrayList;
 import java.util.List;
