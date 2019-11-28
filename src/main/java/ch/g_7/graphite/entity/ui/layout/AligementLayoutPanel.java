@@ -1,8 +1,5 @@
 package ch.g_7.graphite.entity.ui.layout;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import ch.g_7.graphite.entity.ui.IUIPanel;
 import ch.g_7.graphite.entity.ui.UIPanel;
 
@@ -14,11 +11,9 @@ public class AligementLayoutPanel extends UIPanel {
 	public static final byte BUTTOM = 3;
 
 	private IUIPanel[] childs;
-	private List<IUIPanel> childList;
 
 	public AligementLayoutPanel() {
 		this.childs = new IUIPanel[4];
-		this.childList = new ArrayList<>();
 	}
 
 	public void add(IUIPanel panel, byte position) {
@@ -26,17 +21,14 @@ public class AligementLayoutPanel extends UIPanel {
 			remove(position);
 		}
 		childs[position] = panel;
-		childList.add(panel);
-		panel.setFather(this);
+		super.add(panel);
 		place(panel, position);
-		panel.init();
 	}
 
 	public void remove(byte position) {
 		IUIPanel panel = childs[position];
 		childs[position] = null;
-		childList.remove(panel);
-		panel.close();
+		super.remove(panel);
 	}
 
 	private void place(IUIPanel panel, byte position) {
@@ -61,9 +53,5 @@ public class AligementLayoutPanel extends UIPanel {
 		requestRecalculation(this);
 	}
 	
-	@Override
-	public List<IUIPanel> getChilds() {
-		return childList;
-	}
 
 }

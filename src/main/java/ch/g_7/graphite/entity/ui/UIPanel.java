@@ -27,6 +27,8 @@ public class UIPanel extends UIContainer implements IUIPanel {
 	protected final ScreenDimension preferedWidth;
 	protected final ScreenDimension preferedHeight;
 	
+	protected float level;
+
 	private boolean resized = true;
 	
 	protected IUIContainer father;
@@ -158,11 +160,6 @@ public class UIPanel extends UIContainer implements IUIPanel {
 	}
 	
 	@Override
-	public List<IUIPanel> getChilds() {
-		return new ArrayList<>();
-	}
-	
-	@Override
 	public Vector2fc getPosition() {
 		return getFather() == null ? position : position.add(getFather().getPosition());
 	}
@@ -214,9 +211,15 @@ public class UIPanel extends UIContainer implements IUIPanel {
 	}
 
 
+	@Override
+	public void setLevel(float level) {
+		this.level = level;
+	}
 
-
-
+	@Override
+	public float getLevel() {
+		return level;
+	}
 
 
 }

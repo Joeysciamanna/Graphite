@@ -1,8 +1,5 @@
 package ch.g_7.graphite.entity.ui.layout;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import ch.g_7.graphite.entity.ui.IUIPanel;
 import ch.g_7.graphite.entity.ui.UIPanel;
 
@@ -13,26 +10,19 @@ public class SpaceSharingLayoutPanel extends UIPanel {
 	public static final byte RIGHT = 2;
 	public static final byte BUTTOM = 3;
 	
-	
-	private List<IUIPanel> childs;
-
 	private IUIPanel mainPanel;
 	private byte mainPanelPosition;
 	private IUIPanel adjustablePanel;
 
-	public SpaceSharingLayoutPanel() {
-		this.childs = new ArrayList<>();
-	}
+
 
 	public void removeMainPanel() {
-		childs.remove(mainPanel);
-		mainPanel.close();
+		super.remove(mainPanel);
 		mainPanel = null;
 	}
 
 	public void removeAdjustablePanel() {
-		childs.remove(adjustablePanel);
-		adjustablePanel.close();
+		super.remove(adjustablePanel);
 		adjustablePanel = null;
 	}
 
@@ -41,8 +31,7 @@ public class SpaceSharingLayoutPanel extends UIPanel {
 			removeMainPanel();
 		}
 		this.mainPanel = mainPanel;
-		childs.add(mainPanel);
-		mainPanel.setFather(this);
+		super.add(mainPanel);
 		placeMainPanel(mainPanel, stickySide);
 	}
 
@@ -80,8 +69,7 @@ public class SpaceSharingLayoutPanel extends UIPanel {
 			removeAdjustablePanel();
 		}
 		this.adjustablePanel = adjustablePanel;
-		childs.add(adjustablePanel);
-		adjustablePanel.setFather(this);
+		super.add(adjustablePanel);
 		placeAdjustablePanel(adjustablePanel);
 	}
 
@@ -124,9 +112,5 @@ public class SpaceSharingLayoutPanel extends UIPanel {
 		requestRecalculation(this);
 	}
 
-	@Override
-	public List<IUIPanel> getChilds() {
-		return childs;
-	}
 
 }

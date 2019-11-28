@@ -1,7 +1,5 @@
 package ch.g_7.graphite.entity.ui;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 import org.joml.Vector2f;
@@ -14,7 +12,7 @@ import ch.g_7.graphite.entity.ui.util.ScreenDimension;
 
 public class UIRootContainer extends UIContainer implements IUIRootContainer{
 
-	private List<IUIPanel> childs;
+	
 	
 	private Window window;
 	
@@ -23,7 +21,7 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer{
 		this.window.addResizeListner(this);
 		this.width.addPW(100);
 		this.height.addPW(100);
-		this.childs = new ArrayList<>();
+		
 	}
 	
 	@Override
@@ -49,21 +47,20 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer{
 		});
 	}
 	
-	@Override
-	public List<IUIPanel> getChilds() {
-		return childs;
-	}
-	
+
 	@Override
 	public void add(IUIPanel panel) {
-		childs.add(panel);
-		panel.setFather(this);
-		panel.init();
+		super.add(panel);
 	}
 	
 	@Override
 	public void remove(IUIPanel panel) {
-		childs.remove(panel);
+		super.remove(panel);
+	}
+	
+	@Override
+	public void clear() {
+		super.clear();
 	}
 	
 	@Override
@@ -85,5 +82,10 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer{
 	@Override
 	public void init() {
 		recalculate();
+	}
+	
+	@Override
+	public float getLevel() {
+		return -0.5f;
 	}
 }

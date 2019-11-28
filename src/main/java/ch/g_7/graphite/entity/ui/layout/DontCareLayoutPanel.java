@@ -1,51 +1,39 @@
 package ch.g_7.graphite.entity.ui.layout;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.joml.Vector2ic;
-
 import ch.g_7.graphite.entity.ui.IUIPanel;
 import ch.g_7.graphite.entity.ui.UIPanel;
+import ch.g_7.graphite.entity.ui.util.ScaledScreenDimension;
 
 public class DontCareLayoutPanel extends UIPanel {
 	
-	private List<IUIPanel> childs;
 	
-	public DontCareLayoutPanel() {
-		this.childs = new ArrayList<>();
+	
+	@Override
+	public void add(IUIPanel panel) {
+		super.add(panel);
+		place(panel);
 	}
 	
 	@Override
-	public void recalculate(Vector2ic screenSize) {
-		super.recalculate(screenSize);
-	}
-	
-	public void add(IUIPanel panel) {
-		childs.add(panel);
-		panel.setFather(this);
-		place(panel);
-		panel.init();
-	}
-	
 	public void remove(IUIPanel panel) {
-		childs.remove(panel);
-		panel.close();
+		super.remove(panel);
 	}
 	
 	private void place(IUIPanel panel) {
-		panel.getMaxWidth().addPF(100).remove(panel.getX());
-		panel.getMaxHeight().addPF(100).remove(panel.getY());
-	
+//		panel.getMaxWidth().reset().addPF(100).remove(panel.getX());
+//		panel.getMaxHeight().reset().addPF(100).remove(panel.getY());
+//	
+//		panel.getMinWidth().reset();
+//		panel.getMinHeight().reset();
+		panel.getMaxWidth().reset().addPF(100);
+		panel.getMaxHeight().reset().addPF(100);
 		panel.getMinWidth().reset();
 		panel.getMinHeight().reset();
 		
+		panel.getX().reset().addPF(50).remove(new ScaledScreenDimension(panel.getWidth(), 0.5f));
+		panel.getY().reset().addPF(50).remove(new ScaledScreenDimension(panel.getHeight(), 0.5f));
 		requestRecalculation(this);
 	}
 
-	@Override
-	public List<IUIPanel> getChilds() {
-		return childs;
-	}
 	
 }

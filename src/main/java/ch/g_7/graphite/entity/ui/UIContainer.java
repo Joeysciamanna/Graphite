@@ -1,5 +1,8 @@
 package ch.g_7.graphite.entity.ui;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.joml.Vector2f;
 import org.joml.Vector2fc;
 import org.joml.Vector2ic;
@@ -8,6 +11,7 @@ import ch.g_7.graphite.entity.ui.util.ScreenDimension;
 
 public abstract class UIContainer implements IUIContainer{
 
+	protected List<IUIPanel> childs;
 
 	protected final ScreenDimension width;
 	protected final ScreenDimension height;
@@ -16,6 +20,8 @@ public abstract class UIContainer implements IUIContainer{
 	protected final ScreenDimension x;
 	protected final ScreenDimension y;
 	protected final Vector2f position;
+	
+
 	
 	protected boolean visible;
 	
@@ -28,6 +34,35 @@ public abstract class UIContainer implements IUIContainer{
 		this.y = new ScreenDimension(ScreenDimension.Y_AXIS);
 		this.position = new Vector2f();
 		this.visible = true;
+		this.childs = new ArrayList<>();
+	}
+	
+	@Override
+	public List<IUIPanel> getChilds() {
+		return childs;
+	}
+	
+	
+	protected void add(IUIPanel panel) {
+		childs.add(panel);
+		panel.setLevel(getLevel() * 1.2f);
+		panel.setFather(this);
+		panel.init();
+	}
+	
+	
+	protected void remove(IUIPanel panel) {
+		childs.remove(panel);
+		panel.close();
+		panel.setFather(null);
+	}
+	
+	protected void clear() {
+		for (IUIPanel child : childs) {
+			child.close();
+			child.setFather(null);
+		}
+		childs.clear();
 	}
 	
 	@Override
@@ -56,6 +91,7 @@ public abstract class UIContainer implements IUIContainer{
 			panel.close();
 		}
 	}
+	
 	
 	@Override
 	public void init() {}
@@ -98,4 +134,6 @@ public abstract class UIContainer implements IUIContainer{
 	public Vector2fc getPosition() {
 		return position;
 	}
+	
+
 }

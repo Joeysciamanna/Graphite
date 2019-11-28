@@ -1,8 +1,5 @@
 package ch.g_7.graphite.entity.ui.layout;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.joml.Vector2i;
 import org.joml.Vector2ic;
 
@@ -24,12 +21,11 @@ public class GridLayoutPanel extends UIPanel{
 	private ScaledScreenDimension rowPlaceHolderPerCell;
 	
 	private final IUIPanel[][] childs;
-	private List<IUIPanel> childList;
 	
 	public GridLayoutPanel(int colums, int rows) {
 		this.gridSize = new Vector2i(colums, rows);
 		this.childs = new IUIPanel[colums][rows];
-		this.childList = new ArrayList<>();
+
 		this.columCellPlaceHolder = new ScreenDimension(ScreenDimension.X_AXIS);
 		this.rowCellPlaceHolder = new ScreenDimension(ScreenDimension.Y_AXIS);
 		
@@ -49,8 +45,7 @@ public class GridLayoutPanel extends UIPanel{
 	public void remove(int x, int y) {
 		IUIPanel panel = childs[x][y];
 		childs[x][y] = null;
-		childList.remove(panel);
-		panel.close();
+		super.remove(panel);
 	}
 	
 	public void add(IUIPanel panel, int x, int y) {
@@ -58,10 +53,8 @@ public class GridLayoutPanel extends UIPanel{
 			remove(x, y);
 		}
 		childs[x][y] = panel;
-		childList.add(panel);
-		panel.setFather(this);
+		super.add(panel);
 		place(panel, x, y);
-		panel.init();
 	}
 	
 	public void add(IUIPanel panel) {
@@ -92,10 +85,6 @@ public class GridLayoutPanel extends UIPanel{
 	}
 	
 	
-	@Override
-	public List<IUIPanel> getChilds() {
-		return childList;
-	}
 
 	public ScreenDimension getColumCellPlaceHolder() {
 		return columCellPlaceHolder;

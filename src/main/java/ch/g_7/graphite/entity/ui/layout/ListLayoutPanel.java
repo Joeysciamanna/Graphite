@@ -20,8 +20,6 @@ public class ListLayoutPanel extends UIPanel {
 
 	private byte axis;
 	
-	private List<IUIPanel> childs;
-
 	
 	public ListLayoutPanel(byte axis) {
 		this.axis = axis;
@@ -36,12 +34,10 @@ public class ListLayoutPanel extends UIPanel {
 		super.recalculate(screenSize);
 	}
 	
-	
+	@Override
 	public void add(IUIPanel panel) {
-		childs.add(panel);
-		panel.setFather(this);
+		super.add(panel);
 		place(panel, childs.size()-1);
-		panel.init();
 	}
 
 	
@@ -66,11 +62,7 @@ public class ListLayoutPanel extends UIPanel {
 		requestRecalculation(this);
 	}
 	
-	
-	@Override
-	public List<IUIPanel> getChilds() {
-		return childs;
-	}
+
 	
 	public ScreenDimension getPlaceHolder() {
 		return placeHolder;

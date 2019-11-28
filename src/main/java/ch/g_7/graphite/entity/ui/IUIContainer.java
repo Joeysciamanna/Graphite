@@ -23,7 +23,6 @@ public interface IUIContainer extends Renderable {
 
 	Window getWindow();
 	
-	
 	ScreenDimension getWidth();
 	ScreenDimension getHeight();
 	Vector2fc getSize();
@@ -32,4 +31,5 @@ public interface IUIContainer extends Renderable {
 	ScreenDimension getY();
 	Vector2fc getPosition();
 	
+	float getLevel();
 }
