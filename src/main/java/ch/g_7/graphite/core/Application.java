@@ -2,8 +2,6 @@ package ch.g_7.graphite.core;
 
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.rendering.Dimension;
-import ch.g_7.util.task.TaskList;
-import ch.g_7.util.task.TaskQueue;
 
 public abstract class Application implements Runnable {
 

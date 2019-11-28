@@ -1,8 +1,5 @@
 package ch.g_7.graphite.entity.ui;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.joml.Vector2fc;
 import org.joml.Vector2ic;
 

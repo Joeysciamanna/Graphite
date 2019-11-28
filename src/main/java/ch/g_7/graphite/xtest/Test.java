@@ -9,7 +9,6 @@ import ch.g_7.graphite.entity.mesh.MeshFactory;
 import ch.g_7.graphite.entity.object.BasicObject;
 import ch.g_7.graphite.entity.ui.UIPanel;
 import ch.g_7.graphite.entity.ui.UIRootContainer;
-import ch.g_7.graphite.entity.ui.layout.CenterLayoutPanel;
 import ch.g_7.graphite.entity.ui.layout.DontCareLayoutPanel;
 import ch.g_7.graphite.entity.viewmodel.BasicViewModel;
 import ch.g_7.graphite.rendering.RenderClass;

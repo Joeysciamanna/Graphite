@@ -1,7 +1,5 @@
 package ch.g_7.graphite.entity.ui.layout;
 
-import java.util.List;
-
 import ch.g_7.graphite.entity.ui.IUIPanel;
 import ch.g_7.graphite.entity.ui.UIPanel;
 import ch.g_7.graphite.entity.ui.util.ScaledScreenDimension;
