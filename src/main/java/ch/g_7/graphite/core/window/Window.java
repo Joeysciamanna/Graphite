@@ -58,31 +58,30 @@ import ch.g_7.util.stuff.Initializable;
 import ch.g_7.util.task.TaskInputBuffer;
 import ch.g_7.util.task.ValueChangeNotifier;
 
-public class Window implements Initializable, ResizeListner{
+public class Window implements Initializable, ResizeListner {
 
 	private final String title;
 
 	private List<KeyListner> keyListners;
-	
+
 	private TaskInputBuffer<KeyAction> keyPressBuffer;
 
-	
 	private long windowId;
 
 	private int width;
 	private int height;
 	private ValueChangeNotifier<ResizeAction> resizeNotifier;
-	
+
 	private int x;
 	private int y;
 	private boolean repositioned;
-	
+
 	public Window(String title, int width, int height) {
 		this.title = title;
 		this.width = width;
 		this.height = height;
 		keyListners = new ArrayList<>();
-		keyPressBuffer = new TaskInputBuffer<KeyAction>((i)->keyListners.forEach((l)->l.onKeyPress(i)));
+		keyPressBuffer = new TaskInputBuffer<KeyAction>((i) -> keyListners.forEach((l) -> l.onKeyPress(i)));
 		resizeNotifier = new ValueChangeNotifier<>();
 		resizeNotifier.addListner(this);
 	}
@@ -109,47 +108,45 @@ public class Window implements Initializable, ResizeListner{
 		if (windowId == NULL) {
 			throw new RuntimeException("Failed to create the GLFW window");
 		}
-		
-		glfwSetFramebufferSizeCallback(windowId, (window, width, height) -> resizeNotifier.valueChanged(new ResizeAction(window, width, height)));
-		
-		glfwSetWindowPosCallback(windowId, (window, x, y)-> setPosition(x, y));
-		
-		glfwSetKeyCallback(windowId, (window, key, scancode, action, mods) -> keyPressBuffer.add(new KeyAction(window, key, scancode, action, mods)));
-		
+
+		glfwSetFramebufferSizeCallback(windowId,
+				(window, width, height) -> resizeNotifier.valueChanged(new ResizeAction(window, width, height)));
+
+		glfwSetWindowPosCallback(windowId, (window, x, y) -> setPosition(x, y));
+
+		glfwSetKeyCallback(windowId, (window, key, scancode, action, mods) -> keyPressBuffer
+				.add(new KeyAction(window, key, scancode, action, mods)));
+
 		glfwMakeContextCurrent(windowId);
-		
-		
+
 		GL.createCapabilities();
 		glEnable(GL_DEPTH_TEST);
-		
-		glDisable(GL_CULL_FACE) ;
-	    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	    glEnable( GL_BLEND );
-		
+
+		glDisable(GL_CULL_FACE);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glEnable(GL_BLEND);
+
 		setSize(width, height);
-		
+
 		GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 		setPosition((vidmode.width() - width) / 2, (vidmode.height() - height) / 2);
-		
-		
+
 	}
-	
+
 	public void update() {
 		resizeNotifier.runSimple();
 		reposition();
 
-		
 		glfwSwapBuffers(windowId);
 		glfwPollEvents();
-		
+
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
-	
-	
+
 	public void pullEvents() {
 		keyPressBuffer.run(null);
 	}
-	
+
 	@Override
 	public void onResize(ResizeAction action) {
 		glViewport(0, 0, action.getWidth(), action.getHeight());
@@ -161,19 +158,17 @@ public class Window implements Initializable, ResizeListner{
 	}
 
 	public void reposition() {
-		if(repositioned) {
+		if (repositioned) {
 			glfwSetWindowPos(windowId, x, y);
 		}
 	}
-	
+
 	public void setPosition(int x, int y) {
 		this.x = x;
 		this.y = y;
 		this.repositioned = true;
 	}
-	
 
-	
 	public void setVisible(boolean visible) {
 		if (visible) {
 			glfwShowWindow(windowId);
@@ -189,7 +184,7 @@ public class Window implements Initializable, ResizeListner{
 	public long getWindowId() {
 		return windowId;
 	}
-	
+
 	public void addKeyListner(KeyListner keyListner) {
 		keyListners.add(keyListner);
 	}
@@ -197,7 +192,7 @@ public class Window implements Initializable, ResizeListner{
 	public void removeKeyListner(KeyListner keyListner) {
 		keyListners.remove(keyListner);
 	}
-	
+
 	public void addResizeListner(ResizeListner resizeListner) {
 		resizeNotifier.addListner(resizeListner);
 	}
@@ -225,10 +220,9 @@ public class Window implements Initializable, ResizeListner{
 	public int getHeight() {
 		return height;
 	}
-	
-	public Vector2ic getSize() {
-		return new Vector2i(width,  height);
-	}
 
+	public Vector2ic getSize() {
+		return new Vector2i(width, height);
+	}
 
 }

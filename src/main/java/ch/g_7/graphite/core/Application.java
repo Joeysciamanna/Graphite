@@ -51,9 +51,9 @@ public abstract class Application implements Runnable {
 			
 			initGame();
 			while (running && !window.windowShouldClose()) {
-				
-				dimension.render(window, camera);
 				window.update();
+				dimension.render(window, camera);
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
