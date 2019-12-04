@@ -1,6 +1,7 @@
 package ch.g_7.graphite.core.window;
 
+@FunctionalInterface
 public interface KeyListner {
 
-	public void onKeyPress(KeyAction action);
+	void onKeyPress(KeyAction action);
 }

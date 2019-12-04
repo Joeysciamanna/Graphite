@@ -28,6 +28,21 @@ public class Color {
 	public String toString() {
 		return "Color[" + r*256 +" "+ g*256 +" "+ b*256 +" "+ a*256 +"]";
 	}
+	
+	public void darker(int amount) {
+		this.r -= (amount / 256f);
+		this.g -= (amount / 256f);
+		this.b -= (amount / 256f);
+		this.a -= (amount / 256f);
+	}
+	
+	public void lighter(int amount) {
+		this.r += (amount / 256f);
+		this.g += (amount / 256f);
+		this.b += (amount / 256f);
+		this.a += (amount / 256f);
+	}
+	
 	public float getR() {
 		return r;
 	}
@@ -59,5 +74,6 @@ public class Color {
 	public void setA(float a) {
 		this.a = a;
 	}
+
 
 }

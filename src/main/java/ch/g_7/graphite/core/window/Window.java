@@ -10,6 +10,7 @@ import static org.lwjgl.glfw.GLFW.GLFW_RESIZABLE;
 import static org.lwjgl.glfw.GLFW.GLFW_VISIBLE;
 import static org.lwjgl.glfw.GLFW.glfwCreateWindow;
 import static org.lwjgl.glfw.GLFW.glfwDefaultWindowHints;
+import static org.lwjgl.glfw.GLFW.glfwGetCursorPos;
 import static org.lwjgl.glfw.GLFW.glfwGetKey;
 import static org.lwjgl.glfw.GLFW.glfwGetPrimaryMonitor;
 import static org.lwjgl.glfw.GLFW.glfwGetVideoMode;
@@ -19,6 +20,7 @@ import static org.lwjgl.glfw.GLFW.glfwMakeContextCurrent;
 import static org.lwjgl.glfw.GLFW.glfwPollEvents;
 import static org.lwjgl.glfw.GLFW.glfwSetFramebufferSizeCallback;
 import static org.lwjgl.glfw.GLFW.glfwSetKeyCallback;
+import static org.lwjgl.glfw.GLFW.glfwSetMouseButtonCallback;
 import static org.lwjgl.glfw.GLFW.glfwSetWindowPos;
 import static org.lwjgl.glfw.GLFW.glfwSetWindowPosCallback;
 import static org.lwjgl.glfw.GLFW.glfwShowWindow;
@@ -42,11 +44,13 @@ import static org.lwjgl.opengl.GL11.glEnable;
 import static org.lwjgl.opengl.GL11.glViewport;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
+import java.nio.DoubleBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.joml.Vector2i;
 import org.joml.Vector2ic;
+import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
@@ -62,8 +66,10 @@ public class Window implements Initializable, ResizeListner {
 	private final String title;
 
 	private List<KeyListner> keyListners;
-
 	private TaskInputBuffer<KeyAction> keyPressBuffer;
+
+	private List<MouseListner> mouseListners;
+	private TaskInputBuffer<MouseAction> mouseClickBuffer;
 
 	private long windowId;
 
@@ -81,6 +87,8 @@ public class Window implements Initializable, ResizeListner {
 		this.height = height;
 		keyListners = new ArrayList<>();
 		keyPressBuffer = new TaskInputBuffer<KeyAction>((i) -> keyListners.forEach((l) -> l.onKeyPress(i)));
+		mouseListners = new ArrayList<>();
+		mouseClickBuffer = new TaskInputBuffer<MouseAction>((i) -> mouseListners.forEach((l) -> l.onMouseClick(i)));
 		resizeNotifier = new ValueChangeNotifier<>();
 		resizeNotifier.addListner(this);
 	}
@@ -116,6 +124,13 @@ public class Window implements Initializable, ResizeListner {
 		glfwSetKeyCallback(windowId, (window, key, scancode, action, mods) -> keyPressBuffer
 				.add(new KeyAction(window, key, scancode, action, mods)));
 
+		glfwSetMouseButtonCallback(windowId, (long window, int button, int action, int mods) -> {
+			DoubleBuffer x = BufferUtils.createDoubleBuffer(1);
+			DoubleBuffer y = BufferUtils.createDoubleBuffer(1);
+			glfwGetCursorPos(windowId, x, y);
+			mouseClickBuffer.add(new MouseAction(window, button, action, mods, (int) x.get(), (int) y.get()));
+		});
+
 		glfwMakeContextCurrent(windowId);
 
 		GL.createCapabilities();
@@ -138,18 +153,21 @@ public class Window implements Initializable, ResizeListner {
 
 		glfwSwapBuffers(windowId);
 		glfwPollEvents();
-
+		
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 
 	public void pullEvents() {
-		keyPressBuffer.run(null);
+		keyPressBuffer.runSimple();
+		mouseClickBuffer.runSimple();
 	}
 
 	@Override
 	public void onResize(ResizeAction action) {
-		glViewport(0, 0, action.getWidth(), action.getHeight());
-		GLFW.glfwSetWindowSize(windowId, action.getWidth(), action.getHeight());
+		this.width = action.getWidth();
+		this.height = action.getHeight();
+		glViewport(0, 0, width, height);
+		GLFW.glfwSetWindowSize(windowId, width, height);
 	}
 
 	public void setSize(int width, int height) {
@@ -190,6 +208,14 @@ public class Window implements Initializable, ResizeListner {
 
 	public void removeKeyListner(KeyListner keyListner) {
 		keyListners.remove(keyListner);
+	}
+	
+	public void addMouseListner(MouseListner mouseListner) {
+		mouseListners.add(mouseListner);
+	}
+
+	public void removeMouseListner(MouseListner mouseListner) {
+		mouseListners.remove(mouseListner);
 	}
 
 	public void addResizeListner(ResizeListner resizeListner) {
