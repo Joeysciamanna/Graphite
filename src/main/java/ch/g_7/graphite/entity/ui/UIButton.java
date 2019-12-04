@@ -2,7 +2,7 @@ package ch.g_7.graphite.entity.ui;
 
 import org.lwjgl.glfw.GLFW;
 
-import ch.g_7.graphite.core.window.MouseAction;
+import ch.g_7.graphite.core.window.MouseEvent;
 import ch.g_7.graphite.core.window.MouseListner;
 import ch.g_7.util.task.Task;
 import ch.g_7.util.task.Task.VoidTask;
@@ -22,7 +22,7 @@ public class UIButton extends UIPanel implements IUIButton{
 		super.init();
 		getWindow().addMouseListner(new MouseListner() {
 			@Override
-			public void onMouseClick(MouseAction a) {
+			public void onMouseClick(MouseEvent a) {
 				if(UIButton.this.getPixelBounds().contains(a.getX(), a.getY())) {
 					buttonListner.run(new ButtonAction(a.getWindow(), UIButton.this, a.getButton(), a.getAction(), a.getMods(), a.getX(), a.getY()));
 				}

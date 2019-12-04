@@ -66,16 +66,16 @@ public class Window implements Initializable, ResizeListner {
 	private final String title;
 
 	private List<KeyListner> keyListners;
-	private TaskInputBuffer<KeyAction> keyPressBuffer;
+	private TaskInputBuffer<KeyEvent> keyPressBuffer;
 
 	private List<MouseListner> mouseListners;
-	private TaskInputBuffer<MouseAction> mouseClickBuffer;
+	private TaskInputBuffer<MouseEvent> mouseClickBuffer;
 
 	private long windowId;
 
 	private int width;
 	private int height;
-	private ValueChangeNotifier<ResizeAction> resizeNotifier;
+	private ValueChangeNotifier<ResizeEvent> resizeNotifier;
 
 	private int x;
 	private int y;
@@ -86,9 +86,9 @@ public class Window implements Initializable, ResizeListner {
 		this.width = width;
 		this.height = height;
 		keyListners = new ArrayList<>();
-		keyPressBuffer = new TaskInputBuffer<KeyAction>((i) -> keyListners.forEach((l) -> l.onKeyPress(i)));
+		keyPressBuffer = new TaskInputBuffer<KeyEvent>((i) -> keyListners.forEach((l) -> l.onKeyPress(i)));
 		mouseListners = new ArrayList<>();
-		mouseClickBuffer = new TaskInputBuffer<MouseAction>((i) -> mouseListners.forEach((l) -> l.onMouseClick(i)));
+		mouseClickBuffer = new TaskInputBuffer<MouseEvent>((i) -> mouseListners.forEach((l) -> l.onMouseClick(i)));
 		resizeNotifier = new ValueChangeNotifier<>();
 		resizeNotifier.addListner(this);
 	}
@@ -117,18 +117,18 @@ public class Window implements Initializable, ResizeListner {
 		}
 
 		glfwSetFramebufferSizeCallback(windowId,
-				(window, width, height) -> resizeNotifier.valueChanged(new ResizeAction(window, width, height)));
+				(window, width, height) -> resizeNotifier.valueChanged(new ResizeEvent(window, width, height)));
 
 		glfwSetWindowPosCallback(windowId, (window, x, y) -> setPosition(x, y));
 
 		glfwSetKeyCallback(windowId, (window, key, scancode, action, mods) -> keyPressBuffer
-				.add(new KeyAction(window, key, scancode, action, mods)));
+				.add(new KeyEvent(window, key, scancode, action, mods)));
 
 		glfwSetMouseButtonCallback(windowId, (long window, int button, int action, int mods) -> {
 			DoubleBuffer x = BufferUtils.createDoubleBuffer(1);
 			DoubleBuffer y = BufferUtils.createDoubleBuffer(1);
 			glfwGetCursorPos(windowId, x, y);
-			mouseClickBuffer.add(new MouseAction(window, button, action, mods, (int) x.get(), (int) y.get()));
+			mouseClickBuffer.add(new MouseEvent(window, button, action, mods, (int) x.get(), (int) y.get()));
 		});
 
 		glfwMakeContextCurrent(windowId);
@@ -163,7 +163,7 @@ public class Window implements Initializable, ResizeListner {
 	}
 
 	@Override
-	public void onResize(ResizeAction action) {
+	public void onResize(ResizeEvent action) {
 		this.width = action.getWidth();
 		this.height = action.getHeight();
 		glViewport(0, 0, width, height);
@@ -171,7 +171,7 @@ public class Window implements Initializable, ResizeListner {
 	}
 
 	public void setSize(int width, int height) {
-		resizeNotifier.valueChanged(new ResizeAction(windowId, width, height));
+		resizeNotifier.valueChanged(new ResizeEvent(windowId, width, height));
 	}
 
 	public void reposition() {

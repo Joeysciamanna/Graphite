@@ -1,6 +1,6 @@
 package ch.g_7.graphite.core.window;
 
-public class KeyAction {
+public class KeyEvent {
 	
 	private long window;
 	private int key;
@@ -10,7 +10,7 @@ public class KeyAction {
 	
 	
 	
-	public KeyAction(long window, int key, int scancode, int action, int mods) {
+	public KeyEvent(long window, int key, int scancode, int action, int mods) {
 		this.window = window;
 		this.key = key;
 		this.scancode = scancode;

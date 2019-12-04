@@ -1,13 +1,13 @@
 package ch.g_7.graphite.core.window;
 
-public class ResizeAction {
+public class ResizeEvent {
 
 	private long window;
 	private int width;
 	private int height;
 	
 	
-	public ResizeAction(long window, int width, int height) {
+	public ResizeEvent(long window, int width, int height) {
 		this.window = window;
 		this.width = width;
 		this.height = height;

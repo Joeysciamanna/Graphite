@@ -6,7 +6,7 @@ import org.joml.Vector2f;
 import org.joml.Vector2i;
 import org.joml.Vector2ic;
 
-import ch.g_7.graphite.core.window.ResizeAction;
+import ch.g_7.graphite.core.window.ResizeEvent;
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.entity.ui.util.ScreenDimension;
 
@@ -39,7 +39,7 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer{
 	
 
 	@Override
-	public void onResize(ResizeAction action) {
+	public void onResize(ResizeEvent action) {
 		CompletableFuture.runAsync(() -> {
 			recalculate(new Vector2i(action.getWidth(), action.getHeight()));
 		});

@@ -3,12 +3,12 @@ package ch.g_7.graphite.core.window;
 import ch.g_7.util.task.Task.VoidTask;
 
 @FunctionalInterface
-public interface ResizeListner extends VoidTask<ResizeAction>{
+public interface ResizeListner extends VoidTask<ResizeEvent>{
 
 	@Override
-	default void runVoid(ResizeAction action) {
+	default void runVoid(ResizeEvent action) {
 		onResize(action);
 	}
 	
-	void onResize(ResizeAction action);
+	void onResize(ResizeEvent action);
 }
