@@ -8,8 +8,11 @@ out vec4 fragColor;
 
 uniform sampler2D texture_sampler;
 
-void main()
-{
+void main(){
+
+	if(fragInColor.a == 0){
+		discard;
+	}
     fragColor = fragInColor;
 	if (fragInTextureEnabled == 1){
 		fragColor += texture(texture_sampler, fragInTexCoord);

@@ -35,13 +35,13 @@ public class Test extends Application {
 		UIRootContainer inventory = new UIRootContainer(getWindow());
 		getDimension().addObj(inventory, RenderClass.UI);
 		
-//		UIPanel panel2 = new UIPanel();
-//		panel2.getPreferedWidth().reset().addPF(50);
-//		panel2.getPreferedHeight().reset().addPF(50);
-//		panel2.getX().addPF(12.5f);
-//		panel2.getY().addPF(12.5f);
-//		panel2.setColor(new Color(255, 0, 0, 100));
-//		inventory.add(panel2);
+		UIPanel panel2 = new UIPanel();
+		panel2.getPreferedWidth().reset().addPF(50);
+		panel2.getPreferedHeight().reset().addPF(50);
+		panel2.getX().addPF(12.5f);
+		panel2.getY().addPF(12.5f);
+		panel2.setColor(new Color(255, 0, 0, 0));
+		inventory.add(panel2);
 		
 		DontCareLayoutPanel layoutPanel = new DontCareLayoutPanel();
 		layoutPanel.getPreferedWidth().reset().addPF(100);

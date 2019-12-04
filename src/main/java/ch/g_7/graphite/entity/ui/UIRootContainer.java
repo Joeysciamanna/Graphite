@@ -12,8 +12,6 @@ import ch.g_7.graphite.entity.ui.util.ScreenDimension;
 
 public class UIRootContainer extends UIContainer implements IUIRootContainer{
 
-	
-	
 	private Window window;
 	
 	public UIRootContainer(Window window) {
@@ -84,8 +82,5 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer{
 		recalculate();
 	}
 	
-	@Override
-	public float getLevel() {
-		return -0.5f;
-	}
+
 }

@@ -62,8 +62,14 @@ public class UIRenderer implements IRenderer<IUIRootContainer> {
 	
 	private void render(IUIPanel panel) {
 		
+		for (IUIPanel child : panel.getChilds()) {
+			if(child.isVisible()) {
+				render(child);
+			}
+		}
+		
 		// Set model view matrix for this item
-		modelViewMatrix.identity().translate(new Vector3f(panel.getPosition().x() - 1 , panel.getPosition().y()*-1 + 1, panel.getLevel())).scaleXY(panel.getSize().x(), panel.getSize().y());
+		modelViewMatrix.identity().translate(new Vector3f(panel.getPosition().x() - 1 , panel.getPosition().y()*-1 + 1, 0.9f)).scaleXY(panel.getSize().x(), panel.getSize().y());
 		shaderProgram.setModelViewMatrix(modelViewMatrix);
 
 		shaderProgram.setColor(panel.getColor());
@@ -92,11 +98,7 @@ public class UIRenderer implements IRenderer<IUIRootContainer> {
 			glBindVertexArray(0);
 		}
 		
-		for (IUIPanel child : panel.getChilds()) {
-			if(child.isVisible()) {
-				render(child);
-			}
-		}
+
 		
 
 	}

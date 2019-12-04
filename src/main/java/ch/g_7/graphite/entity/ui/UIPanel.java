@@ -24,7 +24,6 @@ public class UIPanel extends UIContainer implements IUIPanel {
 	protected final ScreenDimension preferedWidth;
 	protected final ScreenDimension preferedHeight;
 	
-	protected float level;
 
 	private boolean resized = true;
 	
@@ -206,17 +205,5 @@ public class UIPanel extends UIContainer implements IUIPanel {
 		resized = true;
 		return preferedHeight;
 	}
-
-
-	@Override
-	public void setLevel(float level) {
-		this.level = level;
-	}
-
-	@Override
-	public float getLevel() {
-		return level;
-	}
-
 
 }

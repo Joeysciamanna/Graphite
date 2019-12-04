@@ -45,7 +45,6 @@ public abstract class UIContainer implements IUIContainer{
 	
 	protected void add(IUIPanel panel) {
 		childs.add(panel);
-		panel.setLevel(getLevel() * 1.2f);
 		panel.setFather(this);
 		panel.init();
 	}

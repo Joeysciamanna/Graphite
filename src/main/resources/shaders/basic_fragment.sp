@@ -8,8 +8,8 @@ out vec4 fragColor;
 
 uniform sampler2D texture_sampler;
 
-void main()
-{
+void main(){
+
     fragColor = fragmentInColor;
     if (fragmentInTextureEnabled == 1){
 		fragColor += texture(texture_sampler, fragmentInTexCoord);

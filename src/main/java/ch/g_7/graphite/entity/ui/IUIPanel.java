@@ -42,8 +42,6 @@ public interface IUIPanel extends IUIContainer {
 	
 	ScreenDimension getPreferedWidth();
 	ScreenDimension getPreferedHeight();
-
-	void setLevel(float level);
 	
 
 }
