@@ -1,6 +1,5 @@
 package ch.g_7.graphite.entity.ui;
 
-import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,13 +83,6 @@ public abstract class UIContainer implements IUIContainer {
 		}
 	}
 
-	@Override
-	public Rectangle getPixelBounds() {
-		return new Rectangle((int) (position.x * getWindow().getWidth() / 2f),
-							 (int) (position.y * getWindow().getHeight() / 2f), 
-							 (int) (size.x * getWindow().getWidth() / 2f),
-							 (int) (size.y * getWindow().getHeight() / 2f));
-	}
 
 	@Override
 	public void init() {

@@ -1,18 +1,17 @@
 package ch.g_7.graphite.entity.ui;
 
-import ch.g_7.graphite.core.window.MouseEvent;
-import ch.g_7.util.task.Task;
+import java.awt.Rectangle;
 
-public interface IUIButton extends IUIPanel {
+import ch.g_7.graphite.entity.ui.util.UIMouseListner;
 
-	void addClickListner(Task<ButtonAction, Void> buttonListner);
+public interface IUIButton extends IUIPanel, UIMouseListner{
+
+	void addMouseListner(UIMouseListner mouseListner);
 	
-	void removeClickListner(Task<ButtonAction, Void> buttonListner);
+	void removeMouseListner(UIMouseListner mouseListner);
 
-	void clearClickListner();
-	
-	
-	
+	void clearMouseListners();
 
-
+	boolean contains(int x, int y);
+	
 }

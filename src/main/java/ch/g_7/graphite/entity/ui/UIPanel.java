@@ -166,6 +166,11 @@ public class UIPanel extends UIContainer implements IUIPanel {
 	}
 
 	@Override
+	public IUIRootContainer getRootContainer() {
+		return getFather() == null ? null : father.getRootContainer();
+	}
+	
+	@Override
 	public ScreenDimension getMaxWidth() {
 		resized = true;
 		return maxWidth;

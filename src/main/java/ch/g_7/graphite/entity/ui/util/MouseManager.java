@@ -1,63 +1,66 @@
 package ch.g_7.graphite.entity.ui.util;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map.Entry;
+import java.util.concurrent.CompletableFuture;
 
+import org.joml.Vector2i;
 import org.lwjgl.glfw.GLFW;
 
 import ch.g_7.graphite.core.window.MouseEvent;
 import ch.g_7.graphite.core.window.MouseListner;
-import ch.g_7.graphite.entity.ui.IUIPanel;
-import ch.g_7.util.task.Task;
+import ch.g_7.graphite.entity.ui.IUIButton;
 
-public class MouseManager implements MouseListner{
+public class MouseManager implements MouseListner {
 
-	private HashMap<IUIPanel, List<UIMouseListner>> listners;
-	
-	private HashMap<IUIPanel, List<UIMouseListner>> clickeds;
-	
-	
+	private List<IUIButton> buttons;
+	private List<IUIButton> clickeds;
+
 	public MouseManager() {
-		// TODO Auto-generated constructor stub
+		this.buttons = new ArrayList<>();
+		this.clickeds = new ArrayList<>();
 	}
-	
+
 	@Override
 	public void onMouseClick(MouseEvent e) {
-		
-		if(e.getAction() == GLFW.GLFW_RELEASE) {
-			for (Entry<IUIPanel, List<UIMouseListner>> clicked : clickeds.entrySet()) {
+		CompletableFuture.runAsync(() -> {
+
+			List<IUIButton> inRange = new ArrayList<>();
+			
+			for (IUIButton button : buttons) {
+
 				
-			}
-		}
-		
-		
-		for (Entry<IUIPanel, List<UIMouseListner>> entry : listners.entrySet()) {
-			if(entry.getKey().getPixelBounds().contains(e.getX(), e.getY())){
-				for (UIMouseListner listner : entry.getValue()) {
-					UIMouseEvent event = new UIMouseEvent(e, entry.getKey());
-					if(e.getAction() == GLFW.GLFW_PRESS) {
-						listner.onClick(event);
-						clickeds.add(event);
-					}else {
-						listner.onRelease(event);
+				if (button.contains(e.getX(), e.getY())) {
+					UIMouseEvent event = new UIMouseEvent(e, button, true);
+					if (e.getAction() == GLFW.GLFW_PRESS) {
+						System.out.println("CLICK 1");
+						button.onClick(event);
+						
+						clickeds.add(button);
+					} else {
+						button.onRelease(event);
+						inRange.add(button);
 					}
 				}
 			}
-		}
-		
+
+			if (e.getAction() == GLFW.GLFW_RELEASE) {
+				for (IUIButton button : clickeds) {
+					if (!inRange.contains(button)) {
+						UIMouseEvent event = new UIMouseEvent(e, button, false);
+						button.onRelease(event);
+					}
+				}
+				clickeds.clear();
+			}
+		});
 	}
 
-	
-	public void addClickListner(IUIPanel panel, UIMouseListner listner) {
-		if(listners.containsKey(panel)) {
-			listners.get(panel).add(listner);
-		}else {
-			List<UIMouseListner> list = new ArrayList<UIMouseListner>();
-			list.add(listner);
-			listners.put(panel, list);
-		}
+	public void addClickListner(IUIButton button) {
+		buttons.add(button);
 	}
-	
+
+	public void remove(IUIButton button) {
+		buttons.remove(button);
+	}
 }

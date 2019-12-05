@@ -8,18 +8,20 @@ import org.joml.Vector2ic;
 
 import ch.g_7.graphite.core.window.ResizeEvent;
 import ch.g_7.graphite.core.window.Window;
+import ch.g_7.graphite.entity.ui.util.MouseManager;
 import ch.g_7.graphite.entity.ui.util.ScreenDimension;
 
 public class UIRootContainer extends UIContainer implements IUIRootContainer{
 
 	private Window window;
+	private MouseManager mouseManager;
 	
 	public UIRootContainer(Window window) {
 		this.window = window;
 		this.window.addResizeListner(this);
 		this.width.addPW(100);
 		this.height.addPW(100);
-		
+		this.mouseManager = new MouseManager();
 	}
 	
 	@Override
@@ -45,7 +47,12 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer{
 		});
 	}
 	
-
+	@Override
+	public void init() {
+		recalculate();
+		window.addMouseListner(mouseManager);
+	}
+	
 	@Override
 	public void add(IUIPanel panel) {
 		super.add(panel);
@@ -78,9 +85,11 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer{
 	}
 
 	@Override
-	public void init() {
-		recalculate();
+	public IUIRootContainer getRootContainer() {
+		return this;
 	}
-	
 
+	public MouseManager getMouseManager() {
+		return mouseManager;
+	}
 }

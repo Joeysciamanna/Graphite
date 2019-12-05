@@ -1,6 +1,5 @@
 package ch.g_7.graphite.entity.ui;
 
-import java.awt.Rectangle;
 import java.util.List;
 
 import org.joml.Vector2fc;
@@ -24,8 +23,6 @@ public interface IUIContainer extends Renderable {
 
 	Window getWindow();
 	
-	Rectangle getPixelBounds();
-	
 	ScreenDimension getWidth();
 	ScreenDimension getHeight();
 	Vector2fc getSize();
@@ -34,4 +31,5 @@ public interface IUIContainer extends Renderable {
 	ScreenDimension getY();
 	Vector2fc getPosition();
 	
+	IUIRootContainer getRootContainer();
 }

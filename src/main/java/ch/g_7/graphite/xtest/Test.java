@@ -1,15 +1,12 @@
 package ch.g_7.graphite.xtest;
 
 import org.joml.Vector3f;
-import org.lwjgl.glfw.GLFW;
 
 import ch.g_7.graphite.core.Application;
 import ch.g_7.graphite.entity.mesh.AbstractMesh;
 import ch.g_7.graphite.entity.mesh.MeshBuilder;
 import ch.g_7.graphite.entity.mesh.MeshFactory;
 import ch.g_7.graphite.entity.object.BasicObject;
-import ch.g_7.graphite.entity.ui.IUIButton;
-import ch.g_7.graphite.entity.ui.IUIButton.ButtonAction;
 import ch.g_7.graphite.entity.ui.UIButton;
 import ch.g_7.graphite.entity.ui.UIPanel;
 import ch.g_7.graphite.entity.ui.UIRootContainer;
@@ -17,8 +14,6 @@ import ch.g_7.graphite.entity.ui.layout.DontCareLayoutPanel;
 import ch.g_7.graphite.entity.viewmodel.BasicViewModel;
 import ch.g_7.graphite.rendering.RenderClass;
 import ch.g_7.graphite.util.Color;
-import ch.g_7.util.task.Task;
-import ch.g_7.util.task.Task.VoidTask;
 
 public class Test extends Application {
 

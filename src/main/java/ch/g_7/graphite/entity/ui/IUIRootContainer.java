@@ -1,6 +1,7 @@
 package ch.g_7.graphite.entity.ui;
 
 import ch.g_7.graphite.core.window.ResizeListner;
+import ch.g_7.graphite.entity.ui.util.MouseManager;
 
 public interface IUIRootContainer extends IUIContainer, ResizeListner {
 
@@ -10,5 +11,6 @@ public interface IUIRootContainer extends IUIContainer, ResizeListner {
 	
 	void clear();
 	
+	MouseManager getMouseManager();
 
 }
