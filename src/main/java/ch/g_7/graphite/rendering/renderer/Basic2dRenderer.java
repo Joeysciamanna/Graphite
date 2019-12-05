@@ -21,7 +21,7 @@ import ch.g_7.graphite.entity.object.IObject;
 import ch.g_7.graphite.rendering.Dimension;
 import ch.g_7.graphite.rendering.shaderprogram.BasicShaderProgram;
 
-public class BasicRenderer implements IRenderer<IObject> {
+public class Basic2dRenderer implements IRenderer<IObject> {
 
 	private BasicShaderProgram shaderProgram;
 
@@ -29,7 +29,7 @@ public class BasicRenderer implements IRenderer<IObject> {
 
 	private Matrix4f modelViewMatrix;
 
-	public BasicRenderer() {
+	public Basic2dRenderer() {
 		shaderProgram = new BasicShaderProgram();
 		viewMatrix = new Matrix4f();
 		modelViewMatrix = new Matrix4f();

@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>ch.g_7</groupId>
-	<artifactId>Graphite</artifactId>
+	<artifactId>graphite</artifactId>
 	<version>0.0.1</version>
 	<packaging>jar</packaging>
 

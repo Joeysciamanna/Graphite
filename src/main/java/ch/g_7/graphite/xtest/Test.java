@@ -71,12 +71,12 @@ public class Test extends Application {
 		BasicViewModel viewModel1 = new BasicViewModel(new Color(255, 155, 0, 100), mesh1);
 		BasicObject object1 = new BasicObject(viewModel1, new Vector3f());
 		object1.setPosition(new Vector3f(0, 0, 0.9f));
-		getDimension().addObj(object1, RenderClass.BASIC_GAME_OBJECTS);
+		getDimension().addObj(object1, RenderClass.BASIC_2D_OBJECTS);
 		
 		AbstractMesh mesh2 = MeshFactory.getSquare(1).setCenter(MeshBuilder.CENTER_TOP_LEFT).build();
 		BasicViewModel viewModel2 = new BasicViewModel(new Color(0, 155, 0, 100), mesh2);
 		BasicObject object2 = new BasicObject(viewModel2, new Vector3f());
-		getDimension().addObj(object2, RenderClass.BASIC_GAME_OBJECTS);
+		getDimension().addObj(object2, RenderClass.BASIC_2D_OBJECTS);
 		
 	
 		getWindow().setVisible(true);

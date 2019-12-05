@@ -9,7 +9,7 @@ import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.entity.object.IObject;
 import ch.g_7.graphite.entity.ui.IUIRootContainer;
-import ch.g_7.graphite.rendering.renderer.BasicRenderer;
+import ch.g_7.graphite.rendering.renderer.Basic2dRenderer;
 import ch.g_7.graphite.rendering.renderer.IRenderer;
 import ch.g_7.graphite.rendering.renderer.UIRenderer;
 import ch.g_7.util.stuff.Initializable;
@@ -18,11 +18,11 @@ public class RenderClass<T extends Renderable> implements Initializable, AutoClo
 	
 	private static final Map<String, RenderClass<?>> RENDER_CLASSES = new HashMap<>();
 	
-	public static final RenderClass<IObject> BASIC_GAME_OBJECTS;
+	public static final RenderClass<IObject> BASIC_2D_OBJECTS;
 	public static final RenderClass<IUIRootContainer> UI;
 	
 	static {
-		BASIC_GAME_OBJECTS = create(new BasicRenderer(), "BASIC_GAME_OBJECTS");
+		BASIC_2D_OBJECTS = create(new Basic2dRenderer(), "BASIC_2D_OBJECTS");
 		UI = create(new UIRenderer(), "UI_PANELS");
 	}
 	
