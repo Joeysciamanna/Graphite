@@ -98,9 +98,6 @@ public class UIRenderer implements IRenderer<IUIRootContainer> {
 			glBindVertexArray(0);
 		}
 		
-
-		
-
 	}
 
 	@Override
