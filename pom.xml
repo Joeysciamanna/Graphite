@@ -133,8 +133,8 @@
 	<distributionManagement>
 		<repository>
 			<id>rp-w1</id>
-			<url>ftp://192.168.1.107:21/</url>
-			<!-- <url>ftp://ftp.g-7.ch:1002/</url> -->
+<!-- 			<url>ftp://192.168.1.107:21/</url> -->
+			<url>ftp://ftp.g-7.ch:1002/</url>
 		</repository>
 	</distributionManagement>
 
