@@ -2,26 +2,18 @@ package ch.g_7.graphite.core.window;
 
 public class KeyEvent {
 	
-	private long window;
 	private int key;
 	private int scancode;
 	private int action; 
 	private int mods;
 	
-	
-	
-	public KeyEvent(long window, int key, int scancode, int action, int mods) {
-		this.window = window;
+	public KeyEvent(int key, int scancode, int action, int mods) {
 		this.key = key;
 		this.scancode = scancode;
 		this.action = action;
 		this.mods = mods;
 	}
 
-	
-	public long getWindow() {
-		return window;
-	}
 	
 	public int getKey() {
 		return key;

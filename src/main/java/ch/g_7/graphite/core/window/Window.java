@@ -122,13 +122,13 @@ public class Window implements Initializable, ResizeListner {
 		glfwSetWindowPosCallback(windowId, (window, x, y) -> setPosition(x, y));
 
 		glfwSetKeyCallback(windowId, (window, key, scancode, action, mods) -> keyPressBuffer
-				.add(new KeyEvent(window, key, scancode, action, mods)));
+				.add(new KeyEvent(key, scancode, action, mods)));
 
 		glfwSetMouseButtonCallback(windowId, (long window, int button, int action, int mods) -> {
 			DoubleBuffer x = BufferUtils.createDoubleBuffer(1);
 			DoubleBuffer y = BufferUtils.createDoubleBuffer(1);
 			glfwGetCursorPos(windowId, x, y);
-			mouseClickBuffer.add(new MouseEvent(window, button, action, mods, (int) x.get(), (int) y.get()));
+			mouseClickBuffer.add(new MouseEvent(button, action, mods, (int) x.get(), (int) y.get()));
 		});
 
 		glfwMakeContextCurrent(windowId);

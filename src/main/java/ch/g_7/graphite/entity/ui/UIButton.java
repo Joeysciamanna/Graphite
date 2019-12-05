@@ -34,16 +34,16 @@ public class UIButton extends UIPanel implements IUIButton{
 		super.init();
 		getRootContainer().getMouseManager().addClickListner(this);
 		addMouseListner(new UIMouseListner(){
+			private boolean clicked;
 			@Override
 			public void onClick(UIMouseEvent e) {
-				System.out.println("darker");
+				clicked = true;
 				e.getButtonPanel().getColor().darker(10);
 			}
 			@Override
 			public void onRelease(UIMouseEvent e) {
-				System.out.println("lighter");
-			
-				e.getButtonPanel().getColor().lighter(10);
+				if (clicked) e.getButtonPanel().getColor().lighter(10);
+				clicked = false;
 			}
 		});
 	}

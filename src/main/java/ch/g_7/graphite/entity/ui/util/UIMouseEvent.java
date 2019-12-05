@@ -10,7 +10,7 @@ public class UIMouseEvent extends MouseEvent {
 	
 	
 	public UIMouseEvent(MouseEvent event, IUIButton buttonPanel, boolean fromLocalSource) {
-		super(event.getWindow(), event.getButton(), event.getAction(), event.getMods(), event.getX(), event.getY());
+		super(event.getButton(), event.getAction(), event.getMods(), event.getX(), event.getY());
 		this.buttonPanel = buttonPanel;
 		this.fromLocalSource = fromLocalSource;
 	}

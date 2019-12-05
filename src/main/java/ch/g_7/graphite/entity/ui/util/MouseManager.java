@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-import org.joml.Vector2i;
 import org.lwjgl.glfw.GLFW;
 
 import ch.g_7.graphite.core.window.MouseEvent;
@@ -26,16 +25,13 @@ public class MouseManager implements MouseListner {
 		CompletableFuture.runAsync(() -> {
 
 			List<IUIButton> inRange = new ArrayList<>();
-			
+
 			for (IUIButton button : buttons) {
 
-				
 				if (button.contains(e.getX(), e.getY())) {
 					UIMouseEvent event = new UIMouseEvent(e, button, true);
 					if (e.getAction() == GLFW.GLFW_PRESS) {
-						System.out.println("CLICK 1");
 						button.onClick(event);
-						
 						clickeds.add(button);
 					} else {
 						button.onRelease(event);

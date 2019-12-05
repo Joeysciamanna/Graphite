@@ -2,7 +2,6 @@ package ch.g_7.graphite.core.window;
 
 public class MouseEvent {
 
-	private long window;
 	private int button;
 	private int action;
 	private int mods;
@@ -10,8 +9,7 @@ public class MouseEvent {
 	private int x;
 	private int y;
 
-	public MouseEvent(long window, int button, int action, int mods, int x, int y) {
-		this.window = window;
+	public MouseEvent(int button, int action, int mods, int x, int y) {
 		this.button = button;
 		this.action = action;
 		this.mods = mods;
@@ -19,9 +17,6 @@ public class MouseEvent {
 		this.y = y;
 	}
 
-	public long getWindow() {
-		return window;
-	}
 
 	public int getButton() {
 		return button;
