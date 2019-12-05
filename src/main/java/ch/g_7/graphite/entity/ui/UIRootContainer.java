@@ -13,15 +13,15 @@ import ch.g_7.graphite.entity.ui.util.ScreenDimension;
 
 public class UIRootContainer extends UIContainer implements IUIRootContainer{
 
-	private Window window;
-	private MouseManager mouseManager;
+	private final Window window;
+	private final MouseManager mouseManager;
 	
 	public UIRootContainer(Window window) {
 		this.window = window;
 		this.window.addResizeListner(this);
 		this.width.addPW(100);
 		this.height.addPW(100);
-		this.mouseManager = new MouseManager();
+		this.mouseManager = new MouseManager(window);
 	}
 	
 	@Override

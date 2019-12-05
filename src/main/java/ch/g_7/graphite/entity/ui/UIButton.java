@@ -1,6 +1,5 @@
 package ch.g_7.graphite.entity.ui;
 
-import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,18 +14,13 @@ public class UIButton extends UIPanel implements IUIButton{
 	public UIButton() {
 		this.mouseListners = new ArrayList<UIMouseListner>();
 	}
-	
-	private Rectangle getPixelBounds() {
-		return new Rectangle((int) (position.x * getWindow().getWidth() / 2f),
-							 (int) (position.y * getWindow().getHeight() / 2f), 
-							 (int) (size.x * getWindow().getWidth() / 2f),
-							 (int) (size.y * getWindow().getHeight() / 2f));
-	}
-
 
 	@Override
-	public boolean contains(int x, int y) {
-		return getPixelBounds().contains(x, y);
+	public boolean contains(float x, float y) {
+		return position.x < x && 
+			   position.y < y &&
+			   size.x + position.x > x &&
+			   size.y + position.y > y;
 	}
 	
 	@Override

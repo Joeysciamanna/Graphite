@@ -10,6 +10,6 @@ public interface IUIButton extends IUIPanel, UIMouseListner{
 
 	void clearMouseListners();
 
-	boolean contains(int x, int y);
+	boolean contains(float x, float y);
 	
 }
