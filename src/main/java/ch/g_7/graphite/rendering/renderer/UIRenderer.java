@@ -1,108 +1,57 @@
 package ch.g_7.graphite.rendering.renderer;
 
-import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
-import static org.lwjgl.opengl.GL11.GL_TRIANGLES;
-import static org.lwjgl.opengl.GL11.GL_UNSIGNED_INT;
-import static org.lwjgl.opengl.GL11.glBindTexture;
-import static org.lwjgl.opengl.GL11.glDrawElements;
-import static org.lwjgl.opengl.GL13.GL_TEXTURE0;
-import static org.lwjgl.opengl.GL13.glActiveTexture;
-import static org.lwjgl.opengl.GL20.glDisableVertexAttribArray;
-import static org.lwjgl.opengl.GL20.glEnableVertexAttribArray;
-import static org.lwjgl.opengl.GL30.glBindVertexArray;
-
 import java.util.List;
 
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
+import ch.g_7.graphite.base.ui.IUIPanel;
+import ch.g_7.graphite.base.ui.IUIRootContainer;
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
-import ch.g_7.graphite.entity.ui.IUIPanel;
-import ch.g_7.graphite.entity.ui.IUIRootContainer;
-import ch.g_7.graphite.rendering.Dimension;
+import ch.g_7.graphite.rendering.ITransformation;
 import ch.g_7.graphite.rendering.shaderprogram.UIShaderProgram;
 
-public class UIRenderer implements IRenderer<IUIRootContainer> {
+public class UIRenderer extends BasicRenderer<UIShaderProgram, IUIRootContainer> implements ITransformation<IUIPanel> {
 
-	private UIShaderProgram shaderProgram;
-	
-	private Matrix4f modelViewMatrix;
+	private Matrix4f viewMatrix;
 
 	public UIRenderer() {
-		shaderProgram = new UIShaderProgram();
-		modelViewMatrix = new Matrix4f();
+		super(new UIShaderProgram());
+		viewMatrix = new Matrix4f();
 	}
 
 	@Override
-	public void init() {
-		shaderProgram.init();
-	}
-
-	@Override
-	public void render(List<IUIRootContainer> renderables, Dimension dimension, Window window, Camera camera) {
-
-		
-		shaderProgram.bind();
-
-		shaderProgram.setTextureSampler(0);
-
-		// Render each gameItem
+	protected void renderAll(List<IUIRootContainer> renderables) {
 		for (IUIRootContainer container : renderables) {
-			if(container.isVisible()) {
+			if (container.isVisible()) {
 				for (IUIPanel panel : container.getChilds()) {
-					render(panel);
+					renderPanel(panel, this);
 				}
 			}
 		}
-
-		shaderProgram.unbind();
 	}
-	
-	
-	private void render(IUIPanel panel) {
-		
-		for (IUIPanel child : panel.getChilds()) {
-			if(child.isVisible()) {
-				render(child);
+
+	protected void renderPanel(IUIPanel r, ITransformation<IUIPanel> transformation) {
+
+		for (IUIPanel child : r.getChilds()) {
+			if (child.isVisible()) {
+				renderPanel(child, transformation);
 			}
 		}
-		
-		// Set model view matrix for this item
-		modelViewMatrix.identity().translate(new Vector3f(panel.getPosition().x() - 1 , panel.getPosition().y()*-1 + 1, 0.9f)).scaleXY(panel.getSize().x(), panel.getSize().y());
-		shaderProgram.setModelViewMatrix(modelViewMatrix);
 
-		shaderProgram.setColor(panel.getColor());
-
-		if (panel.getTexture() != null) {
-			// Render the mes for this game item
-			// Activate firs texture bank
-			glActiveTexture(GL_TEXTURE0);
-			// Bind the texture
-			glBindTexture(GL_TEXTURE_2D, panel.getTexture().getId());
-			shaderProgram.setTextureEnabled(true);
-		}else {
-			shaderProgram.setTextureEnabled(false);
-		}
-		// Draw the mesh
-		glBindVertexArray(panel.getMesh().getVaoId());
-		glEnableVertexAttribArray(0);
-		glEnableVertexAttribArray(1);
-
-		glDrawElements(GL_TRIANGLES, panel.getMesh().getVertexCount(), GL_UNSIGNED_INT, 0);
-
-		if (panel.getTexture() != null) {
-			// Restore state
-			glDisableVertexAttribArray(0);
-			glDisableVertexAttribArray(1);
-			glBindVertexArray(0);
-		}
-		
+		super.render(r, transformation);
 	}
 
 	@Override
-	public void close() {
-		shaderProgram.close();
+	protected void prepareTransformation(Window window, Camera camera) {}
+
+	@Override
+	public Matrix4f getViewMatrix(IUIPanel panel) {
+		return viewMatrix.identity()
+						  .translate(new Vector3f(panel.getPosition().x() - 1 , panel.getPosition().y()*-1 + 1, -1))
+						  .scaleXY(panel.getSize().x(), panel.getSize().y());
+
 	}
 
 }

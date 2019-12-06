@@ -2,16 +2,15 @@ package ch.g_7.graphite.xtest;
 
 import org.joml.Vector3f;
 
+import ch.g_7.graphite.base.entity.BasicEntity;
+import ch.g_7.graphite.base.mesh.AbstractMesh;
+import ch.g_7.graphite.base.mesh.MeshBuilder;
+import ch.g_7.graphite.base.mesh.MeshFactory;
+import ch.g_7.graphite.base.ui.UIButton;
+import ch.g_7.graphite.base.ui.UIPanel;
+import ch.g_7.graphite.base.ui.UIRootContainer;
+import ch.g_7.graphite.base.ui.layout.DontCareLayoutPanel;
 import ch.g_7.graphite.core.Application;
-import ch.g_7.graphite.entity.mesh.AbstractMesh;
-import ch.g_7.graphite.entity.mesh.MeshBuilder;
-import ch.g_7.graphite.entity.mesh.MeshFactory;
-import ch.g_7.graphite.entity.object.BasicObject;
-import ch.g_7.graphite.entity.ui.UIButton;
-import ch.g_7.graphite.entity.ui.UIPanel;
-import ch.g_7.graphite.entity.ui.UIRootContainer;
-import ch.g_7.graphite.entity.ui.layout.DontCareLayoutPanel;
-import ch.g_7.graphite.entity.viewmodel.BasicViewModel;
 import ch.g_7.graphite.rendering.RenderClass;
 import ch.g_7.graphite.util.Color;
 
@@ -31,7 +30,7 @@ public class Test extends Application {
 	
 	protected void initGame() {
 		
-		getWindow().setBackgroundColor(new Color(0, 0, 0, 255));
+		getWindow().setBackgroundColor(new Color(0, 0, 0, 0));
 		
 		UIRootContainer inventory = new UIRootContainer(getWindow());
 		getDimension().addObj(inventory, RenderClass.UI);
@@ -53,7 +52,7 @@ public class Test extends Application {
 		UIButton panel1 = new UIButton();
 		panel1.getPreferedWidth().reset().addPF(25);
 		panel1.getPreferedHeight().reset().addPF(50);
-		panel1.setColor(new Color(0, 255, 0, 50));
+		panel1.setColor(new Color(0, 255, 0, 100));
 		panel1.getX().addPF(12.5f);
 		panel1.getY().addPF(12.5f);
 		layoutPanel.add(panel1);
@@ -68,15 +67,19 @@ public class Test extends Application {
 		
 		
 		AbstractMesh mesh1 = MeshFactory.getSquare(1).setCenter(MeshBuilder.CENTER_MIDDLE).build();
-		BasicViewModel viewModel1 = new BasicViewModel(new Color(255, 155, 0, 100), mesh1);
-		BasicObject object1 = new BasicObject(viewModel1, new Vector3f());
-		object1.setPosition(new Vector3f(0, 0, 0.9f));
-		getDimension().addObj(object1, RenderClass.BASIC_2D_OBJECTS);
+		BasicEntity entity1 = new BasicEntity();
+		entity1.setColor(new Color(255, 0, 0, 100));
+		entity1.setMesh(mesh1);
+		entity1.setPosition(new Vector3f(0, 0, 0f));
+		getDimension().addObj(entity1, RenderClass.ENTITIES);
+		
 		
 		AbstractMesh mesh2 = MeshFactory.getSquare(1).setCenter(MeshBuilder.CENTER_TOP_LEFT).build();
-		BasicViewModel viewModel2 = new BasicViewModel(new Color(0, 155, 0, 100), mesh2);
-		BasicObject object2 = new BasicObject(viewModel2, new Vector3f());
-		getDimension().addObj(object2, RenderClass.BASIC_2D_OBJECTS);
+		BasicEntity entity2 = new BasicEntity();
+		entity2.setColor(new Color(255, 255, 0, 100));
+		entity2.setMesh(mesh2);
+		entity2.setPosition(new Vector3f(0, 0, -0.2f));
+		getDimension().addObj(entity2, RenderClass.ENTITIES);
 		
 	
 		getWindow().setVisible(true);

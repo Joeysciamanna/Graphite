@@ -1,0 +1,49 @@
+package ch.g_7.graphite.rendering.renderer;
+
+import java.util.List;
+
+import org.joml.Matrix4f;
+import org.joml.Vector3f;
+
+import ch.g_7.graphite.base.entity.IEntity;
+import ch.g_7.graphite.core.Camera;
+import ch.g_7.graphite.core.window.Window;
+import ch.g_7.graphite.rendering.ITransformation;
+import ch.g_7.graphite.rendering.shaderprogram.EntityShaderProgram;
+
+public class EntityRenderer extends BasicRenderer<EntityShaderProgram, IEntity> implements ITransformation<IEntity>{
+
+	private Matrix4f viewMatrix;
+	
+	
+	public EntityRenderer() {
+		super(new EntityShaderProgram());
+		viewMatrix = new Matrix4f();
+	}
+	
+	
+	@Override
+	protected void renderAll(List<IEntity> renderables) {
+		for (IEntity entity : renderables) {
+			render(entity, this);
+		}
+	}
+	
+	
+	@Override
+	protected void prepareTransformation(Window window, Camera camera) {
+		viewMatrix.identity();
+		viewMatrix.translate((float) -camera.getPosition().x(), (float) -camera.getPosition().y(),
+				(float) -camera.getPosition().z());
+	}
+	
+	
+
+	@Override
+	public Matrix4f getViewMatrix(IEntity r) {
+		Matrix4f viewCurr = new Matrix4f(viewMatrix);
+		return viewCurr.translate(r.getPosition()).rotateXYZ(new Vector3f(r.getRotation())).scale(r.getScale());
+	}
+	
+
+}

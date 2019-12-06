@@ -8,8 +8,8 @@ import ch.g_7.graphite.util.Color;
 public class BasicShaderProgram extends AbstractShaderProgram{
 
 
-	public BasicShaderProgram()  {
-		super("shaders/basic_vertex.sp", "shaders/basic_fragment.sp");
+	public BasicShaderProgram(String vertexCodePath, String fragmentCodePath) {
+		super(vertexCodePath, fragmentCodePath);
 	}
 
 	@Override

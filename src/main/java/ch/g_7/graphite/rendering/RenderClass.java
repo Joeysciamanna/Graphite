@@ -5,11 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import ch.g_7.graphite.base.entity.IEntity;
+import ch.g_7.graphite.base.ui.IUIRootContainer;
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
-import ch.g_7.graphite.entity.object.IObject;
-import ch.g_7.graphite.entity.ui.IUIRootContainer;
-import ch.g_7.graphite.rendering.renderer.Basic2dRenderer;
+import ch.g_7.graphite.rendering.renderer.EntityRenderer;
 import ch.g_7.graphite.rendering.renderer.IRenderer;
 import ch.g_7.graphite.rendering.renderer.UIRenderer;
 import ch.g_7.util.stuff.Initializable;
@@ -18,11 +18,11 @@ public class RenderClass<T extends Renderable> implements Initializable, AutoClo
 	
 	private static final Map<String, RenderClass<?>> RENDER_CLASSES = new HashMap<>();
 	
-	public static final RenderClass<IObject> BASIC_2D_OBJECTS;
+	public static final RenderClass<IEntity> ENTITIES;
 	public static final RenderClass<IUIRootContainer> UI;
 	
 	static {
-		BASIC_2D_OBJECTS = create(new Basic2dRenderer(), "BASIC_2D_OBJECTS");
+		ENTITIES = create(new EntityRenderer(), "ENTITIES");
 		UI = create(new UIRenderer(), "UI_PANELS");
 	}
 	
@@ -65,7 +65,7 @@ public class RenderClass<T extends Renderable> implements Initializable, AutoClo
 	}
 	
 	public void render(Dimension dimension, Window window, Camera camera) {
-		renderer.render(renderables, dimension, window, camera);
+		renderer.render(this, dimension, window, camera);
 	}
 
 	@Override
