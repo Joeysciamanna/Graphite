@@ -16,6 +16,8 @@ public class UIRenderer extends BasicRenderer<UIShaderProgram, IUIRootContainer>
 
 	private Matrix4f viewMatrix;
 
+	private IUIPanel panel;
+	
 	public UIRenderer() {
 		super(new UIShaderProgram());
 		viewMatrix = new Matrix4f();
@@ -34,20 +36,27 @@ public class UIRenderer extends BasicRenderer<UIShaderProgram, IUIRootContainer>
 
 	protected void renderPanel(IUIPanel r, ITransformation<IUIPanel> transformation) {
 
+		super.render(r, transformation);
+		
 		for (IUIPanel child : r.getChilds()) {
 			if (child.isVisible()) {
 				renderPanel(child, transformation);
 			}
 		}
 
-		super.render(r, transformation);
+
 	}
 
-	@Override
-	protected void prepareTransformation(Window window, Camera camera) {}
 
+	
 	@Override
-	public Matrix4f getViewMatrix(IUIPanel panel) {
+	public void prepareFor(IUIPanel r) {
+		this.panel = r;
+	}
+
+	
+	@Override
+	public Matrix4f getViewMatrix() {
 		return viewMatrix.identity()
 						  .translate(new Vector3f(panel.getPosition().x() - 1 , panel.getPosition().y()*-1 + 1, -1))
 						  .scaleXY(panel.getSize().x(), panel.getSize().y());

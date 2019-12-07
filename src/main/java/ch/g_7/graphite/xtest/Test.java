@@ -40,13 +40,13 @@ public class Test extends Application {
 		panel2.getPreferedHeight().reset().addPF(50);
 		panel2.getX().addPF(12.5f);
 		panel2.getY().addPF(12.5f);
-		panel2.setColor(new Color(255, 0, 0, 0));
+		panel2.setColor(new Color(0, 0, 0, 0));
 		inventory.add(panel2);
 		
 		DontCareLayoutPanel layoutPanel = new DontCareLayoutPanel();
 		layoutPanel.getPreferedWidth().reset().addPF(100);
 		layoutPanel.getPreferedHeight().reset().addPF(50);
-		layoutPanel.setColor(new Color(200, 0, 55, 100));
+		layoutPanel.setColor(new Color(255, 0, 0, 255));
 		inventory.add(layoutPanel);
 		
 		UIButton panel1 = new UIButton();

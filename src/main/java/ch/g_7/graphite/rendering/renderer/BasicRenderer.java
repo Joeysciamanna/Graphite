@@ -49,8 +49,9 @@ public abstract class BasicRenderer<S extends BasicShaderProgram, R extends Rend
 	protected <T extends BasicRenderable> void render(T r, ITransformation<T> transformation) {
 		// Set model view matrix for this item
 
+		transformation.prepareFor(r);
 		
-		Matrix4f modelViewMatrix = transformation.getViewMatrix(r);
+		Matrix4f modelViewMatrix = transformation.getViewMatrix();
 //					
 //					Matrix4f viewCurr = new Matrix4f(viewMatrix);
 //					modelViewMatrix = viewCurr.mul(object.getModelViewMatrix());//TODO CHANGE
@@ -93,7 +94,7 @@ public abstract class BasicRenderer<S extends BasicShaderProgram, R extends Rend
 		shaderProgram.setTextureSampler(0);
 	}
 
-	protected abstract void prepareTransformation(Window window, Camera camera);
+	protected void prepareTransformation(Window window, Camera camera) {};
 	
 
 //	transformation.setCamera(camera);

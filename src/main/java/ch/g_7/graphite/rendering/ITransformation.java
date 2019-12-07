@@ -4,8 +4,8 @@ import org.joml.Matrix4f;
 
 public interface ITransformation<R extends Renderable> {
 
-	void setRenderable(R r);
+	void prepareFor(R r);
 	
-	Matrix4f getViewMatrix(R r);
+	Matrix4f getViewMatrix();
 
 }

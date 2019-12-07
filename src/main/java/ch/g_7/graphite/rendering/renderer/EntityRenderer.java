@@ -15,6 +15,7 @@ public class EntityRenderer extends BasicRenderer<EntityShaderProgram, IEntity> 
 
 	private Matrix4f viewMatrix;
 	
+	private IEntity entity;
 	
 	public EntityRenderer() {
 		super(new EntityShaderProgram());
@@ -38,11 +39,15 @@ public class EntityRenderer extends BasicRenderer<EntityShaderProgram, IEntity> 
 	}
 	
 	
+	@Override
+	public void prepareFor(IEntity r) {
+		this.entity = r;
+	}
 
 	@Override
-	public Matrix4f getViewMatrix(IEntity r) {
+	public Matrix4f getViewMatrix() {
 		Matrix4f viewCurr = new Matrix4f(viewMatrix);
-		return viewCurr.translate(r.getPosition()).rotateXYZ(new Vector3f(r.getRotation())).scale(r.getScale());
+		return viewCurr.translate(entity.getPosition()).rotateXYZ(new Vector3f(entity.getRotation())).scale(entity.getScale());
 	}
 	
 
