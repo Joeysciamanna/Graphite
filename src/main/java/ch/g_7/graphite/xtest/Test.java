@@ -30,7 +30,6 @@ public class Test extends Application {
 	
 	protected void initGame() {
 		
-		getWindow().setBackgroundColor(new Color(0, 0, 0, 0));
 		
 		UIRootContainer inventory = new UIRootContainer(getWindow());
 		getDimension().addObj(inventory, RenderClass.UI);
@@ -40,19 +39,19 @@ public class Test extends Application {
 		panel2.getPreferedHeight().reset().addPF(50);
 		panel2.getX().addPF(12.5f);
 		panel2.getY().addPF(12.5f);
-		panel2.setColor(new Color(0, 0, 0, 0));
+		panel2.setColor(Color.getColor(0, 0, 0, 0));
 		inventory.add(panel2);
 		
 		DontCareLayoutPanel layoutPanel = new DontCareLayoutPanel();
 		layoutPanel.getPreferedWidth().reset().addPF(100);
 		layoutPanel.getPreferedHeight().reset().addPF(50);
-		layoutPanel.setColor(new Color(255, 0, 0, 255));
+		layoutPanel.setColor(Color.getColor(255, 0, 0));
 		inventory.add(layoutPanel);
 		
 		UIButton panel1 = new UIButton();
 		panel1.getPreferedWidth().reset().addPF(25);
 		panel1.getPreferedHeight().reset().addPF(50);
-		panel1.setColor(new Color(0, 255, 0, 100));
+		panel1.setColor(Color.getColor(255, 255, 0));
 		panel1.getX().addPF(12.5f);
 		panel1.getY().addPF(12.5f);
 		layoutPanel.add(panel1);
@@ -68,7 +67,7 @@ public class Test extends Application {
 		
 		AbstractMesh mesh1 = MeshFactory.getSquare(1).setCenter(MeshBuilder.CENTER_MIDDLE).build();
 		BasicEntity entity1 = new BasicEntity();
-		entity1.setColor(new Color(255, 0, 0, 100));
+		entity1.setColor(Color.getColor(255, 0, 0, 100));
 		entity1.setMesh(mesh1);
 		entity1.setPosition(new Vector3f(0, 0, 0f));
 		getDimension().addObj(entity1, RenderClass.ENTITIES);
@@ -76,7 +75,7 @@ public class Test extends Application {
 		
 		AbstractMesh mesh2 = MeshFactory.getSquare(1).setCenter(MeshBuilder.CENTER_TOP_LEFT).build();
 		BasicEntity entity2 = new BasicEntity();
-		entity2.setColor(new Color(255, 255, 0, 100));
+		entity2.setColor(Color.getColor(255, 255, 0, 100));
 		entity2.setMesh(mesh2);
 		entity2.setPosition(new Vector3f(0, 0, -0.2f));
 		getDimension().addObj(entity2, RenderClass.ENTITIES);

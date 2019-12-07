@@ -1,46 +1,50 @@
 package ch.g_7.graphite.util;
 
+import org.joml.Vector4f;
+import org.joml.Vector4fc;
+
 public class Color {
 
-	float r,g,b,a;
+	int r,g,b,a;
 	
-	
-	
-	public Color(java.awt.Color color) {
-		this(color.getRed(),color.getGreen(),color.getBlue(),color.getAlpha());
-	}
-	
-	public Color(int r, int g, int b, int a) {
-		this.r = (float)(r)/256;
-		this.g = (float)(g)/256;
-		this.b = (float)(b)/256;
-		this.a = (float)(a)/256;
-	}
-	
-	public Color(float r, float g, float b, float a) {
+	private Color(int r, int g, int b, int a) {
 		this.r = r;
 		this.g = g;
 		this.b = b;
 		this.a = a;
 	}
 	
+	public static Color getColor(int r, int g, int b, int a) {
+		return new Color(r, g, b, a);
+	}
+	
+	public static Color getColor(int r, int g, int b) {
+		return new Color(r, g, b, 255);
+	}
+	
+	public static Color getColor(Vector4fc vector) {
+		return new Color((int) (vector.x() * 255f),(int) (vector.y()  * 255f),(int) (vector.z() * 255f),(int) (vector.w() * 255f));
+	}
+	
+	public Vector4f toVector() {
+		return new Vector4f(r / 255f, g / 255f, b / 255f, a / 255f);
+	}
+	
 	@Override
 	public String toString() {
-		return "Color[" + r*256 +" "+ g*256 +" "+ b*256 +" "+ a*256 +"]";
+		return "Color[" + r +" "+ g +" "+ b +" "+ a +"]";
 	}
 	
 	public void darker(int amount) {
-		this.r -= (amount / 256f);
-		this.g -= (amount / 256f);
-		this.b -= (amount / 256f);
-		this.a -= (amount / 256f);
+		this.r -= amount;
+		this.g -= amount;
+		this.b -= amount;
 	}
 	
 	public void lighter(int amount) {
-		this.r += (amount / 256f);
-		this.g += (amount / 256f);
-		this.b += (amount / 256f);
-		this.a += (amount / 256f);
+		this.r += amount;
+		this.g += amount;
+		this.b += amount;
 	}
 	
 	public float getR() {
@@ -59,19 +63,19 @@ public class Color {
 		return a;
 	}
 	
-	public void setR(float r) {
+	public void setR(int r) {
 		this.r = r;
 	}
 	
-	public void setG(float g) {
+	public void setG(int g) {
 		this.g = g;
 	}
 	
-	public void setB(float b) {
+	public void setB(int b) {
 		this.b = b;
 	}
 	
-	public void setA(float a) {
+	public void setA(int a) {
 		this.a = a;
 	}
 

@@ -30,7 +30,7 @@ public class BasicShaderProgram extends AbstractShaderProgram{
 	}
 	
 	public void setColor(Color value) {
-		setUniform("color", new Vector4f(value.getR(), value.getG(), value.getB(), value.getA()));
+		setUniform("color", value.toVector());
 	}
 	
 	public void setTextureEnabled(boolean value) {

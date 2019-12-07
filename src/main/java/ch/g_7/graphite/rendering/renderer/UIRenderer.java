@@ -35,16 +35,14 @@ public class UIRenderer extends BasicRenderer<UIShaderProgram, IUIRootContainer>
 	}
 
 	protected void renderPanel(IUIPanel r, ITransformation<IUIPanel> transformation) {
-
-		super.render(r, transformation);
-		
+	
 		for (IUIPanel child : r.getChilds()) {
 			if (child.isVisible()) {
 				renderPanel(child, transformation);
 			}
 		}
 
-
+		super.render(r, transformation);
 	}
 
 
