@@ -30,6 +30,7 @@ public final class Dimension implements AutoCloseable {
 	
 	public void remove(RenderClass<?> renderClass) {
 		renderClasses.remove(renderClass);
+		renderClass.close();
 	}
 	
 	public void render(Window window, Camera camera) {
