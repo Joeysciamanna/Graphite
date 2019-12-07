@@ -7,8 +7,6 @@ import org.joml.Vector3f;
 
 import ch.g_7.graphite.base.ui.IUIPanel;
 import ch.g_7.graphite.base.ui.IUIRootContainer;
-import ch.g_7.graphite.core.Camera;
-import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.rendering.ITransformation;
 import ch.g_7.graphite.rendering.shaderprogram.UIShaderProgram;
 

@@ -1,7 +1,6 @@
 package ch.g_7.graphite.rendering.shaderprogram;
 
 import org.joml.Matrix4f;
-import org.joml.Vector4f;
 
 import ch.g_7.graphite.util.Color;
 

@@ -47,31 +47,25 @@ public abstract class BasicRenderer<S extends BasicShaderProgram, R extends Rend
 	protected abstract void renderAll(List<R> renderables);
 
 	protected <T extends BasicRenderable> void render(T r, ITransformation<T> transformation) {
-		// Set model view matrix for this item
 
 		transformation.prepareFor(r);
 		
 		Matrix4f modelViewMatrix = transformation.getViewMatrix();
-//					
-//					Matrix4f viewCurr = new Matrix4f(viewMatrix);
-//					modelViewMatrix = viewCurr.mul(object.getModelViewMatrix());//TODO CHANGE
 
 		shaderProgram.setModelViewMatrix(modelViewMatrix);
 
 		shaderProgram.setColor(r.getColor());
 
 		if (r.getTexture() != null) {
-			// Render the mes for this game item
-			// Activate firs texture bank
+
 			glActiveTexture(GL_TEXTURE0);
-			// Bind the texture
 			glBindTexture(GL_TEXTURE_2D, r.getTexture().getId());
 
 			shaderProgram.setTextureEnabled(true);
 		} else {
 			shaderProgram.setTextureEnabled(false);
 		}
-		// Draw the mesh
+
 		glBindVertexArray(r.getMesh().getVaoId());
 		glEnableVertexAttribArray(0);
 		glEnableVertexAttribArray(1);
@@ -85,20 +79,11 @@ public abstract class BasicRenderer<S extends BasicShaderProgram, R extends Rend
 
 	protected void before(RenderClass<R> renderClass, Dimension dimension, Window window, Camera camera) {
 		shaderProgram.bind();
-
 		prepareTransformation(window, camera);
-//		viewMatrix.identity();
-//		viewMatrix.translate((float) -camera.getPosition().x(), (float) -camera.getPosition().y(),
-//				(float) -camera.getPosition().z());
-
 		shaderProgram.setTextureSampler(0);
 	}
 
 	protected void prepareTransformation(Window window, Camera camera) {};
-	
-
-//	transformation.setCamera(camera);
-//	transformation.setWindow(window);
 	
 	protected void after(RenderClass<R> renderClass, Dimension dimension, Window window, Camera camera) {
 		shaderProgram.unbind();
