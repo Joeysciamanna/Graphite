@@ -71,6 +71,8 @@ public abstract class AbstractEntity implements IEntity {
 	}
 
 	@Override
-	public void init() {}
+	public void init() {
+		mesh.init();
+	}
 
 }
