@@ -32,7 +32,7 @@ public class RenderClass<T extends Renderable> implements Initializable, AutoClo
 	private IRenderer<T> renderer;
 	private String name;
 	
-	private RenderClass(IRenderer<T> renderer, String name, int size) {
+	public RenderClass(IRenderer<T> renderer, String name, int size) {
 		this.renderables = new ArrayList<>(size);
 		this.renderer = renderer;
 		this.name = name;
