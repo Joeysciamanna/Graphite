@@ -68,7 +68,7 @@ public abstract class AbstractMesh implements IMesh {
 	
 	@Override
 	public Vector3fc getMinPoint() {
-		if (maxPoint == null) {
+		if (minPoint == null) {
 			float minX = Integer.MAX_VALUE;
 			float minY = Integer.MAX_VALUE;
 			float minZ = Integer.MAX_VALUE;
