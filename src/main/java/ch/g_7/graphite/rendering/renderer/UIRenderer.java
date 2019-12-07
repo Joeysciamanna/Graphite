@@ -1,15 +1,16 @@
 package ch.g_7.graphite.rendering.renderer;
 
+import java.util.List;
+
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
 import ch.g_7.graphite.base.ui.IUIPanel;
 import ch.g_7.graphite.base.ui.IUIRootContainer;
 import ch.g_7.graphite.rendering.ITransformation;
-import ch.g_7.graphite.rendering.RenderClass;
 import ch.g_7.graphite.rendering.shaderprogram.UIShaderProgram;
 
-public class UIRenderer extends BasicRenderer<UIShaderProgram, IUIRootContainer, RenderClass<IUIRootContainer>> implements ITransformation<IUIPanel> {
+public class UIRenderer extends BasicRenderer<UIShaderProgram, IUIRootContainer> implements ITransformation<IUIPanel> {
 
 	private Matrix4f viewMatrix;
 
@@ -21,8 +22,8 @@ public class UIRenderer extends BasicRenderer<UIShaderProgram, IUIRootContainer,
 	}
 
 	@Override
-	protected void renderAll(RenderClass<IUIRootContainer> renderClass) {
-		for (IUIRootContainer container : renderClass.getAll()) {
+	protected void renderAll(List<IUIRootContainer> renderables) {
+		for (IUIRootContainer container : renderables) {
 			if (container.isVisible()) {
 				for (IUIPanel panel : container.getChilds()) {
 					renderPanel(panel, this);

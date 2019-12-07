@@ -20,11 +20,10 @@ import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.rendering.BasicRenderable;
 import ch.g_7.graphite.rendering.Dimension;
 import ch.g_7.graphite.rendering.ITransformation;
-import ch.g_7.graphite.rendering.RenderClass;
 import ch.g_7.graphite.rendering.Renderable;
 import ch.g_7.graphite.rendering.shaderprogram.BasicShaderProgram;
 
-public abstract class BasicRenderer<S extends BasicShaderProgram, R extends Renderable, C extends RenderClass<R>> implements IRenderer<C> {
+public abstract class BasicRenderer<S extends BasicShaderProgram, R extends Renderable> implements IRenderer<R> {
 
 	protected S shaderProgram;
 
@@ -34,7 +33,7 @@ public abstract class BasicRenderer<S extends BasicShaderProgram, R extends Rend
 
 
 	@Override
-	public void render(C renderClass, Dimension dimension, Window window, Camera camera) {
+	public void render(List<R> renderClass, Dimension dimension, Window window, Camera camera) {
 		
 		before(renderClass, dimension, window, camera);
 		
@@ -44,7 +43,7 @@ public abstract class BasicRenderer<S extends BasicShaderProgram, R extends Rend
 	}
 	
 	
-	protected abstract void renderAll(C renderClass);
+	protected abstract void renderAll(List<R> renderables);
 
 	protected <T extends BasicRenderable> void render(T r, ITransformation<T> transformation) {
 
@@ -77,7 +76,7 @@ public abstract class BasicRenderer<S extends BasicShaderProgram, R extends Rend
 		glBindVertexArray(0);
 	}
 
-	protected void before(C renderClass, Dimension dimension, Window window, Camera camera) {
+	protected void before(List<R> renderClass, Dimension dimension, Window window, Camera camera) {
 		shaderProgram.bind();
 		prepareTransformation(window, camera);
 		shaderProgram.setTextureSampler(0);
@@ -85,7 +84,7 @@ public abstract class BasicRenderer<S extends BasicShaderProgram, R extends Rend
 
 	protected void prepareTransformation(Window window, Camera camera) {};
 	
-	protected void after(C renderClass, Dimension dimension, Window window, Camera camera) {
+	protected void after(List<R> renderClass, Dimension dimension, Window window, Camera camera) {
 		shaderProgram.unbind();
 	}
 

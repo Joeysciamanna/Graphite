@@ -29,10 +29,10 @@ public class RenderClass<T extends Renderable> implements Initializable, AutoClo
 
 	
 	private List<T> renderables;
-	private IRenderer<RenderClass<T>> renderer;
+	private IRenderer<T> renderer;
 	private String name;
 	
-	public RenderClass(IRenderer<RenderClass<T>> renderer, String name, int size) {
+	public RenderClass(IRenderer<T> renderer, String name, int size) {
 		this.renderables = new ArrayList<>(size);
 		this.renderer = renderer;
 		this.name = name;
@@ -51,7 +51,7 @@ public class RenderClass<T extends Renderable> implements Initializable, AutoClo
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static <T extends Renderable>  RenderClass<T> create(IRenderer<RenderClass<T>> renderer, String name, int size) {
+	public static <T extends Renderable>  RenderClass<T> create(IRenderer<T> renderer, String name, int size) {
 		if(RENDER_CLASSES.containsKey(name)) {
 			return (RenderClass<T>) RENDER_CLASSES.get(name);
 		}
@@ -60,12 +60,12 @@ public class RenderClass<T extends Renderable> implements Initializable, AutoClo
 		return renderClass;
 	}
 	
-	public static <T extends Renderable> RenderClass<T> create(IRenderer<RenderClass<T>> renderer, String name) {
+	public static <T extends Renderable> RenderClass<T> create(IRenderer<T> renderer, String name) {
 		return create(renderer, name, 20);
 	}
 	
 	public void render(Dimension dimension, Window window, Camera camera) {
-		renderer.render(this, dimension, window, camera);
+		renderer.render(renderables, dimension, window, camera);
 	}
 
 	@Override
