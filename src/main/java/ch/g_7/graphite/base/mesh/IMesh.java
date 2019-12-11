@@ -11,16 +11,21 @@ import ch.g_7.util.stuff.Initializable;
 //TODO Pleas remake the Mesh System, its stupdi
 public interface IMesh extends Initializable, Closeable{
 
-	List<Vector3fc> getPoints();
+	
+	List<Vector3fc> getVertices();
+	
+	int getVerticesCount();
 	
 	Vector3fc getMaxPoint();
 	
 	Vector3fc getMinPoint();
 	
+	int getVaoId();
+	
+	
 	@Override
     void close();
 
-	int getVaoId();
 
-	int getVertexCount();
+
 }
