@@ -3,9 +3,9 @@ package ch.g_7.graphite.xtest;
 import org.joml.Vector3f;
 
 import ch.g_7.graphite.base.entity.BasicEntity;
-import ch.g_7.graphite.base.mesh2d.AbstractMesh;
-import ch.g_7.graphite.base.mesh2d.MeshBuilder2d;
-import ch.g_7.graphite.base.mesh2d.MeshFactory2d;
+import ch.g_7.graphite.base.mesh.AbstractMesh;
+import ch.g_7.graphite.base.mesh.MeshBuilder2d;
+import ch.g_7.graphite.base.mesh.MeshFactory2d;
 import ch.g_7.graphite.base.ui.UIButton;
 import ch.g_7.graphite.base.ui.UIPanel;
 import ch.g_7.graphite.base.ui.UIRootContainer;

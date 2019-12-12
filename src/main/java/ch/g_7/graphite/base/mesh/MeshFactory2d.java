@@ -1,4 +1,4 @@
-package ch.g_7.graphite.base.mesh2d;
+package ch.g_7.graphite.base.mesh;
 
 public final class MeshFactory2d {
 

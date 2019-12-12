@@ -3,9 +3,9 @@ package ch.g_7.graphite.base.ui;
 import org.joml.Vector2fc;
 import org.joml.Vector2ic;
 
-import ch.g_7.graphite.base.mesh2d.AbstractMesh;
-import ch.g_7.graphite.base.mesh2d.MeshBuilder2d;
-import ch.g_7.graphite.base.mesh2d.MeshFactory2d;
+import ch.g_7.graphite.base.mesh.AbstractMesh;
+import ch.g_7.graphite.base.mesh.MeshBuilder2d;
+import ch.g_7.graphite.base.mesh.MeshFactory2d;
 import ch.g_7.graphite.base.texture.Texture;
 import ch.g_7.graphite.base.ui.util.ScreenDimension;
 import ch.g_7.graphite.core.window.Window;

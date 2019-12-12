@@ -1,4 +1,4 @@
-package ch.g_7.graphite.base.mesh2d;
+package ch.g_7.graphite.base.mesh;
 
 import java.io.Closeable;
 
