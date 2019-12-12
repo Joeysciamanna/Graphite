@@ -2,8 +2,8 @@ package ch.g_7.graphite.xtest;
 
 import org.joml.Vector3f;
 
-import ch.g_7.graphite.base.entity.BasicEntity;
-import ch.g_7.graphite.base.mesh.AbstractMesh;
+import ch.g_7.graphite.base.entity2d.BasicEntity;
+import ch.g_7.graphite.base.mesh.IMesh2d;
 import ch.g_7.graphite.base.mesh.MeshBuilder2d;
 import ch.g_7.graphite.base.mesh.MeshFactory2d;
 import ch.g_7.graphite.base.ui.UIButton;
@@ -65,20 +65,20 @@ public class Test extends Application {
 		
 
 		
-		AbstractMesh mesh1 = MeshFactory2d.getSquare(1).setCenter(MeshBuilder2d.CENTER_MIDDLE).build();
+		IMesh2d mesh1 = MeshFactory2d.getSquare(1).setCenter(MeshBuilder2d.CENTER_MIDDLE).build();
 		BasicEntity entity1 = new BasicEntity();
 		entity1.setColor(Color.getColor(255, 0, 0));
 		entity1.setMesh(mesh1);
 		entity1.setPosition(new Vector3f(0, 0, 0f));
-		getDimension().addObj(entity1, RenderClass.ENTITIES);
+		getDimension().addObj(entity1, RenderClass.ENTITIES_2D);
 		
 		
-		AbstractMesh mesh2 = MeshFactory2d.getSquare(1).setCenter(MeshBuilder2d.CENTER_MIDDLE).build();
+		IMesh2d mesh2 = MeshFactory2d.getSquare(1).setCenter(MeshBuilder2d.CENTER_MIDDLE).build();
 		BasicEntity entity2 = new BasicEntity();
 		entity2.setColor(Color.getColor(255, 255, 0));
 		entity2.setMesh(mesh2);
 		entity2.setPosition(new Vector3f(0, 0, -0.2f));
-		getDimension().addObj(entity2, RenderClass.ENTITIES);
+		getDimension().addObj(entity2, RenderClass.ENTITIES_2D);
 		
 	
 		getWindow().setVisible(true);

@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import ch.g_7.graphite.base.entity.IEntity;
+import ch.g_7.graphite.base.entity2d.IEntity;
 import ch.g_7.graphite.base.ui.IUIRootContainer;
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
@@ -18,11 +18,11 @@ public class RenderClass<T extends Renderable> implements Initializable, AutoClo
 	
 	private static final Map<String, RenderClass<?>> RENDER_CLASSES = new HashMap<>();
 	
-	public static final RenderClass<IEntity> ENTITIES;
+	public static final RenderClass<IEntity> ENTITIES_2D;
 	public static final RenderClass<IUIRootContainer> UI;
 	
 	static {
-		ENTITIES = create(new EntityRenderer(), "ENTITIES");
+		ENTITIES_2D = create(new EntityRenderer(), "ENTITIES");
 		UI = create(new UIRenderer(), "UI_PANELS");
 	}
 	

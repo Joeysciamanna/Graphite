@@ -10,7 +10,7 @@ import ch.g_7.graphite.base.ui.IUIRootContainer;
 import ch.g_7.graphite.rendering.ITransformation;
 import ch.g_7.graphite.rendering.shaderprogram.UIShaderProgram;
 
-public class UIRenderer extends BasicRenderer<UIShaderProgram, IUIRootContainer> implements ITransformation<IUIPanel> {
+public class UIRenderer extends Basic2dRenderer<UIShaderProgram, IUIRootContainer> implements ITransformation<IUIPanel> {
 
 	private Matrix4f viewMatrix;
 

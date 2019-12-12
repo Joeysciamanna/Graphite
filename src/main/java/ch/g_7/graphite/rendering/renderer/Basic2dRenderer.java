@@ -15,17 +15,17 @@ import org.joml.Matrix4f;
 import ch.g_7.graphite.base.vao.VAO;
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
-import ch.g_7.graphite.rendering.BasicRenderable;
+import ch.g_7.graphite.rendering.Basic2dRenderable;
 import ch.g_7.graphite.rendering.Dimension;
 import ch.g_7.graphite.rendering.ITransformation;
 import ch.g_7.graphite.rendering.Renderable;
 import ch.g_7.graphite.rendering.shaderprogram.BasicShaderProgram;
 
-public abstract class BasicRenderer<S extends BasicShaderProgram, R extends Renderable> implements IRenderer<R> {
+public abstract class Basic2dRenderer<S extends BasicShaderProgram, R extends Renderable> implements IRenderer<R> {
 
 	protected S shaderProgram;
 
-	public BasicRenderer(S shaderProgram) {
+	public Basic2dRenderer(S shaderProgram) {
 		this.shaderProgram = shaderProgram;
 	}
 
@@ -43,7 +43,7 @@ public abstract class BasicRenderer<S extends BasicShaderProgram, R extends Rend
 	
 	protected abstract void renderAll(List<R> renderables);
 
-	protected <T extends BasicRenderable> void render(T r, ITransformation<T> transformation) {
+	protected <T extends Basic2dRenderable> void render(T r, ITransformation<T> transformation) {
 
 		transformation.prepareFor(r);
 		

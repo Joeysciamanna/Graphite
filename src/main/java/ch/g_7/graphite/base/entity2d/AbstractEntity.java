@@ -1,15 +1,15 @@
-package ch.g_7.graphite.base.entity;
+package ch.g_7.graphite.base.entity2d;
 
 import org.joml.Vector3f;
 import org.joml.Vector3fc;
 
-import ch.g_7.graphite.base.mesh.IMesh;
+import ch.g_7.graphite.base.mesh.IMesh2d;
 import ch.g_7.graphite.base.texture.Texture;
 import ch.g_7.graphite.util.Color;
 
 public abstract class AbstractEntity implements IEntity {
 
-	protected IMesh mesh;
+	protected IMesh2d mesh;
 	protected Texture texture;
 	protected Color color;
 	protected Vector3f position;
@@ -17,7 +17,7 @@ public abstract class AbstractEntity implements IEntity {
 	protected float scale;
 	
 	
-	public AbstractEntity(IMesh mesh, Texture texture, Color color, Vector3f position, Vector3f rotation, float scale) {
+	public AbstractEntity(IMesh2d mesh, Texture texture, Color color, Vector3f position, Vector3f rotation, float scale) {
 		this.mesh = mesh;
 		this.texture = texture;
 		this.color = color;
@@ -58,7 +58,7 @@ public abstract class AbstractEntity implements IEntity {
 	}
 	
 	@Override
-	public IMesh getMesh() {
+	public IMesh2d getMesh() {
 		return mesh;
 	}
 	

@@ -5,13 +5,13 @@ import java.util.List;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
-import ch.g_7.graphite.base.entity.IEntity;
+import ch.g_7.graphite.base.entity2d.IEntity;
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.rendering.ITransformation;
 import ch.g_7.graphite.rendering.shaderprogram.EntityShaderProgram;
 
-public class EntityRenderer extends BasicRenderer<EntityShaderProgram, IEntity> implements ITransformation<IEntity>{
+public class EntityRenderer extends Basic2dRenderer<EntityShaderProgram, IEntity> implements ITransformation<IEntity>{
 
 	private Matrix4f viewMatrix;
 	

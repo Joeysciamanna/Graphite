@@ -4,6 +4,7 @@ import org.joml.Vector2fc;
 import org.joml.Vector2ic;
 
 import ch.g_7.graphite.base.mesh.AbstractMesh;
+import ch.g_7.graphite.base.mesh.IMesh2d;
 import ch.g_7.graphite.base.mesh.MeshBuilder2d;
 import ch.g_7.graphite.base.mesh.MeshFactory2d;
 import ch.g_7.graphite.base.texture.Texture;
@@ -13,7 +14,7 @@ import ch.g_7.graphite.util.Color;
 
 public class UIPanel extends UIContainer implements IUIPanel {
 
-	private static AbstractMesh SQUARE_MESH;
+	private static IMesh2d SQUARE_MESH;
 	
 	protected final ScreenDimension maxWidth;
 	protected final ScreenDimension maxHeight;
@@ -136,7 +137,7 @@ public class UIPanel extends UIContainer implements IUIPanel {
 	}
 	
 	@Override
-	public AbstractMesh getMesh() {
+	public IMesh2d getMesh() {
 		return SQUARE_MESH;
 	}
 

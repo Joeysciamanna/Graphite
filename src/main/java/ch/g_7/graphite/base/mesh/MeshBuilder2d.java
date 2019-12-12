@@ -103,7 +103,7 @@ public class MeshBuilder2d {
 	 * It works, don't touch it!!
 	 * @return
 	 */
-	public AbstractMesh build() {
+	public IMesh2d build() {
 		float[] positions = new float[points.size() * 2];
 		for (int i = 0; i < points.size(); i++) {
 			positions[i * 2 + 0] = (float) points.get(i).x;
@@ -136,7 +136,7 @@ public class MeshBuilder2d {
 		}
 		
 		
-		return new BasicMesh(positions, realIndices, positions, BasicMesh.DIMENSION_2D);							
+		return new BasicMesh2d(positions, realIndices, positions);							
 	}
 
 	private int fitIndex(int index, int from, int to) {
