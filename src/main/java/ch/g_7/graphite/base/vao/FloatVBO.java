@@ -14,7 +14,7 @@ public class FloatVBO extends VBO {
 	
 	protected float[] floats;
 	
-	public FloatVBO(VBOType type, float[] floats) {
+	protected FloatVBO(VBOType type, float[] floats) {
 		super(type);
 		this.floats = floats;
 		if(type.glNumber != GL11.GL_FLOAT) {
@@ -29,6 +29,7 @@ public class FloatVBO extends VBO {
 		glBindBuffer(type.glBufferTarget, getId());
 		glBufferData(type.glBufferTarget, indicesBuffer, GL_STATIC_DRAW);
 		glVertexAttribPointer(vao.nextIndex(), type.size, type.glNumber , false, 0, 0);
+		MemoryUtil.memFree(indicesBuffer);
 		floats = null;
 	}
 

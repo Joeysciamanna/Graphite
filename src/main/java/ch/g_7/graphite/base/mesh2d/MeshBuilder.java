@@ -1,4 +1,4 @@
-package ch.g_7.graphite.base.mesh;
+package ch.g_7.graphite.base.mesh2d;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,11 +104,10 @@ public class MeshBuilder {
 	 * @return
 	 */
 	public AbstractMesh build() {
-		float[] positions = new float[points.size() * 3];
+		float[] positions = new float[points.size() * 2];
 		for (int i = 0; i < points.size(); i++) {
-			positions[i * 3 + 0] = (float) points.get(i).x;
-			positions[i * 3 + 1] = (float) points.get(i).y;
-			positions[i * 3 + 2] = 0;
+			positions[i * 2 + 0] = (float) points.get(i).x;
+			positions[i * 2 + 1] = (float) points.get(i).y;
 		}
 
 		List<Integer> indices = new ArrayList<>(((points.size() - 2) * 3));
@@ -137,7 +136,7 @@ public class MeshBuilder {
 		}
 		
 		
-		return new BasicMesh(positions, realIndices);
+		return new BasicMesh(positions, realIndices, positions);							
 	}
 
 	private int fitIndex(int index, int from, int to) {

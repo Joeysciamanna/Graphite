@@ -1,6 +1,6 @@
-package ch.g_7.graphite.base.mesh;
+package ch.g_7.graphite.base.mesh2d;
 
-public class MeshFactory {
+public final class MeshFactory {
 
 	
 	public static MeshBuilder getRegular(int corners, float side) {

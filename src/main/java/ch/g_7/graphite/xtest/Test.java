@@ -3,9 +3,9 @@ package ch.g_7.graphite.xtest;
 import org.joml.Vector3f;
 
 import ch.g_7.graphite.base.entity.BasicEntity;
-import ch.g_7.graphite.base.mesh.AbstractMesh;
-import ch.g_7.graphite.base.mesh.MeshBuilder;
-import ch.g_7.graphite.base.mesh.MeshFactory;
+import ch.g_7.graphite.base.mesh2d.AbstractMesh;
+import ch.g_7.graphite.base.mesh2d.MeshBuilder;
+import ch.g_7.graphite.base.mesh2d.MeshFactory;
 import ch.g_7.graphite.base.ui.UIButton;
 import ch.g_7.graphite.base.ui.UIPanel;
 import ch.g_7.graphite.base.ui.UIRootContainer;
@@ -51,7 +51,7 @@ public class Test extends Application {
 		UIButton panel1 = new UIButton();
 		panel1.getPreferedWidth().reset().addPF(25);
 		panel1.getPreferedHeight().reset().addPF(50);
-		panel1.setColor(Color.getColor(255, 255, 0));
+		panel1.setColor(Color.getColor(100, 100, 0, 100));
 		panel1.getX().addPF(12.5f);
 		panel1.getY().addPF(12.5f);
 		layoutPanel.add(panel1);
@@ -63,19 +63,19 @@ public class Test extends Application {
 		
 
 		
-		
+
 		
 		AbstractMesh mesh1 = MeshFactory.getSquare(1).setCenter(MeshBuilder.CENTER_MIDDLE).build();
 		BasicEntity entity1 = new BasicEntity();
-		entity1.setColor(Color.getColor(255, 0, 0, 100));
+		entity1.setColor(Color.getColor(255, 0, 0));
 		entity1.setMesh(mesh1);
 		entity1.setPosition(new Vector3f(0, 0, 0f));
 		getDimension().addObj(entity1, RenderClass.ENTITIES);
 		
 		
-		AbstractMesh mesh2 = MeshFactory.getSquare(1).setCenter(MeshBuilder.CENTER_TOP_LEFT).build();
+		AbstractMesh mesh2 = MeshFactory.getSquare(1).setCenter(MeshBuilder.CENTER_MIDDLE).build();
 		BasicEntity entity2 = new BasicEntity();
-		entity2.setColor(Color.getColor(255, 255, 0, 100));
+		entity2.setColor(Color.getColor(255, 255, 0));
 		entity2.setMesh(mesh2);
 		entity2.setPosition(new Vector3f(0, 0, -0.2f));
 		getDimension().addObj(entity2, RenderClass.ENTITIES);

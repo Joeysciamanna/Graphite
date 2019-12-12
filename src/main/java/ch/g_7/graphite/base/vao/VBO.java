@@ -36,6 +36,6 @@ public abstract class VBO implements Closeable {
 	public void close() {
 		glDeleteBuffers(id);
 	}
-	
+
 
 }

@@ -20,7 +20,7 @@ public class MouseManager implements MouseListner {
 	public MouseManager(Window window) {
 		this.buttons = new ArrayList<>();
 		this.clickeds = new ArrayList<>();
-		this.window  = window;
+		this.window = window;
 	}
 
 	@Override
@@ -29,15 +29,13 @@ public class MouseManager implements MouseListner {
 
 			UIMouseEvent event = new UIMouseEvent(e.getButton(), e.getMods(), e.getX() * 2f / window.getWidth(), e.getY() * 2f / window.getHeight());
 			List<IUIButton> inRange = new ArrayList<>();
-			
+
 			event.setFromLocalSource(true);
 			for (IUIButton button : buttons) {
 				if (button.contains(event.getX(), event.getY())) {
 					event.setButtonPanel(button);
 					if (e.getAction() == GLFW.GLFW_PRESS) {
-						
-	
-						
+
 						button.onClick(event);
 						clickeds.add(button);
 					} else {

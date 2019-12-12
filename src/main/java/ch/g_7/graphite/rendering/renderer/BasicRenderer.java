@@ -7,14 +7,12 @@ import static org.lwjgl.opengl.GL11.glBindTexture;
 import static org.lwjgl.opengl.GL11.glDrawElements;
 import static org.lwjgl.opengl.GL13.GL_TEXTURE0;
 import static org.lwjgl.opengl.GL13.glActiveTexture;
-import static org.lwjgl.opengl.GL20.glDisableVertexAttribArray;
-import static org.lwjgl.opengl.GL20.glEnableVertexAttribArray;
-import static org.lwjgl.opengl.GL30.glBindVertexArray;
 
 import java.util.List;
 
 import org.joml.Matrix4f;
 
+import ch.g_7.graphite.base.vao.VAO;
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.rendering.BasicRenderable;
@@ -65,15 +63,23 @@ public abstract class BasicRenderer<S extends BasicShaderProgram, R extends Rend
 			shaderProgram.setTextureEnabled(false);
 		}
 
-		glBindVertexArray(r.getMesh().getVaoId());
-		glEnableVertexAttribArray(0);
-		glEnableVertexAttribArray(1);
-
-		glDrawElements(GL_TRIANGLES, r.getMesh().getVertexCount(), GL_UNSIGNED_INT, 0);
-
-		glDisableVertexAttribArray(0);
-		glDisableVertexAttribArray(1);
-		glBindVertexArray(0);
+		VAO vao = r.getMesh().getVAO();
+		
+		vao.bind();
+		glDrawElements(GL_TRIANGLES, r.getMesh().getVerticesCount(), GL_UNSIGNED_INT, 0);
+		vao.unbind();
+		
+		
+		
+//		glBindVertexArray(r.getMesh(.get));
+//		glEnableVertexAttribArray(0);
+//		glEnableVertexAttribArray(1);
+//
+//		glDrawElements(GL_TRIANGLES, r.getMesh().getVerticesCount(), GL_UNSIGNED_INT, 0);
+//
+//		glDisableVertexAttribArray(0);
+//		glDisableVertexAttribArray(1);
+//		glBindVertexArray(0);
 	}
 
 	protected void before(List<R> renderClass, Dimension dimension, Window window, Camera camera) {

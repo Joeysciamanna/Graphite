@@ -14,7 +14,7 @@ public class IntVBO extends VBO {
 
 	protected int[] ints;
 	
-	public IntVBO(VBOType type, int[] ints) {
+	protected IntVBO(VBOType type, int[] ints) {
 		super(type);
 		this.ints = ints;
 		if(type.glNumber != GL11.GL_INT) {
@@ -29,6 +29,7 @@ public class IntVBO extends VBO {
 		glBindBuffer(type.glBufferTarget, getId());
 		glBufferData(type.glBufferTarget, indicesBuffer, GL_STATIC_DRAW);
 		glVertexAttribPointer(vao.nextIndex(), type.size, type.glNumber, false, 0, 0);
+		MemoryUtil.memFree(indicesBuffer);
 		ints = null;
 	}
 

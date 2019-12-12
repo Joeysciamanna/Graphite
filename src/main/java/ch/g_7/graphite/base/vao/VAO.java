@@ -9,6 +9,7 @@ package ch.g_7.graphite.base.vao;
 //import static org.lwjgl.opengl.GL15.glDeleteBuffers;
 //import static org.lwjgl.opengl.GL15.glGenBuffers;
 import static org.lwjgl.opengl.GL20.glDisableVertexAttribArray;
+import static org.lwjgl.opengl.GL20.glEnableVertexAttribArray;
 //import static org.lwjgl.opengl.GL20.glVertexAttribPointer;
 import static org.lwjgl.opengl.GL30.glBindVertexArray;
 import static org.lwjgl.opengl.GL30.glDeleteVertexArrays;
@@ -18,41 +19,80 @@ import java.io.Closeable;
 //import java.nio.FloatBuffer;
 //import java.nio.IntBuffer;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Set;
+
+import org.lwjgl.opengl.GL20;
+
+import ch.g_7.util.stuff.Initializable;
 
 //import org.joml.Vector3f;
 //import org.lwjgl.system.MemoryUtil;
 
-public class VAO implements Closeable {
+public class VAO implements Closeable, Initializable {
 
 	private int id;
 	private Set<VBO> vbos;
 	
+	private boolean adding;
+	private Queue<VBO> addables;
+	
 	public VAO() {
-		vbos = new HashSet<>();
+		this.vbos = new HashSet<>();
+		this.addables = new LinkedList<>();
+	}
+	
+	@Override
+	public void init() {
 		id = glGenVertexArrays();
 	}
 	
-	public void add(VBO vbo) {
-		glBindVertexArray(id);
-		for (VBO v : vbos) {
-			if(v.getType() == vbo.getType()) {
-				throw new IllegalArgumentException(vbo.getType() + " Alredy exist on VAO");
-			}
+	
+	public synchronized void add(VBO vbo) {
+		if(adding) {
+			addables.add(vbo);
+			return;
 		}
-		vbo.doInit(this);
-		glBindVertexArray(0);
-		vbos.add(vbo);
+		adding = true;
+		
+		add(vbo, true);
+		
+		adding = false;
 	}
 	
 	
-
+	private void add(VBO vbo, boolean addAdables) {
+		for (VBO v : vbos) {
+			if(v.getType().equals(vbo.type)) {
+				throw new IllegalArgumentException(vbo.type + " Alredy exist on VAO");
+			}
+		}
+		glBindVertexArray(id);
+		vbo.doInit(this);
+		glBindVertexArray(0);
+		vbos.add(vbo);
+		
+		if(addAdables) {
+			while(!addables.isEmpty()) {
+				add(addables.poll(),false);
+			}
+		}
+	}
+	
+	public VBO get(VBOType type) {
+		for (VBO vbo : vbos) {
+			if(vbo.type.equals(type)) return vbo;
+		}
+		return null;
+	}
+	
 	@Override
 	public void close() {
 		glDisableVertexAttribArray(id);
 
 		// Delete the VBOs
-//		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		GL20.glBindBuffer(GL20.GL_ARRAY_BUFFER, 0);
 		vbos.forEach((vbo)->vbo.close());
 
 		// Delete the VAO
@@ -60,6 +100,20 @@ public class VAO implements Closeable {
 		glDeleteVertexArrays(id);
 	}
 
+	public void bind() {
+		glBindVertexArray(id);
+		for(int i = 0; i < vbos.size(); i++) {
+			glEnableVertexAttribArray(i);
+		}
+	}
+	
+	public void unbind() {
+		glBindVertexArray(0);
+		for(int i = 0; i < vbos.size(); i++) {
+			glDisableVertexAttribArray(i);
+		}
+	}
+	
 	public int nextIndex() {
 		return vbos.size();
 	}

@@ -3,9 +3,9 @@ package ch.g_7.graphite.base.ui;
 import org.joml.Vector2fc;
 import org.joml.Vector2ic;
 
-import ch.g_7.graphite.base.mesh.AbstractMesh;
-import ch.g_7.graphite.base.mesh.MeshBuilder;
-import ch.g_7.graphite.base.mesh.MeshFactory;
+import ch.g_7.graphite.base.mesh2d.AbstractMesh;
+import ch.g_7.graphite.base.mesh2d.MeshBuilder;
+import ch.g_7.graphite.base.mesh2d.MeshFactory;
 import ch.g_7.graphite.base.texture.Texture;
 import ch.g_7.graphite.base.ui.util.ScreenDimension;
 import ch.g_7.graphite.core.window.Window;
@@ -13,7 +13,7 @@ import ch.g_7.graphite.util.Color;
 
 public class UIPanel extends UIContainer implements IUIPanel {
 
-	private static final AbstractMesh SQUARE_MESH = MeshFactory.getSquare(1).setCenter(MeshBuilder.CENTER_TOP_LEFT).build();
+	private static AbstractMesh SQUARE_MESH;
 	
 	protected final ScreenDimension maxWidth;
 	protected final ScreenDimension maxHeight;
@@ -90,6 +90,14 @@ public class UIPanel extends UIContainer implements IUIPanel {
 		}
 	}
 	
+	@Override
+	public void init() {
+		if(SQUARE_MESH == null) {
+			SQUARE_MESH = MeshFactory.getSquare(1).setCenter(MeshBuilder.CENTER_TOP_LEFT).build();
+			SQUARE_MESH.init();
+		}
+		super.init();
+	}
 	
 	@Override
 	protected void recalculateDimension(ScreenDimension dimension, Vector2ic screenSize) {

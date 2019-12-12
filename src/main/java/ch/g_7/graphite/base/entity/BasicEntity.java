@@ -2,7 +2,7 @@ package ch.g_7.graphite.base.entity;
 
 import org.joml.Vector3f;
 
-import ch.g_7.graphite.base.mesh.IMesh;
+import ch.g_7.graphite.base.mesh2d.IMesh;
 import ch.g_7.graphite.base.texture.Texture;
 import ch.g_7.graphite.util.Color;
 

@@ -13,7 +13,7 @@ public class PositionVBO extends FloatVBO {
 	private int[] indices;
 	private IndicesVBO indicesVBO;
 	
-	private PositionVBO(VBOType type, float[] positions, int[] indices) {
+	protected PositionVBO(VBOType type, float[] positions, int[] indices) {
 		super(type, positions);
 		this.indices = indices;
 	}
@@ -32,21 +32,7 @@ public class PositionVBO extends FloatVBO {
 		super.close();
 	}
 	
-	
-	
-	public static PositionVBO get2d(float[] positions, int[] indices) {
-		return new PositionVBO(VBOType.POSITIONS_2D, positions, indices);
-	}
-	
-	
-	
-	public static PositionVBO get3d(float[] positions, int[] indices) {
-		return new PositionVBO(VBOType.POSITIONS_3D, positions, indices);
-	}
-	
-	
-	
-	private static class IndicesVBO extends IntVBO{
+	private static class IndicesVBO extends IntVBO {
 
 		private IndicesVBO(int[] ints) {
 			super(VBOType.INDICES, ints);
@@ -58,6 +44,7 @@ public class PositionVBO extends FloatVBO {
 			indicesBuffer.put(ints).flip();
 			glBindBuffer(type.glBufferTarget, getId());
 			glBufferData(type.glBufferTarget, indicesBuffer, GL_STATIC_DRAW);
+			MemoryUtil.memFree(indicesBuffer);
 		}
 	}
 	

@@ -56,7 +56,6 @@ public class UIRenderer extends BasicRenderer<UIShaderProgram, IUIRootContainer>
 		return viewMatrix.identity()
 						  .translate(new Vector3f(panel.getPosition().x() - 1 , panel.getPosition().y()*-1 + 1, -1))
 						  .scaleXY(panel.getSize().x(), panel.getSize().y());
-
 	}
 
 }
