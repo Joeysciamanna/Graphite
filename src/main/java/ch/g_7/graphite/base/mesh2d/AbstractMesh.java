@@ -1,7 +1,5 @@
 package ch.g_7.graphite.base.mesh2d;
 
-import org.joml.Vector2fc;
-
 import ch.g_7.graphite.base.vao.VAO;
 
 public abstract class AbstractMesh implements IMesh {
@@ -27,10 +25,6 @@ public abstract class AbstractMesh implements IMesh {
 		vao.close();
 	}
 
-	@Override
-	public void contains(Vector2fc vector) {
-		throw new UnsupportedOperationException("Contains not supported");
-	}
 	
 	
 	

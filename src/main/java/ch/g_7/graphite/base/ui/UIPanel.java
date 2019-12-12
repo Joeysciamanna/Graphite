@@ -4,8 +4,8 @@ import org.joml.Vector2fc;
 import org.joml.Vector2ic;
 
 import ch.g_7.graphite.base.mesh2d.AbstractMesh;
-import ch.g_7.graphite.base.mesh2d.MeshBuilder;
-import ch.g_7.graphite.base.mesh2d.MeshFactory;
+import ch.g_7.graphite.base.mesh2d.MeshBuilder2d;
+import ch.g_7.graphite.base.mesh2d.MeshFactory2d;
 import ch.g_7.graphite.base.texture.Texture;
 import ch.g_7.graphite.base.ui.util.ScreenDimension;
 import ch.g_7.graphite.core.window.Window;
@@ -93,7 +93,7 @@ public class UIPanel extends UIContainer implements IUIPanel {
 	@Override
 	public void init() {
 		if(SQUARE_MESH == null) {
-			SQUARE_MESH = MeshFactory.getSquare(1).setCenter(MeshBuilder.CENTER_TOP_LEFT).build();
+			SQUARE_MESH = MeshFactory2d.getSquare(1).setCenter(MeshBuilder2d.CENTER_TOP_LEFT).build();
 			SQUARE_MESH.init();
 		}
 		super.init();

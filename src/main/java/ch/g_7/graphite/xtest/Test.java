@@ -4,8 +4,8 @@ import org.joml.Vector3f;
 
 import ch.g_7.graphite.base.entity.BasicEntity;
 import ch.g_7.graphite.base.mesh2d.AbstractMesh;
-import ch.g_7.graphite.base.mesh2d.MeshBuilder;
-import ch.g_7.graphite.base.mesh2d.MeshFactory;
+import ch.g_7.graphite.base.mesh2d.MeshBuilder2d;
+import ch.g_7.graphite.base.mesh2d.MeshFactory2d;
 import ch.g_7.graphite.base.ui.UIButton;
 import ch.g_7.graphite.base.ui.UIPanel;
 import ch.g_7.graphite.base.ui.UIRootContainer;
@@ -65,7 +65,7 @@ public class Test extends Application {
 		
 
 		
-		AbstractMesh mesh1 = MeshFactory.getSquare(1).setCenter(MeshBuilder.CENTER_MIDDLE).build();
+		AbstractMesh mesh1 = MeshFactory2d.getSquare(1).setCenter(MeshBuilder2d.CENTER_MIDDLE).build();
 		BasicEntity entity1 = new BasicEntity();
 		entity1.setColor(Color.getColor(255, 0, 0));
 		entity1.setMesh(mesh1);
@@ -73,7 +73,7 @@ public class Test extends Application {
 		getDimension().addObj(entity1, RenderClass.ENTITIES);
 		
 		
-		AbstractMesh mesh2 = MeshFactory.getSquare(1).setCenter(MeshBuilder.CENTER_MIDDLE).build();
+		AbstractMesh mesh2 = MeshFactory2d.getSquare(1).setCenter(MeshBuilder2d.CENTER_MIDDLE).build();
 		BasicEntity entity2 = new BasicEntity();
 		entity2.setColor(Color.getColor(255, 255, 0));
 		entity2.setMesh(mesh2);

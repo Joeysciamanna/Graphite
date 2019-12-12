@@ -1,10 +1,10 @@
 package ch.g_7.graphite.base.mesh2d;
 
-public final class MeshFactory {
+public final class MeshFactory2d {
 
 	
-	public static MeshBuilder getRegular(int corners, float side) {
-		MeshBuilder builder = new MeshBuilder();
+	public static MeshBuilder2d getRegular(int corners, float side) {
+		MeshBuilder2d builder = new MeshBuilder2d();
 		for(int i = 0; i<corners-1; i++) {
 			builder.forward(side);
 			builder.turn((corners-2)*180/corners-180);
@@ -12,12 +12,12 @@ public final class MeshFactory {
 		return builder;
 	}
 	
-	public static MeshBuilder getSquare(float side) {
+	public static MeshBuilder2d getSquare(float side) {
 		return getRegular(4, side);
 	}
 	
-	public static MeshBuilder getRectangle(float side1, float side2) {
-		MeshBuilder builder = new MeshBuilder();
+	public static MeshBuilder2d getRectangle(float side1, float side2) {
+		MeshBuilder2d builder = new MeshBuilder2d();
 		builder.forward(side1).turn(90).forward(side2).turn(90).forward(side1);
 		return builder;
 	}

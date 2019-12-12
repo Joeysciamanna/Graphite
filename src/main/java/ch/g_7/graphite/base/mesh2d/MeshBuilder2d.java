@@ -6,7 +6,7 @@ import java.util.List;
 import org.joml.Rectangled;
 import org.joml.Vector2d;
 
-public class MeshBuilder {
+public class MeshBuilder2d {
 
 	private List<Vector2d> points;
 	private Vector2d center;
@@ -19,23 +19,23 @@ public class MeshBuilder {
 	public static final Vector2d CENTER_BUTTOM_RIGHT = new Vector2d(-1, 0);
 	public static final Vector2d CENTER_MIDDLE = new Vector2d(-0.5, -0.5);
 	
-	public MeshBuilder() {
+	public MeshBuilder2d() {
 		points = new ArrayList<>();
 		points.add(new Vector2d(0, 0));
 		center = CENTER_BUTTOM_LEFT;
 	}
 
-	public MeshBuilder setAngle(int angle) {
+	public MeshBuilder2d setAngle(int angle) {
 		this.angle = angle;
 		return this;
 	}
 
-	public MeshBuilder turn(int angle) {
+	public MeshBuilder2d turn(int angle) {
 		this.angle += angle;
 		return this;
 	}
 
-	public MeshBuilder forward(double distance) {
+	public MeshBuilder2d forward(double distance) {
 		Vector2d lastPos = points.get(points.size() - 1);
 		double x = lastPos.x + (Math.sin(Math.toRadians(angle)) * distance);
 		double y = lastPos.y + (Math.cos(Math.toRadians(angle)) * distance);
@@ -43,13 +43,13 @@ public class MeshBuilder {
 		return this;
 	}
 
-	public MeshBuilder goTo(Vector2d toPos) {
+	public MeshBuilder2d goTo(Vector2d toPos) {
 		points.add(toPos);
 		return this;
 	}
 
 
-	public MeshBuilder setCenter(Vector2d center) {
+	public MeshBuilder2d setCenter(Vector2d center) {
 		double width = getWidth();
 		double height = getHeight();
 		for (Vector2d pos : points) {
@@ -64,7 +64,7 @@ public class MeshBuilder {
 		return this;
 	}
 
-	public MeshBuilder translate(Vector2d vector) {
+	public MeshBuilder2d translate(Vector2d vector) {
 		for (Vector2d p : points) {
 			p.add(vector);
 		}
@@ -136,7 +136,7 @@ public class MeshBuilder {
 		}
 		
 		
-		return new BasicMesh(positions, realIndices, positions);							
+		return new BasicMesh(positions, realIndices, positions, BasicMesh.DIMENSION_2D);							
 	}
 
 	private int fitIndex(int index, int from, int to) {
