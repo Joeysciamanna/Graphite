@@ -21,11 +21,11 @@ import ch.g_7.graphite.rendering.ITransformation;
 import ch.g_7.graphite.rendering.Renderable;
 import ch.g_7.graphite.rendering.shaderprogram.BasicShaderProgram;
 
-public abstract class Basic2dRenderer<S extends BasicShaderProgram, R extends Renderable> implements IRenderer<R> {
+public abstract class BasicRenderer<S extends BasicShaderProgram, R extends Renderable> implements IRenderer<R> {
 
 	protected S shaderProgram;
 
-	public Basic2dRenderer(S shaderProgram) {
+	public BasicRenderer(S shaderProgram) {
 		this.shaderProgram = shaderProgram;
 	}
 

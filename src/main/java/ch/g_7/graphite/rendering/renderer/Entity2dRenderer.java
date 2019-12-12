@@ -11,13 +11,13 @@ import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.rendering.ITransformation;
 import ch.g_7.graphite.rendering.shaderprogram.EntityShaderProgram;
 
-public class EntityRenderer extends Basic2dRenderer<EntityShaderProgram, IEntity> implements ITransformation<IEntity>{
+public class Entity2dRenderer extends BasicRenderer<EntityShaderProgram, IEntity> implements ITransformation<IEntity>{
 
 	private Matrix4f viewMatrix;
 	
 	private IEntity entity;
 	
-	public EntityRenderer() {
+	public Entity2dRenderer() {
 		super(new EntityShaderProgram());
 		viewMatrix = new Matrix4f();
 	}
