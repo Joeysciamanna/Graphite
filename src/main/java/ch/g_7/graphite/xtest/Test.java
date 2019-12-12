@@ -1,11 +1,14 @@
 package ch.g_7.graphite.xtest;
 
+import java.io.IOException;
+
 import org.joml.Vector3f;
 
 import ch.g_7.graphite.base.entity2d.BasicEntity;
 import ch.g_7.graphite.base.mesh.IMesh2d;
 import ch.g_7.graphite.base.mesh.MeshBuilder2d;
 import ch.g_7.graphite.base.mesh.MeshFactory2d;
+import ch.g_7.graphite.base.texture.Texture;
 import ch.g_7.graphite.core.Application;
 import ch.g_7.graphite.rendering.RenderClass;
 import ch.g_7.graphite.util.Color;
@@ -64,6 +67,11 @@ public class Test extends Application {
 		IMesh2d mesh1 = MeshFactory2d.getSquare(1).setCenter(MeshBuilder2d.CENTER_TOP_LEFT).build();
 		BasicEntity entity1 = new BasicEntity();
 		entity1.setColor(Color.getColor(255, 0, 0));
+		try {
+			entity1.setTexture(new Texture("C:\\Users\\Joey Sciamanna\\git\\Graphite\\src\\main\\resources\\textures\\square.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		entity1.setMesh(mesh1);
 		entity1.setPosition(new Vector3f(0, 0, 0f));
 		getDimension().addObj(entity1, RenderClass.ENTITIES_2D);

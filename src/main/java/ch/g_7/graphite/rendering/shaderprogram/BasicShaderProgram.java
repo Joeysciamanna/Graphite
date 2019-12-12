@@ -17,6 +17,7 @@ public class BasicShaderProgram extends AbstractShaderProgram{
         createUniform("model_view_matrix");
         createUniform("texture_sampler");
         createUniform("color");
+        createUniform("textureEnabled");
 	}
 
 	
@@ -33,7 +34,7 @@ public class BasicShaderProgram extends AbstractShaderProgram{
 	}
 	
 	public void setTextureEnabled(boolean value) {
-		setUniform("color", value);
+		setUniform("textureEnabled", value);
 	}
 
 }
