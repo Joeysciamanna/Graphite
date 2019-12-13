@@ -31,12 +31,12 @@ public class UIButton extends UIPanel implements IUIButton{
 			private boolean clicked;
 			@Override
 			public void onClick(UIMouseEvent e) {
-				if (!clicked) e.getButtonPanel().getColor().darker(10);
+				if (!clicked) e.getButtonPanel().getColor().darker(20);
 				clicked = true;
 			}
 			@Override
 			public void onRelease(UIMouseEvent e) {
-				if (clicked) e.getButtonPanel().getColor().lighter(10);
+				if (clicked) e.getButtonPanel().getColor().lighter(20);
 				clicked = false;
 			}
 		});
