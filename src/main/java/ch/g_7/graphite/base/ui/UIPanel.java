@@ -157,6 +157,10 @@ public class UIPanel extends UIContainer implements IUIPanel {
 		return texture;
 	}
 	
+	public void setTexture(Texture texture) {
+		this.texture = texture;
+	}
+	
 	@Override
 	public final void setFather(IUIContainer father) {
 		this.father = father;

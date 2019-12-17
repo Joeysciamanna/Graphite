@@ -10,11 +10,12 @@ uniform sampler2D texture_sampler;
 
 void main(){
 
-	if(fragInColor.a == 0){
-		discard;
-	}
+
     fragColor = fragInColor;
 	if (fragInTextureEnabled == 1){
 		fragColor += texture(texture_sampler, fragInTexCoord);
+	}
+	if(fragColor.a == 0){
+		discard;
 	}
 }
