@@ -65,9 +65,9 @@ public class Test extends Application {
 //		inventory.recalculate();
 		
 		
-		IMesh2d mesh1 = MeshFactory2d.getSquare(1).setCenter(MeshBuilder2d.CENTER_TOP_LEFT).build();
+		IMesh2d mesh1 = MeshFactory2d.getSquare(1).setCenter(MeshBuilder2d.CENTER_BUTTOM_LEFT).build();
 		BasicEntity entity1 = new BasicEntity();
-		entity1.setColor(Color.getColor(0, 0, 0, 0));
+//		entity1.setColor(Color.getColor(0, 0, 0, 0));
 		try {
 			entity1.setTexture(new Texture("C:\\Users\\Joey Sciamanna\\git\\Graphite\\src\\main\\resources\\textures\\square.png"));
 		} catch (IOException e) {

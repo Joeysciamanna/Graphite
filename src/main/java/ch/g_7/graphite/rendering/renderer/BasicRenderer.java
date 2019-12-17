@@ -67,17 +67,6 @@ public abstract class BasicRenderer<S extends BasicShaderProgram, R extends Rend
 		glDrawElements(GL_TRIANGLES, r.getMesh().getVerticesCount(), GL_UNSIGNED_INT, 0);
 		vao.unbind();
 		
-		
-		
-//		glBindVertexArray(r.getMesh(.get));
-//		glEnableVertexAttribArray(0);
-//		glEnableVertexAttribArray(1);
-//
-//		glDrawElements(GL_TRIANGLES, r.getMesh().getVerticesCount(), GL_UNSIGNED_INT, 0);
-//
-//		glDisableVertexAttribArray(0);
-//		glDisableVertexAttribArray(1);
-//		glBindVertexArray(0);
 	}
 
 	protected void before(List<R> renderClass, Dimension dimension, Window window, Camera camera) {

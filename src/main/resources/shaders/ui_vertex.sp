@@ -1,7 +1,7 @@
 #version 330
 
 layout (location=0) in vec2 position;
-layout (location=1) in vec2 texCoord;
+layout (location=2) in vec2 texCoord;
 
 out vec4 fragInColor;
 out vec2 fragInTexCoord;

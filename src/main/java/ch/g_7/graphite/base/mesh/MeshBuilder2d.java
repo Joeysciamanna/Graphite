@@ -141,7 +141,8 @@ public class MeshBuilder2d {
 				0,1,
 				1,1,
 				1,0
-		});							
+		});			
+//		return new BasicMesh2d(positions, realIndices, positions);		
 	}
 
 	private int fitIndex(int index, int from, int to) {

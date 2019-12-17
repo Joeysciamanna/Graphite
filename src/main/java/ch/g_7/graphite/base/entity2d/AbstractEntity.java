@@ -30,6 +30,7 @@ public abstract class AbstractEntity implements IEntity {
 		this.position = new Vector3f();
 		this.rotation = new Vector3f();
 		this.scale = 1;
+		this.color = Color.getColor(0,0,0);
 	}
 
 	@Override
