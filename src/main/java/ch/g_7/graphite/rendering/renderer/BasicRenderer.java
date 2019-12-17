@@ -52,12 +52,10 @@ public abstract class BasicRenderer<S extends BasicShaderProgram, R extends Rend
 		shaderProgram.setModelViewMatrix(modelViewMatrix);
 
 		shaderProgram.setColor(r.getColor());
-
+		
 		if (r.getTexture() != null) {
-
 			glActiveTexture(GL_TEXTURE0);
 			glBindTexture(GL_TEXTURE_2D, r.getTexture().getId());
-
 			shaderProgram.setTextureEnabled(true);
 		} else {
 			shaderProgram.setTextureEnabled(false);

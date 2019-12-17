@@ -12,6 +12,6 @@ void main(){
 
     fragColor = fragmentInColor;
     if (fragmentInTextureEnabled == 1){
-		fragColor += texture(texture_sampler, fragmentInTexCoord);
+		fragColor = texture(texture_sampler, fragmentInTexCoord);
 	}
 }

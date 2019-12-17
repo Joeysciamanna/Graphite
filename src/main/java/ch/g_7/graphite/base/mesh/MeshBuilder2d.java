@@ -136,7 +136,12 @@ public class MeshBuilder2d {
 		}
 		
 		
-		return new BasicMesh2d(positions, realIndices, positions);							
+		return new BasicMesh2d(positions, realIndices, new float[] {
+				0,0,
+				0,1,
+				1,1,
+				1,0
+		});							
 	}
 
 	private int fitIndex(int index, int from, int to) {
