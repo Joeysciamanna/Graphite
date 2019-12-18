@@ -35,9 +35,9 @@ import org.joml.Vector4f;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.system.MemoryStack;
 
-import ch.g_7.util.stream.StreamUtil;
-import ch.g_7.util.stuff.Initializable;
-import ch.g_7.util.stuff.SecureRunner;
+import ch.g_7.util.able.Initializable;
+import ch.g_7.util.helper.IOUtil;
+import ch.g_7.util.task.SecureRunner;
 
 
 public abstract class AbstractShaderProgram implements Initializable, AutoCloseable{
@@ -67,9 +67,9 @@ public abstract class AbstractShaderProgram implements Initializable, AutoClosea
         if (programId == 0) {
             throw new RuntimeException("Could not create Shader");
         }
-        SecureRunner<String, String> codeLoader = new SecureRunner<>((s) -> StreamUtil.readString(s, this));
-        vertexShaderId = createShader(codeLoader.run(vertexCodePath), GL_VERTEX_SHADER);
-        fragmentShaderId = createShader(codeLoader.run(fragmentCodePath), GL_FRAGMENT_SHADER);
+        SecureRunner<String, String> codeLoader = new SecureRunner<>((s) -> IOUtil.readInternalString(s, this));
+        vertexShaderId = createShader(codeLoader.apply(vertexCodePath), GL_VERTEX_SHADER);
+        fragmentShaderId = createShader(codeLoader.apply(fragmentCodePath), GL_FRAGMENT_SHADER);
         link();
     }
     

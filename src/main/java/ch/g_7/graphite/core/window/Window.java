@@ -57,8 +57,8 @@ import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
 
 import ch.g_7.graphite.util.Color;
-import ch.g_7.util.stuff.Initializable;
-import ch.g_7.util.task.TaskInputBuffer;
+import ch.g_7.util.able.Initializable;
+import ch.g_7.util.task.TaskInputQueue;
 import ch.g_7.util.task.ValueChangeNotifier;
 
 public class Window implements Initializable, ResizeListner {
@@ -66,10 +66,10 @@ public class Window implements Initializable, ResizeListner {
 	private final String title;
 
 	private List<KeyListner> keyListners;
-	private TaskInputBuffer<KeyEvent> keyPressBuffer;
+	private TaskInputQueue<KeyEvent> keyPressBuffer;
 
 	private List<MouseListner> mouseListners;
-	private TaskInputBuffer<MouseEvent> mouseClickBuffer;
+	private TaskInputQueue<MouseEvent> mouseClickBuffer;
 
 	private long windowId;
 
@@ -86,9 +86,9 @@ public class Window implements Initializable, ResizeListner {
 		this.width = width;
 		this.height = height;
 		keyListners = new ArrayList<>();
-		keyPressBuffer = new TaskInputBuffer<KeyEvent>((i) -> keyListners.forEach((l) -> l.onKeyPress(i)));
+		keyPressBuffer = new TaskInputQueue<KeyEvent>((i) -> keyListners.forEach((l) -> l.onKeyPress(i)));
 		mouseListners = new ArrayList<>();
-		mouseClickBuffer = new TaskInputBuffer<MouseEvent>((i) -> mouseListners.forEach((l) -> l.onMouseClick(i)));
+		mouseClickBuffer = new TaskInputQueue<MouseEvent>((i) -> mouseListners.forEach((l) -> l.onMouseClick(i)));
 		resizeNotifier = new ValueChangeNotifier<>();
 		resizeNotifier.addListner(this);
 	}
@@ -149,7 +149,7 @@ public class Window implements Initializable, ResizeListner {
 	}
 
 	public void update() {
-		resizeNotifier.runSimple();
+		resizeNotifier.run();
 		reposition();
 
 		glfwSwapBuffers(windowId);
@@ -159,8 +159,8 @@ public class Window implements Initializable, ResizeListner {
 	}
 
 	public void pullEvents() {
-		keyPressBuffer.runSimple();
-		mouseClickBuffer.runSimple();
+		keyPressBuffer.run();
+		mouseClickBuffer.run();
 	}
 
 	@Override

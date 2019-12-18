@@ -16,7 +16,7 @@ import java.util.Set;
 
 import org.lwjgl.opengl.GL20;
 
-import ch.g_7.util.stuff.Initializable;
+import ch.g_7.util.able.Initializable;
 
 
 public class VAO implements Closeable, Initializable {

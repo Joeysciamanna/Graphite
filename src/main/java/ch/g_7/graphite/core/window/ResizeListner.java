@@ -1,12 +1,12 @@
 package ch.g_7.graphite.core.window;
 
-import ch.g_7.util.task.Task.VoidTask;
+import java.util.function.Consumer;
 
 @FunctionalInterface
-public interface ResizeListner extends VoidTask<ResizeEvent>{
+public interface ResizeListner extends Consumer<ResizeEvent>{
 
 	@Override
-	default void runVoid(ResizeEvent action) {
+	default void accept(ResizeEvent action) {
 		onResize(action);
 	}
 	

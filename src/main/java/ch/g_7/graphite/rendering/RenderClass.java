@@ -12,7 +12,7 @@ import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.rendering.renderer.Entity2dRenderer;
 import ch.g_7.graphite.rendering.renderer.IRenderer;
 import ch.g_7.graphite.rendering.renderer.UIRenderer;
-import ch.g_7.util.stuff.Initializable;
+import ch.g_7.util.able.Initializable;
 
 public class RenderClass<T extends Renderable> implements Initializable, AutoCloseable{
 	

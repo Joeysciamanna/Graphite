@@ -1,7 +1,5 @@
 package ch.g_7.graphite.xtest;
 
-import java.io.IOException;
-
 import org.joml.Vector3f;
 
 import ch.g_7.graphite.base.entity2d.BasicEntity;
@@ -16,7 +14,7 @@ import ch.g_7.graphite.base.ui.layout.DontCareLayoutPanel;
 import ch.g_7.graphite.core.Application;
 import ch.g_7.graphite.rendering.RenderClass;
 import ch.g_7.graphite.util.Color;
-import ch.g_7.util.stuff.SecureRunner;
+import ch.g_7.util.task.SecureRunner;
 
 public class Test extends Application {
 
@@ -34,8 +32,8 @@ public class Test extends Application {
 	
 	protected void initGame() {
 
-		Texture square1 = new SecureRunner<Void, Texture>(()->new Texture("C:\\Users\\Joey Sciamanna\\git\\Graphite\\src\\main\\resources\\textures\\square.png")).run();
-		Texture square2 = new SecureRunner<Void, Texture>(()->new Texture("C:\\Users\\Joey Sciamanna\\git\\Graphite\\src\\main\\resources\\textures\\square2.png")).run();
+		Texture square1 = new SecureRunner<Void, Texture>(()->new Texture("C:\\Users\\Joey Sciamanna\\git\\Graphite\\src\\main\\resources\\textures\\square.png")).get();
+		Texture square2 = new SecureRunner<Void, Texture>(()->new Texture("C:\\Users\\Joey Sciamanna\\git\\Graphite\\src\\main\\resources\\textures\\square2.png")).get();
 		
 		UIRootContainer inventory = new UIRootContainer(getWindow());
 		getDimension().addObj(inventory, RenderClass.UI);
