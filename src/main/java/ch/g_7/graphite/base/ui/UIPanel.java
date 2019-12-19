@@ -1,5 +1,6 @@
 package ch.g_7.graphite.base.ui;
 
+import org.joml.Vector2f;
 import org.joml.Vector2fc;
 import org.joml.Vector2ic;
 
@@ -172,7 +173,7 @@ public class UIPanel extends UIContainer implements IUIPanel {
 	
 	@Override
 	public Vector2fc getPosition() {
-		return getFather() == null ? position : position.add(getFather().getPosition());
+		return getFather() == null ? position : new Vector2f(position).add(getFather().getPosition());
 	}
 
 	@Override
