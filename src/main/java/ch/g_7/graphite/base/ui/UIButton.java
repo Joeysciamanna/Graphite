@@ -17,10 +17,10 @@ public class UIButton extends UIPanel implements IUIButton{
 
 	@Override
 	public boolean contains(float x, float y) {
-		return position.x < x && 
-			   position.y < y &&
-			   size.x + position.x > x &&
-			   size.y + position.y > y;
+		return getPosition().x() < x && 
+			   getPosition().y() < y &&
+			   getSize().x() + getPosition().x() > x &&
+			   getSize().y() + getPosition().y() > y;
 	}
 	
 	@Override
