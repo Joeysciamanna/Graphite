@@ -1,4 +1,4 @@
-package ch.g_7.graphite.base.ui.util;
+package ch.g_7.graphite.ui.util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,10 +6,10 @@ import java.util.concurrent.CompletableFuture;
 
 import org.lwjgl.glfw.GLFW;
 
-import ch.g_7.graphite.base.ui.IUIButton;
 import ch.g_7.graphite.core.window.MouseEvent;
 import ch.g_7.graphite.core.window.MouseListner;
 import ch.g_7.graphite.core.window.Window;
+import ch.g_7.graphite.ui.IUIButton;
 
 public class MouseManager implements MouseListner {
 

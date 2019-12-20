@@ -1,12 +1,12 @@
-package ch.g_7.graphite.base.ui.layout;
+package ch.g_7.graphite.ui.layout;
 
 import org.joml.Vector2i;
 import org.joml.Vector2ic;
 
-import ch.g_7.graphite.base.ui.IUIPanel;
-import ch.g_7.graphite.base.ui.UIPanel;
-import ch.g_7.graphite.base.ui.util.ScaledScreenDimension;
-import ch.g_7.graphite.base.ui.util.ScreenDimension;
+import ch.g_7.graphite.ui.IUIPanel;
+import ch.g_7.graphite.ui.UIPanel;
+import ch.g_7.graphite.ui.util.ScaledScreenDimension;
+import ch.g_7.graphite.ui.util.ScreenDimension;
 
 public class GridLayoutPanel extends UIPanel{
 

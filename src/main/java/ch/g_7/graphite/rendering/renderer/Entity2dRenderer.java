@@ -5,9 +5,9 @@ import java.util.List;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
-import ch.g_7.graphite.base.entity2d.IEntity;
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
+import ch.g_7.graphite.entity2d.IEntity;
 import ch.g_7.graphite.rendering.ITransformation;
 import ch.g_7.graphite.rendering.shaderprogram.EntityShaderProgram;
 

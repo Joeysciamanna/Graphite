@@ -1,7 +1,7 @@
-package ch.g_7.graphite.base.ui;
+package ch.g_7.graphite.ui;
 
-import ch.g_7.graphite.base.ui.util.MouseManager;
 import ch.g_7.graphite.core.window.ResizeListner;
+import ch.g_7.graphite.ui.util.MouseManager;
 
 public interface IUIRootContainer extends IUIContainer, ResizeListner {
 

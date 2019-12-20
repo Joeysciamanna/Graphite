@@ -1,9 +1,9 @@
-package ch.g_7.graphite.base.ui.layout;
+package ch.g_7.graphite.ui.layout;
 
 import org.joml.Vector2i;
 
-import ch.g_7.graphite.base.ui.IUIPanel;
-import ch.g_7.graphite.base.ui.UIPanel;
+import ch.g_7.graphite.ui.IUIPanel;
+import ch.g_7.graphite.ui.UIPanel;
 
 public class GridMergeLayoutPanel extends UIPanel {
 

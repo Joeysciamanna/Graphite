@@ -1,6 +1,6 @@
-package ch.g_7.graphite.base.ui.util;
+package ch.g_7.graphite.ui.util;
 
-import ch.g_7.graphite.base.ui.IUIButton;
+import ch.g_7.graphite.ui.IUIButton;
 
 public class UIMouseEvent {
 

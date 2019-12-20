@@ -1,7 +1,7 @@
-package ch.g_7.graphite.base.ui;
+package ch.g_7.graphite.ui;
 
-import ch.g_7.graphite.base.ui.util.ScreenDimension;
 import ch.g_7.graphite.rendering.Basic2dRenderable;
+import ch.g_7.graphite.ui.util.ScreenDimension;
 
 public interface IUIPanel extends IUIContainer, Basic2dRenderable{
 

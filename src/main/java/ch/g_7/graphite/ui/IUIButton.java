@@ -1,6 +1,6 @@
-package ch.g_7.graphite.base.ui;
+package ch.g_7.graphite.ui;
 
-import ch.g_7.graphite.base.ui.util.UIMouseListner;
+import ch.g_7.graphite.ui.util.UIMouseListner;
 
 public interface IUIButton extends IUIPanel, UIMouseListner{
 

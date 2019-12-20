@@ -1,4 +1,4 @@
-package ch.g_7.graphite.base.ui;
+package ch.g_7.graphite.ui;
 
 import org.joml.Vector2f;
 import org.joml.Vector2fc;
@@ -8,8 +8,8 @@ import ch.g_7.graphite.base.mesh.IMesh2d;
 import ch.g_7.graphite.base.mesh.MeshBuilder2d;
 import ch.g_7.graphite.base.mesh.MeshFactory2d;
 import ch.g_7.graphite.base.texture.Texture;
-import ch.g_7.graphite.base.ui.util.ScreenDimension;
 import ch.g_7.graphite.core.window.Window;
+import ch.g_7.graphite.ui.util.ScreenDimension;
 import ch.g_7.graphite.util.Color;
 
 public class UIPanel extends UIContainer implements IUIPanel {

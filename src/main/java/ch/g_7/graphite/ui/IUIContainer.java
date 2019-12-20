@@ -1,13 +1,13 @@
-package ch.g_7.graphite.base.ui;
+package ch.g_7.graphite.ui;
 
 import java.util.List;
 
 import org.joml.Vector2fc;
 import org.joml.Vector2ic;
 
-import ch.g_7.graphite.base.ui.util.ScreenDimension;
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.rendering.Renderable;
+import ch.g_7.graphite.ui.util.ScreenDimension;
 
 public interface IUIContainer extends Renderable {
 

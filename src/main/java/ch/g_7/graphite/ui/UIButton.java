@@ -1,10 +1,10 @@
-package ch.g_7.graphite.base.ui;
+package ch.g_7.graphite.ui;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.g_7.graphite.base.ui.util.UIMouseEvent;
-import ch.g_7.graphite.base.ui.util.UIMouseListner;
+import ch.g_7.graphite.ui.util.UIMouseEvent;
+import ch.g_7.graphite.ui.util.UIMouseListner;
 
 public class UIButton extends UIPanel implements IUIButton{
 

@@ -2,17 +2,17 @@ package ch.g_7.graphite.xtest;
 
 import org.joml.Vector3f;
 
-import ch.g_7.graphite.base.entity2d.BasicEntity;
 import ch.g_7.graphite.base.mesh.IMesh2d;
 import ch.g_7.graphite.base.mesh.MeshBuilder2d;
 import ch.g_7.graphite.base.mesh.MeshFactory2d;
 import ch.g_7.graphite.base.texture.Texture;
-import ch.g_7.graphite.base.ui.UIButton;
-import ch.g_7.graphite.base.ui.UIPanel;
-import ch.g_7.graphite.base.ui.UIRootContainer;
-import ch.g_7.graphite.base.ui.layout.DontCareLayoutPanel;
 import ch.g_7.graphite.core.Application;
+import ch.g_7.graphite.entity2d.BasicEntity;
 import ch.g_7.graphite.rendering.RenderClass;
+import ch.g_7.graphite.ui.UIButton;
+import ch.g_7.graphite.ui.UIPanel;
+import ch.g_7.graphite.ui.UIRootContainer;
+import ch.g_7.graphite.ui.layout.DontCareLayoutPanel;
 import ch.g_7.graphite.util.Color;
 import ch.g_7.util.task.SecureRunner;
 

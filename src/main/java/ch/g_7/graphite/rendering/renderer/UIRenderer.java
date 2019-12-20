@@ -5,10 +5,10 @@ import java.util.List;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
-import ch.g_7.graphite.base.ui.IUIPanel;
-import ch.g_7.graphite.base.ui.IUIRootContainer;
 import ch.g_7.graphite.rendering.ITransformation;
 import ch.g_7.graphite.rendering.shaderprogram.UIShaderProgram;
+import ch.g_7.graphite.ui.IUIPanel;
+import ch.g_7.graphite.ui.IUIRootContainer;
 
 public class UIRenderer extends BasicRenderer<UIShaderProgram, IUIRootContainer> implements ITransformation<IUIPanel> {
 

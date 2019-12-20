@@ -1,4 +1,4 @@
-package ch.g_7.graphite.base.ui;
+package ch.g_7.graphite.ui;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,7 @@ import org.joml.Vector2f;
 import org.joml.Vector2fc;
 import org.joml.Vector2ic;
 
-import ch.g_7.graphite.base.ui.util.ScreenDimension;
+import ch.g_7.graphite.ui.util.ScreenDimension;
 
 public abstract class UIContainer implements IUIContainer {
 
