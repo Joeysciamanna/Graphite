@@ -7,7 +7,7 @@ import ch.g_7.graphite.base.mesh.MeshBuilder2d;
 import ch.g_7.graphite.base.mesh.MeshFactory2d;
 import ch.g_7.graphite.base.texture.Texture;
 import ch.g_7.graphite.core.Application;
-import ch.g_7.graphite.entity2d.BasicEntity;
+import ch.g_7.graphite.entity.BasicEntity;
 import ch.g_7.graphite.rendering.RenderClass;
 import ch.g_7.graphite.ui.UIButton;
 import ch.g_7.graphite.ui.UIPanel;
@@ -28,8 +28,10 @@ public class Test extends Application {
 	}
 	
 
-	@Override
+	BasicEntity entity1;
+	BasicEntity entity2;
 	
+	@Override
 	protected void initGame() {
 
 		
@@ -66,25 +68,24 @@ public class Test extends Application {
 		panel1.getMaxHeight().addPF(200);
 		panel1.getPreferedHeight().addPF(100);
 		
-		inventory.recalculate();
+		inventory.setVisible(false);
 		
 		
 		IMesh2d mesh1 = MeshFactory2d.getSquare(1).setCenter(MeshBuilder2d.CENTER_BUTTOM_LEFT).build();
-		BasicEntity entity1 = new BasicEntity();
-//		entity1.setColor(Color.getColor(0, 0, 0, 0));
-		entity1.setTexture(square1);
+		entity1 = new BasicEntity();
+//		entity1.setTexture(square1);
+		entity1.setColor(Color.getColor(255, 0, 0));
 		entity1.setMesh(mesh1);
 		entity1.setPosition(new Vector3f(0, 0, 0f));
-		getDimension().addObj(entity1, RenderClass.ENTITIES_2D);
+		getDimension().addObj(entity1, RenderClass.ENTITIES_3D);
 		
 		
 		IMesh2d mesh2 = MeshFactory2d.getSquare(1).setCenter(MeshBuilder2d.CENTER_MIDDLE).build();
-		BasicEntity entity2 = new BasicEntity();
-//		entity2.setColor(Color.getColor(0, 0, 0, 0));
+		entity2 = new BasicEntity();
 		entity2.setTexture(square2);
 		entity2.setMesh(mesh2);
 		entity2.setPosition(new Vector3f(0, 0, -0.2f));
-		getDimension().addObj(entity2, RenderClass.ENTITIES_2D);
+		getDimension().addObj(entity2, RenderClass.ENTITIES_3D);
 		
 	
 		getWindow().setVisible(true);
@@ -92,6 +93,16 @@ public class Test extends Application {
 	}
 		
 
+	@Override
+	public void update() {
+		entity1.setScale(entity1.getScale() * 1.1f);
+		Vector3f rotation = new Vector3f();
+		entity1.getRotation().mul(1.1f, 1.1f, 1.1f, rotation);
+		entity1.setRotation(rotation);
+		Vector3f position = new Vector3f();
+		entity1.getPosition().mul(1.1f, 1.1f, 1.1f, position);
+		entity1.setPosition(position);
+	}
 	
 
 }

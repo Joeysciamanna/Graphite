@@ -136,7 +136,7 @@ public class MeshBuilder2d {
 		}
 		
 		
-		return new BasicMesh2d(positions, realIndices, new float[] {
+		return new BasicMesh(positions, realIndices, new float[] {
 				0,0,
 				0,1,
 				1,1,

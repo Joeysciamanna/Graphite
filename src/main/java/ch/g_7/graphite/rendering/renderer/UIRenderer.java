@@ -5,6 +5,8 @@ import java.util.List;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
+import ch.g_7.graphite.core.Camera;
+import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.rendering.ITransformation;
 import ch.g_7.graphite.rendering.shaderprogram.UIShaderProgram;
 import ch.g_7.graphite.ui.IUIPanel;
@@ -13,8 +15,6 @@ import ch.g_7.graphite.ui.IUIRootContainer;
 public class UIRenderer extends BasicRenderer<UIShaderProgram, IUIRootContainer> implements ITransformation<IUIPanel> {
 
 	private Matrix4f viewMatrix;
-
-	private IUIPanel panel;
 	
 	public UIRenderer() {
 		super(new UIShaderProgram());
@@ -43,19 +43,15 @@ public class UIRenderer extends BasicRenderer<UIShaderProgram, IUIRootContainer>
 		super.render(r, transformation);
 	}
 
-
 	
 	@Override
-	public void prepareFor(IUIPanel r) {
-		this.panel = r;
-	}
-
-	
-	@Override
-	public Matrix4f getViewMatrix() {
+	public Matrix4f getModelViewMatrix(IUIPanel panel) {
 		return viewMatrix.identity()
 						  .translate(new Vector3f(panel.getPosition().x() - 1 , panel.getPosition().y()*-1 + 1, -1))
 						  .scaleXY(panel.getSize().x(), panel.getSize().y());
 	}
+
+	@Override
+	public void prepareTransformation(Window window, Camera camera) {}
 
 }

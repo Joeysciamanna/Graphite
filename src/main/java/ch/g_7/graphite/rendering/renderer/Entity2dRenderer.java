@@ -7,15 +7,13 @@ import org.joml.Vector3f;
 
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
-import ch.g_7.graphite.entity2d.IEntity;
+import ch.g_7.graphite.entity.IEntity;
 import ch.g_7.graphite.rendering.ITransformation;
 import ch.g_7.graphite.rendering.shaderprogram.EntityShaderProgram;
 
 public class Entity2dRenderer extends BasicRenderer<EntityShaderProgram, IEntity> implements ITransformation<IEntity>{
 
 	private Matrix4f viewMatrix;
-	
-	private IEntity entity;
 	
 	public Entity2dRenderer() {
 		super(new EntityShaderProgram());
@@ -32,22 +30,23 @@ public class Entity2dRenderer extends BasicRenderer<EntityShaderProgram, IEntity
 	
 	
 	@Override
-	protected void prepareTransformation(Window window, Camera camera) {
+	protected void prepareTransformations(Window window, Camera camera) {
+		prepareTransformation(window, camera);
+	}
+	
+
+	@Override
+	public Matrix4f getModelViewMatrix(IEntity entity) {
+		Matrix4f viewCurr = new Matrix4f(viewMatrix);
+		return viewCurr.translate(entity.getPosition()).rotateXYZ(new Vector3f(entity.getRotation())).scale(entity.getScale());
+	}
+
+
+	@Override
+	public void prepareTransformation(Window window, Camera camera) {
 		viewMatrix.identity();
 		viewMatrix.translate((float) -camera.getPosition().x(), (float) -camera.getPosition().y(),
 				(float) -camera.getPosition().z());
-	}
-	
-	
-	@Override
-	public void prepareFor(IEntity r) {
-		this.entity = r;
-	}
-
-	@Override
-	public Matrix4f getViewMatrix() {
-		Matrix4f viewCurr = new Matrix4f(viewMatrix);
-		return viewCurr.translate(entity.getPosition()).rotateXYZ(new Vector3f(entity.getRotation())).scale(entity.getScale());
 	}
 	
 

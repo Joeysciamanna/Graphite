@@ -15,7 +15,7 @@ import org.joml.Matrix4f;
 import ch.g_7.graphite.base.vao.VAO;
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
-import ch.g_7.graphite.rendering.Basic2dRenderable;
+import ch.g_7.graphite.rendering.BasicRenderable;
 import ch.g_7.graphite.rendering.Dimension;
 import ch.g_7.graphite.rendering.ITransformation;
 import ch.g_7.graphite.rendering.Renderable;
@@ -31,7 +31,7 @@ public abstract class BasicRenderer<S extends BasicShaderProgram, R extends Rend
 
 
 	@Override
-	public void render(List<R> renderClass, Dimension dimension, Window window, Camera camera) {
+	public final void render(List<R> renderClass, Dimension dimension, Window window, Camera camera) {
 		
 		before(renderClass, dimension, window, camera);
 		
@@ -43,11 +43,9 @@ public abstract class BasicRenderer<S extends BasicShaderProgram, R extends Rend
 	
 	protected abstract void renderAll(List<R> renderables);
 
-	protected <T extends Basic2dRenderable> void render(T r, ITransformation<T> transformation) {
-
-		transformation.prepareFor(r);
+	protected <T extends BasicRenderable> void render(T r, ITransformation<T> transformation) {
 		
-		Matrix4f modelViewMatrix = transformation.getViewMatrix();
+		Matrix4f modelViewMatrix = transformation.getModelViewMatrix(r);
 
 		shaderProgram.setModelViewMatrix(modelViewMatrix);
 
@@ -70,15 +68,18 @@ public abstract class BasicRenderer<S extends BasicShaderProgram, R extends Rend
 	}
 
 	protected void before(List<R> renderClass, Dimension dimension, Window window, Camera camera) {
+		
 		shaderProgram.bind();
-		prepareTransformation(window, camera);
+		prepareTransformations(window, camera);
 		shaderProgram.setTextureSampler(0);
+		
 	}
 
-	protected void prepareTransformation(Window window, Camera camera) {};
+	protected void prepareTransformations(Window window, Camera camera) {};
 	
 	protected void after(List<R> renderClass, Dimension dimension, Window window, Camera camera) {
 		shaderProgram.unbind();
+		
 	}
 
 

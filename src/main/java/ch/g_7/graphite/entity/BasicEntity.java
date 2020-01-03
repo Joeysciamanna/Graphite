@@ -1,15 +1,15 @@
-package ch.g_7.graphite.entity2d;
+package ch.g_7.graphite.entity;
 
 import org.joml.Vector3f;
 
-import ch.g_7.graphite.base.mesh.IMesh2d;
+import ch.g_7.graphite.base.mesh.IMesh;
 import ch.g_7.graphite.base.texture.Texture;
 import ch.g_7.graphite.util.Color;
 
 public class BasicEntity extends AbstractEntity {
 
 	
-	public void setMesh(IMesh2d mesh) {
+	public void setMesh(IMesh mesh) {
 		this.mesh = mesh;
 	}
 	

@@ -49,10 +49,10 @@ public abstract class Application implements Runnable {
 			
 			initGame();
 			while (running && !window.windowShouldClose()) {
+				update();
 				window.pullEvents();
 				window.update();
 				dimension.render(window, camera);
-				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -81,6 +81,8 @@ public abstract class Application implements Runnable {
 	protected void close(){}
 
 	protected abstract void initGame();
+	
+	public void update() {}
 	
 	public Dimension getDimension() {
 		return dimension;
