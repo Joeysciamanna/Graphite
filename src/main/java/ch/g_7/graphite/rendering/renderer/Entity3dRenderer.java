@@ -17,7 +17,7 @@ public class Entity3dRenderer extends BasicRenderer<EntityShaderProgram, IEntity
 
 	private final Matrix4f modelViewMatrix;
 
-	private float fov = (float) Math.toRadians(60.0f);
+	private float fov = (float) Math.toRadians(90.0f);
 
 	private float zNear = 0.01f;
 

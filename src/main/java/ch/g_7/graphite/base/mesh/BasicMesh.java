@@ -14,7 +14,7 @@ public class BasicMesh extends AbstractMesh implements IMesh2d, IMesh3d {
 	}
 	
 	public BasicMesh(float[] positions, int[] indices, float[] textureCoordinates) {
-		if(indices.length % 2 != 0) throw new IllegalArgumentException("Invalid number of indices for 2d mesh");
+		if(indices.length % 2 != 0 && indices.length % 3 != 0) throw new IllegalArgumentException("Invalid number of indices for 2d / 3d mesh");
 		this.positions = positions;
 		this.indices = indices;
 		this.textureCoordinates = textureCoordinates;
