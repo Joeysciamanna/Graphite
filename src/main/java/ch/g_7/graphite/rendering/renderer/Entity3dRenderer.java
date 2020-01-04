@@ -43,14 +43,13 @@ public class Entity3dRenderer extends BasicRenderer<EntityShaderProgram, IEntity
 
 	@Override
 	public Matrix4f getModelViewMatrix(IEntity entity) {
-		return modelViewMatrix.translate(entity.getPosition()).rotateXYZ(new Vector3f(entity.getRotation()))
+		return modelViewMatrix.identity().translate(entity.getPosition()).rotateXYZ(new Vector3f(entity.getRotation()))
 				.scale(entity.getScale()).mul(projectionMatrix);
 	}
 
 	@Override
 	public void prepareTransformation(Window window, Camera camera) {
-		projectionMatrix.identity();
-		projectionMatrix.perspective(fov, window.getWidth() / window.getHeight(), zNear, zFar);
+		projectionMatrix.identity().perspective(fov, window.getWidth() / window.getHeight(), zNear, zFar);
 	}
 
 	public void setFov(float fov) {
