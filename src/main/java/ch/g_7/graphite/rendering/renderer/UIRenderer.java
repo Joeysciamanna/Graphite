@@ -12,46 +12,57 @@ import ch.g_7.graphite.rendering.shaderprogram.UIShaderProgram;
 import ch.g_7.graphite.ui.IUIPanel;
 import ch.g_7.graphite.ui.IUIRootContainer;
 
-public class UIRenderer extends BasicRenderer<UIShaderProgram, IUIRootContainer> implements ITransformation<IUIPanel> {
-
-	private Matrix4f viewMatrix;
+public class UIRenderer extends BasicRenderer<UIShaderProgram, IUIRootContainer, IUIPanel> {
 	
 	public UIRenderer() {
-		super(new UIShaderProgram());
-		viewMatrix = new Matrix4f();
+		super(new UIShaderProgram(), new Transformation());
 	}
 
+	
 	@Override
 	protected void renderAll(List<IUIRootContainer> renderables) {
 		for (IUIRootContainer container : renderables) {
 			if (container.isVisible()) {
 				for (IUIPanel panel : container.getChilds()) {
-					renderPanel(panel, this);
+					renderPanel(panel);
 				}
 			}
 		}
 	}
 
-	protected void renderPanel(IUIPanel r, ITransformation<IUIPanel> transformation) {
-	
+	protected void renderPanel(IUIPanel r) {
 		for (IUIPanel child : r.getChilds()) {
 			if (child.isVisible()) {
-				renderPanel(child, transformation);
+				renderPanel(child);
 			}
 		}
-
-		super.render(r, transformation);
+		super.render(r);
 	}
 
 	
-	@Override
-	public Matrix4f getModelViewMatrix(IUIPanel panel) {
-		return viewMatrix.identity()
-						  .translate(new Vector3f(panel.getPosition().x() - 1 , panel.getPosition().y()*-1 + 1, -1))
-						  .scaleXY(panel.getSize().x(), panel.getSize().y());
-	}
+	private static class Transformation implements ITransformation<IUIPanel>{
+		
+		private Matrix4f projectionMatrix;
+		private Matrix4f modelViewMatrix;
+		
+		public Transformation() {
+			projectionMatrix = new Matrix4f();
+			modelViewMatrix = new Matrix4f();
+		}
+		
+		@Override
+		public Matrix4f getProjectionMatrix(Window window, Camera camera) {
+			return projectionMatrix;
+		}
+		
+		@Override
+		public Matrix4f getModelViewMatrix(IUIPanel panel) {
+			return modelViewMatrix.identity()
+					  .translate(new Vector3f(panel.getPosition().x() - 1 , panel.getPosition().y()*-1 + 1, -1))
+					  .scaleXY(panel.getSize().x(), panel.getSize().y());
+		}
 
-	@Override
-	public void prepareTransformation(Window window, Camera camera) {}
+	}
+	
 
 }

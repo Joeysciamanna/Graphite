@@ -7,8 +7,8 @@ import ch.g_7.graphite.core.window.Window;
 
 public interface ITransformation<R extends Renderable> {
 
-
+	Matrix4f getProjectionMatrix(Window window, Camera camera);
+	
 	Matrix4f getModelViewMatrix(R r);
 
-	void prepareTransformation(Window window, Camera camera);
 }

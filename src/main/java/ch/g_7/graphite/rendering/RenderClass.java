@@ -10,7 +10,6 @@ import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.entity.IEntity;
 import ch.g_7.graphite.rendering.renderer.Entity2dRenderer;
-import ch.g_7.graphite.rendering.renderer.Entity3dRenderer;
 import ch.g_7.graphite.rendering.renderer.IRenderer;
 import ch.g_7.graphite.rendering.renderer.UIRenderer;
 import ch.g_7.graphite.ui.IUIRootContainer;
@@ -26,7 +25,7 @@ public class RenderClass<T extends Renderable> implements Initializable, AutoClo
 	
 	static {
 		ENTITIES_2D = create(new Entity2dRenderer(), "ENTITIES_2D");
-		ENTITIES_3D = create(new Entity3dRenderer(), "ENTITIES_3D");
+		ENTITIES_3D = create(new Entity2dRenderer(), "ENTITIES_3D");
 		UI = create(new UIRenderer(), "UI_PANELS");
 	}
 	

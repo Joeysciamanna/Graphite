@@ -21,17 +21,19 @@ import ch.g_7.graphite.rendering.ITransformation;
 import ch.g_7.graphite.rendering.Renderable;
 import ch.g_7.graphite.rendering.shaderprogram.BasicShaderProgram;
 
-public abstract class BasicRenderer<S extends BasicShaderProgram, R extends Renderable> implements IRenderer<R> {
+public abstract class BasicRenderer<S extends BasicShaderProgram, C extends Renderable, R extends BasicRenderable> implements IRenderer<C> {
 
 	protected S shaderProgram;
+	protected ITransformation<R> transformation;
 
-	public BasicRenderer(S shaderProgram) {
+	public BasicRenderer(S shaderProgram, ITransformation<R> transformation) {
 		this.shaderProgram = shaderProgram;
+		this.transformation = transformation;
 	}
 
 
 	@Override
-	public final void render(List<R> renderClass, Dimension dimension, Window window, Camera camera) {
+	public final void render(List<C> renderClass, Dimension dimension, Window window, Camera camera) {
 		
 		before(renderClass, dimension, window, camera);
 		
@@ -41,9 +43,14 @@ public abstract class BasicRenderer<S extends BasicShaderProgram, R extends Rend
 	}
 	
 	
-	protected abstract void renderAll(List<R> renderables);
+	@SuppressWarnings("unchecked")
+	protected void renderAll(List<C> renderables) {
+		for (C r : renderables) {
+			render((R) r);
+		}
+	}
 
-	protected <T extends BasicRenderable> void render(T r, ITransformation<T> transformation) {
+	protected void render(R r) {
 		
 		Matrix4f modelViewMatrix = transformation.getModelViewMatrix(r);
 
@@ -67,21 +74,16 @@ public abstract class BasicRenderer<S extends BasicShaderProgram, R extends Rend
 		
 	}
 
-	protected void before(List<R> renderClass, Dimension dimension, Window window, Camera camera) {
-		
+	protected void before(List<C> renderClass, Dimension dimension, Window window, Camera camera) {
 		shaderProgram.bind();
-		prepareTransformations(window, camera);
 		shaderProgram.setTextureSampler(0);
-		
+		shaderProgram.setProjectionMatrix(transformation.getProjectionMatrix(window, camera));
 	}
 
-	protected void prepareTransformations(Window window, Camera camera) {};
 	
-	protected void after(List<R> renderClass, Dimension dimension, Window window, Camera camera) {
+	protected void after(List<C> renderClass, Dimension dimension, Window window, Camera camera) {
 		shaderProgram.unbind();
-		
 	}
-
 
 	@Override
 	public void init() {

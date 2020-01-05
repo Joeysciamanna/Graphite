@@ -14,19 +14,24 @@ public class BasicShaderProgram extends AbstractShaderProgram{
 	@Override
 	public void init() {
 		super.init();
-        createUniform("model_view_matrix");
-        createUniform("texture_sampler");
+        createUniform("modelViewMatrix");
+        createUniform("projectionMatrix");
+        createUniform("texture");
         createUniform("color");
         createUniform("textureEnabled");
 	}
 
 	
 	public void setModelViewMatrix(Matrix4f matrix) {
-		setUniform("model_view_matrix", matrix);
+		setUniform("modelViewMatrix", matrix);
 	}
 
+	public void setProjectionMatrix(Matrix4f matrix) {
+		setUniform("projectionMatrix", matrix);
+	}
+	
 	public void setTextureSampler(int value) {
-		setUniform("texture_sampler", value);
+		setUniform("texture", value);
 	}
 	
 	public void setColor(Color value) {

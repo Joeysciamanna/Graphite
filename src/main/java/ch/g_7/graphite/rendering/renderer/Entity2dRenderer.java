@@ -1,7 +1,5 @@
 package ch.g_7.graphite.rendering.renderer;
 
-import java.util.List;
-
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
@@ -11,43 +9,36 @@ import ch.g_7.graphite.entity.IEntity;
 import ch.g_7.graphite.rendering.ITransformation;
 import ch.g_7.graphite.rendering.shaderprogram.EntityShaderProgram;
 
-public class Entity2dRenderer extends BasicRenderer<EntityShaderProgram, IEntity> implements ITransformation<IEntity>{
-
-	private Matrix4f viewMatrix;
+public class Entity2dRenderer extends BasicRenderer<EntityShaderProgram, IEntity, IEntity>{
 	
 	public Entity2dRenderer() {
-		super(new EntityShaderProgram());
-		viewMatrix = new Matrix4f();
+		super(new EntityShaderProgram(), new Transformation());
 	}
 	
 	
-	@Override
-	protected void renderAll(List<IEntity> renderables) {
-		for (IEntity entity : renderables) {
-			render(entity, this);
+	private static class Transformation implements ITransformation<IEntity>{
+		
+		private Matrix4f projectionMatrix;
+		private Matrix4f modelViewMatrix;
+		
+		public Transformation() {
+			projectionMatrix = new Matrix4f();
+			modelViewMatrix = new Matrix4f();
 		}
-	}
-	
-	
-	@Override
-	protected void prepareTransformations(Window window, Camera camera) {
-		prepareTransformation(window, camera);
-	}
-	
+		
+		@Override
+		public Matrix4f getProjectionMatrix(Window window, Camera camera) {
+			return projectionMatrix.identity().translate((float) -camera.getPosition().x(), (float) -camera.getPosition().y(),
+					(float) -camera.getPosition().z());
+		}
+		
+		@Override
+		public Matrix4f getModelViewMatrix(IEntity entity) {
+			return modelViewMatrix.identity().translate(entity.getPosition()).rotateXYZ(new Vector3f(entity.getRotation())).scale(entity.getScale());
+		}
 
-	@Override
-	public Matrix4f getModelViewMatrix(IEntity entity) {
-		Matrix4f viewCurr = new Matrix4f(viewMatrix);
-		return viewCurr.translate(entity.getPosition()).rotateXYZ(new Vector3f(entity.getRotation())).scale(entity.getScale());
 	}
 
-
-	@Override
-	public void prepareTransformation(Window window, Camera camera) {
-		viewMatrix.identity();
-		viewMatrix.translate((float) -camera.getPosition().x(), (float) -camera.getPosition().y(),
-				(float) -camera.getPosition().z());
-	}
 	
 
 }
