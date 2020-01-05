@@ -155,10 +155,10 @@ public class Test extends Application {
 	    
 		IMesh2d mesh1 = new BasicMesh(positions, indices, textCoords);
 		entity1 = new BasicEntity();
-		entity1.setTexture(square1);
+//		entity1.setTexture(square1);
 		entity1.setColor(Color.getColor(255, 255, 0));
 		entity1.setMesh(mesh1);
-		entity1.setPosition(new Vector3f(-.1f, -.1f, -.1f));
+		entity1.setPosition(new Vector3f(0, 0, -2));
 		getDimension().addObj(entity1, RenderClass.ENTITIES_3D);
 		
 		
