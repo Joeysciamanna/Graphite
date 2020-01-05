@@ -177,7 +177,7 @@ public class Test extends Application {
 
 	@Override
 	public void update() {
-//		entity1.setScale(entity1.getScale() * 1.1f);
+		entity1.setScale(entity1.getScale() * 1.0001f);
 //		Vector3f rotation = new Vector3f();
 //		entity1.getRotation().mul(1.4f, 1.4f, 1.4f, rotation);
 //		entity1.setRotation(rotation);
