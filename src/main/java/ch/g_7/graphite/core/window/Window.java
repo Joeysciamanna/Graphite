@@ -146,7 +146,7 @@ public class Window implements Initializable, ResizeListner {
 		setBackgroundColor(Color.getColor(0, 0, 0, 0));
 	}
 
-	public void update() {
+	public void render() {
 		resizeNotifier.run();
 		reposition();
 

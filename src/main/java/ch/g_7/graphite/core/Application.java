@@ -17,11 +17,17 @@ public abstract class Application implements Runnable {
 
 	private boolean running;
 	
+	private Timer timer;
 	
 	public Application(String name) {
 		this.dimension = new Dimension();
 		this.window = new Window(name, 200, 200);
 		this.camera = new Camera();
+		this.timer = new Timer();
+		if(exists) {
+			throw new IllegalStateException("Only one Engine can exist at the same time");
+		}
+		exists = true;
 	}
 
 	public final void setRunning(boolean running) {
@@ -41,18 +47,31 @@ public abstract class Application implements Runnable {
 
 	}
 	
+	
+	
 	@Override
 	public final void run() {
 		try {
-			init();
 			window.init();
-			
 			initGame();
+			timer.reset();
 			while (running && !window.windowShouldClose()) {
-				update();
-				window.pullEvents();
-				window.update();
+				timer.recalculate();
+				
+				long time = System.currentTimeMillis();
+				while (time + timer.getSleepTime() > System.currentTimeMillis()) {
+					Thread.sleep(1);
+				}
+				
+				
+				
+				for (int i = 0; i < timer.getUpdateCallCount() + 1; i++) {
+					update();
+					window.pullEvents();
+				}
+				window.render();
 				dimension.render(window, camera);
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -62,12 +81,6 @@ public abstract class Application implements Runnable {
 		}
 	}
 	
-	protected void init() {
-		if(exists) {
-			throw new IllegalStateException("Only one Engine can exist at the same time");
-		}
-		exists = true;
-	}
 	
 	
 	public void start() {
@@ -99,6 +112,9 @@ public abstract class Application implements Runnable {
 	public Window getWindow() {
 		return window;
 	}
-	
+
+	public Timer getTimer() {
+		return timer;
+	}
 	
 }
