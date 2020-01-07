@@ -5,7 +5,7 @@ import org.joml.Matrix4f;
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
 
-public interface ITransformation<R extends Renderable> {
+public interface ITransformation<R> {
 
 	Matrix4f getProjectionMatrix(Window window, Camera camera);
 	

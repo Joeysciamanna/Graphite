@@ -3,13 +3,12 @@ package ch.g_7.graphite.xtest;
 import org.joml.Vector3f;
 
 import ch.g_7.graphite.base.mesh.BasicMesh;
-import ch.g_7.graphite.base.mesh.IMesh2d;
-import ch.g_7.graphite.base.mesh.MeshBuilder2d;
-import ch.g_7.graphite.base.mesh.MeshFactory2d;
 import ch.g_7.graphite.base.texture.Texture;
+import ch.g_7.graphite.base.view_model.ViewModel;
 import ch.g_7.graphite.core.Application;
-import ch.g_7.graphite.entity.BasicEntity;
-import ch.g_7.graphite.rendering.RenderClass;
+import ch.g_7.graphite.node.RenderCluster;
+import ch.g_7.graphite.node.entity.BasicEntity;
+import ch.g_7.graphite.rendering.game_object.EntityTransformation3d;
 import ch.g_7.graphite.ui.UIButton;
 import ch.g_7.graphite.ui.UIPanel;
 import ch.g_7.graphite.ui.UIRootContainer;
@@ -41,7 +40,7 @@ public class Test extends Application {
 		Texture square2 = new SecureRunner<Void, Texture>(()->new Texture("C:\\Users\\Joey Sciamanna\\git\\Graphite\\src\\main\\resources\\textures\\square2.png")).get();
 		
 		UIRootContainer inventory = new UIRootContainer(getWindow());
-		getDimension().addObj(inventory, RenderClass.UI);
+		getDimension().addObj(inventory, RenderCluster.UI);
 		
 		UIPanel panel2 = new UIPanel();
 		panel2.getPreferedWidth().reset().addPF(50);
@@ -152,15 +151,17 @@ public class Test extends Application {
 				4, 6, 7, 5, 4, 7, 
 		};
 	           
-	    
-		IMesh2d mesh1 = new BasicMesh(positions, indices, textCoords);
-		entity1 = new BasicEntity();
-//		entity1.setTexture(square1);
-		entity1.setColor(Color.getColor(255, 255, 0));
-		entity1.setMesh(mesh1);
-		entity1.setPosition(new Vector3f(0, 0, -2));
-		getDimension().addObj(entity1, RenderClass.ENTITIES_3D);
+	    ViewModel viewModel = new ViewModel();
+		viewModel.setMesh(new BasicMesh(positions, indices, textCoords));
+		viewModel.setTexture(square1);
+		viewModel.setColor(Color.getColor(255, 255, 0));
 		
+		entity1 = new BasicEntity();
+		entity1.setViewModel(viewModel);
+		entity1.setPosition(new Vector3f(0, 0, -2));
+		RenderCluster.ENTITIES.getRenderer().setTransformation(new EntityTransformation3d());
+		getDimension().addObj(entity1, RenderCluster.ENTITIES);
+//		
 		
 //		IMesh2d mesh2 = MeshFactory2d.getSquare(1).setCenter(MeshyBuilder2d.CENTER_MIDDLE).build();
 //		entity2 = new BasicEntity();
@@ -177,7 +178,7 @@ public class Test extends Application {
 
 	@Override
 	public void update() {
-		entity1.setScale(entity1.getScale() + 0.001f);
+//		entity1.setScale(entity1.getScale() + 0.001f);
 //		System.out.println(getTimer().getFPS());
 //		Vector3f rotation = new Vector3f();
 //		entity1.getRotation().mul(1.4f, 1.4f, 1.4f, rotation);

@@ -1,15 +1,18 @@
-package ch.g_7.graphite.rendering.shaderprogram;
+package ch.g_7.graphite.rendering.game_object;
 
 import org.joml.Matrix4f;
 
+import ch.g_7.graphite.rendering.ShaderProgram;
 import ch.g_7.graphite.util.Color;
+import ch.g_7.graphite.util.Resources;
 
-public class BasicShaderProgram extends AbstractShaderProgram{
+public class EntityShaderProgram extends ShaderProgram {
 
 
-	public BasicShaderProgram(String vertexCodePath, String fragmentCodePath) {
-		super(vertexCodePath, fragmentCodePath);
+	public EntityShaderProgram()  {
+		super(Resources.ENTITY_VERTEX_SHADER_PATH, Resources.ENTITY_FRAGMENT_SHADER_PATH);
 	}
+
 
 	@Override
 	public void init() {

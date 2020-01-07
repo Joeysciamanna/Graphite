@@ -1,7 +1,5 @@
 package ch.g_7.graphite.core;
 
-import java.math.BigDecimal;
-
 public class Timer {
 
 	// Kerzahl von 120 fps in f/millisecond

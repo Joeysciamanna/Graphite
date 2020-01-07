@@ -1,15 +1,16 @@
 package ch.g_7.graphite.ui;
 
+import java.io.Closeable;
 import java.util.List;
 
 import org.joml.Vector2fc;
 import org.joml.Vector2ic;
 
 import ch.g_7.graphite.core.window.Window;
-import ch.g_7.graphite.rendering.Renderable;
 import ch.g_7.graphite.ui.util.ScreenDimension;
+import ch.g_7.util.able.Initializable;
 
-public interface IUIContainer extends Renderable {
+public interface IUIContainer extends Initializable, Closeable {
 
 	boolean isVisible();
 
@@ -18,6 +19,11 @@ public interface IUIContainer extends Renderable {
 	void recalculate(Vector2ic screenSize);
 	
 	void recalculate();
+	
+	void init();
+	
+	@Override
+	void close();
 	
 	void requestRecalculation(IUIContainer container);
 
@@ -29,7 +35,7 @@ public interface IUIContainer extends Renderable {
 	
 	ScreenDimension getX();
 	ScreenDimension getY();
-	Vector2fc getPosition();
+	Vector2fc getPosition(); //TODO
 	
 	IUIRootContainer getRootContainer();
 }
