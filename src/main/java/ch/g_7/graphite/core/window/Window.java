@@ -82,7 +82,7 @@ public class Window implements Initializable, ResizeListner {
 
 	static {
 		GLFWErrorCallback.createPrint(System.err).set();
-
+	
 		if (!glfwInit()) {
 			throw new IllegalStateException("Unable to initialize GLFW");
 		}
@@ -204,6 +204,7 @@ public class Window implements Initializable, ResizeListner {
 		resizeNotifier.removeListner(resizeListner);
 	}
 
+	@Deprecated
 	public boolean isKeyPressed(int keyCode) {
 		return glfwGetKey(id, keyCode) == GLFW_PRESS;
 	}

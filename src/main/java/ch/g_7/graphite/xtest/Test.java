@@ -1,6 +1,7 @@
 package ch.g_7.graphite.xtest;
 
 import org.joml.Vector3f;
+import org.lwjgl.glfw.GLFW;
 
 import ch.g_7.graphite.base.mesh.BasicMesh3d;
 import ch.g_7.graphite.base.texture.Texture;
@@ -131,7 +132,26 @@ public class Test extends Application {
 	public void update(double deltaMillis) {
 //		entity1.setScale((float) (entity1.getScale() + deltaMillis * 0.0001));
 //		System.out.println(getTimer().getFPS());
-		entity1.getRotation().x = (float) Math.toRadians(deltaMillis * 0.05 + Math.toDegrees(entity1.getRotation().x));
+		
+		if(getWindow().isKeyPressed(GLFW.GLFW_KEY_W)) {
+			entity1.getRotation().add((float) Math.toRadians(deltaMillis * -0.05) ,0,0);
+		}
+		if(getWindow().isKeyPressed(GLFW.GLFW_KEY_S)) {
+			entity1.getRotation().add((float) Math.toRadians(deltaMillis * 0.05) ,0,0);
+		}
+		if(getWindow().isKeyPressed(GLFW.GLFW_KEY_A)) {
+			entity1.getRotation().add(0, (float) Math.toRadians(deltaMillis * -0.05),0);
+		}
+		if(getWindow().isKeyPressed(GLFW.GLFW_KEY_D)) {
+			entity1.getRotation().add(0, (float) Math.toRadians(deltaMillis * 0.05),0);
+		}
+		if(getWindow().isKeyPressed(GLFW.GLFW_KEY_Q)) {
+			entity1.getRotation().add(0, 0, (float) Math.toRadians(deltaMillis * -0.05));
+		}
+		if(getWindow().isKeyPressed(GLFW.GLFW_KEY_E)) {
+			entity1.getRotation().add(0, 0, (float) Math.toRadians(deltaMillis * 0.05));
+		}
+//		entity1.getRotation().x = (float) Math.toRadians(deltaMillis * 0.05 + Math.toDegrees(entity1.getRotation().x));
 //		entity1.getRotation().y = (float) Math.toRadians(deltaMillis * 0.05 + Math.toDegrees(entity1.getRotation().y));
 //		entity1.getRotation().z = (float) Math.toRadians(deltaMillis * 0.05 + Math.toDegrees(entity1.getRotation().z));
 //		Vector3f position = new Vector3f();
