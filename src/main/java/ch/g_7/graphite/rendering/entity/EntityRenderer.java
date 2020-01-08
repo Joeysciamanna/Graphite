@@ -10,13 +10,16 @@ import static org.lwjgl.opengl.GL13.glActiveTexture;
 
 import java.util.List;
 
+import org.lwjgl.opengl.GL11;
+
 import ch.g_7.graphite.base.vao.VAO;
-import ch.g_7.graphite.base.view_model.ViewModel;
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.node.entity.Entity;
+import ch.g_7.graphite.node.entity.ViewModel;
 import ch.g_7.graphite.rendering.ITransformation;
 import ch.g_7.graphite.rendering.Renderer;
+import ch.g_7.graphite.util.Color;
 
 public class EntityRenderer extends Renderer<Entity, EntityShaderProgram> {
 

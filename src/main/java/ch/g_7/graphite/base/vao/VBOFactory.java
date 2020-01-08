@@ -5,6 +5,10 @@ public final class VBOFactory {
 	private  VBOFactory() {}
 	
 	
+	public static VBO getPositionVBO(VBOType type, float[] positions, int[] indices) {
+		return new PositionVBO(type, positions, indices);
+	}
+	
 	public static VBO getPosition2dVBO(float[] positions, int[] indices) {
 		return new PositionVBO(VBOType.POSITIONS_2D, positions, indices);
 	}

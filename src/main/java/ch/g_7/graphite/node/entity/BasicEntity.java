@@ -2,8 +2,6 @@ package ch.g_7.graphite.node.entity;
 
 import org.joml.Vector3f;
 
-import ch.g_7.graphite.base.view_model.ViewModel;
-
 public class BasicEntity extends Entity {
 
 	private ViewModel viewModel;

@@ -1,9 +1,7 @@
 package ch.g_7.graphite.node.entity;
 
-import org.joml.Vector3f;
 import org.joml.Vector3fc;
 
-import ch.g_7.graphite.base.view_model.ViewModel;
 import ch.g_7.graphite.node.INode;
 
 public abstract class Entity implements INode {

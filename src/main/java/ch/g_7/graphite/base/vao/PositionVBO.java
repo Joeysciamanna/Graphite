@@ -45,6 +45,7 @@ public class PositionVBO extends FloatVBO {
 			glBindBuffer(type.glBufferTarget, getId());
 			glBufferData(type.glBufferTarget, indicesBuffer, GL_STATIC_DRAW);
 			MemoryUtil.memFree(indicesBuffer);
+			ints = null;
 		}
 	}
 	

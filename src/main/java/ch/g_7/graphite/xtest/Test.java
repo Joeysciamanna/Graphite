@@ -2,14 +2,12 @@ package ch.g_7.graphite.xtest;
 
 import org.joml.Vector3f;
 
-import ch.g_7.graphite.base.mesh.BasicMesh;
-import ch.g_7.graphite.base.mesh.MeshBuilder2d;
-import ch.g_7.graphite.base.mesh.MeshFactory2d;
+import ch.g_7.graphite.base.mesh.BasicMesh3d;
 import ch.g_7.graphite.base.texture.Texture;
-import ch.g_7.graphite.base.view_model.ViewModel;
 import ch.g_7.graphite.core.Application;
 import ch.g_7.graphite.node.RenderCluster;
 import ch.g_7.graphite.node.entity.BasicEntity;
+import ch.g_7.graphite.node.entity.ViewModel;
 import ch.g_7.graphite.rendering.entity.EntityTransformation3d;
 import ch.g_7.graphite.ui.UIButton;
 import ch.g_7.graphite.ui.UIPanel;
@@ -105,14 +103,14 @@ public class Test extends Application {
 			    7, 6, 4, 7, 4, 5,
 			};
 	    ViewModel viewModel = new ViewModel();
-		viewModel.setMesh(new BasicMesh(positions, indices));
+		viewModel.setMesh(new BasicMesh3d(positions, indices));
 //		viewModel.setTexture(square1);
 		viewModel.setColor(Color.getColor(255, 255, 0));
 		
 		entity1 = new BasicEntity();
 		entity1.setViewModel(viewModel);
-		entity1.setPosition(new Vector3f(0, 0, 0));
-//		RenderCluster.ENTITIES.getRenderer().setTransformation(new EntityTransformation3d());
+		entity1.setPosition(new Vector3f(0, 0, -2));
+		RenderCluster.ENTITIES.getRenderer().setTransformation(new EntityTransformation3d());
 		getDimension().addObj(entity1, RenderCluster.ENTITIES);
 //		
 		
@@ -133,7 +131,9 @@ public class Test extends Application {
 	public void update(double deltaMillis) {
 //		entity1.setScale((float) (entity1.getScale() + deltaMillis * 0.0001));
 //		System.out.println(getTimer().getFPS());
-		entity1.getRotation().y = (float) Math.toRadians(deltaMillis * 0.1 + Math.toDegrees(entity1.getRotation().y));
+		entity1.getRotation().x = (float) Math.toRadians(deltaMillis * 0.05 + Math.toDegrees(entity1.getRotation().x));
+//		entity1.getRotation().y = (float) Math.toRadians(deltaMillis * 0.05 + Math.toDegrees(entity1.getRotation().y));
+//		entity1.getRotation().z = (float) Math.toRadians(deltaMillis * 0.05 + Math.toDegrees(entity1.getRotation().z));
 //		Vector3f position = new Vector3f();
 //		entity1.getPosition().mul(1.1f, 1.1f, 1.1f, position);
 //		entity1.setPosition(position);
