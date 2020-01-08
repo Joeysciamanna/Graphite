@@ -17,14 +17,12 @@ import static org.lwjgl.glfw.GLFW.glfwGetVideoMode;
 import static org.lwjgl.glfw.GLFW.glfwHideWindow;
 import static org.lwjgl.glfw.GLFW.glfwInit;
 import static org.lwjgl.glfw.GLFW.glfwMakeContextCurrent;
-import static org.lwjgl.glfw.GLFW.glfwPollEvents;
 import static org.lwjgl.glfw.GLFW.glfwSetFramebufferSizeCallback;
 import static org.lwjgl.glfw.GLFW.glfwSetKeyCallback;
 import static org.lwjgl.glfw.GLFW.glfwSetMouseButtonCallback;
 import static org.lwjgl.glfw.GLFW.glfwSetWindowPos;
 import static org.lwjgl.glfw.GLFW.glfwSetWindowPosCallback;
 import static org.lwjgl.glfw.GLFW.glfwShowWindow;
-import static org.lwjgl.glfw.GLFW.glfwSwapBuffers;
 import static org.lwjgl.glfw.GLFW.glfwWindowHint;
 import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
 import static org.lwjgl.opengl.GL11.GL_BLEND;
@@ -52,7 +50,6 @@ import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
-import org.lwjgl.opengl.GL11;
 
 import ch.g_7.graphite.util.Color;
 import ch.g_7.util.able.Initializable;
@@ -69,7 +66,7 @@ public class Window implements Initializable, ResizeListner {
 	private List<MouseListner> mouseListners;
 	private TaskInputQueue<MouseEvent> mouseClickBuffer;
 
-	private long windowId;
+	private long id;
 
 	private int width;
 	private int height;
@@ -109,34 +106,29 @@ public class Window implements Initializable, ResizeListner {
 
 	@Override
 	public void init() {
-		windowId = glfwCreateWindow(width, height, title, NULL, NULL);
-		if (windowId == NULL) {
+		id = glfwCreateWindow(width, height, title, NULL, NULL);
+		if (id == NULL) {
 			throw new RuntimeException("Failed to create the GLFW window");
 		}
 
-		glfwSetFramebufferSizeCallback(windowId,
+		glfwSetFramebufferSizeCallback(id,
 				(window, width, height) -> resizeNotifier.valueChanged(new ResizeEvent(window, width, height)));
 
-		glfwSetWindowPosCallback(windowId, (window, x, y) -> setPosition(x, y));
+		glfwSetWindowPosCallback(id, (window, x, y) -> setPosition(x, y));
 
-		glfwSetKeyCallback(windowId, (window, key, scancode, action, mods) -> keyPressBuffer
+		glfwSetKeyCallback(id, (window, key, scancode, action, mods) -> keyPressBuffer
 				.add(new KeyEvent(key, scancode, action, mods)));
 
-		glfwSetMouseButtonCallback(windowId, (long window, int button, int action, int mods) -> {
+		glfwSetMouseButtonCallback(id, (long window, int button, int action, int mods) -> {
 			DoubleBuffer x = BufferUtils.createDoubleBuffer(1);
 			DoubleBuffer y = BufferUtils.createDoubleBuffer(1);
-			glfwGetCursorPos(windowId, x, y);
+			glfwGetCursorPos(id, x, y);
 			mouseClickBuffer.add(new MouseEvent(button, action, mods, (int) x.get(), (int) y.get()));
 		});
 
-		glfwMakeContextCurrent(windowId);
+		glfwMakeContextCurrent(id);
 
 		GL.createCapabilities();
-		glEnable(GL_DEPTH_TEST);
-
-		glDisable(GL_CULL_FACE);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		glEnable(GL_BLEND);
 
 		setSize(width, height);
 
@@ -146,14 +138,9 @@ public class Window implements Initializable, ResizeListner {
 		setBackgroundColor(Color.getColor(0, 0, 0, 0));
 	}
 
-	public void render() {
+	public void update() {
 		resizeNotifier.run();
 		reposition();
-
-		glfwSwapBuffers(windowId);
-		glfwPollEvents();
-		
-		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 	}
 
 	public void pullEvents() {
@@ -166,16 +153,16 @@ public class Window implements Initializable, ResizeListner {
 		this.width = action.getWidth();
 		this.height = action.getHeight();
 		glViewport(0, 0, width, height);
-		GLFW.glfwSetWindowSize(windowId, width, height);
+		GLFW.glfwSetWindowSize(id, width, height);
 	}
 
 	public void setSize(int width, int height) {
-		resizeNotifier.valueChanged(new ResizeEvent(windowId, width, height));
+		resizeNotifier.valueChanged(new ResizeEvent(id, width, height));
 	}
 
 	public void reposition() {
 		if (repositioned) {
-			glfwSetWindowPos(windowId, x, y);
+			glfwSetWindowPos(id, x, y);
 		}
 	}
 
@@ -187,9 +174,9 @@ public class Window implements Initializable, ResizeListner {
 
 	public void setVisible(boolean visible) {
 		if (visible) {
-			glfwShowWindow(windowId);
+			glfwShowWindow(id);
 		} else {
-			glfwHideWindow(windowId);
+			glfwHideWindow(id);
 		}
 	}
 
@@ -197,8 +184,8 @@ public class Window implements Initializable, ResizeListner {
 		glClearColor(color.getR(), color.getG(), color.getB(), color.getA());
 	}
 
-	public long getWindowId() {
-		return windowId;
+	public long getId() {
+		return id;
 	}
 
 	public void addKeyListner(KeyListner keyListner) {
@@ -226,11 +213,11 @@ public class Window implements Initializable, ResizeListner {
 	}
 
 	public boolean isKeyPressed(int keyCode) {
-		return glfwGetKey(windowId, keyCode) == GLFW_PRESS;
+		return glfwGetKey(id, keyCode) == GLFW_PRESS;
 	}
 
 	public boolean windowShouldClose() {
-		return glfwWindowShouldClose(windowId);
+		return glfwWindowShouldClose(id);
 	}
 
 	public String getTitle() {

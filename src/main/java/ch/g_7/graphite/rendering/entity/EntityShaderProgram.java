@@ -1,4 +1,4 @@
-package ch.g_7.graphite.rendering.game_object;
+package ch.g_7.graphite.rendering.entity;
 
 import org.joml.Matrix4f;
 

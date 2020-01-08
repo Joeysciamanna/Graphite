@@ -10,17 +10,21 @@ public abstract class Entity implements INode {
 	
 
 	@Override
-	public void init() {}
+	public void init() {
+		if(getViewModel()!=null) getViewModel().init();
+	}
 
 	@Override
-	public void close() {}
+	public void close() {
+		if(getViewModel()!=null) getViewModel().close();
+	}
 
 	@Override
-	public void update(long deltaMillis) {}
+	public void update(double deltaMillis) {}
 
 	public abstract float getScale();
 	
-	public abstract Vector3f getRotation();
+	public abstract Vector3fc getRotation();
 	
 	public abstract ViewModel getViewModel();
 

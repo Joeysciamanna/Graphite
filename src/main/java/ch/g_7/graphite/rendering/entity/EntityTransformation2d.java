@@ -1,4 +1,4 @@
-package ch.g_7.graphite.rendering.game_object;
+package ch.g_7.graphite.rendering.entity;
 
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
@@ -25,9 +25,9 @@ public class EntityTransformation2d implements ITransformation<Entity> {
 	}
 
 	@Override
-	public Matrix4f getModelViewMatrix(Entity object) {
-		return modelViewMatrix.identity().translate(object.getPosition()).rotateXYZ(new Vector3f(object.getRotation()))
-				.scale(object.getScale());
+	public Matrix4f getModelViewMatrix(Entity entity) {
+		return modelViewMatrix.identity().translate(entity.getPosition()).rotateXYZ(new Vector3f(entity.getRotation()))
+				.scale(entity.getScale());
 	}
 
 }

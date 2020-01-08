@@ -3,8 +3,9 @@ package ch.g_7.graphite.base.view_model;
 import ch.g_7.graphite.base.mesh.IMesh;
 import ch.g_7.graphite.base.texture.Texture;
 import ch.g_7.graphite.util.Color;
+import ch.g_7.util.able.Initializable;
 
-public class ViewModel {
+public class ViewModel implements Initializable, AutoCloseable{
 
 	private IMesh mesh;
 	private Texture texture;
@@ -41,5 +42,17 @@ public class ViewModel {
 	
 	public void setTexture(Texture texture) {
 		this.texture = texture;
+	}
+
+	@Override
+	public void close() {
+		if(mesh!=null) mesh.close();
+		if(texture!=null) texture.close();
+
+	}
+
+	@Override
+	public void init() {
+		if(mesh!=null) mesh.init();
 	}
 }

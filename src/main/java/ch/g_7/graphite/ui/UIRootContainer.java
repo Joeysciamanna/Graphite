@@ -48,7 +48,7 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer{
 	}
 	
 	@Override
-	public void update(long deltaMillis) {}
+	public void update(double deltaMillis) {}
 	
 	@Override
 	public void init() {

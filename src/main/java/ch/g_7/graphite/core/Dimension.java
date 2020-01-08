@@ -20,7 +20,6 @@ public final class Dimension implements AutoCloseable {
 			renderClasses.add(renderClass);
 			renderClass.init();
 		}
-		renderable.init();
 		renderClass.addNode(renderable);
 	}
 	
@@ -37,6 +36,12 @@ public final class Dimension implements AutoCloseable {
 	public void close() {
 		for (RenderCluster<?,?> renderClass : renderClasses) {
 			renderClass.close();
+		}
+	}
+
+	public void update(double deltaMillis) {
+		for (RenderCluster<?, ?> renderCluster : renderClasses) {
+			renderCluster.update(deltaMillis);
 		}
 	}
 	

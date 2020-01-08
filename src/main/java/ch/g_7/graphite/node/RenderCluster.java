@@ -4,8 +4,7 @@ import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.node.entity.Entity;
 import ch.g_7.graphite.rendering.IRenderer;
-import ch.g_7.graphite.rendering.Renderer;
-import ch.g_7.graphite.rendering.game_object.EntityRenderer;
+import ch.g_7.graphite.rendering.entity.EntityRenderer;
 import ch.g_7.graphite.rendering.ui.UIRenderer;
 import ch.g_7.graphite.ui.IUIRootContainer;
 import ch.g_7.util.able.Initializable;
@@ -27,7 +26,7 @@ public final class RenderCluster<T extends INode, R extends IRenderer<T>> extend
 		renderer.render(nodes, window, camera);
 	}
 	
-	public void update(long deltaMillis) {
+	public void update(double deltaMillis) {
 		for (INode node : nodes) {
 			node.update(deltaMillis);
 		}

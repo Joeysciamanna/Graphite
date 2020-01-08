@@ -1,4 +1,4 @@
-package ch.g_7.graphite.rendering.game_object;
+package ch.g_7.graphite.rendering.entity;
 
 import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
 import static org.lwjgl.opengl.GL11.GL_TRIANGLES;
@@ -15,7 +15,6 @@ import ch.g_7.graphite.base.view_model.ViewModel;
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.node.entity.Entity;
-import ch.g_7.graphite.rendering.IRenderer;
 import ch.g_7.graphite.rendering.ITransformation;
 import ch.g_7.graphite.rendering.Renderer;
 

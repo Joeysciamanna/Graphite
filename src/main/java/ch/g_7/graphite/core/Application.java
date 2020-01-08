@@ -58,20 +58,14 @@ public abstract class Application implements Runnable {
 			initGame();
 			timer.reset();
 			while (running && !window.windowShouldClose()) {
-				timer.recalculate();
-
-				long time = System.currentTimeMillis();
-				while (time + timer.getSleepTime() > System.currentTimeMillis()) {
-					Thread.sleep(1);
-				}
-
-				for (int i = 0; i < timer.getUpdateCallCount() + 1; i++) {
-					update();
-					window.pullEvents();
-				}
-				window.render();
+				timer.calculateDelta();
+				window.pullEvents();
+				
+				update(timer.getDeltaMillis());
+				dimension.update(timer.getDeltaMillis());
+				
+				window.update();
 				masterRenderer.render(dimension, window, camera);
-
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -95,7 +89,7 @@ public abstract class Application implements Runnable {
 
 	protected abstract void initGame();
 
-	public void update() {
+	public void update(double deltaMillis) {
 	}
 
 	public Dimension getDimension() {

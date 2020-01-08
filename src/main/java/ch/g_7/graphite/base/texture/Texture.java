@@ -20,7 +20,7 @@ import java.nio.IntBuffer;
 
 import org.lwjgl.system.MemoryStack;
 
-public class Texture {
+public class Texture implements AutoCloseable{
 
 	private int id;
 

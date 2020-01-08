@@ -9,6 +9,6 @@ public interface INode extends Initializable, AutoCloseable {
 	@Override
 	void close();
 
-	void update(long deltaMillis);
+	void update(double deltaMillis);
 
 }
