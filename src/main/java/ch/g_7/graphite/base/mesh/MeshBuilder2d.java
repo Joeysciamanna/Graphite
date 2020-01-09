@@ -136,7 +136,7 @@ public class MeshBuilder2d {
 			realIndices[j] = indices.get(j);
 		}
 		
-		
+		//TODO Better texture coord calculation
 		return new BasicMesh(positions, realIndices, new float[] {
 				0,0,
 				0,1,

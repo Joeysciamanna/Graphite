@@ -2,7 +2,6 @@ package ch.g_7.graphite.base.mesh;
 
 import ch.g_7.graphite.base.vao.VAO;
 import ch.g_7.graphite.base.vao.VBOFactory;
-import ch.g_7.graphite.base.vao.VBOType;
 
 public class BasicMesh implements IMesh {
 
