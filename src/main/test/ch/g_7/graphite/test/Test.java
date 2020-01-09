@@ -6,7 +6,7 @@ import ch.g_7.graphite.base.mesh.MeshBuilder2d;
 import ch.g_7.graphite.base.mesh.MeshFactory2d;
 import ch.g_7.graphite.base.texture.Texture;
 import ch.g_7.graphite.core.Application;
-import ch.g_7.graphite.entity.BasicEntity;
+import ch.g_7.graphite.entity.Entity;
 import ch.g_7.graphite.entity.ViewModel;
 import ch.g_7.graphite.node.RenderCluster;
 import ch.g_7.graphite.util.Color;
@@ -14,7 +14,7 @@ import ch.g_7.util.task.SecureRunner;
 
 public class Test extends Application {
 
-	private BasicEntity entity1;
+	private Entity entity1;
 	
 	public Test() {
 		super("Test");
@@ -33,7 +33,7 @@ public class Test extends Application {
 		ViewModel viewModel = new ViewModel();
 		viewModel.setMesh(MeshFactory2d.getSquare(1).setCenter(MeshBuilder2d.CENTER_MIDDLE).build());
 		viewModel.setTexture(square1);
-		entity1 = new BasicEntity();
+		entity1 = new Entity();
 		entity1.setViewModel(viewModel);
 		entity1.setPosition(new Vector3f(0, 0, 0));
 		

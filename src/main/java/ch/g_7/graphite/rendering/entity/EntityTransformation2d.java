@@ -5,10 +5,11 @@ import org.joml.Vector3f;
 
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
-import ch.g_7.graphite.entity.Entity;
+import ch.g_7.graphite.entity.BasicEntity;
+import ch.g_7.graphite.node.Localizable;
 import ch.g_7.graphite.rendering.ITransformation;
 
-public class EntityTransformation2d implements ITransformation<Entity> {
+public class EntityTransformation2d implements ITransformation<Localizable> {
 
 	private Matrix4f projectionMatrix;
 	private Matrix4f modelViewMatrix;
@@ -25,7 +26,7 @@ public class EntityTransformation2d implements ITransformation<Entity> {
 	}
 
 	@Override
-	public Matrix4f getModelViewMatrix(Entity entity) {
+	public Matrix4f getModelViewMatrix(Localizable entity) {
 		return modelViewMatrix.identity().translate(entity.getPosition()).rotateXYZ(new Vector3f(entity.getRotation()))
 				.scale(entity.getScale());
 	}

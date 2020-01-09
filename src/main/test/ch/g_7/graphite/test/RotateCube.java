@@ -3,9 +3,9 @@ package ch.g_7.graphite.test;
 import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;
 
-import ch.g_7.graphite.base.mesh.BasicMesh;
+import ch.g_7.graphite.base.mesh.Mesh;
 import ch.g_7.graphite.core.Application;
-import ch.g_7.graphite.entity.BasicEntity;
+import ch.g_7.graphite.entity.Entity;
 import ch.g_7.graphite.entity.ViewModel;
 import ch.g_7.graphite.node.RenderCluster;
 import ch.g_7.graphite.rendering.entity.EntityTransformation3d;
@@ -21,8 +21,8 @@ public class RotateCube extends Application {
 		new RotateCube("Rotate Cube Test").setRunning(true);
 	}
 
-	BasicEntity entity1;
-	BasicEntity entity2;
+	Entity entity1;
+	Entity entity2;
 
 	@Override
 	protected void init() {
@@ -62,10 +62,10 @@ public class RotateCube extends Application {
 		};
 		
 		ViewModel viewModel = new ViewModel();
-		viewModel.setMesh(new BasicMesh(positions, indices));
+		viewModel.setMesh(new Mesh(positions, indices));
 		viewModel.setColor(Color.getColor(255, 255, 0));
 
-		entity1 = new BasicEntity();
+		entity1 = new Entity();
 		entity1.setViewModel(viewModel);
 		entity1.setPosition(new Vector3f(0, 0, -2));
 		

@@ -2,7 +2,7 @@ package ch.g_7.graphite.node;
 
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
-import ch.g_7.graphite.entity.Entity;
+import ch.g_7.graphite.entity.BasicEntity;
 import ch.g_7.graphite.rendering.IRenderer;
 import ch.g_7.graphite.rendering.entity.EntityRenderer;
 import ch.g_7.graphite.rendering.ui.UIRenderer;
@@ -13,7 +13,7 @@ public class RenderCluster<T extends INode, R extends IRenderer<T>> extends Clus
 
 	
 	public static final RenderCluster<IUIRootContainer, UIRenderer> UI = new RenderCluster<>(new UIRenderer(), "UI");
-	public static final RenderCluster<Entity, EntityRenderer> ENTITIES = new RenderCluster<>(new EntityRenderer(), "ENTITIES");
+	public static final RenderCluster<BasicEntity, EntityRenderer> ENTITIES = new RenderCluster<>(new EntityRenderer(), "ENTITIES");
 	
 	
 	private final R renderer;

@@ -4,8 +4,8 @@ import ch.g_7.graphite.node.INode;
 
 public interface Drawable extends INode {
 	
-	IDrawContext draw();
+	DrawContext draw();
 	
-	void initDrawContext(IDrawContext context);
+	void initDrawContext(DrawContext context);
 
 }

@@ -1,60 +1,31 @@
 package ch.g_7.graphite.entity;
 
-import org.joml.Vector3f;
+import org.joml.Vector3fc;
 
-public class BasicEntity extends Entity {
+import ch.g_7.graphite.node.INode;
+import ch.g_7.graphite.node.Localizable;
 
-	private ViewModel viewModel;
-	private Vector3f position;
-	private Vector3f rotation;
-	private float scale = 1;
+public abstract class BasicEntity implements INode, Localizable {
 	
-	public BasicEntity(ViewModel viewModel, Vector3f position) {
-		this();
-		this.viewModel = viewModel;
-		this.position = position;
-	}
-	
-	public BasicEntity() {
-		this.position = new Vector3f();
-		this.rotation = new Vector3f();
-		this.viewModel = new ViewModel();
-	}
-	
+
 	@Override
-	public Vector3f getPosition() {
-		return position;
-	}
-	
-	public void setPosition(Vector3f position) {
-		this.position = position;
+	public void init() {
+		if(getViewModel()!=null) getViewModel().init();
 	}
 
 	@Override
-	public float getScale() {
-		return scale;
-	}
-	
-	public void setScale(float scale) {
-		this.scale = scale;
+	public void close() {
+		if(getViewModel()!=null) getViewModel().close();
 	}
 
 	@Override
-	public Vector3f getRotation() {
-		return rotation;
-	}
-	
-	public void setRotation(Vector3f rotation) {
-		this.rotation = rotation;
-	}	
+	public void update(double deltaMillis) {}
 
-	@Override
-	public ViewModel getViewModel() {
-		return viewModel;
-	}
+	public abstract float getScale();
 	
-	public void setViewModel(ViewModel viewModel) {
-		this.viewModel = viewModel;
-	}
+	public abstract Vector3fc getRotation();
+	
+	public abstract ViewModel getViewModel();
 
+	public abstract Vector3fc getPosition();
 }

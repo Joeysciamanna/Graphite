@@ -137,7 +137,7 @@ public class MeshBuilder2d {
 		}
 		
 		//TODO Better texture coord calculation
-		return new BasicMesh(positions, realIndices, new float[] {
+		return new Mesh(positions, realIndices, new float[] {
 				0,0,
 				0,1,
 				1,1,

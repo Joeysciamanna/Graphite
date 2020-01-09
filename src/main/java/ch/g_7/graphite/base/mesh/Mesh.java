@@ -3,7 +3,7 @@ package ch.g_7.graphite.base.mesh;
 import ch.g_7.graphite.base.vao.VAO;
 import ch.g_7.graphite.base.vao.VBOFactory;
 
-public class BasicMesh implements IMesh {
+public class Mesh implements IMesh {
 
 	protected final VAO vao;
 	
@@ -12,7 +12,7 @@ public class BasicMesh implements IMesh {
 	private float[] textureCoordinates;
 	private int verticesCount;
 	
-	public BasicMesh(float[] positions, int[] indices, float[] textureCoordinates) {
+	public Mesh(float[] positions, int[] indices, float[] textureCoordinates) {
 		if(indices.length % 2 != 0 && indices.length % 3 != 0) throw new IllegalArgumentException("Invalid number of indices for 2d/3d mesh");
 		this.vao = new VAO();
 		this.positions = positions;
@@ -22,7 +22,7 @@ public class BasicMesh implements IMesh {
 	}
 
 
-	public BasicMesh(float[] positions, int[] indices) {
+	public Mesh(float[] positions, int[] indices) {
 		this(positions, indices, null);
 	}
 	

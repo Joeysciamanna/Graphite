@@ -13,14 +13,15 @@ import java.util.List;
 import ch.g_7.graphite.base.vao.VAO;
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
-import ch.g_7.graphite.entity.Entity;
+import ch.g_7.graphite.entity.BasicEntity;
 import ch.g_7.graphite.entity.ViewModel;
+import ch.g_7.graphite.node.Localizable;
 import ch.g_7.graphite.rendering.ITransformation;
 import ch.g_7.graphite.rendering.Renderer;
 
-public class EntityRenderer extends Renderer<Entity, EntityShaderProgram> {
+public class EntityRenderer extends Renderer<BasicEntity, EntityShaderProgram> {
 
-	protected ITransformation<Entity> transformation;
+	protected ITransformation<Localizable> transformation;
 
 	public EntityRenderer() {
 		super(new EntityShaderProgram());
@@ -29,12 +30,12 @@ public class EntityRenderer extends Renderer<Entity, EntityShaderProgram> {
 
 
 	@Override
-	public final void doRender(List<Entity> gameObjects, Window window, Camera camera) {
+	public final void doRender(List<BasicEntity> gameObjects, Window window, Camera camera) {
 		
 		shaderProgram.setTextureSampler(0);
 		shaderProgram.setProjectionMatrix(transformation.getProjectionMatrix(window, camera));
 		
-		for (Entity gameObject : gameObjects) {
+		for (BasicEntity gameObject : gameObjects) {
 
 			ViewModel viewModel = gameObject.getViewModel();
 					
@@ -60,7 +61,7 @@ public class EntityRenderer extends Renderer<Entity, EntityShaderProgram> {
 	}
 	
 	
-	public void setTransformation(ITransformation<Entity> transformation) {
+	public void setTransformation(ITransformation<Localizable> transformation) {
 		this.transformation = transformation;
 	}
 
