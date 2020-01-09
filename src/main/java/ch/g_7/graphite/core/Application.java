@@ -75,6 +75,10 @@ public abstract class Application implements Runnable {
 			close();
 		}
 	}
+	
+	public void terminate() {
+		System.exit(0);
+	}
 
 	public void start() {
 		setRunning(true);
@@ -85,6 +89,7 @@ public abstract class Application implements Runnable {
 	}
 
 	protected void close() {
+		terminate();
 	}
 
 	protected abstract void init();
