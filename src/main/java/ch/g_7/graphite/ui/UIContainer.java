@@ -3,8 +3,7 @@ package ch.g_7.graphite.ui;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.joml.Vector2f;
-import org.joml.Vector2fc;
+import org.joml.Vector2i;
 import org.joml.Vector2ic;
 
 import ch.g_7.graphite.ui.util.ScreenDimension;
@@ -15,21 +14,21 @@ public abstract class UIContainer implements IUIContainer {
 
 	protected final ScreenDimension width;
 	protected final ScreenDimension height;
-	protected final Vector2f size;
+	protected final Vector2i size;
 
 	protected final ScreenDimension x;
 	protected final ScreenDimension y;
-	protected final Vector2f position;
+	protected final Vector2i position;
 
 	protected boolean visible;
 
 	public UIContainer() {
 		this.width = new ScreenDimension(ScreenDimension.X_AXIS);
 		this.height = new ScreenDimension(ScreenDimension.Y_AXIS);
-		this.size = new Vector2f();
+		this.size = new Vector2i();
 		this.x = new ScreenDimension(ScreenDimension.X_AXIS);
 		this.y = new ScreenDimension(ScreenDimension.Y_AXIS);
-		this.position = new Vector2f();
+		this.position = new Vector2i();
 		this.visible = true;
 		this.childs = new ArrayList<>();
 	}
@@ -60,8 +59,7 @@ public abstract class UIContainer implements IUIContainer {
 	}
 
 	@Override
-	public void recalculate(Vector2ic screenSize) {
-
+	public void recalculate(Vector2ic screenSize, Vector2ic fatherSize) {
 		recalculateDimension(width, screenSize);
 		recalculateDimension(height, screenSize);
 		size.set(width.getValue(), height.getValue());
@@ -69,7 +67,7 @@ public abstract class UIContainer implements IUIContainer {
 		recalculateDimension(y, screenSize);
 		position.set(x.getValue(), y.getValue());
 		for (IUIPanel child : getChilds()) {
-			child.recalculate(screenSize);
+			child.recalculate(screenSize, fatherSize);
 		}
 
 	}
@@ -118,12 +116,12 @@ public abstract class UIContainer implements IUIContainer {
 	}
 
 	@Override
-	public Vector2fc getSize() {
+	public Vector2ic getSize() {
 		return size;
 	}
 
 	@Override
-	public Vector2fc getPosition() {
+	public Vector2ic getPosition() {
 		return position;
 	}
 

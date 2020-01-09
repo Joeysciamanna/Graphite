@@ -19,20 +19,20 @@ public class ScaledScreenDimension implements IScreenDimension{
 	}
 
 	@Override
-	public ScaledScreenDimension recalculate(Vector2ic screenSize, Vector2fc fatherSize) {
+	public ScaledScreenDimension recalculate(Vector2ic screenSize, Vector2ic fatherSize) {
 		dimension.recalculate(screenSize, fatherSize);
 		return this;
 	}
 
 	@Override
-	public ScaledScreenDimension recalculate(int screenSize, float fatherSize) {
+	public ScaledScreenDimension recalculate(int screenSize, int fatherSize) {
 		dimension.recalculate(screenSize, fatherSize);
 		return this;
 	}
 
 	@Override
-	public float getValue() {
-		return dimension.getValue() * factor;
+	public int getValue() {
+		return (int) (dimension.getValue() * factor);
 	}
 
 

@@ -2,6 +2,7 @@ package ch.g_7.graphite.ui;
 
 import org.joml.Vector2f;
 import org.joml.Vector2fc;
+import org.joml.Vector2i;
 import org.joml.Vector2ic;
 
 import ch.g_7.graphite.base.mesh.IMesh2d;
@@ -49,7 +50,7 @@ public class UIPanel extends UIContainer implements IUIPanel {
 	
 
 	@Override
-	public void recalculate(Vector2ic screenSize) {
+	public void recalculate(Vector2ic screenSize, Vector2ic fatherSize) {
 		if(resized) {
 			recalculateDimension(maxWidth, screenSize);
 			recalculateDimension(maxHeight, screenSize);
@@ -58,16 +59,16 @@ public class UIPanel extends UIContainer implements IUIPanel {
 			recalculateDimension(preferedWidth, screenSize);
 			recalculateDimension(preferedHeight, screenSize);
 			
-			recalculateSize();
+			recalculatePreferedSize();
 		}
 	
-		super.recalculate(screenSize);
+		super.recalculate(screenSize, fatherSize);
 
 	}
 	
 	
 	@Override
-	public void recalculateSize() {
+	public void recalculatePreferedSize() {
 		this.width.reset();
 		this.height.reset();
 		
@@ -132,11 +133,6 @@ public class UIPanel extends UIContainer implements IUIPanel {
 	}
 	
 	@Override
-	public void setResized(boolean resized) {
-		this.resized = resized;
-	}
-	
-	@Override
 	public IMesh2d getMesh() {
 		return SQUARE_MESH;
 	}
@@ -172,8 +168,8 @@ public class UIPanel extends UIContainer implements IUIPanel {
 	}
 	
 	@Override
-	public Vector2fc getPosition() {
-		return getFather() == null ? position : new Vector2f(position).add(getFather().getPosition());
+	public Vector2ic getPosition() {
+		return getFather() == null ? position : new Vector2i(position).add(getFather().getPosition());
 	}
 
 	@Override

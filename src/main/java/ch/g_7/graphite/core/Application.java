@@ -55,7 +55,7 @@ public abstract class Application implements Runnable {
 		try {
 			window.init();
 			masterRenderer.init();
-			initGame();
+			init();
 			timer.reset();
 			while (running && !window.windowShouldClose()) {
 				timer.calculateDelta();
@@ -87,7 +87,7 @@ public abstract class Application implements Runnable {
 	protected void close() {
 	}
 
-	protected abstract void initGame();
+	protected abstract void init();
 
 	public void update(double deltaMillis) {
 	}

@@ -11,10 +11,8 @@ public interface IUIPanel extends IUIContainer {
 	
 	IUIContainer getFather();
 	
-	void recalculateSize();
-	
-	void setResized(boolean resized);
-	
+	void recalculatePreferedSize();
+
 	Color getColor();
 	
 	Texture getTexture();

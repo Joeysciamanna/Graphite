@@ -29,9 +29,9 @@ public class ListLayoutPanel extends UIPanel {
 	
 	
 	@Override
-	public void recalculate(Vector2ic screenSize) {
+	public void recalculate(Vector2ic screenSize, Vector2ic fatherSize) {
 		recalculateDimension(placeHolder, screenSize);
-		super.recalculate(screenSize);
+		super.recalculate(screenSize, fatherSize);
 	}
 	
 	@Override

@@ -18,10 +18,13 @@ public class ScreenDimension implements IScreenDimension{
 	private float pw;
 	private int pixel;
 	
-	private float value;
+	/*
+	 * in pixel
+	 */
+	private int value;
 	private byte axis;
 	
-	public ScreenDimension(byte axis, float value) {
+	public ScreenDimension(byte axis, int value) {
 		this.value = value;
 		this.axis = axis;
 		this.adds = new ArrayList<>();
@@ -34,7 +37,7 @@ public class ScreenDimension implements IScreenDimension{
 
 	
 	@Override
-	public ScreenDimension recalculate(Vector2ic screenSize, Vector2fc fatherSize) {
+	public ScreenDimension recalculate(Vector2ic screenSize, Vector2ic fatherSize) {
 		if(axis == X_AXIS) {
 			recalculate(screenSize.x(), fatherSize.x());
 		}else {
@@ -44,11 +47,15 @@ public class ScreenDimension implements IScreenDimension{
 	}
 	
 	@Override
-	public ScreenDimension recalculate(int screenSize, float fatherSize) {
-		float value = 0;
-		value += (float) pixel * 2f / screenSize;
-		value += fatherSize * (pf == 0 ? 0 : (pf/100));
-		value += pw * 2 / 100;
+	/**
+	 * all in pixel
+	 */
+	public ScreenDimension recalculate(int screenSize, int fatherSize) {
+		int value = 0;
+		value += pixel;
+		value += (int) (pw / 100f * screenSize);
+		value += (int) (pf / 100f * fatherSize);
+		
 		
 		for (IScreenDimension screenDimension : getAdds()) {
 			value += screenDimension.getValue();
@@ -57,6 +64,20 @@ public class ScreenDimension implements IScreenDimension{
 			value -= screenDimension.getValue();
 		}
 		this.value = value;
+		
+//		float value = 0;
+//		value += (float) pixel * 2f / screenSize;
+//		value += fatherSize * (pf == 0 ? 0 : (pf/100));
+//		value += pw * 2 / 100;
+//		
+//		for (IScreenDimension screenDimension : getAdds()) {
+//			value += screenDimension.getValue();
+//		}
+//		for (IScreenDimension screenDimension : getRems()) {
+//			value -= screenDimension.getValue();
+//		}
+//		this.value = value;
+		
 		return this;
 	}
 	
@@ -148,7 +169,7 @@ public class ScreenDimension implements IScreenDimension{
 	}
 
 	@Override
-	public float getValue() {
+	public int getValue() {
 		return value;
 	}
 }

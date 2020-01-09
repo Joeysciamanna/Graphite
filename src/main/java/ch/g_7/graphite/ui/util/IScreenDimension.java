@@ -6,10 +6,10 @@ import org.joml.Vector2ic;
 public interface IScreenDimension {
 
 	
-	public IScreenDimension recalculate(Vector2ic screenSize, Vector2fc fatherSize);
+	public IScreenDimension recalculate(Vector2ic screenSize, Vector2ic fatherSize);
 	
-	public IScreenDimension recalculate(int screenSize, float fatherSize);
+	public IScreenDimension recalculate(int screenSize, int fatherSize);
 	
-	public float getValue();
+	public int getValue();
 
 }

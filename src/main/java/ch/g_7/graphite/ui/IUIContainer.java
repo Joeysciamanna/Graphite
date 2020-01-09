@@ -16,26 +16,28 @@ public interface IUIContainer extends Initializable, Closeable {
 
 	List<IUIPanel> getChilds();
 
-	void recalculate(Vector2ic screenSize);
-	
 	void recalculate();
+	
+	void recalculate(Vector2ic screenSize, Vector2ic fatherSize);
+	
+	void requestRecalculation(IUIContainer container);
 	
 	void init();
 	
 	@Override
 	void close();
 	
-	void requestRecalculation(IUIContainer container);
+
 
 	Window getWindow();
 	
 	ScreenDimension getWidth();
 	ScreenDimension getHeight();
-	Vector2fc getSize();
+	Vector2ic getSize();
 	
 	ScreenDimension getX();
 	ScreenDimension getY();
-	Vector2fc getPosition(); //TODO
+	Vector2ic getPosition(); //TODO
 	
 	IUIRootContainer getRootContainer();
 }

@@ -26,24 +26,25 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer{
 	
 	@Override
 	public void recalculate() {
-		recalculate(window.getSize());
+		recalculate(window.getSize(), window.getSize());
 	}
 	
 	@Override
 	protected void recalculateDimension(ScreenDimension dimension, Vector2ic screenSize) {
-		dimension.recalculate(screenSize, new Vector2f(2, 2));
+		dimension.recalculate(screenSize, screenSize);
 	}
 	
 	@Override
 	public void requestRecalculation(IUIContainer container) {
-		container.recalculate(window.getSize());
+		container.recalculate(window.getSize(), window.getSize());
 	}
 	
 
 	@Override
 	public void onResize(ResizeEvent action) {
 		CompletableFuture.runAsync(() -> {
-			recalculate(new Vector2i(action.getWidth(), action.getHeight()));
+			Vector2i size = new Vector2i(action.getWidth(), action.getHeight());
+			recalculate(size, size);
 		});
 	}
 	
@@ -80,11 +81,6 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer{
 	@Override
 	public Window getWindow() {
 		return window;
-	}
-
-	@Override
-	public ScreenDimension getHeight() {
-		return super.getHeight();
 	}
 
 	@Override

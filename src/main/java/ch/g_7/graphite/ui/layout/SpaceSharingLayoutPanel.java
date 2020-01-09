@@ -86,15 +86,15 @@ public class SpaceSharingLayoutPanel extends UIPanel {
 		switch (mainPanelPosition) {
 		case TOP:
 			adjustablePanel.getMaxHeight().remove(mainPanel.getHeight());
-			adjustablePanel.getMaxHeight().remove(mainPanel.getHeight());
+			adjustablePanel.getMinHeight().remove(mainPanel.getHeight());
 			
 			adjustablePanel.getY().add(mainPanel.getHeight());
 			break;
 		case BUTTOM:
 			adjustablePanel.getMaxHeight().remove(mainPanel.getHeight());
-			adjustablePanel.getMaxHeight().remove(mainPanel.getHeight());
+			adjustablePanel.getMinHeight().remove(mainPanel.getHeight());
 			
-			adjustablePanel.getY().addPF(100).remove(mainPanel.getHeight()).remove(adjustablePanel.getWidth());
+			adjustablePanel.getY().addPF(100).remove(mainPanel.getHeight()).remove(adjustablePanel.getHeight());
 			break;
 		case LEFT:
 			adjustablePanel.getMaxWidth().remove(mainPanel.getWidth());

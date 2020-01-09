@@ -36,10 +36,10 @@ public class GridLayoutPanel extends UIPanel{
 	}
 	
 	@Override
-	public void recalculate(Vector2ic screenSize) {
+	public void recalculate(Vector2ic screenSize, Vector2ic fatherSize) {
 		recalculateDimension(columCellPlaceHolder, screenSize);
 		recalculateDimension(rowCellPlaceHolder, screenSize);
-		super.recalculate(screenSize);
+		super.recalculate(screenSize, fatherSize);
 	}
 	
 	public void remove(int x, int y) {
