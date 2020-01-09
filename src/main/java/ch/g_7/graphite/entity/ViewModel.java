@@ -1,4 +1,4 @@
-package ch.g_7.graphite.node.entity;
+package ch.g_7.graphite.entity;
 
 import ch.g_7.graphite.base.mesh.IMesh3d;
 import ch.g_7.graphite.base.texture.Texture;

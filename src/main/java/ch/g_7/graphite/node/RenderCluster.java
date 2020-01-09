@@ -2,24 +2,26 @@ package ch.g_7.graphite.node;
 
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
-import ch.g_7.graphite.node.entity.Entity;
+import ch.g_7.graphite.entity.Entity;
 import ch.g_7.graphite.rendering.IRenderer;
 import ch.g_7.graphite.rendering.entity.EntityRenderer;
 import ch.g_7.graphite.rendering.ui.UIRenderer;
 import ch.g_7.graphite.ui.IUIRootContainer;
 import ch.g_7.util.able.Initializable;
 
-public final class RenderCluster<T extends INode, R extends IRenderer<T>> extends Cluster<T> implements AutoCloseable, Initializable{
+public class RenderCluster<T extends INode, R extends IRenderer<T>> extends Cluster<T> implements AutoCloseable, Initializable{
 
 	
-	public static final RenderCluster<IUIRootContainer, UIRenderer> UI = new RenderCluster<>(new UIRenderer());
-	public static final RenderCluster<Entity, EntityRenderer> ENTITIES = new RenderCluster<>(new EntityRenderer());
+	public static final RenderCluster<IUIRootContainer, UIRenderer> UI = new RenderCluster<>(new UIRenderer(), "UI");
+	public static final RenderCluster<Entity, EntityRenderer> ENTITIES = new RenderCluster<>(new EntityRenderer(), "ENTITIES");
 	
 	
 	private final R renderer;
-
-	public RenderCluster(R renderer){
+	private final String name;
+	
+	public RenderCluster(R renderer, String name){
 		this.renderer = renderer;
+		this.name  = name;
 	}
 	
 	public void render(Window window, Camera camera) {
@@ -45,5 +47,15 @@ public final class RenderCluster<T extends INode, R extends IRenderer<T>> extend
 	public void init() {
 		renderer.init();
 		foreach((n)->n.init());
+	}
+	
+	@Override
+	public final boolean equals(Object obj) {
+		return obj instanceof RenderCluster ? obj.toString().equals(name) : false;
+	}
+	
+	@Override
+	public final String toString() {
+		return name;
 	}
 }

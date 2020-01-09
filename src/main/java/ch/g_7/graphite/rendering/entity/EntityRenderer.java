@@ -13,8 +13,8 @@ import java.util.List;
 import ch.g_7.graphite.base.vao.VAO;
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
-import ch.g_7.graphite.node.entity.Entity;
-import ch.g_7.graphite.node.entity.ViewModel;
+import ch.g_7.graphite.entity.Entity;
+import ch.g_7.graphite.entity.ViewModel;
 import ch.g_7.graphite.rendering.ITransformation;
 import ch.g_7.graphite.rendering.Renderer;
 
