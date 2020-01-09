@@ -27,7 +27,7 @@ public class MouseManager implements MouseListner {
 	public void onMouseClick(MouseEvent e) {
 		CompletableFuture.runAsync(() -> {
 
-			UIMouseEvent event = new UIMouseEvent(e.getButton(), e.getMods(), e.getX() * 2f / window.getWidth(), e.getY() * 2f / window.getHeight());
+			UIMouseEvent event = new UIMouseEvent(e.getButton(), e.getMods(), e.getX(), e.getY());
 			List<IUIButton> inRange = new ArrayList<>();
 
 			event.setFromLocalSource(true);

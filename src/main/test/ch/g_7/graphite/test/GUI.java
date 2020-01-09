@@ -56,12 +56,12 @@ public class GUI extends Application {
 		ListLayoutPanel buttonsPanel = new ListLayoutPanel(ListLayoutPanel.Y_AXIS);
 		buttonsPanel.setColor(Color.getColor(0, 0, 255));
 		buttonsPanel.getPlaceHolder().addPixel(20).addPF(5);
-		buttonsPanel.getPreferedWidth().reset().addPixel(50).addPF(33);
-		buttonsPanel.getPreferedHeight().reset().addPixel(50).addPF(33);
+		buttonsPanel.getPreferedWidth().reset().addPixel(100).addPF(20);
+		buttonsPanel.getPreferedHeight().reset().addPixel(50).addPF(20);
 		buttonPanel.set(buttonsPanel);
 		
 		UIButton startGame = new UIButton();
-		startGame.getPreferedHeight().addPixel(5).addPF(10);
+		startGame.getPreferedHeight().reset().addPixel(20).addPF(10);
 		startGame.setColor(Color.getColor(255, 0, 0));
 		buttonsPanel.add(startGame);
 		
