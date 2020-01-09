@@ -3,19 +3,13 @@ package ch.g_7.graphite.test;
 import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;
 
-import ch.g_7.graphite.base.mesh.BasicMesh3d;
-import ch.g_7.graphite.base.texture.Texture;
+import ch.g_7.graphite.base.mesh.BasicMesh;
 import ch.g_7.graphite.core.Application;
 import ch.g_7.graphite.entity.BasicEntity;
 import ch.g_7.graphite.entity.ViewModel;
 import ch.g_7.graphite.node.RenderCluster;
 import ch.g_7.graphite.rendering.entity.EntityTransformation3d;
-import ch.g_7.graphite.ui.UIButton;
-import ch.g_7.graphite.ui.UIPanel;
-import ch.g_7.graphite.ui.UIRootContainer;
-import ch.g_7.graphite.ui.layout.DontCareLayoutPanel;
 import ch.g_7.graphite.util.Color;
-import ch.g_7.util.task.SecureRunner;
 
 public class RotateCube extends Application {
 
@@ -68,7 +62,7 @@ public class RotateCube extends Application {
 		};
 		
 		ViewModel viewModel = new ViewModel();
-		viewModel.setMesh(new BasicMesh3d(positions, indices));
+		viewModel.setMesh(new BasicMesh(positions, indices));
 		viewModel.setColor(Color.getColor(255, 255, 0));
 
 		entity1 = new BasicEntity();

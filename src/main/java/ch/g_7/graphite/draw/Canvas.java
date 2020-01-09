@@ -1,11 +1,15 @@
 package ch.g_7.graphite.draw;
 
-import ch.g_7.graphite.node.INode;
 import ch.g_7.graphite.node.RenderCluster;
+import ch.g_7.graphite.rendering.draw.DrawRenderer;
 
-public class Canvas extends RenderCluster<Drawable, IRenderer<T>> {
+public class Canvas extends RenderCluster<Drawable, DrawRenderer> {
 
 	
+	public Canvas() {
+		super(new DrawRenderer(), "DRAWABLES");
+	}
+
 	@Override
 	public void init() {
 	

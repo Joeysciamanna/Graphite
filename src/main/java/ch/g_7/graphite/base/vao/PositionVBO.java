@@ -13,8 +13,8 @@ public class PositionVBO extends FloatVBO {
 	private int[] indices;
 	private IndicesVBO indicesVBO;
 	
-	protected PositionVBO(VBOType type, float[] positions, int[] indices) {
-		super(type, positions);
+	protected PositionVBO(float[] positions, int[] indices) {
+		super(VBOType.POSITIONS, positions);
 		this.indices = indices;
 	}
 

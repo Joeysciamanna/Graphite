@@ -41,7 +41,7 @@ public class GUI extends Application {
 
 		UIButton settingsButton = new UIButton();
 		settingsButton.getPreferedWidth().reset().add(settingsButton.getMaxHeight());
-		settingsButton.setColor(Color.getColor(100, 100, 100));
+		settingsButton.setTexture(square1);
 		optionPanel.add(settingsButton);
 		
 		UIButton wikiButton = new UIButton();

@@ -3,7 +3,7 @@ package ch.g_7.graphite.ui;
 import org.joml.Vector2i;
 import org.joml.Vector2ic;
 
-import ch.g_7.graphite.base.mesh.IMesh2d;
+import ch.g_7.graphite.base.mesh.IMesh;
 import ch.g_7.graphite.base.mesh.MeshBuilder2d;
 import ch.g_7.graphite.base.mesh.MeshFactory2d;
 import ch.g_7.graphite.base.texture.Texture;
@@ -13,7 +13,7 @@ import ch.g_7.graphite.util.Color;
 
 public class UIPanel extends UIContainer implements IUIPanel {
 
-	private static IMesh2d SQUARE_MESH;
+	private static IMesh SQUARE_MESH;
 	
 	protected final ScreenDimension maxWidth;
 	protected final ScreenDimension maxHeight;
@@ -96,6 +96,7 @@ public class UIPanel extends UIContainer implements IUIPanel {
 			SQUARE_MESH = MeshFactory2d.getSquare(1).setCenter(MeshBuilder2d.CENTER_TOP_LEFT).build();
 			SQUARE_MESH.init();
 		}
+		
 		super.init();
 	}
 	
@@ -131,7 +132,7 @@ public class UIPanel extends UIContainer implements IUIPanel {
 	}
 	
 	@Override
-	public IMesh2d getMesh() {
+	public IMesh getMesh() {
 		return SQUARE_MESH;
 	}
 

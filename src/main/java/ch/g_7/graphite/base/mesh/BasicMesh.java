@@ -4,7 +4,7 @@ import ch.g_7.graphite.base.vao.VAO;
 import ch.g_7.graphite.base.vao.VBOFactory;
 import ch.g_7.graphite.base.vao.VBOType;
 
-public abstract class BasicMesh implements IMesh {
+public class BasicMesh implements IMesh {
 
 	protected final VAO vao;
 	
@@ -14,6 +14,7 @@ public abstract class BasicMesh implements IMesh {
 	private int verticesCount;
 	
 	public BasicMesh(float[] positions, int[] indices, float[] textureCoordinates) {
+		if(indices.length % 2 != 0 && indices.length % 3 != 0) throw new IllegalArgumentException("Invalid number of indices for 2d/3d mesh");
 		this.vao = new VAO();
 		this.positions = positions;
 		this.indices = indices;
@@ -22,10 +23,14 @@ public abstract class BasicMesh implements IMesh {
 	}
 
 
+	public BasicMesh(float[] positions, int[] indices) {
+		this(positions, indices, null);
+	}
+	
 	@Override
 	public void init() {
 		vao.init();
-		vao.add(VBOFactory.getPositionVBO(getPositionVBOType(),positions, indices));
+		vao.add(VBOFactory.getPositionVBO(positions, indices));
 		if(textureCoordinates != null) {
 			vao.add(VBOFactory.getTextureCoordinatesVBO(textureCoordinates));
 		}
@@ -33,8 +38,7 @@ public abstract class BasicMesh implements IMesh {
 		this.indices = null;
 		this.textureCoordinates = null;
 	}
-	
-	protected abstract VBOType getPositionVBOType();
+
 
 	@Override
 	public int getVerticesCount() {

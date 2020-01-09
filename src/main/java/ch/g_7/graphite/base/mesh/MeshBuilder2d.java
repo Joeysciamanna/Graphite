@@ -103,11 +103,12 @@ public class MeshBuilder2d {
 	 * It works, don't touch it!!
 	 * @return
 	 */
-	public IMesh2d build() {
-		float[] positions = new float[points.size() * 2];
+	public IMesh build() {
+		float[] positions = new float[points.size() * 3];
 		for (int i = 0; i < points.size(); i++) {
-			positions[i * 2 + 0] = (float) points.get(i).x;
-			positions[i * 2 + 1] = (float) points.get(i).y;
+			positions[i * 3 + 0] = (float) points.get(i).x;
+			positions[i * 3 + 1] = (float) points.get(i).y;
+			positions[i * 3 + 2] = 0;
 		}
 
 		List<Integer> indices = new ArrayList<>(((points.size() - 2) * 3));
@@ -136,7 +137,7 @@ public class MeshBuilder2d {
 		}
 		
 		
-		return new BasicMesh2d(positions, realIndices, new float[] {
+		return new BasicMesh(positions, realIndices, new float[] {
 				0,0,
 				0,1,
 				1,1,

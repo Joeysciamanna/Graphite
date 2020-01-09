@@ -8,19 +8,16 @@ import org.lwjgl.glfw.GLFW;
 
 import ch.g_7.graphite.core.window.MouseEvent;
 import ch.g_7.graphite.core.window.MouseListner;
-import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.ui.IUIButton;
 
 public class MouseManager implements MouseListner {
 
 	private List<IUIButton> buttons;
 	private List<IUIButton> clickeds;
-	private Window window;
 
-	public MouseManager(Window window) {
+	public MouseManager() {
 		this.buttons = new ArrayList<>();
 		this.clickeds = new ArrayList<>();
-		this.window = window;
 	}
 
 	@Override
