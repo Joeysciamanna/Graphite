@@ -2,7 +2,6 @@ package ch.g_7.graphite.ui;
 
 import java.util.concurrent.CompletableFuture;
 
-import org.joml.Vector2f;
 import org.joml.Vector2i;
 import org.joml.Vector2ic;
 

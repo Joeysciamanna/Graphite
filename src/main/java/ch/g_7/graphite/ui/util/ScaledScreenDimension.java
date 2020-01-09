@@ -1,6 +1,5 @@
 package ch.g_7.graphite.ui.util;
 
-import org.joml.Vector2fc;
 import org.joml.Vector2ic;
 
 public class ScaledScreenDimension implements IScreenDimension{
