@@ -2,12 +2,15 @@ package ch.g_7.graphite.test;
 
 import org.joml.Vector3f;
 
+import ch.g_7.graphite.base.mesh.MeshBuilder2d;
 import ch.g_7.graphite.base.mesh.MeshFactory2d;
+import ch.g_7.graphite.base.texture.Texture;
 import ch.g_7.graphite.core.Application;
 import ch.g_7.graphite.entity.BasicEntity;
 import ch.g_7.graphite.entity.ViewModel;
 import ch.g_7.graphite.node.RenderCluster;
 import ch.g_7.graphite.util.Color;
+import ch.g_7.util.task.SecureRunner;
 
 public class Test extends Application {
 
@@ -23,15 +26,16 @@ public class Test extends Application {
 	
 	@Override
 	protected void init() {
-
+		
+		Texture square1 = new SecureRunner<Void, Texture>(() -> new Texture(
+				"C:\\Users\\Joey Sciamanna\\git\\Graphite\\src\\main\\resources\\textures\\square.png")).get();
 		
 		ViewModel viewModel = new ViewModel();
-		viewModel.setMesh(MeshFactory2d.getSquare(1).build());
-		viewModel.setColor(Color.getColor(255, 255, 0));
-
+		viewModel.setMesh(MeshFactory2d.getSquare(1).setCenter(MeshBuilder2d.CENTER_MIDDLE).build());
+		viewModel.setTexture(square1);
 		entity1 = new BasicEntity();
 		entity1.setViewModel(viewModel);
-		entity1.setPosition(new Vector3f(0, 0, -2));
+		entity1.setPosition(new Vector3f(0, 0, 0));
 		
 		getDimension().addObj(entity1, RenderCluster.ENTITIES);
 

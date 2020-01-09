@@ -17,7 +17,9 @@ public class ViewModel implements Initializable, AutoCloseable{
 		this.color = color;
 	}
 
-	public ViewModel() {}
+	public ViewModel() {
+		this.color = Color.getColor(0, 0, 0);
+	}
 	
 	
 	public Color getColor() {

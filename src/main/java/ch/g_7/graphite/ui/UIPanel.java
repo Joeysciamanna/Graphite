@@ -43,7 +43,7 @@ public class UIPanel extends UIContainer implements IUIPanel {
 		this.preferedWidth = new ScreenDimension(ScreenDimension.X_AXIS).addPF(100);
 		this.preferedHeight = new ScreenDimension(ScreenDimension.Y_AXIS).addPF(100);
 		
-		setColor(Color.getColor(255, 255, 255));
+		setColor(Color.getColor(0, 0, 0));
 	}
 	
 
