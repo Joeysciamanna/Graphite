@@ -9,7 +9,6 @@ import ch.g_7.graphite.core.Application;
 import ch.g_7.graphite.entity.Entity;
 import ch.g_7.graphite.entity.ViewModel;
 import ch.g_7.graphite.node.RenderCluster;
-import ch.g_7.graphite.util.Color;
 import ch.g_7.util.task.SecureRunner;
 
 public class Test extends Application {

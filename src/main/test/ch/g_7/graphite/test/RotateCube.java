@@ -8,6 +8,7 @@ import ch.g_7.graphite.core.Application;
 import ch.g_7.graphite.entity.Entity;
 import ch.g_7.graphite.entity.ViewModel;
 import ch.g_7.graphite.node.RenderCluster;
+import ch.g_7.graphite.rendering.entity.EntityTransformation2d;
 import ch.g_7.graphite.rendering.entity.EntityTransformation3d;
 import ch.g_7.graphite.util.Color;
 
@@ -67,7 +68,7 @@ public class RotateCube extends Application {
 
 		entity1 = new Entity();
 		entity1.setViewModel(viewModel);
-		entity1.setPosition(new Vector3f(0, 0, -2));
+		entity1.setPosition(new Vector3f(0, 0, 0));
 		
 		getDimension().addObj(entity1, RenderCluster.ENTITIES);
 

@@ -5,7 +5,6 @@ import org.joml.Vector3f;
 
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
-import ch.g_7.graphite.entity.BasicEntity;
 import ch.g_7.graphite.node.Localizable;
 import ch.g_7.graphite.rendering.ITransformation;
 
