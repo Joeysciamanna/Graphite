@@ -6,6 +6,8 @@ public abstract class BasicDrawable implements Drawable {
 
 	@Override
 	public DrawContext draw() {
+		drawContext.clear();
+		draw(drawContext);
 		return drawContext;
 	}
 

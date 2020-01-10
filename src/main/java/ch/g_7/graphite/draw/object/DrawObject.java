@@ -23,8 +23,28 @@ public class DrawObject implements IDrawObject {
 	
 	private int glDrawMethod = -1;
 	
+	public DrawObject(IDrawObject drawObject) {
+		this.color = drawObject.getColor();
+		this.texture = drawObject.getTexture();
+	}
+	
+	
+	public DrawObject() {}
+
+
 	public boolean isEmpty() {
 		return mesh == null || glDrawMethod == -1;
+	}
+	
+	@Override
+	public void init() {
+		if(mesh!=null) mesh.init();
+	}
+	
+	@Override
+	public void close() {
+		if(mesh!=null) mesh.close();
+		if(texture!=null) texture.close();
 	}
 	
 	@Override

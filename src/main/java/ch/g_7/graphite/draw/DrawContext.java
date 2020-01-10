@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.joml.Vector2fc;
 import org.joml.Vector3fc;
-import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
 
 import ch.g_7.graphite.base.mesh.Mesh;
@@ -15,7 +14,6 @@ import ch.g_7.graphite.draw.object.DrawObject;
 import ch.g_7.graphite.draw.object.IDrawObject;
 import ch.g_7.graphite.util.Color;
 
-//TODO Shapes and text
 public class DrawContext {
 
 	private List<IDrawObject> drawObjects;
@@ -45,7 +43,10 @@ public class DrawContext {
 		next();
 	}
 	
-	public void addImage(Texture texture, Vector3fc at) {
+
+	public void addImage(Texture texture, Vector3fc position, Vector2fc size) {
+		setBrushTexture(texture);
+		addRectangle(position, size);
 		next();
 	}
 	
@@ -57,14 +58,18 @@ public class DrawContext {
 	}
 
 	private void next() {
-		if(!this.drawObject.isEmpty()) {
-			add(this.drawObject);
-			this.drawObject = new DrawObject();
+		if(!drawObject.isEmpty()) {
+			drawObject.init();
+			add(drawObject);
+			drawObject = new DrawObject(drawObject);
 		}
 		
 	}
 	
 	public void clear() {
+		for (IDrawObject drawObject : drawObjects) {
+			drawObject.close();
+		}
 		drawObjects.clear();
 	}
 	

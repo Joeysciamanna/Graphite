@@ -27,7 +27,7 @@ public class RotateCube extends Application {
 	@Override
 	protected void init() {
 
-		RenderType	.ENTITIES.getRenderer().setTransformation(new EntityTransformation3d());
+		RenderType.ENTITIES.getRenderer().setTransformation(new EntityTransformation3d());
 
 		float[] positions = new float[] {
 				// VO
@@ -67,7 +67,7 @@ public class RotateCube extends Application {
 
 		entity1 = new Entity();
 		entity1.setViewModel(viewModel);
-		entity1.setPosition(new Vector3f(0, 0, 0));
+		entity1.setPosition(new Vector3f(0, 0, -2));
 		
 		getDimension().addObj(entity1, RenderType.ENTITIES);
 
