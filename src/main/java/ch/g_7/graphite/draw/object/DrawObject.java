@@ -15,11 +15,11 @@ public class DrawObject implements IDrawObject {
 	
 	private Color color = Color.getColor(0, 0, 0);
 	
-	private Vector3f position = new Vector3f();
+	private Vector3fc position = new Vector3f();
 	
 	private float scale = 1;
 	
-	private Vector3f rotation;
+	private Vector3fc rotation = new Vector3f();
 	
 	private int glDrawMethod = -1;
 	
@@ -55,11 +55,11 @@ public class DrawObject implements IDrawObject {
 	}
 	
 	@Override
-	public Vector3f getPosition() {
+	public Vector3fc getPosition() {
 		return position;
 	}
 
-	public void setPosition(Vector3f position) {
+	public void setPosition(Vector3fc position) {
 		this.position = position;
 	}
 	

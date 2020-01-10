@@ -6,9 +6,9 @@ import ch.g_7.graphite.base.mesh.MeshBuilder2d;
 import ch.g_7.graphite.base.mesh.MeshFactory2d;
 import ch.g_7.graphite.base.texture.Texture;
 import ch.g_7.graphite.core.Application;
+import ch.g_7.graphite.core.RenderType;
 import ch.g_7.graphite.entity.Entity;
 import ch.g_7.graphite.entity.ViewModel;
-import ch.g_7.graphite.node.RenderCluster;
 import ch.g_7.util.task.SecureRunner;
 
 public class Test extends Application {
@@ -36,7 +36,7 @@ public class Test extends Application {
 		entity1.setViewModel(viewModel);
 		entity1.setPosition(new Vector3f(0, 0, 0));
 		
-		getDimension().addObj(entity1, RenderCluster.ENTITIES);
+		getDimension().addObj(entity1, RenderType.ENTITIES);
 
 		getWindow().setVisible(true);
 		getWindow().setSize(500, 500);

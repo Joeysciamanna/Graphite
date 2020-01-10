@@ -1,20 +1,15 @@
-package ch.g_7.graphite.node;
+package ch.g_7.graphite.rendering;
 
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
-import ch.g_7.graphite.entity.BasicEntity;
-import ch.g_7.graphite.rendering.IRenderer;
-import ch.g_7.graphite.rendering.entity.EntityRenderer;
-import ch.g_7.graphite.rendering.ui.UIRenderer;
-import ch.g_7.graphite.ui.IUIRootContainer;
+import ch.g_7.graphite.node.Cluster;
+import ch.g_7.graphite.node.INode;
 import ch.g_7.util.able.Initializable;
 
 public class RenderCluster<T extends INode, R extends IRenderer<T>> extends Cluster<T> implements AutoCloseable, Initializable{
 
 	
-	public static final RenderCluster<IUIRootContainer, UIRenderer> UI = new RenderCluster<>(new UIRenderer(), "UI");
-	public static final RenderCluster<BasicEntity, EntityRenderer> ENTITIES = new RenderCluster<>(new EntityRenderer(), "ENTITIES");
-	
+
 	
 	private final R renderer;
 	private final String name;

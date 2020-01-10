@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-abstract class Cluster<T extends INode> {
+public abstract class Cluster<T extends INode> {
 	
 	protected final List<T> nodes;
 	
-	Cluster() {
+	public Cluster() {
 		nodes = new ArrayList<T>();
 	}
 	
-	public void foreach(Consumer<INode> consumer) {
+	public void foreach(Consumer<T> consumer) {
 		nodes.forEach(consumer);
 	}
 	

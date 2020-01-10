@@ -5,10 +5,9 @@ import org.lwjgl.glfw.GLFW;
 
 import ch.g_7.graphite.base.mesh.Mesh;
 import ch.g_7.graphite.core.Application;
+import ch.g_7.graphite.core.RenderType;
 import ch.g_7.graphite.entity.Entity;
 import ch.g_7.graphite.entity.ViewModel;
-import ch.g_7.graphite.node.RenderCluster;
-import ch.g_7.graphite.rendering.entity.EntityTransformation2d;
 import ch.g_7.graphite.rendering.entity.EntityTransformation3d;
 import ch.g_7.graphite.util.Color;
 
@@ -28,7 +27,7 @@ public class RotateCube extends Application {
 	@Override
 	protected void init() {
 
-		RenderCluster.ENTITIES.getRenderer().setTransformation(new EntityTransformation3d());
+		RenderType	.ENTITIES.getRenderer().setTransformation(new EntityTransformation3d());
 
 		float[] positions = new float[] {
 				// VO
@@ -70,7 +69,7 @@ public class RotateCube extends Application {
 		entity1.setViewModel(viewModel);
 		entity1.setPosition(new Vector3f(0, 0, 0));
 		
-		getDimension().addObj(entity1, RenderCluster.ENTITIES);
+		getDimension().addObj(entity1, RenderType.ENTITIES);
 
 		getWindow().setVisible(true);
 		getWindow().setSize(500, 500);

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ch.g_7.graphite.node.INode;
-import ch.g_7.graphite.node.RenderCluster;
 import ch.g_7.graphite.rendering.IRenderer;
+import ch.g_7.graphite.rendering.RenderCluster;
 
 public final class Dimension implements AutoCloseable {
 
