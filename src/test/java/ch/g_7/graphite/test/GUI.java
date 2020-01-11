@@ -23,8 +23,8 @@ public class GUI extends Application {
 	
 	@Override
 	protected void init() {
-		Texture square1 = new SecureRunner<Void, Texture>(() -> new Texture(
-				"C:\\Users\\Joey Sciamanna\\git\\Graphite\\src\\main\\resources\\textures\\square.png")).get();
+		Texture square1 = new SecureRunner<Void, Texture>(() -> Texture.getTexture(
+				"C:\\Users\\Joey Sciamanna\\git\\Graphite\\src\\test\\resources\\textures\\square.png", 16, 16)).get();
 
 		UIRootContainer mainMenu = new UIRootContainer(getWindow());
 		getDimension().addObj(mainMenu, RenderType.UI);
