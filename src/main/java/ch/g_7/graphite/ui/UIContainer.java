@@ -7,6 +7,7 @@ import org.joml.Vector2i;
 import org.joml.Vector2ic;
 
 import ch.g_7.graphite.ui.util.ScreenDimension;
+import ch.g_7.graphite.util.ResourceHandler;
 
 public abstract class UIContainer implements IUIContainer {
 
@@ -75,16 +76,23 @@ public abstract class UIContainer implements IUIContainer {
 	protected abstract void recalculateDimension(ScreenDimension dimension, Vector2ic screenSize);
 
 	@Override
-	public void close() {
+	public final void init() {
+		if(ResourceHandler.shallInitialize(this)) doInit();
+	}
+	
+	protected void doInit() {}
+	
+	@Override
+	public final void close() {
+		if(ResourceHandler.shallInitialize(this)) doClose();
+	}
+
+	protected void doClose() {
 		for (IUIPanel panel : getChilds()) {
 			panel.close();
 		}
 	}
 
-
-	@Override
-	public void init() {
-	}
 
 	@Override
 	public boolean isVisible() {

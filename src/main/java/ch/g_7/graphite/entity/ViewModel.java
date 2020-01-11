@@ -50,7 +50,6 @@ public class ViewModel implements Initializable, AutoCloseable{
 	public void close() {
 		if(mesh!=null) mesh.close();
 		if(texture!=null) texture.close();
-
 	}
 
 	@Override

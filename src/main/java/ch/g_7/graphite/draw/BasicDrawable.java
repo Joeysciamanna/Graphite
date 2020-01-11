@@ -1,5 +1,7 @@
 package ch.g_7.graphite.draw;
 
+import ch.g_7.graphite.util.ResourceHandler;
+
 public abstract class BasicDrawable implements Drawable {
 
 	private DrawContext drawContext;
@@ -21,11 +23,21 @@ public abstract class BasicDrawable implements Drawable {
 	
 	@Override
 	public void update(double deltaMillis) {}
-	
-	@Override
-	public void init() {}
 
 	@Override
-	public void close() {}
+	public final void init() {
+		if(ResourceHandler.shallInitialize(this)) doInit();
+	}
+
+	protected void doInit() {}
+	
+	@Override
+	public final void close() {
+		if(ResourceHandler.shallInitialize(this)) doClose();
+	}
+	
+	protected void doClose() {}
+	
+	
 
 }

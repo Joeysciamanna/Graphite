@@ -7,6 +7,8 @@ import static org.lwjgl.opengl.GL15.glGenBuffers;
 
 import java.io.Closeable;
 
+import ch.g_7.graphite.util.ResourceHandler;
+
 public abstract class VBO implements Closeable {
 	
 	protected final VBOType type;
@@ -16,13 +18,15 @@ public abstract class VBO implements Closeable {
 		this.type = type;
 	}
 	
-	protected final void doInit(VAO vao) {
-		this.id =  glGenBuffers();
-		init(vao);
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
+	protected final void init(VAO vao) {
+		if(ResourceHandler.shallInitialize(this)) {
+			this.id =  glGenBuffers();
+			doInit(vao);
+			glBindBuffer(GL_ARRAY_BUFFER, 0);
+		}
 	}
 	
-	protected abstract void init(VAO vao);
+	protected abstract void doInit(VAO vao);
 
 	public VBOType getType() {
 		return type;
@@ -33,7 +37,11 @@ public abstract class VBO implements Closeable {
 	}
 	
 	@Override
-	public void close() {
+	public final void close() {
+		if(ResourceHandler.shallInitialize(this)) doClose();
+	}
+	
+	protected void doClose() {
 		glDeleteBuffers(id);
 	}
 

@@ -3,45 +3,56 @@ package ch.g_7.graphite.util;
 import java.util.HashMap;
 import java.util.Map;
 
-import ch.g_7.util.task.SecureRunner;
+public final class ResourceHandler {
 
-public class ResourceHandler {
-	
-	private Map<IResource, Counter> resources;
-	private SecureRunner<IResource, Void> resourceCloser;
-	
-	private final static ResourceHandler instance = new ResourceHandler();
-	
-	public ResourceHandler() {
-		this.resources = new HashMap<>();
-		this.resourceCloser = new SecureRunner<IResource, Void>((r)->{r.close(); return null;});
-	}
-	
-	public void init(IResource resource) {
-		if(!resources.containsKey(resource)) {
-			resource.init();
-			resources.put(resource, new Counter().increase());
-		}else {
-			resources.get(resource).increase();
-		}
-	}
-	
-	public void close(IResource resource) {
-		if(!resources.containsKey(resource)) {
-			throw new IllegalStateException("Resource " + resource + " was never registerd/initialized");
+	private final static Map<Object, Counter> resources = new HashMap<>();;
+
+	private ResourceHandler() {}
+
+	public static boolean shallInitialize(Object object) {
+		if (resources.containsKey(object)) {
+			resources.get(object).increase();
+			return false;
 		} else {
-			Counter c = resources.get(resource);
-			c.decrease();
-			if(c.getValue() == 0) {
-				resourceCloser.close(resource);
+			resources.put(object, new Counter().increase());
+			return true;
+		}
+
+	}
+
+	public static boolean shallClose(Object object) {
+		if (!resources.containsKey(object)) {
+			throw new IllegalStateException("Resource " + object + " was never registerd/initialized");
+		} else {
+			if (resources.get(object).decrease().getValue() == 0) {
+				resources.remove(object);
+				return true;
 			}
+			return false;
 		}
 	}
-	
-	public static ResourceHandler getInstance() {
-		return instance;
+
+	public static boolean hasOpenedResources() {
+		return !resources.isEmpty();
+	}
+
+	public static void printResources() {
+		resources.forEach((r, c) -> {
+			System.out.println(c.getValue() + "x\t" + r.getClass().getSimpleName());
+		});
 	}
 	
-	
-	
+	@Deprecated
+	public static void closeAll() {
+		resources.forEach((r, c) -> {
+			if (resources instanceof AutoCloseable) {
+				try {
+					((AutoCloseable) resources).close();
+				} catch (Exception e) {
+					throw new RuntimeException(e);
+				}
+			}
+		});
+	}
+
 }

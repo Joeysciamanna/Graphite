@@ -6,6 +6,7 @@ import org.joml.Vector3fc;
 import ch.g_7.graphite.base.mesh.IMesh;
 import ch.g_7.graphite.base.texture.Texture;
 import ch.g_7.graphite.util.Color;
+import ch.g_7.graphite.util.ResourceHandler;
 
 public class DrawObject implements IDrawObject {
 
@@ -35,17 +36,26 @@ public class DrawObject implements IDrawObject {
 	public boolean isEmpty() {
 		return mesh == null || glDrawMethod == -1;
 	}
-	
+
 	@Override
-	public void init() {
+	public final void init() {
+		if(ResourceHandler.shallInitialize(this)) doInit();
+	}
+	
+	protected void doInit() {
 		if(mesh!=null) mesh.init();
 	}
 	
 	@Override
-	public void close() {
+	public final void close() {
+		if(ResourceHandler.shallInitialize(this)) doClose();
+	}
+	
+	protected void doClose() {
 		if(mesh!=null) mesh.close();
 		if(texture!=null) texture.close();
 	}
+
 	
 	@Override
 	public IMesh getMesh() {

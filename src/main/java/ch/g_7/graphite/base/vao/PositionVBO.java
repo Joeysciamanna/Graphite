@@ -19,15 +19,15 @@ public class PositionVBO extends FloatVBO {
 	}
 
 	@Override
-	protected void init(VAO vao) {
-		super.init(vao);
+	protected void doInit(VAO vao) {
+		super.doInit(vao);
 		indicesVBO = new IndicesVBO(indices);
 		vao.add(indicesVBO);
 		indices = null;
 	}
 	
 	@Override
-	public void close() {
+	protected void doClose() {
 		indicesVBO.close();
 		super.close();
 	}
@@ -39,7 +39,7 @@ public class PositionVBO extends FloatVBO {
 		}
 		
 		@Override
-		protected void init(VAO vao) {
+		protected void doInit(VAO vao) {
 			IntBuffer indicesBuffer = MemoryUtil.memAllocInt(ints.length);
 			indicesBuffer.put(ints).flip();
 			glBindBuffer(type.glBufferTarget, getId());

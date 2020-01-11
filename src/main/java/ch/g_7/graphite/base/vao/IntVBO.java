@@ -23,7 +23,7 @@ public class IntVBO extends VBO {
 	}
 
 	@Override
-	protected void init(VAO vao) {
+	protected void doInit(VAO vao) {
 		IntBuffer indicesBuffer = MemoryUtil.memAllocInt(ints.length);
 		indicesBuffer.put(ints).flip();
 		glBindBuffer(type.glBufferTarget, getId());

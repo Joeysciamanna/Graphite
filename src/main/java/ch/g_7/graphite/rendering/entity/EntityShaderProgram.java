@@ -15,8 +15,8 @@ public class EntityShaderProgram extends ShaderProgram {
 
 
 	@Override
-	public void init() {
-		super.init();
+	public void doInit() {
+		super.doInit();
         createUniform("modelViewMatrix");
         createUniform("projectionMatrix");
         createUniform("texture");

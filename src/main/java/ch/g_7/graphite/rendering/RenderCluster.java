@@ -4,12 +4,10 @@ import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.node.Cluster;
 import ch.g_7.graphite.node.INode;
+import ch.g_7.graphite.util.ResourceHandler;
 import ch.g_7.util.able.Initializable;
 
 public class RenderCluster<T extends INode, R extends IRenderer<T>> extends Cluster<T> implements AutoCloseable, Initializable{
-
-	
-
 	
 	private final R renderer;
 	private final String name;
@@ -32,18 +30,27 @@ public class RenderCluster<T extends INode, R extends IRenderer<T>> extends Clus
 	public R getRenderer() {
 		return renderer;
 	}
-
-	public void close() {
-		renderer.close();
-		foreach((n)->n.close());
-	}
-
+	
 	@Override
-	public void init() {
+	public final void init() {
+		if(ResourceHandler.shallInitialize(this)) doInit();
+	}
+	
+	protected void doInit() {
 		renderer.init();
 		foreach((n)->n.init());
 	}
 	
+	@Override
+	public final void close() {
+		if(ResourceHandler.shallInitialize(this)) doClose();
+	}
+
+	protected void doClose() {
+		renderer.close();
+		foreach((n)->n.close());
+	}
+
 	@Override
 	public final boolean equals(Object obj) {
 		return obj instanceof RenderCluster ? obj.toString().equals(name) : false;

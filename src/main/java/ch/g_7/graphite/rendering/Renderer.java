@@ -5,6 +5,7 @@ import java.util.List;
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.node.INode;
+import ch.g_7.graphite.util.ResourceHandler;
 
 public abstract class Renderer<T extends INode, S extends ShaderProgram> implements IRenderer<T>{
 
@@ -24,14 +25,23 @@ public abstract class Renderer<T extends INode, S extends ShaderProgram> impleme
 	protected abstract void doRender(List<T> nodes, Window window, Camera camera);
 
 	@Override
-	public void init() {
+	public final void init() {
+		if(ResourceHandler.shallInitialize(this)) doInit();
+	}
+	
+	protected void doInit() {
 		shaderProgram.init();
 	}
 	
 	@Override
-	public void close() {
+	public final void close() {
+		if(ResourceHandler.shallInitialize(this)) doClose();
+	}
+
+	protected void doClose() {
 		shaderProgram.close();
 	}
+	
 
 	public ShaderProgram getShaderProgram() {
 		return shaderProgram;

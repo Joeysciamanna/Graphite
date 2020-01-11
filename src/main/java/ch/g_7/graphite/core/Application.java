@@ -2,6 +2,7 @@ package ch.g_7.graphite.core;
 
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.rendering.MasterRenderer;
+import ch.g_7.graphite.util.ResourceHandler;
 
 public abstract class Application implements Runnable {
 
@@ -72,6 +73,8 @@ public abstract class Application implements Runnable {
 		} finally {
 			masterRenderer.close();
 			dimension.close();
+			System.out.println("All Resources closed: " + !ResourceHandler.hasOpenedResources());
+			ResourceHandler.printResources();
 			close();
 		}
 	}

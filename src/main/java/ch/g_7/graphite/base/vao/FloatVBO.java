@@ -23,7 +23,7 @@ public class FloatVBO extends VBO {
 	}
 
 	@Override
-	protected void init(VAO vao) {
+	protected void doInit(VAO vao) {
 		FloatBuffer indicesBuffer = MemoryUtil.memAllocFloat(floats.length);
 		indicesBuffer.put(floats).flip();
 		glBindBuffer(type.glBufferTarget, getId());

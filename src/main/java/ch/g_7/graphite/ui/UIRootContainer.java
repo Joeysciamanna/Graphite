@@ -51,7 +51,7 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer{
 	public void update(double deltaMillis) {}
 	
 	@Override
-	public void init() {
+	protected void doInit() {
 		recalculate();
 		window.addMouseListner(mouseManager);
 	}
@@ -72,7 +72,7 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer{
 	}
 	
 	@Override
-	public void close() {
+	protected void doClose() {
 		window.removeResizeListner(this);
 		super.close();
 	}

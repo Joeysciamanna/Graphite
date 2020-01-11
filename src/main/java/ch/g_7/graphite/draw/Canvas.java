@@ -11,7 +11,7 @@ public class Canvas extends RenderCluster<Drawable, DrawRenderer> {
 
 	
 	@Override
-	public void init() {
+	protected void doInit() {
 		foreach((d)->d.initDrawContext(new DrawContext()));
 		super.init();
 	}

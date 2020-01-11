@@ -4,7 +4,10 @@ import static org.lwjgl.opengl.GL11.glDeleteTextures;
 
 import java.io.IOException;
 
-public class Texture implements AutoCloseable {
+import ch.g_7.graphite.util.ResourceHandler;
+import ch.g_7.util.able.Initializable;
+
+public class Texture implements AutoCloseable, Initializable{
 
 	private int id;
 	private int width;
@@ -37,10 +40,21 @@ public class Texture implements AutoCloseable {
 		return TextureUtil.extractSprite(TextureUtil.loadTexture(absolutePath), textureWidth, textureHeight, x, y, width, height);
 	}
 	
-
-
-	public void close() {
+	@Override
+	public final void init() {
+		if(ResourceHandler.shallInitialize(this)) doInit();
+	}
+	
+	protected void doInit() {}
+	
+	@Override
+	public final void close() {
+		if(ResourceHandler.shallInitialize(this)) doClose();
+	}
+	
+	protected void doClose() {
 		glDeleteTextures(id);
 	}
+
 
 }

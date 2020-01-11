@@ -91,7 +91,7 @@ public class UIPanel extends UIContainer implements IUIPanel {
 	}
 	
 	@Override
-	public void init() {
+	protected void doInit() {
 		if(SQUARE_MESH == null) {
 			SQUARE_MESH = MeshFactory2d.getSquare(1).setCenter(MeshBuilder2d.CENTER_TOP_LEFT).build();
 			SQUARE_MESH.init();
@@ -121,7 +121,7 @@ public class UIPanel extends UIContainer implements IUIPanel {
 	}
 	
 	@Override
-	public void close() {
+	protected void doClose() {
 		if(getTexture()!=null) {
 			getTexture().close();
 		}
