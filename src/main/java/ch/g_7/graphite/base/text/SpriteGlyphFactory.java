@@ -1,34 +1,53 @@
 package ch.g_7.graphite.base.text;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
-import ch.g_7.graphite.base.texture.Texture;
+import ch.g_7.graphite.base.texture.Glyph;
+import ch.g_7.graphite.base.texture.Image;
+import ch.g_7.graphite.base.texture.Sprite;
+import ch.g_7.graphite.base.texture.TextureUtil;
 
 public class SpriteGlyphFactory implements IGlyphFactory {
 
-	private Map<Character, Texture> glyphs;
+	private List<Glyph> glyphs;
 	
 	
 	public SpriteGlyphFactory() {
-		glyphs = new HashMap<>();
+		glyphs = new ArrayList<>();
 	}
 	
 	@Override
-	public Texture getGlyph(char glyph) {
-		return glyphs.get(glyph);
+	public Glyph getGlyph(char character) {
+		for (Glyph glyph : glyphs) {
+			if(glyph.getCharacter() == character) {
+				return glyph;
+			}
+		}
+		throw new IllegalArgumentException("Glyph " + character + " does not exist");
+	}
+	
+	@Override
+	public Sprite getSprite(char character) {
+		return (Sprite) getGlyph(character).getTexture();
+	}
+	
+	public void load(Image image, int glyphWidth, int glyphHeight, int textureWidth, int textureHeight, String glyphOrder) throws IOException {
+		char[] chars = glyphOrder.toCharArray();
+		for (int i = 0; i < chars.length; i++) {
+			int x = i % textureWidth;
+			int y = i / textureWidth;
+			Glyph glyph = new Glyph(chars[i]);
+			glyph.init();
+			glyph.setSprite(TextureUtil.loadSprite(image, x, y, glyphWidth, glyphHeight)); 
+			glyphs.add(glyph);
+		}
 	}
 	
 	
-	public void load(String spritePath, int glyphWidth, int glyphHeight, int textureWidth, int textureHeight, String glyphOrder) throws IOException {
-		char[] chars = glyphOrder.toCharArray();
-		for (int i = 0; i < chars.length; i++) {
-			char c = chars[i];
-			Texture texture = Texture.getSprite(spritePath, textureWidth, textureHeight, glyphWidth*i, 0, glyphWidth, glyphHeight);
-			
-			
-		}
+	public void unload() {
+		glyphs.clear();
 	}
 
 }

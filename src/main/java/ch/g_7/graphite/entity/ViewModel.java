@@ -1,17 +1,20 @@
 package ch.g_7.graphite.entity;
 
 import ch.g_7.graphite.base.mesh.IMesh;
-import ch.g_7.graphite.base.texture.Texture;
+import ch.g_7.graphite.base.texture.ITexture;
+import ch.g_7.graphite.base.texture.Image;
+import ch.g_7.graphite.base.texture.Sprite;
 import ch.g_7.graphite.util.Color;
+import ch.g_7.graphite.util.ResourceHandler;
 import ch.g_7.util.able.Initializable;
 
 public class ViewModel implements Initializable, AutoCloseable{
 
 	private IMesh mesh;
-	private Texture texture;
+	private ITexture texture;
 	private Color color;
 	
-	public ViewModel(IMesh mesh, Texture texture, Color color) {
+	public ViewModel(IMesh mesh, Image texture, Color color) {
 		this.mesh = mesh;
 		this.texture = texture;
 		this.color = color;
@@ -30,7 +33,7 @@ public class ViewModel implements Initializable, AutoCloseable{
 		return mesh;
 	}
 	
-	public Texture getTexture() {
+	public ITexture getTexture() {
 		return texture;
 	}
 	
@@ -42,18 +45,34 @@ public class ViewModel implements Initializable, AutoCloseable{
 		this.mesh = mesh;
 	}
 	
-	public void setTexture(Texture texture) {
-		this.texture = texture;
+	public void setImage(Image image) {
+		this.texture = image;
 	}
 
+	public void setSprite(Sprite sprite) {
+		this.texture = sprite;
+		this.mesh.setTextureCoordinates(sprite.getTextureCoordinates());
+	}
+	
 	@Override
-	public void close() {
+	public final void init() {
+		if(ResourceHandler.shallInitialize(this)) doInit();
+	}
+	
+	protected void doInit() {
+		if(mesh!=null) mesh.init();
+		if(texture!=null) texture.init();
+	}
+	
+	@Override
+	public final void close() {
+		if(ResourceHandler.shallClose(this)) doClose();
+	}
+
+	protected void doClose() {
 		if(mesh!=null) mesh.close();
 		if(texture!=null) texture.close();
 	}
-
-	@Override
-	public void init() {
-		if(mesh!=null) mesh.init();
-	}
+	
+	
 }

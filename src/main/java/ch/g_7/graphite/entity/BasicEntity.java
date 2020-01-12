@@ -20,7 +20,7 @@ public abstract class BasicEntity implements INode, Localizable {
 	
 	@Override
 	public final void close() {
-		if(ResourceHandler.shallInitialize(this)) doClose();
+		if(ResourceHandler.shallClose(this)) doClose();
 	}
 
 	protected void doClose() {

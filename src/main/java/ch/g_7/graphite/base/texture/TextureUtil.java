@@ -19,9 +19,10 @@ import java.nio.IntBuffer;
 import org.lwjgl.system.MemoryStack;
 
 public class TextureUtil {
-
-
-	public static ByteBuffer loadTexture(String absolutePath) throws IOException {
+	
+	
+	public static Image loadImage(String path) throws IOException {
+		int width, height;
 
 		ByteBuffer buf;
 		// Load Texture file
@@ -30,44 +31,31 @@ public class TextureUtil {
 			IntBuffer h = stack.mallocInt(1);
 			IntBuffer channels = stack.mallocInt(1);
 
-			buf = stbi_load(absolutePath, w, h, channels, 4);
+			buf = stbi_load(path, w, h, channels, 4);
 			if (buf == null) {
-				throw new IOException("Image file [" + absolutePath + "] not loaded: " + stbi_failure_reason());
+				throw new IOException("Image file [" + path + "] not loaded: " + stbi_failure_reason());
 			}
-
+			width = w.get();
+			height = h.get();
 		}
-		return buf;
-	}
-
-	public static Texture extractSprite(ByteBuffer buffer, int textureWidth, int textureHeight, int x, int y, int width, int height) {
-		byte[] bytes = new byte[buffer.remaining()];
-		buffer.get(bytes);
-		byte[] pixels = new byte[width*height*4];
-		for (int i = 0; i < bytes.length; i+=4) {
-			int xPos = i % width;
-			int yPos = i / width;
-			if (xPos > x && xPos < width + x && yPos > y && yPos < height + y) {
-				pixels[i + 0] = bytes[i + 0];
-				pixels[i + 1] = bytes[i + 1];
-				pixels[i + 2] = bytes[i + 2];
-				pixels[i + 3] = bytes[i + 3];
-			}
-		}
-		return toTexture(ByteBuffer.wrap(pixels), width, height);
-	}
-
-	public static Texture toTexture(ByteBuffer buffer, int width, int height) {
-
 		int id = glGenTextures();
 
 		glBindTexture(GL_TEXTURE_2D, id);
 
 		glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, buf);
 
 		glGenerateMipmap(GL_TEXTURE_2D);
 
-		return new Texture(id, width, height);
+		return new Image(id, width, height);
+	}
+	
+	public static Sprite loadSprite(Image image, int x, int y, int width, int height) {
+		float[] textureCoordinates = new float[] {
+			x / image.getWidth(), y / image.getHeight(),
+			(x + width) / image.getWidth(), (y + height) / image.getHeight()
+		};
+		return new Sprite(image, textureCoordinates);
 	}
 }

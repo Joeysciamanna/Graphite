@@ -3,9 +3,13 @@ package ch.g_7.graphite.core;
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.rendering.MasterRenderer;
 import ch.g_7.graphite.util.ResourceHandler;
+import ch.g_7.util.logging.LogLevel;
+import ch.g_7.util.logging.Logger;
 
 public abstract class Application implements Runnable {
 
+	private final static Logger LOGGER = Logger.getInstance();
+	
 	private static boolean exists;
 
 	private Dimension dimension;
@@ -73,9 +77,13 @@ public abstract class Application implements Runnable {
 		} finally {
 			masterRenderer.close();
 			dimension.close();
-			System.out.println("All Resources closed: " + !ResourceHandler.hasOpenedResources());
-			ResourceHandler.printResources();
 			close();
+			
+			if(ResourceHandler.hasUnclosedResources()) {
+				LOGGER.log(LogLevel.WARNING, ResourceHandler.getUnclosedResourcesTable());
+			}
+			
+			terminate();
 		}
 	}
 	
@@ -92,7 +100,6 @@ public abstract class Application implements Runnable {
 	}
 
 	protected void close() {
-		terminate();
 	}
 
 	protected abstract void init();

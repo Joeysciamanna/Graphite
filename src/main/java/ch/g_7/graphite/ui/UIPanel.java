@@ -6,14 +6,18 @@ import org.joml.Vector2ic;
 import ch.g_7.graphite.base.mesh.IMesh;
 import ch.g_7.graphite.base.mesh.MeshBuilder2d;
 import ch.g_7.graphite.base.mesh.MeshFactory2d;
-import ch.g_7.graphite.base.texture.Texture;
+import ch.g_7.graphite.base.texture.ITexture;
+import ch.g_7.graphite.base.texture.Image;
+import ch.g_7.graphite.base.texture.Sprite;
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.ui.util.ScreenDimension;
 import ch.g_7.graphite.util.Color;
 
 public class UIPanel extends UIContainer implements IUIPanel {
 
-	private static IMesh SQUARE_MESH;
+	private static IMesh SQUARE_MESH = MeshFactory2d.getSquare(1).setCenter(MeshBuilder2d.CENTER_TOP_LEFT).build();
+	
+
 	
 	protected final ScreenDimension maxWidth;
 	protected final ScreenDimension maxHeight;
@@ -28,9 +32,10 @@ public class UIPanel extends UIContainer implements IUIPanel {
 	private boolean resized = true;
 	
 	protected IUIContainer father;
-	
+
+	protected IMesh mesh;
 	protected Color color;
-	protected Texture texture;
+	protected ITexture texture;
 
 	
 	public UIPanel() {
@@ -43,7 +48,10 @@ public class UIPanel extends UIContainer implements IUIPanel {
 		this.preferedWidth = new ScreenDimension(ScreenDimension.X_AXIS).addPF(100);
 		this.preferedHeight = new ScreenDimension(ScreenDimension.Y_AXIS).addPF(100);
 		
+		this.mesh = SQUARE_MESH;
+		
 		setColor(Color.getColor(0, 0, 0));
+		
 	}
 	
 
@@ -92,11 +100,7 @@ public class UIPanel extends UIContainer implements IUIPanel {
 	
 	@Override
 	protected void doInit() {
-		if(SQUARE_MESH == null) {
-			SQUARE_MESH = MeshFactory2d.getSquare(1).setCenter(MeshBuilder2d.CENTER_TOP_LEFT).build();
-			SQUARE_MESH.init();
-		}
-		
+		mesh.init();
 		super.init();
 	}
 	
@@ -149,12 +153,17 @@ public class UIPanel extends UIContainer implements IUIPanel {
 	}
 	
 	@Override
-	public Texture getTexture() {
+	public ITexture getTexture() {
 		return texture;
 	}
 	
-	public void setTexture(Texture texture) {
-		this.texture = texture;
+	public void setImage(Image image) {
+		this.texture = image;
+	}
+	
+	public void setSprite(Sprite sprite) {
+		this.texture = sprite;
+		this.mesh.setTextureCoordinates(sprite.getTextureCoordinates());
 	}
 	
 	@Override

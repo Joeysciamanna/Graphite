@@ -2,6 +2,7 @@ package ch.g_7.graphite.util;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public final class ResourceHandler {
 
@@ -22,7 +23,7 @@ public final class ResourceHandler {
 
 	public static boolean shallClose(Object object) {
 		if (!resources.containsKey(object)) {
-			throw new IllegalStateException("Resource " + object + " was never registerd/initialized");
+			throw new IllegalStateException("Resource " + object + " was never registerd/initialized or has alredy been cloesed");
 		} else {
 			if (resources.get(object).decrease().getValue() == 0) {
 				resources.remove(object);
@@ -32,14 +33,16 @@ public final class ResourceHandler {
 		}
 	}
 
-	public static boolean hasOpenedResources() {
+	public static boolean hasUnclosedResources() {
 		return !resources.isEmpty();
 	}
 
-	public static void printResources() {
-		resources.forEach((r, c) -> {
-			System.out.println(c.getValue() + "x\t" + r.getClass().getSimpleName());
-		});
+	public static String getUnclosedResourcesTable() {
+		StringBuilder stringBuilder = new StringBuilder("Unclosed Resources:\n");
+		for (Entry<Object, Counter> entry : resources.entrySet()) {
+			stringBuilder.append(entry.getValue().getValue() + "x\t" + entry.getKey().getClass().getSimpleName() + "\n");
+		}
+		return stringBuilder.toString();
 	}
 	
 	@Deprecated

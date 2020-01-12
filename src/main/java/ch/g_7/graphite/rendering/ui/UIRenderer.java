@@ -1,12 +1,8 @@
 package ch.g_7.graphite.rendering.ui;
 
-import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
 import static org.lwjgl.opengl.GL11.GL_TRIANGLES;
 import static org.lwjgl.opengl.GL11.GL_UNSIGNED_INT;
-import static org.lwjgl.opengl.GL11.glBindTexture;
 import static org.lwjgl.opengl.GL11.glDrawElements;
-import static org.lwjgl.opengl.GL13.GL_TEXTURE0;
-import static org.lwjgl.opengl.GL13.glActiveTexture;
 
 import java.util.List;
 
@@ -66,8 +62,7 @@ public class UIRenderer extends Renderer<IUIRootContainer, UIShaderProgram> {
 		shaderProgram.setColor(panel.getColor());
 		
 		if (panel.getTexture() != null) {
-			glActiveTexture(GL_TEXTURE0);
-			glBindTexture(GL_TEXTURE_2D, panel.getTexture().getId());
+			panel.getTexture().bind();
 			shaderProgram.setTextureEnabled(true);
 		} else {
 			shaderProgram.setTextureEnabled(false);
@@ -78,6 +73,10 @@ public class UIRenderer extends Renderer<IUIRootContainer, UIShaderProgram> {
 		vao.bind();
 		glDrawElements(GL_TRIANGLES, panel.getMesh().getVerticesCount(), GL_UNSIGNED_INT, 0);
 		vao.unbind();
+		if(panel.getTexture() != null) {
+			panel.getTexture().unbind();
+		}
+	
 		
 	}
 

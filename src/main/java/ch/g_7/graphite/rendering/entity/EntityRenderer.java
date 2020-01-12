@@ -1,12 +1,8 @@
 package ch.g_7.graphite.rendering.entity;
 
-import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
 import static org.lwjgl.opengl.GL11.GL_TRIANGLES;
 import static org.lwjgl.opengl.GL11.GL_UNSIGNED_INT;
-import static org.lwjgl.opengl.GL11.glBindTexture;
 import static org.lwjgl.opengl.GL11.glDrawElements;
-import static org.lwjgl.opengl.GL13.GL_TEXTURE0;
-import static org.lwjgl.opengl.GL13.glActiveTexture;
 
 import java.util.List;
 
@@ -44,8 +40,7 @@ public class EntityRenderer extends Renderer<BasicEntity, EntityShaderProgram> {
 			shaderProgram.setColor(viewModel.getColor());
 			
 			if (viewModel.getTexture() != null) {
-				glActiveTexture(GL_TEXTURE0);
-				glBindTexture(GL_TEXTURE_2D, viewModel.getTexture().getId());
+				viewModel.getTexture().bind();
 				shaderProgram.setTextureEnabled(true);
 			} else {
 				shaderProgram.setTextureEnabled(false);
@@ -56,6 +51,10 @@ public class EntityRenderer extends Renderer<BasicEntity, EntityShaderProgram> {
 			vao.bind();
 			glDrawElements(GL_TRIANGLES, viewModel.getMesh().getVerticesCount(), GL_UNSIGNED_INT, 0);
 			vao.unbind();
+			if(viewModel.getTexture() != null) {
+				viewModel.getTexture().unbind();
+			}
+			
 		}
 
 	}

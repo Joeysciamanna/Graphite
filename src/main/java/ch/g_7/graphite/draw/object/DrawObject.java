@@ -4,7 +4,7 @@ import org.joml.Vector3f;
 import org.joml.Vector3fc;
 
 import ch.g_7.graphite.base.mesh.IMesh;
-import ch.g_7.graphite.base.texture.Texture;
+import ch.g_7.graphite.base.texture.Image;
 import ch.g_7.graphite.util.Color;
 import ch.g_7.graphite.util.ResourceHandler;
 
@@ -12,7 +12,7 @@ public class DrawObject implements IDrawObject {
 
 	private IMesh mesh;
 	
-	private Texture texture;
+	private Image texture;
 	
 	private Color color = Color.getColor(0, 0, 0);
 	
@@ -67,11 +67,11 @@ public class DrawObject implements IDrawObject {
 	}
 
 	@Override
-	public Texture getTexture() {
+	public Image getTexture() {
 		return texture;
 	}
 	
-	public void setTexture(Texture texture) {
+	public void setTexture(Image texture) {
 		this.texture = texture;
 	}
 

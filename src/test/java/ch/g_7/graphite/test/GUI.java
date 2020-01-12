@@ -1,7 +1,8 @@
 package ch.g_7.graphite.test;
 
-import ch.g_7.graphite.base.texture.Texture;
-import ch.g_7.graphite.core.Application;
+import ch.g_7.graphite.base.texture.Image;
+import ch.g_7.graphite.base.texture.TextureUtil;
+import ch.g_7.graphite.core.Application; 
 import ch.g_7.graphite.core.RenderType;
 import ch.g_7.graphite.ui.UIButton;
 import ch.g_7.graphite.ui.UIRootContainer;
@@ -23,8 +24,8 @@ public class GUI extends Application {
 	
 	@Override
 	protected void init() {
-		Texture square1 = new SecureRunner<Void, Texture>(() -> Texture.getTexture(
-				"C:\\Users\\Joey Sciamanna\\git\\Graphite\\src\\test\\resources\\textures\\square.png", 16, 16)).get();
+		Image square1 = new SecureRunner<Void, Image>(() -> TextureUtil.loadImage(
+				"C:\\Users\\Joey Sciamanna\\git\\Graphite\\src\\test\\resources\\textures\\square.png")).get();
 
 		UIRootContainer mainMenu = new UIRootContainer(getWindow());
 		getDimension().addObj(mainMenu, RenderType.UI);
@@ -41,7 +42,7 @@ public class GUI extends Application {
 
 		UIButton settingsButton = new UIButton();
 		settingsButton.getPreferedWidth().reset().add(settingsButton.getMaxHeight());
-		settingsButton.setTexture(square1);
+		settingsButton.setImage(square1);
 		optionPanel.add(settingsButton);
 		
 		UIButton wikiButton = new UIButton();
@@ -62,7 +63,7 @@ public class GUI extends Application {
 		
 		UIButton startGame = new UIButton();
 		startGame.getPreferedHeight().reset().addPixel(20).addPF(10);
-		startGame.setColor(Color.getColor(255, 0, 0));
+		startGame.setColor(Color.getColor(255, 255, 0));
 		buttonsPanel.add(startGame);
 		
 		

@@ -1,11 +1,7 @@
 package ch.g_7.graphite.rendering.draw;
 
-import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
 import static org.lwjgl.opengl.GL11.GL_UNSIGNED_INT;
-import static org.lwjgl.opengl.GL11.glBindTexture;
 import static org.lwjgl.opengl.GL11.glDrawElements;
-import static org.lwjgl.opengl.GL13.GL_TEXTURE0;
-import static org.lwjgl.opengl.GL13.glActiveTexture;
 
 import java.util.List;
 
@@ -43,8 +39,7 @@ public class DrawRenderer extends Renderer<Drawable, EntityShaderProgram>{
 				shaderProgram.setColor(drawObject.getColor());
 				
 				if (drawObject.getTexture() != null) {
-					glActiveTexture(GL_TEXTURE0);
-					glBindTexture(GL_TEXTURE_2D, drawObject.getTexture().getId());
+					drawObject.getTexture().bind();
 					shaderProgram.setTextureEnabled(true);
 				} else {
 					shaderProgram.setTextureEnabled(false);
@@ -55,6 +50,7 @@ public class DrawRenderer extends Renderer<Drawable, EntityShaderProgram>{
 				vao.bind();
 				glDrawElements(drawObject.getGLDrawMethod(), drawObject.getMesh().getVerticesCount(), GL_UNSIGNED_INT, 0);
 				vao.unbind();
+				drawObject.getTexture().unbind();
 			}
 			
 		} 

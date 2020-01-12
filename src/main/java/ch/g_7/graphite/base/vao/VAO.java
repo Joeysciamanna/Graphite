@@ -8,10 +8,10 @@ import static org.lwjgl.opengl.GL30.glBindVertexArray;
 import static org.lwjgl.opengl.GL30.glDeleteVertexArrays;
 import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
-import java.util.Set;
 
 import org.lwjgl.opengl.GL20;
 
@@ -22,13 +22,13 @@ import ch.g_7.util.able.Initializable;
 public class VAO implements AutoCloseable, Initializable {
 
 	private int id;
-	private Set<VBO> vbos;
+	private List<VBO> vbos;
 	
 	private boolean adding;
 	private Queue<VBO> addables;
 	
 	public VAO() {
-		this.vbos = new HashSet<>();
+		this.vbos = new ArrayList<>(3);
 		this.addables = new LinkedList<>();
 	}
 	
@@ -45,6 +45,20 @@ public class VAO implements AutoCloseable, Initializable {
 		adding = false;
 	}
 	
+	
+	public void replace(VBO newVbo) {
+		int index = -1;
+		for (int i = 0; i < vbos.size(); i++) {
+			if(vbos.get(i).type == newVbo.type) {
+				index = i;
+			}
+		}
+		if(index == -1) {
+			throw new IllegalArgumentException(newVbo.type + " Cant be replaced, because it doesnt exist");
+		}
+		vbos.set(index, newVbo);
+		newVbo.init(this);
+	}
 	
 	private void add(VBO vbo, boolean addAdables) {
 		for (VBO v : vbos) {
@@ -82,7 +96,7 @@ public class VAO implements AutoCloseable, Initializable {
 	
 	@Override
 	public final void close() {
-		if(ResourceHandler.shallInitialize(this)) doClose();
+		if(ResourceHandler.shallClose(this)) doClose();
 	}
 	
 	protected void doClose() {

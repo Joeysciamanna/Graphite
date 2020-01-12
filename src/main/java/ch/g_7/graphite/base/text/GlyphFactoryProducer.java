@@ -2,6 +2,9 @@ package ch.g_7.graphite.base.text;
 
 import java.io.IOException;
 
+import ch.g_7.graphite.base.texture.Image;
+import ch.g_7.graphite.base.texture.TextureUtil;
+
 public class GlyphFactoryProducer {
 
 	private static IGlyphFactory glyphFactory;
@@ -10,11 +13,12 @@ public class GlyphFactoryProducer {
 		if(glyphFactory == null) {
 			SpriteGlyphFactory glyphFactory = new SpriteGlyphFactory();
 			try {
-				glyphFactory.load("C:\\Users\\Joey Sciamanna\\git\\Graphite\\src\\main\\resources\\fonts\\font-sprite.png",
-						23, 26, 265, 256, "abcdefghijklmnopqrstuvwxyzäöüABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜ1234567890._(){}[]<>\\/*-+=#@%&?»’¦|");
+				Image image = TextureUtil.loadImage("C:\\Users\\Joey Sciamanna\\git\\Graphite\\src\\main\\resources\\fonts\\font-sprite.png");
+				glyphFactory.load(image, 23, 26, 265, 256, "abcdefghijklmnopqrstuvwxyzäöüABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜ1234567890._(){}[]<>\\/*-+=#@%&?»’¦|");
 			} catch (IOException e) {
 				throw new RuntimeException(e);
 			}
+			GlyphFactoryProducer.glyphFactory = glyphFactory;
 		}
 		return glyphFactory;
 	}

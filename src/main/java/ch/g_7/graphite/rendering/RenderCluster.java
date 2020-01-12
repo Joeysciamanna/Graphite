@@ -43,7 +43,7 @@ public class RenderCluster<T extends INode, R extends IRenderer<T>> extends Clus
 	
 	@Override
 	public final void close() {
-		if(ResourceHandler.shallInitialize(this)) doClose();
+		if(ResourceHandler.shallClose(this)) doClose();
 	}
 
 	protected void doClose() {

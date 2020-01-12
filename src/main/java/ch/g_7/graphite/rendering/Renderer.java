@@ -35,7 +35,7 @@ public abstract class Renderer<T extends INode, S extends ShaderProgram> impleme
 	
 	@Override
 	public final void close() {
-		if(ResourceHandler.shallInitialize(this)) doClose();
+		if(ResourceHandler.shallClose(this)) doClose();
 	}
 
 	protected void doClose() {

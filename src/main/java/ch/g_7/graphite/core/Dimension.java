@@ -9,38 +9,38 @@ import ch.g_7.graphite.rendering.RenderCluster;
 
 public final class Dimension implements AutoCloseable {
 
-	private List<RenderCluster<?,?>> renderClasses;
+	private List<RenderCluster<?,?>> renderClusters;
 	
 	public Dimension() {
-		renderClasses = new ArrayList<>(20);
+		renderClusters = new ArrayList<>(20);
 	}
 	
 	public <T extends INode> void addObj(T renderable, RenderCluster<T,? extends IRenderer<T>> renderClass) {
-		if(!renderClasses.contains(renderClass)) {
-			renderClasses.add(renderClass);
+		if(!renderClusters.contains(renderClass)) {
+			renderClusters.add(renderClass);
 			renderClass.init();
 		}
 		renderClass.addNode(renderable);
 	}
 	
 	public void remove(RenderCluster<?,?> renderClass) {
-		renderClasses.remove(renderClass);
+		renderClusters.remove(renderClass);
 		renderClass.close();
 	}
 	
 	public List<RenderCluster<?,?>> getRenderClasses() {
-		return renderClasses;
+		return renderClusters;
 	}
 
 	@Override
 	public void close() {
-		for (RenderCluster<?,?> renderClass : renderClasses) {
-			renderClass.close();
+		for (RenderCluster<?,?> renderCluster : renderClusters) {
+			renderCluster.close();
 		}
 	}
 
 	public void update(double deltaMillis) {
-		for (RenderCluster<?, ?> renderCluster : renderClasses) {
+		for (RenderCluster<?, ?> renderCluster : renderClusters) {
 			renderCluster.update(deltaMillis);
 		}
 	}

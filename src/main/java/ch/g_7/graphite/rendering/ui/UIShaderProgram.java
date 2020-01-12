@@ -17,7 +17,7 @@ public class UIShaderProgram extends ShaderProgram{
 		super.doInit();
         createUniform("modelViewMatrix");
         createUniform("projectionMatrix");
-        createUniform("texture");
+        createUniform("textureSample");
         createUniform("color");
         createUniform("textureEnabled");
 	}
@@ -32,7 +32,7 @@ public class UIShaderProgram extends ShaderProgram{
 	}
 	
 	public void setTextureSampler(int value) {
-		setUniform("texture", value);
+		setUniform("textureSample", value);
 	}
 	
 	public void setColor(Color value) {

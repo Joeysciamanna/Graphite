@@ -78,7 +78,7 @@ public abstract class ShaderProgram implements Initializable, AutoCloseable {
 
 	@Override
 	public final void close() {
-		if (ResourceHandler.shallInitialize(this))
+		if (ResourceHandler.shallClose(this))
 			doClose();
 	}
 

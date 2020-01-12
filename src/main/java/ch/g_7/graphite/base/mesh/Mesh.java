@@ -47,13 +47,22 @@ public class Mesh implements IMesh {
 	
 	@Override
 	public final void close() {
-		if(ResourceHandler.shallInitialize(this)) doClose();
+		if(ResourceHandler.shallClose(this)) doClose();
 	}
 
 	protected void doClose() {
 		vao.close();
 	}
 
+	public void setPositions(float[] positions, int[] indices) {
+		vao.replace(VBOFactory.getPositionVBO(positions, indices));
+	}
+	
+	@Override
+	public void setTextureCoordinates(float[] textureCoordinates) {
+		vao.replace(VBOFactory.getTextureCoordinatesVBO(textureCoordinates));
+	}
+	
 	@Override
 	public int getVerticesCount() {
 		return verticesCount;

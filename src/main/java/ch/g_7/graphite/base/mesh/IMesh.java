@@ -13,4 +13,5 @@ public interface IMesh extends Initializable, AutoCloseable {
 	@Override
 	void close();
 
+	void setTextureCoordinates(float[] textureCoordinates);
 }

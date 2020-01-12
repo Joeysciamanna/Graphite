@@ -1,17 +1,18 @@
 package ch.g_7.graphite.test;
 
-import java.io.IOException;
-
 import org.joml.Vector3f;
 
 import ch.g_7.graphite.base.mesh.MeshBuilder2d;
 import ch.g_7.graphite.base.mesh.MeshFactory2d;
 import ch.g_7.graphite.base.text.GlyphFactoryProducer;
-import ch.g_7.graphite.base.texture.Texture;
+import ch.g_7.graphite.base.texture.Image;
+import ch.g_7.graphite.base.texture.Sprite;
+import ch.g_7.graphite.base.texture.TextureUtil;
 import ch.g_7.graphite.core.Application;
 import ch.g_7.graphite.core.RenderType;
 import ch.g_7.graphite.entity.Entity;
 import ch.g_7.graphite.entity.ViewModel;
+import ch.g_7.graphite.util.Color;
 import ch.g_7.util.task.SecureRunner;
 
 public class Test extends Application {
@@ -29,24 +30,20 @@ public class Test extends Application {
 	@Override
 	protected void init() {
 		
-		Texture square1 = new SecureRunner<Void, Texture>(() -> Texture.getTexture("C:\\Users\\Joey Sciamanna\\git\\Graphite\\src\\test\\resources\\textures\\square.png", 16, 16)).get();
+		Image square1 = new SecureRunner<Void, Image>(() -> TextureUtil.loadImage("C:\\Users\\Joey Sciamanna\\git\\Graphite\\src\\test\\resources\\textures\\square.png")).get();
 
-		Texture glypq = null;
-		try {
-			glypq = Texture.getSprite("C:\\Users\\Joey Sciamanna\\git\\Graphite\\src\\main\\resources\\fonts\\font-sprite.png", 23, 26, 0,0, 265, 256);
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+		Sprite sprite = GlyphFactoryProducer.getGlyphFactory().getSprite('a');
 		
 		ViewModel viewModel = new ViewModel();
 		viewModel.setMesh(MeshFactory2d.getSquare(1).setCenter(MeshBuilder2d.CENTER_MIDDLE).build());
-		viewModel.setTexture(glypq);
+		getWindow().setBackgroundColor(Color.getColor(255, 0, 0));
 		entity1 = new Entity();
 		entity1.setViewModel(viewModel);
 		entity1.setPosition(new Vector3f(0, 0, 0));
 		
 		getDimension().addObj(entity1, RenderType.ENTITIES);
-
+		viewModel.setSprite(sprite);
+		
 		getWindow().setVisible(true);
 		getWindow().setSize(500, 500);
 	}

@@ -10,6 +10,7 @@ import ch.g_7.graphite.entity.Entity;
 import ch.g_7.graphite.entity.ViewModel;
 import ch.g_7.graphite.rendering.entity.EntityTransformation3d;
 import ch.g_7.graphite.util.Color;
+import ch.g_7.util.helper.AppInitializer;
 
 public class RotateCube extends Application {
 
@@ -18,6 +19,11 @@ public class RotateCube extends Application {
 	}
 
 	public static void main(String[] args) {
+		AppInitializer appInitializer = new AppInitializer("", new Object() {});
+		appInitializer.setDebugMode(true);
+		appInitializer.initLogger();
+		appInitializer.addConsoleLogWriters();
+
 		new RotateCube("Rotate Cube Test").setRunning(true);
 	}
 

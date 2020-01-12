@@ -38,7 +38,7 @@ public abstract class VBO implements Closeable {
 	
 	@Override
 	public final void close() {
-		if(ResourceHandler.shallInitialize(this)) doClose();
+		if(ResourceHandler.shallClose(this)) doClose();
 	}
 	
 	protected void doClose() {

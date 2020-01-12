@@ -26,12 +26,6 @@ public class PositionVBO extends FloatVBO {
 		indices = null;
 	}
 	
-	@Override
-	protected void doClose() {
-		indicesVBO.close();
-		super.close();
-	}
-	
 	private static class IndicesVBO extends IntVBO {
 
 		private IndicesVBO(int[] ints) {

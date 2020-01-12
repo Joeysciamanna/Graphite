@@ -9,7 +9,7 @@ import org.lwjgl.opengl.GL11;
 
 import ch.g_7.graphite.base.mesh.Mesh;
 import ch.g_7.graphite.base.mesh.MeshFactory2d;
-import ch.g_7.graphite.base.texture.Texture;
+import ch.g_7.graphite.base.texture.Image;
 import ch.g_7.graphite.draw.object.DrawObject;
 import ch.g_7.graphite.draw.object.IDrawObject;
 import ch.g_7.graphite.util.Color;
@@ -30,7 +30,7 @@ public class DrawContext {
 		
 	}
 	
-	public void setBrushTexture(Texture texture) {
+	public void setBrushTexture(Image texture) {
 		drawObject.setTexture(texture);
 	}
 	
@@ -44,7 +44,7 @@ public class DrawContext {
 	}
 	
 
-	public void addImage(Texture texture, Vector3fc position, Vector2fc size) {
+	public void addImage(Image texture, Vector3fc position, Vector2fc size) {
 		setBrushTexture(texture);
 		addRectangle(position, size);
 		next();
