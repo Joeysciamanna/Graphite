@@ -46,18 +46,23 @@ public class VAO implements AutoCloseable, Initializable {
 	}
 	
 	
-	public void replace(VBO newVbo) {
+	public void replace(VBO vbo) {
 		int index = -1;
 		for (int i = 0; i < vbos.size(); i++) {
-			if(vbos.get(i).type == newVbo.type) {
+			if(vbos.get(i).type == vbo.type) {
 				index = i;
 			}
 		}
 		if(index == -1) {
-			throw new IllegalArgumentException(newVbo.type + " Cant be replaced, because it doesnt exist");
+			throw new IllegalArgumentException(vbo.type + " Cant be replaced, because it doesnt exist");
 		}
-		vbos.set(index, newVbo);
-		newVbo.init(this);
+		
+		vbos.get(index).close();
+		
+		glBindVertexArray(id);
+		vbo.init(this);
+		glBindVertexArray(0);
+		vbos.set(index, vbo);
 	}
 	
 	private void add(VBO vbo, boolean addAdables) {
@@ -126,10 +131,7 @@ public class VAO implements AutoCloseable, Initializable {
 			glDisableVertexAttribArray(i);
 		}
 	}
-	
-	public int nextIndex() {
-		return vbos.size();
-	}
+
 	
 
 }

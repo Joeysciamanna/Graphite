@@ -32,7 +32,8 @@ public class Test extends Application {
 		
 		Image square1 = new SecureRunner<Void, Image>(() -> TextureUtil.loadImage("C:\\Users\\Joey Sciamanna\\git\\Graphite\\src\\test\\resources\\textures\\square.png")).get();
 
-		Sprite sprite = GlyphFactoryProducer.getGlyphFactory().getSprite('a');
+//		Sprite sprite = GlyphFactoryProducer.getGlyphFactory().getSprite('a');
+		Sprite sprite = TextureUtil.loadSprite(square1, 4, 4, 12, 12);
 		
 		ViewModel viewModel = new ViewModel();
 		viewModel.setMesh(MeshFactory2d.getSquare(1).setCenter(MeshBuilder2d.CENTER_MIDDLE).build());

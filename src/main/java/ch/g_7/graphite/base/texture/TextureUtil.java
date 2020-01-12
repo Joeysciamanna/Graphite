@@ -52,9 +52,37 @@ public class TextureUtil {
 	}
 	
 	public static Sprite loadSprite(Image image, int x, int y, int width, int height) {
+
+		System.out.println(x);
+		System.out.println(y);
+		System.out.println(x + width);
+		System.out.println(y + height);
+		
+		System.out.println("----------------------");
+		
+		System.out.println(x);
+		System.out.println(y);
+		System.out.println(x + width);
+		System.out.println(y + height);
+		
+		float xMin = (float) (x) / image.getWidth();
+		float yMin = (float) (y) / image.getHeight();
+		
+		float xMax = (float) (x + width) / image.getWidth();
+		float yMax = (float) (y + height) / image.getHeight();
+		
+		System.out.println("----------------------");
+		
+		System.out.println(xMin);
+		System.out.println(yMin);
+		System.out.println(xMax);
+		System.out.println(yMax);
+		
 		float[] textureCoordinates = new float[] {
-			x / image.getWidth(), y / image.getHeight(),
-			(x + width) / image.getWidth(), (y + height) / image.getHeight()
+			xMin, yMin,
+			xMin, yMax,
+			xMax, yMax,
+			xMax, yMin
 		};
 		return new Sprite(image, textureCoordinates);
 	}

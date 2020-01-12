@@ -28,7 +28,7 @@ public class FloatVBO extends VBO {
 		indicesBuffer.put(floats).flip();
 		glBindBuffer(type.glBufferTarget, getId());
 		glBufferData(type.glBufferTarget, indicesBuffer, GL_STATIC_DRAW);
-		glVertexAttribPointer(vao.nextIndex(), type.size, type.glNumber , false, 0, 0);
+		glVertexAttribPointer(type.position, type.size, type.glNumber , false, 0, 0);
 		MemoryUtil.memFree(indicesBuffer);
 		floats = null;
 	}
