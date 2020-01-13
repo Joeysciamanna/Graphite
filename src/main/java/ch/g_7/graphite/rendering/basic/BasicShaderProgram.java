@@ -1,15 +1,15 @@
-package ch.g_7.graphite.rendering.ui;
+package ch.g_7.graphite.rendering.basic;
 
 import org.joml.Matrix4f;
 
 import ch.g_7.graphite.rendering.ShaderProgram;
 import ch.g_7.graphite.util.Color;
-import ch.g_7.graphite.util.Resources;
 
-public class UIShaderProgram extends ShaderProgram{
+public class BasicShaderProgram extends ShaderProgram {
 
-	public UIShaderProgram() {
-		super(Resources.UI_VERTEX_SHADER_PATH, Resources.UI_FRAGMENT_SHADER_PATH);
+
+	public BasicShaderProgram(String vertexCode, String fragmentCode) {
+		super(vertexCode, fragmentCode);
 	}
 
 	@Override

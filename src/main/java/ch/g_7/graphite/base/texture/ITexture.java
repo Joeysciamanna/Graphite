@@ -15,5 +15,6 @@ public interface ITexture extends Initializable, AutoCloseable{
 	int getWidth();
 	
 	int getHeight();
-	
+
+	boolean isSprite();
 }

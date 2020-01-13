@@ -1,6 +1,6 @@
-package ch.g_7.graphite.node;
+package ch.g_7.graphite.entity;
 
-public class NodeCluster<T extends INode> extends Cluster<T> {
+public class NodeCluster<T extends IEntity> extends Cluster<T> {
 
 	private Cluster<? super T> father;
 	
@@ -15,7 +15,7 @@ public class NodeCluster<T extends INode> extends Cluster<T> {
 	}
 	
 	@Override
-	public void removeNode(INode node) {
+	public void removeNode(IEntity node) {
 		super.removeNode(node);
 		father.removeNode(node);
 	}

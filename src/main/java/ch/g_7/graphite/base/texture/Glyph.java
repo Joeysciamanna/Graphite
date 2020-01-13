@@ -46,7 +46,7 @@ public class Glyph implements Initializable, AutoCloseable{
 	
 	public void setSprite(Sprite sprite) {
 		this.texture = sprite;
-		this.mesh.setTextureCoordinates(sprite.getTextureCoordinates());
+//		this.mesh.setTextureCoordinates(sprite.getTextureCoordinates());
 	}
 	
 	public char getCharacter() {

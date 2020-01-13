@@ -10,7 +10,7 @@ public class EntityShaderProgram extends ShaderProgram {
 
 
 	public EntityShaderProgram()  {
-		super(Resources.ENTITY_VERTEX_SHADER_PATH, Resources.ENTITY_FRAGMENT_SHADER_PATH);
+		super(Resources.ENTITY_VERTEX_SHADER, Resources.ENTITY_FRAGMENT_SHADER);
 	}
 
 

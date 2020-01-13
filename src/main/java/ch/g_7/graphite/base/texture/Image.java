@@ -60,5 +60,9 @@ public class Image implements ITexture {
 	@Override
 	public void unbind() {}
 	
+	@Override
+	public boolean isSprite() {
+		return false;
+	}
 
 }

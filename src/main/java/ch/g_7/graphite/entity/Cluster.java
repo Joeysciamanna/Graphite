@@ -1,10 +1,10 @@
-package ch.g_7.graphite.node;
+package ch.g_7.graphite.entity;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-public abstract class Cluster<T extends INode> {
+public abstract class Cluster<T extends Updatable> {
 	
 	protected final List<T> nodes;
 	
@@ -21,7 +21,7 @@ public abstract class Cluster<T extends INode> {
 		node.init();
 	}
 	
-	public void removeNode(INode node) {
+	public void removeNode(IEntity node) {
 		node.close();
 		nodes.remove(node);
 	}

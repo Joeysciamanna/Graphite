@@ -4,11 +4,11 @@ import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;
 
 import ch.g_7.graphite.base.mesh.Mesh;
+import ch.g_7.graphite.base.view_model.ViewModel;
 import ch.g_7.graphite.core.Application;
 import ch.g_7.graphite.core.RenderType;
 import ch.g_7.graphite.entity.Entity;
-import ch.g_7.graphite.entity.ViewModel;
-import ch.g_7.graphite.rendering.entity.EntityTransformation3d;
+import ch.g_7.graphite.rendering.transformator.PerspectiveTransformation;
 import ch.g_7.graphite.util.Color;
 import ch.g_7.util.helper.AppInitializer;
 
@@ -33,7 +33,7 @@ public class RotateCube extends Application {
 	@Override
 	protected void init() {
 
-		RenderType.ENTITIES.getRenderer().setTransformation(new EntityTransformation3d());
+		RenderType.ENTITIES.getRenderer().setTransformation(new PerspectiveTransformation());
 
 		float[] positions = new float[] {
 				// VO

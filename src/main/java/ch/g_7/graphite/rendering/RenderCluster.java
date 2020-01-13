@@ -2,12 +2,13 @@ package ch.g_7.graphite.rendering;
 
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
-import ch.g_7.graphite.node.Cluster;
-import ch.g_7.graphite.node.INode;
+import ch.g_7.graphite.entity.Cluster;
+import ch.g_7.graphite.entity.IEntity;
+import ch.g_7.graphite.entity.Updatable;
 import ch.g_7.graphite.util.ResourceHandler;
 import ch.g_7.util.able.Initializable;
 
-public class RenderCluster<T extends INode, R extends IRenderer<T>> extends Cluster<T> implements AutoCloseable, Initializable{
+public class RenderCluster<T extends Updatable, R extends IRenderer<T>> extends Cluster<T> implements AutoCloseable, Initializable{
 	
 	private final R renderer;
 	private final String name;
@@ -22,7 +23,7 @@ public class RenderCluster<T extends INode, R extends IRenderer<T>> extends Clus
 	}
 	
 	public void update(double deltaMillis) {
-		for (INode node : nodes) {
+		for (Updatable node : nodes) {
 			node.update(deltaMillis);
 		}
 	}

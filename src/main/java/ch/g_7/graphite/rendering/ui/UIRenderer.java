@@ -8,35 +8,33 @@ import java.util.List;
 
 import org.joml.Matrix4f;
 
+import com.sun.org.apache.xpath.internal.axes.ChildIterator;
+
 import ch.g_7.graphite.base.vao.VAO;
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
-import ch.g_7.graphite.rendering.ITransformation;
-import ch.g_7.graphite.rendering.Renderer;
+import ch.g_7.graphite.rendering.basic.BasicRenderer;
+import ch.g_7.graphite.rendering.basic.BasicShaderProgram;
+import ch.g_7.graphite.rendering.transformator.ITransformator;
+import ch.g_7.graphite.rendering.transformator.PixelTransformator;
 import ch.g_7.graphite.ui.IUIPanel;
 import ch.g_7.graphite.ui.IUIRootContainer;
+import ch.g_7.graphite.util.Resources;
 
 /**
  * TODO refactor ui rendering put all in shader programm -> performance
  * @author Joey Sciamanna
  *
  */
-public class UIRenderer extends Renderer<IUIRootContainer, UIShaderProgram> {
+public class UIRenderer extends BasicRenderer<IUIRootContainer> {
 	
-	protected ITransformation<IUIPanel> transformation;
-
 	public UIRenderer() {
-		super(new UIShaderProgram()); 
-		this.transformation = new UITransformation();
+		super(new BasicShaderProgram(Resources.UI_VERTEX_SHADER, Resources.UI_FRAGMENT_SHADER), new PixelTransformator());
 	}
 
 
 	@Override
-	public final void doRender(List<IUIRootContainer> rootContainers, Window window, Camera camera) {
-		
-		shaderProgram.setTextureSampler(0);
-		shaderProgram.setProjectionMatrix(transformation.getProjectionMatrix(window, camera));
-		
+	public void renderAll(List<IUIRootContainer> rootContainers) {
 		for (IUIRootContainer container : rootContainers) {
 			if (container.isVisible()) {
 				for (IUIPanel panel : container.getChilds()) {
@@ -44,7 +42,6 @@ public class UIRenderer extends Renderer<IUIRootContainer, UIShaderProgram> {
 				}
 			}
 		}
-
 	}
 
 
@@ -55,28 +52,7 @@ public class UIRenderer extends Renderer<IUIRootContainer, UIShaderProgram> {
 			}
 		}
 		
-		Matrix4f modelViewMatrix = transformation.getModelViewMatrix(panel);
-
-		shaderProgram.setModelViewMatrix(modelViewMatrix);
-
-		shaderProgram.setColor(panel.getColor());
-		
-		if (panel.getTexture() != null) {
-			panel.getTexture().bind();
-			shaderProgram.setTextureEnabled(true);
-		} else {
-			shaderProgram.setTextureEnabled(false);
-		}
-
-		VAO vao = panel.getMesh().getVAO();
-		
-		vao.bind();
-		glDrawElements(GL_TRIANGLES, panel.getMesh().getVerticesCount(), GL_UNSIGNED_INT, 0);
-		vao.unbind();
-		if(panel.getTexture() != null) {
-			panel.getTexture().unbind();
-		}
-	
+		render(panel.getM, transformation);
 		
 	}
 

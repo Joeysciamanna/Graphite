@@ -61,15 +61,15 @@ public class TextureUtil {
 		System.out.println("----------------------");
 		
 		System.out.println(x);
-		System.out.println(y);
+		System.out.println(image.getHeight() - y);
 		System.out.println(x + width);
-		System.out.println(y + height);
+		System.out.println(image.getHeight() - y + height);
 		
 		float xMin = (float) (x) / image.getWidth();
-		float yMin = (float) (y) / image.getHeight();
+		float yMin = (float) (image.getHeight() - y) / image.getHeight();
 		
 		float xMax = (float) (x + width) / image.getWidth();
-		float yMax = (float) (y + height) / image.getHeight();
+		float yMax = (float) (image.getHeight() - y + height) / image.getHeight();
 		
 		System.out.println("----------------------");
 		
@@ -78,12 +78,6 @@ public class TextureUtil {
 		System.out.println(xMax);
 		System.out.println(yMax);
 		
-		float[] textureCoordinates = new float[] {
-			xMin, yMin,
-			xMin, yMax,
-			xMax, yMax,
-			xMax, yMin
-		};
-		return new Sprite(image, textureCoordinates);
+		return new Sprite(image, xMin, yMin, xMax, yMax);
 	}
 }

@@ -1,14 +1,13 @@
-package ch.g_7.graphite.rendering.entity;
+package ch.g_7.graphite.rendering.transformator;
 
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
+import ch.g_7.graphite.base.transformation.ITransformation;
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
-import ch.g_7.graphite.node.Localizable;
-import ch.g_7.graphite.rendering.ITransformation;
 
-public class EntityTransformation3d implements ITransformation<Localizable> {
+public class PerspectiveTransformation implements ITransformator<ITransformation> {
 
 	private float fov = (float) Math.toRadians(90.0f);
 
@@ -20,7 +19,7 @@ public class EntityTransformation3d implements ITransformation<Localizable> {
 	private Matrix4f modelViewMatrix;
 	private Matrix4f viewMatrix;
 
-	public EntityTransformation3d() {
+	public PerspectiveTransformation() {
 		projectionMatrix = new Matrix4f();
 		modelViewMatrix = new Matrix4f();
 		viewMatrix = new Matrix4f();
@@ -34,9 +33,9 @@ public class EntityTransformation3d implements ITransformation<Localizable> {
 	}
 
 	@Override
-	public Matrix4f getModelViewMatrix(Localizable entity) {
-		return modelViewMatrix.identity().identity().translate(entity.getPosition())
-				.rotateXYZ(new Vector3f(entity.getRotation())).scale(entity.getScale()).mul(viewMatrix);
+	public Matrix4f getModelViewMatrix(ITransformation transformation) {
+		return modelViewMatrix.identity().identity().translate(transformation.getPosition())
+				.rotateXYZ(new Vector3f(transformation.getRotation())).scale(transformation.getScale()).mul(viewMatrix);
 	}
 
 }
