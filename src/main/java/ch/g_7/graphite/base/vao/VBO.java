@@ -7,7 +7,7 @@ import static org.lwjgl.opengl.GL15.glGenBuffers;
 
 import java.io.Closeable;
 
-import ch.g_7.graphite.util.ResourceHandler;
+import ch.g_7.util.resource.ResourceHandler;
 
 public abstract class VBO implements Closeable {
 	

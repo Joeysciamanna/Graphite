@@ -7,18 +7,16 @@ import static org.lwjgl.opengl.GL11.glDrawElements;
 import java.util.List;
 
 import ch.g_7.graphite.base.transformation.ITransformation;
-import ch.g_7.graphite.base.transformation.Transformation;
 import ch.g_7.graphite.base.vao.VAO;
 import ch.g_7.graphite.base.view_model.IViewModel;
-import ch.g_7.graphite.base.view_model.ViewModel;
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
-import ch.g_7.graphite.entity.IEntity;
+import ch.g_7.graphite.node.INode;
 import ch.g_7.graphite.rendering.IRenderer;
 import ch.g_7.graphite.rendering.transformator.ITransformator;
-import ch.g_7.graphite.util.Resource;
+import ch.g_7.util.resource.Resource;
 
-public abstract class BasicRenderer<T> extends Resource implements IRenderer<T> {
+public abstract class BasicRenderer<T extends INode> extends Resource implements IRenderer<T> {
 
 	private ITransformator<ITransformation> transformator;
 	protected final BasicShaderProgram shaderProgram;
@@ -33,11 +31,11 @@ public abstract class BasicRenderer<T> extends Resource implements IRenderer<T> 
 		shaderProgram.bind();
 		shaderProgram.setTextureSampler(0);
 		shaderProgram.setProjectionMatrix(transformator.getProjectionMatrix(window, camera));
-		renderAll(nodes);
+		render(nodes);
 		shaderProgram.unbind();
 	}
 
-	protected abstract void renderAll(List<T> nodes);
+	protected abstract void render(List<T> nodes);
 
 	protected void render(IViewModel viewModel, ITransformation transformation) {
 

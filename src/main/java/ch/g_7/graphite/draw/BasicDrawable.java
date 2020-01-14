@@ -1,6 +1,6 @@
 package ch.g_7.graphite.draw;
 
-import ch.g_7.graphite.util.ResourceHandler;
+import ch.g_7.util.resource.ResourceHandler;
 
 public abstract class BasicDrawable implements Drawable {
 

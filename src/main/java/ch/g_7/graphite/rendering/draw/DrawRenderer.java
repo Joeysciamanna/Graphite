@@ -17,7 +17,7 @@ public class DrawRenderer extends BasicRenderer<Drawable>{
 	}
 
 	@Override
-	protected void renderAll(List<Drawable> drawables) {
+	protected void render(List<Drawable> drawables) {
 		for (Drawable drawable : drawables) {
 			for(IDrawObject drawObject : drawable.draw().getDrawObjects()) {
 				render(drawObject.getViewModel(), drawObject.getTransformation());	

@@ -4,7 +4,7 @@ import ch.g_7.graphite.base.transformation.ITransformation;
 import ch.g_7.graphite.base.transformation.Transformation;
 import ch.g_7.graphite.base.view_model.IViewModel;
 import ch.g_7.graphite.base.view_model.ViewModel;
-import ch.g_7.graphite.util.Resource;
+import ch.g_7.util.resource.Resource;
 
 public class Entity extends Resource implements IEntity {
 

@@ -5,7 +5,6 @@ import ch.g_7.graphite.base.texture.ITexture;
 import ch.g_7.graphite.base.texture.Image;
 import ch.g_7.graphite.base.texture.Sprite;
 import ch.g_7.graphite.util.Color;
-import ch.g_7.graphite.util.Resource;
 
 public class ViewModel extends Resource implements IViewModel {
 

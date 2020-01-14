@@ -15,8 +15,8 @@ import java.util.Queue;
 
 import org.lwjgl.opengl.GL20;
 
-import ch.g_7.graphite.util.ResourceHandler;
-import ch.g_7.util.able.Initializable;
+import ch.g_7.util.common.Initializable;
+import ch.g_7.util.resource.ResourceHandler;
 
 
 public class VAO implements AutoCloseable, Initializable {

@@ -35,8 +35,8 @@ import org.joml.Vector4f;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.system.MemoryStack;
 
-import ch.g_7.graphite.util.ResourceHandler;
-import ch.g_7.util.able.Initializable;
+import ch.g_7.util.common.Initializable;
+import ch.g_7.util.resource.ResourceHandler;
 
 public abstract class ShaderProgram implements Initializable, AutoCloseable {
 

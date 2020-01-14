@@ -10,8 +10,8 @@ import org.lwjgl.opengl.GL11;
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.Dimension;
 import ch.g_7.graphite.core.window.Window;
-import ch.g_7.graphite.util.ResourceHandler;
-import ch.g_7.util.able.Initializable;
+import ch.g_7.util.common.Initializable;
+import ch.g_7.util.resource.ResourceHandler;
 
 public class MasterRenderer implements Initializable, AutoCloseable{
 

@@ -1,15 +1,15 @@
 package ch.g_7.graphite.ui;
 
-import java.io.Closeable;
 import java.util.List;
 
 import org.joml.Vector2ic;
 
+import ch.g_7.graphite.base.transformation.ITransformation2d;
 import ch.g_7.graphite.core.window.Window;
+import ch.g_7.graphite.node.INode;
 import ch.g_7.graphite.ui.util.ScreenDimension;
-import ch.g_7.util.able.Initializable;
 
-public interface IUIContainer extends Initializable, Closeable {
+public interface IUIContainer extends INode {
 
 	boolean isVisible();
 
@@ -21,13 +21,6 @@ public interface IUIContainer extends Initializable, Closeable {
 	
 	void requestRecalculation(IUIContainer container);
 	
-	void init();
-	
-	@Override
-	void close();
-	
-
-
 	Window getWindow();
 	
 	ScreenDimension getWidth();
@@ -36,7 +29,9 @@ public interface IUIContainer extends Initializable, Closeable {
 	
 	ScreenDimension getX();
 	ScreenDimension getY();
-	Vector2ic getPosition(); //TODO
+	Vector2ic getPosition();
+	
+	ITransformation2d getTransformation();
 	
 	IUIRootContainer getRootContainer();
 }

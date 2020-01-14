@@ -1,14 +1,12 @@
 package ch.g_7.graphite.ui;
 
-import org.joml.Vector2i;
 import org.joml.Vector2ic;
 
 import ch.g_7.graphite.base.mesh.IMesh;
 import ch.g_7.graphite.base.mesh.MeshBuilder2d;
 import ch.g_7.graphite.base.mesh.MeshFactory2d;
-import ch.g_7.graphite.base.texture.ITexture;
-import ch.g_7.graphite.base.texture.Image;
-import ch.g_7.graphite.base.texture.Sprite;
+import ch.g_7.graphite.base.view_model.IViewModel;
+import ch.g_7.graphite.base.view_model.ViewModel;
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.ui.util.ScreenDimension;
 import ch.g_7.graphite.util.Color;
@@ -17,7 +15,7 @@ public class UIPanel extends UIContainer implements IUIPanel {
 
 	private static IMesh SQUARE_MESH = MeshFactory2d.getSquare(1).setCenter(MeshBuilder2d.CENTER_TOP_LEFT).build();
 	
-
+	private ViewModel viewModel;
 	
 	protected final ScreenDimension maxWidth;
 	protected final ScreenDimension maxHeight;
@@ -28,15 +26,9 @@ public class UIPanel extends UIContainer implements IUIPanel {
 	protected final ScreenDimension preferedWidth;
 	protected final ScreenDimension preferedHeight;
 	
-
 	private boolean resized = true;
 	
 	protected IUIContainer father;
-
-	protected IMesh mesh;
-	protected Color color;
-	protected ITexture texture;
-
 	
 	public UIPanel() {
 		this.maxWidth = new ScreenDimension(ScreenDimension.X_AXIS).addPF(100);
@@ -48,10 +40,7 @@ public class UIPanel extends UIContainer implements IUIPanel {
 		this.preferedWidth = new ScreenDimension(ScreenDimension.X_AXIS).addPF(100);
 		this.preferedHeight = new ScreenDimension(ScreenDimension.Y_AXIS).addPF(100);
 		
-		this.mesh = SQUARE_MESH;
-		
-		setColor(Color.getColor(0, 0, 0));
-		
+		this.viewModel = new ViewModel(SQUARE_MESH, null, Color.getColor(0, 0, 0));
 	}
 	
 
@@ -100,13 +89,19 @@ public class UIPanel extends UIContainer implements IUIPanel {
 	
 	@Override
 	protected void doInit() {
-		mesh.init();
-		super.init();
+		viewModel.init();
+		super.doInit();
+	}
+	
+	@Override
+	protected void doClose() {
+		viewModel.init();
+		super.doClose();
 	}
 	
 	@Override
 	protected void recalculateDimension(ScreenDimension dimension, Vector2ic screenSize) {
-		dimension.recalculate(screenSize, getFather().getSize());
+		dimension.recalculate(screenSize, getFather().getTransformation().getIntScale2d());
 	}
 	
 
@@ -124,46 +119,11 @@ public class UIPanel extends UIContainer implements IUIPanel {
 		requestRecalculation(this);
 	}
 	
-	@Override
-	protected void doClose() {
-		if(getTexture()!=null) {
-			getTexture().close();
-		}
-		if(getMesh()!=null) {
-			getMesh().close();
-		}
-		super.close();
-	}
-	
-	@Override
-	public IMesh getMesh() {
-		return SQUARE_MESH;
-	}
 
-	@Override
-	public Color getColor() {
-		return color;
-	}
-
-	public void setColor(Color color) {
-		if(color.getA() != 0) {
-			color.setA(255);
-		}
-		this.color = color;
-	}
 	
 	@Override
-	public ITexture getTexture() {
-		return texture;
-	}
-	
-	public void setImage(Image image) {
-		this.texture = image;
-	}
-	
-	public void setSprite(Sprite sprite) {
-		this.texture = sprite;
-		this.mesh.setTextureCoordinates(sprite.getTextureCoordinates());
+	public IViewModel getViewModel() {
+		return viewModel;
 	}
 	
 	@Override
@@ -173,11 +133,6 @@ public class UIPanel extends UIContainer implements IUIPanel {
 	
 	public IUIContainer getFather() {
 		return father;
-	}
-	
-	@Override
-	public Vector2ic getPosition() {
-		return getFather() == null ? position : new Vector2i(position).add(getFather().getPosition());
 	}
 
 	@Override

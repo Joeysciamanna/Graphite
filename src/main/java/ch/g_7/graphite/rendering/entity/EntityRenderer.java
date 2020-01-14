@@ -17,7 +17,7 @@ public class EntityRenderer extends BasicRenderer<IEntity> {
 
 
 	@Override
-	protected void renderAll(List<IEntity> drawables) {
+	protected void render(List<IEntity> drawables) {
 		for (IEntity node : drawables) {
 			render(node.getViewModel(), node.getTransformation());
 		}

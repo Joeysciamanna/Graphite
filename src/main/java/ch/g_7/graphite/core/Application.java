@@ -2,9 +2,9 @@ package ch.g_7.graphite.core;
 
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.rendering.MasterRenderer;
-import ch.g_7.graphite.util.ResourceHandler;
 import ch.g_7.util.logging.LogLevel;
 import ch.g_7.util.logging.Logger;
+import ch.g_7.util.resource.ResourceHandler;
 
 public abstract class Application implements Runnable {
 
@@ -26,10 +26,12 @@ public abstract class Application implements Runnable {
 
 	private Timer timer;
 
+	
 	public Application(String name) {
 		if (exists) {
 			throw new IllegalStateException("Only one Engine can exist at the same time");
 		}
+
 		this.dimension = new Dimension();
 		this.window = new Window(name, 200, 200);
 		this.camera = new Camera();
@@ -67,7 +69,7 @@ public abstract class Application implements Runnable {
 				window.pullEvents();
 				
 				update(timer.getDeltaMillis());
-				dimension.update(timer.getDeltaMillis());
+				
 				
 				window.update();
 				masterRenderer.render(dimension, window, camera);

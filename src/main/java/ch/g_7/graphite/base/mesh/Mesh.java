@@ -2,7 +2,7 @@ package ch.g_7.graphite.base.mesh;
 
 import ch.g_7.graphite.base.vao.VAO;
 import ch.g_7.graphite.base.vao.VBOFactory;
-import ch.g_7.graphite.util.ResourceHandler;
+import ch.g_7.util.resource.ResourceHandler;
 
 public class Mesh implements IMesh {
 

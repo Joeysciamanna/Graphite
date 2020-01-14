@@ -39,12 +39,12 @@ public final class Dimension implements AutoCloseable {
 		}
 	}
 
-	public void update(double deltaMillis) {
-		for (RenderCluster<?, ?> renderCluster : renderClusters) {
-			renderCluster.update(deltaMillis);
-		}
-	}
+//	public void update(double deltaMillis) {
+//		for (RenderCluster<?, ?> renderCluster : renderClusters) {
+//			renderCluster.update(deltaMillis);
+//		}
+//	}
 	
-	
+	ADAS
 	
 }

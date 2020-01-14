@@ -4,7 +4,6 @@ import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
 import ch.g_7.graphite.base.transformation.ITransformation;
-import ch.g_7.graphite.base.transformation.Transformation;
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
 
