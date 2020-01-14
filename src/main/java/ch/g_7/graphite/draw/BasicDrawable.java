@@ -22,7 +22,7 @@ public abstract class BasicDrawable implements Drawable {
 	public abstract void draw(DrawContext drawContext);
 	
 	@Override
-	public void update(double deltaMillis) {}
+	public void update(float deltaMillis) {}
 
 	@Override
 	public final void init() {

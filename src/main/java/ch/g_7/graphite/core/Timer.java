@@ -17,7 +17,7 @@ public class Timer {
 		return (int) (1 / deltaMillis * 1000);
 	}
 	
-	public double getDeltaMillis() {
+	public float getDeltaMillis() {
 		return deltaMillis;
 	}
 	

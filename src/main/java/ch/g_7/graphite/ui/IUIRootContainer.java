@@ -4,7 +4,7 @@ import ch.g_7.graphite.core.window.ResizeListner;
 import ch.g_7.graphite.node.Updatable;
 import ch.g_7.graphite.ui.util.MouseManager;
 
-public interface IUIRootContainer extends IUIContainer, ResizeListner, Updatable {
+public interface IUIRootContainer extends IUIContainer, ResizeListner {
 
 	void add(IUIPanel panel);
 	

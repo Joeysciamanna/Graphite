@@ -1,30 +1,32 @@
 package ch.g_7.graphite.core;
 
+import ch.g_7.graphite.core.loop.RenderLoop;
+import ch.g_7.graphite.core.loop.UpdateLoop;
 import ch.g_7.graphite.core.window.Window;
+import ch.g_7.graphite.node.Updatable;
 import ch.g_7.graphite.rendering.MasterRenderer;
+import ch.g_7.util.common.Closeable;
+import ch.g_7.util.common.Initializable;
 import ch.g_7.util.logging.LogLevel;
 import ch.g_7.util.logging.Logger;
 import ch.g_7.util.resource.ResourceHandler;
 
-public abstract class Application implements Runnable {
+public abstract class Application implements Updatable, Initializable, Closeable, Runnable {
 
 	private final static Logger LOGGER = Logger.getInstance();
 	
 	private static boolean exists;
 
-	private Dimension dimension;
-
 	private MasterRenderer masterRenderer;
-
+	private Dimension dimension;
 	private final Window window;
-
 	private Camera camera;
 
 	private Thread thread;
-
 	private boolean running;
+	
+	private UpdateLoop updateLoop;
 
-	private Timer timer;
 
 	
 	public Application(String name) {
@@ -35,64 +37,55 @@ public abstract class Application implements Runnable {
 		this.dimension = new Dimension();
 		this.window = new Window(name, 200, 200);
 		this.camera = new Camera();
-		this.timer = new Timer();
+		this.updateLoop = new UpdateLoop();
 		this.masterRenderer = new MasterRenderer();
+		
+		updateLoop = new UpdateLoop();
+		updateLoop.add(this);
+		
 		exists = true;
 	}
 
-	public final void setRunning(boolean running) {
-		if (running && !this.running) {
-			this.running = true;
-//			String osName = System.getProperty("os.name");
-//			if (osName.contains("Mac")) {
-//				run();
-//			} else {
-			thread = new Thread(this);
-			thread.start();
-//			}
-		} else if (!running && this.running) {
-			this.running = false;
-			thread = null;
-		}
-
-	}
-
 	@Override
-	public final void run() {
+	public void run() {
 		try {
 			window.init();
 			masterRenderer.init();
 			init();
-			timer.reset();
+			updateLoop.start();
+//			timer.reset();
 			while (running && !window.windowShouldClose()) {
-				timer.calculateDelta();
+//				timer.calculateDelta();
 				window.pullEvents();
 				
-				update(timer.getDeltaMillis());
+//				update(timer.getDeltaMillis());
 				
 				
 				window.update();
 				masterRenderer.render(dimension, window, camera);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.log(LogLevel.FATAL, "Engine Crashed", e);
 		} finally {
+			updateLoop.stop();
 			masterRenderer.close();
 			dimension.close();
 			close();
-			
-			if(ResourceHandler.hasUnclosedResources()) {
-				LOGGER.log(LogLevel.WARNING, ResourceHandler.getUnclosedResourcesTable());
-			}
-			
-			terminate();
 		}
 	}
 	
-	public void terminate() {
-		System.exit(0);
+	private final void setRunning(boolean running) {
+		if (running && !this.running) {
+			this.running = true;
+			thread = new Thread(this);
+			thread.start();
+		} else if (!running && this.running) {
+			this.running = false;
+			thread = null;
+		}
 	}
-
+	
+	
 	public void start() {
 		setRunning(true);
 	}
@@ -100,15 +93,21 @@ public abstract class Application implements Runnable {
 	public void stop() {
 		setRunning(false);
 	}
-
-	protected void close() {
+	
+	public void close() {
+		if(ResourceHandler.hasUnclosedResources()) {
+			LOGGER.log(LogLevel.WARNING, ResourceHandler.getUnclosedResourcesTable());
+		}
+		terminate();
+	}
+	
+	public void terminate() {
+		System.exit(0);
 	}
 
-	protected abstract void init();
-
-	public void update(double deltaMillis) {
-	}
-
+	@Override
+	public void update(float deltaMillis) {}
+	
 	public Dimension getDimension() {
 		return dimension;
 	}
@@ -124,12 +123,13 @@ public abstract class Application implements Runnable {
 	public Window getWindow() {
 		return window;
 	}
-
-	public Timer getTimer() {
-		return timer;
+	
+	public UpdateLoop getUpdateLoop() {
+		return updateLoop;
 	}
-
+	
 	public MasterRenderer getMasterRenderer() {
 		return masterRenderer;
 	}
+	
 }

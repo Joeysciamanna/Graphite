@@ -10,6 +10,11 @@ public class Transformation implements ITransformation {
 	private Vector3f rotation;
 	private Vector3f scale;
 	
+	public Transformation() {
+		this.position = new Vector3f();
+		this.rotation = new Vector3f();
+		this.scale = new Vector3f();
+	}
 
 	public void translate(Vector3f v) {
 		position.add(v);
@@ -19,7 +24,6 @@ public class Transformation implements ITransformation {
 		position.add(x, y, z);
 	}
 
-	
 	@Override
 	public Vector3f getPosition() {
 		return position;

@@ -5,6 +5,7 @@ import org.joml.Vector2ic;
 import ch.g_7.graphite.base.mesh.IMesh;
 import ch.g_7.graphite.base.mesh.MeshBuilder2d;
 import ch.g_7.graphite.base.mesh.MeshFactory2d;
+import ch.g_7.graphite.base.texture.ITexture;
 import ch.g_7.graphite.base.view_model.IViewModel;
 import ch.g_7.graphite.base.view_model.ViewModel;
 import ch.g_7.graphite.core.window.Window;
@@ -143,6 +144,16 @@ public class UIPanel extends UIContainer implements IUIPanel {
 	@Override
 	public IUIRootContainer getRootContainer() {
 		return getFather() == null ? null : father.getRootContainer();
+	}
+	
+	@Override
+	public void setColor(Color color) {
+		viewModel.setColor(color);
+	}
+	
+	@Override
+	public void setTexture(ITexture texture) {
+		viewModel.setTexture(texture);
 	}
 	
 	@Override

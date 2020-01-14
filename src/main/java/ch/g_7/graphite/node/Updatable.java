@@ -1,10 +1,7 @@
 package ch.g_7.graphite.node;
 
-import ch.g_7.util.common.Closeable;
-import ch.g_7.util.common.Initializable;
-
-public interface Updatable extends Initializable, Closeable{
+public interface Updatable {
  
-	void update(double deltaMillis);
+	void update(float deltaMillis);
 	
 }

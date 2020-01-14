@@ -1,7 +1,9 @@
 package ch.g_7.graphite.ui;
 
+import ch.g_7.graphite.base.texture.ITexture;
 import ch.g_7.graphite.node.Renderable;
 import ch.g_7.graphite.ui.util.ScreenDimension;
+import ch.g_7.graphite.util.Color;
 
 public interface IUIPanel extends IUIContainer, Renderable {
 
@@ -10,6 +12,10 @@ public interface IUIPanel extends IUIContainer, Renderable {
 	IUIContainer getFather();
 	
 	void recalculatePreferedSize();
+	
+	void setColor(Color color);
+	
+	void setTexture(ITexture texture);
 	
 	/**
 	 * Set by system, only change if you now what you are doing

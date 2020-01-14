@@ -11,7 +11,7 @@ class DrawObject extends Resource implements IDrawObject {
 	private int glDrawMethod = -1;
 
 	protected DrawObject(DrawObject drawObject) {
-		this(drawObject.getViewModel(), null);
+		this(drawObject.getViewModel(), new Transformation());
 	}
 
 	protected DrawObject(ViewModel viewModel, Transformation transformation) {
@@ -20,7 +20,9 @@ class DrawObject extends Resource implements IDrawObject {
 		this.transformation = transformation;
 	}
 	
-	public DrawObject() {}
+	public DrawObject() {
+		this(new ViewModel(), new Transformation());
+	}
 
 	public boolean isEmpty() {
 		return viewModel.getMesh() == null || glDrawMethod == -1;

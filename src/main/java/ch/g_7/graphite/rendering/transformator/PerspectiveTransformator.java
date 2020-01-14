@@ -7,7 +7,7 @@ import ch.g_7.graphite.base.transformation.ITransformation;
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
 
-public class PerspectiveTransformation implements ITransformator<ITransformation> {
+public class PerspectiveTransformator implements ITransformator<ITransformation> {
 
 	private float fov = (float) Math.toRadians(90.0f);
 
@@ -19,7 +19,7 @@ public class PerspectiveTransformation implements ITransformator<ITransformation
 	private Matrix4f modelViewMatrix;
 	private Matrix4f viewMatrix;
 
-	public PerspectiveTransformation() {
+	public PerspectiveTransformator() {
 		projectionMatrix = new Matrix4f();
 		modelViewMatrix = new Matrix4f();
 		viewMatrix = new Matrix4f();
