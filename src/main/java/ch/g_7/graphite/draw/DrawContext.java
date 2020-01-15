@@ -12,8 +12,9 @@ import ch.g_7.graphite.base.mesh.Mesh;
 import ch.g_7.graphite.base.mesh.MeshFactory2d;
 import ch.g_7.graphite.base.texture.ITexture;
 import ch.g_7.graphite.util.Color;
+import ch.g_7.util.resource.Resource;
 
-public class DrawContext {
+public class DrawContext extends Resource {
 
 	private List<IDrawObject> drawObjects;
 	private DrawObject drawObject;
@@ -60,11 +61,20 @@ public class DrawContext {
 		}
 
 	}
-
-	public void clear() {
+	
+	@Override
+	protected void doInit() {
+	}
+	
+	@Override
+	protected void doClose() {
 		for (IDrawObject drawObject : drawObjects) {
 			drawObject.close();
 		}
+	}
+
+	public void clear() {
+		doClose();
 		drawObjects.clear();
 	}
 

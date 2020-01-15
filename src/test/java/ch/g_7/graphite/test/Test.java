@@ -46,13 +46,14 @@ public class Test extends Application {
 		
 		ViewModel viewModel = new ViewModel();
 		viewModel.setMesh(MeshFactory2d.getSquare(1).setCenter(MeshBuilder2d.CENTER_MIDDLE).build());
+		viewModel.setTexture(sprite);
 		getWindow().setBackgroundColor(Color.getColor(255, 0, 0));
 		entity1 = new Entity();
 		entity1.setViewModel(viewModel);
 		//entity1.setPosition(new Vector3f(0, 0, 0));
 		
 		getDimension().addObj(entity1, RenderType.ENTITIES);
-		viewModel.setTexture(sprite);
+
 		
 		getWindow().setVisible(true);
 		getWindow().setSize(500, 500);

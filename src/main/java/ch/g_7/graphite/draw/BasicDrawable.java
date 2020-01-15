@@ -25,9 +25,15 @@ public abstract class BasicDrawable extends Resource implements Drawable {
 	public void update(float deltaMillis) {}
 
 
-	protected void doInit() {}
+	@Override
+	protected void doInit() {
+		drawContext.init();
+	}
 	
-	protected void doClose() {}
+	@Override
+	protected void doClose() {
+		drawContext.close();
+	}
 	
 	
 

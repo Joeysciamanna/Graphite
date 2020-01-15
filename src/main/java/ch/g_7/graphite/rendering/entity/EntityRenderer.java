@@ -2,6 +2,8 @@ package ch.g_7.graphite.rendering.entity;
 
 import java.util.List;
 
+import org.lwjgl.opengl.GL11;
+
 import ch.g_7.graphite.entity.IEntity;
 import ch.g_7.graphite.rendering.basic.BasicRenderer;
 import ch.g_7.graphite.rendering.basic.BasicShaderProgram;
@@ -19,7 +21,7 @@ public class EntityRenderer extends BasicRenderer<IEntity> {
 	@Override
 	protected void render(List<IEntity> drawables) {
 		for (IEntity node : drawables) {
-			render(node.getViewModel(), node.getTransformation());
+			render(node, GL11.GL_TRIANGLES);
 		}
 	}
 

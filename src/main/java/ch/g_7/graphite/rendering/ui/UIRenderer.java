@@ -2,6 +2,8 @@ package ch.g_7.graphite.rendering.ui;
 
 import java.util.List;
 
+import org.lwjgl.opengl.GL11;
+
 import ch.g_7.graphite.rendering.basic.BasicRenderer;
 import ch.g_7.graphite.rendering.basic.BasicShaderProgram;
 import ch.g_7.graphite.rendering.transformator.PixelTransformator;
@@ -39,9 +41,7 @@ public class UIRenderer extends BasicRenderer<IUIRootContainer> {
 				renderPanel(child);
 			}
 		}
-		
-		render(panel.getViewModel(), panel.getTransformation());
-		
+		render(panel, GL11.GL_TRIANGLES);
 	}
 
 

@@ -9,9 +9,11 @@ import java.util.List;
 import ch.g_7.graphite.base.transformation.ITransformation;
 import ch.g_7.graphite.base.vao.VAO;
 import ch.g_7.graphite.base.view_model.IViewModel;
+import ch.g_7.graphite.base.view_model.ViewModel;
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.node.INode;
+import ch.g_7.graphite.node.Renderable;
 import ch.g_7.graphite.rendering.IRenderer;
 import ch.g_7.graphite.rendering.transformator.ITransformator;
 import ch.g_7.util.resource.Resource;
@@ -37,9 +39,12 @@ public abstract class BasicRenderer<T extends INode> extends Resource implements
 
 	protected abstract void render(List<T> nodes);
 
-	protected void render(IViewModel viewModel, ITransformation transformation) {
+	protected <T extends Renderable> void render(T renderable, int glDrawMethod) {
 
-		shaderProgram.setModelViewMatrix(transformator.getModelViewMatrix(transformation));
+		IViewModel viewModel = renderable.getViewModel();
+		
+		
+		shaderProgram.setModelViewMatrix(transformator.getModelViewMatrix(renderable.getTransformation()));
 		shaderProgram.setColor(viewModel.getColor());
 
 		viewModel.bind();
@@ -52,16 +57,13 @@ public abstract class BasicRenderer<T extends INode> extends Resource implements
 		VAO vao = viewModel.getMesh().getVAO();
 
 		vao.bind();
-		draw(viewModel.getMesh().getVerticesCount());
+		glDrawElements(glDrawMethod, viewModel.getMesh().getVerticesCount(), GL_UNSIGNED_INT, 0);
 		vao.unbind();
 
 		viewModel.unbind();
 
 	}
 
-	protected void draw(int verticesCount) {
-		glDrawElements(GL_TRIANGLES, verticesCount, GL_UNSIGNED_INT, 0);
-	}
 
 	public void setTransformator(ITransformator<ITransformation> transformator) {
 		this.transformator = transformator;
