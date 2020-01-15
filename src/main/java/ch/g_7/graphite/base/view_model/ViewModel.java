@@ -20,7 +20,7 @@ public class ViewModel extends Resource implements IViewModel {
 	}
 
 	public ViewModel() {
-		this.color = Color.getColor(0, 0, 0);
+		this.color = Color.getColor(0, 0, 0, 0);
 	}
 
 	@Override

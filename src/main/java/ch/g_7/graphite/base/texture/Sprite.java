@@ -69,10 +69,10 @@ public class Sprite extends Resource implements ITexture {
 
 	public float[] getTextureCoordinates() {
 		return new float[] {
-				xMin, yMin,
-				xMin, yMax,
-				xMax, yMax,
-				xMax, yMin
+				yMin, xMax,
+				yMax, xMax,
+				yMax, xMin,
+				yMin, xMin,
 			};
 	}
 	
