@@ -52,7 +52,7 @@ public class Test extends Application {
 		//entity1.setPosition(new Vector3f(0, 0, 0));
 		
 		getDimension().addObj(entity1, RenderType.ENTITIES);
-		viewModel.setSprite(sprite);
+		viewModel.setTexture(sprite);
 		
 		getWindow().setVisible(true);
 		getWindow().setSize(500, 500);

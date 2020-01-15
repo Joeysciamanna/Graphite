@@ -1,8 +1,8 @@
 package ch.g_7.graphite.draw;
 
-import ch.g_7.util.resource.ResourceHandler;
+import ch.g_7.util.resource.Resource;
 
-public abstract class BasicDrawable implements Drawable {
+public abstract class BasicDrawable extends Resource implements Drawable {
 
 	private DrawContext drawContext;
 
@@ -24,17 +24,8 @@ public abstract class BasicDrawable implements Drawable {
 	@Override
 	public void update(float deltaMillis) {}
 
-	@Override
-	public final void init() {
-		if(ResourceHandler.shallInitialize(this)) doInit();
-	}
 
 	protected void doInit() {}
-	
-	@Override
-	public final void close() {
-		if(ResourceHandler.shallInitialize(this)) doClose();
-	}
 	
 	protected void doClose() {}
 	

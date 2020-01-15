@@ -78,7 +78,11 @@ public abstract class UIContainer extends Resource implements IUIContainer {
 
 	protected abstract void recalculateDimension(ScreenDimension dimension, Vector2ic screenSize);
 
-	protected void doInit() {}
+	protected void doInit() {
+		for (IUIPanel panel : getChilds()) {
+			panel.init();
+		}
+	}
 
 	protected void doClose() {
 		for (IUIPanel panel : getChilds()) {

@@ -11,8 +11,6 @@ import org.lwjgl.opengl.GL11;
 import ch.g_7.graphite.base.mesh.Mesh;
 import ch.g_7.graphite.base.mesh.MeshFactory2d;
 import ch.g_7.graphite.base.texture.ITexture;
-import ch.g_7.graphite.base.texture.Image;
-import ch.g_7.graphite.base.texture.Sprite;
 import ch.g_7.graphite.util.Color;
 
 public class DrawContext {
@@ -31,11 +29,7 @@ public class DrawContext {
 	}
 
 	public void setBrushTexture(ITexture texture) {
-		if (texture.isSprite()) {
-			drawObject.getViewModel().setSprite((Sprite) texture);
-		} else {
-			drawObject.getViewModel().setImage((Image) texture);
-		}
+		drawObject.getViewModel().setTexture(texture);
 	}
 
 	public void addLine(Vector3fc from, Vector3fc to) {

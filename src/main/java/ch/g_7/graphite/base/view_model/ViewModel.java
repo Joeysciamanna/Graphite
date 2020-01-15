@@ -40,11 +40,9 @@ public class ViewModel extends Resource implements IViewModel {
 		ViewModel viewModel = new ViewModel();
 		viewModel.setColor(color);
 		viewModel.setMesh(mesh);
-		if (texture != null && texture.isSprite()) {
-			viewModel.setSprite((Sprite) texture);
-		} else if (texture != null && !texture.isSprite()) {
-			viewModel.setImage((Image) texture);
-		}
+		if (texture != null)
+			viewModel.setTexture(texture);
+		
 		return viewModel;
 	}
 
@@ -64,21 +62,14 @@ public class ViewModel extends Resource implements IViewModel {
 			texture.close();
 	}
 
-	public void setSprite(Sprite sprite) {
-		this.texture = sprite;
-		this.mesh.setTextureCoordinates(sprite.getTextureCoordinates());
-	}
-
-	public void setImage(Image image) {
-		this.texture = image;
-	}
-
 	public void setTexture(ITexture texture) {
-		if (texture.isSprite()) {
-			setSprite((Sprite) texture);
-		} else {
-			setImage((Image) texture);
+		if(this.texture != null) {
+			this.texture.close();
 		}
+		if (texture.isSprite()) {
+			this.mesh.setTextureCoordinates(((Sprite)texture).getTextureCoordinates());
+		}
+		this.texture = texture;
 	}
 
 	public ITexture getTexture() {

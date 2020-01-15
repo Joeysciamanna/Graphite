@@ -6,9 +6,9 @@ import static org.lwjgl.opengl.GL11.glDeleteTextures;
 import static org.lwjgl.opengl.GL13.GL_TEXTURE0;
 import static org.lwjgl.opengl.GL13.glActiveTexture;
 
-import ch.g_7.util.resource.ResourceHandler;
+import ch.g_7.util.resource.Resource;
 
-public class Image implements ITexture {
+public class Image extends Resource implements ITexture {
 
 	private int id;
 	private int width;
@@ -31,20 +31,8 @@ public class Image implements ITexture {
 	public int getHeight() {
 		return height;
 	}
-
-	@Override
-	public final void init() {
-		if (ResourceHandler.shallInitialize(this))
-			doInit();
-	}
-
+	
 	protected void doInit() {
-	}
-
-	@Override
-	public final void close() {
-		if (ResourceHandler.shallInitialize(this))
-			doClose();
 	}
 
 	protected void doClose() {

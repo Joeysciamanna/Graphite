@@ -1,16 +1,14 @@
 package ch.g_7.graphite.base.texture;
 
-import ch.g_7.util.common.Initializable;
+import ch.g_7.util.resource.IResource;
 
-public interface ITexture extends Initializable, AutoCloseable{
+public interface ITexture extends IResource {
 
 	int getId();
 	
 	void bind();
 	
 	void unbind();
-	
-	void close();
 	
 	int getWidth();
 	
