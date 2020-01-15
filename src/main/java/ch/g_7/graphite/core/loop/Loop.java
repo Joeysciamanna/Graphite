@@ -17,7 +17,7 @@ public abstract class Loop implements Runnable {
 		timer.reset();
 		float deltaMillis;
 		while (running) {
-			timer.calculateDelta();
+			timer.calculate();
 			deltaMillis = timer.getDeltaMillis();
 			run(deltaMillis);
 		}

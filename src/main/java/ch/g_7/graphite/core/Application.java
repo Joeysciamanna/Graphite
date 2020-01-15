@@ -21,6 +21,7 @@ public abstract class Application implements Updatable, Initializable, Closeable
 	private final Window window;
 	private Camera camera;
 
+	private Timer timer;
 	private Thread thread;
 	private boolean running;
 	
@@ -38,6 +39,7 @@ public abstract class Application implements Updatable, Initializable, Closeable
 		this.camera = new Camera();
 		this.updateLoop = new UpdateLoop();
 		this.masterRenderer = new MasterRenderer();
+		this.timer = new Timer();
 		
 		updateLoop = new UpdateLoop();
 		updateLoop.add(this);
@@ -52,13 +54,13 @@ public abstract class Application implements Updatable, Initializable, Closeable
 			masterRenderer.init();
 			init();
 			updateLoop.start();
-//			timer.reset();
+			timer.reset();
 			while (running && !window.windowShouldClose()) {
-//				timer.calculateDelta();
+				timer.calculate();
 				window.update();
 				window.pullEvents();
 				
-//				update(timer.getDeltaMillis());
+				update(timer.getDeltaMillis());
 				
 				
 
@@ -130,6 +132,10 @@ public abstract class Application implements Updatable, Initializable, Closeable
 	
 	public MasterRenderer getMasterRenderer() {
 		return masterRenderer;
+	}
+	
+	public Timer getTimer() {
+		return timer;
 	}
 	
 }
