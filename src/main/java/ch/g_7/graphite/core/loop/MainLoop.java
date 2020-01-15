@@ -5,14 +5,14 @@ import ch.g_7.graphite.core.Dimension;
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.rendering.MasterRenderer;
 
-public class RenderLoop extends Loop {
+public class MainLoop extends Loop {
 
 	private MasterRenderer masterRenderer;
 	private Dimension dimension;
 	private Window window;
 	private Camera camera;
 	
-	public RenderLoop(MasterRenderer masterRenderer, Dimension dimension, Window window, Camera camera) {
+	public MainLoop(MasterRenderer masterRenderer, Dimension dimension, Window window, Camera camera) {
 		this.masterRenderer = masterRenderer;
 		this.dimension = dimension;
 		this.window = window;

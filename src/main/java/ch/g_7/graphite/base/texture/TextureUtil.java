@@ -53,14 +53,6 @@ public class TextureUtil {
 	
 	public static Sprite loadSprite(Image image, int x, int y, int width, int height) {
 
-		float xScale = 1f / image.getWidth();
-		float yScale = 1f / image.getHeight();
-		
-		float xMin = xScale * x;
-		float yMin = 1 - yScale * (y + height);
-		
-		float xMax = xMin + (xScale * width);
-		float yMax = yMin + (yScale * height);
 		
 		return new Sprite(image, xMin, yMin, xMax, yMax);
 	}

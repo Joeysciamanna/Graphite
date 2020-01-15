@@ -14,6 +14,7 @@ public abstract class Loop implements Runnable {
 	
 	@Override
 	public final void run() {
+		onStart();
 		timer.reset();
 		float deltaMillis;
 		while (running) {
@@ -21,11 +22,15 @@ public abstract class Loop implements Runnable {
 			deltaMillis = timer.getDeltaMillis();
 			run(deltaMillis);
 		}
+		onClose();
 	}
 	
 	public abstract void run(float deltaMillis);
 	
-	public final void setRunning(boolean running) {
+	public void onStart() {}
+	public void onClose() {}
+	
+	protected final void setRunning(boolean running) {
 		if (running && !this.running) {
 			this.running = true;
 			thread = new Thread(this);

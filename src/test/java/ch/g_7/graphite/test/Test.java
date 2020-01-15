@@ -40,11 +40,12 @@ public class Test extends Application {
 		appInitializer.addConsoleLogWriters();
 
 
-		Image square1 = new SecureRunner<Void, Image>(() -> TextureUtil.loadImage("C:\\Users\\Joey Sciamanna\\git\\Graphite\\src\\main\\resources\\fonts\\font-sprite.png")).get();
+		Image square1 = new SecureRunner<Void, Image>(() -> TextureUtil.loadImage("C:\\Users\\Joey Sciamanna\\git\\Graphite\\src\\test\\resources\\textures\\square3.png")).get();
 
-		//Sprite sprite = GlyphFactoryProducer.getGlyphFactory().getSprite('a');
+	
 		Sprite sprite = TextureUtil.loadSprite(square1, 0, 0, 32, 32);
 		
+//		ViewModel viewModel = GlyphFactoryProducer.getGlyphFactory().getGlyph('a');
 		ViewModel viewModel = new ViewModel();
 		viewModel.setMesh(MeshFactory2d.getSquare(1).setCenter(MeshBuilder2d.CENTER_MIDDLE).build());
 		
@@ -52,8 +53,10 @@ public class Test extends Application {
 		entity1 = new Entity();
 		entity1.setViewModel(viewModel);
 		
-		getDimension().addObj(entity1, RenderType.ENTITIES);
 		viewModel.setTexture(sprite);
+		
+		getDimension().addObj(entity1, RenderType.ENTITIES);
+
 
 		
 		getWindow().setVisible(true);
