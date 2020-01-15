@@ -53,30 +53,21 @@ public class TextureUtil {
 	
 	public static Sprite loadSprite(Image image, int x, int y, int width, int height) {
 
-		System.out.println(x);
-		System.out.println(y);
-		System.out.println(x + width);
-		System.out.println(y + height);
 		
+		float xMin = 1f / image.getWidth() * x;
+		float yMin = 0;
+		
+		float xMax = 1f / image.getWidth() * (x + width);
+		float yMax = 0.75f;
+		
+	
+				
 		System.out.println("----------------------");
 		
-		System.out.println(x);
-		System.out.println(image.getHeight() - y);
-		System.out.println(x + width);
-		System.out.println(image.getHeight() - y + height);
-		
-		float xMin = (float) (x) / image.getWidth();
-		float yMin = (float) (image.getHeight() - y) / image.getHeight();
-		
-		float xMax = (float) (x + width) / image.getWidth();
-		float yMax = (float) (image.getHeight() - y + height) / image.getHeight();
-		
-		System.out.println("----------------------");
-		
-		System.out.println(xMin);
-		System.out.println(yMin);
-		System.out.println(xMax);
-		System.out.println(yMax);
+		System.out.println("xMin: " + xMin);
+		System.out.println("yMin: " + yMin);
+		System.out.println("xMax: " + xMax);
+		System.out.println("yMax: " + yMax);
 		
 		return new Sprite(image, xMin, yMin, xMax, yMax);
 	}

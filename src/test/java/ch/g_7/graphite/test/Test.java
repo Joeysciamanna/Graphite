@@ -1,5 +1,7 @@
 package ch.g_7.graphite.test;
 
+import java.util.Arrays;
+
 import ch.g_7.graphite.base.mesh.MeshBuilder2d;
 import ch.g_7.graphite.base.mesh.MeshFactory2d;
 import ch.g_7.graphite.base.texture.Image;
@@ -9,6 +11,7 @@ import ch.g_7.graphite.base.view_model.ViewModel;
 import ch.g_7.graphite.core.Application;
 import ch.g_7.graphite.core.RenderType;
 import ch.g_7.graphite.entity.Entity;
+import ch.g_7.graphite.rendering.transformator.OrthographicTransformator;
 import ch.g_7.graphite.util.Color;
 import ch.g_7.util.helper.AppInitializer;
 import ch.g_7.util.task.SecureRunner;
@@ -30,6 +33,8 @@ public class Test extends Application {
 	
 	@Override
 	public void init() {
+		RenderType.ENTITIES.getRenderer().setTransformator(new OrthographicTransformator());
+		
 		AppInitializer appInitializer = new AppInitializer("", new Object() {});
 		appInitializer.setDebugMode(true);
 		appInitializer.initLogger();
@@ -43,14 +48,17 @@ public class Test extends Application {
 		
 		ViewModel viewModel = new ViewModel();
 		viewModel.setMesh(MeshFactory2d.getSquare(1).setCenter(MeshBuilder2d.CENTER_MIDDLE).build());
-		viewModel.setTexture(sprite);
-		getWindow().setBackgroundColor(Color.getColor(255, 0, 0));
+		
+		getWindow().setBackgroundColor(Color.getColor(0, 0, 0));
 		entity1 = new Entity();
 		entity1.setViewModel(viewModel);
-		//entity1.setPosition(new Vector3f(0, 0, 0));
 		
 		getDimension().addObj(entity1, RenderType.ENTITIES);
-
+		viewModel.setTexture(sprite);
+		
+		for (float tc : sprite.getTextureCoordinates()) {
+			System.out.print(tc + "\t");
+		}
 		
 		getWindow().setVisible(true);
 		getWindow().setSize(500, 500);

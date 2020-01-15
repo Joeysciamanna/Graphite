@@ -48,10 +48,6 @@ public class ViewModel extends Resource implements IViewModel {
 
 	@Override
 	protected void doInit() {
-		if (mesh != null)
-			mesh.init();
-		if (texture != null)
-			texture.init();
 	}
 
 	@Override
@@ -70,6 +66,7 @@ public class ViewModel extends Resource implements IViewModel {
 			this.mesh.setTextureCoordinates(((Sprite)texture).getTextureCoordinates());
 		}
 		this.texture = texture;
+		texture.init();
 	}
 
 	public ITexture getTexture() {
@@ -90,6 +87,7 @@ public class ViewModel extends Resource implements IViewModel {
 
 	public void setMesh(IMesh mesh) {
 		this.mesh = mesh;
+		mesh.init();
 	}
 
 }

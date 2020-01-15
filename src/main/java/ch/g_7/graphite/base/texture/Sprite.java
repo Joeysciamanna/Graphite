@@ -10,6 +10,10 @@ public class Sprite extends Resource implements ITexture {
 	
 	Sprite(Image image, float xMin, float yMin, float xMax, float yMax) {
 		this.image = image;
+		this.xMin = xMin;
+		this.yMin = yMin;
+		this.xMax = xMax;
+		this.yMax = yMax;
 	}
 	
 	public float getxMax() {
@@ -65,7 +69,7 @@ public class Sprite extends Resource implements ITexture {
 
 	public float[] getTextureCoordinates() {
 		return new float[] {
-				xMin, xMin,
+				xMin, yMin,
 				xMin, yMax,
 				xMax, yMax,
 				xMax, yMin
