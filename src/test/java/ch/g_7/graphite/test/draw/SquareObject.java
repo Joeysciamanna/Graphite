@@ -3,7 +3,6 @@ package ch.g_7.graphite.test.draw;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 
-import ch.g_7.graphite.draw.StaticDrawable;
 import ch.g_7.graphite.draw.BasicDrawable;
 import ch.g_7.graphite.draw.DrawContext;
 import ch.g_7.graphite.util.Color;

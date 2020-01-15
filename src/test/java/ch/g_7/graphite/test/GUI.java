@@ -4,7 +4,6 @@ import ch.g_7.graphite.base.texture.Image;
 import ch.g_7.graphite.base.texture.TextureUtil;
 import ch.g_7.graphite.core.Application;
 import ch.g_7.graphite.core.RenderType;
-import ch.g_7.graphite.ui.IUIPanel;
 import ch.g_7.graphite.ui.UIButton;
 import ch.g_7.graphite.ui.UIRootContainer;
 import ch.g_7.graphite.ui.layout.CenterLayoutPanel;

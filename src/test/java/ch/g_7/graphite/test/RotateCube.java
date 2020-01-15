@@ -1,16 +1,15 @@
 package ch.g_7.graphite.test;
 
+import org.joml.Vector3f;
+import org.lwjgl.glfw.GLFW;
+
 import ch.g_7.graphite.base.mesh.Mesh;
 import ch.g_7.graphite.base.view_model.ViewModel;
 import ch.g_7.graphite.core.Application;
 import ch.g_7.graphite.core.RenderType;
-import ch.g_7.graphite.core.window.KeyEvent;
-import ch.g_7.graphite.core.window.KeyListner;
 import ch.g_7.graphite.entity.Entity;
 import ch.g_7.graphite.util.Color;
 import ch.g_7.util.helper.AppInitializer;
-import org.joml.Vector3f;
-import org.lwjgl.glfw.GLFW;
 
 public class RotateCube extends Application {
 

@@ -3,7 +3,6 @@ package ch.g_7.graphite.base.transformation;
 import org.joml.Vector2f;
 import org.joml.Vector2fc;
 import org.joml.Vector2i;
-import org.joml.Vector2ic;
 
 public class Transformation2d extends Transformation implements ITransformation, ITransformation2d {
 
