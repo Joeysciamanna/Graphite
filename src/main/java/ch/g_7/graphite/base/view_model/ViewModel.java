@@ -87,7 +87,6 @@ public class ViewModel extends Resource implements IViewModel {
 
 	public void setMesh(IMesh mesh) {
 		this.mesh = mesh;
-		mesh.init();
 	}
 
 }

@@ -51,9 +51,9 @@ public class TextureUtil {
 		return new Image(id, width, height);
 	}
 	
-	public static Sprite loadSprite(Image image, int x, int y, int width, int height) {
-
-		
-		return new Sprite(image, xMin, yMin, xMax, yMax);
-	}
+//	public static Sprite loadSprite(Image image, int x, int y, int width, int height) {
+//
+//		
+//  		return new Sprite(image, xMin, yMin, xMax, yMax);
+//	}
 }

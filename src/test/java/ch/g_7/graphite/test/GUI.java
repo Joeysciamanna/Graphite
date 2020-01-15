@@ -35,7 +35,7 @@ public class GUI extends Application {
 		appInitializer.addConsoleLogWriters();
 
 		Image square1 = new SecureRunner<Void, Image>(() -> TextureUtil.loadImage(
-				"C:\\Users\\Joey Sciamanna\\git\\Graphite\\src\\test\\resources\\textures\\square.png")).get();
+				"C:\\Users\\Joey Sciamanna\\git\\Graphite\\src\\test\\resources\\textures\\square1.png")).get();
 
 		mainMenu = new UIRootContainer(getWindow());
 		getDimension().addObj(mainMenu, RenderType.UI);

@@ -1,6 +1,5 @@
 package ch.g_7.graphite.core;
 
-import ch.g_7.graphite.base.text.GlyphFactoryProducer;
 import ch.g_7.graphite.core.loop.UpdateLoop;
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.node.Updatable;
