@@ -2,7 +2,7 @@ package ch.g_7.graphite.test;
 
 import ch.g_7.graphite.base.texture.Image;
 import ch.g_7.graphite.base.texture.TextureUtil;
-import ch.g_7.graphite.core.Application; 
+import ch.g_7.graphite.core.Application;
 import ch.g_7.graphite.core.RenderType;
 import ch.g_7.graphite.ui.UIButton;
 import ch.g_7.graphite.ui.UIRootContainer;
@@ -23,7 +23,7 @@ public class GUI extends Application {
 	}
 	
 	@Override
-	protected void init() {
+	public void init() {
 		Image square1 = new SecureRunner<Void, Image>(() -> TextureUtil.loadImage(
 				"C:\\Users\\Joey Sciamanna\\git\\Graphite\\src\\test\\resources\\textures\\square.png")).get();
 
@@ -42,7 +42,7 @@ public class GUI extends Application {
 
 		UIButton settingsButton = new UIButton();
 		settingsButton.getPreferedWidth().reset().add(settingsButton.getMaxHeight());
-		settingsButton.setImage(square1);
+		settingsButton.setTexture(square1);
 		optionPanel.add(settingsButton);
 		
 		UIButton wikiButton = new UIButton();

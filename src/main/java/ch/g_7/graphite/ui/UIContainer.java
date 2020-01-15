@@ -3,33 +3,35 @@ package ch.g_7.graphite.ui;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.joml.Vector2i;
 import org.joml.Vector2ic;
 
+import ch.g_7.graphite.base.transformation.Transformation2d;
 import ch.g_7.graphite.ui.util.ScreenDimension;
-import ch.g_7.graphite.util.ResourceHandler;
+import ch.g_7.util.resource.Resource;
 
-public abstract class UIContainer implements IUIContainer {
+public abstract class UIContainer extends Resource implements IUIContainer {
 
 	protected List<IUIPanel> childs;
 
 	protected final ScreenDimension width;
 	protected final ScreenDimension height;
-	protected final Vector2i size;
-
+	
 	protected final ScreenDimension x;
 	protected final ScreenDimension y;
-	protected final Vector2i position;
 
+	protected final Transformation2d transformation;
+	
 	protected boolean visible;
 
 	public UIContainer() {
+		this.transformation = new Transformation2d(-1);
+		
 		this.width = new ScreenDimension(ScreenDimension.X_AXIS);
 		this.height = new ScreenDimension(ScreenDimension.Y_AXIS);
-		this.size = new Vector2i();
+
 		this.x = new ScreenDimension(ScreenDimension.X_AXIS);
 		this.y = new ScreenDimension(ScreenDimension.Y_AXIS);
-		this.position = new Vector2i();
+		
 		this.visible = true;
 		this.childs = new ArrayList<>();
 	}
@@ -63,10 +65,10 @@ public abstract class UIContainer implements IUIContainer {
 	public void recalculate(Vector2ic screenSize, Vector2ic fatherSize) {
 		recalculateDimension(width, screenSize);
 		recalculateDimension(height, screenSize);
-		size.set(width.getValue(), height.getValue());
+		transformation.setScale(width.getValue(), height.getValue());
 		recalculateDimension(x, screenSize);
 		recalculateDimension(y, screenSize);
-		position.set(x.getValue(), y.getValue());
+		transformation.setPosition(x.getValue(), y.getValue());
 		for (IUIPanel child : getChilds()) {
 			child.recalculate(screenSize, fatherSize);
 		}
@@ -75,24 +77,13 @@ public abstract class UIContainer implements IUIContainer {
 
 	protected abstract void recalculateDimension(ScreenDimension dimension, Vector2ic screenSize);
 
-	@Override
-	public final void init() {
-		if(ResourceHandler.shallInitialize(this)) doInit();
-	}
-	
 	protected void doInit() {}
-	
-	@Override
-	public final void close() {
-		if(ResourceHandler.shallInitialize(this)) doClose();
-	}
 
 	protected void doClose() {
 		for (IUIPanel panel : getChilds()) {
 			panel.close();
 		}
 	}
-
 
 	@Override
 	public boolean isVisible() {
@@ -102,7 +93,22 @@ public abstract class UIContainer implements IUIContainer {
 	public void setVisible(boolean visible) {
 		this.visible = visible;
 	}
+	
+	@Override
+	public Transformation2d getTransformation() {
+		return transformation;
+	}
 
+	@Override
+	public Vector2ic getPosition() {
+		return transformation.getIntPosition2d();
+	}
+	
+	@Override
+	public Vector2ic getSize() {
+		return transformation.getIntScale2d();
+	}
+	
 	@Override
 	public ScreenDimension getWidth() {
 		return width;
@@ -121,16 +127,6 @@ public abstract class UIContainer implements IUIContainer {
 	@Override
 	public ScreenDimension getY() {
 		return y;
-	}
-
-	@Override
-	public Vector2ic getSize() {
-		return size;
-	}
-
-	@Override
-	public Vector2ic getPosition() {
-		return position;
 	}
 
 }

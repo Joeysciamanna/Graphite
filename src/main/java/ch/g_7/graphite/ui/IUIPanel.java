@@ -1,23 +1,21 @@
 package ch.g_7.graphite.ui;
 
-import ch.g_7.graphite.base.mesh.IMesh;
 import ch.g_7.graphite.base.texture.ITexture;
+import ch.g_7.graphite.node.Renderable;
 import ch.g_7.graphite.ui.util.ScreenDimension;
 import ch.g_7.graphite.util.Color;
 
-public interface IUIPanel extends IUIContainer {
+public interface IUIPanel extends IUIContainer, Renderable {
 
 	void setFather(IUIContainer container);
 	
 	IUIContainer getFather();
 	
 	void recalculatePreferedSize();
-
-	Color getColor();
 	
-	ITexture getTexture();
+	void setColor(Color color);
 	
-	IMesh getMesh();
+	void setTexture(ITexture texture);
 	
 	/**
 	 * Set by system, only change if you now what you are doing

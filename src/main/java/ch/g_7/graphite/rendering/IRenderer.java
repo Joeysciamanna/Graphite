@@ -5,7 +5,7 @@ import java.util.List;
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.node.INode;
-import ch.g_7.util.able.Initializable;
+import ch.g_7.util.common.Initializable;
 
 public interface IRenderer<T extends INode> extends Initializable, AutoCloseable {
 	

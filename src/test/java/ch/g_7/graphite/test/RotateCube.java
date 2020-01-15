@@ -4,16 +4,20 @@ import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;
 
 import ch.g_7.graphite.base.mesh.Mesh;
+import ch.g_7.graphite.base.view_model.ViewModel;
 import ch.g_7.graphite.core.Application;
 import ch.g_7.graphite.core.RenderType;
+import ch.g_7.graphite.core.window.KeyEvent;
+import ch.g_7.graphite.core.window.KeyListner;
 import ch.g_7.graphite.entity.Entity;
-import ch.g_7.graphite.entity.ViewModel;
-import ch.g_7.graphite.rendering.entity.EntityTransformation3d;
+import ch.g_7.graphite.rendering.transformator.PerspectiveTransformator;
 import ch.g_7.graphite.util.Color;
 import ch.g_7.util.helper.AppInitializer;
 
-public class RotateCube extends Application {
+public class RotateCube extends Application implements KeyListner {
 
+	private static RotateCube rotateCube;
+	
 	public RotateCube(String name) {
 		super(name);
 	}
@@ -24,16 +28,15 @@ public class RotateCube extends Application {
 		appInitializer.initLogger();
 		appInitializer.addConsoleLogWriters();
 
-		new RotateCube("Rotate Cube Test").setRunning(true);
+		rotateCube = new RotateCube("Rotate Cube Test");
+		rotateCube.start();
 	}
 
 	Entity entity1;
 	Entity entity2;
 
 	@Override
-	protected void init() {
-
-		RenderType.ENTITIES.getRenderer().setTransformation(new EntityTransformation3d());
+	public void init() {
 
 		float[] positions = new float[] {
 				// VO
@@ -73,37 +76,38 @@ public class RotateCube extends Application {
 
 		entity1 = new Entity();
 		entity1.setViewModel(viewModel);
-		entity1.setPosition(new Vector3f(0, 0, -2));
+		entity1.getTransformation().setPosition(new Vector3f(0, 0, -2));
 		
 		getDimension().addObj(entity1, RenderType.ENTITIES);
 
-		getWindow().setVisible(true);
+		getWindow().addKeyListner(this);
+
 		getWindow().setSize(500, 500);
+		getWindow().setVisible(true);
 	}
 
+
 	@Override
-	public void update(double deltaMillis) {
-
-		if (getWindow().isKeyPressed(GLFW.GLFW_KEY_W)) {
-			entity1.getRotation().add((float) Math.toRadians(deltaMillis * -0.05), 0, 0);
+	public void onKeyPress(KeyEvent action) {
+		int deltaMillis = 1;
+		if (action.getKey() == GLFW.GLFW_KEY_W) {
+			entity1.getTransformation().getRotation().add((float) Math.toRadians(deltaMillis * -0.05), 0, 0);
 		}
-		if (getWindow().isKeyPressed(GLFW.GLFW_KEY_S)) {
-			entity1.getRotation().add((float) Math.toRadians(deltaMillis * 0.05), 0, 0);
+		if (action.getKey() == GLFW.GLFW_KEY_S) {
+			entity1.getTransformation().getRotation().add((float) Math.toRadians(deltaMillis * 0.05), 0, 0);
 		}
-		if (getWindow().isKeyPressed(GLFW.GLFW_KEY_A)) {
-			entity1.getRotation().add(0, (float) Math.toRadians(deltaMillis * -0.05), 0);
+		if (action.getKey() == GLFW.GLFW_KEY_A) {
+			entity1.getTransformation().getRotation().add(0, (float) Math.toRadians(deltaMillis * -0.05), 0);
 		}
-		if (getWindow().isKeyPressed(GLFW.GLFW_KEY_D)) {
-			entity1.getRotation().add(0, (float) Math.toRadians(deltaMillis * 0.05), 0);
+		if (action.getKey() == GLFW.GLFW_KEY_D) {
+			entity1.getTransformation().getRotation().add(0, (float) Math.toRadians(deltaMillis * 0.05), 0);
 		}
-		if (getWindow().isKeyPressed(GLFW.GLFW_KEY_Q)) {
-			entity1.getRotation().add(0, 0, (float) Math.toRadians(deltaMillis * -0.05));
+		if (action.getKey() == GLFW.GLFW_KEY_Q) {
+			entity1.getTransformation().getRotation().add(0, 0, (float) Math.toRadians(deltaMillis * -0.05));
 		}
-		if (getWindow().isKeyPressed(GLFW.GLFW_KEY_E)) {
-			entity1.getRotation().add(0, 0, (float) Math.toRadians(deltaMillis * 0.05));
+		if (action.getKey() == GLFW.GLFW_KEY_E) {
+			entity1.getTransformation().getRotation().add(0, 0, (float) Math.toRadians(deltaMillis * 0.05));
 		}
-
-
 	}
 
 }

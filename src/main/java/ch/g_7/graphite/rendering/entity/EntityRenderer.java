@@ -1,68 +1,26 @@
 package ch.g_7.graphite.rendering.entity;
 
-import static org.lwjgl.opengl.GL11.GL_TRIANGLES;
-import static org.lwjgl.opengl.GL11.GL_UNSIGNED_INT;
-import static org.lwjgl.opengl.GL11.glDrawElements;
-
 import java.util.List;
 
-import ch.g_7.graphite.base.vao.VAO;
-import ch.g_7.graphite.core.Camera;
-import ch.g_7.graphite.core.window.Window;
-import ch.g_7.graphite.entity.BasicEntity;
-import ch.g_7.graphite.entity.ViewModel;
-import ch.g_7.graphite.node.Localizable;
-import ch.g_7.graphite.rendering.ITransformation;
-import ch.g_7.graphite.rendering.Renderer;
+import ch.g_7.graphite.entity.IEntity;
+import ch.g_7.graphite.rendering.basic.BasicRenderer;
+import ch.g_7.graphite.rendering.basic.BasicShaderProgram;
+import ch.g_7.graphite.rendering.transformator.PerspectiveTransformator;
+import ch.g_7.graphite.util.Resources;
 
-public class EntityRenderer extends Renderer<BasicEntity, EntityShaderProgram> {
+public class EntityRenderer extends BasicRenderer<IEntity> {
 
-	protected ITransformation<Localizable> transformation;
 
 	public EntityRenderer() {
-		super(new EntityShaderProgram());
-		this.transformation = new EntityTransformation2d();
+		super(new BasicShaderProgram(Resources.ENTITY_VERTEX_SHADER, Resources.ENTITY_FRAGMENT_SHADER), new PerspectiveTransformator());
 	}
 
 
 	@Override
-	public final void doRender(List<BasicEntity> gameObjects, Window window, Camera camera) {
-		
-		shaderProgram.setTextureSampler(0);
-		shaderProgram.setProjectionMatrix(transformation.getProjectionMatrix(window, camera));
-		
-		for (BasicEntity gameObject : gameObjects) {
-
-			ViewModel viewModel = gameObject.getViewModel();
-					
-			shaderProgram.setModelViewMatrix(transformation.getModelViewMatrix(gameObject));
-
-			shaderProgram.setColor(viewModel.getColor());
-			
-			if (viewModel.getTexture() != null) {
-				viewModel.getTexture().bind();
-				shaderProgram.setTextureEnabled(true);
-			} else {
-				shaderProgram.setTextureEnabled(false);
-			}
-
-			VAO vao = viewModel.getMesh().getVAO();
-			
-			vao.bind();
-			glDrawElements(GL_TRIANGLES, viewModel.getMesh().getVerticesCount(), GL_UNSIGNED_INT, 0);
-			vao.unbind();
-			if(viewModel.getTexture() != null) {
-				viewModel.getTexture().unbind();
-			}
-			
+	protected void render(List<IEntity> drawables) {
+		for (IEntity node : drawables) {
+			render(node.getViewModel(), node.getTransformation());
 		}
-
 	}
-	
-	
-	public void setTransformation(ITransformation<Localizable> transformation) {
-		this.transformation = transformation;
-	}
-
 
 }

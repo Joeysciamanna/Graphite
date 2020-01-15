@@ -43,8 +43,9 @@ import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
 
+import ch.g_7.graphite.node.Updatable;
 import ch.g_7.graphite.util.Color;
-import ch.g_7.util.able.Initializable;
+import ch.g_7.util.common.Initializable;
 import ch.g_7.util.task.TaskInputQueue;
 import ch.g_7.util.task.ValueChangeNotifier;
 
@@ -67,6 +68,8 @@ public class Window implements Initializable, ResizeListner {
 	private int x;
 	private int y;
 	private boolean repositioned;
+	
+	private boolean shouldClose;
 
 	public Window(String title, int width, int height) {
 		this.title = title;
@@ -138,6 +141,7 @@ public class Window implements Initializable, ResizeListner {
 	public void pullEvents() {
 		keyPressBuffer.run();
 		mouseClickBuffer.run();
+		shouldClose = glfwWindowShouldClose(id);
 	}
 
 	@Override
@@ -152,7 +156,7 @@ public class Window implements Initializable, ResizeListner {
 		resizeNotifier.valueChanged(new ResizeEvent(id, width, height));
 	}
 
-	public void reposition() {
+	private void reposition() {
 		if (repositioned) {
 			glfwSetWindowPos(id, x, y);
 		}
@@ -204,13 +208,8 @@ public class Window implements Initializable, ResizeListner {
 		resizeNotifier.removeListner(resizeListner);
 	}
 
-	@Deprecated
-	public boolean isKeyPressed(int keyCode) {
-		return glfwGetKey(id, keyCode) == GLFW_PRESS;
-	}
-
 	public boolean windowShouldClose() {
-		return glfwWindowShouldClose(id);
+		return shouldClose;
 	}
 
 	public String getTitle() {

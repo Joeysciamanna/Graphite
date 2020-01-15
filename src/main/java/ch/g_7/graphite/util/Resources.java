@@ -9,11 +9,12 @@ public class Resources {
 	private final static SecureRunner<String, String> FILE_READER = new SecureRunner<>((s) -> IOUtil.readInternalString(s, instance));
 	
 	
-	public static final String UI_FRAGMENT_SHADER_PATH = FILE_READER.apply("shaders/ui_fragment.sp");
-	public static final String UI_VERTEX_SHADER_PATH = FILE_READER.apply("shaders/entity_vertex.sp");
+	public static final String UI_FRAGMENT_SHADER = FILE_READER.apply("shaders/ui_fragment.sp");
+	public static final String UI_VERTEX_SHADER = FILE_READER.apply("shaders/entity_vertex.sp");
 	
-	public static final String ENTITY_FRAGMENT_SHADER_PATH = FILE_READER.apply("shaders/entity_fragment.sp");
-	public static final String ENTITY_VERTEX_SHADER_PATH = FILE_READER.apply("shaders/entity_vertex.sp");
+	public static final String ENTITY_FRAGMENT_SHADER = FILE_READER.apply("shaders/entity_fragment.sp");
+	public static final String ENTITY_VERTEX_SHADER = FILE_READER.apply("shaders/entity_vertex.sp");
 
-
+	public static final String DRAW_FRAGMENT_SHADER = FILE_READER.apply("shaders/draw_fragment.sp");
+	public static final String DRAW_VERTEX_SHADER = FILE_READER.apply("shaders/draw_vertex.sp");
 }

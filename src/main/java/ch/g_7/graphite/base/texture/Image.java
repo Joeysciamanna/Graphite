@@ -6,7 +6,7 @@ import static org.lwjgl.opengl.GL11.glDeleteTextures;
 import static org.lwjgl.opengl.GL13.GL_TEXTURE0;
 import static org.lwjgl.opengl.GL13.glActiveTexture;
 
-import ch.g_7.graphite.util.ResourceHandler;
+import ch.g_7.util.resource.ResourceHandler;
 
 public class Image implements ITexture {
 
@@ -60,5 +60,9 @@ public class Image implements ITexture {
 	@Override
 	public void unbind() {}
 	
+	@Override
+	public boolean isSprite() {
+		return false;
+	}
 
 }

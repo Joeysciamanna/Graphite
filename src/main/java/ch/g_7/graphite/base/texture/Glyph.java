@@ -3,8 +3,8 @@ package ch.g_7.graphite.base.texture;
 import ch.g_7.graphite.base.mesh.IMesh;
 import ch.g_7.graphite.base.mesh.MeshBuilder2d;
 import ch.g_7.graphite.base.mesh.MeshFactory2d;
-import ch.g_7.graphite.util.ResourceHandler;
-import ch.g_7.util.able.Initializable;
+import ch.g_7.util.common.Initializable;
+import ch.g_7.util.resource.ResourceHandler;
 
 public class Glyph implements Initializable, AutoCloseable{
 
@@ -46,7 +46,7 @@ public class Glyph implements Initializable, AutoCloseable{
 	
 	public void setSprite(Sprite sprite) {
 		this.texture = sprite;
-		this.mesh.setTextureCoordinates(sprite.getTextureCoordinates());
+//		this.mesh.setTextureCoordinates(sprite.getTextureCoordinates());
 	}
 	
 	public char getCharacter() {
