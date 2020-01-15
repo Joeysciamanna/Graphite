@@ -2,6 +2,7 @@ package ch.g_7.graphite.base.text;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import ch.g_7.graphite.base.texture.Glyph;
@@ -35,12 +36,15 @@ public class SpriteGlyphFactory implements IGlyphFactory {
 	
 	public void load(Image image, int glyphWidth, int glyphHeight, int textureWidth, int textureHeight, String glyphOrder) throws IOException {
 		char[] chars = glyphOrder.toCharArray();
+		float glyphsInRow =  (textureWidth / glyphWidth);
 		for (int i = 0; i < chars.length; i++) {
-			int x = i % textureWidth;
-			int y = i / textureWidth;
+			int x = (int)  (i % glyphsInRow * glyphWidth);
+			int y = (int) (i / glyphsInRow * glyphHeight);
 			Glyph glyph = new Glyph(chars[i]);
 			glyph.init();
+			System.out.println(chars[i] + " @ " + x + ", " + y);
 			glyph.setSprite(TextureUtil.loadSprite(image, x, y, glyphWidth, glyphHeight)); 
+			System.out.println(Arrays.toString(TextureUtil.loadSprite(image, x, y, glyphWidth, glyphHeight).getTextureCoordinates()));
 			glyphs.add(glyph);
 		}
 	}
