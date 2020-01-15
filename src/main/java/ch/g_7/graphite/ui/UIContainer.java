@@ -3,6 +3,7 @@ package ch.g_7.graphite.ui;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.joml.Vector2i;
 import org.joml.Vector2ic;
 
 import ch.g_7.graphite.base.transformation.Transformation2d;
@@ -100,12 +101,12 @@ public abstract class UIContainer extends Resource implements IUIContainer {
 	}
 
 	@Override
-	public Vector2ic getPosition() {
+	public Vector2i getPosition() {
 		return transformation.getIntPosition2d();
 	}
 	
 	@Override
-	public Vector2ic getSize() {
+	public Vector2i getSize() {
 		return transformation.getIntScale2d();
 	}
 	

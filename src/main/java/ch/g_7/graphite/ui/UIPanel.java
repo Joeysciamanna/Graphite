@@ -57,9 +57,9 @@ public class UIPanel extends UIContainer implements IUIPanel {
 			
 			recalculatePreferedSize();
 		}
-	
+		
 		super.recalculate(screenSize, fatherSize);
-
+		transformation.getPosition().add(father.getTransformation().getPosition());
 	}
 	
 	
@@ -119,8 +119,6 @@ public class UIPanel extends UIContainer implements IUIPanel {
 	public void recalculate() {
 		requestRecalculation(this);
 	}
-	
-
 	
 	@Override
 	public IViewModel getViewModel() {

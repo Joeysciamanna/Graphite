@@ -4,6 +4,7 @@ import ch.g_7.graphite.base.texture.Image;
 import ch.g_7.graphite.base.texture.TextureUtil;
 import ch.g_7.graphite.core.Application;
 import ch.g_7.graphite.core.RenderType;
+import ch.g_7.graphite.ui.IUIPanel;
 import ch.g_7.graphite.ui.UIButton;
 import ch.g_7.graphite.ui.UIRootContainer;
 import ch.g_7.graphite.ui.layout.CenterLayoutPanel;
@@ -15,6 +16,10 @@ import ch.g_7.util.task.SecureRunner;
 
 public class GUI extends Application {
 
+	private UIRootContainer mainMenu;
+	
+	private ListLayoutPanel optionPanel;
+	
 	public GUI(String name) {
 		super(name);
 	}
@@ -33,14 +38,14 @@ public class GUI extends Application {
 		Image square1 = new SecureRunner<Void, Image>(() -> TextureUtil.loadImage(
 				"C:\\Users\\Joey Sciamanna\\git\\Graphite\\src\\test\\resources\\textures\\square.png")).get();
 
-		UIRootContainer mainMenu = new UIRootContainer(getWindow());
+		mainMenu = new UIRootContainer(getWindow());
 		getDimension().addObj(mainMenu, RenderType.UI);
 		
 		
 		SpaceSharingLayoutPanel sharingLayoutPanel = new SpaceSharingLayoutPanel();
 		mainMenu.add(sharingLayoutPanel);
 		
-		ListLayoutPanel optionPanel = new ListLayoutPanel(ListLayoutPanel.X_AXIS);
+		optionPanel = new ListLayoutPanel(ListLayoutPanel.X_AXIS);
 		optionPanel.setColor(Color.getColor(0, 255, 0));
 		optionPanel.getPreferedHeight().reset().addPF(5).addPixel(20);
 		optionPanel.getPlaceHolder().reset().addPixel(5);
@@ -80,7 +85,8 @@ public class GUI extends Application {
 		
 		getWindow().setVisible(true);
 		getWindow().setSize(500, 500);
-	
 		
 	}
+	
+
 }

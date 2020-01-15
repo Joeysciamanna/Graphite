@@ -13,11 +13,11 @@ public class Transformation2d extends Transformation implements ITransformation,
 	
 	public Transformation2d() {}
 
-	public Vector2fc getPosition2d() {
+	public Vector2f getPosition2d() {
 		return new Vector2f(getPosition().x, getPosition().y);
 	}
 	
-	public Vector2ic getIntPosition2d() {
+	public Vector2i getIntPosition2d() {
 		return new Vector2i((int) getPosition().x, (int) getPosition().y);
 	}
 	
@@ -29,11 +29,11 @@ public class Transformation2d extends Transformation implements ITransformation,
 		getPosition().set(x, y, getPosition().z);
 	}
 	
-	public Vector2fc getScale2d() {
+	public Vector2f getScale2d() {
 		return new Vector2f(getScale().x, getScale().y);
 	}
 	
-	public Vector2ic getIntScale2d() {
+	public Vector2i getIntScale2d() {
 		return new Vector2i((int) getScale().x, (int) getScale().y);
 	}
 	

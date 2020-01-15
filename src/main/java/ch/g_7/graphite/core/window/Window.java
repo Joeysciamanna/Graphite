@@ -43,7 +43,6 @@ import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
 
-import ch.g_7.graphite.node.Updatable;
 import ch.g_7.graphite.util.Color;
 import ch.g_7.util.common.Initializable;
 import ch.g_7.util.task.TaskInputQueue;
