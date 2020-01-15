@@ -10,8 +10,6 @@ import ch.g_7.graphite.util.Color;
 public class SquareObject extends BasicDrawable {
 
 	
-	
-	
 	@Override
 	public void draw(DrawContext drawContext) {
 		drawContext.setBrushColor(Color.getColor(255, 0, 0));
@@ -19,9 +17,5 @@ public class SquareObject extends BasicDrawable {
 		drawContext.addLine(new Vector3f(0, 0, 0), new Vector3f(-1,1,0));
 	}
 	
-	
-
-	
-
 
 }

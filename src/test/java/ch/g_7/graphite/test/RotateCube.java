@@ -78,8 +78,9 @@ public class RotateCube extends Application {
 
         getDimension().addObj(entity1, RenderType.ENTITIES);
 
-        getWindow().setSize(500, 500);
         getWindow().setVisible(true);
+        getWindow().setSize(500, 500);
+       
     }
 
 
