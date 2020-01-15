@@ -1,28 +1,21 @@
 package ch.g_7.graphite.entity;
 
+import ch.g_7.graphite.util.Resources;
+import ch.g_7.util.resource.Resource;
 import org.joml.Vector3fc;
 
 import ch.g_7.graphite.node.INode;
 import ch.g_7.graphite.node.Localizable;
 import ch.g_7.graphite.util.ResourceHandler;
 
-public abstract class BasicEntity implements INode, Localizable {
+public abstract class BasicEntity extends Resource implements INode, Localizable {
 	
-
 	@Override
-	public final void init() {
-		if(ResourceHandler.shallInitialize(this)) doInit();
-	}
-	
 	protected void doInit() {
 		if(getViewModel()!=null) getViewModel().init();
 	}
-	
-	@Override
-	public final void close() {
-		if(ResourceHandler.shallClose(this)) doClose();
-	}
 
+	@Override
 	protected void doClose() {
 		if(getViewModel()!=null) getViewModel().close();
 	}

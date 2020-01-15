@@ -14,7 +14,10 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>12</maven.compiler.source>
-		<java.version>12</java.version>
+
+		<java.version>13.0.1</java.version>
+		<maven.compiler.source>13.0.1</maven.compiler.source>
+		<maven.compiler.target>13.0.1</maven.compiler.target>
 		<lwjgl.version>3.2.3</lwjgl.version>
 		<joml.version>1.9.17</joml.version>
 		<lwjgl.natives>natives-windows</lwjgl.natives>
@@ -109,38 +112,6 @@
 		</repository>
 	</repositories>
 
-	<build>
-		<extensions>
-			<extension>
-				<groupId>org.apache.maven.wagon</groupId>
-				<artifactId>wagon-ftp</artifactId>
-				<version>3.0.0</version>
-			</extension>
-		</extensions>
-
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.0</version>
-				<configuration>
-					<release>12</release>
-				</configuration>
-			</plugin>
-			<plugin>
-			  <groupId>org.apache.maven.plugins</groupId>
-			  <artifactId>maven-source-plugin</artifactId>
-			  <executions>
-			    <execution>
-			      <id>attach-sources</id>
-			      <goals>
-			        <goal>jar</goal>
-			      </goals>
-			    </execution>
-			  </executions>
-			</plugin>
-		</plugins>
-	</build>
 
 	<distributionManagement>
 		<repository>
