@@ -48,6 +48,7 @@ public class ViewModel extends Resource implements IViewModel {
 		return viewModel;
 	}
 
+	@Override
 	protected void doInit() {
 		if (mesh != null)
 			mesh.init();
@@ -55,6 +56,7 @@ public class ViewModel extends Resource implements IViewModel {
 			texture.init();
 	}
 
+	@Override
 	protected void doClose() {
 		if (mesh != null)
 			mesh.close();
