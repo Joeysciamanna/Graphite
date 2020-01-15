@@ -56,12 +56,13 @@ public abstract class Application implements Updatable, Initializable, Closeable
 //			timer.reset();
 			while (running && !window.windowShouldClose()) {
 //				timer.calculateDelta();
+				window.update();
 				window.pullEvents();
 				
 //				update(timer.getDeltaMillis());
 				
 				
-				window.update();
+
 				masterRenderer.render(dimension, window, camera);
 			}
 		} catch (Exception e) {

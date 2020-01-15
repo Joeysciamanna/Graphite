@@ -10,6 +10,7 @@ import ch.g_7.graphite.ui.layout.CenterLayoutPanel;
 import ch.g_7.graphite.ui.layout.ListLayoutPanel;
 import ch.g_7.graphite.ui.layout.SpaceSharingLayoutPanel;
 import ch.g_7.graphite.util.Color;
+import ch.g_7.util.helper.AppInitializer;
 import ch.g_7.util.task.SecureRunner;
 
 public class GUI extends Application {
@@ -24,6 +25,11 @@ public class GUI extends Application {
 	
 	@Override
 	public void init() {
+		AppInitializer appInitializer = new AppInitializer("", new Object() {});
+		appInitializer.setDebugMode(true);
+		appInitializer.initLogger();
+		appInitializer.addConsoleLogWriters();
+
 		Image square1 = new SecureRunner<Void, Image>(() -> TextureUtil.loadImage(
 				"C:\\Users\\Joey Sciamanna\\git\\Graphite\\src\\test\\resources\\textures\\square.png")).get();
 

@@ -1,5 +1,6 @@
 package ch.g_7.graphite.test;
 
+import ch.g_7.util.helper.AppInitializer;
 import org.joml.Vector3f;
 
 import ch.g_7.graphite.base.mesh.MeshBuilder2d;
@@ -17,6 +18,8 @@ import ch.g_7.util.task.SecureRunner;
 
 public class Test extends Application {
 
+	private static Test test;
+
 	private Entity entity1;
 	
 	public Test() {
@@ -24,12 +27,18 @@ public class Test extends Application {
 	}
 	
 	public static void main(String[] args) {
-		new Test().start();
+		test = new Test();
+		test.start();
 	}
 	
 	@Override
-	protected void init() {
-		
+	public void init() {
+		AppInitializer appInitializer = new AppInitializer("", new Object() {});
+		appInitializer.setDebugMode(true);
+		appInitializer.initLogger();
+		appInitializer.addConsoleLogWriters();
+
+
 		Image square1 = new SecureRunner<Void, Image>(() -> TextureUtil.loadImage("C:\\Users\\Joey Sciamanna\\git\\Graphite\\src\\test\\resources\\textures\\square.png")).get();
 
 //		Sprite sprite = GlyphFactoryProducer.getGlyphFactory().getSprite('a');
@@ -40,7 +49,7 @@ public class Test extends Application {
 		getWindow().setBackgroundColor(Color.getColor(255, 0, 0));
 		entity1 = new Entity();
 		entity1.setViewModel(viewModel);
-		entity1.setPosition(new Vector3f(0, 0, 0));
+		//entity1.setPosition(new Vector3f(0, 0, 0));
 		
 		getDimension().addObj(entity1, RenderType.ENTITIES);
 		viewModel.setSprite(sprite);

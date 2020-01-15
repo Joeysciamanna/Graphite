@@ -68,8 +68,7 @@ public class Window implements Initializable, ResizeListner {
 	private int x;
 	private int y;
 	private boolean repositioned;
-	
-	private boolean shouldClose;
+
 
 	public Window(String title, int width, int height) {
 		this.title = title;
@@ -141,7 +140,6 @@ public class Window implements Initializable, ResizeListner {
 	public void pullEvents() {
 		keyPressBuffer.run();
 		mouseClickBuffer.run();
-		shouldClose = glfwWindowShouldClose(id);
 	}
 
 	@Override
@@ -209,7 +207,12 @@ public class Window implements Initializable, ResizeListner {
 	}
 
 	public boolean windowShouldClose() {
-		return shouldClose;
+		return glfwWindowShouldClose(id);
+	}
+
+	@Deprecated
+	public boolean isKeyPressed(int keyCode) {
+		return glfwGetKey(id, keyCode) == GLFW_PRESS;
 	}
 
 	public String getTitle() {
