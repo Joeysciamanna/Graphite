@@ -16,10 +16,11 @@ import java.util.Queue;
 import org.lwjgl.opengl.GL20;
 
 import ch.g_7.util.common.Initializable;
-import ch.g_7.util.resource.ResourceHandler;
+import ch.g_7.util.resource.IDepender;
+import ch.g_7.util.resource.Resource;
 
 
-public class VAO implements AutoCloseable, Initializable {
+public class VAO extends Resource implements AutoCloseable, Initializable, IDepender {
 
 	private int id;
 	private List<VBO> vbos;
@@ -60,7 +61,8 @@ public class VAO implements AutoCloseable, Initializable {
 		vbos.get(index).close();
 		
 		glBindVertexArray(id);
-		vbo.init(this);
+		vbo.setVao(this);
+		vbo.bind(this);
 		glBindVertexArray(0);
 		vbos.set(index, vbo);
 	}
@@ -72,7 +74,8 @@ public class VAO implements AutoCloseable, Initializable {
 			}
 		}
 		glBindVertexArray(id);
-		vbo.init(this);
+		vbo.setVao(this);
+		vbo.bind(this);
 		glBindVertexArray(0);
 		vbos.add(vbo);
 		
@@ -91,26 +94,18 @@ public class VAO implements AutoCloseable, Initializable {
 	}
 	
 	@Override
-	public final void init() {
-		if(ResourceHandler.shallInitialize(this)) doInit();
-	}
-	
 	protected void doInit() {
 		id = glGenVertexArrays();
 	}
 	
 	@Override
-	public final void close() {
-		if(ResourceHandler.shallClose(this)) doClose();
-	}
-	
 	protected void doClose() {
 
 		glDisableVertexAttribArray(id);
 
 		// Delete the VBOs
 		GL20.glBindBuffer(GL20.GL_ARRAY_BUFFER, 0);
-		vbos.forEach((vbo) -> vbo.close());
+		vbos.forEach((vbo) -> vbo.unbind(this));
 
 		// Delete the VAO
 		glBindVertexArray(0);

@@ -1,8 +1,9 @@
 package ch.g_7.graphite.base.texture;
 
+import ch.g_7.util.resource.IDepender;
 import ch.g_7.util.resource.Resource;
 
-public class Sprite extends Resource implements ITexture {
+public class Sprite extends Resource implements ITexture, IDepender {
 
 	private float xMin, yMin, xMax, yMax;
 	private Image image;
@@ -34,12 +35,12 @@ public class Sprite extends Resource implements ITexture {
 	
 	@Override
 	public void doInit() {
-		image.init();
+		image.bind(this);
 	}
 
 	@Override
 	public void doClose() {
-		image.close();
+		image.unbind(this);
 	}
 	
 	@Override

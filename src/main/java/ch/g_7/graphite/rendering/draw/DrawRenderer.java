@@ -2,8 +2,8 @@ package ch.g_7.graphite.rendering.draw;
 
 import java.util.List;
 
-import ch.g_7.graphite.draw.Drawable;
 import ch.g_7.graphite.draw.IDrawObject;
+import ch.g_7.graphite.draw.drawable.Drawable;
 import ch.g_7.graphite.rendering.basic.BasicRenderer;
 import ch.g_7.graphite.rendering.basic.BasicShaderProgram;
 import ch.g_7.graphite.rendering.transformator.OrthographicTransformator;

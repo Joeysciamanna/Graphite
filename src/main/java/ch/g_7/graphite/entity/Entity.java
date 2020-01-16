@@ -2,9 +2,10 @@ package ch.g_7.graphite.entity;
 
 import ch.g_7.graphite.base.transformation.Transformation;
 import ch.g_7.graphite.base.view_model.ViewModel;
+import ch.g_7.util.resource.IDepender;
 import ch.g_7.util.resource.Resource;
 
-public class Entity extends Resource implements IEntity {
+public class Entity extends Resource implements IEntity, IDepender {
 
 	private ViewModel viewModel;
 	private Transformation transformation;
@@ -36,11 +37,11 @@ public class Entity extends Resource implements IEntity {
 	public void update(float deltaMillis) {}
 
 	protected void doInit() {
-		if(getViewModel()!=null) getViewModel().init();
+		if(viewModel!=null) viewModel.bind(this);
 	}
 
 	protected void doClose() {
-		if(getViewModel()!=null) getViewModel().close();
+		if(viewModel!=null) viewModel.unbind(this);
 	}
 	
 

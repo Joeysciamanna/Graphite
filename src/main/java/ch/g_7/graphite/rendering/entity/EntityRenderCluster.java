@@ -11,8 +11,6 @@ public class EntityRenderCluster extends RenderCluster<IEntity, EntityRenderer>{
 
 	@Override
 	public void update(float deltaMillis) {
-		for (IEntity drawable : nodes) {
-			drawable.update(deltaMillis);
-		}
+		foreach((d)->d.update(deltaMillis));
 	}
 }

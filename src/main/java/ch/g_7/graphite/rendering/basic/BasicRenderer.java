@@ -14,9 +14,10 @@ import ch.g_7.graphite.node.INode;
 import ch.g_7.graphite.node.Renderable;
 import ch.g_7.graphite.rendering.IRenderer;
 import ch.g_7.graphite.rendering.transformator.ITransformator;
+import ch.g_7.util.resource.IDepender;
 import ch.g_7.util.resource.Resource;
 
-public abstract class BasicRenderer<T extends INode> extends Resource implements IRenderer<T> {
+public abstract class BasicRenderer<T extends INode> extends Resource implements IRenderer<T>, IDepender {
 
 	private ITransformator<ITransformation> transformator;
 	protected final BasicShaderProgram shaderProgram;
@@ -69,11 +70,11 @@ public abstract class BasicRenderer<T extends INode> extends Resource implements
 
 	@Override
 	protected void doInit() {
-		shaderProgram.init();
+		shaderProgram.bind(this);
 	}
 
 	@Override
 	protected void doClose() {
-		shaderProgram.close();
+		shaderProgram.unbind(this);
 	}
 }

@@ -8,9 +8,10 @@ import ch.g_7.util.common.Closeable;
 import ch.g_7.util.common.Initializable;
 import ch.g_7.util.logging.LogLevel;
 import ch.g_7.util.logging.Logger;
-import ch.g_7.util.resource.ResourceHandler;
+import ch.g_7.util.resource.IDepender;
+import ch.g_7.util.resource.ResourceManager;
 
-public abstract class Application implements Updatable, Initializable, Closeable, Runnable {
+public abstract class Application implements Updatable, Initializable, Closeable, Runnable, IDepender {
 
 	private final static Logger LOGGER = Logger.getInstance();
 	
@@ -50,9 +51,10 @@ public abstract class Application implements Updatable, Initializable, Closeable
 	@Override
 	public void run() {
 		try {
-			window.init();
-			masterRenderer.init();
+			window.init(); //Could be changed to resource in future (unbind)
+			masterRenderer.bind(this);
 			init();
+			
 			updateLoop.start();
 			timer.reset();
 			while (running && !window.windowShouldClose()) {
@@ -62,16 +64,14 @@ public abstract class Application implements Updatable, Initializable, Closeable
 				
 				update(timer.getDeltaMillis());
 				
-				
-
 				masterRenderer.render(dimension, window, camera);
 			}
 		} catch (Exception e) {
 			LOGGER.log(LogLevel.FATAL, "Engine Crashed", e);
 		} finally {
 			updateLoop.stop();
-			masterRenderer.close();
-			dimension.close();
+			masterRenderer.unbind(this);
+			dimension.close(); //Could be changed to resource in future (unbind)
 			close();
 		}
 	}
@@ -97,8 +97,9 @@ public abstract class Application implements Updatable, Initializable, Closeable
 	}
 	
 	public void close() {
-		if(ResourceHandler.hasUnclosedResources()) {
-			LOGGER.log(LogLevel.WARNING, ResourceHandler.getUnclosedResourcesTable());
+		if(ResourceManager.getInstance().hasUnclosedResources()) {
+			System.out.println(ResourceManager.getInstance().getUnclosedResources());
+			LOGGER.log(LogLevel.WARNING, ResourceManager.getInstance().getUnclosedResources());
 		}
 		terminate();
 	}

@@ -32,9 +32,11 @@ public class Image extends Resource implements ITexture {
 		return height;
 	}
 	
+	@Override
 	protected void doInit() {
 	}
 
+	@Override
 	protected void doClose() {
 		glDeleteTextures(id);
 	}

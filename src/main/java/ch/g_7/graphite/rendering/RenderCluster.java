@@ -10,19 +10,20 @@ import ch.g_7.graphite.entity.IEntity;
 import ch.g_7.graphite.node.INode;
 import ch.g_7.graphite.node.Updatable;
 import ch.g_7.util.common.Initializable;
+import ch.g_7.util.resource.IDepender;
 import ch.g_7.util.resource.Resource;
 
-public abstract class RenderCluster<T extends INode, R extends IRenderer<T>> extends Resource implements AutoCloseable, Initializable, Updatable{
+public abstract class RenderCluster<T extends INode, R extends IRenderer<T>> extends Resource implements AutoCloseable, Initializable, Updatable, IDepender {
 	
 	private static final List<String> RENDER_CLUSTERS = new ArrayList<String>();
 	
-	protected final List<T> nodes;
+	private final List<T> nodes;
 	private final R renderer;
 	private final String name;
 	
 	public RenderCluster(R renderer, String name){
 		if(RENDER_CLUSTERS.contains(name)) {
-			throw new IllegalStateException("Cant create multiple time th same RenderCluster");
+			throw new IllegalStateException("Cant create multiple instances of the same RenderCluster");
 		}
 		RENDER_CLUSTERS.add(name);
 		
@@ -46,24 +47,24 @@ public abstract class RenderCluster<T extends INode, R extends IRenderer<T>> ext
 	
 	public void addNode(T node) {
 		nodes.add(node);
-		node.init();
+		node.bind(this);
 	}
 	
 	public void removeNode(IEntity node) {
-		node.close();
+		node.unbind(this);
 		nodes.remove(node);
 	}
 	
 	@Override
 	protected void doInit() {
-		renderer.init();
-		foreach((n)->n.init());
+		renderer.bind(this);
+		foreach((n)->n.bind(this));
 	}
 	
 	@Override
 	protected void doClose() {
-		renderer.close();
-		foreach((n)->n.close());
+		renderer.unbind(this);
+		foreach((n)->n.unbind(this));
 	}
 
 	@Override

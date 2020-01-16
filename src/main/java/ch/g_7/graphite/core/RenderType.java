@@ -1,6 +1,6 @@
 package ch.g_7.graphite.core;
 
-import ch.g_7.graphite.draw.Drawable;
+import ch.g_7.graphite.draw.drawable.Drawable;
 import ch.g_7.graphite.entity.IEntity;
 import ch.g_7.graphite.rendering.RenderCluster;
 import ch.g_7.graphite.rendering.draw.DrawRenderCluster;

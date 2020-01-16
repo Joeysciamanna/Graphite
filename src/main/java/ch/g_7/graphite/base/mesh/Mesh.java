@@ -2,9 +2,10 @@ package ch.g_7.graphite.base.mesh;
 
 import ch.g_7.graphite.base.vao.VAO;
 import ch.g_7.graphite.base.vao.VBOFactory;
-import ch.g_7.util.resource.ResourceHandler;
+import ch.g_7.util.resource.IDepender;
+import ch.g_7.util.resource.Resource;
 
-public class Mesh implements IMesh {
+public class Mesh extends Resource implements IMesh, IDepender {
 
 	protected final VAO vao;
 
@@ -28,13 +29,8 @@ public class Mesh implements IMesh {
 	}
 
 	@Override
-	public final void init() {
-		if (ResourceHandler.shallInitialize(this))
-			doInit();
-	}
-
 	protected void doInit() {
-		vao.init();
+		vao.bind(this);
 		vao.add(VBOFactory.getPositionVBO(positions, indices));
 		if (textureCoordinates != null) {
 			vao.add(VBOFactory.getTextureCoordinatesVBO(textureCoordinates));
@@ -42,16 +38,11 @@ public class Mesh implements IMesh {
 		this.positions = null;
 		this.indices = null;
 		this.textureCoordinates = null;
-
 	}
-	
+
 	@Override
-	public final void close() {
-		if(ResourceHandler.shallClose(this)) doClose();
-	}
-
 	protected void doClose() {
-		vao.close();
+		vao.unbind(this);
 	}
 
 	public void setPositions(float[] positions, int[] indices) {

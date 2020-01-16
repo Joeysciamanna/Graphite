@@ -63,20 +63,6 @@ public class ScreenDimension implements IScreenDimension{
 			value -= screenDimension.getValue();
 		}
 		this.value = value;
-		
-//		float value = 0;
-//		value += (float) pixel * 2f / screenSize;
-//		value += fatherSize * (pf == 0 ? 0 : (pf/100));
-//		value += pw * 2 / 100;
-//		
-//		for (IScreenDimension screenDimension : getAdds()) {
-//			value += screenDimension.getValue();
-//		}
-//		for (IScreenDimension screenDimension : getRems()) {
-//			value -= screenDimension.getValue();
-//		}
-//		this.value = value;
-		
 		return this;
 	}
 	

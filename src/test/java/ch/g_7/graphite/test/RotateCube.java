@@ -84,7 +84,8 @@ public class RotateCube extends Application {
     }
 
 
-    @Override
+	@Override
+	@SuppressWarnings("deprecation")
     public void update(float deltaMillis) {
 		if (getWindow().isKeyPressed(GLFW.GLFW_KEY_W))
 			entity1.getTransformation().getRotation().add((float) Math.toRadians(deltaMillis * -0.05), 0, 0);

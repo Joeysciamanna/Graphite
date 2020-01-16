@@ -8,9 +8,10 @@ import org.joml.Vector2ic;
 
 import ch.g_7.graphite.base.transformation.Transformation2d;
 import ch.g_7.graphite.ui.util.ScreenDimension;
+import ch.g_7.util.resource.IDepender;
 import ch.g_7.util.resource.Resource;
 
-public abstract class UIContainer extends Resource implements IUIContainer {
+public abstract class UIContainer extends Resource implements IUIContainer, IDepender {
 
 	protected List<IUIPanel> childs;
 
@@ -45,18 +46,18 @@ public abstract class UIContainer extends Resource implements IUIContainer {
 	protected void add(IUIPanel panel) {
 		childs.add(panel);
 		panel.setFather(this);
-		panel.init();
+		panel.bind(this);
 	}
 
 	protected void remove(IUIPanel panel) {
 		childs.remove(panel);
-		panel.close();
+		panel.unbind(this);
 		panel.setFather(null);
 	}
 
 	protected void clear() {
 		for (IUIPanel child : childs) {
-			child.close();
+			child.unbind(this);
 			child.setFather(null);
 		}
 		childs.clear();
@@ -78,15 +79,17 @@ public abstract class UIContainer extends Resource implements IUIContainer {
 
 	protected abstract void recalculateDimension(ScreenDimension dimension, Vector2ic screenSize);
 
+	@Override
 	protected void doInit() {
 		for (IUIPanel panel : getChilds()) {
-			panel.init();
+			panel.bind(this);
 		}
 	}
 
+	@Override
 	protected void doClose() {
 		for (IUIPanel panel : getChilds()) {
-			panel.close();
+			panel.unbind(this);
 		}
 	}
 

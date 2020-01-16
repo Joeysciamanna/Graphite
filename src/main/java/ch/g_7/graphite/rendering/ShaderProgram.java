@@ -35,10 +35,9 @@ import org.joml.Vector4f;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.system.MemoryStack;
 
-import ch.g_7.util.common.Initializable;
-import ch.g_7.util.resource.ResourceHandler;
+import ch.g_7.util.resource.Resource;
 
-public abstract class ShaderProgram implements Initializable, AutoCloseable {
+public abstract class ShaderProgram extends Resource {
 
 	protected final Map<String, Integer> uniforms;
 
@@ -59,11 +58,6 @@ public abstract class ShaderProgram implements Initializable, AutoCloseable {
 	}
 
 	@Override
-	public final void init() {
-		if (ResourceHandler.shallInitialize(this))
-			doInit();
-	}
-
 	protected void doInit() {
 		programId = glCreateProgram();
 		if (programId == 0) {
@@ -77,11 +71,6 @@ public abstract class ShaderProgram implements Initializable, AutoCloseable {
 	}
 
 	@Override
-	public final void close() {
-		if (ResourceHandler.shallClose(this))
-			doClose();
-	}
-
 	protected void doClose() {
 		unbind();
 		if (programId != 0) {

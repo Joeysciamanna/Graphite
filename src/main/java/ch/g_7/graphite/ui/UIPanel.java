@@ -90,13 +90,13 @@ public class UIPanel extends UIContainer implements IUIPanel {
 	
 	@Override
 	protected void doInit() {
-		viewModel.init();
+		viewModel.bind(this);
 		super.doInit();
 	}
 	
 	@Override
 	protected void doClose() {
-		viewModel.close();
+		viewModel.unbind(this);
 		super.doClose();
 	}
 	

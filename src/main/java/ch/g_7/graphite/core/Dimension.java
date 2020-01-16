@@ -7,8 +7,9 @@ import ch.g_7.graphite.node.INode;
 import ch.g_7.graphite.rendering.IRenderer;
 import ch.g_7.graphite.rendering.RenderCluster;
 import ch.g_7.util.common.Closeable;
+import ch.g_7.util.resource.IDepender;
 
-public final class Dimension implements Closeable {
+public final class Dimension implements Closeable, IDepender {
 
 	private List<RenderCluster<?,?>> renderClusters;
 	
@@ -18,7 +19,7 @@ public final class Dimension implements Closeable {
 	
 	public <T extends INode> void addObj(T renderable, RenderCluster<T,? extends IRenderer<T>> renderClass) {
 		if(!renderClusters.contains(renderClass)) {
-			renderClass.init();
+			renderClass.bind(this);
 			renderClusters.add(renderClass);
 		}
 		renderClass.addNode(renderable);
@@ -26,7 +27,7 @@ public final class Dimension implements Closeable {
 	
 	public void remove(RenderCluster<?,?> renderClass) {
 		renderClusters.remove(renderClass);
-		renderClass.close();
+		renderClass.unbind(this);
 	}
 	
 	public List<RenderCluster<?,?>> getRenderClasses() {
@@ -36,7 +37,7 @@ public final class Dimension implements Closeable {
 	@Override
 	public void close() {
 		for (RenderCluster<?,?> renderCluster : renderClusters) {
-			renderCluster.close();
+			renderCluster.unbind(this);
 		}
 	}
 

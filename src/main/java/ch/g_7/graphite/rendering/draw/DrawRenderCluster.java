@@ -1,7 +1,7 @@
 package ch.g_7.graphite.rendering.draw;
 
 import ch.g_7.graphite.draw.DrawContext;
-import ch.g_7.graphite.draw.Drawable;
+import ch.g_7.graphite.draw.drawable.Drawable;
 import ch.g_7.graphite.rendering.RenderCluster;
 
 public class DrawRenderCluster extends RenderCluster<Drawable, DrawRenderer>{
@@ -12,9 +12,7 @@ public class DrawRenderCluster extends RenderCluster<Drawable, DrawRenderer>{
 
 	@Override
 	public void update(float deltaMillis) {
-		for (Drawable drawable : nodes) {
-			drawable.update(deltaMillis);
-		}
+		foreach((u)->u.update(deltaMillis));
 	}
 	
 	@Override

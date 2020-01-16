@@ -12,9 +12,10 @@ import ch.g_7.graphite.base.mesh.Mesh;
 import ch.g_7.graphite.base.mesh.MeshFactory2d;
 import ch.g_7.graphite.base.texture.ITexture;
 import ch.g_7.graphite.util.Color;
+import ch.g_7.util.resource.IDepender;
 import ch.g_7.util.resource.Resource;
 
-public class DrawContext extends Resource {
+public class DrawContext extends Resource implements IDepender {
 
 	private List<IDrawObject> drawObjects;
 	private DrawObject drawObject;
@@ -55,7 +56,7 @@ public class DrawContext extends Resource {
 
 	private void next() {
 		if (!drawObject.isEmpty()) {
-			drawObject.init();
+			drawObject.bind(this);
 			add(drawObject);
 			drawObject = new DrawObject(drawObject);
 		}
@@ -69,7 +70,7 @@ public class DrawContext extends Resource {
 	@Override
 	protected void doClose() {
 		for (IDrawObject drawObject : drawObjects) {
-			drawObject.close();
+			drawObject.unbind(this);
 		}
 	}
 

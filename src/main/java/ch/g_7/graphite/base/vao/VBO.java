@@ -7,26 +7,40 @@ import static org.lwjgl.opengl.GL15.glGenBuffers;
 
 import java.io.Closeable;
 
-import ch.g_7.util.resource.ResourceHandler;
+import ch.g_7.util.resource.Resource;
 
-public abstract class VBO implements Closeable {
+
+public abstract class VBO extends Resource implements Closeable {
 	
 	protected final VBOType type;
+	
+	private VAO vao;
 	private int id;
 
 	protected VBO(VBOType type) {
 		this.type = type;
 	}
-	
-	protected final void init(VAO vao) {
-		if(ResourceHandler.shallInitialize(this)) {
-			this.id =  glGenBuffers();
-			doInit(vao);
-			glBindBuffer(GL_ARRAY_BUFFER, 0);
-		}
+
+	@Override
+	protected void doInit() {
+		this.id =  glGenBuffers();
+		doInit(vao);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}
 	
 	protected abstract void doInit(VAO vao);
+	
+	@Override
+	protected void doClose() {
+		glDeleteBuffers(id);
+	}
+	
+	public void setVao(VAO vao) {
+		if(this.vao != null) {
+			throw new IllegalStateException("VAO alredy set, cant change vao of vbo");
+		}
+		this.vao = vao;
+	}
 
 	public VBOType getType() {
 		return type;
@@ -36,14 +50,4 @@ public abstract class VBO implements Closeable {
 		return id;
 	}
 	
-	@Override
-	public final void close() {
-		if(ResourceHandler.shallClose(this)) doClose();
-	}
-	
-	protected void doClose() {
-		glDeleteBuffers(id);
-	}
-
-
 }

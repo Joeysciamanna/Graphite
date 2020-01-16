@@ -2,9 +2,10 @@ package ch.g_7.graphite.draw;
 
 import ch.g_7.graphite.base.transformation.Transformation;
 import ch.g_7.graphite.base.view_model.ViewModel;
+import ch.g_7.util.resource.IDepender;
 import ch.g_7.util.resource.Resource;
 
-class DrawObject extends Resource implements IDrawObject {
+class DrawObject extends Resource implements IDrawObject, IDepender {
 
 	private ViewModel viewModel;
 	private Transformation transformation;
@@ -49,12 +50,12 @@ class DrawObject extends Resource implements IDrawObject {
 
 	@Override
 	protected void doInit() {
-		if(viewModel!=null) viewModel.init();
+		if(viewModel!=null) viewModel.bind(this);
 	}
 
 	@Override
 	protected void doClose() {
-		if(viewModel!=null) viewModel.close();
+		if(viewModel!=null) viewModel.unbind(this);
 	}
 
 }

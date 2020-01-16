@@ -5,9 +5,10 @@ import ch.g_7.graphite.base.texture.ITexture;
 import ch.g_7.graphite.base.texture.Image;
 import ch.g_7.graphite.base.texture.Sprite;
 import ch.g_7.graphite.util.Color;
+import ch.g_7.util.resource.IDepender;
 import ch.g_7.util.resource.Resource;
 
-public class ViewModel extends Resource implements IViewModel {
+public class ViewModel extends Resource implements IViewModel, IDepender {
 
 	private IMesh mesh;
 	private ITexture texture;
@@ -48,45 +49,43 @@ public class ViewModel extends Resource implements IViewModel {
 
 	@Override
 	protected void doInit() {
+		bindTo(mesh, texture);
 	}
 
 	@Override
 	protected void doClose() {
-		if (mesh != null)
-			mesh.close();
-		if (texture != null)
-			texture.close();
-	}
-
-	public void setTexture(ITexture texture) {
-		if(this.texture != null) {
-			this.texture.close();
-		}
-		if (texture.isSprite()) {
-			this.mesh.setTextureCoordinates(((Sprite)texture).getTextureCoordinates());
-		}
-		this.texture = texture;
-		texture.init();
+		unbindForm(mesh, texture);
 	}
 
 	public ITexture getTexture() {
 		return texture;
 	}
 
+	public void setTexture(ITexture texture) {
+		unbindForm(this.texture);
+		if (texture.isSprite()) {
+			this.mesh.setTextureCoordinates(((Sprite)texture).getTextureCoordinates());
+		}
+		this.texture = texture;
+		bindTo(texture);
+	}
+	
 	public Color getColor() {
 		return color;
+	}
+	
+	public void setColor(Color color) {
+		this.color = color;
 	}
 
 	public IMesh getMesh() {
 		return mesh;
 	}
 
-	public void setColor(Color color) {
-		this.color = color;
-	}
-
 	public void setMesh(IMesh mesh) {
+		unbindForm(this.mesh);
 		this.mesh = mesh;
+		bindTo(this.mesh);
 	}
 
 }
