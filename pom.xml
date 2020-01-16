@@ -16,8 +16,6 @@
 		<maven.compiler.source>12</maven.compiler.source>
 
 		<java.version>13.0.1</java.version>
-		<maven.compiler.source>13.0.1</maven.compiler.source>
-		<maven.compiler.target>13.0.1</maven.compiler.target>
 		<lwjgl.version>3.2.3</lwjgl.version>
 		<joml.version>1.9.17</joml.version>
 		<lwjgl.natives>natives-windows</lwjgl.natives>
