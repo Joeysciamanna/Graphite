@@ -1,10 +1,9 @@
 package ch.g_7.graphite.draw.drawable;
 
 import ch.g_7.graphite.draw.DrawContext;
-import ch.g_7.util.resource.IDepender;
 import ch.g_7.util.resource.Resource;
 
-public abstract class BasicDrawable extends Resource implements Drawable, IDepender {
+public abstract class BasicDrawable extends Resource implements Drawable {
 
 	private DrawContext drawContext;
 

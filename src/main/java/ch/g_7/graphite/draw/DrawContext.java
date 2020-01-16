@@ -12,10 +12,9 @@ import ch.g_7.graphite.base.mesh.Mesh;
 import ch.g_7.graphite.base.mesh.MeshFactory2d;
 import ch.g_7.graphite.base.texture.ITexture;
 import ch.g_7.graphite.util.Color;
-import ch.g_7.util.resource.IDepender;
 import ch.g_7.util.resource.Resource;
 
-public class DrawContext extends Resource implements IDepender {
+public class DrawContext extends Resource {
 
 	private List<IDrawObject> drawObjects;
 	private DrawObject drawObject;

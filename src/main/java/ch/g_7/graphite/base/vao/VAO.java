@@ -16,11 +16,10 @@ import java.util.Queue;
 import org.lwjgl.opengl.GL20;
 
 import ch.g_7.util.common.Initializable;
-import ch.g_7.util.resource.IDepender;
 import ch.g_7.util.resource.Resource;
 
 
-public class VAO extends Resource implements AutoCloseable, Initializable, IDepender {
+public class VAO extends Resource implements AutoCloseable, Initializable {
 
 	private int id;
 	private List<VBO> vbos;
@@ -58,7 +57,7 @@ public class VAO extends Resource implements AutoCloseable, Initializable, IDepe
 			throw new IllegalArgumentException(vbo.type + " Cant be replaced, because it doesnt exist");
 		}
 		
-		vbos.get(index).close();
+		vbos.get(index).unbind(this);
 		
 		glBindVertexArray(id);
 		vbo.setVao(this);

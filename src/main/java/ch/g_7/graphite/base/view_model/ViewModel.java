@@ -5,10 +5,9 @@ import ch.g_7.graphite.base.texture.ITexture;
 import ch.g_7.graphite.base.texture.Image;
 import ch.g_7.graphite.base.texture.Sprite;
 import ch.g_7.graphite.util.Color;
-import ch.g_7.util.resource.IDepender;
 import ch.g_7.util.resource.Resource;
 
-public class ViewModel extends Resource implements IViewModel, IDepender {
+public class ViewModel extends Resource implements IViewModel {
 
 	private IMesh mesh;
 	private ITexture texture;

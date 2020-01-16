@@ -2,10 +2,9 @@ package ch.g_7.graphite.entity;
 
 import ch.g_7.graphite.base.transformation.Transformation;
 import ch.g_7.graphite.base.view_model.ViewModel;
-import ch.g_7.util.resource.IDepender;
 import ch.g_7.util.resource.Resource;
 
-public class Entity extends Resource implements IEntity, IDepender {
+public class Entity extends Resource implements IEntity {
 
 	private ViewModel viewModel;
 	private Transformation transformation;

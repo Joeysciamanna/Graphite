@@ -1,9 +1,8 @@
 package ch.g_7.graphite.base.texture;
 
-import ch.g_7.util.resource.IDepender;
 import ch.g_7.util.resource.Resource;
 
-public class Sprite extends Resource implements ITexture, IDepender {
+public class Sprite extends Resource implements ITexture {
 
 	private float xMin, yMin, xMax, yMax;
 	private Image image;

@@ -8,10 +8,9 @@ import org.joml.Vector2ic;
 
 import ch.g_7.graphite.base.transformation.Transformation2d;
 import ch.g_7.graphite.ui.util.ScreenDimension;
-import ch.g_7.util.resource.IDepender;
 import ch.g_7.util.resource.Resource;
 
-public abstract class UIContainer extends Resource implements IUIContainer, IDepender {
+public abstract class UIContainer extends Resource implements IUIContainer {
 
 	protected List<IUIPanel> childs;
 

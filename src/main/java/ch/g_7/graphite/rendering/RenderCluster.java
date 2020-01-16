@@ -10,10 +10,9 @@ import ch.g_7.graphite.entity.IEntity;
 import ch.g_7.graphite.node.INode;
 import ch.g_7.graphite.node.Updatable;
 import ch.g_7.util.common.Initializable;
-import ch.g_7.util.resource.IDepender;
 import ch.g_7.util.resource.Resource;
 
-public abstract class RenderCluster<T extends INode, R extends IRenderer<T>> extends Resource implements AutoCloseable, Initializable, Updatable, IDepender {
+public abstract class RenderCluster<T extends INode, R extends IRenderer<T>> extends Resource implements AutoCloseable, Initializable, Updatable {
 	
 	private static final List<String> RENDER_CLUSTERS = new ArrayList<String>();
 	
