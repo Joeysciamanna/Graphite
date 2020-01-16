@@ -29,13 +29,13 @@ public class PerspectiveTransformator implements ITransformator<ITransformation>
 	public Matrix4f getProjectionMatrix(Window window, Camera camera) {
 		viewMatrix.identity().translate((float) -camera.getPosition().x(), (float) -camera.getPosition().y(),
 				(float) -camera.getPosition().z());
-		return projectionMatrix.identity().perspective(fov, window.getWidth() / window.getHeight(), zNear, zFar);
+		return projectionMatrix.identity().perspective(fov, window.getWidth() / window.getHeight(), zNear, zFar).mul(viewMatrix);
 	}
 
 	@Override
 	public Matrix4f getModelViewMatrix(ITransformation transformation) {
 		return modelViewMatrix.identity().identity().translate(transformation.getPosition())
-				.rotateXYZ(new Vector3f(transformation.getRotation())).scale(transformation.getScale()).mul(viewMatrix);
+				.rotateXYZ(new Vector3f(transformation.getRotation())).scale(transformation.getScale());
 	}
 
 }
