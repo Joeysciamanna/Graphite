@@ -33,7 +33,7 @@ public abstract class BasicDrawable extends Resource implements Drawable {
 	
 	@Override
 	protected void doClose() {
-		drawContext.bind(this);
+		drawContext.unbind(this);
 	}
 	
 	

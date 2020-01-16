@@ -79,6 +79,7 @@ public class DrawContext extends Resource {
 	}
 
 	public void add(IDrawObject entity) {
+		bindTo(entity);
 		drawObjects.add(entity);
 	}
 

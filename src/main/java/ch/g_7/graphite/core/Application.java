@@ -98,8 +98,7 @@ public abstract class Application implements Updatable, Initializable, Closeable
 	
 	public void close() {
 		if(ResourceManager.getInstance().hasUnclosedResources()) {
-			System.out.println(ResourceManager.getInstance().getUnclosedResources());
-			LOGGER.log(LogLevel.WARNING, ResourceManager.getInstance().getUnclosedResources());
+			LOGGER.log(LogLevel.WARNING, "Unclosed Resources\n:"+ ResourceManager.getInstance().getUnclosedResources());
 		}
 		terminate();
 	}

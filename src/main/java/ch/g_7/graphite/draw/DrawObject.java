@@ -49,12 +49,12 @@ class DrawObject extends Resource implements IDrawObject {
 
 	@Override
 	protected void doInit() {
-		if(viewModel!=null) viewModel.bind(this);
+		bindTo(viewModel);
 	}
 
 	@Override
 	protected void doClose() {
-		if(viewModel!=null) viewModel.unbind(this);
+		unbindForm(viewModel);
 	}
 
 }
