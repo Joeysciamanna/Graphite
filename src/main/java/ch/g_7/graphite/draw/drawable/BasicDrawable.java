@@ -8,7 +8,7 @@ public abstract class BasicDrawable extends Resource implements Drawable {
 	private DrawContext drawContext;
 
 	@Override
-	public DrawContext draw() {
+	public final DrawContext draw() {
 		drawContext.clear();
 		draw(drawContext);
 		return drawContext;
@@ -17,7 +17,6 @@ public abstract class BasicDrawable extends Resource implements Drawable {
 	@Override
 	public final void initDrawContext(DrawContext drawContext) {
 		this.drawContext = drawContext;
-		draw(drawContext);
 	}
 	
 	public abstract void draw(DrawContext drawContext);

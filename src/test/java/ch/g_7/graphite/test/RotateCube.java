@@ -10,6 +10,7 @@ import ch.g_7.graphite.core.RenderType;
 import ch.g_7.graphite.entity.Entity;
 import ch.g_7.graphite.util.Color;
 import ch.g_7.util.helper.AppInitializer;
+import ch.g_7.util.resource.ResourceManager;
 
 public class RotateCube extends Application {
 
@@ -20,8 +21,7 @@ public class RotateCube extends Application {
     }
 
     public static void main(String[] args) {
-        AppInitializer appInitializer = new AppInitializer("", new Object() {
-        });
+        AppInitializer appInitializer = new AppInitializer("", new Object() {});
         appInitializer.setDebugMode(true);
         appInitializer.initLogger();
         appInitializer.addConsoleLogWriters();
@@ -104,6 +104,12 @@ public class RotateCube extends Application {
 
         if (getWindow().isKeyPressed(GLFW.GLFW_KEY_E))
             entity1.getTransformation().getRotation().add(0, 0, (float) Math.toRadians(deltaMillis * 0.05));
+        if(getWindow().isKeyPressed(GLFW.GLFW_KEY_R)) {
+        	System.out.println("Used resources:      " + ResourceManager.getInstance().getCurrentResourceCount());
+        	System.out.println("Allocated resources: " + ResourceManager.getInstance().getCurrentResourceAllocations());
+        }
+        	
+        
     }
 
 

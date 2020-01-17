@@ -1,6 +1,5 @@
 package ch.g_7.graphite.core;
 
-import ch.g_7.graphite.core.loop.UpdateLoop;
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.node.Updatable;
 import ch.g_7.graphite.rendering.MasterRenderer;
@@ -22,7 +21,6 @@ public abstract class Application implements Updatable, Initializable, Closeable
 	private final Window window;
 	private Camera camera;
 
-	private Timer timer;
 	private Thread thread;
 	private boolean running;
 	
@@ -40,11 +38,10 @@ public abstract class Application implements Updatable, Initializable, Closeable
 		this.camera = new Camera();
 		this.updateLoop = new UpdateLoop();
 		this.masterRenderer = new MasterRenderer();
-		this.timer = new Timer();
 		
 		updateLoop = new UpdateLoop();
 		updateLoop.add(this);
-		
+		updateLoop.add(dimension);
 		exists = true;
 	}
 
@@ -56,14 +53,13 @@ public abstract class Application implements Updatable, Initializable, Closeable
 			init();
 			
 			updateLoop.start();
-			timer.reset();
+
 			while (running && !window.windowShouldClose()) {
-				timer.calculate();
+
 				window.update();
 				window.pullEvents();
 				
-				update(timer.getDeltaMillis());
-				
+	
 				masterRenderer.render(dimension, window, camera);
 			}
 		} catch (Exception e) {
@@ -134,8 +130,5 @@ public abstract class Application implements Updatable, Initializable, Closeable
 		return masterRenderer;
 	}
 	
-	public Timer getTimer() {
-		return timer;
-	}
-	
+
 }

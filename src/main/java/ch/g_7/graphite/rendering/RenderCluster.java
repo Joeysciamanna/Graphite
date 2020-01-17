@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import ch.g_7.graphite.core.Camera;
+import ch.g_7.graphite.core.UpdateLoop;
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.entity.IEntity;
 import ch.g_7.graphite.node.INode;
@@ -16,9 +17,10 @@ public abstract class RenderCluster<T extends INode, R extends IRenderer<T>> ext
 	
 	private static final List<String> RENDER_CLUSTERS = new ArrayList<String>();
 	
+	private final String name;
 	private final List<T> nodes;
 	private final R renderer;
-	private final String name;
+
 	
 	public RenderCluster(R renderer, String name){
 		if(RENDER_CLUSTERS.contains(name)) {

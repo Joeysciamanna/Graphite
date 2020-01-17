@@ -1,9 +1,10 @@
-package ch.g_7.graphite.core.loop;
+package ch.g_7.graphite.core;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import ch.g_7.graphite.node.Updatable;
+import ch.g_7.util.common.Loop;
 
 public class UpdateLoop extends Loop {
 
@@ -27,6 +28,6 @@ public class UpdateLoop extends Loop {
 	public void remove(Updatable updatable) {
 		updatables.remove(updatable);
 	}
-
+	
 
 }
