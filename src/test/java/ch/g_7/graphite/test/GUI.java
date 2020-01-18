@@ -90,7 +90,9 @@ public class GUI extends Application {
 		
 	}
 	
+	
 	@Override
+	@SuppressWarnings("deprecation")
 	public void update(float deltaMillis) {
 	    if(getWindow().isKeyPressed(GLFW.GLFW_KEY_R)) {
         	System.out.println("Used resources:      " + ResourceManager.getInstance().getCurrentResourceCount());

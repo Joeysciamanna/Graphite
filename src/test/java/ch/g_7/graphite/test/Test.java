@@ -2,8 +2,6 @@ package ch.g_7.graphite.test;
 
 import ch.g_7.graphite.base.mesh.MeshBuilder2d;
 import ch.g_7.graphite.base.mesh.MeshFactory2d;
-import ch.g_7.graphite.base.texture.Image;
-import ch.g_7.graphite.base.texture.TextureUtil;
 import ch.g_7.graphite.base.view_model.ViewModel;
 import ch.g_7.graphite.core.Application;
 import ch.g_7.graphite.core.RenderType;
@@ -11,7 +9,6 @@ import ch.g_7.graphite.entity.Entity;
 import ch.g_7.graphite.rendering.transformator.OrthographicTransformator;
 import ch.g_7.graphite.util.Color;
 import ch.g_7.util.helper.AppInitializer;
-import ch.g_7.util.task.SecureRunner;
 
 public class Test extends Application {
 

@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import ch.g_7.graphite.core.Camera;
-import ch.g_7.graphite.core.UpdateLoop;
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.entity.IEntity;
 import ch.g_7.graphite.node.INode;
