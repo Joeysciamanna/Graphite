@@ -6,16 +6,21 @@ import ch.g_7.util.resource.Resource;
 public abstract class StaticDrawable extends Resource implements Drawable {
 
 	private DrawContext drawContext;
-
+	private boolean redraw = true;
+	
 	@Override
-	public DrawContext draw() {
+	public final DrawContext draw() {
+		if(redraw) {
+			drawContext.clear();
+			draw(drawContext);
+			redraw = false;
+		}
 		return drawContext;
 	}
 
 	@Override
 	public final void initDrawContext(DrawContext drawContext) {
 		this.drawContext = drawContext;
-		draw(drawContext);
 	}
 	
 	public abstract void draw(DrawContext drawContext);
@@ -34,6 +39,8 @@ public abstract class StaticDrawable extends Resource implements Drawable {
 		drawContext.unbind(this);
 	}
 	
-
+	protected void requestRedraw() {
+		this.redraw = true;
+	}
 
 }
