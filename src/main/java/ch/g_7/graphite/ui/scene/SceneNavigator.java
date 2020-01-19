@@ -3,17 +3,17 @@ package ch.g_7.graphite.ui.scene;
 import java.util.HashMap;
 import java.util.Map;
 
-import ch.g_7.graphite.rendering.ui.UIRenderCluster;
+import ch.g_7.graphite.core.RenderClasses;
+import ch.g_7.graphite.rendering.ui.UIRenderClass;
 
 public class SceneNavigator {
 	
-	private UIRenderCluster renderCluster;
+	private UIRenderClass renderClass = RenderClasses.UI;
 	private Map<String, Scene> scenes;
 	private Scene activeScene;
 
-	public SceneNavigator(UIRenderCluster renderCluster) {
+	public SceneNavigator() {
 		this.scenes = new HashMap<String, Scene>();
-		this.renderCluster = renderCluster;
 	}
 	
 	public void goTo(String key) {
@@ -26,13 +26,13 @@ public class SceneNavigator {
 	public void close(Scene scene) {
 		scene.onClose();
 		scene.setVisible(false);
-		renderCluster.removeNode(scene);
+		renderClass.removeNode(scene);
 		this.activeScene = null;
 	}
 	
 	public void open(Scene scene) {
 		scene.setVisible(true);
-		renderCluster.addNode(scene);
+		renderClass.addNode(scene);
 		scene.onOpen();
 		this.activeScene = scene;
 	}

@@ -4,7 +4,7 @@ import ch.g_7.graphite.base.mesh.MeshBuilder2d;
 import ch.g_7.graphite.base.mesh.MeshFactory2d;
 import ch.g_7.graphite.base.view_model.ViewModel;
 import ch.g_7.graphite.core.Application;
-import ch.g_7.graphite.core.RenderType;
+import ch.g_7.graphite.core.RenderClasses;
 import ch.g_7.graphite.entity.Entity;
 import ch.g_7.graphite.rendering.transformator.OrthographicTransformator;
 import ch.g_7.graphite.util.Color;
@@ -27,7 +27,7 @@ public class Test extends Application {
 	
 	@Override
 	public void init() {
-		RenderType.ENTITIES.getRenderer().setTransformator(new OrthographicTransformator());
+		RenderClasses.ENTITIES.getRenderer().setTransformator(new OrthographicTransformator());
 		
 		AppInitializer appInitializer = new AppInitializer("", new Object() {});
 		appInitializer.setDebugMode(true);
@@ -50,7 +50,7 @@ public class Test extends Application {
 		
 //		viewModel.setTexture(sprite);
 		
-		getDimension().addObj(entity1, RenderType.ENTITIES);
+		getDimension().addObj(entity1, RenderClasses.ENTITIES);
 
 
 		

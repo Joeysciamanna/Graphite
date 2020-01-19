@@ -2,11 +2,11 @@ package ch.g_7.graphite.rendering.draw;
 
 import ch.g_7.graphite.draw.DrawContext;
 import ch.g_7.graphite.draw.drawable.Drawable;
-import ch.g_7.graphite.rendering.RenderCluster;
+import ch.g_7.graphite.rendering.RenderClass;
 
-public class DrawRenderCluster extends RenderCluster<Drawable, DrawRenderer>{
+public class DrawRenderClass extends RenderClass<Drawable, DrawRenderer>{
 
-	public DrawRenderCluster() {
+	public DrawRenderClass() {
 		super(new DrawRenderer(), "DRAW");
 	}
 

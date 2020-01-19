@@ -3,7 +3,7 @@ package ch.g_7.graphite.test.draw;
 import org.lwjgl.glfw.GLFW;
 
 import ch.g_7.graphite.core.Application;
-import ch.g_7.graphite.core.RenderType;
+import ch.g_7.graphite.core.RenderClasses;
 import ch.g_7.util.helper.AppInitializer;
 import ch.g_7.util.resource.ResourceManager;
 
@@ -26,7 +26,7 @@ public class DrawTestApp extends Application {
 		
 		SquareObject object1 = new SquareObject();
 		
-		getDimension().addObj(object1, RenderType.DRAWABLE);
+		getDimension().addObj(object1, RenderClasses.DRAWABLE);
 
 		getWindow().setVisible(true);
 		getWindow().setSize(500, 500);

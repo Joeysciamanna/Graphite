@@ -6,13 +6,12 @@ import java.util.function.Consumer;
 
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
-import ch.g_7.graphite.entity.IEntity;
 import ch.g_7.graphite.node.INode;
 import ch.g_7.graphite.node.Updatable;
 import ch.g_7.util.common.Initializable;
 import ch.g_7.util.resource.Resource;
 
-public abstract class RenderCluster<T extends INode, R extends IRenderer<T>> extends Resource implements AutoCloseable, Initializable, Updatable {
+public abstract class RenderClass<T extends INode, R extends IRenderer<T>> extends Resource implements AutoCloseable, Initializable, Updatable {
 	
 	private static final List<String> RENDER_CLUSTERS = new ArrayList<String>();
 	
@@ -21,7 +20,7 @@ public abstract class RenderCluster<T extends INode, R extends IRenderer<T>> ext
 	private final R renderer;
 
 	
-	public RenderCluster(R renderer, String name){
+	public RenderClass(R renderer, String name){
 		if(RENDER_CLUSTERS.contains(name)) {
 			throw new IllegalStateException("Cant create multiple instances of the same RenderCluster");
 		}
@@ -69,7 +68,7 @@ public abstract class RenderCluster<T extends INode, R extends IRenderer<T>> ext
 
 	@Override
 	public final boolean equals(Object obj) {
-		return obj instanceof RenderCluster ? name.equals(name) : false;
+		return obj instanceof RenderClass ? name.equals(name) : false;
 	}
 	
 	public R getRenderer() {

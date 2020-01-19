@@ -5,7 +5,7 @@ import org.lwjgl.glfw.GLFW;
 import ch.g_7.graphite.base.texture.Image;
 import ch.g_7.graphite.base.texture.TextureUtil;
 import ch.g_7.graphite.core.Application;
-import ch.g_7.graphite.core.RenderType;
+import ch.g_7.graphite.core.RenderClasses;
 import ch.g_7.graphite.ui.UIButton;
 import ch.g_7.graphite.ui.UIRootContainer;
 import ch.g_7.graphite.ui.layout.CenterLayoutPanel;
@@ -41,7 +41,7 @@ public class GUI extends Application {
 				"C:\\Users\\Joey Sciamanna\\git\\Graphite\\src\\test\\resources\\textures\\square1.png")).get();
 
 		mainMenu = new UIRootContainer(getWindow());
-		getDimension().addObj(mainMenu, RenderType.UI);
+		getDimension().addObj(mainMenu, RenderClasses.UI);
 		
 		
 		SpaceSharingLayoutPanel sharingLayoutPanel = new SpaceSharingLayoutPanel();

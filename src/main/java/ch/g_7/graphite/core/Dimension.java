@@ -6,19 +6,19 @@ import java.util.List;
 import ch.g_7.graphite.node.INode;
 import ch.g_7.graphite.node.Updatable;
 import ch.g_7.graphite.rendering.IRenderer;
-import ch.g_7.graphite.rendering.RenderCluster;
+import ch.g_7.graphite.rendering.RenderClass;
 import ch.g_7.util.common.Closeable;
 import ch.g_7.util.resource.IDepender;
 
 public final class Dimension implements Closeable, Updatable, IDepender {
 
-	private List<RenderCluster<?,?>> renderClusters;
+	private List<RenderClass<?,?>> renderClusters;
 	
 	public Dimension() {
 		renderClusters = new ArrayList<>(20);
 	}
 	
-	public <T extends INode> void addObj(T renderable, RenderCluster<T,? extends IRenderer<T>> renderClass) {
+	public <T extends INode> void addObj(T renderable, RenderClass<T,? extends IRenderer<T>> renderClass) {
 		if(!renderClusters.contains(renderClass)) {
 			
 			renderClass.bind(this);
@@ -27,12 +27,12 @@ public final class Dimension implements Closeable, Updatable, IDepender {
 		renderClass.addNode(renderable);
 	}
 	
-	public void remove(RenderCluster<?,?> renderClass) {
+	public void remove(RenderClass<?,?> renderClass) {
 		renderClusters.remove(renderClass);
 		renderClass.unbind(this);
 	}
 	
-	public List<RenderCluster<?,?>> getRenderClasses() {
+	public List<RenderClass<?,?>> getRenderClasses() {
 		return renderClusters;
 	}
 	
@@ -43,7 +43,7 @@ public final class Dimension implements Closeable, Updatable, IDepender {
 
 	@Override
 	public void close() {
-		for (RenderCluster<?,?> renderCluster : renderClusters) {
+		for (RenderClass<?,?> renderCluster : renderClusters) {
 			renderCluster.unbind(this);
 		}
 	}

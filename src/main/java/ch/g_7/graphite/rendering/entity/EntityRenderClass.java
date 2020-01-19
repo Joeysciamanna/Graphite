@@ -1,11 +1,11 @@
 package ch.g_7.graphite.rendering.entity;
 
 import ch.g_7.graphite.entity.IEntity;
-import ch.g_7.graphite.rendering.RenderCluster;
+import ch.g_7.graphite.rendering.RenderClass;
 
-public class EntityRenderCluster extends RenderCluster<IEntity, EntityRenderer>{
+public class EntityRenderClass extends RenderClass<IEntity, EntityRenderer>{
 
-	public EntityRenderCluster() {
+	public EntityRenderClass() {
 		super(new EntityRenderer(), "ENTITIES");
 	}
 

@@ -17,7 +17,7 @@ public class MasterRenderer extends Resource {
 	
 	public void render(Dimension dimension, Window window, Camera camera) {
 
-		for (RenderCluster<?,?> renderCluster : dimension.getRenderClasses()) {
+		for (RenderClass<?,?> renderCluster : dimension.getRenderClasses()) {
 			renderCluster.render(window, camera);
 		}
 		glfwSwapBuffers(window.getId());
