@@ -5,23 +5,15 @@ import ch.g_7.graphite.ui.UIRootContainer;
 
 public class Scene extends UIRootContainer {
 
-	protected static final SceneNavigator navigator = SceneNavigator.getInstance();
-	protected final String name;
+	protected final SceneNavigator navigator;
 	
-	public Scene(String name, Window window) {
+	public Scene(SceneNavigator navigator, Window window) {
 		super(window);
-		this.name = name;
-		navigator.addScene(name, this);
+		this.navigator = navigator;
 	}
 
 	protected void onOpen() {}
 	protected void onClose() {}
 	
-	public final void activate() {
-		navigator.goTo(name);
-	}
-	
-	public final void deaktivate() {
-		navigator.close(this);
-	}
+
 }
