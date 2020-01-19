@@ -29,6 +29,12 @@ public class SceneNavigator {
 		activeScene.onOpen();
 	}
 	
+	public void close(String key) {
+		Scene scene = scenes.get(key);
+		scene.onClose();
+		scene.setVisible(false);
+	}
+	
 	public void addScene(String key, Scene scene) {
 		scenes.put(key, scene);
 		dimension.addObj(scene, RenderClasses.UI);
