@@ -17,11 +17,11 @@ public class Scene extends UIRootContainer {
 	protected void onOpen() {}
 	protected void onClose() {}
 	
-	protected final void activate() {
+	public final void activate() {
 		navigator.goTo(name);
 	}
 	
-	protected final void deaktivate() {
+	public final void deaktivate() {
 		navigator.close(this);
 	}
 }
