@@ -50,7 +50,7 @@ public abstract class RenderCluster<T extends INode, R extends IRenderer<T>> ext
 		node.bind(this);
 	}
 	
-	public void removeNode(IEntity node) {
+	public void removeNode(T node) {
 		node.unbind(this);
 		nodes.remove(node);
 	}

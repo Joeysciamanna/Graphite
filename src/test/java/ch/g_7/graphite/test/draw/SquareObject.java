@@ -5,7 +5,6 @@ import org.joml.Vector3f;
 
 import ch.g_7.graphite.draw.DrawContext;
 import ch.g_7.graphite.draw.drawable.BasicDrawable;
-import ch.g_7.graphite.draw.drawable.StaticDrawable;
 import ch.g_7.graphite.util.Color;
 
 public class SquareObject extends BasicDrawable {
