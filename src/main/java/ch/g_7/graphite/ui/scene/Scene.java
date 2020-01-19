@@ -5,11 +5,10 @@ import ch.g_7.graphite.ui.UIRootContainer;
 
 public class Scene extends UIRootContainer {
 
-	protected SceneNavigator navigator;
+	protected static final SceneNavigator navigator = SceneNavigator.getInstance();
 	
-	public Scene(SceneNavigator navigator, Window window) {
+	public Scene(Window window) {
 		super(window);
-		this.navigator = navigator;
 	}
 
 	protected void onOpen() {}

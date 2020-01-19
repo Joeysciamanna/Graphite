@@ -12,8 +12,14 @@ public class SceneNavigator {
 	private Map<String, Scene> scenes;
 	private Scene activeScene;
 
-	public SceneNavigator() {
+	private final static SceneNavigator instance = new SceneNavigator();
+	
+	private SceneNavigator() {
 		this.scenes = new HashMap<String, Scene>();
+	}
+	
+	public static SceneNavigator getInstance() {
+		return instance;
 	}
 	
 	public void goTo(String key) {
