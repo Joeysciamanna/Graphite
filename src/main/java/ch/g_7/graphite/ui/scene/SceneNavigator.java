@@ -13,7 +13,7 @@ public class SceneNavigator {
 	private Scene activeScene;
 
 
-	private SceneNavigator(Dimension dimension) {
+	public SceneNavigator(Dimension dimension) {
 		this.dimension = dimension;
 		this.scenes = new HashMap<String, Scene>();
 	}
