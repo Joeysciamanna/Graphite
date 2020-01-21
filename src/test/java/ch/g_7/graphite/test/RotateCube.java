@@ -86,7 +86,7 @@ public class RotateCube extends Application {
 
     }
 
-    long lastTime;
+    double lastTime;
 	@Override
 	@SuppressWarnings("deprecation")
     public void update(float deltaMillis) {
@@ -118,7 +118,7 @@ public class RotateCube extends Application {
         }
 
         if(getWindow().isKeyPressed(GLFW.GLFW_KEY_T)) {
-            long time = System.nanoTime() / 1000;
+            double time = System.nanoTime() / 1_000_000;
             System.out.println("Supplied millis: " + deltaMillis);
             System.out.println("Real millis    : " + (time - lastTime));
             lastTime = time;
