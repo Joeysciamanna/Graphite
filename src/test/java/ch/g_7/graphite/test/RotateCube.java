@@ -1,5 +1,6 @@
 package ch.g_7.graphite.test;
 
+import ch.g_7.graphite.rendering.transformator.OrthographicTransformator;
 import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;
 
@@ -74,42 +75,62 @@ public class RotateCube extends Application {
 
         entity1 = new Entity();
         entity1.setViewModel(viewModel);
-        entity1.getTransformation().setPosition(new Vector3f(0, 0, -2));
+        entity1.getTransformation().setPosition(new Vector3f(0, 0, -2 ));
 
         getDimension().addObj(entity1, RenderClasses.ENTITIES);
 
         getWindow().setVisible(true);
         getWindow().setSize(500, 500);
-       
+
+
+
     }
 
-
+    long lastTime;
 	@Override
 	@SuppressWarnings("deprecation")
     public void update(float deltaMillis) {
+
 		if (getWindow().isKeyPressed(GLFW.GLFW_KEY_W))
-			entity1.getTransformation().getRotation().add((float) Math.toRadians(deltaMillis * -0.05), 0, 0);
+		    rotateByDegrees(new Vector3f(-0.05f * deltaMillis, 0, 0));
 
         if (getWindow().isKeyPressed(GLFW.GLFW_KEY_S))
-            entity1.getTransformation().getRotation().add((float) Math.toRadians(deltaMillis * 0.05), 0, 0);
+            rotateByDegrees(new Vector3f(0.05f * deltaMillis, 0, 0));
 
         if (getWindow().isKeyPressed(GLFW.GLFW_KEY_A))
-            entity1.getTransformation().getRotation().add(0, (float) Math.toRadians(deltaMillis * -0.05), 0);
+            rotateByDegrees(new Vector3f(0, -0.05f * deltaMillis, 0));
 
         if (getWindow().isKeyPressed(GLFW.GLFW_KEY_D))
-            entity1.getTransformation().getRotation().add(0, (float) Math.toRadians(deltaMillis * 0.05), 0);
+            rotateByDegrees(new Vector3f(0, 0.05f * deltaMillis, 0));
 
         if (getWindow().isKeyPressed(GLFW.GLFW_KEY_Q))
-            entity1.getTransformation().getRotation().add(0, 0, (float) Math.toRadians(deltaMillis * -0.05));
+            rotateByDegrees(new Vector3f(0, 0,-0.05f * deltaMillis));
 
         if (getWindow().isKeyPressed(GLFW.GLFW_KEY_E))
-            entity1.getTransformation().getRotation().add(0, 0, (float) Math.toRadians(deltaMillis * 0.05));
+            rotateByDegrees(new Vector3f(0, 0,0.05f * deltaMillis));
+
+        if (getWindow().isKeyPressed(GLFW.GLFW_KEY_I))
+            entity1.getTransformation().getRotation().set(0,0,0);
+
         if(getWindow().isKeyPressed(GLFW.GLFW_KEY_R)) {
         	System.out.println("Used resources:      " + ResourceManager.getInstance().getCurrentResourceCount());
         	System.out.println("Allocated resources: " + ResourceManager.getInstance().getCurrentResourceAllocations());
         }
 
-        
+        if(getWindow().isKeyPressed(GLFW.GLFW_KEY_T)) {
+            long time = System.nanoTime() / 1000;
+            System.out.println("Supplied millis: " + deltaMillis);
+            System.out.println("Real millis    : " + (time - lastTime));
+            lastTime = time;
+        }
+
+    }
+
+    public void rotateByDegrees(Vector3f vector3f){
+        Vector3f rotation = entity1.getTransformation().getRotation();
+        rotation.set((float)Math.toRadians((Math.toDegrees(rotation.x) + vector3f.x) % 360),
+                     (float)Math.toRadians((Math.toDegrees(rotation.y) + vector3f.y) % 360),
+                     (float)Math.toRadians((Math.toDegrees(rotation.z) + vector3f.z) % 360));
     }
 
 
