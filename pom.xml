@@ -14,7 +14,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>12</maven.compiler.source>
-
+		<maven.compiler.target>12</maven.compiler.target>
 		<java.version>13.0.1</java.version>
 		<lwjgl.version>3.2.3</lwjgl.version>
 		<joml.version>1.9.17</joml.version>
@@ -110,7 +110,7 @@
 		</repository>
 	</repositories>
 
-	<build>
+<!--	<build>
 		<extensions>
 			<extension>
 				<groupId>org.apache.maven.wagon</groupId>
@@ -140,7 +140,7 @@
 			  </executions>
 			</plugin>
 		</plugins>
-	</build>
+	</build>-->
 
 
 	<distributionManagement>

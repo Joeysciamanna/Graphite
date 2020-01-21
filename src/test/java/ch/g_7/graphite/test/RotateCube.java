@@ -108,7 +108,7 @@ public class RotateCube extends Application {
         	System.out.println("Used resources:      " + ResourceManager.getInstance().getCurrentResourceCount());
         	System.out.println("Allocated resources: " + ResourceManager.getInstance().getCurrentResourceAllocations());
         }
-        	
+
         
     }
 
