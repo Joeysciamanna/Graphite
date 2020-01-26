@@ -1,6 +1,5 @@
 package ch.g_7.graphite.test;
 
-import ch.g_7.graphite.rendering.transformator.OrthographicTransformator;
 import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;
 
