@@ -20,7 +20,7 @@ public class UpdateLoop extends Loop {
 			updatable.update(deltaMillis);
 		}
 		try {
-			Thread.sleep(10);
+			Thread.sleep(1);
 		} catch (InterruptedException e) {
 			throw new RuntimeException(e);
 		}

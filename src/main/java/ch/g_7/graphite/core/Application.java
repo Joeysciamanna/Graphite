@@ -48,7 +48,7 @@ public abstract class Application implements Updatable, Initializable, Closeable
 	@Override
 	public void run() {
 		try {
-			window.init(); //Could be changed to resource in future (unbind)
+			window.init(); //Could be changed to resource in future (bind)
 			masterRenderer.bind(this);
 			init();
 			
@@ -60,7 +60,7 @@ public abstract class Application implements Updatable, Initializable, Closeable
 				window.pullEvents();
 	
 				masterRenderer.render(dimension, window, camera);
-				Thread.sleep(10);
+				Thread.sleep(1);
 			}
 		} catch (Exception e) {
 			LOGGER.log(LogLevel.FATAL, "Engine Crashed", e);

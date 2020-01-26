@@ -9,17 +9,17 @@ import ch.g_7.graphite.core.RenderClasses;
 public class SceneNavigator {
 
 	private Dimension dimension;
-	private Map<String, Scene> scenes;
+	private Map<IScreenIdentifier<?>, Scene> scenes;
 	private Scene activeScene;
 
 
 	public SceneNavigator(Dimension dimension) {
 		this.dimension = dimension;
-		this.scenes = new HashMap<String, Scene>();
+		this.scenes = new HashMap<IScreenIdentifier<?>, Scene>();
 	}
 	
 	
-	public void goTo(String key) {
+	public void goTo(IScreenIdentifier<?> key) {
 		if(activeScene != null) {
 			activeScene.onClose();
 			activeScene.setVisible(false);
@@ -29,13 +29,13 @@ public class SceneNavigator {
 		activeScene.onOpen();
 	}
 	
-	public void close(String key) {
+	public void close(IScreenIdentifier<?> key) {
 		Scene scene = scenes.get(key);
 		scene.onClose();
 		scene.setVisible(false);
 	}
 	
-	public void addScene(String key, Scene scene) {
+	public void addScene(IScreenIdentifier<?> key, Scene scene) {
 		scenes.put(key, scene);
 		dimension.addObj(scene, RenderClasses.UI);
 	}
