@@ -19,11 +19,7 @@ public class UpdateLoop extends Loop {
 		for (Updatable updatable : updatables) {
 			updatable.update(deltaMillis);
 		}
-		try {
-			Thread.sleep(1);
-		} catch (InterruptedException e) {
-			throw new RuntimeException(e);
-		}
+
 	}
 	
 	public void add(Updatable updatable) {

@@ -60,7 +60,7 @@ public abstract class Application implements Updatable, Initializable, Closeable
 				window.pullEvents();
 	
 				masterRenderer.render(dimension, window, camera);
-				Thread.sleep(1);
+
 			}
 		} catch (Exception e) {
 			LOGGER.log(LogLevel.FATAL, "Engine Crashed", e);

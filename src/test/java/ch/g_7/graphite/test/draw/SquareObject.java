@@ -31,7 +31,7 @@ public class SquareObject extends BasicDrawable {
 		} else if(lineX < -1){
 			lineDirection = 1;
 		}
-		lineColor = Color.getColor((int) ((lineX + 1) / 2 * 255),(int)  (255 - (lineX + 1) / 2 * 255), 0);
+		lineColor = Color.getColor((int) ((lineX + 1) / 2 * 255),(int)  (255 - (lineX + 1) / 2 * 255), (int) (128 - (lineX + 1) / 2 * 255));
 		lineX += 0.001f * lineDirection * deltaMillis;
 	}
 	
