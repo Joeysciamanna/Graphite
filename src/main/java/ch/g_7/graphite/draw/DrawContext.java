@@ -43,7 +43,6 @@ public class DrawContext extends Resource {
 	public void addTexture(ITexture texture, Vector3fc position, Vector2fc size) {
 		setBrushTexture(texture);
 		addRectangle(position, size);
-		next();
 	}
 
 	public void addRectangle(Vector3fc position, Vector2fc size) {

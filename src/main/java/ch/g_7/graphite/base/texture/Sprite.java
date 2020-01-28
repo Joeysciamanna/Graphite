@@ -4,18 +4,24 @@ import ch.g_7.util.resource.Resource;
 
 public class Sprite extends Resource implements ITexture {
 
+	private float[] textCoords;
 	private float xMin, yMin, xMax, yMax;
 	private Image image;
 	
 	
-	Sprite(Image image, float xMin, float yMin, float xMax, float yMax) {
+	Sprite(Image image, float xMax, float yMax, float xMin, float yMin) {
 		this.image = image;
-		this.xMin = xMin;
-		this.yMin = yMin;
 		this.xMax = xMax;
 		this.yMax = yMax;
+		this.xMin = xMin;
+		this.yMin = yMin;
 	}
-	
+
+	Sprite(Image image, float[] textCoords) {
+		this.image = image;
+		this.textCoords = textCoords;
+	}
+
 	public float getxMax() {
 		return xMax;
 	}
@@ -68,12 +74,7 @@ public class Sprite extends Resource implements ITexture {
 	}
 
 	public float[] getTextureCoordinates() {
-		return new float[] {
-				xMin, yMax,
-				xMax, yMax,
-				xMax, yMin,
-				xMin, yMin
-			};
+		return textCoords;
 	}
 	
 	@Override

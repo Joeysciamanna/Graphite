@@ -38,6 +38,8 @@ public class TextureUtil {
 			width = w.get();
 			height = h.get();
 		}
+
+
 		int id = glGenTextures();
 
 		glBindTexture(GL_TEXTURE_2D, id);
@@ -51,9 +53,31 @@ public class TextureUtil {
 		return new Image(id, width, height);
 	}
 	
-//	public static Sprite loadSprite(Image image, int x, int y, int width, int height) {
-//
-//		
-//  		return new Sprite(image, xMin, yMin, xMax, yMax);
-//	}
+	public static Sprite loadSprite(Image image, int x, int y, int width, int height) {
+		float xMax =     (float) (x + width)  / image.getWidth();
+		float yMax = 1 - (float) (y + height) / image.getHeight();
+		float xMin =     (x == 0 ? 0 : (float) (x) / image.getWidth());
+		float yMin = 1 - (y == 0 ? 0 : (float) (y) / image.getHeight());
+
+		System.out.println("xMax: " + xMax);
+		System.out.println("yMax: " + yMax);
+		System.out.println("xMin: " + xMin);
+		System.out.println("yMin: " + yMin);
+
+
+		float[] textCoords = new float[] {
+				xMin, yMin,
+				xMax, yMin,
+				xMax, yMax,
+				xMin, yMax
+		};
+
+		System.out.println(textCoords[6] + "," + textCoords[7] + "-------------" + textCoords[4] + ","+ textCoords[5]);
+		System.out.println("   |                   |");
+		System.out.println("   |                   |");
+		System.out.println(textCoords[0] + "," + textCoords[1] + "-------------" + textCoords[2] + ","+ textCoords[3]);
+
+  		return new Sprite(image, textCoords);
+	}
+
 }
