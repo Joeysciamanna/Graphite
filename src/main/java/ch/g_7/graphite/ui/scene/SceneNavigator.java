@@ -35,7 +35,7 @@ public class SceneNavigator {
 		scene.setVisible(false);
 	}
 	
-	public void addScene(ISceneIdentifier<?> key, Scene scene) {
+	public void registerScene(ISceneIdentifier<?> key, Scene scene) {
 		scenes.put(key, scene);
 		dimension.addObj(scene, RenderClasses.UI);
 	}
