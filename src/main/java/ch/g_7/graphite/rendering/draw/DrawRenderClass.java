@@ -2,7 +2,7 @@ package ch.g_7.graphite.rendering.draw;
 
 import ch.g_7.graphite.draw.DrawContext;
 import ch.g_7.graphite.draw.drawable.Drawable;
-import ch.g_7.graphite.rendering.RenderClass;
+import ch.g_7.graphite.rendering.type.RenderClass;
 
 public class DrawRenderClass extends RenderClass<Drawable, DrawRenderer>{
 

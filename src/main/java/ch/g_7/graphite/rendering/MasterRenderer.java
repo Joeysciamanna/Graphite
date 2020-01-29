@@ -10,6 +10,7 @@ import org.lwjgl.opengl.GL11;
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.Dimension;
 import ch.g_7.graphite.core.window.Window;
+import ch.g_7.graphite.rendering.type.RenderClass;
 import ch.g_7.util.resource.Resource;
 
 public class MasterRenderer extends Resource {

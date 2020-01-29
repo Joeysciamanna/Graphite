@@ -6,7 +6,8 @@ import java.util.List;
 import ch.g_7.graphite.node.INode;
 import ch.g_7.graphite.node.Updatable;
 import ch.g_7.graphite.rendering.IRenderer;
-import ch.g_7.graphite.rendering.RenderClass;
+import ch.g_7.graphite.rendering.type.IRenderType;
+import ch.g_7.graphite.rendering.type.RenderClass;
 import ch.g_7.util.common.Closeable;
 import ch.g_7.util.resource.IDepender;
 
@@ -18,7 +19,13 @@ public final class Dimension implements Closeable, Updatable, IDepender {
 		renderClusters = new ArrayList<>(20);
 	}
 	
-	public <T extends INode> void addObj(T renderable, RenderClass<T,? extends IRenderer<T>> renderClass) {
+	public <T extends INode> void addObj(T renderable, IRenderType<?> renderType) {
+		for (RenderClass<?, ?> renderClass : renderClusters) {
+			if(renderClass.ofType(renderType)) {
+				renderClass.addNode(renderable);
+			}
+		}
+		
 		if(!renderClusters.contains(renderClass)) {
 			
 			renderClass.bind(this);

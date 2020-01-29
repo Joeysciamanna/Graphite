@@ -1,4 +1,4 @@
-package ch.g_7.graphite.rendering;
+package ch.g_7.graphite.rendering.type;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,7 @@ import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.node.INode;
 import ch.g_7.graphite.node.Updatable;
+import ch.g_7.graphite.rendering.IRenderer;
 import ch.g_7.util.common.Initializable;
 import ch.g_7.util.resource.Resource;
 
@@ -74,5 +75,7 @@ public abstract class RenderClass<T extends INode, R extends IRenderer<T>> exten
 	public R getRenderer() {
 		return renderer;
 	}
+	
+	public abstract boolean ofType(IRenderType<?> renderType);
 	
 }
