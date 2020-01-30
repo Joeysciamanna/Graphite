@@ -57,6 +57,6 @@ public class Test extends Application {
 		getDimension().getRenderClass(RenderType.ENTITIES).getRenderer().setTransformator(new OrthographicTransformator());
 		
 		getWindow().setVisible(true);
-		getWindow().setSize(500, 500);
+		getWindow().setSize(10, 10);
 	}
 }

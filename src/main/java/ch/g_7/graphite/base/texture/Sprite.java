@@ -9,13 +9,13 @@ public class Sprite extends Resource implements ITexture {
 	private Image image;
 	
 	
-	Sprite(Image image, float xMax, float yMax, float xMin, float yMin) {
-		this.image = image;
-		this.xMax = xMax;
-		this.yMax = yMax;
-		this.xMin = xMin;
-		this.yMin = yMin;
-	}
+//	Sprite(Image image, float xMax, float yMax, float xMin, float yMin) {
+//		this.image = image;
+//		this.xMax = xMax;
+//		this.yMax = yMax;
+//		this.xMin = xMin;
+//		this.yMin = yMin;
+//	}
 
 	Sprite(Image image, float[] textCoords) {
 		this.image = image;

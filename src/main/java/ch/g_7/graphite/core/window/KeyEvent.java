@@ -1,6 +1,5 @@
 package ch.g_7.graphite.core.window;
 
-import ch.g_7.graphite.entity.IEntity;
 import ch.g_7.util.listner.IEvent;
 
 public class KeyEvent implements IEvent {
