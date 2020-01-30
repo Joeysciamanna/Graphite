@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import ch.g_7.graphite.core.Dimension;
-import ch.g_7.graphite.core.RenderClasses;
+import ch.g_7.graphite.rendering.RenderType;
 
 public class SceneNavigator {
 
@@ -37,6 +37,6 @@ public class SceneNavigator {
 	
 	public void registerScene(ISceneIdentifier<?> key, Scene scene) {
 		scenes.put(key, scene);
-		dimension.addObj(scene, RenderClasses.UI);
+		dimension.addObj(scene, RenderType.UI);
 	}
 }

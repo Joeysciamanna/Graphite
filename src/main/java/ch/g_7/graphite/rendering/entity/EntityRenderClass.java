@@ -1,7 +1,7 @@
 package ch.g_7.graphite.rendering.entity;
 
 import ch.g_7.graphite.entity.IEntity;
-import ch.g_7.graphite.rendering.type.RenderClass;
+import ch.g_7.graphite.rendering.RenderClass;
 
 public class EntityRenderClass extends RenderClass<IEntity, EntityRenderer>{
 

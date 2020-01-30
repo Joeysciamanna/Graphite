@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ch.g_7.graphite.node.Updatable;
-import ch.g_7.util.common.Loop;
+import ch.g_7.util.loop.Loop;
 
 public class UpdateLoop extends Loop {
 

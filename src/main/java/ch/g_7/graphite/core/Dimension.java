@@ -6,51 +6,58 @@ import java.util.List;
 import ch.g_7.graphite.node.INode;
 import ch.g_7.graphite.node.Updatable;
 import ch.g_7.graphite.rendering.IRenderer;
-import ch.g_7.graphite.rendering.type.IRenderType;
-import ch.g_7.graphite.rendering.type.RenderClass;
+import ch.g_7.graphite.rendering.RenderClass;
 import ch.g_7.util.common.Closeable;
+import ch.g_7.util.common.GenericProducerType;
 import ch.g_7.util.resource.IDepender;
 
 public final class Dimension implements Closeable, Updatable, IDepender {
 
-	private List<RenderClass<?,?>> renderClusters;
+	private List<RenderClass<?,?>> renderClasses;
 	
 	public Dimension() {
-		renderClusters = new ArrayList<>(20);
+		renderClasses = new ArrayList<>(20);
 	}
 	
-	public <T extends INode> void addObj(T renderable, IRenderType<?> renderType) {
-		for (RenderClass<?, ?> renderClass : renderClusters) {
-			if(renderClass.ofType(renderType)) {
-				renderClass.addNode(renderable);
+	public <T extends INode> void addObj(T renderable, GenericProducerType<? extends RenderClass<T, ? extends IRenderer<T>>> renderType) {
+		for (RenderClass<?, ?> renderClass : renderClasses) {
+			if(renderType.typeEquals(renderClass.getClass())) {
+				renderType.cast(renderClass).addNode(renderable);
+				return;
 			}
 		}
-		
-		if(!renderClusters.contains(renderClass)) {
-			
-			renderClass.bind(this);
-			renderClusters.add(renderClass);
-		}
+		RenderClass<T, ? extends IRenderer<T>> renderClass = renderType.get();
+		renderClass.bind(this);
+		renderClasses.add(renderClass);
 		renderClass.addNode(renderable);
 	}
 	
 	public void remove(RenderClass<?,?> renderClass) {
-		renderClusters.remove(renderClass);
+		renderClasses.remove(renderClass);
 		renderClass.unbind(this);
 	}
 	
+	public <T extends RenderClass<?,?>> T getRenderClass(GenericProducerType<T> renderType) {
+		for (RenderClass<?, ?> renderClass : renderClasses) {
+			if(renderType.typeEquals(renderClass.getClass())) {
+				return renderType.cast(renderClass);
+			}
+		}
+		throw new IllegalArgumentException("Render Class not found");
+	}
+	
 	public List<RenderClass<?,?>> getRenderClasses() {
-		return renderClusters;
+		return renderClasses;
 	}
 	
 	@Override
 	public void update(float deltaMillis) {
-		renderClusters.forEach((r)->r.update(deltaMillis));
+		renderClasses.forEach((r)->r.update(deltaMillis));
 	}
 
 	@Override
 	public void close() {
-		for (RenderClass<?,?> renderCluster : renderClusters) {
+		for (RenderClass<?,?> renderCluster : renderClasses) {
 			renderCluster.unbind(this);
 		}
 	}

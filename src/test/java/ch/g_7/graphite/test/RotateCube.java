@@ -6,8 +6,8 @@ import org.lwjgl.glfw.GLFW;
 import ch.g_7.graphite.base.mesh.Mesh;
 import ch.g_7.graphite.base.view_model.ViewModel;
 import ch.g_7.graphite.core.Application;
-import ch.g_7.graphite.core.RenderClasses;
 import ch.g_7.graphite.entity.Entity;
+import ch.g_7.graphite.rendering.RenderType;
 import ch.g_7.graphite.util.Color;
 import ch.g_7.util.helper.AppInitializer;
 import ch.g_7.util.resource.ResourceManager;
@@ -24,7 +24,7 @@ public class RotateCube extends Application {
         AppInitializer appInitializer = new AppInitializer("", new Object() {});
         appInitializer.setDebugMode(true);
         appInitializer.initLogger();
-        appInitializer.addConsoleLogWriters();
+        appInitializer.addConsoleLoggers();
 
         rotateCube = new RotateCube("Rotate Cube Test");
         rotateCube.start();
@@ -76,7 +76,7 @@ public class RotateCube extends Application {
         entity1.setViewModel(viewModel);
         entity1.getTransformation().setPosition(new Vector3f(0, 0, -2 ));
 
-        getDimension().addObj(entity1, RenderClasses.ENTITIES);
+        getDimension().addObj(entity1, RenderType.ENTITIES);
 
         getWindow().setVisible(true);
         getWindow().setSize(500, 500);
