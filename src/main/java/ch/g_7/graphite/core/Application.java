@@ -56,9 +56,7 @@ public abstract class Application implements Updatable, Initializable, Closeable
 
 			while (running && !window.windowShouldClose()) {
 
-				window.update();
 				window.pullEvents();
-	
 				masterRenderer.render(dimension, window, camera);
 
 			}

@@ -1,14 +1,10 @@
 package ch.g_7.graphite.core.window;
 
-import java.util.function.Consumer;
+import ch.g_7.util.listner.IListner;
 
 @FunctionalInterface
-public interface ResizeListner extends Consumer<ResizeEvent>{
+public interface ResizeListner extends IListner<ResizeEvent>{
 
-	@Override
-	default void accept(ResizeEvent action) {
-		onResize(action);
-	}
+
 	
-	void onResize(ResizeEvent action);
 }

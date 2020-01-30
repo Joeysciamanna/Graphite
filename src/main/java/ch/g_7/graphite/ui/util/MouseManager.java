@@ -21,7 +21,7 @@ public class MouseManager implements MouseListner {
 	}
 
 	@Override
-	public void onMouseClick(MouseEvent e) {
+	public void onAction(MouseEvent e) {
 		CompletableFuture.runAsync(() -> {
 
 			UIMouseEvent event = new UIMouseEvent(e.getButton(), e.getMods(), e.getX(), e.getY());

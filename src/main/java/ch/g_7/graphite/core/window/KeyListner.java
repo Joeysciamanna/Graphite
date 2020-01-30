@@ -1,7 +1,8 @@
 package ch.g_7.graphite.core.window;
 
-@FunctionalInterface
-public interface KeyListner {
+import ch.g_7.util.listner.IListner;
 
-	void onKeyPress(KeyEvent action);
+@FunctionalInterface
+public interface KeyListner extends IListner<KeyEvent>{
+
 }

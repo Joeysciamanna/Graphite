@@ -1,6 +1,8 @@
 package ch.g_7.graphite.core.window;
 
-public class MouseEvent {
+import ch.g_7.util.listner.IEvent;
+
+public class MouseEvent implements IEvent {
 
 	private int button;
 	private int action;

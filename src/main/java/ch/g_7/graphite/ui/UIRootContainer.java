@@ -39,7 +39,7 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer{
 	}
 	
 	@Override
-	public void onResize(ResizeEvent action) {
+	public void onAction(ResizeEvent action) {
 		CompletableFuture.runAsync(() -> {
 			Vector2i size = new Vector2i(action.getWidth(), action.getHeight());
 			recalculate(size, size);

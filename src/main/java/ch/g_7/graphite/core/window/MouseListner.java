@@ -1,8 +1,9 @@
 package ch.g_7.graphite.core.window;
 
-@FunctionalInterface
-public interface MouseListner {
+import ch.g_7.util.listner.IListner;
 
-	void onMouseClick(MouseEvent i);
+@FunctionalInterface
+public interface MouseListner extends IListner<MouseEvent>{
+
 
 }

@@ -1,6 +1,8 @@
 package ch.g_7.graphite.core.window;
 
-public class ResizeEvent {
+import ch.g_7.util.listner.IEvent;
+
+public class ResizeEvent implements IEvent{
 
 	private int width;
 	private int height;
