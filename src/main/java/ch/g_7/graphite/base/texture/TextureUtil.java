@@ -54,28 +54,34 @@ public class TextureUtil {
 	}
 	
 	public static Sprite loadSprite(Image image, int x, int y, int width, int height) {
-		float xMax =     (float) (x + width)  / image.getWidth();
-		float yMax = 1 - (float) (y + height) / image.getHeight();
-		float xMin =     (x == 0 ? 0 : (float) (x) / image.getWidth());
-		float yMin = 1 - (y == 0 ? 0 : (float) (y) / image.getHeight());
-
-		System.out.println("xMax: " + xMax);
-		System.out.println("yMax: " + yMax);
-		System.out.println("xMin: " + xMin);
-		System.out.println("yMin: " + yMin);
-
-
+		
+		float tlX, tlY, trX, trY, blX, blY, brX, brY;
+		
+		tlX = (float) x / image.getWidth();
+		tlY = (float) y / image.getHeight();
+		
+		trX = (float) (x + width)  / image.getWidth();
+		trY = (float) y / image.getHeight();
+		
+		blX = (float) x / image.getWidth();
+		blY = (float) (y + height) / image.getHeight();
+		
+		brX = (float) (x + width)  / image.getWidth();
+		brY = (float) (y + height) / image.getHeight();
+		
 		float[] textCoords = new float[] {
-				xMin, yMin,
-				xMax, yMin,
-				xMax, yMax,
-				xMin, yMax
-		};
+				
+				blX, blY,
+				brX, brY,
+				trX, trY,
+				tlX, tlY,
 
-		System.out.println(textCoords[6] + "," + textCoords[7] + "-------------" + textCoords[4] + ","+ textCoords[5]);
-		System.out.println("   |                   |");
-		System.out.println("   |                   |");
-		System.out.println(textCoords[0] + "," + textCoords[1] + "-------------" + textCoords[2] + ","+ textCoords[3]);
+		};
+		
+//		System.out.println(textCoords[6] + "," + textCoords[7] + "-------------" + textCoords[4] + ","+ textCoords[5]);
+//		System.out.println("   |                   |");
+//		System.out.println("   |                   |");
+//		System.out.println(textCoords[0] + "," + textCoords[1] + "-------------" + textCoords[2] + ","+ textCoords[3]);
 
   		return new Sprite(image, textCoords);
 	}

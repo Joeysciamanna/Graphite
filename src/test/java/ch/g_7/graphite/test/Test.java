@@ -40,10 +40,10 @@ public class Test extends Application {
 		appInitializer.addConsoleLoggers();
 
 
-		Path path = Paths.get("src/test/resources/textures/square1.png");
+		Path path = Paths.get("src/test/resources/textures/sprite1.png");
 		Path absolutePath = path.toAbsolutePath();
 		Image square1 = new SecureRunner<Void, Image>(() -> TextureUtil.loadImage(absolutePath.toString())).get();
-		Sprite sprite = TextureUtil.loadSprite(square1, 0, 0, 8, 8);
+		Sprite sprite = TextureUtil.loadSprite(square1, 0, 0, 4, 4);
 
 
 		ViewModel viewModel = new ViewModel();
@@ -57,6 +57,6 @@ public class Test extends Application {
 		getDimension().getRenderClass(RenderType.ENTITIES).getRenderer().setTransformator(new OrthographicTransformator());
 		
 		getWindow().setVisible(true);
-		getWindow().setSize(10, 10);
+		getWindow().setSize(500, 500);
 	}
 }
