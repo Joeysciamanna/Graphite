@@ -40,10 +40,10 @@ public class Test extends Application {
 		appInitializer.addConsoleLoggers();
 
 
-		Path path = Paths.get("src/test/resources/textures/sprite1.png");
+		Path path = Paths.get("src/test/resources/textures/square3.png");
 		Path absolutePath = path.toAbsolutePath();
 		Image square1 = new SecureRunner<Void, Image>(() -> TextureUtil.loadImage(absolutePath.toString())).get();
-		Sprite sprite = TextureUtil.loadSprite(square1, 0, 0, 4, 4);
+		Sprite sprite = TextureUtil.loadSprite(square1, 0, 0, 32, 32);
 
 
 		ViewModel viewModel = new ViewModel();
