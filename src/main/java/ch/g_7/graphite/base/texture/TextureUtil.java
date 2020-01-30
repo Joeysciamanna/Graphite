@@ -75,7 +75,8 @@ public class TextureUtil {
 				brX, brY,
 				trX, trY,
 				tlX, tlY,
-
+				
+				
 		};
 		
 //		System.out.println(textCoords[6] + "," + textCoords[7] + "-------------" + textCoords[4] + ","+ textCoords[5]);
