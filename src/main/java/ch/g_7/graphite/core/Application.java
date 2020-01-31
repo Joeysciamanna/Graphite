@@ -34,7 +34,7 @@ public abstract class Application implements Updatable, Initializable, Closeable
 		}
 
 		this.dimension = new Dimension();
-		this.window = new Window(name, 200, 200);
+		this.window = new Window(name);
 		this.camera = new Camera();
 		this.updateLoop = new UpdateLoop();
 		this.masterRenderer = new MasterRenderer();

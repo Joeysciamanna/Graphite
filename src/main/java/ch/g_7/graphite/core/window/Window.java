@@ -22,7 +22,6 @@ import static org.lwjgl.glfw.GLFW.glfwSetKeyCallback;
 import static org.lwjgl.glfw.GLFW.glfwSetMouseButtonCallback;
 import static org.lwjgl.glfw.GLFW.glfwSetWindowPos;
 import static org.lwjgl.glfw.GLFW.glfwSetWindowPosCallback;
-import static org.lwjgl.glfw.GLFW.glfwSetWindowSize;
 import static org.lwjgl.glfw.GLFW.glfwShowWindow;
 import static org.lwjgl.glfw.GLFW.glfwWindowHint;
 import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
@@ -37,6 +36,7 @@ import java.nio.DoubleBuffer;
 import org.joml.Vector2i;
 import org.joml.Vector2ic;
 import org.lwjgl.BufferUtils;
+import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
@@ -59,14 +59,12 @@ public class Window implements Initializable, ResizeListner {
 	private int x;
 	private int y;
 
-	private int width;
-	private int height;
+	private int width = 500;
+	private int height = 500;
 
 
-	public Window(String title, int width, int height) {
+	public Window(String title) {
 		this.title = title;
-		this.width = width;
-		this.height = height;
 		
 		this.keyNotifier = new Notifier<KeyEvent>();
 		this.mouseNotifier = new Notifier<MouseEvent>();
@@ -99,9 +97,9 @@ public class Window implements Initializable, ResizeListner {
 		}
 
 		glfwSetFramebufferSizeCallback(id, (window, width, height) -> {
-			if(this.height != height || this.width != width) {
-				resizeNotifier.addEvent(new ResizeEvent(window, width, height));	
-			}	
+			
+				resizeNotifier.putEvent(new ResizeEvent(window, width, height));	
+				
 		});
 
 		glfwSetWindowPosCallback(id, (window, x, y) -> setPosition(x, y));
@@ -121,7 +119,7 @@ public class Window implements Initializable, ResizeListner {
 
 		GL.createCapabilities();
 
-		setSize(500, 500);
+		setSize(width, height);
 
 		GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 		setPosition((vidmode.width() - width) / 2, (vidmode.height() - height) / 2);
@@ -131,9 +129,9 @@ public class Window implements Initializable, ResizeListner {
 
 	public void pullEvents() {
 		reposition();
-		resizeNotifier.notifyListners();
-		keyNotifier.notifyListners();
-		mouseNotifier.notifyListners();
+		resizeNotifier.reportAll();
+		keyNotifier.reportAll();
+		mouseNotifier.reportAll();
 	}
 
 	@Override
@@ -141,7 +139,7 @@ public class Window implements Initializable, ResizeListner {
 		this.width = action.getWidth();
 		this.height = action.getHeight();
 		glViewport(0, 0, width, height);
-		glfwSetWindowSize(id, width, height);
+		GLFW.glfwSetWindowSize(id, width, height);
 	}
 
 	public void setSize(int width, int height) {

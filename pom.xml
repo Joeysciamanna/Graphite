@@ -98,7 +98,7 @@
 		<dependency>
 			<groupId>ch.g_7</groupId>
 			<artifactId>Util</artifactId>
-			<version>0.3.2</version>
+			<version>0.3.3</version>
 		</dependency>
 	</dependencies>
 
