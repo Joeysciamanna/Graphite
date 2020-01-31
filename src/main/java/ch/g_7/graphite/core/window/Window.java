@@ -97,9 +97,7 @@ public class Window implements Initializable, ResizeListner {
 		}
 
 		glfwSetFramebufferSizeCallback(id, (window, width, height) -> {
-			
-				resizeNotifier.putEvent(new ResizeEvent(window, width, height));	
-				
+				resizeNotifier.putEvent(new ResizeEvent(window, width, height));
 		});
 
 		glfwSetWindowPosCallback(id, (window, x, y) -> setPosition(x, y));
