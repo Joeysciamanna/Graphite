@@ -3,6 +3,8 @@ package ch.g_7.graphite.core;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.management.RuntimeErrorException;
+
 import ch.g_7.graphite.node.Updatable;
 import ch.g_7.util.loop.Loop;
 
@@ -18,6 +20,11 @@ public class UpdateLoop extends Loop {
 	public void run(float deltaMillis) {
 		for (Updatable updatable : updatables) {
 			updatable.update(deltaMillis);
+		}
+		try {
+			Thread.sleep(1);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
 		}
 
 	}
