@@ -1,20 +1,21 @@
 package ch.g_7.graphite.util;
 
 import ch.g_7.util.helper.IOUtil;
-import ch.g_7.util.task.SecureRunner;
 
 public class Resources {
 
-	private final static Resources instance = new Resources();
-	private final static SecureRunner<String, String> FILE_READER = new SecureRunner<>((s) -> IOUtil.readInternalString(s, instance));
-	
-	
-	public static final String UI_FRAGMENT_SHADER = FILE_READER.apply("shaders/ui_fragment.sp");
-	public static final String UI_VERTEX_SHADER = FILE_READER.apply("shaders/entity_vertex.sp");
-	
-	public static final String ENTITY_FRAGMENT_SHADER = FILE_READER.apply("shaders/entity_fragment.sp");
-	public static final String ENTITY_VERTEX_SHADER = FILE_READER.apply("shaders/entity_vertex.sp");
 
-	public static final String DRAW_FRAGMENT_SHADER = FILE_READER.apply("shaders/draw_fragment.sp");
-	public static final String DRAW_VERTEX_SHADER = FILE_READER.apply("shaders/draw_vertex.sp");
+	public static final String UI_FRAGMENT_SHADER = loadShader("ui_fragment");
+	public static final String UI_VERTEX_SHADER = loadShader("entity_vertex");
+	
+	public static final String ENTITY_FRAGMENT_SHADER = loadShader("entity_fragment");
+	public static final String ENTITY_VERTEX_SHADER = loadShader("entity_vertex");
+
+	public static final String DRAW_FRAGMENT_SHADER = loadShader("draw_fragment");
+	public static final String DRAW_VERTEX_SHADER = loadShader("draw_vertex");
+	
+	
+	private static String loadShader(String name) {
+		return IOUtil.readInternalString("shaders/" + name + ".sp", new Object() {});
+	}
 }
