@@ -6,7 +6,6 @@ import java.nio.file.Paths;
 import ch.g_7.graphite.base.mesh.MeshBuilder2d;
 import ch.g_7.graphite.base.mesh.MeshFactory2d;
 import ch.g_7.graphite.base.texture.Image;
-import ch.g_7.graphite.base.texture.Sprite;
 import ch.g_7.graphite.base.texture.TextureUtil;
 import ch.g_7.graphite.base.view_model.ViewModel;
 import ch.g_7.graphite.core.Application;
@@ -19,8 +18,6 @@ import ch.g_7.util.task.SecureRunner;
 public class Test extends Application {
 
 	private static Test test;
-
-	private Entity entity1;
 	
 	public Test() {
 		super("Test");
@@ -33,6 +30,8 @@ public class Test extends Application {
 	
 	@Override
 	public void init() {
+		
+		SecureRunner<String, Image> imageLoader = new SecureRunner<>((s)->TextureUtil.loadImage(s));
 
 		AppInitializer appInitializer = new AppInitializer("", new Object() {});
 		appInitializer.setDebugMode(true);
@@ -40,19 +39,34 @@ public class Test extends Application {
 		appInitializer.addConsoleLoggers();
 
 
-		Path path = Paths.get("src/test/resources/textures/square3.png");
-		Path absolutePath = path.toAbsolutePath();
-		Image square1 = new SecureRunner<Void, Image>(() -> TextureUtil.loadImage(absolutePath.toString())).get();
-		Sprite sprite = TextureUtil.loadSprite(square1, 0, 0, 4, 4);
+		Path path1 = Paths.get("src/test/resources/textures/square1.png");
+		Path absolutePath1 = path1.toAbsolutePath();
+		Image square1 = imageLoader.apply(absolutePath1.toString());
+		
+		Path path2 = Paths.get("src/test/resources/textures/square2.png");
+		Path absolutePath2 = path2.toAbsolutePath();
+		Image square2 = imageLoader.apply(absolutePath2.toString());
+		
+		//Sprite sprite = TextureUtil.loadSprite(square1, 0, 0, 4, 4);
 
 
-		ViewModel viewModel = new ViewModel();
-		viewModel.setMesh(MeshFactory2d.getSquare(1).setCenter(MeshBuilder2d.CENTER_MIDDLE).build());
-		viewModel.setTexture(sprite);
+		ViewModel viewModel1 = new ViewModel();
+		viewModel1.setMesh(MeshFactory2d.getSquare(1).setCenter(MeshBuilder2d.CENTER_MIDDLE).build());
+		viewModel1.setTexture(square1);
 
-		entity1 = new Entity();
-		entity1.setViewModel(viewModel);
+		ViewModel viewModel2 = viewModel1.clone();
+		viewModel2.setTexture(square2);
+		
+		Entity entity1 = new Entity();
+		entity1.setViewModel(viewModel1);
+		entity1.getTransformation().getPosition().x+=1;
+		
+		Entity entity2 = new Entity();
+		entity2.setViewModel(viewModel2);
+		entity2.getTransformation().getPosition().x-=1;
+		
 		getDimension().addObj(entity1, RenderType.ENTITIES);
+		getDimension().addObj(entity2, RenderType.ENTITIES);
 
 		getDimension().getRenderClass(RenderType.ENTITIES).getRenderer().setTransformator(new OrthographicTransformator());
 		

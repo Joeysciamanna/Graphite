@@ -32,14 +32,18 @@ public class GUI extends Application {
 	
 	@Override
 	public void init() {
+		
+		SecureRunner<String, Image> imageLoader = new SecureRunner<>((s)->TextureUtil.loadImage(s));
+		
+		
 		AppInitializer appInitializer = new AppInitializer("", new Object() {});
 		appInitializer.setDebugMode(true);
 		appInitializer.initLogger();
 		appInitializer.addConsoleLoggers();
 
-		Image square1 = new SecureRunner<Void, Image>(() -> TextureUtil.loadImage(
-				"C:\\Users\\Joey Sciamanna\\git\\Graphite\\src\\test\\resources\\textures\\square1.png")).get();
-
+		Image square1 = imageLoader.apply("C:\\Users\\Joey Sciamanna\\git\\Graphite\\src\\test\\resources\\textures\\square1.png");
+		Image square2 = imageLoader.apply("C:\\Users\\Joey Sciamanna\\git\\Graphite\\src\\test\\resources\\textures\\square2.png");
+		
 		mainMenu = new UIRootContainer(getWindow());
 		getDimension().addObj(mainMenu, RenderType.UI);
 		
@@ -60,7 +64,7 @@ public class GUI extends Application {
 		
 		UIButton wikiButton = new UIButton();
 		wikiButton.getPreferedWidth().reset().add(wikiButton.getMaxHeight());
-		wikiButton.setColor(Color.getColor(100, 100, 100));
+		wikiButton.setTexture(square2);
 		optionPanel.add(wikiButton);
 		
 		CenterLayoutPanel buttonPanel = new CenterLayoutPanel();

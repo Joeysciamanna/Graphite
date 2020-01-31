@@ -6,8 +6,6 @@ import static org.lwjgl.opengl.GL11.glDeleteTextures;
 import static org.lwjgl.opengl.GL13.GL_TEXTURE0;
 import static org.lwjgl.opengl.GL13.glActiveTexture;
 
-import org.lwjgl.opengl.GL11;
-
 import ch.g_7.util.resource.Resource;
 
 public class Image extends Resource implements ITexture {
@@ -49,6 +47,7 @@ public class Image extends Resource implements ITexture {
 		glBindTexture(GL_TEXTURE_2D, id);
 	}
 
+	
 	@Override
 	public void unbind() {}
 	

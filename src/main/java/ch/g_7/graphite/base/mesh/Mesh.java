@@ -34,9 +34,6 @@ public class Mesh extends Resource implements IMesh {
 		if (textureCoordinates != null) {
 			vao.add(VBOFactory.getTextureCoordinatesVBO(textureCoordinates));
 		}
-		this.positions = null;
-		this.indices = null;
-		this.textureCoordinates = null;
 	}
 
 	@Override
@@ -44,6 +41,11 @@ public class Mesh extends Resource implements IMesh {
 		vao.unbind(this);
 	}
 
+	@Override
+	public Mesh clone() {
+		return new Mesh(positions, indices, textureCoordinates);
+	}
+	
 	public void setPositions(float[] positions, int[] indices) {
 		vao.replace(VBOFactory.getPositionVBO(positions, indices));
 	}

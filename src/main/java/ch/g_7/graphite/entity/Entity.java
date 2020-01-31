@@ -10,8 +10,8 @@ public class Entity extends Resource implements IEntity {
 	private Transformation transformation;
 	
 	public Entity() {
-		this.viewModel = new ViewModel();
-		this.transformation = new Transformation();
+		setViewModel(new ViewModel());
+		setTransformation(new Transformation());
 	}
 	
 	@Override
@@ -25,7 +25,9 @@ public class Entity extends Resource implements IEntity {
 	}
 	
 	public void setViewModel(ViewModel viewModel) {
+		unbindForm(this.viewModel);
 		this.viewModel = viewModel;
+		bindTo(viewModel);
 	}
 	
 	public void setTransformation(Transformation transformation) {

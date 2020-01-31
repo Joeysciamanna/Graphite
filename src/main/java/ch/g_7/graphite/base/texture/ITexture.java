@@ -15,4 +15,5 @@ public interface ITexture extends IResource {
 	int getHeight();
 
 	boolean isSprite();
+	
 }

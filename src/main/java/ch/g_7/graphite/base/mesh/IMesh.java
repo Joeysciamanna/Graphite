@@ -18,4 +18,6 @@ public interface IMesh extends IResource {
 	void close();
 
 	void setTextureCoordinates(float[] textureCoordinates);
+
+	IMesh clone();
 }
