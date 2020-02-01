@@ -29,7 +29,7 @@ public class MouseManager implements MouseListner {
 
 			event.setFromLocalSource(true);
 			for (IUIButton button : buttons) {
-				if (button.contains(event.getX(), event.getY())) {
+				if (button.isVisible() && button.getRootContainer().isVisible() && button.contains(event.getX(), event.getY())) {
 					event.setButtonPanel(button);
 					if (e.getAction() == GLFW.GLFW_PRESS) {
 
@@ -45,7 +45,7 @@ public class MouseManager implements MouseListner {
 			event.setFromLocalSource(false);
 			if (e.getAction() == GLFW.GLFW_RELEASE) {
 				for (IUIButton button : clickeds) {
-					if (!inRange.contains(button)) {
+					if (button.isVisible() && button.getRootContainer().isVisible() && !inRange.contains(button)) {
 						event.setButtonPanel(button);
 						button.onRelease(event);
 					}
