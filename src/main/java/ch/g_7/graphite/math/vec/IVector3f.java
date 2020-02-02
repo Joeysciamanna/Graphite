@@ -1,32 +1,59 @@
 package ch.g_7.graphite.math.vec;
 
-import org.joml.Vector3f;
-
 public interface IVector3f {
 
 	IVector3f add(IVector3f vec);
 	
 	IVector3f add(float x, float y, float z);
 	
+	IVector3f add(IVector3f vec, Vector3f des);
+	
+	IVector3f add(float x, float y, float z, Vector3f des);
+	
+	
 	IVector3f sub(IVector3f vec);
 	
 	IVector3f sub(float x, float y, float z);
+
+	IVector3f sub(IVector3f vec, Vector3f des);
+	
+	IVector3f sub(float x, float y, float z, Vector3f des);
+	
 	
 	IVector3f mul(IVector3f vec);
 	
 	IVector3f mul(float x, float y, float z);
+
+	IVector3f mul(IVector3f vec, Vector3f des);
+	
+	IVector3f mul(float x, float y, float z, Vector3f des);
+	
 	
 	IVector3f div(IVector3f vec);
 	
 	IVector3f div(float x, float y, float z);
+
+	IVector3f div(IVector3f vec, Vector3f des);
+	
+	IVector3f div(float x, float y, float z, Vector3f des);
+	
 	
 	IVector3f max(IVector3f vec);
 	
 	IVector3f max(float x, float y, float z);
 
+	IVector3f max(IVector3f vec, Vector3f des);
+	
+	IVector3f max(float x, float y, float z, Vector3f des);
+
+	
 	IVector3f min(IVector3f vec);
 	
 	IVector3f min(float x, float y, float z);
+
+	IVector3f min(IVector3f vec, Vector3f des);
+	
+	IVector3f min(float x, float y, float z, Vector3f des);
 	
 	
 	float dot(IVector3f vec);
@@ -48,11 +75,11 @@ public interface IVector3f {
 	float distanceZ(float z);
 	
 	
-	IVector3i transform3i();
+	Vector3i transform3i();
 	
-	IVector2f transform2f();
+	Vector2f transform2f();
 	
-	IVector2i transform2i();
+	Vector2i transform2i();
 	
 	
 	float getX();

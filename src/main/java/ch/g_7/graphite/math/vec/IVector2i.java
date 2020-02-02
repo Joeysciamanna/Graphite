@@ -6,25 +6,54 @@ public interface IVector2i {
 	
 	IVector2i add(int x, int y);
 	
+	IVector2i add(IVector2i vec, Vector2i des);
+	
+	IVector2i add(int x, int y, Vector2i des);
+	
+	
 	IVector2i sub(IVector2i vec);
 	
 	IVector2i sub(int x, int y);
+	
+	IVector2i sub(IVector2i vec, Vector2i des);
+	
+	IVector2i sub(int x, int y, Vector2i des);
+	
 	
 	IVector2i mul(IVector2i vec);
 	
 	IVector2i mul(int x, int y);
 	
+	IVector2i mul(IVector2i vec, Vector2i des);
+	
+	IVector2i mul(int x, int y, Vector2i des);
+	
+	
 	IVector2i div(IVector2i vec);
 	
 	IVector2i div(int x, int y);
 	
+	IVector2i div(IVector2i vec, Vector2i des);
+	
+	IVector2i div(int x, int y, Vector2i des);
+	
+	
 	IVector2i max(IVector2i vec);
 	
 	IVector2i max(int x, int y);
+	
+	IVector2i max(IVector2i vec, Vector2i des);
+	
+	IVector2i max(int x, int y, Vector2i des);
+	
 
 	IVector2i min(IVector2i vec);
 	
 	IVector2i min(int x, int y);
+	
+	IVector2i min(IVector2i vec, Vector2i des);
+	
+	IVector2i min(int x, int y, Vector2i des);
 	
 	
 	float dot(IVector2i vec);
