@@ -32,7 +32,7 @@ public class Vector3i implements IVector3i {
         des.x = this.x + x;
         des.y = this.y + y;
         des.z = this.z + z;
-        return this;
+        return des;
     }
 
     @Override
@@ -55,7 +55,7 @@ public class Vector3i implements IVector3i {
         des.x = this.x - x;
         des.y = this.y - y;
         des.z = this.z - z;
-        return this;
+        return des;
     }
 
     @Override
@@ -78,7 +78,7 @@ public class Vector3i implements IVector3i {
         des.x = this.x * x;
         des.y = this.y * y;
         des.z = this.z * z;
-        return this;
+        return des;
     }
 
     @Override
@@ -101,7 +101,7 @@ public class Vector3i implements IVector3i {
         des.x = this.x / x;
         des.y = this.y / y;
         des.z = this.z / z;
-        return this;
+        return des;
     }
 
     @Override
@@ -124,7 +124,7 @@ public class Vector3i implements IVector3i {
         des.x = x > this.x ? x : this.x;
         des.y = y > this.y ? y : this.y;
         des.z = z > this.z ? z : this.z;
-        return this;
+        return des;
     }
 
     @Override
@@ -147,7 +147,7 @@ public class Vector3i implements IVector3i {
         des.x = x < this.x ? x : this.x;
         des.y = y < this.y ? y : this.y;
         des.z = z < this.z ? z : this.z;
-        return this;
+        return des;
     }
 
     @Override
@@ -199,8 +199,8 @@ public class Vector3i implements IVector3i {
     }
 
     @Override
-    public Vector3i transform3i() {
-        return null;
+    public Vector3f transform3f() {
+        return new Vector3f(x, y, z);
     }
 
     @Override

@@ -75,7 +75,7 @@ public interface IVector3i {
     int distanceZ(int z);
 
 
-    Vector3i transform3i();
+    Vector3f transform3f();
 
     Vector2f transform2f();
 

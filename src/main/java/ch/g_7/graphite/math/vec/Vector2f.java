@@ -32,7 +32,7 @@ public class Vector2f implements IVector2f {
 	public Vector2f add(float x, float y, Vector2f des) {
 		des.x = this.x + x;
 		des.y = this.y + y;
-		return this;
+		return des;
 	}
 
 	
@@ -55,7 +55,7 @@ public class Vector2f implements IVector2f {
 	public Vector2f sub(float x, float y, Vector2f des) {
 		des.x = this.x - x;
 		des.y = this.y - y;
-		return this;
+		return des;
 	}
 
 	
@@ -78,7 +78,7 @@ public class Vector2f implements IVector2f {
 	public Vector2f mul(float x, float y, Vector2f des) {
 		des.x = this.x * x;
 		des.y = this.y * y;
-		return this;
+		return des;
 	}
 	
 
@@ -101,7 +101,7 @@ public class Vector2f implements IVector2f {
 	public Vector2f div(float x, float y, Vector2f des) {
 		des.x = this.x / x;
 		des.y = this.y / y;
-		return this;
+		return des;
 	}
 
 	@Override
@@ -123,7 +123,7 @@ public class Vector2f implements IVector2f {
 	public Vector2f max(float x, float y, Vector2f des) {
 		des.x = x > this.x ? x : this.x;
 		des.y = y > this.y ? y : this.y;
-		return this;
+		return des;
 	}
 
 
@@ -146,7 +146,7 @@ public class Vector2f implements IVector2f {
 	public Vector2f min(float x, float y, Vector2f des) {
 		des.x = x < this.x ? x : this.x;
 		des.y = y < this.y ? y : this.y;
-		return this;
+		return des;
 	}
 
 	

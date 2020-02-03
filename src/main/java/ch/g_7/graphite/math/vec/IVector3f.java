@@ -58,6 +58,11 @@ public interface IVector3f {
 	IVector3f min(float x, float y, float z, Vector3f des);
 	
 	
+	default void test() {
+		org.joml.Vector3f vector3f;
+		vector3f.rotateZ(angle, dest)
+	}
+	
 	float dot(IVector3f vec);
 	
 	float dot(float x, float y, float z);
@@ -107,6 +112,13 @@ public interface IVector3f {
 	
 	String toString();
 
+	
+	default void test() {
+		org.joml.Vector3f vector3f;
+		org.joml.Vector2f vector2f;
+		vector3f.rotateAxis(angle, x, y, z)
+		//		vector3f.rotateX(angle)
+	}
 	
 	/*
 	 * rotate

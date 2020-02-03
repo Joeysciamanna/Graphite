@@ -32,7 +32,7 @@ public class Vector2i implements IVector2i {
 	public Vector2i add(int x, int y, Vector2i des) {
 		des.x = this.x + x;
 		des.y = this.y + y;
-		return this;
+		return des;
 	}
 
 	
@@ -55,7 +55,7 @@ public class Vector2i implements IVector2i {
 	public Vector2i sub(int x, int y, Vector2i des) {
 		des.x = this.x - x;
 		des.y = this.y - y;
-		return this;
+		return des;
 	}
 
 	
@@ -78,7 +78,7 @@ public class Vector2i implements IVector2i {
 	public Vector2i mul(int x, int y, Vector2i des) {
 		des.x = this.x * x;
 		des.y = this.y * y;
-		return this;
+		return des;
 	}
 	
 
@@ -101,7 +101,7 @@ public class Vector2i implements IVector2i {
 	public Vector2i div(int x, int y, Vector2i des) {
 		des.x = this.x / x;
 		des.y = this.y / y;
-		return this;
+		return des;
 	}
 
 	@Override
@@ -123,7 +123,7 @@ public class Vector2i implements IVector2i {
 	public Vector2i max(int x, int y, Vector2i des) {
 		des.x = x > this.x ? x : this.x;
 		des.y = y > this.y ? y : this.y;
-		return this;
+		return des;
 	}
 
 
@@ -146,10 +146,10 @@ public class Vector2i implements IVector2i {
 	public Vector2i min(int x, int y, Vector2i des) {
 		des.x = x < this.x ? x : this.x;
 		des.y = y < this.y ? y : this.y;
-		return this;
+		return des;
 	}
 
-	
+
 	@Override
 	public float dot(IVector2i vec) {
 		return dot(vec.getX(), vec.getY());
