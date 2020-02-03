@@ -1,6 +1,18 @@
 package ch.g_7.graphite.math.vec;
 
+import org.joml.Vector3i;
+
 public class Vector3f implements IVector3f {
+
+	protected float x, y, z;
+
+	public Vector3f() {}
+
+	public Vector3f(float x, float y, float z) {
+		this.x = x;
+		this.y = y;
+		this.z = z;
+	}
 
 	@Override
 	public Vector3f add(IVector3f vec) {
@@ -19,8 +31,10 @@ public class Vector3f implements IVector3f {
 
 	@Override
 	public Vector3f add(float x, float y, float z, Vector3f des) {
-		// TODO Auto-generated method stub
-		return null;
+		des.x = this.x + x;
+		des.y = this.y + y;
+		des.z = this.z + z;
+		return this;
 	}
 
 	@Override
@@ -40,8 +54,10 @@ public class Vector3f implements IVector3f {
 
 	@Override
 	public Vector3f sub(float x, float y, float z, Vector3f des) {
-		// TODO Auto-generated method stub
-		return null;
+		des.x = this.x - x;
+		des.y = this.y - y;
+		des.z = this.z - z;
+		return this;
 	}
 
 	@Override
@@ -61,8 +77,10 @@ public class Vector3f implements IVector3f {
 
 	@Override
 	public Vector3f mul(float x, float y, float z, Vector3f des) {
-		// TODO Auto-generated method stub
-		return null;
+		des.x = this.x * x;
+		des.y = this.y * y;
+		des.z = this.z * z;
+		return this;
 	}
 
 	@Override
@@ -82,8 +100,10 @@ public class Vector3f implements IVector3f {
 
 	@Override
 	public Vector3f div(float x, float y, float z, Vector3f des) {
-		// TODO Auto-generated method stub
-		return null;
+		des.x = this.x / x;
+		des.y = this.y / y;
+		des.z = this.z / z;
+		return this;
 	}
 
 	@Override
@@ -103,8 +123,10 @@ public class Vector3f implements IVector3f {
 
 	@Override
 	public Vector3f max(float x, float y, float z, Vector3f des) {
-		// TODO Auto-generated method stub
-		return null;
+		des.x = x > this.x ? x : this.x;
+		des.y = y > this.y ? y : this.y;
+		des.z = z > this.z ? z : this.z;
+		return this;
 	}
 
 	@Override
@@ -124,134 +146,124 @@ public class Vector3f implements IVector3f {
 
 	@Override
 	public Vector3f min(float x, float y, float z, Vector3f des) {
-		// TODO Auto-generated method stub
-		return null;
+		des.x = x < this.x ? x : this.x;
+		des.y = y < this.y ? y : this.y;
+		des.z = z < this.z ? z : this.z;
+		return this;
 	}
 
 	@Override
 	public float dot(IVector3f vec) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dot(vec.getX(), vec.getY(), vec.getZ());
 	}
 
 	@Override
 	public float dot(float x, float y, float z) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.x * x + this.y + y + this.z * z;
 	}
 
 	@Override
 	public float angle(IVector3f vec) {
-		// TODO Auto-generated method stub
-		return 0;
+		return angle(vec.getX(), vec.getY(), vec.getZ());
 	}
 
 	@Override
 	public float angle(float x, float y, float z) {
-		// TODO Auto-generated method stub
-		return 0;
+		float ab = this.x * x + this.y * y + this.z * z;
+		float a = (float) Math.sqrt(this.x * this.x + (this.y * this.y) + (this.z * this.z));
+		float b = (float) Math.sqrt(x * x + y * y + z * z);
+		return (float) Math.acos(ab / a * b);
 	}
 
 	@Override
 	public float distance(IVector3f vec) {
-		// TODO Auto-generated method stub
-		return 0;
+		return distance(vec.getX(), vec.getY(), vec.getZ());
 	}
 
 	@Override
 	public float distance(float x, float y, float z) {
-		// TODO Auto-generated method stub
-		return 0;
+		return (float) Math.sqrt((x-this.x)*(x-this.x) +  (y-this.y)*(y-this.y) + (z-this.z)*(z-this.z));
 	}
 
 	@Override
 	public float distanceX(float x) {
-		// TODO Auto-generated method stub
-		return 0;
+		return x - this.x;
 	}
 
 	@Override
 	public float distanceY(float y) {
-		// TODO Auto-generated method stub
-		return 0;
+		return y - this.y;
 	}
 
 	@Override
 	public float distanceZ(float z) {
-		// TODO Auto-generated method stub
-		return 0;
+		return z - this.z;
 	}
 
 	@Override
 	public Vector3i transform3i() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Vector2f transform2f() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Vector2f(x, y);
 	}
 
 	@Override
 	public Vector2i transform2i() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Vector2i((int)x, (int)y);
 	}
 
 	@Override
 	public float getX() {
-		// TODO Auto-generated method stub
-		return 0;
+		return x;
 	}
 
 	@Override
 	public float getY() {
-		// TODO Auto-generated method stub
-		return 0;
+		return y;
 	}
 
 	@Override
 	public float getZ() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public Vector3f setX(float x) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Vector3f setY(float y) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Vector3f setZ(float z) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Vector3f set(float x, float y, float z) {
-		// TODO Auto-generated method stub
-		return null;
+		return z;
 	}
 
 	@Override
 	public Vector3f set(IVector3f vec) {
-		// TODO Auto-generated method stub
-		return null;
+		return set(vec.getX(), vec.getY(), vec.getZ());
+	}
+
+	@Override
+	public Vector3f set(float x, float y, float z) {
+		this.x = x;
+		this.y = y;
+		this.z = z;
+		return this;
+	}
+
+	@Override
+	public Vector3f setX(float x) {
+		this.x = x;
+		return this;
+	}
+
+	@Override
+	public Vector3f setY(float y) {
+		this.y = y;
+		return this;
+	}
+
+	@Override
+	public Vector3f setZ(float z) {
+		this.z = z;
+		return this;
 	}
 
 	@Override
 	public Vector3f clone() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Vector3f(x, y, z);
 	}
 
 }

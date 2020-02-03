@@ -83,14 +83,14 @@ public interface IVector2i {
 	int getX();
 	
 	int getY();
-	
+
+	IVector2i set(IVector2i vec);
+
+	IVector2i set(int x, int y);
+
 	IVector2i setX(int x);
 	
 	IVector2i setY(int y);
-	
-	IVector2i set(int x, int y);
-	
-	IVector2i set(IVector2i vec);
 	
 	
 	IVector2i clone();

@@ -191,18 +191,18 @@ public class Vector2i implements IVector2i {
 	}
 
 	@Override
-	public Vector3i transform3i(int z) {
-		return null;
-	}
-
-	@Override
-	public Vector2f transform2f() {
+	public IVector2f transform2f() {
 		return new Vector2f(x, y);
 	}
 
 	@Override
-	public Vector3f transform3f(float z) {
-		return null;
+	public IVector3f transform3f(float z) {
+		return new Vector3f(x, y, z);
+	}
+
+	@Override
+	public IVector3i transform3i(int z) {
+		return new Vector3i(x, y, z);
 	}
 
 	@Override
@@ -213,6 +213,18 @@ public class Vector2i implements IVector2i {
 	@Override
 	public int getY() {
 		return y;
+	}
+
+	@Override
+	public Vector2i set(IVector2i vec) {
+		return set(vec.getX(), vec.getY());
+	}
+
+	@Override
+	public Vector2i set(int x, int y) {
+		this.x = x;
+		this.y = y;
+		return this;
 	}
 
 	@Override
@@ -228,21 +240,9 @@ public class Vector2i implements IVector2i {
 	}
 
 	@Override
-	public Vector2i set(int x, int y) {
-		this.x = x;
-		this.y = y;
-		return this;
-	}
-
-	@Override
-	public Vector2i set(IVector2i vec) {
-		return set(vec.getX(), vec.getY());
-	}
-
-	@Override
 	public Vector2i clone() {
 		return new Vector2i(x, y);
 	}
 
-	
+
 }

@@ -192,13 +192,12 @@ public class Vector2f implements IVector2f {
 
 	@Override
 	public Vector3f transform3f(float z) {
-		return null;
+		return new Vector3f(x, y, z);
 	}
 
 	@Override
 	public Vector3i transform3i(int z) {
-		// TODO Auto-generated method stub
-		return null;
+		return new Vector3i((int) x, (int) y, z);
 	}
 
 	@Override

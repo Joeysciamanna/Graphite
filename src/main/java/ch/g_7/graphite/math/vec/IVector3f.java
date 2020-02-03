@@ -1,5 +1,7 @@
 package ch.g_7.graphite.math.vec;
 
+import org.joml.Vector3i;
+
 public interface IVector3f {
 
 	IVector3f add(IVector3f vec);
@@ -87,16 +89,16 @@ public interface IVector3f {
 	float getY();
 	
 	float getZ();
-	
+
+	IVector3f set(IVector3f vec);
+
+	IVector3f set(float x, float y, float z);
+
 	IVector3f setX(float x);
 	
 	IVector3f setY(float y);
 	
 	IVector3f setZ(float z);
-	
-	IVector3f set(float x, float y, float z);
-	
-	IVector3f set(IVector3f vec);
 	
 	
 	IVector3f clone();
@@ -104,8 +106,7 @@ public interface IVector3f {
 	boolean equals(Object obj);
 	
 	String toString();
-	
-	
+
 	
 	/*
 	 * rotate
