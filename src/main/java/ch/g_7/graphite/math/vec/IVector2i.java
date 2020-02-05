@@ -56,8 +56,6 @@ public interface IVector2i {
 	IVector2i min(int x, int y, Vector2i des);
 	
 	
-	IVector2i rotate(IVector2i vec, )
-	
 	float dot(IVector2i vec);
 	
 	float dot(int x, int y);
