@@ -120,6 +120,7 @@ public interface IVector3f {
 	}
 	
 	/*
+	 * TODO
 	 * normalize
 	 * rotate
 	 * cross?
