@@ -1,4 +1,7 @@
-package ch.g_7.graphite.math.vec;
+package ch.g_7.graphite.math.vec3;
+
+import ch.g_7.graphite.math.vec2.Vector2f;
+import ch.g_7.graphite.math.vec2.Vector2i;
 
 public interface IVector3i {
 
