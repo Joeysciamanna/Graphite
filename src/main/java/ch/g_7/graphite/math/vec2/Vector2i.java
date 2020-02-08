@@ -1,5 +1,7 @@
 package ch.g_7.graphite.math.vec2;
 
+import java.util.Objects;
+
 import ch.g_7.graphite.math.vec3.Vector3f;
 import ch.g_7.graphite.math.vec3.Vector3i;
 
@@ -257,6 +259,26 @@ public class Vector2i implements IVector2i {
 	public Vector2i clone() {
 		return new Vector2i(x, y);
 	}
+	
+	@Override
+	public String toString() {
+		return "Vec2f["+x+", "+y+"]";
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof IROVector2f) {
+			IROVector2f vec = (IROVector2f) obj;
+			return vec.getX() == x && vec.getY() == y;
+		}
+		return false;
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(x, y);
+	}
+
 
 
 }

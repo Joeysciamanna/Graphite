@@ -114,11 +114,13 @@ public interface IVector3f {
 	default void test() {
 		org.joml.Vector3f vector3f;
 		org.joml.Vector2f vector2f;
+//		vector3f
 		//      vector3f.rotateAxis(angle, x, y, z)
 		//		vector3f.rotateX(angle)
 	}
 	
 	/*
+	 * normalize
 	 * rotate
 	 * cross?
 	 * reset
