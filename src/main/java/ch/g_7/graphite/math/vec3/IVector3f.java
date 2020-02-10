@@ -58,10 +58,13 @@ public interface IVector3f extends IROVector3f {
 	
 	/*
 	 * TODO
-	 * normalize
-	 * rotate
-	 * cross?
-	 * reset
+	 * normalize (xyz^2 = 1)
+	 * rotate (Quaternion n stuff
+	 * cross (dot similar thing)
+	 * lenght (|v|)
+	 * scale (multiply / divide by one value)
+	 * 
+	 * 
 	 */
 
 }
