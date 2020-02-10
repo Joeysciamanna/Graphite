@@ -16,145 +16,157 @@ public class Vector3i implements IVector3i {
     }
 
     @Override
-    public Vector3i add(IVector3i vec) {
-        return add(vec.getX(), vec.getY(), vec.getZ(), this);
+    public Vector3i add(IROVector3i vec) {
+        add(vec.getX(), vec.getY(), vec.getZ(), this);
+        return this;
     }
 
     @Override
     public Vector3i add(int x, int y, int z) {
-        return add(x, y, z, this);
+        add(x, y, z, this);
+        return this;
     }
 
     @Override
-    public Vector3i add(IVector3i vec, Vector3i des) {
+    public IVector3i add(IROVector3i vec, IVector3i des) {
         return add(vec.getX(), vec.getY(), vec.getZ(), des);
     }
 
     @Override
-    public Vector3i add(int x, int y, int z, Vector3i des) {
-        des.x = this.x + x;
-        des.y = this.y + y;
-        des.z = this.z + z;
+    public IVector3i add(int x, int y, int z, IVector3i des) {
+        des.setX(this.x + x);
+        des.setY(this.y + y);
+        des.setZ(this.z + z);
         return des;
     }
 
     @Override
-    public Vector3i sub(IVector3i vec) {
-        return sub(vec.getX(), vec.getY(), vec.getZ(), this);
+    public Vector3i sub(IROVector3i vec) {
+        sub(vec.getX(), vec.getY(), vec.getZ(), this);
+        return this;
     }
 
     @Override
     public Vector3i sub(int x, int y, int z) {
-        return sub(x, y, z, this);
+        sub(x, y, z, this);
+        return this;
     }
 
     @Override
-    public Vector3i sub(IVector3i vec, Vector3i des) {
+    public IVector3i sub(IROVector3i vec, IVector3i des) {
         return sub(vec.getX(), vec.getY(), vec.getZ(), des);
     }
 
     @Override
-    public Vector3i sub(int x, int y, int z, Vector3i des) {
-        des.x = this.x - x;
-        des.y = this.y - y;
-        des.z = this.z - z;
+    public IVector3i sub(int x, int y, int z, IVector3i des) {
+        des.setX(this.x - x);
+        des.setY(this.y - y);
+        des.setZ(this.z - z);
         return des;
     }
 
     @Override
-    public Vector3i mul(IVector3i vec) {
-        return mul(vec.getX(), vec.getY(), vec.getZ(), this);
+    public Vector3i mul(IROVector3i vec) {
+        mul(vec.getX(), vec.getY(), vec.getZ(), this);
+        return this;
     }
 
     @Override
     public Vector3i mul(int x, int y, int z) {
-        return mul(x, y, z, this);
+        mul(x, y, z, this);
+        return this;
     }
 
     @Override
-    public Vector3i mul(IVector3i vec, Vector3i des) {
+    public IVector3i mul(IROVector3i vec, IVector3i des) {
         return mul(vec.getX(), vec.getY(), vec.getZ(), des);
     }
 
     @Override
-    public Vector3i mul(int x, int y, int z, Vector3i des) {
-        des.x = this.x * x;
-        des.y = this.y * y;
-        des.z = this.z * z;
+    public IVector3i mul(int x, int y, int z, IVector3i des) {
+        des.setX(this.x * x);
+        des.setY(this.y * y);
+        des.setZ(this.z * z);
         return des;
     }
 
     @Override
-    public Vector3i div(IVector3i vec) {
-        return div(vec.getX(), vec.getY(), vec.getZ(), this);
+    public Vector3i div(IROVector3i vec) {
+        div(vec.getX(), vec.getY(), vec.getZ(), this);
+        return this;
     }
 
     @Override
     public Vector3i div(int x, int y, int z) {
-        return div(x, y, z, this);
+        div(x, y, z, this);
+        return this;
     }
 
     @Override
-    public Vector3i div(IVector3i vec, Vector3i des) {
+    public IVector3i div(IROVector3i vec, IVector3i des) {
         return div(vec.getX(), vec.getY(), vec.getZ(), des);
     }
 
     @Override
-    public Vector3i div(int x, int y, int z, Vector3i des) {
-        des.x = this.x / x;
-        des.y = this.y / y;
-        des.z = this.z / z;
+    public IVector3i div(int x, int y, int z, IVector3i des) {
+        des.setX(this.x / x);
+        des.setY(this.y / y);
+        des.setZ(this.z / z);
         return des;
     }
 
     @Override
-    public Vector3i max(IVector3i vec) {
-        return max(vec.getX(), vec.getY(), vec.getZ(), this);
+    public Vector3i max(IROVector3i vec) {
+        max(vec.getX(), vec.getY(), vec.getZ(), this);
+        return this;
     }
 
     @Override
     public Vector3i max(int x, int y, int z) {
-        return max(x, y, z, this);
+        max(x, y, z, this);
+        return this;
     }
 
     @Override
-    public Vector3i max(IVector3i vec, Vector3i des) {
+    public IVector3i max(IROVector3i vec, IVector3i des) {
         return max(vec.getX(), vec.getY(), vec.getZ(), des);
     }
 
     @Override
-    public Vector3i max(int x, int y, int z, Vector3i des) {
-        des.x = x > this.x ? x : this.x;
-        des.y = y > this.y ? y : this.y;
-        des.z = z > this.z ? z : this.z;
+    public IVector3i max(int x, int y, int z, IVector3i des) {
+        des.setX(x > this.x ? x : this.x);
+        des.setY(y > this.y ? y : this.y);
+        des.setZ(z > this.z ? z : this.z);
         return des;
     }
 
     @Override
-    public Vector3i min(IVector3i vec) {
-        return min(vec.getX(), vec.getY(), vec.getZ(), this);
+    public Vector3i min(IROVector3i vec) {
+        min(vec.getX(), vec.getY(), vec.getZ(), this);
+        return this;
     }
 
     @Override
     public Vector3i min(int x, int y, int z) {
-        return min(x, y, z, this);
+        min(x, y, z, this);
+        return this;
     }
 
     @Override
-    public Vector3i min(IVector3i vec, Vector3i des) {
+    public IVector3i min(IROVector3i vec, IVector3i des) {
         return min(vec.getX(), vec.getY(), vec.getZ(), des);
     }
 
     @Override
-    public Vector3i min(int x, int y, int z, Vector3i des) {
-        des.x = x < this.x ? x : this.x;
-        des.y = y < this.y ? y : this.y;
-        des.z = z < this.z ? z : this.z;
+    public IVector3i min(int x, int y, int z, IVector3i des) {
+        des.setX(x < this.x ? x : this.x);
+        des.setY(y < this.y ? y : this.y);
+        des.setZ(z < this.z ? z : this.z);
         return des;
     }
 
     @Override
-    public float dot(IVector3i vec) {
+    public float dot(IROVector3i vec) {
         return dot(vec.getX(), vec.getY(), vec.getZ());
     }
 
@@ -164,7 +176,7 @@ public class Vector3i implements IVector3i {
     }
 
     @Override
-    public float angle(IVector3i vec) {
+    public float angle(IROVector3i vec) {
         return angle(vec.getX(), vec.getY(), vec.getZ());
     }
 
@@ -177,7 +189,7 @@ public class Vector3i implements IVector3i {
     }
 
     @Override
-    public float distance(IVector3i vec) {
+    public float distance(IROVector3i vec) {
         return distance(vec.getX(), vec.getY(), vec.getZ());
     }
 
@@ -232,7 +244,7 @@ public class Vector3i implements IVector3i {
     }
 
     @Override
-    public Vector3i set(IVector3i vec) {
+    public Vector3i set(IROVector3i vec) {
         return set(vec.getX(), vec.getY(), vec.getZ());
     }
 
