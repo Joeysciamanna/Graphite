@@ -2,37 +2,52 @@ package ch.g_7.graphite.math.vec3;
 
 public interface IVector3f extends IROVector3f {
 	
+	IVector3f add(float i);
 
 	IVector3f add(IROVector3f vec);
 	
 	IVector3f add(float x, float y, float z);
 	
 	
+	IVector3f sub(float i);
+	
 	IVector3f sub(IROVector3f vec);
 	
 	IVector3f sub(float x, float y, float z);
 	
+	
+	IVector3f mul(float i);
 	
 	IVector3f mul(IROVector3f vec);
 	
 	IVector3f mul(float x, float y, float z);
 	
 	
+	IVector3f div(float i);
+	
 	IVector3f div(IROVector3f vec);
 	
 	IVector3f div(float x, float y, float z);
 	
+	
+	IVector3f max(float i);
 	
 	IVector3f max(IROVector3f vec);
 	
 	IVector3f max(float x, float y, float z);
 
 	
+	IVector3f min(float i);
+	
 	IVector3f min(IROVector3f vec);
 	
 	IVector3f min(float x, float y, float z);
 
 
+	IVector3f normalize();
+	
+	IVector3f normalize(float len);
+	
 
 	IVector3f set(IROVector3f vec);
 
@@ -58,11 +73,11 @@ public interface IVector3f extends IROVector3f {
 	
 	/*
 	 * TODO
-	 * normalize (xyz^2 = 1)
+	 * normalize (xyz^2 = 1) ~
 	 * rotate (Quaternion n stuff
 	 * cross (dot similar thing)
-	 * lenght (|v|)
-	 * scale (multiply / divide by one value)
+	 * lenght (|v|) ~
+	 * scale (multiply / divide by one value) ~
 	 * 
 	 * 
 	 */
