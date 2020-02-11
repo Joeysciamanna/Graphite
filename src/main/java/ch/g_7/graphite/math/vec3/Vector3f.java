@@ -16,6 +16,12 @@ public class Vector3f implements IVector3f {
 	}
 
 	@Override
+	public Vector3f add(float i) {
+		add(i, i, i, this);
+		return this;
+	}
+	
+	@Override
 	public Vector3f add(IROVector3f vec) {
 		add(vec.getX(), vec.getY(), vec.getZ(), this);
 		return this;
@@ -27,6 +33,11 @@ public class Vector3f implements IVector3f {
 		return this;
 	}
 
+	@Override
+	public IVector3f add(float i, IVector3f des) {
+		return add(i,i,i,des);
+	}
+	
 	@Override
 	public IVector3f add(IROVector3f vec, IVector3f des) {
 		return add(vec.getX(), vec.getY(), vec.getZ(), des);
@@ -40,6 +51,13 @@ public class Vector3f implements IVector3f {
 		return des;
 	}
 
+	
+	@Override
+	public Vector3f sub(float i) {
+		sub(i, i, i, this);
+		return this;
+	}
+	
 	@Override
 	public Vector3f sub(IROVector3f vec) {
 		sub(vec.getX(), vec.getY(), vec.getZ(), this);
@@ -53,6 +71,11 @@ public class Vector3f implements IVector3f {
 	}
 
 	@Override
+	public IVector3f sub(float i, IVector3f des) {
+		return sub(i,i,i,des);
+	}
+	
+	@Override
 	public IVector3f sub(IROVector3f vec, IVector3f des) {
 		return sub(vec.getX(), vec.getY(), vec.getZ(), des);
 	}
@@ -65,6 +88,13 @@ public class Vector3f implements IVector3f {
 		return des;
 	}
 
+	
+	@Override
+	public Vector3f mul(float i) {
+		mul(i, i, i, this);
+		return this;
+	}
+	
 	@Override
 	public Vector3f mul(IROVector3f vec) {
 		mul(vec.getX(), vec.getY(), vec.getZ(), this);
@@ -78,6 +108,11 @@ public class Vector3f implements IVector3f {
 	}
 
 	@Override
+	public IVector3f mul(float i, IVector3f des) {
+		return mul(i,i,i,des);
+	}
+	
+	@Override
 	public IVector3f mul(IROVector3f vec, IVector3f des) {
 		return mul(vec.getX(), vec.getY(), vec.getZ(), des);
 	}
@@ -88,6 +123,13 @@ public class Vector3f implements IVector3f {
 		des.setY(this.y * y);
 		des.setZ(this.z * z);
 		return des;
+	}
+	
+	
+	@Override
+	public Vector3f div(float i) {
+		div(i, i, i, this);
+		return this;
 	}
 
 	@Override
@@ -103,6 +145,11 @@ public class Vector3f implements IVector3f {
 	}
 
 	@Override
+	public IVector3f div(float i, IVector3f des) {
+		return div(i,i,i,des);
+	}
+	
+	@Override
 	public IVector3f div(IROVector3f vec, IVector3f des) {
 		return div(vec.getX(), vec.getY(), vec.getZ(), des);
 	}
@@ -113,6 +160,13 @@ public class Vector3f implements IVector3f {
 		des.setY(this.y / y);
 		des.setZ(this.z / z);
 		return des;
+	}
+	
+	
+	@Override
+	public Vector3f max(float i) {
+		max(i, i, i, this);
+		return this;
 	}
 
 	@Override
@@ -128,6 +182,11 @@ public class Vector3f implements IVector3f {
 	}
 
 	@Override
+	public IVector3f max(float i, IVector3f des) {
+		return max(i,i,i,des);
+	}
+	
+	@Override
 	public IVector3f max(IROVector3f vec, IVector3f des) {
 		return max(vec.getX(), vec.getY(), vec.getZ(), des);
 	}
@@ -138,6 +197,13 @@ public class Vector3f implements IVector3f {
 		des.setY(y > this.y ? y : this.y);
 		des.setZ(z > this.z ? z : this.z);
 		return des;
+	}
+	
+	
+	@Override
+	public Vector3f min(float i) {
+		min(i, i, i, this);
+		return this;
 	}
 
 	@Override
@@ -152,6 +218,11 @@ public class Vector3f implements IVector3f {
 		return this;
 	}
 
+	@Override
+	public IVector3f min(float i, IVector3f des) {
+		return min(i,i,i,des);
+	}
+	
 	@Override
 	public IVector3f min(IROVector3f vec, IVector3f des) {
 		return min(vec.getX(), vec.getY(), vec.getZ(), des);

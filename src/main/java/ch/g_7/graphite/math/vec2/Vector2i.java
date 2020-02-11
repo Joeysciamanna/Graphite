@@ -18,6 +18,12 @@ public class Vector2i implements IVector2i {
 	}
 	
 	@Override
+	public Vector2i add(int i) {
+		add(i, i, this);
+		return this;
+	}
+	
+	@Override
 	public Vector2i add(IROVector2i vec) {
 		add(vec.getX(), vec.getY(), this);
 		return this;
@@ -27,6 +33,11 @@ public class Vector2i implements IVector2i {
 	public Vector2i add(int x, int y) {
 		add(x, y, this);
 		return this;
+	}
+	
+	@Override
+	public IVector2i add(int i, IVector2i des) {
+		return add(i, i, des);
 	}
 
 	@Override
@@ -43,6 +54,12 @@ public class Vector2i implements IVector2i {
 
 	
 	@Override
+	public Vector2i sub(int i) {
+		sub(i, i, this);
+		return this;
+	}
+	
+	@Override
 	public Vector2i sub(IROVector2i vec) {
 		sub(vec.getX(), vec.getY(), this);
 		return this;
@@ -54,6 +71,11 @@ public class Vector2i implements IVector2i {
 		return this;
 	}
 
+	@Override
+	public IVector2i sub(int i, IVector2i des) {
+		return sub(i, i, des);
+	}
+	
 	@Override
 	public IVector2i sub(IROVector2i vec, IVector2i des) {
 		return sub(vec.getX(), vec.getY(), des);
@@ -68,6 +90,12 @@ public class Vector2i implements IVector2i {
 
 	
 	@Override
+	public Vector2i mul(int i) {
+		mul(i, i, this);
+		return this;
+	}
+	
+	@Override
 	public Vector2i mul(IROVector2i vec) {
 		mul(vec.getX(), vec.getY(), this);
 		return this;
@@ -79,6 +107,11 @@ public class Vector2i implements IVector2i {
 		return this;
 	}
 
+	@Override
+	public IVector2i mul(int i, IVector2i des) {
+		return mul(i, i, des);
+	}
+	
 	@Override
 	public IVector2i mul(IROVector2i vec, IVector2i des) {
 		return mul(vec.getX(), vec.getY(), des);
@@ -93,6 +126,12 @@ public class Vector2i implements IVector2i {
 	
 
 	@Override
+	public Vector2i div(int i) {
+		div(i, i, this);
+		return this;
+	}
+	
+	@Override
 	public Vector2i div(IROVector2i vec) {
 		div(vec.getX(), vec.getY(), this);
 		return this;
@@ -105,6 +144,11 @@ public class Vector2i implements IVector2i {
 	}
 
 	@Override
+	public IVector2i div(int i, IVector2i des) {
+		return div(i, i, des);
+	}
+	
+	@Override
 	public IVector2i div(IROVector2i vec, IVector2i des) {
 		return div(vec.getX(), vec.getY(), des);
 	}
@@ -116,6 +160,13 @@ public class Vector2i implements IVector2i {
 		return des;
 	}
 
+	
+	@Override
+	public Vector2i max(int i) {
+		max(i, i, this);
+		return this;
+	}
+	
 	@Override
 	public Vector2i max(IROVector2i vec) {
 		max(vec.getX(), vec.getY(), this);
@@ -128,6 +179,11 @@ public class Vector2i implements IVector2i {
 		return this;
 	}
 
+	@Override
+	public IVector2i max(int i, IVector2i des) {
+		return max(i, i, des);
+	}
+	
 	@Override
 	public IVector2i max(IROVector2i vec, IVector2i des) {
 		return max(vec.getX(), vec.getY(), des);
@@ -142,6 +198,12 @@ public class Vector2i implements IVector2i {
 
 
 	@Override
+	public Vector2i min(int i) {
+		min(i, i, this);
+		return this;
+	}
+	
+	@Override
 	public Vector2i min(IROVector2i vec) {
 		min(vec.getX(), vec.getY(), this);
 		return this;
@@ -153,6 +215,11 @@ public class Vector2i implements IVector2i {
 		return this;
 	}
 
+	@Override
+	public IVector2i min(int i, IVector2i des) {
+		return min(i, i, des);
+	}
+	
 	@Override
 	public IVector2i min(IROVector2i vec, IVector2i des) {
 		return min(vec.getX(), vec.getY(), des);

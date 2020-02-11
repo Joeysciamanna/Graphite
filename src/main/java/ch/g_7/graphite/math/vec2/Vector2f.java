@@ -19,6 +19,12 @@ public class Vector2f implements IVector2f {
 	
 	
 	@Override
+	public Vector2f add(float i) {
+		add(i, i, this);
+		return this;
+	}
+	
+	@Override
 	public Vector2f add(IROVector2f vec) {
 		add(vec.getX(), vec.getY(), this);
 		return this;
@@ -30,6 +36,11 @@ public class Vector2f implements IVector2f {
 		return this;
 	}
 
+	@Override
+	public IVector2f add(float i, IVector2f des) {
+		return add(i, i, des);
+	}
+	
 	@Override
 	public IVector2f add(IROVector2f vec, IVector2f des) {
 		return add(vec.getX(), vec.getY(), des);
@@ -44,6 +55,12 @@ public class Vector2f implements IVector2f {
 
 	
 	@Override
+	public Vector2f sub(float i) {
+		sub(i, i, this);
+		return this;
+	}
+	
+	@Override
 	public Vector2f sub(IROVector2f vec) {
 		sub(vec.getX(), vec.getY(), this);
 		return this;
@@ -53,6 +70,11 @@ public class Vector2f implements IVector2f {
 	public Vector2f sub(float x, float y) {
 		sub(x, y, this);
 		return this;
+	}
+	
+	@Override
+	public IVector2f sub(float i, IVector2f des) {
+		return sub(i, i, des);
 	}
 
 	@Override
@@ -69,6 +91,12 @@ public class Vector2f implements IVector2f {
 
 	
 	@Override
+	public Vector2f mul(float i) {
+		mul(i, i, this);
+		return this;
+	}
+	
+	@Override
 	public Vector2f mul(IROVector2f vec) {
 		mul(vec.getX(), vec.getY(), this);
 		return this;
@@ -80,6 +108,11 @@ public class Vector2f implements IVector2f {
 		return this;
 	}
 
+	@Override
+	public IVector2f mul(float i, IVector2f des) {
+		return mul(i, i, des);
+	}
+	
 	@Override
 	public IVector2f mul(IROVector2f vec, IVector2f des) {
 		return mul(vec.getX(), vec.getY(), des);
@@ -94,6 +127,12 @@ public class Vector2f implements IVector2f {
 	
 
 	@Override
+	public Vector2f div(float i) {
+		div(i, i, this);
+		return this;
+	}
+	
+	@Override
 	public Vector2f div(IROVector2f vec) {
 		div(vec.getX(), vec.getY(), this);
 		return this;
@@ -106,6 +145,11 @@ public class Vector2f implements IVector2f {
 	}
 
 	@Override
+	public IVector2f div(float i, IVector2f des) {
+		return div(i, i, des);
+	}
+	
+	@Override
 	public IVector2f div(IROVector2f vec, IVector2f des) {
 		return div(vec.getX(), vec.getY(), des);
 	}
@@ -117,6 +161,13 @@ public class Vector2f implements IVector2f {
 		return des;
 	}
 
+	
+	@Override
+	public Vector2f max(float i) {
+		max(i, i, this);
+		return this;
+	}
+	
 	@Override
 	public Vector2f max(IROVector2f vec) {
 		max(vec.getX(), vec.getY(), this);
@@ -129,6 +180,11 @@ public class Vector2f implements IVector2f {
 		return this;
 	}
 
+	@Override
+	public IVector2f max(float i, IVector2f des) {
+		return max(i, i, des);
+	}
+	
 	@Override
 	public IVector2f max(IROVector2f vec, IVector2f des) {
 		return max(vec.getX(), vec.getY(), des);
@@ -143,6 +199,12 @@ public class Vector2f implements IVector2f {
 
 
 	@Override
+	public Vector2f min(float i) {
+		min(i, i, this);
+		return this;
+	}
+	
+	@Override
 	public Vector2f min(IROVector2f vec) {
 		min(vec.getX(), vec.getY(), this);
 		return this;
@@ -154,6 +216,11 @@ public class Vector2f implements IVector2f {
 		return this;
 	}
 
+	@Override
+	public IVector2f min(float i, IVector2f des) {
+		return min(i, i, des);
+	}
+	
 	@Override
 	public IVector2f min(IROVector2f vec, IVector2f des) {
 		return min(vec.getX(), vec.getY(), des);
