@@ -66,6 +66,7 @@ public interface IVector3f extends IROVector3f {
 //	default void test() {
 //		org.joml.Vector3f vector3f;
 //		org.joml.Vector2f vector2f;
+//		vector3f.normalize()
 //	}
 	
 	/*

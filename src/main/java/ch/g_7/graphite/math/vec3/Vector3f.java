@@ -236,6 +236,34 @@ public class Vector3f implements IVector3f {
 		return des;
 	}
 
+	
+	@Override
+	public Vector3f normalize() {
+		normalize(1, this);
+		return this;
+	}
+	
+	@Override
+	public Vector3f normalize(float len) {
+		normalize(len, this);
+		return this;
+	}
+	
+	@Override
+	public IVector3f normalize(IVector3f des) {
+		return normalize(1, des);
+	}
+	
+	@Override
+	public IVector3f normalize(float len, IVector3f des) {
+		float f = (float) (1.0 / Math.sqrt(x * x + y * y + z * z)) * len;
+		des.setX(x * f);
+		des.setY(y * f);
+		des.setZ(z * f);
+		return des;
+	}
+	
+	
 	@Override
 	public float dot(IROVector3f vec) {
 		return dot(vec.getX(), vec.getY(), vec.getZ());

@@ -54,11 +54,5 @@ public interface IVector3i extends IROVector3i {
 
     IVector3i setZ(int z);
 
-
-    IVector3i clone();
-
-    boolean equals(Object obj);
-
-    String toString();
     
 }

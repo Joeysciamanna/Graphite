@@ -233,6 +233,31 @@ public class Vector2f implements IVector2f {
 		return des;
 	}
 
+	@Override
+	public Vector2f normalize() {
+		normalize(1, this);
+		return this;
+	}
+	
+	@Override
+	public Vector2f normalize(float len) {
+		normalize(len, this);
+		return this;
+	}
+	
+	@Override
+	public IVector2f normalize(IVector2f des) {
+		return normalize(1, des);
+	}
+	
+	@Override
+	public IVector2f normalize(float len, IVector2f des) {
+		float f = (float) (1.0 / Math.sqrt(x * x + y * y)) * len;
+		des.setX(x * f);
+		des.setY(y * f);
+		return des;
+	}
+	
 	
 	@Override
 	public float dot(IROVector2f vec) {
