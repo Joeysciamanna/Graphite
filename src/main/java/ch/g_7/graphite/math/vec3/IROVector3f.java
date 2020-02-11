@@ -72,9 +72,7 @@ public interface IROVector3f {
 	float distanceZ(float z);
 	
 	float lenght();
-	
-	float theta();
-	
+
 	
 	IVector3i transform3i();
 	
