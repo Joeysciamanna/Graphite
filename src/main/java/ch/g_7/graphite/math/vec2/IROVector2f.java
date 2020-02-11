@@ -56,18 +56,29 @@ public interface IROVector2f {
 
 	float dot(float x, float y);
 
+	
 	float angle(IROVector2f vec);
 
 	float angle(float x, float y);
 
+	
 	float distance(IROVector2f vec);
 
 	float distance(float x, float y);
+
+	float distanceSq(IROVector2f vec);
+
+	float distanceSq(float x, float y);
 
 	float distanceX(float x);
 
 	float distanceY(float y);
 
+	
+	float lenght();
+	
+	float lenghtSq();
+	
 	
 	IVector3f transform3f(float z);
 

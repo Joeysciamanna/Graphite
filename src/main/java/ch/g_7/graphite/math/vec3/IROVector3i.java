@@ -51,13 +51,19 @@ public interface IROVector3i {
 
 	float dot(int x, int y, int z);
 
+	
 	float angle(IROVector3i vec);
 
 	float angle(int x, int y, int z);
 
+	
 	float distance(IROVector3i vec);
 
 	float distance(int x, int y, int z);
+
+	float distanceSq(IROVector3i vec);
+
+	float distanceSq(int x, int y, int z);
 
 	int distanceX(int x);
 
@@ -65,6 +71,11 @@ public interface IROVector3i {
 
 	int distanceZ(int z);
 
+	
+	float lenght();
+	
+	float lenghtSq();
+	
 	
 	IVector3f transform3f();
 

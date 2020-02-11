@@ -51,17 +51,28 @@ public interface IROVector2i {
 	
 	float dot(int x, int y);
 	
+	
 	float angle(IROVector2i vec);
 	
 	float angle(int x, int y);
+	
 	
 	float distance(IROVector2i vec);
 	
 	float distance(int x, int y);
 	
+	float distanceSq(IROVector2i vec);
+	
+	float distanceSq(int x, int y);
+	
 	int distanceX(int x);
 	
 	int distanceY(int y);
+	
+	
+	float lenght();
+	
+	float lenghtSq();
 	
 	
 	IVector3i transform3i(int z);
