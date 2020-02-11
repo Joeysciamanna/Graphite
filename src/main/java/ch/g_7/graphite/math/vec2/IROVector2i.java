@@ -5,30 +5,42 @@ import ch.g_7.graphite.math.vec3.IVector3i;
 
 public interface IROVector2i {
 
+	IVector2i add(float i, IVector2i des);
+	
 	IVector2i add(IROVector2i vec, IVector2i des);
 	
 	IVector2i add(int x, int y, IVector2i des);
 
+	
+	IVector2i sub(float i, IVector2i des);
 	
 	IVector2i sub(IROVector2i vec, IVector2i des);
 	
 	IVector2i sub(int x, int y, IVector2i des);
 	
 	
+	IVector2i mul(float i, IVector2i des);
+	
 	IVector2i mul(IROVector2i vec, IVector2i des);
 	
 	IVector2i mul(int x, int y, IVector2i des);
 	
+	
+	IVector2i div(float i, IVector2i des);
 	
 	IVector2i div(IROVector2i vec, IVector2i des);
 	
 	IVector2i div(int x, int y, IVector2i des);
 
 	
+	IVector2i max(float i, IVector2i des);
+	
 	IVector2i max(IROVector2i vec, IVector2i des);
 	
 	IVector2i max(int x, int y, IVector2i des);
 
+	
+	IVector2i min(float i, IVector2i des);
 	
 	IVector2i min(IROVector2i vec, IVector2i des);
 	

@@ -17,6 +17,7 @@ public class Vector2f implements IVector2f {
 		this.y = y;
 	}
 	
+	
 	@Override
 	public Vector2f add(IROVector2f vec) {
 		add(vec.getX(), vec.getY(), this);
