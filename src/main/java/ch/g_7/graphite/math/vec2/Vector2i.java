@@ -243,6 +243,7 @@ public class Vector2i implements IVector2i {
 		return this.x * x + this.y + y;
 	}
 
+	
 	@Override
 	public float angle(IROVector2i vec) {
 		return angle(vec.getX(), vec.getY());
@@ -253,6 +254,7 @@ public class Vector2i implements IVector2i {
 		return (int) Math.atan2(y - this.y, x - this.x);
 	}
 
+	
 	@Override
 	public float distance(IROVector2i vec) {
 		return distance(vec.getX(), vec.getY());
@@ -260,9 +262,19 @@ public class Vector2i implements IVector2i {
 
 	@Override
 	public float distance(int x, int y) {
-		return (int) Math.sqrt((x - this.x) * (x - this.x) + (y - this.y) * (y - this.y));
+		return (int) Math.sqrt(distanceSq(x, y));
 	}
 
+	@Override
+	public float distanceSq(IROVector2i vec) {
+		return distanceSq(vec.getX(), vec.getY());
+	}
+	
+	@Override
+	public float distanceSq(int x, int y) {
+		return (x - this.x) * (x - this.x) + (y - this.y) * (y - this.y);
+	}
+	
 	@Override
 	public int distanceX(int x) {
 		return this.x - x;
@@ -272,6 +284,18 @@ public class Vector2i implements IVector2i {
 	public int distanceY(int y) {
 		return this.y - y;
 	}
+	
+	
+	@Override
+	public float lenght() {
+		return (float) Math.sqrt(lenghtSq());
+	}
+	
+	@Override
+	public float lenghtSq() {
+		return x*x + y*y;
+	}
+	
 
 	@Override
 	public Vector2f transform2f() {

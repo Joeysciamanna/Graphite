@@ -287,6 +287,7 @@ public class Vector3f implements IVector3f {
 		return (float) Math.acos(ab / a * b);
 	}
 
+	
 	@Override
 	public float distance(IROVector3f vec) {
 		return distance(vec.getX(), vec.getY(), vec.getZ());
@@ -294,7 +295,17 @@ public class Vector3f implements IVector3f {
 
 	@Override
 	public float distance(float x, float y, float z) {
-		return (float) Math.sqrt((x-this.x)*(x-this.x) +  (y-this.y)*(y-this.y) + (z-this.z)*(z-this.z));
+		return (float) Math.sqrt(distanceSq(x, y, z));
+	}
+	
+	@Override
+	public float distanceSq(IROVector3f vec) {
+		return distanceSq(vec.getX(), vec.getY(), vec.getZ());
+	}
+	
+	@Override
+	public float distanceSq(float x, float y, float z) {
+		return (x-this.x)*(x-this.x) +  (y-this.y)*(y-this.y) + (z-this.z)*(z-this.z);
 	}
 
 	@Override
@@ -312,6 +323,17 @@ public class Vector3f implements IVector3f {
 		return z - this.z;
 	}
 
+	
+	@Override
+	public float lenght() {
+		return (float) Math.sqrt(lenghtSq());
+	}
+	
+	@Override
+	public float lenghtSq() {
+		return x*x + y*y + z*z;
+	}
+	
 	@Override
 	public Vector3i transform3i() {
 		return null;

@@ -72,11 +72,8 @@ public interface IVector3f extends IROVector3f {
 	/*
 	 * TODO
 	 * lerp (liniar iterpolation)
-	 * distanceSquared
-	 * lenghtSquared
 	 * rotate (Quaternion n stuff
 	 * cross (dot similar thing) (3d only)
-	 * lenght (|v|) ~
 	 * 
 	 * 
 	 */
