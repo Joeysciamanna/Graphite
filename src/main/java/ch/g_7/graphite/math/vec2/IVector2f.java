@@ -32,6 +32,11 @@ public interface IVector2f extends IROVector2f {
 	IVector2f min(float x, float y);
 
 
+	IVector2f normalize();
+	
+	IVector2f normalize(float len);
+	
+	
 	IVector2f set(IROVector2f vec);
 
 	IVector2f set(float x, float y);

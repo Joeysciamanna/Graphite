@@ -35,6 +35,11 @@ public interface IROVector2f {
 	IVector2f min(float x, float y, IVector2f des);
 	
 
+	IVector2f normalize(IVector2f des);
+	
+	IVector2f normalize(float len, IVector2f des);
+	
+	
 	float dot(IROVector2f vec);
 
 	float dot(float x, float y);

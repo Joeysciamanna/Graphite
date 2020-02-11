@@ -66,18 +66,16 @@ public interface IVector3f extends IROVector3f {
 //	default void test() {
 //		org.joml.Vector3f vector3f;
 //		org.joml.Vector2f vector2f;
-//		vector3f
-//		      vector3f.rotateAxis(angle, x, y, z)
-//				vector3f.rotateX(angle)
 //	}
 	
 	/*
 	 * TODO
-	 * normalize (xyz^2 = 1) ~
+	 * lerp (liniar iterpolation)
+	 * distanceSquared
+	 * lenghtSquared
 	 * rotate (Quaternion n stuff
-	 * cross (dot similar thing)
+	 * cross (dot similar thing) (3d only)
 	 * lenght (|v|) ~
-	 * scale (multiply / divide by one value) ~
 	 * 
 	 * 
 	 */
