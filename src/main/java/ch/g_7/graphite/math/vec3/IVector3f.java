@@ -54,6 +54,17 @@ public interface IVector3f extends IROVector3f {
 	IVector3f normalize(float len);
 	
 
+	IVector3f rotate(float x, float y, float z, float angle);
+	
+	IVector3f rotate(IROVector3f vec, float angle);
+	
+	IVector3f rotateX(float angle);
+	
+	IVector3f rotateY(float angle);
+	
+	IVector3f rotateZ(float angle);
+	
+	
 	IVector3f set(IROVector3f vec);
 
 	IVector3f set(float x, float y, float z);
@@ -68,17 +79,17 @@ public interface IVector3f extends IROVector3f {
 
 
 	
-//	default void test() {
-//		org.joml.Vector3f vector3f;
-//		org.joml.Vector2f vector2f;
-//		vector3f.cro
-//	}
+	default void test() {
+		org.joml.Vector3f vector3f;
+		org.joml.Vector2f vector2f;
+		org.joml.Matrix2d matrix2d;
+		
+		
+	}	
 	
 	/*
 	 * TODO
 	 * rotate (Quaternion n stuff
-	 * cross (dot similar thing) (3d only)
-	 * 
 	 * 
 	 */
 

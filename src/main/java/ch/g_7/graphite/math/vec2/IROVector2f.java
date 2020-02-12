@@ -52,6 +52,15 @@ public interface IROVector2f {
 	IVector2f normalize(float len, IVector2f des);
 	
 	
+	IVector2f rotate(float x, float y, float angle, IVector2f des);
+	
+	IVector2f rotate(IROVector2f vec, float angle, IVector2f des);
+	
+	IVector2f rotateX(float angle, IVector2f des);
+	
+	IVector2f rotateY(float angle, IVector2f des);
+
+	
 	float dot(IROVector2f vec);
 
 	float dot(float x, float y);
