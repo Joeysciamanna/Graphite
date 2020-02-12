@@ -47,13 +47,11 @@ public interface IROVector2i {
 	IVector2i min(int x, int y, IVector2i des);
 	
 	
-	IVector2i rotate(int x, int y, float angle, IVector2i des);
+	IVector2i rotate(float angle, IVector2i des);
 	
 	IVector2i rotate(IROVector2i vec, float angle, IVector2i des);
-	
-	IVector2i rotateX(float angle, IVector2i des);
-	
-	IVector2i rotateY(float angle, IVector2i des);
+
+	IVector2i rotate(int x, int y, float angle, IVector2i des);
 	
 	
 	float dot(IROVector2i vec);

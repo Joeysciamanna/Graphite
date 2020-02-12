@@ -43,14 +43,12 @@ public interface IVector2i extends IROVector2i {
 	
 	IVector2i min(int x, int y);
 	
-
-	IVector2i rotate(int x, int y, float angle);
+	
+	IVector2i rotate(float angle);
 	
 	IVector2i rotate(IROVector2i vec, float angle);
 	
-	IVector2i rotateX(float angle);
-	
-	IVector2i rotateY(float angle);
+	IVector2i rotate(int x, int y, float angle);
 	
 	
 	IVector2i set(IROVector2i vec);

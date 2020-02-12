@@ -49,13 +49,11 @@ public interface IVector2f extends IROVector2f {
 	IVector2f normalize(float len);
 	
 	
+	IVector2f rotate(float angle);
+	
 	IVector2f rotate(float x, float y, float angle);
 	
 	IVector2f rotate(IROVector2f vec, float angle);
-	
-	IVector2f rotateX(float angle);
-	
-	IVector2f rotateY(float angle);
 
 	
 	IVector2f set(IROVector2f vec);

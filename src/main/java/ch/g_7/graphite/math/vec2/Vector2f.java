@@ -260,6 +260,53 @@ public class Vector2f implements IVector2f {
 	
 	
 	@Override
+	public Vector2f rotate(IROVector2f vec, float angle) {
+		rotate(vec.getX(), vec.getY(), angle, this);
+		return this;
+	}
+	
+	@Override
+	public Vector2f rotate(float x, float y, float angle) {
+		rotate(x, y, angle, this);
+		return this;
+	}
+	
+	@Override
+	public IVector2f rotate(IROVector2f vec, float angle, IVector2f des) {
+		return rotate(vec.getX(), vec.getY(), angle, des);
+	}
+	
+	@Override
+	public IVector2f rotate(float x, float y, float angle, IVector2f des) {
+		float cs = (float) Math.cos(angle);
+		float sn = (float) Math.sin(angle);
+		
+		float newX = des.getX() - x;
+		float newY = des.getY() - y;
+		des.setX(newX * cs - newY * sn);
+		des.setY(newX * sn + newY * cs);
+		des.add(x, y);
+		return des;
+	}
+	
+	@Override
+	public Vector2f rotate(float angle) {
+		rotate(angle, this);
+		return this;
+	}
+	
+	@Override
+	public IVector2f rotate(float angle, IVector2f des) {
+		float cs = (float) Math.cos(angle);
+		float sn = (float) Math.sin(angle);
+		
+		des.setX(x * cs - y * sn);
+		des.setY(x * sn + y * cs);
+		return des;
+	}
+	
+	
+	@Override
 	public float dot(IROVector2f vec) {
 		return dot(vec.getX(), vec.getY());
 	}

@@ -234,6 +234,53 @@ public class Vector2i implements IVector2i {
 
 
 	@Override
+	public Vector2i rotate(IROVector2i vec, float angle) {
+		rotate(vec.getX(), vec.getY(), angle, this);
+		return this;
+	}
+	
+	@Override
+	public Vector2i rotate(int x, int y, float angle) {
+		rotate(x, y, angle, this);
+		return this;
+	}
+	
+	@Override
+	public IVector2i rotate(IROVector2i vec, float angle, IVector2i des) {
+		return rotate(vec.getX(), vec.getY(), angle, des);
+	}
+	
+	@Override
+	public IVector2i rotate(int x, int y, float angle, IVector2i des) {
+		float cs = (float) Math.cos(angle);
+		float sn = (float) Math.sin(angle);
+		
+		float newX = des.getX() - x;
+		float newY = des.getY() - y;
+		des.setX((int) (newX * cs - newY * sn));
+		des.setY((int) (newX * sn + newY * cs));
+		des.add(x, y);
+		return des;
+	}
+	
+	@Override
+	public Vector2i rotate(float angle) {
+		rotate(angle, this);
+		return this;
+	}
+	
+	@Override
+	public IVector2i rotate(float angle, IVector2i des) {
+		float cs = (float) Math.cos(angle);
+		float sn = (float) Math.sin(angle);
+		
+		des.setX((int) (x * cs - y * sn));
+		des.setY((int) (x * sn + y * cs));
+		return des;
+	}
+	
+	
+	@Override
 	public float dot(IROVector2i vec) {
 		return dot(vec.getX(), vec.getY());
 	}
