@@ -52,9 +52,9 @@ public interface IROVector3i {
 	IVector3i cross(int x, int y, int z, IVector3i des);
 	
 	
-	IVector3i rotate(int x, int y, int z, float angle, IVector3i des);
-	
 	IVector3i rotate(IROVector3i vec, float angle, IVector3i des);
+	
+	IVector3i rotate(int x, int y, int z, float angle, IVector3i des);
 	
 	IVector3i rotateX(float angle, IVector3i des);
 	

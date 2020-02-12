@@ -291,6 +291,78 @@ public class Vector3f implements IVector3f {
 	
 	
 	@Override
+	public Vector3f rotate(IROVector3f vec, float angle) {
+		rotate(vec.getX(), vec.getY(), vec.getZ(), angle, this);
+		return this;
+	}
+	
+	@Override
+	public Vector3f rotate(float x, float y, float z, float angle) {
+		rotate(x, y, z, angle, this);
+		return this;
+	}
+	
+	@Override
+	public IVector3f rotate(IROVector3f vec, float angle, IVector3f des) {
+		return rotate(vec.getX(), vec.getY(), vec.getZ(), angle, des);
+	}
+	
+	@Override
+	public IVector3f rotate(float x, float y, float z, float angle, IVector3f des) {
+		//TODO
+		throw new UnsupportedOperationException("Method not implemented yet, please feel free to do so");
+	}
+	
+	@Override
+	public Vector3f rotateX(float angle) {
+		rotateX(angle, this);
+		return this;
+	}
+	
+	@Override
+	public IVector3f rotateX(float angle, IVector3f des) {
+		float cs = (float) Math.cos(angle);
+		float sn = (float) Math.sin(angle);
+		des.setX(x);
+		des.setY(y * cs - z * sn);
+		des.setZ(y * sn + z * cs);
+		return des;
+	}
+	
+	@Override
+	public Vector3f rotateY(float angle) {
+		rotateY(angle, this);
+		return this;
+	}
+	
+	@Override
+	public IVector3f rotateY(float angle, IVector3f des) {
+		float cs = (float) Math.cos(angle);
+		float sn = (float) Math.sin(angle);
+		des.setX( x * cs + z * sn);
+		des.setY(y);
+		des.setZ(-x * sn + z * cs);
+		return des;
+	}
+	
+	@Override
+	public Vector3f rotateZ(float angle) {
+		rotateZ(angle, this);
+		return this;
+	}
+	
+	@Override
+	public IVector3f rotateZ(float angle, IVector3f des) {
+		float cs = (float) Math.cos(angle);
+		float sn = (float) Math.sin(angle);
+		des.setX(x * cs - y * sn);
+		des.setY(x * sn + y * cs);
+		des.setZ(z);
+		return des;
+	}
+	
+	
+	@Override
 	public float dot(IROVector3f vec) {
 		return dot(vec.getX(), vec.getY(), vec.getZ());
 	}
