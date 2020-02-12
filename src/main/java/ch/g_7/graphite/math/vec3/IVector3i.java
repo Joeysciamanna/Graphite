@@ -44,6 +44,11 @@ public interface IVector3i extends IROVector3i {
     IVector3i min(int x, int y, int z);
 
     
+    IVector3i cross(IROVector3i vec);
+	
+    IVector3i cross(int x, int y, int z);
+	
+	
     IVector3i set(IROVector3i vec);
 
     IVector3i set(int x, int y, int z);

@@ -236,6 +236,33 @@ public class Vector3i implements IVector3i {
         return des;
     }
 
+    
+	@Override
+	public Vector3i cross(IROVector3i vec) {
+		cross(vec.getX(), vec.getY(), vec.getZ(), this);
+		return this;
+	}
+	
+	@Override
+	public Vector3i cross(int x, int y, int z) {
+		cross(x, y, z, this);
+		return this;
+	}
+	
+	@Override
+	public IVector3i cross(IROVector3i vec, IVector3i des) {
+		return cross(vec.getX(), vec.getY(), vec.getZ(), des);
+	}
+	
+	@Override
+	public IVector3i cross(int x, int y, int z, IVector3i des) {
+		des.setX(this.y*z - this.z*y);
+		des.setY(this.z*x - this.x*z);
+		des.setZ(this.x*y - this.y*x);
+		return des;
+	}
+	
+	
     @Override
     public float dot(IROVector3i vec) {
         return dot(vec.getX(), vec.getY(), vec.getZ());

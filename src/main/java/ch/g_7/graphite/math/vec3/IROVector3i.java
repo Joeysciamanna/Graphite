@@ -47,6 +47,11 @@ public interface IROVector3i {
 	IVector3i min(int x, int y, int z, IVector3i des);
 	
 	
+	IVector3i cross(IROVector3i vec, IVector3i des);
+	
+	IVector3i cross(int x, int y, int z, IVector3i des);
+	
+	
 	float dot(IROVector3i vec);
 
 	float dot(int x, int y, int z);

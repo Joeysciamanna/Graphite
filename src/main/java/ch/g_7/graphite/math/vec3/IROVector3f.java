@@ -48,6 +48,11 @@ public interface IROVector3f {
 	IVector3f min(float x, float y, float z, IVector3f des);
 	
 	
+	IVector3f cross(IROVector3f vec, IVector3f des);
+	
+	IVector3f cross(float x, float y, float z, IVector3f des);
+	
+	
 	IVector3f normalize(IVector3f des);
 	
 	IVector3f normalize(float len, IVector3f des);

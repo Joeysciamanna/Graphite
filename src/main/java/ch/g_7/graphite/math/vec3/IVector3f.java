@@ -43,6 +43,11 @@ public interface IVector3f extends IROVector3f {
 	
 	IVector3f min(float x, float y, float z);
 
+	
+	IVector3f cross(IROVector3f vec);
+	
+	IVector3f cross(float x, float y, float z);
+
 
 	IVector3f normalize();
 	
@@ -66,12 +71,11 @@ public interface IVector3f extends IROVector3f {
 //	default void test() {
 //		org.joml.Vector3f vector3f;
 //		org.joml.Vector2f vector2f;
-//		vector3f.normalize()
+//		vector3f.cro
 //	}
 	
 	/*
 	 * TODO
-	 * lerp (liniar iterpolation)
 	 * rotate (Quaternion n stuff
 	 * cross (dot similar thing) (3d only)
 	 * 

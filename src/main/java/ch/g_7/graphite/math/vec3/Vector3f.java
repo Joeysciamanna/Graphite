@@ -238,6 +238,32 @@ public class Vector3f implements IVector3f {
 
 	
 	@Override
+	public Vector3f cross(IROVector3f vec) {
+		cross(vec.getX(), vec.getY(), vec.getZ(), this);
+		return this;
+	}
+	
+	@Override
+	public Vector3f cross(float x, float y, float z) {
+		cross(x, y, z, this);
+		return this;
+	}
+	
+	@Override
+	public IVector3f cross(IROVector3f vec, IVector3f des) {
+		return cross(vec.getX(), vec.getY(), vec.getZ(), des);
+	}
+	
+	@Override
+	public IVector3f cross(float x, float y, float z, IVector3f des) {
+		des.setX(this.y*z - this.z*y);
+		des.setY(this.z*x - this.x*z);
+		des.setZ(this.x*y - this.y*x);
+		return des;
+	}
+	
+	
+	@Override
 	public Vector3f normalize() {
 		normalize(1, this);
 		return this;
