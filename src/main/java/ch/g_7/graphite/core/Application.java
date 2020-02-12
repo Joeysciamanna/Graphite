@@ -68,6 +68,7 @@ public abstract class Application implements Updatable, Initializable, Closeable
 			dimension.close(); //Could be changed to resource in future (unbind)
 			close();
 		}
+		terminate();
 	}
 	
 	private final void setRunning(boolean running) {
@@ -94,7 +95,6 @@ public abstract class Application implements Updatable, Initializable, Closeable
 		if(ResourceManager.getInstance().hasUnclosedResources()) {
 			LOGGER.log(LogLevel.WARNING, "Unclosed Resources\n:"+ ResourceManager.getInstance().getUnclosedResources());
 		}
-		terminate();
 	}
 	
 	public void terminate() {
