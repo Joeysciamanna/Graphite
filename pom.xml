@@ -5,7 +5,7 @@
 
 	<groupId>ch.g_7</groupId>
 	<artifactId>graphite</artifactId>
-	<version>0.2.3</version>
+	<version>0.2.4</version>
 	<packaging>jar</packaging>
 
 	<name>Graphite</name>
@@ -98,7 +98,7 @@
 		<dependency>
 			<groupId>ch.g_7</groupId>
 			<artifactId>Util</artifactId>
-			<version>0.3.3</version>
+			<version>0.3.4</version>
 		</dependency>
 	</dependencies>
 
