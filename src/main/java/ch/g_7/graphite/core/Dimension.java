@@ -32,7 +32,8 @@ public final class Dimension implements Closeable, Updatable, IDepender {
 		renderClass.addNode(renderable);
 	}
 	
-	public void remove(RenderClass<?,?> renderClass) {
+	public <T extends RenderClass<?,?>> void remove(GenericProducerType<T> renderType) {
+		RenderClass<?,?> renderClass = getRenderClass(renderType);
 		renderClasses.remove(renderClass);
 		renderClass.unbind(this);
 	}
