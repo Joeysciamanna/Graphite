@@ -19,14 +19,14 @@ public final class Dimension implements Closeable, Updatable, IDepender {
 		renderClasses = new ArrayList<>(20);
 	}
 	
-	public <T extends INode> void addObj(T renderable, GenericProducerType<? extends RenderClass<T, ? extends IRenderer<T>>> renderType) {
+	public <T extends INode> void addObj(T renderable, GenericProducerType<? extends RenderClass<T, ? extends IRenderer<? super T>>> renderType) {
 		for (RenderClass<?, ?> renderClass : renderClasses) {
 			if(renderType.typeEquals(renderClass.getClass())) {
 				renderType.cast(renderClass).addNode(renderable);
 				return;
 			}
 		}
-		RenderClass<T, ? extends IRenderer<T>> renderClass = renderType.get();
+		RenderClass<T, ? extends IRenderer<? super T>> renderClass = renderType.get();
 		renderClass.bind(this);
 		renderClasses.add(renderClass);
 		renderClass.addNode(renderable);
