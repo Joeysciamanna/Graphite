@@ -15,7 +15,7 @@ public class SceneNavigator {
 
 	public SceneNavigator(Dimension dimension) {
 		this.dimension = dimension;
-		this.scenes = new HashMap<ISceneIdentifier<?>, Scene>();
+		this.scenes = new HashMap<>();
 	}
 	
 	
@@ -36,6 +36,7 @@ public class SceneNavigator {
 	}
 	
 	public void registerScene(ISceneIdentifier<?> key, Scene scene) {
+		scene.setVisible(false);
 		scenes.put(key, scene);
 		dimension.addObj(scene, RenderType.UI);
 	}
