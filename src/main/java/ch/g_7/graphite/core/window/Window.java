@@ -97,20 +97,20 @@ public class Window implements Initializable, ResizeListner {
 		}
 
 		glfwSetFramebufferSizeCallback(id, (window, width, height) -> {
-				resizeNotifier.putEvent(new ResizeEvent(window, width, height));
+				resizeNotifier.overrideQueue(new ResizeEvent(window, width, height));
 		});
 
 		glfwSetWindowPosCallback(id, (window, x, y) -> setPosition(x, y));
 
 		glfwSetKeyCallback(id, (window, key, scancode, action, mods) -> {
-			keyNotifier.addEvent(new KeyEvent(key, scancode, action, mods));	
+			keyNotifier.addToQueue(new KeyEvent(key, scancode, action, mods));
 		});
 
 		glfwSetMouseButtonCallback(id, (long window, int button, int action, int mods) -> {
 			DoubleBuffer x = BufferUtils.createDoubleBuffer(1);
 			DoubleBuffer y = BufferUtils.createDoubleBuffer(1);
 			glfwGetCursorPos(id, x, y);
-			mouseNotifier.addEvent(new MouseEvent(button, action, mods, (int) x.get(), (int) y.get()));
+			mouseNotifier.addToQueue(new MouseEvent(button, action, mods, (int) x.get(), (int) y.get()));
 		});
 
 		glfwMakeContextCurrent(id);
@@ -141,7 +141,7 @@ public class Window implements Initializable, ResizeListner {
 	}
 
 	public void setSize(int width, int height) {
-		resizeNotifier.addEvent(new ResizeEvent(id, width, height));
+		resizeNotifier.addToQueue(new ResizeEvent(id, width, height));
 	}
 
 	private void reposition() {
