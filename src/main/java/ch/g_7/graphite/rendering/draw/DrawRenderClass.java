@@ -12,12 +12,12 @@ public class DrawRenderClass extends RenderClass<Drawable, DrawRenderer>{
 
 	@Override
 	public void update(float deltaMillis) {
-		foreach((u)->u.update(deltaMillis));
+		nodes.forEach((u)->u.update(deltaMillis));
 	}
 	
 	@Override
 	protected void doInit() {
-		foreach((d)->d.initDrawContext(new DrawContext2d()));
+		nodes.forEach((d)->d.initDrawContext(new DrawContext2d()));
 		super.doInit();
 	}
 	

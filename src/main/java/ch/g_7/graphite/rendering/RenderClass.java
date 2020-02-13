@@ -12,20 +12,13 @@ import ch.g_7.util.common.Initializable;
 import ch.g_7.util.resource.Resource;
 
 public abstract class RenderClass<T extends INode, R extends IRenderer<T>> extends Resource implements AutoCloseable, Initializable, Updatable {
-	
-	private static final List<String> RENDER_CLUSTERS = new ArrayList<String>();
-	
-	private final String name;
-	private final List<T> nodes;
-	private final R renderer;
+
+	protected final String name;
+	protected final List<T> nodes;
+	protected final R renderer;
 
 	
 	public RenderClass(R renderer, String name){
-		if(RENDER_CLUSTERS.contains(name)) {
-			throw new IllegalStateException("Cant create multiple instances of the same RenderCluster");
-		}
-		RENDER_CLUSTERS.add(name);
-		
 		this.renderer = renderer;
 		this.name  = name;
 		this.nodes = new ArrayList<T>();
@@ -37,13 +30,7 @@ public abstract class RenderClass<T extends INode, R extends IRenderer<T>> exten
 
 	@Override
 	public void update(float deltaMillis) {}
-	
-	public void foreach(Consumer<T> consumer) {
-		for (T node : nodes) {
-			consumer.accept(node);
-		}
-	}
-	
+
 	public void addNode(T node) {
 		nodes.add(node);
 		node.bind(this);
@@ -53,17 +40,22 @@ public abstract class RenderClass<T extends INode, R extends IRenderer<T>> exten
 		node.unbind(this);
 		nodes.remove(node);
 	}
-	
+
+	public void removeAllNodes(){
+		nodes.forEach((n)->n.unbind(this));
+		nodes.clear();
+	}
+
 	@Override
 	protected void doInit() {
 		renderer.bind(this);
-		foreach((n)->n.bind(this));
+		nodes.forEach((n)->n.bind(this));
 	}
 	
 	@Override
 	protected void doClose() {
 		renderer.unbind(this);
-		foreach((n)->n.unbind(this));
+		nodes.forEach((n)->n.unbind(this));
 	}
 
 	@Override

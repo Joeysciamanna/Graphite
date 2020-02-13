@@ -11,6 +11,6 @@ public class EntityRenderClass extends RenderClass<IEntity, EntityRenderer>{
 
 	@Override
 	public void update(float deltaMillis) {
-		foreach((d)->d.update(deltaMillis));
+		nodes.forEach((d)->d.update(deltaMillis));
 	}
 }
