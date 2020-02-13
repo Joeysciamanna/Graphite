@@ -17,7 +17,7 @@ public class DrawRenderer extends BasicRenderer<Drawable>{
 	}
 
 	@Override
-	protected void render(List<Drawable> drawables) {
+	protected void render(List<? extends Drawable> drawables) {
 		float layer = 0.01f;
 		for (Drawable drawable : drawables) {
 			for(IDrawObject drawObject : drawable.draw().getDrawObjects()) {

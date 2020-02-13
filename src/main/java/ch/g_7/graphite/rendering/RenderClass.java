@@ -11,7 +11,7 @@ import ch.g_7.graphite.node.Updatable;
 import ch.g_7.util.common.Initializable;
 import ch.g_7.util.resource.Resource;
 
-public abstract class RenderClass<T extends INode, R extends IRenderer<T>> extends Resource implements AutoCloseable, Initializable, Updatable {
+public abstract class RenderClass<T extends INode, R extends IRenderer<? super T>> extends Resource implements AutoCloseable, Initializable, Updatable {
 
 	protected final String name;
 	protected final List<T> nodes;
@@ -42,8 +42,7 @@ public abstract class RenderClass<T extends INode, R extends IRenderer<T>> exten
 	}
 
 	public void removeAllNodes(){
-		nodes.forEach((n)->n.unbind(this));
-		nodes.clear();
+		new ArrayList<>(nodes).forEach((n)->removeNode(n));
 	}
 
 	@Override

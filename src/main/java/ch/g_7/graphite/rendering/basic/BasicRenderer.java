@@ -27,7 +27,7 @@ public abstract class BasicRenderer<T extends INode> extends Resource implements
 	}
 
 	@Override
-	public final void render(List<T> nodes, Window window, Camera camera) {
+	public final void render(List<? extends T> nodes, Window window, Camera camera) {
 		shaderProgram.bind();
 		shaderProgram.setTextureSampler(0);
 		shaderProgram.setProjectionMatrix(transformator.getProjectionMatrix(window, camera));
@@ -35,7 +35,7 @@ public abstract class BasicRenderer<T extends INode> extends Resource implements
 		shaderProgram.unbind();
 	}
 
-	protected abstract void render(List<T> nodes);
+	protected abstract void render(List<? extends T> nodes);
 
 	protected <R extends Renderable> void render(R renderable, int glDrawMethod) {
 

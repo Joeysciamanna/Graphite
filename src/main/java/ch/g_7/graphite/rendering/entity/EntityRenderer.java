@@ -19,7 +19,7 @@ public class EntityRenderer extends BasicRenderer<IEntity> {
 
 
 	@Override
-	protected void render(List<IEntity> drawables) {
+	protected void render(List<? extends IEntity> drawables) {
 		for (IEntity node : drawables) {
 			render(node, GL11.GL_TRIANGLES);
 		}

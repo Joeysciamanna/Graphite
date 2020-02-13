@@ -9,6 +9,6 @@ import ch.g_7.util.resource.IResource;
 
 public interface IRenderer<T extends INode> extends IResource {
 	
-	void render(List<T> nodes, Window window, Camera camera);
+	void render(List<? extends  T> nodes, Window window, Camera camera);
 	
 }

@@ -24,7 +24,7 @@ public class UIRenderer extends BasicRenderer<IUIRootContainer> {
 
 
 	@Override
-	public void render(List<IUIRootContainer> rootContainers) {
+	public void render(List<? extends IUIRootContainer> rootContainers) {
 		for (IUIRootContainer container : rootContainers) {
 			if (container.isVisible()) {
 				for (IUIPanel panel : container.getChilds()) {
