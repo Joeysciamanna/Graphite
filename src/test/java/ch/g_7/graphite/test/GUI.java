@@ -41,8 +41,8 @@ public class GUI extends Application {
 		appInitializer.initLogger();
 		appInitializer.addConsoleLoggers();
 
-		Image square1 = imageLoader.apply("C:\\Users\\Joey Sciamanna\\git\\Graphite\\src\\test\\resources\\textures\\square1.png");
-		Image square2 = imageLoader.apply("C:\\Users\\Joey Sciamanna\\git\\Graphite\\src\\test\\resources\\textures\\square2.png");
+		Image square1 = imageLoader.apply("C:\\-\\workspace\\java\\graphite\\src\\test\\resources\\textures\\square1.png");
+		Image square2 = imageLoader.apply("C:\\-\\workspace\\java\\graphite\\src\\test\\resources\\textures\\square3.png");
 		
 		mainMenu = new UIRootContainer(getWindow());
 		getDimension().addObj(mainMenu, RenderType.UI);
