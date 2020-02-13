@@ -10,6 +10,10 @@ class DrawObject extends Resource implements IDrawObject {
 	private Transformation transformation;
 	private int glDrawMethod = -1;
 
+	public DrawObject() {
+		this(new ViewModel(), new Transformation());
+	}
+
 	protected DrawObject(DrawObject drawObject) {
 		this(drawObject.getViewModel().clone(), new Transformation());
 	}
@@ -20,12 +24,15 @@ class DrawObject extends Resource implements IDrawObject {
 		this.transformation = transformation;
 	}
 	
-	public DrawObject() {
-		this(new ViewModel(), new Transformation());
-	}
 
 	public boolean isEmpty() {
 		return viewModel.getMesh() == null || glDrawMethod == -1;
+	}
+
+	public void clean(){
+		unbindFrom(viewModel);
+		viewModel = new ViewModel();
+		bindTo(viewModel);
 	}
 
 	@Override
@@ -59,7 +66,7 @@ class DrawObject extends Resource implements IDrawObject {
 
 	@Override
 	protected void doClose() {
-		unbindForm(viewModel);
+		unbindFrom(viewModel);
 	}
 
 }

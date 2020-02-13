@@ -33,9 +33,7 @@ public class Test extends Application {
 		
 		SecureRunner<String, Image> imageLoader = new SecureRunner<>((s)->TextureUtil.loadImage(s));
 
-		AppInitializer appInitializer = new AppInitializer("", new Object() {});
-		appInitializer.setDebugMode(true);
-		appInitializer.initLogger();
+		AppInitializer appInitializer = new AppInitializer(true, "Test", new Object() {});
 		appInitializer.addConsoleLoggers();
 
 
@@ -43,7 +41,7 @@ public class Test extends Application {
 		Path absolutePath1 = path1.toAbsolutePath();
 		Image square1 = imageLoader.apply(absolutePath1.toString());
 		
-		Path path2 = Paths.get("src/test/resources/textures/square2.png");
+		Path path2 = Paths.get("src/test/resources/textures/square3.png");
 		Path absolutePath2 = path2.toAbsolutePath();
 		Image square2 = imageLoader.apply(absolutePath2.toString());
 		

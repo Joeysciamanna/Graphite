@@ -6,7 +6,7 @@ import ch.g_7.util.resource.Resource;
 
 public class Mesh extends Resource implements IMesh {
 
-	protected final VAO vao;
+	protected VAO vao;
 
 	private float[] positions;
 	private int[] indices;
@@ -29,6 +29,7 @@ public class Mesh extends Resource implements IMesh {
 
 	@Override
 	protected void doInit() {
+
 		vao.bind(this);
 		vao.add(VBOFactory.getPositionVBO(positions, indices));
 		if (textureCoordinates != null) {
@@ -39,6 +40,7 @@ public class Mesh extends Resource implements IMesh {
 	@Override
 	protected void doClose() {
 		vao.unbind(this);
+		vao = new VAO();
 	}
 
 	@Override

@@ -10,8 +10,11 @@ import ch.g_7.graphite.rendering.RenderClass;
 import ch.g_7.util.common.Closeable;
 import ch.g_7.util.common.GenericProducerType;
 import ch.g_7.util.resource.IDepender;
+import ch.g_7.util.resource.ResourceManager;
 
 public final class Dimension implements Closeable, Updatable, IDepender {
+
+	private final int resourceId = ResourceManager.createResourceId();
 
 	private List<RenderClass<?,?>> renderClasses;
 	
@@ -63,5 +66,8 @@ public final class Dimension implements Closeable, Updatable, IDepender {
 		}
 	}
 
-	
+	@Override
+	public int getResourceId() {
+		return resourceId;
+	}
 }

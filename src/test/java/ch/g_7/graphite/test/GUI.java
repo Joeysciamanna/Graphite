@@ -36,9 +36,7 @@ public class GUI extends Application {
 		SecureRunner<String, Image> imageLoader = new SecureRunner<>((s)->TextureUtil.loadImage(s));
 		
 		
-		AppInitializer appInitializer = new AppInitializer("", new Object() {});
-		appInitializer.setDebugMode(true);
-		appInitializer.initLogger();
+		AppInitializer appInitializer = new AppInitializer(true, "GUI Test", new Object() {});
 		appInitializer.addConsoleLoggers();
 
 		Image square1 = imageLoader.apply("C:\\-\\workspace\\java\\graphite\\src\\test\\resources\\textures\\square1.png");

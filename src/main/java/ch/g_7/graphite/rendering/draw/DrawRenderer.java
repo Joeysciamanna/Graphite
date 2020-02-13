@@ -7,13 +7,14 @@ import ch.g_7.graphite.draw.drawable.Drawable;
 import ch.g_7.graphite.rendering.basic.BasicRenderer;
 import ch.g_7.graphite.rendering.basic.BasicShaderProgram;
 import ch.g_7.graphite.rendering.transformator.OrthographicTransformator;
+import ch.g_7.graphite.rendering.transformator.PixelTransformator;
 import ch.g_7.graphite.util.Resources;
 
 public class DrawRenderer extends BasicRenderer<Drawable>{
 
 
 	public DrawRenderer() {
-		super(new BasicShaderProgram(Resources.DRAW_VERTEX_SHADER, Resources.DRAW_FRAGMENT_SHADER), new OrthographicTransformator());
+		super(new BasicShaderProgram(Resources.DRAW_VERTEX_SHADER, Resources.DRAW_FRAGMENT_SHADER), new PixelTransformator());
 	}
 
 	@Override

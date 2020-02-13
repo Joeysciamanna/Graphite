@@ -36,7 +36,7 @@ public abstract class StaticDrawable extends Resource implements Drawable {
 	
 	@Override
 	protected void doClose() {
-		drawContext.unbind(this);
+		drawContext.bind(this);
 	}
 	
 	protected void requestRedraw() {

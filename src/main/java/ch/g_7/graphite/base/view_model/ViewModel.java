@@ -54,7 +54,7 @@ public class ViewModel extends Resource implements IViewModel {
 
 	@Override
 	protected void doClose() {
-		unbindForm(mesh, texture);
+		unbindFrom(mesh, texture);
 	}
 
 	public ITexture getTexture() {
@@ -62,12 +62,12 @@ public class ViewModel extends Resource implements IViewModel {
 	}
 
 	public void setTexture(ITexture texture) {
-		unbindForm(this.texture);
+		unbindFrom(this.texture);
 		if (texture.isSprite()) {
 			this.mesh.setTextureCoordinates(((Sprite)texture).getTextureCoordinates());
 		}
 		this.texture = texture;
-		bindTo(texture);
+		bindTo(this.texture);
 	}
 	
 	public Color getColor() {
@@ -83,9 +83,9 @@ public class ViewModel extends Resource implements IViewModel {
 	}
 
 	public void setMesh(IMesh mesh) {
-		unbindForm(this.mesh);
+		unbindFrom(this.mesh);
 		this.mesh = mesh;
-		bindTo(this.mesh);
+		bindTo(mesh);
 	}
 
 }

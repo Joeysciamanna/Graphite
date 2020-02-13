@@ -21,9 +21,7 @@ public class RotateCube extends Application {
     }
 
     public static void main(String[] args) {
-        AppInitializer appInitializer = new AppInitializer("", new Object() {});
-        appInitializer.setDebugMode(true);
-        appInitializer.initLogger();
+        AppInitializer appInitializer = new AppInitializer(true,"RotateCube Test", new Object() {});
         appInitializer.addConsoleLoggers();
 
         rotateCube = new RotateCube("Rotate Cube Test");

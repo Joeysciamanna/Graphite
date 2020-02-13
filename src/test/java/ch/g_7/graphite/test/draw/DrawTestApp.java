@@ -19,13 +19,10 @@ public class DrawTestApp extends Application {
 
 	@Override
 	public void init() {
-		AppInitializer appInitializer = new AppInitializer("", new Object() {});
-		appInitializer.setDebugMode(true);
-		appInitializer.initLogger();
+		AppInitializer appInitializer = new AppInitializer(true, "Draw Test", new Object() {});
 		appInitializer.addConsoleLoggers();
 		
 		SquareObject object1 = new SquareObject();
-		
 		getDimension().addObj(object1, RenderType.DRAWABLE);
 
 		getWindow().setVisible(true);
@@ -40,7 +37,7 @@ public class DrawTestApp extends Application {
         	System.out.println("Allocated resources: " + ResourceManager.getInstance().getCurrentResourceAllocations());
         }
 	    if(getWindow().isKeyPressed(GLFW.GLFW_KEY_F)) {
-        	System.out.println("FPS: " + "?");
+        	System.out.println("FPS: " + getTimer().getLPS());
         }
 	}
 

@@ -25,9 +25,9 @@ public class Entity extends Resource implements IEntity {
 	}
 	
 	public void setViewModel(ViewModel viewModel) {
-		unbindForm(this.viewModel);
+		this.viewModel.unbind(this);
 		this.viewModel = viewModel;
-		bindTo(viewModel);
+		viewModel.bind(this);
 	}
 	
 	public void setTransformation(Transformation transformation) {
