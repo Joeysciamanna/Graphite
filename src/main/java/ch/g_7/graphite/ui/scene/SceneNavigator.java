@@ -29,10 +29,9 @@ public class SceneNavigator {
 		activeScene.onOpen();
 	}
 	
-	public void close(ISceneIdentifier<?> key) {
-		Scene scene = scenes.get(key);
-		scene.onClose();
-		scene.setVisible(false);
+	public void close() {
+		activeScene.onClose();
+		activeScene.setVisible(false);
 	}
 	
 	public void registerScene(ISceneIdentifier<?> key, Scene scene) {
