@@ -39,7 +39,8 @@ public class ViewModel extends Resource implements IViewModel {
 	public ViewModel clone() {
 		ViewModel viewModel = new ViewModel();
 		viewModel.setColor(color);
-		viewModel.setMesh(mesh.clone());
+		if(mesh != null)
+			viewModel.setMesh(mesh.clone());
 		if (texture != null)
 			viewModel.setTexture(texture);
 		

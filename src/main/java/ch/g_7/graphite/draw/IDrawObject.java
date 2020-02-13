@@ -7,4 +7,6 @@ import ch.g_7.graphite.node.Renderable;
 public interface IDrawObject extends INode, Renderable {
 
 	int getGLDrawMethod();
+	
+	void setZ(float z);
 }

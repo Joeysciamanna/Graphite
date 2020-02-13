@@ -1,25 +1,25 @@
 package ch.g_7.graphite.draw.drawable;
 
-import ch.g_7.graphite.draw.DrawContext;
+import ch.g_7.graphite.draw.DrawContext2d;
 import ch.g_7.util.resource.Resource;
 
 public abstract class BasicDrawable extends Resource implements Drawable {
 
-	private DrawContext drawContext;
+	private DrawContext2d drawContext;
 
 	@Override
-	public final DrawContext draw() {
+	public final DrawContext2d draw() {
 		drawContext.clear();
 		draw(drawContext);
 		return drawContext;
 	}
 
 	@Override
-	public final void initDrawContext(DrawContext drawContext) {
+	public final void initDrawContext(DrawContext2d drawContext) {
 		this.drawContext = drawContext;
 	}
 	
-	public abstract void draw(DrawContext drawContext);
+	public abstract void draw(DrawContext2d drawContext);
 	
 	@Override
 	public void update(float deltaMillis) {}

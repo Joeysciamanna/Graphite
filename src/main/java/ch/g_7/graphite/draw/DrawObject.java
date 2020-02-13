@@ -11,11 +11,11 @@ class DrawObject extends Resource implements IDrawObject {
 	private int glDrawMethod = -1;
 
 	protected DrawObject(DrawObject drawObject) {
-		this(drawObject.getViewModel(), new Transformation());
+		this(drawObject.getViewModel().clone(), new Transformation());
 	}
 
 	protected DrawObject(ViewModel viewModel, Transformation transformation) {
-		this.viewModel = viewModel.clone();
+		this.viewModel = viewModel;
 		this.viewModel.setMesh(null);
 		this.transformation = transformation;
 	}
@@ -45,6 +45,11 @@ class DrawObject extends Resource implements IDrawObject {
 	@Override
 	public Transformation getTransformation() {
 		return transformation;
+	}
+	
+	@Override
+	public void setZ(float z) {
+		transformation.getPosition().z = z;
 	}
 
 	@Override

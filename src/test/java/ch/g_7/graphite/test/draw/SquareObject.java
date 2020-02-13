@@ -1,9 +1,8 @@
 package ch.g_7.graphite.test.draw;
 
 import org.joml.Vector2f;
-import org.joml.Vector3f;
 
-import ch.g_7.graphite.draw.DrawContext;
+import ch.g_7.graphite.draw.DrawContext2d;
 import ch.g_7.graphite.draw.drawable.BasicDrawable;
 import ch.g_7.graphite.util.Color;
 
@@ -13,11 +12,11 @@ public class SquareObject extends BasicDrawable {
 	private Color lineColor;
 	
 	@Override
-	public void draw(DrawContext drawContext) {
+	public void draw(DrawContext2d drawContext) {
 		drawContext.setBrushColor(Color.getColor(255, 0, 0));
-		drawContext.addRectangle(new Vector3f(0,0,0), new Vector2f(1,1));
+		drawContext.addRectangle(new Vector2f(0,0), new Vector2f(1,1));
 		drawContext.setBrushColor(lineColor);
-		drawContext.addLine(new Vector3f(0, 0, 0), new Vector3f(lineX,1,0));
+		drawContext.addLine(new Vector2f(0, 0), new Vector2f(lineX,1));
 	}
 	
 	

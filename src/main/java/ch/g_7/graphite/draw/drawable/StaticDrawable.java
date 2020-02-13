@@ -1,15 +1,15 @@
 package ch.g_7.graphite.draw.drawable;
 
-import ch.g_7.graphite.draw.DrawContext;
+import ch.g_7.graphite.draw.DrawContext2d;
 import ch.g_7.util.resource.Resource;
 
 public abstract class StaticDrawable extends Resource implements Drawable {
 
-	private DrawContext drawContext;
+	private DrawContext2d drawContext;
 	private boolean redraw = true;
 	
 	@Override
-	public final DrawContext draw() {
+	public final DrawContext2d draw() {
 		if(redraw) {
 			drawContext.clear();
 			draw(drawContext);
@@ -19,11 +19,11 @@ public abstract class StaticDrawable extends Resource implements Drawable {
 	}
 
 	@Override
-	public final void initDrawContext(DrawContext drawContext) {
+	public final void initDrawContext(DrawContext2d drawContext) {
 		this.drawContext = drawContext;
 	}
 	
-	public abstract void draw(DrawContext drawContext);
+	public abstract void draw(DrawContext2d drawContext);
 	
 	@Override
 	public void update(float deltaMillis) {}

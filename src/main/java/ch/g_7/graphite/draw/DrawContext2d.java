@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.joml.Vector2fc;
 import org.joml.Vector3f;
-import org.joml.Vector3fc;
 import org.lwjgl.opengl.GL11;
 
 import ch.g_7.graphite.base.mesh.Mesh;
@@ -14,49 +13,49 @@ import ch.g_7.graphite.base.texture.ITexture;
 import ch.g_7.graphite.util.Color;
 import ch.g_7.util.resource.Resource;
 
-public class DrawContext extends Resource {
+public class DrawContext2d extends Resource {
 
 	private List<IDrawObject> drawObjects;
-	private DrawObject drawObject;
+	private DrawObject next;
 
-	public DrawContext() {
+	public DrawContext2d() {
 		this.drawObjects = new ArrayList<>();
-		drawObject = new DrawObject();
+		next = new DrawObject();
 	}
 
 	public void setBrushColor(Color color) {
-		drawObject.getViewModel().setColor(color);
+		next.getViewModel().setColor(color);
 
 	}
 
 	public void setBrushTexture(ITexture texture) {
-		drawObject.getViewModel().setTexture(texture);
+		next.getViewModel().setTexture(texture);
 	}
 
-	public void addLine(Vector3fc from, Vector3fc to) {
-		drawObject.getViewModel().setMesh(new Mesh(new float[] { from.x(), from.y(), from.z(), to.x(), to.y(), to.z() },
+	public void addLine(Vector2fc from, Vector2fc to) {
+		next.getViewModel().setMesh(new Mesh(new float[] { from.x(), from.y(), 0, to.x(), to.y(), 0 },
 				new int[] { 0, 1 }, new float[] { 0, 0, 1, 1 }));
-		drawObject.setGLDrawMethod(GL11.GL_LINES);
+		next.setGLDrawMethod(GL11.GL_LINES);
 		next();
 	}
 
-	public void addTexture(ITexture texture, Vector3fc position, Vector2fc size) {
+	public void addTexture(ITexture texture, Vector2fc position, Vector2fc size) {
 		setBrushTexture(texture);
 		addRectangle(position, size);
 	}
 
-	public void addRectangle(Vector3fc position, Vector2fc size) {
-		drawObject.getViewModel().setMesh(MeshFactory2d.getRectangle(size.x(), size.y()).build());
-		drawObject.getTransformation().setPosition(new Vector3f(position));
-		drawObject.setGLDrawMethod(GL11.GL_TRIANGLES);
+	public void addRectangle(Vector2fc position, Vector2fc size) {
+		next.getViewModel().setMesh(MeshFactory2d.getRectangle(size.x(), size.y()).build());
+		next.getTransformation().setPosition(new Vector3f(position.x(), position.y(), 0));
+		next.setGLDrawMethod(GL11.GL_TRIANGLES);
 		next();
 	}
 
 	private void next() {
-		if (!drawObject.isEmpty()) {
-			drawObject.bind(this);
-			add(drawObject);
-			drawObject = new DrawObject(drawObject);
+		if (!next.isEmpty()) {
+			next.bind(this);
+			add(next);
+			next = new DrawObject(next);
 		}
 
 	}
