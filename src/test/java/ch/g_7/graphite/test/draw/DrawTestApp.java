@@ -25,9 +25,15 @@ public class DrawTestApp extends Application {
 	public void init() {
 		AppInitializer appInitializer = new AppInitializer(true, "Draw Test", new Object() {});
 		appInitializer.addConsoleLoggers();
-		
-		SquareObject object1 = new SquareObject();
-		getDimension().addObj(object1, RenderType.DRAWABLE);
+
+
+		int maxX = 16;
+		int tileSize = 32;
+		for (int i = 0; i < 100; i++) {
+			SquareObject object1 = new SquareObject((i % maxX)*32,(i / maxX)*32);
+			getDimension().addObj(object1, RenderType.DRAWABLE);
+		}
+
 
 		getWindow().setVisible(true);
 		getWindow().setSize(500, 500);
@@ -42,9 +48,11 @@ public class DrawTestApp extends Application {
         	System.out.println("Used resources:      " + ResourceManager.getInstance().getCurrentResourceCount());
         	System.out.println("Allocated resources: " + ResourceManager.getInstance().getCurrentResourceAllocations());
         }
-	    if(getWindow().isKeyPressed(GLFW.GLFW_KEY_F)) {
-        	System.out.println("FPS: " + getTimer().getLPS());
-        }
+		if(getWindow().isKeyPressed(GLFW.GLFW_KEY_F)) {
+			System.out.println("FPS:      " + getTimer().getLPS());
+			System.out.println("Delta:    " + deltaMillis);
+			System.out.println("FPS Calc: " + 1000/deltaMillis);
+		}
 		if(getWindow().isKeyPressed(GLFW.GLFW_KEY_A)) {
 			getCamera().getPosition().x++;
 		}

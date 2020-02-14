@@ -1,7 +1,10 @@
 package ch.g_7.graphite.test;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 import ch.g_7.graphite.base.mesh.MeshBuilder2d;
 import ch.g_7.graphite.base.mesh.MeshFactory2d;
@@ -10,19 +13,27 @@ import ch.g_7.graphite.base.texture.TextureUtil;
 import ch.g_7.graphite.base.view_model.ViewModel;
 import ch.g_7.graphite.core.Application;
 import ch.g_7.graphite.entity.Entity;
+import ch.g_7.graphite.entity.IEntity;
 import ch.g_7.graphite.rendering.RenderType;
 import ch.g_7.graphite.rendering.transformator.OrthographicTransformator;
+import ch.g_7.graphite.rendering.transformator.PixelTransformator;
+import ch.g_7.graphite.test.draw.SquareObject;
 import ch.g_7.graphite.ui.scene.ISceneIdentifier;
 import ch.g_7.graphite.ui.scene.Scene;
 import ch.g_7.graphite.ui.scene.SceneNavigator;
 import ch.g_7.graphite.util.Color;
 import ch.g_7.util.helper.AppInitializer;
+import ch.g_7.util.resource.ResourceManager;
 import ch.g_7.util.task.SecureRunner;
+import org.joml.Vector3f;
+import org.lwjgl.glfw.GLFW;
 
 public class Test extends Application {
 
 	private static Test test;
-	
+
+	private List<Entity> entities = new ArrayList<>();
+
 	public Test() {
 		super("Test");
 	}
@@ -38,25 +49,51 @@ public class Test extends Application {
 		appInitializer.addConsoleLoggers();
 
 
-		SceneNavigator sceneNavigator = new SceneNavigator(getDimension());
-		Scene scene = new Scene(sceneNavigator, getWindow());
-		sceneNavigator.registerScene(ScenType.TEST, scene);
+		float maxX = 32;
+		float tileSize = 2f/32;
+
+		Image image = null;
+		try {
+			image = TextureUtil.loadImage("C:\\-\\workspace\\java\\graphite\\src\\test\\resources\\textures\\square3.png");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 		ViewModel viewModel1 = new ViewModel();
-		viewModel1.setMesh(MeshFactory2d.getSquare(1).setCenter(MeshBuilder2d.CENTER_MIDDLE).build());
-		viewModel1.setColor(Color.getColor(255,0,0));
+		viewModel1.setMesh(MeshFactory2d.getSquare(tileSize).setCenter(MeshBuilder2d.CENTER_MIDDLE).build());
+		viewModel1.setTexture(image);
 
-		Entity entity1 = new Entity();
-		entity1.setViewModel(viewModel1);
-		entity1.getTransformation().getPosition();
 
-		getDimension().addObj(entity1, RenderType.ENTITIES);
+		for (float i = 0; i < 100000; i++) {
+			Entity entity = new Entity();
+			entity.getTransformation().setPosition(new Vector3f( (i % maxX) * 2 / (100000/32) - 1,(i / maxX) * 2 / (100000/32) - 1, 0));
+			entity.setViewModel(viewModel1);
+			getDimension().addObj(entity, RenderType.ENTITIES);
+			entities.add(entity);
+		}
+
+		getDimension().getRenderClass(RenderType.ENTITIES).getRenderer().setTransformator(new OrthographicTransformator());
+
 
 		getWindow().setVisible(true);
 		getWindow().setSize(500, 500);
+
 	}
 
-	private static enum ScenType implements ISceneIdentifier<ScenType> {
-		TEST
+	@Override
+	@SuppressWarnings("deprecation")
+	public void update(float deltaMillis) {
+		if(getWindow().isKeyPressed(GLFW.GLFW_KEY_R)) {
+			System.out.println("Used resources:      " + ResourceManager.getInstance().getCurrentResourceCount());
+			System.out.println("Allocated resources: " + ResourceManager.getInstance().getCurrentResourceAllocations());
+		}
+		if(getWindow().isKeyPressed(GLFW.GLFW_KEY_F)) {
+			System.out.println("FPS:      " + getTimer().getLPS());
+			System.out.println("Delta:    " + deltaMillis);
+			System.out.println("FPS Calc: " + 1000/deltaMillis);
+		}
+		for (Entity entity : entities) {
+			entity.getTransformation().getRotation().add(0,0,0.1f);
+		}
 	}
 }
