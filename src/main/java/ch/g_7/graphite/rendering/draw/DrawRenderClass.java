@@ -4,7 +4,7 @@ import ch.g_7.graphite.draw.DrawContext2d;
 import ch.g_7.graphite.draw.drawable.Drawable;
 import ch.g_7.graphite.rendering.RenderClass;
 
-public class DrawRenderClass extends RenderClass<Drawable, DrawRenderer>{
+public class DrawRenderClass<T extends Drawable> extends RenderClass<T, DrawRenderer>{
 
 	public DrawRenderClass() {
 		super(new DrawRenderer(), "DRAW");
@@ -22,7 +22,7 @@ public class DrawRenderClass extends RenderClass<Drawable, DrawRenderer>{
 	}
 	
 	@Override
-	public void addNode(Drawable node) {
+	public void addNode(T node) {
 		node.initDrawContext(new DrawContext2d());
 		super.addNode(node);
 	}
