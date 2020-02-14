@@ -1,11 +1,13 @@
 package ch.g_7.graphite.rendering.transformator;
 
 import org.joml.Matrix4f;
+import org.joml.Vector2f;
 import org.joml.Vector2ic;
 
 import ch.g_7.graphite.base.transformation.ITransformation;
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
+import org.joml.Vector3f;
 
 public class PixelTransformator implements ITransformator<ITransformation>{
 
@@ -13,7 +15,8 @@ public class PixelTransformator implements ITransformator<ITransformation>{
 	private Matrix4f modelViewMatrix;
 	
 	private Vector2ic windowSize;
-	
+	private Vector2f cameraPosition;
+
 	public PixelTransformator() {
 		projectionMatrix = new Matrix4f();
 		modelViewMatrix = new Matrix4f();
@@ -22,7 +25,7 @@ public class PixelTransformator implements ITransformator<ITransformation>{
 	@Override
 	public Matrix4f getProjectionMatrix(Window window, Camera camera) {
 		windowSize = window.getSize();
-		projectionMatrix.identity().translate(camera.getPosition());
+		cameraPosition = new Vector2f(camera.getPosition().x, camera.getPosition().y);
 		return projectionMatrix;
 	}
 	
@@ -30,7 +33,8 @@ public class PixelTransformator implements ITransformator<ITransformation>{
 	@Override
 	public Matrix4f getModelViewMatrix(ITransformation transformation) {
 		return modelViewMatrix.identity()
-				  .translate(transformation.getPosition().x() * 2f / windowSize.x() - 1f, transformation.getPosition().y() * -2f / windowSize.y() + 1f, -1)
+				  .translate((transformation.getPosition().x()-cameraPosition.x) * 2f / windowSize.x() - 1f,
+						     (transformation.getPosition().y()-cameraPosition.y) * -2f / windowSize.y() + 1f, -1)
 				  .scaleXY(transformation.getScale().x() * 2f / windowSize.x(), transformation.getScale().y() * 2f / windowSize.y());
 	}
 }

@@ -31,6 +31,8 @@ public class DrawTestApp extends Application {
 
 		getWindow().setVisible(true);
 		getWindow().setSize(500, 500);
+
+		getTimer().setLpsSmoothing(0);
 	}
 	
 	@Override
@@ -43,6 +45,13 @@ public class DrawTestApp extends Application {
 	    if(getWindow().isKeyPressed(GLFW.GLFW_KEY_F)) {
         	System.out.println("FPS: " + getTimer().getLPS());
         }
+		if(getWindow().isKeyPressed(GLFW.GLFW_KEY_A)) {
+			getCamera().getPosition().x++;
+		}
+		if(getWindow().isKeyPressed(GLFW.GLFW_KEY_D)) {
+			getCamera().getPosition().x--;
+		}
+
 	}
 
 

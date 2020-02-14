@@ -13,7 +13,7 @@ public class Camera {
 		this.position = new Vector3f();
 	}
 	
-	public Vector3fc getPosition() {
+	public Vector3f getPosition() {
 		return position;
 	}
 
