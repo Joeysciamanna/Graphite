@@ -12,6 +12,10 @@ import ch.g_7.graphite.core.Application;
 import ch.g_7.graphite.entity.Entity;
 import ch.g_7.graphite.rendering.RenderType;
 import ch.g_7.graphite.rendering.transformator.OrthographicTransformator;
+import ch.g_7.graphite.ui.scene.ISceneIdentifier;
+import ch.g_7.graphite.ui.scene.Scene;
+import ch.g_7.graphite.ui.scene.SceneNavigator;
+import ch.g_7.graphite.util.Color;
 import ch.g_7.util.helper.AppInitializer;
 import ch.g_7.util.task.SecureRunner;
 
@@ -30,45 +34,29 @@ public class Test extends Application {
 	
 	@Override
 	public void init() {
-		
-		SecureRunner<String, Image> imageLoader = new SecureRunner<>((s)->TextureUtil.loadImage(s));
-
 		AppInitializer appInitializer = new AppInitializer(true, "Test", new Object() {});
 		appInitializer.addConsoleLoggers();
 
 
-		Path path1 = Paths.get("src/test/resources/textures/square1.png");
-		Path absolutePath1 = path1.toAbsolutePath();
-		Image square1 = imageLoader.apply(absolutePath1.toString());
-		
-		Path path2 = Paths.get("src/test/resources/textures/square3.png");
-		Path absolutePath2 = path2.toAbsolutePath();
-		Image square2 = imageLoader.apply(absolutePath2.toString());
-		
-		//Sprite sprite = TextureUtil.loadSprite(square1, 0, 0, 4, 4);
-
+		SceneNavigator sceneNavigator = new SceneNavigator(getDimension());
+		Scene scene = new Scene(sceneNavigator, getWindow());
+		sceneNavigator.registerScene(ScenType.TEST, scene);
 
 		ViewModel viewModel1 = new ViewModel();
 		viewModel1.setMesh(MeshFactory2d.getSquare(1).setCenter(MeshBuilder2d.CENTER_MIDDLE).build());
-		viewModel1.setTexture(square1);
+		viewModel1.setColor(Color.getColor(255,0,0));
 
-		ViewModel viewModel2 = viewModel1.clone();
-		viewModel2.setTexture(square2);
-		
 		Entity entity1 = new Entity();
 		entity1.setViewModel(viewModel1);
-		entity1.getTransformation().getPosition().x+=1;
-		
-		Entity entity2 = new Entity();
-		entity2.setViewModel(viewModel2);
-		entity2.getTransformation().getPosition().x-=1;
-		
-		getDimension().addObj(entity1, RenderType.ENTITIES);
-		getDimension().addObj(entity2, RenderType.ENTITIES);
+		entity1.getTransformation().getPosition();
 
-		getDimension().getRenderClass(RenderType.ENTITIES).getRenderer().setTransformator(new OrthographicTransformator());
-		
+		getDimension().addObj(entity1, RenderType.ENTITIES);
+
 		getWindow().setVisible(true);
 		getWindow().setSize(500, 500);
+	}
+
+	private static enum ScenType implements ISceneIdentifier<ScenType> {
+		TEST
 	}
 }

@@ -15,7 +15,4 @@ void main(){
     if (textureEnabled == 1){
 		fragColor += texture(textureSample, fragTexCoord);
 	}
-	if(fragColor.a == 0){
-		discard;
-	}
 }

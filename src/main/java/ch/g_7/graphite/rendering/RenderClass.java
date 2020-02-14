@@ -59,7 +59,7 @@ public abstract class RenderClass<T extends INode, R extends IRenderer<? super T
 
 	@Override
 	public final boolean equals(Object obj) {
-		return obj instanceof RenderClass ? name.equals(name) : false;
+		return obj instanceof RenderClass ? name.equals(((RenderClass) obj).name) : false;
 	}
 	
 	public R getRenderer() {

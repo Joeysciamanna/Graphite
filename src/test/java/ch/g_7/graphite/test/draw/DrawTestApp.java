@@ -1,5 +1,9 @@
 package ch.g_7.graphite.test.draw;
 
+import ch.g_7.graphite.entity.Entity;
+import ch.g_7.graphite.ui.scene.ISceneIdentifier;
+import ch.g_7.graphite.ui.scene.Scene;
+import ch.g_7.graphite.ui.scene.SceneNavigator;
 import org.lwjgl.glfw.GLFW;
 
 import ch.g_7.graphite.core.Application;
@@ -40,5 +44,6 @@ public class DrawTestApp extends Application {
         	System.out.println("FPS: " + getTimer().getLPS());
         }
 	}
+
 
 }

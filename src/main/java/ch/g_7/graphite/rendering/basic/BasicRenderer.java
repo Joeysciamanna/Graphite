@@ -69,11 +69,11 @@ public abstract class BasicRenderer<T extends INode> extends Resource implements
 
 	@Override
 	protected void doInit() {
-		shaderProgram.bind(this);
+		bindTo(shaderProgram);
 	}
 
 	@Override
 	protected void doClose() {
-		shaderProgram.unbind(this);
+		unbindFrom(shaderProgram);
 	}
 }
