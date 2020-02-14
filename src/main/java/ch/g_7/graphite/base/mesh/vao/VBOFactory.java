@@ -1,5 +1,6 @@
 package ch.g_7.graphite.base.mesh.vao;
 
+@Deprecated
 public final class VBOFactory {
 
 	private  VBOFactory() {}

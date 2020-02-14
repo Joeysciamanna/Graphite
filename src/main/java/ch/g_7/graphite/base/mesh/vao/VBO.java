@@ -10,26 +10,28 @@ import static org.lwjgl.opengl.GL15.glDeleteBuffers;
 import static org.lwjgl.opengl.GL15.glGenBuffers;
 
 
-public abstract class VBO implements Initializable, Closeable {
+public abstract class VBO implements Closeable {
 	
 	protected final VBOType type;
 
-	private int id;
+	private int id = -1;
 
 	protected VBO(VBOType type) {
 		this.type = type;
 
 	}
 
-	public final void init(){
+	protected final void init(VAO vao){
+		if(id != -1) throw new IllegalStateException("Cant move VBO, VBO already initialized");
 		this.id = glGenBuffers();
-		doInit();
+		doInit(vao);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}
 
-	protected abstract void doInit();
+	protected abstract void doInit(VAO vao);
 
-	public void extinguish() {
+	@Override
+	public void close() {
 		glDeleteBuffers(id);
 	}
 

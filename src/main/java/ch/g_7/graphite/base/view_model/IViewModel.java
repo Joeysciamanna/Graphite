@@ -3,17 +3,17 @@ package ch.g_7.graphite.base.view_model;
 import ch.g_7.graphite.base.mesh.IMesh;
 import ch.g_7.graphite.base.texture.ITexture;
 import ch.g_7.graphite.util.Color;
+import ch.g_7.graphite.util.IColor;
+import ch.g_7.util.common.Closeable;
 import ch.g_7.util.common.Initializable;
 
-public interface IViewModel extends Initializable, AutoCloseable {
+public interface IViewModel {
 
 	ITexture getTexture();
 	
-	Color getColor();
+	IColor getColor();
 	
 	IMesh getMesh();
-	
-	void close();
 
 	void bind();
 	

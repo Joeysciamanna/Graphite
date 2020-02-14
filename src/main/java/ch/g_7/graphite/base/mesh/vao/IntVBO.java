@@ -23,14 +23,13 @@ public class IntVBO extends VBO {
 	}
 
 	@Override
-	protected void allocate() {
+	protected void doInit(VAO vao) {
 		IntBuffer indicesBuffer = MemoryUtil.memAllocInt(ints.length);
 		indicesBuffer.put(ints).flip();
 		glBindBuffer(type.glBufferTarget, getId());
 		glBufferData(type.glBufferTarget, indicesBuffer, GL_STATIC_DRAW);
 		glVertexAttribPointer(type.position, type.size, type.glNumber, false, 0, 0);
 		MemoryUtil.memFree(indicesBuffer);
-		ints = null;
 	}
 
 

@@ -1,7 +1,5 @@
 package ch.g_7.graphite.resource;
 
-import org.lwjgl.glfw.GLFW;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,12 +37,12 @@ public class ResourceManager {
 
     public static <T extends IResource> T allocateGlobal(T resource){
         GLOBAL_RESOURCES.add(resource);
-        resource.allocate();
+        resource.onAllocate();
         return resource;
     }
 
     public static void  unloadAll(){
-        GLOBAL_RESOURCES.forEach((r)->r.extinguish());
+        GLOBAL_RESOURCES.forEach((r)->r.onExtinguish());
         GLOBAL_RESOURCES.clear();
     }
 

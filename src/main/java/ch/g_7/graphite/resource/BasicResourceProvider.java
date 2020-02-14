@@ -20,7 +20,7 @@ public abstract class BasicResourceProvider<T extends IResource> implements IRes
         }
         T res = loadResource(resourceName);
         resourcePool.add(res, resourceName);
-        res.allocate();
+        res.onAllocate();
         return res;
     }
 

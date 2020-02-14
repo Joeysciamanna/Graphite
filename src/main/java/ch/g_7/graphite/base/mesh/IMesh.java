@@ -9,7 +9,7 @@ import ch.g_7.graphite.resource.IResource;
  *
  * @author Joey Sciamanna
  */
-public interface IMesh extends IResource {
+public interface IMesh {
 
     int getVerticesCount();
 

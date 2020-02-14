@@ -5,58 +5,51 @@ import ch.g_7.graphite.base.mesh.vao.VAO;
 import ch.g_7.graphite.base.texture.ITexture;
 import ch.g_7.graphite.base.texture.Image;
 import ch.g_7.graphite.base.texture.Sprite;
+import ch.g_7.graphite.resource.IResource;
 import ch.g_7.graphite.util.Color;
-import ch.g_7.util.resource.Resource;
 
-public class ViewModel extends Resource implements IViewModel {
+import java.util.Objects;
 
+public class ViewModel implements IViewModel {
+
+	private final VAO vao;
 	private IMesh mesh;
-	private VAO vao;
 	private ITexture texture;
 	private Color color;
 
-	public ViewModel(IMesh mesh, Image texture, Color color) {
-		this.mesh = mesh;
-		this.texture = texture;
-		this.color = color;
+	public ViewModel(IMesh mesh, ITexture texture, Color color) {
+		this.vao = new VAO();
+		setMesh(mesh);
+		setTexture(texture);
+		setColor(color);
 	}
 
-	public ViewModel() {
-		this.color = Color.getColor(0, 0, 0, 0);
+	public ViewModel(IMesh mesh, ITexture texture) {
+		this(mesh, texture, Color.TRANSPARENT);
 	}
+
+	public ViewModel(IMesh mesh, Color color) {
+		this(mesh, null, color);
+	}
+
+	@Override
+	public ViewModel clone() {
+		return new ViewModel(mesh, texture, color);
+	}
+
 
 	@Override
 	public void bind() {
 		if (texture != null)
 			texture.bind();
+		vao.bind();
 	}
 
 	@Override
 	public void unbind() {
 		if (texture != null)
 			texture.unbind();
-	}
-
-	@Override
-	public ViewModel clone() {
-		ViewModel viewModel = new ViewModel();
-		viewModel.setColor(color);
-		if(mesh != null)
-			viewModel.setMesh(mesh.clone());
-		if (texture != null)
-			viewModel.setTexture(texture);
-		
-		return viewModel;
-	}
-
-	@Override
-	protected void doInit() {
-		bindTo(mesh, texture);
-	}
-
-	@Override
-	protected void doClose() {
-		unbindFrom(mesh, texture);
+		vao.unbind();
 	}
 
 	public ITexture getTexture() {
@@ -64,12 +57,9 @@ public class ViewModel extends Resource implements IViewModel {
 	}
 
 	public void setTexture(ITexture texture) {
-		unbindFrom(this.texture);
-		if (texture.isSprite()) {
-			this.mesh.setTextureCoordinates(((Sprite)texture).getTextureCoordinates());
-		}
 		this.texture = texture;
-		bindTo(this.texture);
+		if (texture != null)
+			this.vao.replace(texture.getTextureCoordinatesVBO());
 	}
 	
 	public Color getColor() {
@@ -77,6 +67,7 @@ public class ViewModel extends Resource implements IViewModel {
 	}
 	
 	public void setColor(Color color) {
+		Objects.requireNonNull(color);
 		this.color = color;
 	}
 
@@ -85,9 +76,10 @@ public class ViewModel extends Resource implements IViewModel {
 	}
 
 	public void setMesh(IMesh mesh) {
-		unbindFrom(this.mesh);
 		this.mesh = mesh;
-		bindTo(mesh);
+		this.vao.replace(mesh.getPositionVBO());
 	}
+
+
 
 }

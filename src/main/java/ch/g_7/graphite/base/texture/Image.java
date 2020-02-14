@@ -12,12 +12,12 @@ import ch.g_7.graphite.resource.ResourceManager;
 
 public class Image implements ITexture {
 
-	private final static VBO TEXTURE_COORDINATES = ResourceManager.allocateGlobal(VBOFactory.getTextureCoordinatesVBO(new float[] {
+	private final static VBO TEXTURE_COORDINATES = VBOFactory.getTextureCoordinatesVBO(new float[] {
 			0,1,
 			1,1,
 			1,0,
 			0,0,
-	}));
+	});
 
 	private int id;
 	private int width;
@@ -47,10 +47,10 @@ public class Image implements ITexture {
 	}
 	
 	@Override
-	public void allocate() { }
+	public void onAllocate() { }
 
 	@Override
-	public void extinguish() {
+	public void onExtinguish() {
 		glDeleteTextures(id);
 	}
 

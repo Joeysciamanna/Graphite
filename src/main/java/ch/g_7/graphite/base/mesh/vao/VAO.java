@@ -13,15 +13,18 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+import ch.g_7.graphite.resource.ClosableHandler;
 import ch.g_7.graphite.resource.IResource;
+import ch.g_7.util.common.Closeable;
+import ch.g_7.util.common.Initializable;
 import org.lwjgl.opengl.GL20;
 
 
 
-public class VAO implements IResource {
+public class VAO implements Closeable {
 
-	private int id;
-	private List<VBO> vbos;
+	private final int id;
+	private final List<VBO> vbos;
 	
 	private boolean adding;
 	private Queue<VBO> addables;
@@ -29,6 +32,8 @@ public class VAO implements IResource {
 	public VAO() {
 		this.vbos = new ArrayList<>(3);
 		this.addables = new LinkedList<>();
+		this.id = glGenVertexArrays();
+		ClosableHandler.getActive().add(this);
 	}
 	
 	
@@ -86,14 +91,10 @@ public class VAO implements IResource {
 		return null;
 	}
 
-	@Override
-	public void allocate() {
-		id = glGenVertexArrays();
-	}
+
 
 	@Override
-	public void extinguish() {
-
+	public void close() {
 		glDisableVertexAttribArray(id);
 
 		// Delete the VBOs
@@ -103,7 +104,6 @@ public class VAO implements IResource {
 		// Delete the VAO
 		glBindVertexArray(0);
 		glDeleteVertexArrays(id);
-
 	}
 	
 	public void bind() {

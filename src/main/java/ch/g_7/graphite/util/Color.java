@@ -3,28 +3,29 @@ package ch.g_7.graphite.util;
 import org.joml.Vector4f;
 import org.joml.Vector4fc;
 
-public class Color {
+public class Color implements IColor{
+
+	public final static Color TRANSPARENT = new Color(0,0,0, 0);
+	public final static Color RED     = new Color(255,0,0);
+	public final static Color ORANGE = new Color(255,255,0);
+	public final static Color GREEN   = new Color(0,255,0);
+	public final static Color YELLOW  = new Color(0,255,255);
+	public final static Color BLUE = new Color(255,0,0);
+
 
 	int r,g,b,a;
 	
-	private Color(int r, int g, int b, int a) {
+	public Color(int r, int g, int b, int a) {
 		this.r = r;
 		this.g = g;
 		this.b = b;
 		this.a = a;
 	}
-	
-	public static Color getColor(int r, int g, int b, int a) {
-		return new Color(r, g, b, a);
+
+	public Color(int r, int g, int b) {
+		this(r,g,b,255);
 	}
-	
-	public static Color getColor(int r, int g, int b) {
-		return new Color(r, g, b, 255);
-	}
-	
-	public static Color getColor(Vector4fc vector) {
-		return new Color((int) (vector.x() * 255f),(int) (vector.y()  * 255f),(int) (vector.z() * 255f),(int) (vector.w() * 255f));
-	}
+
 	
 	public Vector4f toVector() {
 		return new Vector4f(r / 255f, g / 255f, b / 255f, a / 255f);
