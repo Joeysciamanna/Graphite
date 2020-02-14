@@ -73,7 +73,6 @@ public class Window implements Initializable, ResizeListner {
 	@Override
 	public void init() {
 
-		//glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE);
 		id = glfwCreateWindow(width, height, title, NULL, NULL);
 		if (id == NULL) {
 			throw new RuntimeException("Failed to create the GLFW window");
@@ -99,8 +98,7 @@ public class Window implements Initializable, ResizeListner {
 		glfwMakeContextCurrent(id);
 
 		GL.createCapabilities();
-		//GLUtil.setupDebugMessageCallback();
-
+		glfwSwapInterval(0);
 
 		setSize(width, height);
 

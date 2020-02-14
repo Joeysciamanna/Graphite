@@ -113,7 +113,11 @@ public class RotateCube extends Application {
         	System.out.println("Used resources:      " + ResourceManager.getInstance().getCurrentResourceCount());
         	System.out.println("Allocated resources: " + ResourceManager.getInstance().getCurrentResourceAllocations());
         }
-
+        if(getWindow().isKeyPressed(GLFW.GLFW_KEY_F)) {
+            System.out.println("FPS:      " + getTimer().getLPS());
+            System.out.println("Delta:    " + deltaMillis);
+            System.out.println("FPS Calc: " + 1000/deltaMillis);
+        }
         if(getWindow().isKeyPressed(GLFW.GLFW_KEY_T)) {
             double time = System.nanoTime() / 1_000_000;
             System.out.println("Supplied millis: " + deltaMillis);
