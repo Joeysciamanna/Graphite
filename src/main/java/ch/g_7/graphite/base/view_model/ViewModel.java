@@ -1,6 +1,7 @@
 package ch.g_7.graphite.base.view_model;
 
 import ch.g_7.graphite.base.mesh.IMesh;
+import ch.g_7.graphite.base.mesh.vao.VAO;
 import ch.g_7.graphite.base.texture.ITexture;
 import ch.g_7.graphite.base.texture.Image;
 import ch.g_7.graphite.base.texture.Sprite;
@@ -10,6 +11,7 @@ import ch.g_7.util.resource.Resource;
 public class ViewModel extends Resource implements IViewModel {
 
 	private IMesh mesh;
+	private VAO vao;
 	private ITexture texture;
 	private Color color;
 

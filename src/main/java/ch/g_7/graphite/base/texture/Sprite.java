@@ -1,16 +1,18 @@
 package ch.g_7.graphite.base.texture;
 
+import ch.g_7.graphite.base.mesh.vao.VBO;
+import ch.g_7.graphite.base.mesh.vao.VBOFactory;
 import org.lwjgl.opengl.GL11;
 
 import ch.g_7.util.resource.Resource;
 
-public class Sprite extends Resource implements ITexture {
+public class Sprite implements ITexture {
 
-	private float[] textCoords;
+	private VBO textureCoordinates;
 	private float xMin, yMin, xMax, yMax;
 	private Image image;
-	
-	
+
+
 //	Sprite(Image image, float xMax, float yMax, float xMin, float yMin) {
 //		this.image = image;
 //		this.xMax = xMax;
@@ -21,7 +23,7 @@ public class Sprite extends Resource implements ITexture {
 
 	Sprite(Image image, float[] textCoords) {
 		this.image = image;
-		this.textCoords = textCoords;
+		this.textureCoordinates = VBOFactory.getTextureCoordinatesVBO(textCoords);
 	}
 
 	public float getxMax() {
@@ -41,13 +43,11 @@ public class Sprite extends Resource implements ITexture {
 	}
 	
 	@Override
-	public void doInit() {
-		image.bind(this);
+	public void allocate() {
 	}
 
 	@Override
-	public void doClose() {
-		image.unbind(this);
+	public void extinguish() {
 	}
 	
 	@Override
@@ -59,7 +59,6 @@ public class Sprite extends Resource implements ITexture {
 	public void bind() {
 		image.bind();
 		GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-//		GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
 	}
 
 	@Override
@@ -77,12 +76,8 @@ public class Sprite extends Resource implements ITexture {
 		return (int) ((yMax - yMin) * image.getHeight());
 	}
 
-	public float[] getTextureCoordinates() {
-		return textCoords;
-	}
-	
 	@Override
-	public boolean isSprite() {
-		return true;
+	public VBO getTextureCoordinatesVBO() {
+		return textureCoordinates;
 	}
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import org.joml.Rectangled;
 import org.joml.Vector2d;
 
+@Deprecated
 public class MeshBuilder2d {
 
 	private List<Vector2d> points;
@@ -137,12 +138,7 @@ public class MeshBuilder2d {
 		}
 		
 		//TODO Better texture coord calculation
-		return new Mesh(positions, realIndices, new float[] {
-				0,1,
-				1,1,
-				1,0,
-				0,0,
-		});			
+		return new Mesh(positions, realIndices);
 	}
 
 	private int fitIndex(int index, int from, int to) {

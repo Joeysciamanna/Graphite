@@ -1,5 +1,6 @@
 package ch.g_7.graphite.base.mesh;
 
+@Deprecated
 public final class MeshFactory2d {
 
 	

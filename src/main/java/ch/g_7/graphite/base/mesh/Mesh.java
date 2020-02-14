@@ -1,70 +1,42 @@
 package ch.g_7.graphite.base.mesh;
 
-import ch.g_7.graphite.base.vao.VAO;
-import ch.g_7.graphite.base.vao.VBOFactory;
-import ch.g_7.util.resource.Resource;
+import ch.g_7.graphite.base.mesh.vao.PositionVBO;
+import ch.g_7.graphite.base.mesh.vao.VAO;
+import ch.g_7.graphite.base.mesh.vao.VBO;
+import ch.g_7.graphite.base.mesh.vao.VBOFactory;
 
-public class Mesh extends Resource implements IMesh {
+public class Mesh implements IMesh {
 
-	protected VAO vao;
+	protected VBO positionVBO;
 
-	private float[] positions;
-	private int[] indices;
-	private float[] textureCoordinates;
 	private int verticesCount;
 
-	public Mesh(float[] positions, int[] indices, float[] textureCoordinates) {
+	public Mesh(float[] positions, int[] indices) {
 		if (indices.length % 2 != 0 && indices.length % 3 != 0)
 			throw new IllegalArgumentException("Invalid number of indices for 2d/3d mesh");
-		this.vao = new VAO();
-		this.positions = positions;
-		this.indices = indices;
-		this.textureCoordinates = textureCoordinates;
+
+		this.positionVBO = VBOFactory.getPositionVBO(positions, indices);
 		this.verticesCount = indices.length;
 	}
 
-	public Mesh(float[] positions, int[] indices) {
-		this(positions, indices, null);
+	@Override
+	public VBO getPositionVBO() {
+		return positionVBO;
 	}
 
-	@Override
-	protected void doInit() {
-
-		vao.bind(this);
-		vao.add(VBOFactory.getPositionVBO(positions, indices));
-		if (textureCoordinates != null) {
-			vao.add(VBOFactory.getTextureCoordinatesVBO(textureCoordinates));
-		}
-	}
-
-	@Override
-	protected void doClose() {
-		vao.unbind(this);
-		vao = new VAO();
-	}
-
-	@Override
-	public Mesh clone() {
-		return new Mesh(positions, indices, textureCoordinates);
-	}
-	
-	public void setPositions(float[] positions, int[] indices) {
-		vao.replace(VBOFactory.getPositionVBO(positions, indices));
-	}
-	
-	@Override
-	public void setTextureCoordinates(float[] textureCoordinates) {
-		vao.replace(VBOFactory.getTextureCoordinatesVBO(textureCoordinates));
-	}
-	
 	@Override
 	public int getVerticesCount() {
 		return verticesCount;
 	}
 
+
 	@Override
-	public VAO getVAO() {
-		return vao;
+	public void allocate() {
+		positionVBO.allocate();
 	}
 
+	@Override
+	public void extinguish() {
+		positionVBO.extinguish();
+	}
 }

@@ -6,9 +6,18 @@ import static org.lwjgl.opengl.GL11.glDeleteTextures;
 import static org.lwjgl.opengl.GL13.GL_TEXTURE0;
 import static org.lwjgl.opengl.GL13.glActiveTexture;
 
-import ch.g_7.util.resource.Resource;
+import ch.g_7.graphite.base.mesh.vao.VBO;
+import ch.g_7.graphite.base.mesh.vao.VBOFactory;
+import ch.g_7.graphite.resource.ResourceManager;
 
-public class Image extends Resource implements ITexture {
+public class Image implements ITexture {
+
+	private final static VBO TEXTURE_COORDINATES = ResourceManager.allocateGlobal(VBOFactory.getTextureCoordinatesVBO(new float[] {
+			0,1,
+			1,1,
+			1,0,
+			0,0,
+	}));
 
 	private int id;
 	private int width;
@@ -18,6 +27,11 @@ public class Image extends Resource implements ITexture {
 		this.id = id;
 		this.width = width;
 		this.height = height;
+	}
+
+	@Override
+	public VBO getTextureCoordinatesVBO() {
+		return TEXTURE_COORDINATES;
 	}
 
 	public int getId() {
@@ -33,11 +47,10 @@ public class Image extends Resource implements ITexture {
 	}
 	
 	@Override
-	protected void doInit() {
-	}
+	public void allocate() { }
 
 	@Override
-	protected void doClose() {
+	public void extinguish() {
 		glDeleteTextures(id);
 	}
 
@@ -46,14 +59,8 @@ public class Image extends Resource implements ITexture {
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, id);
 	}
-
 	
 	@Override
 	public void unbind() {}
-	
-	@Override
-	public boolean isSprite() {
-		return false;
-	}
 
 }

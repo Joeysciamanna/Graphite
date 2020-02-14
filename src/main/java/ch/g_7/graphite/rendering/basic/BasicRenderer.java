@@ -6,7 +6,7 @@ import static org.lwjgl.opengl.GL11.glDrawElements;
 import java.util.List;
 
 import ch.g_7.graphite.base.transformation.ITransformation;
-import ch.g_7.graphite.base.vao.VAO;
+import ch.g_7.graphite.base.mesh.vao.VAO;
 import ch.g_7.graphite.base.view_model.IViewModel;
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;

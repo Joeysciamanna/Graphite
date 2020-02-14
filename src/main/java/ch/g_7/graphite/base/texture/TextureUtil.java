@@ -18,6 +18,7 @@ import java.nio.IntBuffer;
 
 import org.lwjgl.system.MemoryStack;
 
+@Deprecated
 public class TextureUtil {
 	
 	

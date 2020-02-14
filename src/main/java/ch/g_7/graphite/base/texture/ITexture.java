@@ -1,6 +1,8 @@
 package ch.g_7.graphite.base.texture;
 
-import ch.g_7.util.resource.IResource;
+
+import ch.g_7.graphite.base.mesh.vao.VBO;
+import ch.g_7.graphite.resource.IResource;
 
 public interface ITexture extends IResource {
 
@@ -14,6 +16,6 @@ public interface ITexture extends IResource {
 	
 	int getHeight();
 
-	boolean isSprite();
-	
+	VBO getTextureCoordinatesVBO();
+
 }
