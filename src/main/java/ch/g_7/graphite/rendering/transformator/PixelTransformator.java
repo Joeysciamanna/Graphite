@@ -22,6 +22,7 @@ public class PixelTransformator implements ITransformator<ITransformation>{
 	@Override
 	public Matrix4f getProjectionMatrix(Window window, Camera camera) {
 		windowSize = window.getSize();
+		projectionMatrix.identity().translate(camera.getPosition());
 		return projectionMatrix;
 	}
 	
