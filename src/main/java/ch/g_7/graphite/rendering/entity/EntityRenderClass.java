@@ -5,8 +5,8 @@ import ch.g_7.graphite.rendering.RenderClass;
 
 public class EntityRenderClass<T extends  IEntity> extends RenderClass<T, EntityRenderer>{
 
-	public EntityRenderClass() {
-		super(new EntityRenderer(), "ENTITIES");
+	public EntityRenderClass(String name) {
+		super(new EntityRenderer(), name);
 	}
 
 	@Override

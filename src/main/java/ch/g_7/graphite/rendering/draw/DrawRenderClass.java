@@ -6,8 +6,8 @@ import ch.g_7.graphite.rendering.RenderClass;
 
 public class DrawRenderClass<T extends Drawable> extends RenderClass<T, DrawRenderer>{
 
-	public DrawRenderClass() {
-		super(new DrawRenderer(), "DRAW");
+	public DrawRenderClass(String name) {
+		super(new DrawRenderer(), name);
 	}
 
 	@Override

@@ -6,8 +6,8 @@ import ch.g_7.graphite.ui.IUIRootContainer;
 
 public class UIRenderClass<T extends IUIRootContainer> extends RenderClass<T, UIRenderer>{
 
-	public UIRenderClass() {
-		super(new UIRenderer(), "UI");
+	public UIRenderClass(String name) {
+		super(new UIRenderer(), name);
 	}
 
 }
