@@ -13,10 +13,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-import ch.g_7.graphite.resource.ClosableHandler;
-import ch.g_7.graphite.resource.IResource;
 import ch.g_7.util.common.Closeable;
-import ch.g_7.util.common.Initializable;
 import org.lwjgl.opengl.GL20;
 
 
@@ -33,7 +30,6 @@ public class VAO implements Closeable {
 		this.vbos = new ArrayList<>(3);
 		this.addables = new LinkedList<>();
 		this.id = glGenVertexArrays();
-		ClosableHandler.getActive().add(this);
 	}
 	
 	
@@ -99,7 +95,7 @@ public class VAO implements Closeable {
 
 		// Delete the VBOs
 		GL20.glBindBuffer(GL20.GL_ARRAY_BUFFER, 0);
-		vbos.forEach((vbo) -> vbo.close());
+//		vbos.forEach((vbo) -> vbo.close());
 
 		// Delete the VAO
 		glBindVertexArray(0);

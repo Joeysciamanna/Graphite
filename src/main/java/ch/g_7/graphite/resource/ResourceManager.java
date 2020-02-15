@@ -37,12 +37,12 @@ public class ResourceManager {
 
     public static <T extends IResource> T allocateGlobal(T resource){
         GLOBAL_RESOURCES.add(resource);
-        resource.onAllocate();
+        resource.init();
         return resource;
     }
 
     public static void  unloadAll(){
-        GLOBAL_RESOURCES.forEach((r)->r.onExtinguish());
+        GLOBAL_RESOURCES.forEach((r)->r.close());
         GLOBAL_RESOURCES.clear();
     }
 

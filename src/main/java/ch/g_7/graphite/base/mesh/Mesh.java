@@ -2,9 +2,10 @@ package ch.g_7.graphite.base.mesh;
 
 import ch.g_7.graphite.base.mesh.vao.VBO;
 import ch.g_7.graphite.base.mesh.vao.VBOFactory;
+import ch.g_7.graphite.resource.IResource;
 
 
-public class Mesh implements IMesh {
+public class Mesh implements IMesh, IResource {
 
     protected VBO positionVBO;
 
@@ -29,4 +30,11 @@ public class Mesh implements IMesh {
         return verticesCount;
     }
 
+    @Override
+    public void init() { }
+
+    @Override
+    public void close() {
+        positionVBO.close();
+    }
 }

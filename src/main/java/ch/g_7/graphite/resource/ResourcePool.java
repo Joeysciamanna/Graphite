@@ -20,7 +20,7 @@ public class ResourcePool<T extends  IResource>{
 
     public void unloadAll(){
         for (T value : resources.values()) {
-            value.onExtinguish();
+            value.close();
         }
         resources.clear();
     }

@@ -137,8 +137,10 @@ public class MeshBuilder2d {
 			realIndices[j] = indices.get(j);
 		}
 		
-		//TODO Better texture coord calculation
-		return new Mesh(positions, realIndices);
+		Mesh mesh = new Mesh(positions, realIndices);
+		mesh.init();
+		ClosableHandler.getActive().add(mesh);
+		return mesh;
 	}
 
 	private int fitIndex(int index, int from, int to) {

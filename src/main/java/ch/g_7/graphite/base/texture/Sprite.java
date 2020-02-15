@@ -43,11 +43,11 @@ public class Sprite implements ITexture {
 	}
 	
 	@Override
-	public void onAllocate() {
+	public void init() {
 	}
 
 	@Override
-	public void onExtinguish() {
+	public void close() {
 	}
 	
 	@Override

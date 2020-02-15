@@ -7,10 +7,11 @@ import ch.g_7.graphite.base.texture.Image;
 import ch.g_7.graphite.base.texture.Sprite;
 import ch.g_7.graphite.resource.IResource;
 import ch.g_7.graphite.util.Color;
+import ch.g_7.util.common.Closeable;
 
 import java.util.Objects;
 
-public class ViewModel implements IViewModel {
+public class ViewModel implements IViewModel, Closeable {
 
 	private final VAO vao;
 	private IMesh mesh;
@@ -81,5 +82,8 @@ public class ViewModel implements IViewModel {
 	}
 
 
-
+	@Override
+	public void close() {
+		vao.close();
+	}
 }

@@ -1,9 +1,8 @@
 package ch.g_7.graphite.resource;
 
-public interface IResource {
+import ch.g_7.util.common.Closeable;
+import ch.g_7.util.common.Initializable;
 
-    void onAllocate();
-
-    void onExtinguish();
+public interface IResource extends Initializable, Closeable {
 
 }
