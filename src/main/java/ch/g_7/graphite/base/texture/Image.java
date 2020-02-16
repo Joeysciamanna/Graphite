@@ -8,7 +8,6 @@ import static org.lwjgl.opengl.GL13.glActiveTexture;
 
 import ch.g_7.graphite.base.mesh.vao.VBO;
 import ch.g_7.graphite.base.mesh.vao.VBOFactory;
-import ch.g_7.graphite.resource.ResourceManager;
 
 public class Image implements ITexture {
 

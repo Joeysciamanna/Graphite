@@ -4,6 +4,7 @@ public interface IResourceProvider<T extends IResource, K extends IResourceKey> 
 
     boolean canProvide(IResourceKey resourceKey);
 
+    @Deprecated
     String getName();
 
     T get(K resourceKey);

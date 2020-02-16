@@ -1,8 +1,9 @@
 package ch.g_7.graphite.base.texture;
 
+import org.lwjgl.opengl.GL11;
+
 import ch.g_7.graphite.base.mesh.vao.VBO;
 import ch.g_7.graphite.base.mesh.vao.VBOFactory;
-import org.lwjgl.opengl.GL11;
 
 
 public class Sprite implements ITexture {

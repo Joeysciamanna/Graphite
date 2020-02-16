@@ -1,18 +1,13 @@
 package ch.g_7.graphite.base.view_model;
 
+import java.util.Objects;
+
 import ch.g_7.graphite.base.mesh.IMesh;
-import ch.g_7.graphite.base.mesh.MeshProvider;
 import ch.g_7.graphite.base.mesh.vao.VAO;
 import ch.g_7.graphite.base.texture.ITexture;
-import ch.g_7.graphite.base.texture.Image;
-import ch.g_7.graphite.base.texture.Sprite;
 import ch.g_7.graphite.resource.IResource;
 import ch.g_7.graphite.resource.ResourceManager;
 import ch.g_7.graphite.util.Color;
-import ch.g_7.util.common.Closeable;
-
-import java.util.Objects;
-import java.util.UUID;
 
 
 public class ViewModel implements IViewModel, IResource {
@@ -28,7 +23,7 @@ public class ViewModel implements IViewModel, IResource {
 		setMesh(mesh);
 		setTexture(texture);
 		setColor(color);
-		ResourceManager.getActive().getResourceProvdier(MeshProvider.NAME, ViewModelProvider.class).register(this, UUID.randomUUID().toString());
+		ResourceManager.getActive().getResourceProvdier(ViewModelKey.NAME, ViewModelProvider.class).register(this, new ViewModelKey());
 		init();
 	}
 

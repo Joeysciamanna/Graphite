@@ -1,17 +1,14 @@
 package ch.g_7.graphite.base.texture;
 
-import ch.g_7.graphite.resource.BasicResourceProvider;
-import ch.g_7.graphite.resource.IFileLoader;
-import ch.g_7.graphite.resource.IResourceProvider;
-import ch.g_7.graphite.resource.ResourceManager;
-
 import java.io.IOException;
 
-/**
- * Resource name must end with .png for images,
- * or wit .png[x,y,width,height] for sprites
- */
-public class TextureProvider extends BasicResourceProvider<ITexture> {
+import ch.g_7.graphite.resource.BasicResourceProvider;
+import ch.g_7.graphite.resource.IFileLoader;
+import ch.g_7.graphite.resource.IResourceKey;
+import ch.g_7.graphite.resource.IResourceProvider;
+
+
+public class TextureProvider extends BasicResourceProvider<ITexture, ImageKey> {
 
     private IFileLoader fileLoader;
 
@@ -20,14 +17,14 @@ public class TextureProvider extends BasicResourceProvider<ITexture> {
     }
 
     @Override
-    protected ITexture loadResource(String resourceName) throws IllegalArgumentException {
-        if(resourceName.endsWith(".png")){
-            return loadImage(resourceName);
+    protected ITexture loadResource(ImageKey resourceKey) throws IllegalArgumentException {
+        if(resourceKey.getResourceName().equals(ImageKey.NAME)){
+            return loadImage(resourceKey.getPath());
         }
-        String imagePath = resourceName.substring(0, resourceName.indexOf(".png"));
-        Image image = (Image) get(imagePath);
-        //TODO
-        return loadSprite(image, 0,0,0,0);
+        SpriteKey spriteKey = (SpriteKey) resourceKey;
+    	Image image = (Image) get(new ImageKey(spriteKey.getPath()));
+        return loadSprite(image, spriteKey.getX(), spriteKey.getY(), spriteKey.getWidth(), spriteKey.getHeight());
+     
     }
 
     private Image loadImage(String path) {
@@ -46,17 +43,17 @@ public class TextureProvider extends BasicResourceProvider<ITexture> {
     }
 
     @Override
-    public boolean canProvide(String resourceName) {
-        return resourceName.endsWith(".png") || resourceName.matches(".*\\.png\\[[0-9]+,[0-9]+,[0-9]+,[0-9]+\\]");
+    public boolean canProvide(IResourceKey resourceKey) {
+    	return resourceKey.getResourceName().equals(ImageKey.NAME) || resourceKey.getResourceName().equals(SpriteKey.NAME);
     }
 
     @Override
-    public IResourceProvider<ITexture> newInstance() {
+    public IResourceProvider<ITexture, ImageKey> newInstance() {
         return new TextureProvider(fileLoader);
     }
 
     @Override
     public String getName() {
-        throw new RuntimeException("Method not supported");
+        return "";
     }
 }

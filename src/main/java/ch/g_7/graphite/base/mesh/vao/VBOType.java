@@ -3,7 +3,6 @@ package ch.g_7.graphite.base.mesh.vao;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
 
-@Deprecated
 public enum VBOType {
 
 	POSITIONS(GL15.GL_ARRAY_BUFFER, 3, GL11.GL_FLOAT, 0),

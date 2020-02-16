@@ -2,23 +2,23 @@ package ch.g_7.graphite.resource;
 
 import java.util.*;
 
-public class ResourcePool<T extends  IResource>{
+public class ResourcePool<T extends  IResource, K extends IResourceKey>{
 
-    private Map<String, T> resources;
+    private Map<K, T> resources;
 
     public ResourcePool() {
         this.resources = new HashMap<>();
     }
 
-    public void add(T resource, String name){
-        if(resources.containsKey(name)){
-            throw new IllegalArgumentException("Resource ["+name+"] already exists");
+    public void add(T resource, K resourceKey){
+        if(resources.containsKey(resourceKey)){
+            throw new IllegalArgumentException("Resource ["+resourceKey+"] already exists");
         }
-        resources.put(name, resource);
+        resources.put(resourceKey, resource);
     }
 
-    public Optional<T> get(String resourceName) {
-        return Optional.ofNullable(resources.get(resourceName));
+    public Optional<T> get(K resourceKey) {
+        return Optional.ofNullable(resources.get(resourceKey));
     }
 
     public void closeAll(){
