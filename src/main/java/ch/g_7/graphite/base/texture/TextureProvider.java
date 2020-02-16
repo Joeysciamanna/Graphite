@@ -56,7 +56,7 @@ public class TextureProvider extends BasicResourceProvider<ITexture> {
     }
 
     @Override
-    public String getKey() {
+    public String getName() {
         throw new RuntimeException("Method not supported");
     }
 }

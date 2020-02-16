@@ -7,7 +7,6 @@ import ch.g_7.graphite.util.IColor;
 import ch.g_7.util.common.Closeable;
 import ch.g_7.util.common.Initializable;
 
-@Deprecated
 public interface IViewModel {
 
 	ITexture getTexture();

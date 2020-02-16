@@ -22,18 +22,18 @@ public class ResourceManager implements Closeable {
         return ACTIVE;
     }
 
-    public <T> T getResource(String name) {
+    public <T extends IResource, K extends IResourceKey> T getResource(K resourceKey) {
         for (IResourceProvider resourceLoader : resourceProviders) {
-            if (resourceLoader.canProvide(name)) {
-                return (T) resourceLoader.get(name);
+            if (resourceLoader.canProvide(resourceKey)) {
+                return (T) resourceLoader.get(resourceKey);
             }
         }
-        throw new IllegalArgumentException("No resource with name ["+name+"] found");
+        throw new IllegalArgumentException("No resource with key ["+resourceKey+"] found");
     }
 
     public <T extends IResourceProvider> T getResourceProvdier(String name, Class<T> type){
         for (IResourceProvider resourceProvider : resourceProviders) {
-            if(resourceProvider.getKey().equals(name)){
+            if(resourceProvider.getName().equals(name)){
                 return type.cast(resourceProvider);
             }
         }

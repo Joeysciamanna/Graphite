@@ -3,7 +3,7 @@ package ch.g_7.graphite.resource;
 
 import java.util.Optional;
 
-public abstract class BasicResourceProvider<T extends IResource> implements IResourceProvider<T> {
+public abstract class BasicResourceProvider<T extends IResource, K extends IResourceKey> implements IResourceProvider<T, K> {
 
 
     protected final ResourcePool<T> resourcePool;
@@ -13,7 +13,7 @@ public abstract class BasicResourceProvider<T extends IResource> implements IRes
     }
 
     @Override
-    public T get(String resourceName) {
+    public T get(K resourceKey) {
         Optional<T> resource = resourcePool.get(resourceName);
         if(resource.isPresent()){
             return resource.get();

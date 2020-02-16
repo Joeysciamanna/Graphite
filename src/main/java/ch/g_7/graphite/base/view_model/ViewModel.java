@@ -1,29 +1,35 @@
 package ch.g_7.graphite.base.view_model;
 
 import ch.g_7.graphite.base.mesh.IMesh;
+import ch.g_7.graphite.base.mesh.MeshProvider;
 import ch.g_7.graphite.base.mesh.vao.VAO;
 import ch.g_7.graphite.base.texture.ITexture;
 import ch.g_7.graphite.base.texture.Image;
 import ch.g_7.graphite.base.texture.Sprite;
 import ch.g_7.graphite.resource.IResource;
+import ch.g_7.graphite.resource.ResourceManager;
 import ch.g_7.graphite.util.Color;
 import ch.g_7.util.common.Closeable;
 
 import java.util.Objects;
+import java.util.UUID;
 
-@Deprecated
-public class ViewModel implements IViewModel, Closeable {
+
+public class ViewModel implements IViewModel, IResource {
 
 	private final VAO vao;
 	private IMesh mesh;
 	private ITexture texture;
 	private Color color;
 
-	public ViewModel(IMesh mesh, ITexture texture, Color color) {
+	@Deprecated
+	ViewModel(IMesh mesh, ITexture texture, Color color) {
 		this.vao = new VAO();
 		setMesh(mesh);
 		setTexture(texture);
 		setColor(color);
+		ResourceManager.getActive().getResourceProvdier(MeshProvider.NAME, ViewModelProvider.class).register(this, UUID.randomUUID().toString());
+		init();
 	}
 
 	public ViewModel(IMesh mesh, ITexture texture) {
@@ -87,4 +93,7 @@ public class ViewModel implements IViewModel, Closeable {
 	public void close() {
 		vao.close();
 	}
+
+	@Override
+	public void init() { }
 }

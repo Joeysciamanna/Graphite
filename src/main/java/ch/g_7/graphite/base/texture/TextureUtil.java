@@ -22,7 +22,7 @@ import org.lwjgl.system.MemoryStack;
 public class TextureUtil {
 	
 	
-	public static Image loadImage(String path) throws IOException {
+	static Image loadImage(String path) throws IOException {
 		int width, height;
 
 		ByteBuffer buf;
@@ -54,7 +54,7 @@ public class TextureUtil {
 		return new Image(id, width, height);
 	}
 	
-	public static Sprite loadSprite(Image image, int x, int y, int width, int height) {
+	static Sprite loadSprite(Image image, int x, int y, int width, int height) {
 		
 		float tlX, tlY, trX, trY, blX, blY, brX, brY;
 		

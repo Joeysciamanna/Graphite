@@ -1,14 +1,14 @@
 package ch.g_7.graphite.resource;
 
-public interface IResourceProvider<T extends IResource> {
+public interface IResourceProvider<T extends IResource, K extends IResourceKey> {
 
-    boolean canProvide(String resourceName);
+    boolean canProvide(IResourceKey resourceKey);
 
-    String getKey();
+    String getName();
 
-    T get(String resourceName);
+    T get(K resourceKey);
 
     void closeResources();
 
-    IResourceProvider<T> newInstance();
+    IResourceProvider<T, K> newInstance();
 }
