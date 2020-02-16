@@ -11,7 +11,7 @@ public class Mesh implements IMesh, IResource {
 
     private int verticesCount;
 
-    public Mesh(float[] positions, int[] indices) {
+    Mesh(float[] positions, int[] indices) {
         if (indices.length % 2 != 0 && indices.length % 3 != 0)
             throw new IllegalArgumentException("Invalid number of indices for 2d/3d mesh");
 

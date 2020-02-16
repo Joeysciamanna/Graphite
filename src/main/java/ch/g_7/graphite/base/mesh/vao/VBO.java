@@ -16,7 +16,7 @@ public abstract class VBO implements Closeable {
 
 	private int id = -1;
 
-	protected VBO(VBOType type) {
+	VBO(VBOType type) {
 		this.type = type;
 
 	}

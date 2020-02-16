@@ -4,7 +4,6 @@ import ch.g_7.graphite.base.mesh.vao.VBO;
 import ch.g_7.graphite.base.mesh.vao.VBOFactory;
 import org.lwjgl.opengl.GL11;
 
-import ch.g_7.util.resource.Resource;
 
 public class Sprite implements ITexture {
 
@@ -26,28 +25,34 @@ public class Sprite implements ITexture {
 		this.textureCoordinates = VBOFactory.getTextureCoordinatesVBO(textCoords);
 	}
 
+	@Deprecated
 	public float getxMax() {
 		return xMax;
 	}
-	
+
+	@Deprecated
 	public float getxMin() {
 		return xMin;
 	}
-	
+
+	@Deprecated
 	public float getyMax() {
 		return yMax;
 	}
 
+	@Deprecated
 	public float getyMin() {
 		return yMin;
 	}
 	
 	@Override
 	public void init() {
+		image.init();
 	}
 
 	@Override
 	public void close() {
+		image.close();
 	}
 	
 	@Override

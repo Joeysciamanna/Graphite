@@ -6,7 +6,7 @@ import java.util.Optional;
 public abstract class BasicResourceProvider<T extends IResource> implements IResourceProvider<T> {
 
 
-    private ResourcePool<T> resourcePool;
+    protected final ResourcePool<T> resourcePool;
 
     public BasicResourceProvider() {
         this.resourcePool = new ResourcePool<>();
@@ -26,4 +26,13 @@ public abstract class BasicResourceProvider<T extends IResource> implements IRes
 
     protected abstract T loadResource(String resourceName) throws IllegalArgumentException;
 
+    @Override
+    public void closeResources() {
+        resourcePool.closeAll();
+    }
+
+    @Deprecated
+    public void register(T resource, String name){
+        resourcePool.add(resource, name);
+    }
 }

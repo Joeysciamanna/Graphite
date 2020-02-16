@@ -11,6 +11,9 @@ public class ResourcePool<T extends  IResource>{
     }
 
     public void add(T resource, String name){
+        if(resources.containsKey(name)){
+            throw new IllegalArgumentException("Resource ["+name+"] already exists");
+        }
         resources.put(name, resource);
     }
 
@@ -18,7 +21,7 @@ public class ResourcePool<T extends  IResource>{
         return Optional.ofNullable(resources.get(resourceName));
     }
 
-    public void unloadAll(){
+    public void closeAll(){
         for (T value : resources.values()) {
             value.close();
         }

@@ -2,7 +2,9 @@ package ch.g_7.graphite.base.mesh;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
+import ch.g_7.graphite.resource.ResourceManager;
 import org.joml.Rectangled;
 import org.joml.Vector2d;
 
@@ -104,6 +106,7 @@ public class MeshBuilder2d {
 	 * It works, don't touch it!!
 	 * @return
 	 */
+	@Deprecated
 	public IMesh build() {
 		float[] positions = new float[points.size() * 3];
 		for (int i = 0; i < points.size(); i++) {
@@ -139,7 +142,7 @@ public class MeshBuilder2d {
 		
 		Mesh mesh = new Mesh(positions, realIndices);
 		mesh.init();
-		ClosableHandler.getActive().add(mesh);
+		ResourceManager.getActive().getResourceProvdier(MeshProvider.NAME, MeshProvider.class).register(mesh, UUID.randomUUID().toString());
 		return mesh;
 	}
 
