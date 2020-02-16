@@ -15,9 +15,8 @@ import ch.g_7.util.resource.ResourceManager;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Application extends Loop implements Updatable, Initializable, Closeable, Runnable, IDepender {
+public abstract class Application extends Loop implements Updatable, Initializable, Closeable, Runnable {
 
-    private final int resourceId = ResourceManager.createResourceId();
     private final static Logger LOGGER = Logger.getInstance();
 
     private static boolean exists;

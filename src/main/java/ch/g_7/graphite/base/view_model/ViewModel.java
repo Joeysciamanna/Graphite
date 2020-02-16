@@ -11,6 +11,7 @@ import ch.g_7.util.common.Closeable;
 
 import java.util.Objects;
 
+@Deprecated
 public class ViewModel implements IViewModel, Closeable {
 
 	private final VAO vao;
