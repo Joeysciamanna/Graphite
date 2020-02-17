@@ -7,7 +7,7 @@ import java.util.*;
 public class ResourceManager implements Closeable {
 
     public final static IFileLoader ENGINE_FILE_LOADER = new LocalFileLoader(){};
-    private final static List<IResource> GLOBAL_RESOURCES = new ArrayList<>();
+    private final static List<Closeable> GLOBAL_RESOURCES = new ArrayList<>();
     private static final LinkedList<ResourceManager> STACK = new LinkedList<>();
     private static ResourceManager ACTIVE = new ResourceManager();
 
@@ -29,15 +29,6 @@ public class ResourceManager implements Closeable {
             }
         }
         throw new IllegalArgumentException("No resource with key ["+resourceKey+"] found");
-    }
-
-    public <T extends IResourceProvider> T getResourceProvdier(String name, Class<T> type){
-        for (IResourceProvider resourceProvider : resourceProviders) {
-            if(resourceProvider.getName().equals(name)){
-                return type.cast(resourceProvider);
-            }
-        }
-        throw new IllegalArgumentException("No ResourceProvider with name ["+name+"] found");
     }
 
     public void addResourceLoader(IResourceProvider resourceLoader){
@@ -67,7 +58,12 @@ public class ResourceManager implements Closeable {
     }
 
 
-    public static <T extends IResource> T allocateGlobal(T resource){
+    public static <T extends Closeable> T addGlobalClosable(T resource){
+        GLOBAL_RESOURCES.add(resource);
+        return resource;
+    }
+
+    public static <T extends IResource> T addGlobalResource(T resource){
         GLOBAL_RESOURCES.add(resource);
         resource.init();
         return resource;

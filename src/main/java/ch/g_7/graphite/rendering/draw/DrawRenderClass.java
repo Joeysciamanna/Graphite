@@ -18,7 +18,7 @@ public class DrawRenderClass<T extends Drawable> extends RenderClass<T, DrawRend
 	@Override
 	protected void doInit() {
 		nodes.forEach((d)->d.initDrawContext(new DrawContext2d()));
-		super.doInit();
+		su
 	}
 	
 	@Override

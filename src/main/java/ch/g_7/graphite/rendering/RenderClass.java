@@ -1,17 +1,16 @@
 package ch.g_7.graphite.rendering;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Consumer;
-
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.node.INode;
 import ch.g_7.graphite.node.Updatable;
+import ch.g_7.util.common.Closeable;
 import ch.g_7.util.common.Initializable;
-import ch.g_7.util.resource.Resource;
 
-public abstract class RenderClass<T extends INode, R extends IRenderer<? super T>> extends Resource implements AutoCloseable, Initializable, Updatable {
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class RenderClass<T extends INode, R extends IRenderer<? super T>> implements Closeable, Initializable, Updatable {
 
 	protected final String name;
 	protected final List<T> nodes;
@@ -33,11 +32,10 @@ public abstract class RenderClass<T extends INode, R extends IRenderer<? super T
 
 	public void addNode(T node) {
 		nodes.add(node);
-		node.bind(this);
 	}
 	
 	public void removeNode(T node) {
-		node.unbind(this);
+		node.close();
 		nodes.remove(node);
 	}
 
@@ -46,15 +44,14 @@ public abstract class RenderClass<T extends INode, R extends IRenderer<? super T
 	}
 
 	@Override
-	protected void doInit() {
-		renderer.bind(this);
-		nodes.forEach((n)->n.bind(this));
+	public void init() {
+		renderer.init();
 	}
 	
 	@Override
-	protected void doClose() {
-		renderer.unbind(this);
-		nodes.forEach((n)->n.unbind(this));
+	public void close() {
+		renderer.close();
+		nodes.forEach((n)->n.close());
 	}
 
 	@Override

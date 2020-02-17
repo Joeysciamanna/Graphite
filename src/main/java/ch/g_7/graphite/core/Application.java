@@ -5,19 +5,10 @@ import ch.g_7.graphite.node.Updatable;
 import ch.g_7.graphite.rendering.MasterRenderer;
 import ch.g_7.util.common.Closeable;
 import ch.g_7.util.common.Initializable;
-import ch.g_7.util.logging.LogLevel;
 import ch.g_7.util.logging.Logger;
 import ch.g_7.util.loop.Loop;
-import ch.g_7.util.loop.Timer;
-import ch.g_7.util.resource.IDepender;
-import ch.g_7.util.resource.ResourceManager;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public abstract class Application extends Loop implements Updatable, Initializable, Closeable, Runnable {
-
-    private final static Logger LOGGER = Logger.getInstance();
 
     private static boolean exists;
 
@@ -25,6 +16,7 @@ public abstract class Application extends Loop implements Updatable, Initializab
     private Dimension dimension;
     private final Window window;
     private Camera camera;
+
 
 
     public Application(String name) {
@@ -42,16 +34,16 @@ public abstract class Application extends Loop implements Updatable, Initializab
 
     @Override
     protected void onStart() {
-        window.init(); //Could be changed to resource in future (bind)
-        masterRenderer.bind(this);
+        window.init();
+        masterRenderer.init();
         init();
     }
 
 
     @Override
     protected void onStop() {
-        masterRenderer.unbind(this);
-        dimension.close(); // Could be changed to resource in future (unbind)
+        masterRenderer.close();
+        dimension.close();
         close();
     }
 
@@ -72,9 +64,6 @@ public abstract class Application extends Loop implements Updatable, Initializab
 	public void update(float deltaMillis) { }
 
     public void close() {
-        if (ResourceManager.getInstance().hasUnclosedResources()) {
-            LOGGER.log(LogLevel.WARNING, "Unclosed Resources\n:" + ResourceManager.getInstance().getUnclosedResources());
-        }
         terminate();
     }
 
@@ -102,8 +91,4 @@ public abstract class Application extends Loop implements Updatable, Initializab
         return masterRenderer;
     }
 
-    @Override
-    public int getResourceId() {
-        return resourceId;
-    }
 }

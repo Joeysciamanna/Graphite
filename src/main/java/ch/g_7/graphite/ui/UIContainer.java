@@ -1,16 +1,14 @@
 package ch.g_7.graphite.ui;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import ch.g_7.graphite.base.transformation.Transformation2d;
+import ch.g_7.graphite.ui.util.ScreenDimension;
 import org.joml.Vector2i;
 import org.joml.Vector2ic;
 
-import ch.g_7.graphite.base.transformation.Transformation2d;
-import ch.g_7.graphite.ui.util.ScreenDimension;
-import ch.g_7.util.resource.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
-public abstract class UIContainer extends Resource implements IUIContainer {
+public abstract class UIContainer implements IUIContainer {
 
 	protected List<IUIPanel> childs;
 
@@ -45,18 +43,15 @@ public abstract class UIContainer extends Resource implements IUIContainer {
 	protected void add(IUIPanel panel) {
 		childs.add(panel);
 		panel.setFather(this);
-		panel.bind(this);
 	}
 
 	protected void remove(IUIPanel panel) {
 		childs.remove(panel);
-		panel.unbind(this);
 		panel.setFather(null);
 	}
 
 	protected void clear() {
 		for (IUIPanel child : childs) {
-			child.unbind(this);
 			child.setFather(null);
 		}
 		childs.clear();
@@ -78,19 +73,6 @@ public abstract class UIContainer extends Resource implements IUIContainer {
 
 	protected abstract void recalculateDimension(ScreenDimension dimension, Vector2ic screenSize);
 
-	@Override
-	protected void doInit() {
-		for (IUIPanel panel : getChilds()) {
-			panel.bind(this);
-		}
-	}
-
-	@Override
-	protected void doClose() {
-		for (IUIPanel panel : getChilds()) {
-			panel.unbind(this);
-		}
-	}
 
 	@Override
 	public boolean isVisible() {

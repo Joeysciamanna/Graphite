@@ -34,7 +34,6 @@ public class TextureProvider extends BasicResourceProvider<ITexture, ImageKey> {
         } catch (IOException e) {
             new RuntimeException("Image not found", e);
         }
-        image.init();
         return image;
     }
 
@@ -52,8 +51,4 @@ public class TextureProvider extends BasicResourceProvider<ITexture, ImageKey> {
         return new TextureProvider(fileLoader);
     }
 
-    @Override
-    public String getName() {
-        return "";
-    }
 }

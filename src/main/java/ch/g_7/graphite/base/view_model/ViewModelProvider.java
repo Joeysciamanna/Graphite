@@ -4,32 +4,23 @@ import ch.g_7.graphite.resource.BasicResourceProvider;
 import ch.g_7.graphite.resource.IResourceKey;
 import ch.g_7.graphite.resource.IResourceProvider;
 
-public class ViewModelProvider extends BasicResourceProvider<ViewModel, ViewModelKey>{
+import javax.swing.text.View;
 
-	public final static String NAME = "VIEW_MODEL_PROVIDER";
-
-	@Override
-	public boolean canProvide(IResourceKey resourceKey) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+public class ViewModelProvider extends BasicResourceProvider<ViewModel, IViewModelKey> {
 
 
-	@Override
-	public IResourceProvider<ViewModel, ViewModelKey> newInstance() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    protected ViewModel loadResource(IViewModelKey resourceKey) throws IllegalArgumentException {
+        return null;
+    }
 
-	@Override
-	protected ViewModel loadResource(ViewModelKey resourceKey) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	@Override
-	public String getName() {
-		return NAME;
-	}
+    @Override
+    public boolean canProvide(IResourceKey resourceKey) {
+        return false;
+    }
 
+    @Override
+    public IResourceProvider<ViewModel, IViewModelKey> newInstance() {
+        return null;
+    }
 }

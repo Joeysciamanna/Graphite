@@ -1,30 +1,20 @@
 package ch.g_7.graphite.test;
 
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.g_7.graphite.base.mesh.MeshBuilder2d;
+import ch.g_7.graphite.base.mesh.MeshKeyBuilder2d;
 import ch.g_7.graphite.base.mesh.MeshFactory2d;
 import ch.g_7.graphite.base.texture.Image;
 import ch.g_7.graphite.base.texture.TextureUtil;
 import ch.g_7.graphite.base.view_model.ViewModel;
 import ch.g_7.graphite.core.Application;
 import ch.g_7.graphite.entity.Entity;
-import ch.g_7.graphite.entity.IEntity;
 import ch.g_7.graphite.rendering.RenderType;
 import ch.g_7.graphite.rendering.transformator.OrthographicTransformator;
-import ch.g_7.graphite.rendering.transformator.PixelTransformator;
-import ch.g_7.graphite.test.draw.SquareObject;
-import ch.g_7.graphite.ui.scene.ISceneIdentifier;
-import ch.g_7.graphite.ui.scene.Scene;
-import ch.g_7.graphite.ui.scene.SceneNavigator;
-import ch.g_7.graphite.util.Color;
 import ch.g_7.util.helper.AppInitializer;
 import ch.g_7.util.resource.ResourceManager;
-import ch.g_7.util.task.SecureRunner;
 import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;
 
@@ -60,7 +50,7 @@ public class Test extends Application {
 		}
 
 		ViewModel viewModel1 = new ViewModel();
-		viewModel1.setMesh(MeshFactory2d.getSquare(tileSize).setCenter(MeshBuilder2d.CENTER_MIDDLE).build());
+		viewModel1.setMesh(MeshFactory2d.getSquare(tileSize).setCenter(MeshKeyBuilder2d.CENTER_MIDDLE).build());
 		viewModel1.setTexture(image);
 
 

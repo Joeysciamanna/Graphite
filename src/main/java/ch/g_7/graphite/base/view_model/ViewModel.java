@@ -23,14 +23,15 @@ public class ViewModel implements IViewModel, IResource {
 		setMesh(mesh);
 		setTexture(texture);
 		setColor(color);
-		ResourceManager.getActive().getResourceProvdier(ViewModelKey.NAME, ViewModelProvider.class).register(this, new ViewModelKey());
 		init();
 	}
 
+	@Deprecated
 	public ViewModel(IMesh mesh, ITexture texture) {
 		this(mesh, texture, Color.TRANSPARENT);
 	}
 
+	@Deprecated
 	public ViewModel(IMesh mesh, Color color) {
 		this(mesh, null, color);
 	}

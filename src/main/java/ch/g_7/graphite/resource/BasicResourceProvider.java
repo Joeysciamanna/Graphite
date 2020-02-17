@@ -31,9 +31,4 @@ public abstract class BasicResourceProvider<T extends IResource, K extends IReso
         resourcePool.closeAll();
     }
 
-    
-    @Deprecated
-    public void register(T resource, K key){
-        resourcePool.add(resource, key);
-    }
 }

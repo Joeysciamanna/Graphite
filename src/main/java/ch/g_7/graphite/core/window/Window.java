@@ -105,7 +105,7 @@ public class Window implements Initializable, ResizeListner {
 		GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 		setPosition((vidmode.width() - width) / 2, (vidmode.height() - height) / 2);
 
-		setBackgroundColor(Color.getColor(0, 0, 0, 0));
+		setBackgroundColor(Color.TRANSPARENT);
 	}
 
 	public void pullEvents() {

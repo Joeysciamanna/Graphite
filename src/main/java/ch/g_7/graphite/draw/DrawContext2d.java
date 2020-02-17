@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ch.g_7.graphite.base.mesh.IMesh;
-import ch.g_7.graphite.base.mesh.MeshBuilder2d;
+import ch.g_7.graphite.base.mesh.MeshKeyBuilder2d;
 import org.joml.Vector2fc;
 import org.joml.Vector3f;
 import org.lwjgl.opengl.GL11;
@@ -17,7 +17,7 @@ import ch.g_7.util.resource.Resource;
 
 public class DrawContext2d extends Resource {
 
-	private final static IMesh SQUARE_MESH = MeshFactory2d.getSquare(1).setCenter(MeshBuilder2d.CENTER_TOP_LEFT).build();
+	private final static IMesh SQUARE_MESH = MeshFactory2d.getSquare(1).setCenter(MeshKeyBuilder2d.CENTER_TOP_LEFT).build();
 
 
 	private List<IDrawObject> drawObjects;

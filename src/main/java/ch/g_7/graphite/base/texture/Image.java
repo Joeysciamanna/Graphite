@@ -8,15 +8,16 @@ import static org.lwjgl.opengl.GL13.glActiveTexture;
 
 import ch.g_7.graphite.base.mesh.vao.VBO;
 import ch.g_7.graphite.base.mesh.vao.VBOFactory;
+import ch.g_7.graphite.resource.ResourceManager;
 
 public class Image implements ITexture {
 
-	private final static VBO TEXTURE_COORDINATES = VBOFactory.getTextureCoordinatesVBO(new float[] {
+	private final static VBO TEXTURE_COORDINATES = ResourceManager.addGlobalClosable(VBOFactory.getTextureCoordinatesVBO(new float[] {
 			0,1,
 			1,1,
 			1,0,
 			0,0,
-	});
+	}));
 
 	private int id;
 	private int width;

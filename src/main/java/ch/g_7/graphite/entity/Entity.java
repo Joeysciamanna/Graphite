@@ -2,16 +2,16 @@ package ch.g_7.graphite.entity;
 
 import ch.g_7.graphite.base.transformation.Transformation;
 import ch.g_7.graphite.base.view_model.ViewModel;
-import ch.g_7.util.resource.Resource;
 
-public class Entity extends Resource implements IEntity {
+public class Entity implements IEntity {
 
 	private ViewModel viewModel;
 	private Transformation transformation;
-	
-	public Entity() {
-		setViewModel(new ViewModel());
-		setTransformation(new Transformation());
+
+
+	public Entity(ViewModel viewModel) {
+		this.viewModel = viewModel;
+		this.transformation = new Transformation();
 	}
 	
 	@Override
@@ -25,9 +25,7 @@ public class Entity extends Resource implements IEntity {
 	}
 	
 	public void setViewModel(ViewModel viewModel) {
-		unbindFrom(this.viewModel);
 		this.viewModel = viewModel;
-		bindTo(this.viewModel);
 	}
 	
 	public void setTransformation(Transformation transformation) {
@@ -37,13 +35,8 @@ public class Entity extends Resource implements IEntity {
 	@Override
 	public void update(float deltaMillis) {}
 
-	protected void doInit() {
-		if(viewModel!=null) viewModel.bind(this);
-	}
 
-	protected void doClose() {
-		if(viewModel!=null) viewModel.unbind(this);
-	}
-	
+	@Override
+	public void close() { }
 
 }

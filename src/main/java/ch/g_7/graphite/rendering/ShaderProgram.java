@@ -1,43 +1,21 @@
 package ch.g_7.graphite.rendering;
 
-import static org.lwjgl.opengl.GL20.GL_COMPILE_STATUS;
-import static org.lwjgl.opengl.GL20.GL_FRAGMENT_SHADER;
-import static org.lwjgl.opengl.GL20.GL_LINK_STATUS;
-import static org.lwjgl.opengl.GL20.GL_VALIDATE_STATUS;
-import static org.lwjgl.opengl.GL20.GL_VERTEX_SHADER;
-import static org.lwjgl.opengl.GL20.glAttachShader;
-import static org.lwjgl.opengl.GL20.glCompileShader;
-import static org.lwjgl.opengl.GL20.glCreateProgram;
-import static org.lwjgl.opengl.GL20.glCreateShader;
-import static org.lwjgl.opengl.GL20.glDeleteProgram;
-import static org.lwjgl.opengl.GL20.glDetachShader;
-import static org.lwjgl.opengl.GL20.glGetProgramInfoLog;
-import static org.lwjgl.opengl.GL20.glGetProgrami;
-import static org.lwjgl.opengl.GL20.glGetShaderInfoLog;
-import static org.lwjgl.opengl.GL20.glGetShaderi;
-import static org.lwjgl.opengl.GL20.glGetUniformLocation;
-import static org.lwjgl.opengl.GL20.glLinkProgram;
-import static org.lwjgl.opengl.GL20.glShaderSource;
-import static org.lwjgl.opengl.GL20.glUniform1i;
-import static org.lwjgl.opengl.GL20.glUniform2iv;
-import static org.lwjgl.opengl.GL20.glUniformMatrix4fv;
-import static org.lwjgl.opengl.GL20.glUseProgram;
-import static org.lwjgl.opengl.GL20.glValidateProgram;
-
-import java.nio.FloatBuffer;
-import java.nio.IntBuffer;
-import java.util.HashMap;
-import java.util.Map;
-
+import ch.g_7.util.common.Closeable;
+import ch.g_7.util.common.Initializable;
 import org.joml.Matrix4f;
 import org.joml.Vector2i;
 import org.joml.Vector4f;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.system.MemoryStack;
 
-import ch.g_7.util.resource.Resource;
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
+import java.util.HashMap;
+import java.util.Map;
 
-public abstract class ShaderProgram extends Resource {
+import static org.lwjgl.opengl.GL20.*;
+
+public abstract class ShaderProgram implements Initializable, Closeable {
 
 	protected final Map<String, Integer> uniforms;
 
@@ -57,8 +35,7 @@ public abstract class ShaderProgram extends Resource {
 		uniforms = new HashMap<>();
 	}
 
-	@Override
-	protected void doInit() {
+	public void init() {
 		programId = glCreateProgram();
 		if (programId == 0) {
 			throw new RuntimeException("Could not create Shader");
@@ -70,8 +47,8 @@ public abstract class ShaderProgram extends Resource {
 		fragmentCode = null;
 	}
 
-	@Override
-	protected void doClose() {
+
+	public void close() {
 		unbind();
 		if (programId != 0) {
 			glDeleteProgram(programId);

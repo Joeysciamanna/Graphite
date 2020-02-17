@@ -8,9 +8,11 @@ import org.joml.Vector2d;
 
 import ch.g_7.graphite.resource.ResourceManager;
 
-@Deprecated
-public class MeshBuilder2d {
 
+public class MeshKeyBuilder2d implements IMeshKey {
+
+	public final static String NAME = "MESH_BUILDER";
+	
 	private List<Vector2d> points;
 	private Vector2d center;
 	int angle = 90;
@@ -22,23 +24,23 @@ public class MeshBuilder2d {
 	public static final Vector2d CENTER_BUTTOM_RIGHT = new Vector2d(-1, 0);
 	public static final Vector2d CENTER_MIDDLE = new Vector2d(-0.5, -0.5);
 	
-	public MeshBuilder2d() {
+	public MeshKeyBuilder2d() {
 		points = new ArrayList<>();
 		points.add(new Vector2d(0, 0));
 		center = CENTER_BUTTOM_LEFT;
 	}
 
-	public MeshBuilder2d setAngle(int angle) {
+	public MeshKeyBuilder2d setAngle(int angle) {
 		this.angle = angle;
 		return this;
 	}
 
-	public MeshBuilder2d turn(int angle) {
+	public MeshKeyBuilder2d turn(int angle) {
 		this.angle += angle;
 		return this;
 	}
 
-	public MeshBuilder2d forward(double distance) {
+	public MeshKeyBuilder2d forward(double distance) {
 		Vector2d lastPos = points.get(points.size() - 1);
 		double x = lastPos.x + (Math.sin(Math.toRadians(angle)) * distance);
 		double y = lastPos.y + (Math.cos(Math.toRadians(angle)) * distance);
@@ -46,13 +48,13 @@ public class MeshBuilder2d {
 		return this;
 	}
 
-	public MeshBuilder2d goTo(Vector2d toPos) {
+	public MeshKeyBuilder2d goTo(Vector2d toPos) {
 		points.add(toPos);
 		return this;
 	}
 
 
-	public MeshBuilder2d setCenter(Vector2d center) {
+	public MeshKeyBuilder2d setCenter(Vector2d center) {
 		double width = getWidth();
 		double height = getHeight();
 		for (Vector2d pos : points) {
@@ -67,7 +69,7 @@ public class MeshBuilder2d {
 		return this;
 	}
 
-	public MeshBuilder2d translate(Vector2d vector) {
+	public MeshKeyBuilder2d translate(Vector2d vector) {
 		for (Vector2d p : points) {
 			p.add(vector);
 		}
@@ -101,12 +103,8 @@ public class MeshBuilder2d {
 		return new Rectangled(minX, minY, maxX, maxY);
 	}
 
-	
-	/**
-	 * It works, don't touch it!!
-	 * @return
-	 */
-	public IMesh build() {
+
+	Mesh build() {
 		float[] positions = new float[points.size() * 3];
 		for (int i = 0; i < points.size(); i++) {
 			positions[i * 3 + 0] = (float) points.get(i).x;
@@ -140,8 +138,6 @@ public class MeshBuilder2d {
 		}
 		
 		Mesh mesh = new Mesh(positions, realIndices);
-		mesh.init();
-		ResourceManager.getActive().getResourceProvdier(MeshProvider.NAME, MeshProvider.class).register(mesh, new MeshKey());
 		return mesh;
 	}
 
@@ -157,4 +153,8 @@ public class MeshBuilder2d {
 		return newIndex;
 	}
 
+	@Override
+	public String getResourceName() {
+		return NAME;
+	}
 }

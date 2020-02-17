@@ -1,5 +1,6 @@
 package ch.g_7.graphite.rendering.basic;
 
+import ch.g_7.graphite.util.IColor;
 import org.joml.Matrix4f;
 
 import ch.g_7.graphite.rendering.ShaderProgram;
@@ -13,8 +14,8 @@ public class BasicShaderProgram extends ShaderProgram {
 	}
 
 	@Override
-	public void doInit() {
-		super.doInit();
+	public void init() {
+		super.init();
         createUniform("modelViewMatrix");
         createUniform("projectionMatrix");
         createUniform("textureSample");
@@ -35,7 +36,7 @@ public class BasicShaderProgram extends ShaderProgram {
 		setUniform("textureSample", value);
 	}
 	
-	public void setColor(Color value) {
+	public void setColor(IColor value) {
 		setUniform("color", value.toVector());
 	}
 	

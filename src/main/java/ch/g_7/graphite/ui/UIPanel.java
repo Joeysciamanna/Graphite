@@ -1,20 +1,19 @@
 package ch.g_7.graphite.ui;
 
-import org.joml.Vector2ic;
-
 import ch.g_7.graphite.base.mesh.IMesh;
-import ch.g_7.graphite.base.mesh.MeshBuilder2d;
 import ch.g_7.graphite.base.mesh.MeshFactory2d;
+import ch.g_7.graphite.base.mesh.MeshKeyBuilder2d;
 import ch.g_7.graphite.base.texture.ITexture;
 import ch.g_7.graphite.base.view_model.IViewModel;
 import ch.g_7.graphite.base.view_model.ViewModel;
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.ui.util.ScreenDimension;
 import ch.g_7.graphite.util.Color;
+import org.joml.Vector2ic;
 
 public class UIPanel extends UIContainer implements IUIPanel {
 
-	private static IMesh SQUARE_MESH = MeshFactory2d.getSquare(1).setCenter(MeshBuilder2d.CENTER_TOP_LEFT).build();
+	private static IMesh SQUARE_MESH = MeshFactory2d.getSquare(1).setCenter(MeshKeyBuilder2d.CENTER_TOP_LEFT).build();
 	
 	private ViewModel viewModel;
 	
@@ -87,18 +86,7 @@ public class UIPanel extends UIContainer implements IUIPanel {
 			height.add(preferedHeight);
 		}
 	}
-	
-	@Override
-	protected void doInit() {
-		viewModel.bind(this);
-		super.doInit();
-	}
-	
-	@Override
-	protected void doClose() {
-		viewModel.unbind(this);
-		super.doClose();
-	}
+
 	
 	@Override
 	protected void recalculateDimension(ScreenDimension dimension, Vector2ic screenSize) {

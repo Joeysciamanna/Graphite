@@ -72,7 +72,6 @@ public class VAO implements Closeable {
 			throw new IllegalArgumentException(vbo.type + " Cant be replaced, because it doesnt exist");
 		}
 
-		vbos.get(index).close();
 
 		glBindVertexArray(id);
 		vbo.init(this);

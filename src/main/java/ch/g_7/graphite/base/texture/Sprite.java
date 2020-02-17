@@ -9,42 +9,14 @@ import ch.g_7.graphite.base.mesh.vao.VBOFactory;
 public class Sprite implements ITexture {
 
 	private VBO textureCoordinates;
-	private float xMin, yMin, xMax, yMax;
 	private Image image;
 
-
-//	Sprite(Image image, float xMax, float yMax, float xMin, float yMin) {
-//		this.image = image;
-//		this.xMax = xMax;
-//		this.yMax = yMax;
-//		this.xMin = xMin;
-//		this.yMin = yMin;
-//	}
 
 	Sprite(Image image, float[] textCoords) {
 		this.image = image;
 		this.textureCoordinates = VBOFactory.getTextureCoordinatesVBO(textCoords);
 	}
 
-	@Deprecated
-	public float getxMax() {
-		return xMax;
-	}
-
-	@Deprecated
-	public float getxMin() {
-		return xMin;
-	}
-
-	@Deprecated
-	public float getyMax() {
-		return yMax;
-	}
-
-	@Deprecated
-	public float getyMin() {
-		return yMin;
-	}
 	
 	@Override
 	public void init() {
@@ -53,6 +25,7 @@ public class Sprite implements ITexture {
 
 	@Override
 	public void close() {
+		textureCoordinates.close();
 		image.close();
 	}
 	
@@ -74,12 +47,12 @@ public class Sprite implements ITexture {
 
 	@Override
 	public int getWidth() {
-		return (int) ((xMax - xMin) * image.getWidth());
+		return image.getWidth();
 	}
 
 	@Override
 	public int getHeight() {
-		return (int) ((yMax - yMin) * image.getHeight());
+		return image.getHeight();
 	}
 
 	@Override

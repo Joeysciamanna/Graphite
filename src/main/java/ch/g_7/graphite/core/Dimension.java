@@ -1,20 +1,17 @@
 package ch.g_7.graphite.core;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import ch.g_7.graphite.node.INode;
 import ch.g_7.graphite.node.Updatable;
 import ch.g_7.graphite.rendering.IRenderer;
 import ch.g_7.graphite.rendering.RenderClass;
 import ch.g_7.util.common.Closeable;
 import ch.g_7.util.common.GenericProducerType;
-import ch.g_7.util.resource.IDepender;
-import ch.g_7.util.resource.ResourceManager;
 
-public final class Dimension implements Closeable, Updatable, IDepender {
+import java.util.ArrayList;
+import java.util.List;
 
-	private final int resourceId = ResourceManager.createResourceId();
+public final class Dimension implements Closeable, Updatable {
+
 
 	private List<RenderClass<?,?>> renderClasses;
 	
@@ -30,7 +27,7 @@ public final class Dimension implements Closeable, Updatable, IDepender {
 			}
 		}
 		RenderClass<T, ? extends IRenderer<? super T>> renderClass = renderType.get();
-		renderClass.bind(this);
+		renderClass.init();
 		renderClasses.add(renderClass);
 		renderClass.addNode(renderable);
 	}
@@ -38,7 +35,7 @@ public final class Dimension implements Closeable, Updatable, IDepender {
 	public <T extends RenderClass<?,?>> void remove(GenericProducerType<T> renderType) {
 		RenderClass<?,?> renderClass = getRenderClass(renderType);
 		renderClasses.remove(renderClass);
-		renderClass.unbind(this);
+		renderClass.close();
 	}
 	
 	public <T extends RenderClass<?,?>> T getRenderClass(GenericProducerType<T> renderType) {
@@ -62,12 +59,8 @@ public final class Dimension implements Closeable, Updatable, IDepender {
 	@Override
 	public void close() {
 		for (RenderClass<?,?> renderCluster : renderClasses) {
-			renderCluster.unbind(this);
+			renderCluster.close();
 		}
 	}
 
-	@Override
-	public int getResourceId() {
-		return resourceId;
-	}
 }
