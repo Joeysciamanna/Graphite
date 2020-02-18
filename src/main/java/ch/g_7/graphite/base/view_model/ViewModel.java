@@ -20,7 +20,7 @@ public class ViewModel implements IViewModel, IResource {
 	private Color color;
 
 	@Deprecated
-	ViewModel(IMesh mesh, ITexture texture, Color color) {
+	public ViewModel(IMesh mesh, ITexture texture, Color color) {
 		this.vao = new VAO(new IVBOType[]{VBOType.POSITIONS, VBOType.INDICES, VBOType.TEXTURE_COORDINATES});
 		setMesh(mesh);
 		setTexture(texture);

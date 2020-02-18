@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import ch.g_7.graphite.base.material.MaterialProducer;
+import ch.g_7.graphite.base.mesh.MeshProvider;
+import ch.g_7.graphite.base.texture.TextureProvider;
 import ch.g_7.util.common.Closeable;
 
 public class ResourceManager implements Closeable {
@@ -13,6 +16,11 @@ public class ResourceManager implements Closeable {
     private static final LinkedList<ResourceManager> STACK = new LinkedList<>();
     private static ResourceManager ACTIVE = new ResourceManager();
 
+    static {
+    	ACTIVE.addResourceLoader(new MaterialProducer(ENGINE_FILE_LOADER));
+    	ACTIVE.addResourceLoader(new TextureProvider(ENGINE_FILE_LOADER));
+    	ACTIVE.addResourceLoader(new MeshProvider());
+    }
 
     private List<IResourceProvider<?,?>> resourceProviders;
 
@@ -75,6 +83,15 @@ public class ResourceManager implements Closeable {
         GLOBAL_RESOURCES.add(resource);
         resource.init();
         return resource;
+    }
+    
+    public static void closeAll() {
+    	closeGlobals();
+    	ACTIVE.close();
+    	for (ResourceManager resourceManager : STACK) {
+			resourceManager.close();
+		}
+    	STACK.clear();
     }
 
     public static void closeGlobals(){
