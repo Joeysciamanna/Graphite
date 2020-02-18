@@ -6,6 +6,8 @@ import ch.g_7.graphite.util.IColor;
 
 public interface IMaterial {
 	
+	String getName();
+	
 	IColor getColor();
 	
 	ITexture getTexture();

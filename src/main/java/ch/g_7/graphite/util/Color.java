@@ -1,17 +1,21 @@
 package ch.g_7.graphite.util;
 
 import org.joml.Vector4f;
-import org.joml.Vector4fc;
 
 public class Color implements IColor{
 
-	public final static Color TRANSPARENT = new Color(0,0,0, 0);
+	public final static Color TRANSPARENT = new Color(0,0,0,0);
+	public final static Color WHITE = new Color(255,255,255);
+	public final static Color BLACK = new Color(0,0,0);
+	
 	public final static Color RED     = new Color(255,0,0);
 	public final static Color ORANGE = new Color(255,255,0);
 	public final static Color GREEN   = new Color(0,255,0);
 	public final static Color YELLOW  = new Color(0,255,255);
-	public final static Color BLUE = new Color(255,0,0);
+	public final static Color BLUE = new Color(0,0,255);
+	public final static Color PURPLE = new Color(255,0,255);
 
+	
 
 	int r,g,b,a;
 	
@@ -81,4 +85,29 @@ public class Color implements IColor{
 	}
 
 
+	
+	public static Color fromString(String value) {
+		switch (value) {
+		case "TRANSPARENT":
+			return Color.TRANSPARENT;
+		case "WHITE":
+			return Color.WHITE;
+		case "BLACK":
+			return Color.BLACK;
+		case "RED":
+			return Color.RED;
+		case "ORANGE":
+			return Color.ORANGE;
+		case "GREEN":
+			return Color.GREEN;
+		case "YELLOW":
+			return Color.YELLOW;
+		case "BLUE":
+			return Color.BLUE;
+		case "PURPLE":
+			return Color.PURPLE;
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + value);
+		}
+	}
 }

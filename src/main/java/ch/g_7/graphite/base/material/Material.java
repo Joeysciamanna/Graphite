@@ -8,11 +8,13 @@ import ch.g_7.graphite.util.IColor;
 
 public class Material implements IMaterial, IResource {
 
+	private String name;
     private Color color;
     private ITexture texture;
     private final VBO[] vbos;
 
-    public Material(Color color, ITexture texture, VBO[] vbos) {
+    public Material(String name, Color color, ITexture texture, VBO[] vbos) {
+    	this.name = name;
         this.color = color;
         this.texture = texture;
         this.vbos = combine(new VBO[]{ texture.getTextureCoordinatesVBO() }, vbos);
@@ -25,7 +27,12 @@ public class Material implements IMaterial, IResource {
         for (VBO vbo : vbos2) vbos[i++] = vbo;
         return vbos;
     }
-
+    
+    
+    @Override
+    public String getName() {
+    	return name;
+    }
 
     @Override
     public IColor getColor() {
@@ -39,7 +46,7 @@ public class Material implements IMaterial, IResource {
 
     @Override
     public VBO[] getVBOs() {
-        return new VBO[] { texture.getTextureCoordinatesVBO() };
+        return vbos;
     }
 
     @Override

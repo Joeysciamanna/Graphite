@@ -18,8 +18,7 @@ public class MeshProvider extends BasicResourceProvider<Mesh, IMeshKey> {
 	}
 
 	private Mesh loadMeshType(MeshType meshType){
-		MeshKeyBuilder2d meshKeyBuilder = new MeshKeyBuilder2d();
-		throw new RuntimeException("not yet implemented yet");
+		throw new RuntimeException("not yet implemented");
 	}
 
 	private Mesh loadMeshBuilder(MeshKeyBuilder2d meshKeyBuilder2d){

@@ -1,10 +1,12 @@
 package ch.g_7.graphite.base.material;
 
 import ch.g_7.graphite.base.texture.ITexture;
+import ch.g_7.graphite.base.texture.ImageKey;
 import ch.g_7.graphite.resource.BasicResourceProvider;
 import ch.g_7.graphite.resource.IFileLoader;
 import ch.g_7.graphite.resource.IResourceKey;
 import ch.g_7.graphite.resource.IResourceProvider;
+import ch.g_7.graphite.resource.ResourceManager;
 import ch.g_7.graphite.util.Color;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -48,37 +50,41 @@ public class MaterialProducer extends BasicResourceProvider<Material, MaterialKe
 
     private Material parseMaterial(JSONObject jsonObject){
         String name = jsonObject.getString("name");
-        Color color = null;
-        ITexture texture = null;
+        Color color = extract(jsonObject, "color", this::parseColorRGB, Color::fromString).get();
+        ITexture texture = extract(jsonObject, "texture", this::parseTexture).orElse(null);
 
-        if(jsonObject.has("$color")){
-            color = parseColorType(jsonObject.getString("$color"));
-        }else if(jsonObject.has("color")){
-            color = parseColorRGB(jsonObject.getJSONArray("color"));
-        }
-
-//        Material material = new Material();
-        return null;
+        return new Material(name, color, texture, null);
     }
 
-    private <T, R, K> Optional<T> extract(JSONObject jsonObject, String name, Function<R,T> valueHandler, Function<K,T> typeHandler){
+    @SuppressWarnings("unchecked")
+	private <R, K, T> Optional<R> extract(JSONObject jsonObject, String name, Function<K, R> valueHandler, Function<T,R> typeHandler){
         if(jsonObject.has(name)){
-            return new Optional.of(valueHandler.apply((R)));
-        }else if(jsonObject.has("color")){
-            color = parseColorRGB(jsonObject.getJSONArray("color"));
+            return Optional.of(valueHandler.apply((K)jsonObject.get(name)));
+        }else if(jsonObject.has("$" + name)){
+        	 return Optional.of(typeHandler.apply((T)jsonObject.get("$" + name)));
         }
         return Optional.empty();
     }
 
-    private Color parseColorType(String type) {
+    @SuppressWarnings("unchecked")
+	private <R, T> Optional<R> extract(JSONObject jsonObject, String name, Function<T, R> valueHandler){
+    	 if(jsonObject.has(name)){
+             return Optional.of(valueHandler.apply((T)jsonObject.get(name)));
+    	 }
+         return Optional.empty();
+    }
+   
 
+    private Color parseColorRGB(JSONArray array) {
+    	if(array.length()==3) 
+    		return new Color(array.getInt(0),array.getInt(1),array.getInt(2));
+    	return new Color(array.getInt(0),array.getInt(1),array.getInt(2), array.getInt(3));
     }
 
-    private Color parseColorRGB(JSONArray rgb) {
-
+    private ITexture parseTexture(String path) {
+    	return ResourceManager.getActive().getResource(new ImageKey(path));
     }
-
-
+    
 
     @Override
     public boolean canProvide(IResourceKey resourceKey) {

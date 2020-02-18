@@ -1,8 +1,10 @@
 package ch.g_7.graphite.resource;
 
-import ch.g_7.util.common.Closeable;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
-import java.util.*;
+import ch.g_7.util.common.Closeable;
 
 public class ResourceManager implements Closeable {
 
@@ -12,7 +14,7 @@ public class ResourceManager implements Closeable {
     private static ResourceManager ACTIVE = new ResourceManager();
 
 
-    private List<IResourceProvider> resourceProviders;
+    private List<IResourceProvider<?,?>> resourceProviders;
 
     private ResourceManager() {
         this.resourceProviders = new ArrayList<>();
@@ -22,22 +24,28 @@ public class ResourceManager implements Closeable {
         return ACTIVE;
     }
 
-    public <T extends IResource, K extends IResourceKey> T getResource(K resourceKey) {
-        for (IResourceProvider resourceLoader : resourceProviders) {
+    @SuppressWarnings("unchecked")
+	public <T extends IResource, K extends IResourceKey> T getResource(K resourceKey) {
+        for (IResourceProvider<?, ?> resourceLoader : resourceProviders) {
             if (resourceLoader.canProvide(resourceKey)) {
-                return (T) resourceLoader.get(resourceKey);
+                return (T) resourceLoader.get(cast(resourceKey));
             }
         }
         throw new IllegalArgumentException("No resource with key ["+resourceKey+"] found");
     }
 
-    public void addResourceLoader(IResourceProvider resourceLoader){
+    @SuppressWarnings("unchecked")
+	private <T> T cast(Object object) {
+    	return (T) object;
+    }
+    
+    public void addResourceLoader(IResourceProvider<?,?> resourceLoader){
         this.resourceProviders.add(resourceLoader);
     }
 
     public static void pushToStack(){
         ResourceManager newManager = new ResourceManager();
-        for (IResourceProvider resourceProvider : ACTIVE.resourceProviders) {
+        for (IResourceProvider<?,?> resourceProvider : ACTIVE.resourceProviders) {
             newManager.addResourceLoader(resourceProvider.newInstance());
         }
         STACK.addFirst(ACTIVE);
@@ -51,7 +59,7 @@ public class ResourceManager implements Closeable {
 
     @Override
     public void close(){
-        for (IResourceProvider resourceProvider : resourceProviders) {
+        for (IResourceProvider<?,?> resourceProvider : resourceProviders) {
             resourceProvider.closeResources();
         }
         resourceProviders.clear();
@@ -69,7 +77,7 @@ public class ResourceManager implements Closeable {
         return resource;
     }
 
-    private static void closeGlobals(){
+    public static void closeGlobals(){
         GLOBAL_RESOURCES.forEach((r)->r.close());
         GLOBAL_RESOURCES.clear();
     }
