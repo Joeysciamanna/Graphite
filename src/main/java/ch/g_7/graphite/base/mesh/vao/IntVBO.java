@@ -14,21 +14,21 @@ public class IntVBO extends VBO {
 
 	protected int[] ints;
 	
-	protected IntVBO(VBOType type, int[] ints) {
+	protected IntVBO(IVBOType type, int[] ints) {
 		super(type);
 		this.ints = ints;
-		if(type.glNumber != GL11.GL_INT) {
+		if(type.getGlNumber() != GL11.GL_INT) {
 			throw new IllegalArgumentException("VBOType " + type.toString() + " is not for int");
 		}
 	}
 
 	@Override
-	protected void doInit(VAO vao) {
+	protected void allocate(VAO vao) {
 		IntBuffer indicesBuffer = MemoryUtil.memAllocInt(ints.length);
 		indicesBuffer.put(ints).flip();
-		glBindBuffer(type.glBufferTarget, getId());
-		glBufferData(type.glBufferTarget, indicesBuffer, GL_STATIC_DRAW);
-		glVertexAttribPointer(type.position, type.size, type.glNumber, false, 0, 0);
+		glBindBuffer(type.getGlBufferTarget(), getId());
+		glBufferData(type.getGlBufferTarget(), indicesBuffer, GL_STATIC_DRAW);
+		glVertexAttribPointer(vao.getPositionFor(type), type.getSize(), type.getGlNumber(), false, 0, 0);
 		MemoryUtil.memFree(indicesBuffer);
 	}
 

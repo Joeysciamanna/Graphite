@@ -14,21 +14,21 @@ public class FloatVBO extends VBO {
 	
 	protected float[] floats;
 	
-	protected FloatVBO(VBOType type, float[] floats) {
+	protected FloatVBO(IVBOType type, float[] floats) {
 		super(type);
 		this.floats = floats;
-		if(type.glNumber != GL11.GL_FLOAT) {
+		if(type.getGlNumber() != GL11.GL_FLOAT) {
 			throw new IllegalArgumentException("VBOType " + type.toString() + " is not for float");
 		}
 	}
 
 	@Override
-	protected void doInit(VAO vao) {
+	protected void allocate(VAO vao) {
 		FloatBuffer indicesBuffer = MemoryUtil.memAllocFloat(floats.length);
 		indicesBuffer.put(floats).flip();
-		glBindBuffer(type.glBufferTarget, getId());
-		glBufferData(type.glBufferTarget, indicesBuffer, GL_STATIC_DRAW);
-		glVertexAttribPointer(type.position, type.size, type.glNumber , false, 0, 0);
+		glBindBuffer(type.getGlBufferTarget(), getId());
+		glBufferData(type.getGlBufferTarget(), indicesBuffer, GL_STATIC_DRAW);
+		glVertexAttribPointer(vao.getPositionFor(type), type.getSize(), type.getGlNumber() , false, 0, 0);
 		MemoryUtil.memFree(indicesBuffer);
 	}
 

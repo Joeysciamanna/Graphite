@@ -1,5 +1,7 @@
 package ch.g_7.graphite.base.texture;
 
+import ch.g_7.graphite.resource.NamedKey;
+
 public class SpriteKey extends ImageKey {
 
 	public final static String NAME = "SPRITE";
@@ -39,7 +41,7 @@ public class SpriteKey extends ImageKey {
 	public boolean equals(Object obj) {
 		if(obj instanceof SpriteKey) {
 			SpriteKey other = (SpriteKey) obj;
-			return other.x == x && other.y == y && other.width == width && other.height == height && other.getPath().equals(getPath());
+			return other.x == x && other.y == y && other.width == width && other.height == height && other.getName().equals(getName());
 			
 		}
 		return false;

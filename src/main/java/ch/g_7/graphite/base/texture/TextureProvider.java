@@ -2,10 +2,7 @@ package ch.g_7.graphite.base.texture;
 
 import java.io.IOException;
 
-import ch.g_7.graphite.resource.BasicResourceProvider;
-import ch.g_7.graphite.resource.IFileLoader;
-import ch.g_7.graphite.resource.IResourceKey;
-import ch.g_7.graphite.resource.IResourceProvider;
+import ch.g_7.graphite.resource.*;
 
 
 public class TextureProvider extends BasicResourceProvider<ITexture, ImageKey> {
@@ -19,10 +16,10 @@ public class TextureProvider extends BasicResourceProvider<ITexture, ImageKey> {
     @Override
     protected ITexture loadResource(ImageKey resourceKey) throws IllegalArgumentException {
         if(resourceKey.getResourceName().equals(ImageKey.NAME)){
-            return loadImage(resourceKey.getPath());
+            return loadImage(resourceKey.getName());
         }
         SpriteKey spriteKey = (SpriteKey) resourceKey;
-    	Image image = (Image) get(new ImageKey(spriteKey.getPath()));
+    	Image image = (Image) get(new ImageKey(spriteKey.getName()));
         return loadSprite(image, spriteKey.getX(), spriteKey.getY(), spriteKey.getWidth(), spriteKey.getHeight());
      
     }

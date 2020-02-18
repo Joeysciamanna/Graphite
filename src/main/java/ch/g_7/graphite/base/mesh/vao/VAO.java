@@ -8,10 +8,7 @@ import static org.lwjgl.opengl.GL30.glBindVertexArray;
 import static org.lwjgl.opengl.GL30.glDeleteVertexArrays;
 import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 import ch.g_7.util.common.Closeable;
 import org.lwjgl.opengl.GL20;
@@ -22,11 +19,14 @@ public class VAO implements Closeable {
 
 	private final int id;
 	private final List<VBO> vbos;
-	
+
+	private final IVBOType[] vboOrder;
+
 	private boolean adding;
 	private Queue<VBO> addables;
 	
-	public VAO() {
+	public VAO(IVBOType[] vboOrder) {
+		this.vboOrder = vboOrder;
 		this.vbos = new ArrayList<>(3);
 		this.addables = new LinkedList<>();
 		this.id = glGenVertexArrays();
@@ -45,7 +45,7 @@ public class VAO implements Closeable {
 	
 	private void add(VBO vbo, boolean addAdables) {
 		for (VBO v : vbos) {
-			if(v.getType().equals(vbo.type)) {
+			if(v.getName().equals(vbo.getName())) {
 				throw new IllegalArgumentException(vbo.type + " Alredy exist on VAO");
 			}
 		}
@@ -79,13 +79,21 @@ public class VAO implements Closeable {
 		vbos.set(index, vbo);
 	}
 
-	public VBO get(VBOType type) {
-		for (VBO vbo : vbos) {
-			if(vbo.type.equals(type)) return vbo;
+	public int getPositionFor(IVBOType vboType){
+		for (int i = 0; i < vboOrder.length; i++) {
+			if(vboType.getName().equals(vboOrder[i].getName())){
+				return i;
+			}
 		}
-		return null;
+		throw new IllegalArgumentException("VBOType ["+vboType.getName()+"] is not supported");
 	}
 
+	public Optional<VBO> get(VBOType type) {
+		for (VBO vbo : vbos) {
+			if(vbo.type.equals(type)) return Optional.of(vbo);
+		}
+		return Optional.empty();
+	}
 
 
 	@Override

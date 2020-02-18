@@ -3,7 +3,9 @@ package ch.g_7.graphite.base.view_model;
 import java.util.Objects;
 
 import ch.g_7.graphite.base.mesh.IMesh;
+import ch.g_7.graphite.base.mesh.vao.IVBOType;
 import ch.g_7.graphite.base.mesh.vao.VAO;
+import ch.g_7.graphite.base.mesh.vao.VBOType;
 import ch.g_7.graphite.base.texture.ITexture;
 import ch.g_7.graphite.resource.IResource;
 import ch.g_7.graphite.resource.ResourceManager;
@@ -19,21 +21,11 @@ public class ViewModel implements IViewModel, IResource {
 
 	@Deprecated
 	ViewModel(IMesh mesh, ITexture texture, Color color) {
-		this.vao = new VAO();
+		this.vao = new VAO(new IVBOType[]{VBOType.POSITIONS, VBOType.INDICES, VBOType.TEXTURE_COORDINATES});
 		setMesh(mesh);
 		setTexture(texture);
 		setColor(color);
 		init();
-	}
-
-	@Deprecated
-	public ViewModel(IMesh mesh, ITexture texture) {
-		this(mesh, texture, Color.TRANSPARENT);
-	}
-
-	@Deprecated
-	public ViewModel(IMesh mesh, Color color) {
-		this(mesh, null, color);
 	}
 
 	@Override

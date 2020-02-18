@@ -3,24 +3,40 @@ package ch.g_7.graphite.base.mesh.vao;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
 
-public enum VBOType {
+public enum VBOType implements IVBOType {
 
-	POSITIONS(GL15.GL_ARRAY_BUFFER, 3, GL11.GL_FLOAT, 0),
-	INDICES(GL15.GL_ELEMENT_ARRAY_BUFFER, -1, GL11.GL_INT, 1),
-	TEXTURE_COORDINATES(GL15.GL_ARRAY_BUFFER, 2, GL11.GL_FLOAT, 2);
+	POSITIONS(GL15.GL_ARRAY_BUFFER, 3, GL11.GL_FLOAT),
+	INDICES(GL15.GL_ELEMENT_ARRAY_BUFFER, -1, GL11.GL_INT),
+	TEXTURE_COORDINATES(GL15.GL_ARRAY_BUFFER, 2, GL11.GL_FLOAT);
+
+	private final int glBufferTarget;
+	private final int size;
+	private final int glNumber;
 	
-	
-	public final int glBufferTarget;
-	public final int size;
-	public final int glNumber;
-	public final int position;
-	
-	VBOType(int glType, int size, int number, int position) {
+	VBOType(int glType, int size, int number) {
 		this.glBufferTarget = glType;
 		this.size = size;
 		this.glNumber = number;
-		this.position = position;
 	}
 
-	
+	@Override
+	public String getName() {
+		return toString();
+	}
+
+	@Override
+	public int getGlBufferTarget() {
+		return glBufferTarget;
+	}
+
+	@Override
+	public int getSize() {
+		return size;
+	}
+
+	@Override
+	public int getGlNumber() {
+		return glNumber;
+	}
+
 }

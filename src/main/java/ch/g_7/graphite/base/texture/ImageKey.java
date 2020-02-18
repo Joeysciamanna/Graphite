@@ -1,28 +1,17 @@
 package ch.g_7.graphite.base.texture;
 
-import ch.g_7.graphite.resource.IResourceKey;
+import ch.g_7.graphite.resource.NamedKey;
 
-public class ImageKey implements IResourceKey {
-	
-	public final static String NAME = "IMAGE";
-	
-	private String path;
-	
-	public ImageKey(String path) {
-		this.path = path;
-	}
-	
-	public String getPath() {
-		return path;
-	}
-	
-	@Override
-	public String getResourceName() {
-		return NAME;
-	}
+public class ImageKey extends NamedKey {
 
-	@Override
-	public boolean equals(Object obj) {
-		return obj instanceof ImageKey ? ((ImageKey)obj).path.equals(path) : false;
-	}
+    public final static String NAME = "IMAGE";
+
+    public ImageKey(String path) {
+        super(path);
+    }
+
+    @Override
+    public String getResourceName() {
+        return NAME;
+    }
 }
