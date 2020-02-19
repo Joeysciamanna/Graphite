@@ -49,7 +49,7 @@ public class Test extends Application {
 		float tileSize = 2f/32;
 
 //		Image image = ResourceManager.getActive().getResource(new ImageKey("C:\\-\\workspace\\java\\graphite\\src\\test\\resources\\textures\\square3.png"));
-		Image image = ResourceManager.getActive().getResource(new ImageKey("C:\\Users\\Joey Sciamanna\\git\\Graphite\\src\\test\\resources\\textures\\square3.png"));
+		Image image = ResourceManager.getActive().getResource(new ImageKey("textures/square3.png"));
 		Mesh mesh = ResourceManager.getActive().getResource(MeshFactory2d.getSquare(tileSize).setCenter(MeshKeyBuilder2d.CENTER_MIDDLE));
 
 		viewModel1 = new ViewModel(mesh, image, Color.TRANSPARENT);

@@ -22,8 +22,14 @@ public class ViewModel implements IViewModel, IResource {
 	@Deprecated
 	public ViewModel(IMesh mesh, ITexture texture, Color color) {
 		this.vao = new VAO(new IVBOType[]{VBOType.POSITIONS, VBOType.INDICES, VBOType.TEXTURE_COORDINATES});
-		setMesh(mesh);
-		setTexture(texture);
+
+		this.mesh = mesh;
+		vao.add(mesh.getPositionVBO());
+		
+		this.texture = texture;
+		if (texture != null)
+			this.vao.add(texture.getTextureCoordinatesVBO());
+		
 		setColor(color);
 		init();
 	}

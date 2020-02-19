@@ -16,7 +16,7 @@ public class TextureProvider extends BasicResourceProvider<ITexture, ImageKey> {
     @Override
     protected ITexture loadResource(ImageKey resourceKey) throws IllegalArgumentException {
         if(resourceKey.getResourceName().equals(ImageKey.NAME)){
-            return loadImage(resourceKey.getName());
+            return loadImage(fileLoader.loadFile(resourceKey.getName()).getAbsolutePath().replace("%20", " "));
         }
         SpriteKey spriteKey = (SpriteKey) resourceKey;
     	Image image = (Image) get(new ImageKey(spriteKey.getName()));
@@ -28,8 +28,10 @@ public class TextureProvider extends BasicResourceProvider<ITexture, ImageKey> {
         Image image = null;
         try {
             image = TextureUtil.loadImage(path);
+            System.out.println("1");
         } catch (IOException e) {
-            new RuntimeException("Image not found", e);
+        	System.out.println("2");
+            throw new RuntimeException("Image not found", e);
         }
         return image;
     }
