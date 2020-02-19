@@ -55,14 +55,16 @@ public class Test extends Application {
 		viewModel1 = new ViewModel(mesh, image, Color.TRANSPARENT);
 
 
-		for (float i = 0; i < 10; i++) {
-			Entity entity = new Entity(viewModel1);
-			entity.getTransformation().setPosition(new Vector3f( (i % maxX) * 2 / (100000/32) - 1,(i / maxX) * 2 / (100000/32) - 1, 0));
-			entity.setViewModel(viewModel1);
-			getDimension().addObj(entity, RenderType.ENTITIES);
-			entities.add(entity);
-		}
+//		for (float i = 0; i < 10; i++) {
+//			Entity entity = new Entity(viewModel1);
+//			entity.getTransformation().setPosition(new Vector3f( (i % maxX) * 2 / (100000/32) - 1,(i / maxX) * 2 / (100000/32) - 1, 0));
+//			getDimension().addObj(entity, RenderType.ENTITIES);
+//			entities.add(entity);
+//		}
 
+		Entity entity = new Entity(viewModel1);
+		entity.getTransformation().setPosition(new Vector3f( 0,0, 0));
+		getDimension().addObj(entity, RenderType.ENTITIES);
 		getDimension().getRenderClass(RenderType.ENTITIES).getRenderer().setTransformator(new OrthographicTransformator());
 
 
