@@ -1,12 +1,10 @@
 package ch.g_7.graphite.base.material;
 
+import ch.g_7.graphite.base.mesh.vao.VBO;
+import ch.g_7.graphite.base.mesh.vao.VBOFactory;
 import ch.g_7.graphite.base.texture.ITexture;
 import ch.g_7.graphite.base.texture.ImageKey;
-import ch.g_7.graphite.resource.BasicResourceProvider;
-import ch.g_7.graphite.resource.IFileLoader;
-import ch.g_7.graphite.resource.IResourceKey;
-import ch.g_7.graphite.resource.IResourceProvider;
-import ch.g_7.graphite.resource.ResourceManager;
+import ch.g_7.graphite.resource.*;
 import ch.g_7.graphite.util.Color;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -15,7 +13,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Optional;
-import java.util.function.Consumer;
 import java.util.function.Function;
 
 public class MaterialProducer extends BasicResourceProvider<Material, MaterialKey> {
@@ -48,43 +45,69 @@ public class MaterialProducer extends BasicResourceProvider<Material, MaterialKe
     }
 
 
-    private Material parseMaterial(JSONObject jsonObject){
+    private Material parseMaterial(JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         Color color = extract(jsonObject, "color", this::parseColorRGB, Color::fromString).get();
-        ITexture texture = extract(jsonObject, "texture", this::parseTexture).orElse(null);
+        ITexture image = extract(jsonObject, "image", this::parseTexture).orElse(null);
+        ITexture sprite = extract(jsonObject, "sprite", this::parseSprite).orElse(null);
 
-        return new Material(name, color, texture, null);
+        return new Material(name, color, image == null ? sprite : image, new VBO[]{});
     }
 
     @SuppressWarnings("unchecked")
-	private <R, K, T> Optional<R> extract(JSONObject jsonObject, String name, Function<K, R> valueHandler, Function<T,R> typeHandler){
-        if(jsonObject.has(name)){
-            return Optional.of(valueHandler.apply((K)jsonObject.get(name)));
-        }else if(jsonObject.has("$" + name)){
-        	 return Optional.of(typeHandler.apply((T)jsonObject.get("$" + name)));
+    private <R, K, T> Optional<R> extract(JSONObject jsonObject, String name, Function<K, R> valueHandler, Function<T, R> typeHandler) {
+        R value = null;
+        if (jsonObject.has(name)) {
+            value = valueHandler.apply((K) jsonObject.get(name));
+        } else if (jsonObject.has("$" + name)) {
+            if (value != null)
+                throw new IllegalArgumentException("Both value and type was supplied for [" + name + "]");
+            value = typeHandler.apply((T) jsonObject.get("$" + name));
+        }
+        return Optional.ofNullable(value);
+    }
+
+    @SuppressWarnings("unchecked")
+    private <R, T> Optional<R> extract(JSONObject jsonObject, String name, Function<T, R> valueHandler) {
+        if (jsonObject.has(name)) {
+            return Optional.of(valueHandler.apply((T) jsonObject.get(name)));
         }
         return Optional.empty();
     }
 
-    @SuppressWarnings("unchecked")
-	private <R, T> Optional<R> extract(JSONObject jsonObject, String name, Function<T, R> valueHandler){
-    	 if(jsonObject.has(name)){
-             return Optional.of(valueHandler.apply((T)jsonObject.get(name)));
-    	 }
-         return Optional.empty();
-    }
-   
 
     private Color parseColorRGB(JSONArray array) {
-    	if(array.length()==3) 
-    		return new Color(array.getInt(0),array.getInt(1),array.getInt(2));
-    	return new Color(array.getInt(0),array.getInt(1),array.getInt(2), array.getInt(3));
+        if (array.length() == 3)
+            return new Color(array.getInt(0), array.getInt(1), array.getInt(2));
+        return new Color(array.getInt(0), array.getInt(1), array.getInt(2), array.getInt(3));
     }
 
     private ITexture parseTexture(String path) {
-    	return ResourceManager.getActive().getResource(new ImageKey(path));
+        return ResourceManager.getActive().getResource(new ImageKey(path));
     }
-    
+
+    private ITexture parseSprite(JSONObject value) {
+        throw new RuntimeException("Sprites are currently not supported");
+    }
+
+    private final static String numberChars = "1234567890.";
+    private float[] parseArea(String coords) {
+        float[] box = new float[4];
+        StringBuilder number = new StringBuilder();
+        int i = 0;
+        for (char c : coords.toCharArray()) {
+            if (c == ',') {
+                box[i++] = Integer.valueOf(number.toString());
+                number.setLength(0);
+            } else if (numberChars.indexOf(c) != -1) {
+                number.append(c);
+            } else if (c != ' '){
+                throw new IllegalArgumentException("Invalid formatted sprite area");
+            }
+        }
+        return box;
+    }
+
 
     @Override
     public boolean canProvide(IResourceKey resourceKey) {
@@ -96,3 +119,4 @@ public class MaterialProducer extends BasicResourceProvider<Material, MaterialKe
         return new MaterialProducer(fileLoader);
     }
 }
+

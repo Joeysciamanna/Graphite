@@ -1,9 +1,7 @@
 package ch.g_7.graphite.rendering.draw;
 
-import ch.g_7.graphite.draw.DrawContext2d;
-import ch.g_7.graphite.draw.drawable.Drawable;
-import ch.g_7.graphite.rendering.RenderClass;
 
+/*
 public class DrawRenderClass<T extends Drawable> extends RenderClass<T, DrawRenderer>{
 
 	public DrawRenderClass(String name) {
@@ -27,3 +25,4 @@ public class DrawRenderClass<T extends Drawable> extends RenderClass<T, DrawRend
 		super.addNode(node);
 	}
 }
+*/

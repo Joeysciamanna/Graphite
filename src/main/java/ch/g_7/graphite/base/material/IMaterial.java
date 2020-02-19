@@ -2,13 +2,13 @@ package ch.g_7.graphite.base.material;
 
 import ch.g_7.graphite.base.mesh.vao.VBO;
 import ch.g_7.graphite.base.texture.ITexture;
-import ch.g_7.graphite.util.IColor;
+import ch.g_7.graphite.util.Color;
 
 public interface IMaterial {
 	
 	String getName();
 	
-	IColor getColor();
+	Color getColor();
 	
 	ITexture getTexture();
 	

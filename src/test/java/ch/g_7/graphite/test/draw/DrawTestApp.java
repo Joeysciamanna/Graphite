@@ -1,17 +1,12 @@
 package ch.g_7.graphite.test.draw;
 
-import ch.g_7.graphite.entity.Entity;
-import ch.g_7.graphite.ui.scene.ISceneIdentifier;
-import ch.g_7.graphite.ui.scene.Scene;
-import ch.g_7.graphite.ui.scene.SceneNavigator;
-import org.lwjgl.glfw.GLFW;
-
 import ch.g_7.graphite.core.Application;
 import ch.g_7.graphite.rendering.RenderType;
+import ch.g_7.graphite.resource.ResourceManager;
 import ch.g_7.util.helper.AppInitializer;
-import ch.g_7.util.resource.ResourceManager;
+import org.lwjgl.glfw.GLFW;
 
-public class DrawTestApp extends Application {
+/*public class DrawTestApp extends Application {
 
 	public DrawTestApp() {
 		super("Draw App Name");
@@ -63,4 +58,4 @@ public class DrawTestApp extends Application {
 	}
 
 
-}
+}*/

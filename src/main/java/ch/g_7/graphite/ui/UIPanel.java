@@ -7,13 +7,14 @@ import ch.g_7.graphite.base.texture.ITexture;
 import ch.g_7.graphite.base.view_model.IViewModel;
 import ch.g_7.graphite.base.view_model.ViewModel;
 import ch.g_7.graphite.core.window.Window;
+import ch.g_7.graphite.resource.ResourceManager;
 import ch.g_7.graphite.ui.util.ScreenDimension;
 import ch.g_7.graphite.util.Color;
 import org.joml.Vector2ic;
 
 public class UIPanel extends UIContainer implements IUIPanel {
 
-	private static IMesh SQUARE_MESH = MeshFactory2d.getSquare(1).setCenter(MeshKeyBuilder2d.CENTER_TOP_LEFT).build();
+	private static IMesh SQUARE_MESH = ResourceManager.getActive().getResource(MeshFactory2d.getSquare(1).setCenter(MeshKeyBuilder2d.CENTER_TOP_LEFT));
 	
 	private ViewModel viewModel;
 	
@@ -40,7 +41,7 @@ public class UIPanel extends UIContainer implements IUIPanel {
 		this.preferedWidth = new ScreenDimension(ScreenDimension.X_AXIS).addPF(100);
 		this.preferedHeight = new ScreenDimension(ScreenDimension.Y_AXIS).addPF(100);
 		
-		this.viewModel = new ViewModel(SQUARE_MESH.clone(), null, Color.getColor(0, 0, 0, 0));
+		this.viewModel = new ViewModel(SQUARE_MESH, null, Color.TRANSPARENT);
 	}
 	
 
@@ -60,8 +61,15 @@ public class UIPanel extends UIContainer implements IUIPanel {
 		super.recalculate(screenSize, fatherSize);
 		transformation.getPosition().add(father.getTransformation().getPosition());
 	}
-	
-	
+
+	@Override
+	public void init() { }
+
+	@Override
+	public void close() {
+		viewModel.close();
+	}
+
 	@Override
 	public void recalculatePreferedSize() {
 		this.width.reset();

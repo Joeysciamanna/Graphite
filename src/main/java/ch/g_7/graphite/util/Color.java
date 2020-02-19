@@ -2,7 +2,7 @@ package ch.g_7.graphite.util;
 
 import org.joml.Vector4f;
 
-public class Color implements IColor{
+public class Color{
 
 	public final static Color TRANSPARENT = new Color(0,0,0,0);
 	public final static Color WHITE = new Color(255,255,255);

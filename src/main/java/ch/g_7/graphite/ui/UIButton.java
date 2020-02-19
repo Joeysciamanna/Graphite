@@ -24,8 +24,8 @@ public class UIButton extends UIPanel implements IUIButton{
 	}
 	
 	@Override
-	protected void doInit() {
-		super.doInit();
+	public void init() {
+		super.init();
 		getRootContainer().getMouseManager().addClickListner(this);
 		addMouseListner(new UIMouseListner(){
 			private boolean clicked;

@@ -21,6 +21,8 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer{
 		this.width.addPW(100);
 		this.height.addPW(100);
 		this.mouseManager = new MouseManager();
+
+		window.addMouseListner(mouseManager);
 	}
 	
 	@Override
@@ -47,15 +49,8 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer{
 	}
 	
 	@Override
-	protected void doInit() {
-		recalculate();
-		window.addMouseListner(mouseManager);
-	}
-	
-	@Override
-	protected void doClose() {
+	public void close() {
 		window.removeResizeListner(this);
-		super.doClose();
 	}
 
 	@Override

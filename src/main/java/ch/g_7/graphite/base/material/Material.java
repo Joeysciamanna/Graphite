@@ -4,7 +4,6 @@ import ch.g_7.graphite.base.mesh.vao.VBO;
 import ch.g_7.graphite.base.texture.ITexture;
 import ch.g_7.graphite.resource.IResource;
 import ch.g_7.graphite.util.Color;
-import ch.g_7.graphite.util.IColor;
 
 public class Material implements IMaterial, IResource {
 
@@ -35,7 +34,7 @@ public class Material implements IMaterial, IResource {
     }
 
     @Override
-    public IColor getColor() {
+    public Color getColor() {
         return color;
     }
 

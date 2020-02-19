@@ -1,9 +1,8 @@
 package ch.g_7.graphite.draw.drawable;
 
-import ch.g_7.graphite.draw.DrawContext2d;
-import ch.g_7.util.resource.Resource;
 
-public abstract class StaticDrawable extends Resource implements Drawable {
+
+/*public abstract class StaticDrawable extends Resource implements Drawable {
 
 	private DrawContext2d drawContext;
 	private boolean redraw = true;
@@ -43,4 +42,4 @@ public abstract class StaticDrawable extends Resource implements Drawable {
 		this.redraw = true;
 	}
 
-}
+}*/

@@ -1,5 +1,12 @@
 {
     "name": "blank",
+
     "$color": "TRANSPARENT",
-    "$textureCoords": "DEFAULT"
+    "color": [255, 255, 0],
+
+    "image": "/src/main",
+    "sprite":{
+        "area": [xMax, yMax, xMin, yMin],
+        "src": "/src/main"
+     }
 }

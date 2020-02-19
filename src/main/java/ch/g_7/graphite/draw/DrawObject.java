@@ -1,10 +1,7 @@
 package ch.g_7.graphite.draw;
 
-import ch.g_7.graphite.base.transformation.Transformation;
-import ch.g_7.graphite.base.view_model.ViewModel;
-import ch.g_7.util.resource.Resource;
 
-class DrawObject extends Resource implements IDrawObject {
+/*class DrawObject extends Resource implements IDrawObject {
 
 	private ViewModel viewModel;
 	private Transformation transformation;
@@ -69,4 +66,4 @@ class DrawObject extends Resource implements IDrawObject {
 		unbindFrom(viewModel);
 	}
 
-}
+}*/

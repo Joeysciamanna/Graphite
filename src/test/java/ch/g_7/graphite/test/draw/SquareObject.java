@@ -1,17 +1,6 @@
 package ch.g_7.graphite.test.draw;
 
-import ch.g_7.graphite.base.texture.Image;
-import ch.g_7.graphite.base.texture.TextureUtil;
-import ch.g_7.util.resource.IDepender;
-import org.joml.Vector2f;
-
-import ch.g_7.graphite.draw.DrawContext2d;
-import ch.g_7.graphite.draw.drawable.BasicDrawable;
-import ch.g_7.graphite.util.Color;
-
-import java.io.IOException;
-
-public class SquareObject extends BasicDrawable {
+/*public class SquareObject extends BasicDrawable {
 
 	private final static Image IMAGE;
 	private int x, y;
@@ -49,4 +38,4 @@ public class SquareObject extends BasicDrawable {
 		super.doClose();
 		IMAGE.unbind(this);
 	}
-}
+}*/

@@ -1,16 +1,17 @@
 package ch.g_7.graphite.test;
 
-import org.joml.Vector3f;
-import org.lwjgl.glfw.GLFW;
-
 import ch.g_7.graphite.base.mesh.Mesh;
+import ch.g_7.graphite.base.mesh.MeshKeyBuilder2d;
+import ch.g_7.graphite.base.mesh.MeshProvider;
 import ch.g_7.graphite.base.view_model.ViewModel;
 import ch.g_7.graphite.core.Application;
 import ch.g_7.graphite.entity.Entity;
 import ch.g_7.graphite.rendering.RenderType;
+import ch.g_7.graphite.resource.ResourceManager;
 import ch.g_7.graphite.util.Color;
 import ch.g_7.util.helper.AppInitializer;
-import ch.g_7.util.resource.ResourceManager;
+import org.joml.Vector3f;
+import org.lwjgl.glfw.GLFW;
 
 public class RotateCube extends Application {
 
@@ -66,9 +67,11 @@ public class RotateCube extends Application {
                 7, 6, 4, 7, 4, 5
         };
 
+        Mesh mesh = ResourceManager.getActive().getResource(new MeshKeyBuilder2d())
+
         ViewModel viewModel = new ViewModel();
         viewModel.setMesh(new Mesh(positions, indices));
-        viewModel.setColor(Color.getColor(255, 255, 0));
+        viewModel.setColor(new Color(255, 255, 0));
 
         entity1 = new Entity();
         entity1.setViewModel(viewModel);
@@ -109,10 +112,7 @@ public class RotateCube extends Application {
         if (getWindow().isKeyPressed(GLFW.GLFW_KEY_I))
             entity1.getTransformation().getRotation().set(0,0,0);
 
-        if(getWindow().isKeyPressed(GLFW.GLFW_KEY_R)) {
-        	System.out.println("Used resources:      " + ResourceManager.getInstance().getCurrentResourceCount());
-        	System.out.println("Allocated resources: " + ResourceManager.getInstance().getCurrentResourceAllocations());
-        }
+
         if(getWindow().isKeyPressed(GLFW.GLFW_KEY_F)) {
             System.out.println("FPS:      " + getTimer().getLPS());
             System.out.println("Delta:    " + deltaMillis);

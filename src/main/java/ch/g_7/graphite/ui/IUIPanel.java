@@ -4,8 +4,9 @@ import ch.g_7.graphite.base.texture.ITexture;
 import ch.g_7.graphite.node.Renderable;
 import ch.g_7.graphite.ui.util.ScreenDimension;
 import ch.g_7.graphite.util.Color;
+import ch.g_7.util.common.Initializable;
 
-public interface IUIPanel extends IUIContainer, Renderable {
+public interface IUIPanel extends IUIContainer, Renderable, Initializable {
 
 	void setFather(IUIContainer container);
 	
@@ -16,7 +17,7 @@ public interface IUIPanel extends IUIContainer, Renderable {
 	void setColor(Color color);
 	
 	void setTexture(ITexture texture);
-	
+
 	/**
 	 * Set by system, only change if you now what you are doing
 	 */

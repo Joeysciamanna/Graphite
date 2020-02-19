@@ -3,19 +3,8 @@ package ch.g_7.graphite.draw;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.g_7.graphite.base.mesh.IMesh;
-import ch.g_7.graphite.base.mesh.MeshKeyBuilder2d;
-import org.joml.Vector2fc;
-import org.joml.Vector3f;
-import org.lwjgl.opengl.GL11;
 
-import ch.g_7.graphite.base.mesh.Mesh;
-import ch.g_7.graphite.base.mesh.MeshFactory2d;
-import ch.g_7.graphite.base.texture.ITexture;
-import ch.g_7.graphite.util.Color;
-import ch.g_7.util.resource.Resource;
-
-public class DrawContext2d extends Resource {
+/*public class DrawContext2d extends Resource {
 
 	private final static IMesh SQUARE_MESH = MeshFactory2d.getSquare(1).setCenter(MeshKeyBuilder2d.CENTER_TOP_LEFT).build();
 
@@ -100,4 +89,4 @@ public class DrawContext2d extends Resource {
 	public List<IDrawObject> getDrawObjects() {
 		return drawObjects;
 	}
-}
+}*/

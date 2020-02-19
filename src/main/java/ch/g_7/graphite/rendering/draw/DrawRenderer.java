@@ -1,16 +1,7 @@
 package ch.g_7.graphite.rendering.draw;
 
-import java.util.List;
 
-import ch.g_7.graphite.draw.IDrawObject;
-import ch.g_7.graphite.draw.drawable.Drawable;
-import ch.g_7.graphite.rendering.basic.BasicRenderer;
-import ch.g_7.graphite.rendering.basic.BasicShaderProgram;
-import ch.g_7.graphite.rendering.transformator.OrthographicTransformator;
-import ch.g_7.graphite.rendering.transformator.PixelTransformator;
-import ch.g_7.graphite.util.Resources;
-
-public class DrawRenderer extends BasicRenderer<Drawable>{
+/*public class DrawRenderer extends BasicRenderer<Drawable>{
 
 
 	public DrawRenderer() {
@@ -31,4 +22,4 @@ public class DrawRenderer extends BasicRenderer<Drawable>{
 	
 	
 
-}
+}*/
