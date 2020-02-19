@@ -13,7 +13,7 @@ import ch.g_7.util.helper.AppInitializer;
 import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;
 
-public class RotateCube extends Application {
+/*public class RotateCube extends Application {
 
     private static RotateCube rotateCube;
 
@@ -67,7 +67,7 @@ public class RotateCube extends Application {
                 7, 6, 4, 7, 4, 5
         };
 
-        Mesh mesh = ResourceManager.getActive().getResource(new MeshKeyBuilder2d())
+        Mesh mesh = ResourceManager.getActive().getResource(new MeshKeyBuilder2d());
 
         ViewModel viewModel = new ViewModel();
         viewModel.setMesh(new Mesh(positions, indices));
@@ -135,4 +135,4 @@ public class RotateCube extends Application {
     }
 
 
-}
+}*/
