@@ -76,10 +76,10 @@ public class Test extends Application {
 	@Override
 	@SuppressWarnings("deprecation")
 	public void update(float deltaMillis) {
-//		if(getWindow().isKeyPressed(GLFW.GLFW_KEY_R)) {
-//			System.out.println("Used resources:      " + ResourceManager.getInstance().getCurrentResourceCount());
-//			System.out.println("Allocated resources: " + ResourceManager.getInstance().getCurrentResourceAllocations());
-//		}
+		if(getWindow().isKeyPressed(GLFW.GLFW_KEY_R)) {
+			System.out.println("Used resources:      " + ResourceManager.getTotalRequests());
+			System.out.println("Allocated resources: " + ResourceManager.getTotalAllocations());
+		}
 		if(getWindow().isKeyPressed(GLFW.GLFW_KEY_F)) {
 			System.out.println("FPS:      " + getTimer().getLPS());
 			System.out.println("Delta:    " + deltaMillis);

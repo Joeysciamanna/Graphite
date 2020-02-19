@@ -7,7 +7,9 @@ public abstract class BasicResourceProvider<T extends IResource, K extends IReso
 
 
     protected final ResourcePool<T, K> resourcePool;
-
+    private int allocations;
+    private int requests;
+    
     public BasicResourceProvider() {
         this.resourcePool = new ResourcePool<>();
     }
@@ -15,9 +17,11 @@ public abstract class BasicResourceProvider<T extends IResource, K extends IReso
     @Override
     public T get(K resourceKey) {
         Optional<T> resource = resourcePool.get(resourceKey);
+        requests++;
         if(resource.isPresent()){
             return resource.get();
         }
+        allocations++;
         T res = loadResource(resourceKey);
         resourcePool.add(res, resourceKey);
         res.init();
@@ -29,6 +33,16 @@ public abstract class BasicResourceProvider<T extends IResource, K extends IReso
     @Override
     public void closeResources() {
         resourcePool.closeAll();
+    }
+    
+    @Override
+    public int getAllocations() {
+    	return allocations;
+    }
+    
+    @Override
+    public int getRequests() {
+    	return requests;
     }
 
 }

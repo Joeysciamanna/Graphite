@@ -3,9 +3,9 @@ package ch.g_7.graphite.core;
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.node.Updatable;
 import ch.g_7.graphite.rendering.MasterRenderer;
+import ch.g_7.graphite.resource.ResourceManager;
 import ch.g_7.util.common.Closeable;
 import ch.g_7.util.common.Initializable;
-import ch.g_7.util.logging.Logger;
 import ch.g_7.util.loop.Loop;
 
 public abstract class Application extends Loop implements Updatable, Initializable, Closeable, Runnable {
@@ -16,7 +16,6 @@ public abstract class Application extends Loop implements Updatable, Initializab
     private Dimension dimension;
     private final Window window;
     private Camera camera;
-
 
 
     public Application(String name) {
@@ -31,14 +30,12 @@ public abstract class Application extends Loop implements Updatable, Initializab
         exists = true;
     }
 
-
     @Override
     protected void onStart() {
         window.init();
         masterRenderer.init();
         init();
     }
-
 
     @Override
     protected void onStop() {
@@ -64,6 +61,7 @@ public abstract class Application extends Loop implements Updatable, Initializab
 	public void update(float deltaMillis) { }
 
     public void close() {
+    	ResourceManager.closeAll();
         terminate();
     }
 

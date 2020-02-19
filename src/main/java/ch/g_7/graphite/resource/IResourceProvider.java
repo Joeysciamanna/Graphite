@@ -7,6 +7,10 @@ public interface IResourceProvider<T extends IResource, K extends IResourceKey> 
     T get(K resourceKey);
 
     void closeResources();
+    
+    int getAllocations();
+    
+    int getRequests();
 
     IResourceProvider<T, K> newInstance();
 }

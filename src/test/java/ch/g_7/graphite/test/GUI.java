@@ -49,12 +49,12 @@ public class GUI extends Application {
 
 		UIButton settingsButton = new UIButton();
 		settingsButton.getPreferedWidth().reset().add(settingsButton.getMaxHeight());
-		settingsButton.setTexture(square1);
+		//settingsButton.setTexture(square1);
 		optionPanel.add(settingsButton);
 		
 		UIButton wikiButton = new UIButton();
 		wikiButton.getPreferedWidth().reset().add(wikiButton.getMaxHeight());
-		wikiButton.setTexture(square2);
+		//wikiButton.setTexture(square2);
 		optionPanel.add(wikiButton);
 		
 		CenterLayoutPanel buttonPanel = new CenterLayoutPanel();

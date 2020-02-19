@@ -18,8 +18,8 @@ public abstract class VBO implements Closeable {
 	}
 
 	protected final void init(VAO vao){
-		if(id != -1) throw new IllegalStateException("Cant move VBO, VBO already initialized");
-		this.id = glGenBuffers();
+		if(id != -1);
+			this.id = glGenBuffers();
 		allocate(vao);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}
