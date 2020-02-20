@@ -31,9 +31,7 @@ public class TextureProvider extends BasicResourceProvider<ITexture, ImageKey> {
         Image image = null;
         try {
             image = TextureLoader.loadImage(path);
-            System.out.println("1");
         } catch (IOException e) {
-        	System.out.println("2");
             throw new RuntimeException("Image not found", e);
         }
         return image;

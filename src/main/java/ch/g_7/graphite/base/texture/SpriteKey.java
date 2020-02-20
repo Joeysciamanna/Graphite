@@ -1,5 +1,7 @@
 package ch.g_7.graphite.base.texture;
 
+import ch.g_7.graphite.util.Util;
+
 public class SpriteKey extends ImageKey {
 
 	public final static String NAME = "SPRITE";
@@ -37,12 +39,7 @@ public class SpriteKey extends ImageKey {
 	
 	@Override
 	public boolean equals(Object obj) {
-		if(obj instanceof SpriteKey) {
-			SpriteKey other = (SpriteKey) obj;
-			return other.x == x && other.y == y && other.width == width && other.height == height && other.getName().equals(getName());
-			
-		}
-		return false;
+		return Util.isEqual(this, obj, SpriteKey::getX, SpriteKey::getY, SpriteKey::getWidth, SpriteKey::getHeight, SpriteKey::getName);
 	}
 	
 	
