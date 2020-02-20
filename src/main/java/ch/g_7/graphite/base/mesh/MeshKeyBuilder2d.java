@@ -8,11 +8,9 @@ import org.joml.Vector2d;
 
 import ch.g_7.graphite.resource.ResourceManager;
 
+@Deprecated
+public class MeshKeyBuilder2d {
 
-public class MeshKeyBuilder2d implements IMeshKey {
-
-	public final static String NAME = "MESH_BUILDER";
-	
 	private List<Vector2d> points;
 	private Vector2d center;
 	int angle = 90;
@@ -104,7 +102,7 @@ public class MeshKeyBuilder2d implements IMeshKey {
 	}
 
 
-	Mesh build() {
+	public MeshKey build() {
 		float[] positions = new float[points.size() * 3];
 		for (int i = 0; i < points.size(); i++) {
 			positions[i * 3 + 0] = (float) points.get(i).x;
@@ -136,9 +134,8 @@ public class MeshKeyBuilder2d implements IMeshKey {
 		for (int j = 0; j < realIndices.length; j++) {
 			realIndices[j] = indices.get(j);
 		}
-		
-		Mesh mesh = new Mesh(positions, realIndices);
-		return mesh;
+
+		return new MeshKey(positions, realIndices);
 	}
 
 	private int fitIndex(int index, int from, int to) {
@@ -153,8 +150,5 @@ public class MeshKeyBuilder2d implements IMeshKey {
 		return newIndex;
 	}
 
-	@Override
-	public String getResourceName() {
-		return NAME;
-	}
+
 }

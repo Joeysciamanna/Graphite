@@ -6,53 +6,38 @@ import ch.g_7.graphite.base.mesh.vao.VBO;
 import ch.g_7.graphite.base.mesh.vao.VBOFactory;
 
 
-public class Sprite implements ITexture {
+public class Sprite extends Image {
 
-	private VBO textureCoordinates;
-	private Image image;
+	private final VBO textureCoordinates;
 
 
-	Sprite(Image image, float[] textCoords) {
-		this.image = image;
+	Sprite(Image image, int minX, int minY, int maxX, int maxY) {
+		super(image.getId(), (maxX - minX), (maxY - minY));
+		float minXT = (float) minX / image.getWidth();
+		float minYT = (float) maxY / image.getHeight();
+		float maxXT = (float) maxX / image.getWidth();
+		float maxYT = (float) minY / image.getHeight();
+
+		float[] textCoords = new float[]{
+			minXT, minYT,
+			maxXT, minYT,
+			maxXT, maxYT,
+			minXT, maxYT
+		};
 		this.textureCoordinates = VBOFactory.getTextureCoordinatesVBO(textCoords);
-	}
-
-	
-	@Override
-	public void init() {
-		image.init();
 	}
 
 	@Override
 	public void close() {
+		super.close();
 		textureCoordinates.close();
-		image.close();
 	}
 	
-	@Override
-	public int getId() {
-		return image.getId();
-	}
 
 	@Override
 	public void bind() {
-		image.bind();
+		super.bind();
 		GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-	}
-
-	@Override
-	public void unbind() {
-		image.unbind();
-	}
-
-	@Override
-	public int getWidth() {
-		return image.getWidth();
-	}
-
-	@Override
-	public int getHeight() {
-		return image.getHeight();
 	}
 
 	@Override

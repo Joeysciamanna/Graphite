@@ -30,6 +30,18 @@ public abstract class BasicResourceProvider<T extends IResource, K extends IReso
 
     protected abstract T loadResource(K resourceKey) throws IllegalArgumentException;
 
+    protected void checkResourceNames(IResourceKey resourceKey, String... names){
+        if(!containsResourceNames(resourceKey, names))
+            throw new IllegalArgumentException("Provider can not provide Resource ["+resourceKey.getResourceName()+"]");
+    }
+
+    protected boolean containsResourceNames(IResourceKey resourceKey, String... names){
+        for (String name : names) {
+            if(name.equals(resourceKey.getResourceName())) return true;
+        }
+        return false;
+    }
+
     @Override
     public void closeResources() {
         resourcePool.closeAll();

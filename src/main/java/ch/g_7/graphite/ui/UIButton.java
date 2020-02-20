@@ -5,6 +5,7 @@ import java.util.List;
 
 import ch.g_7.graphite.ui.util.UIMouseEvent;
 import ch.g_7.graphite.ui.util.UIMouseListner;
+import ch.g_7.graphite.util.Color;
 
 public class UIButton extends UIPanel implements IUIButton{
 
@@ -31,12 +32,18 @@ public class UIButton extends UIPanel implements IUIButton{
 			private boolean clicked;
 			@Override
 			public void onClick(UIMouseEvent e) {
-				if (!clicked) e.getButtonPanel().getViewModel().getColor().darker(20);
+				if (!clicked){
+					Color newColor = getViewModel().getColor().darker(20);
+					getViewModel().setColor(newColor);
+				}
 				clicked = true;
 			}
 			@Override
 			public void onRelease(UIMouseEvent e) {
-				if (clicked) e.getButtonPanel().getViewModel().getColor().lighter(20);
+				if (clicked){
+					Color newColor = getViewModel().getColor().lighter(20);
+					getViewModel().setColor(newColor);
+				}
 				clicked = false;
 			}
 		});

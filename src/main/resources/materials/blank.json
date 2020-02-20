@@ -6,7 +6,7 @@
 
     "image": "/src/main",
     "sprite":{
-        "area": [xMax, yMax, xMin, yMin],
+        "area": [xMin, yMin, xMax, yMax],
         "src": "/src/main"
      }
 }

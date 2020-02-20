@@ -40,16 +40,12 @@ public class Color{
 		return "Color[" + r +" "+ g +" "+ b +" "+ a +"]";
 	}
 	
-	public void darker(int amount) {
-		this.r -= amount;
-		this.g -= amount;
-		this.b -= amount;
+	public Color darker(int amount) {
+		return new Color(r - amount, g - amount, b - amount);
 	}
 	
-	public void lighter(int amount) {
-		this.r += amount;
-		this.g += amount;
-		this.b += amount;
+	public Color lighter(int amount) {
+		return new Color(r + amount, g + amount, b + amount);
 	}
 	
 	public float getR() {
@@ -67,23 +63,6 @@ public class Color{
 	public float getA() {
 		return a;
 	}
-	
-	public void setR(int r) {
-		this.r = r;
-	}
-	
-	public void setG(int g) {
-		this.g = g;
-	}
-	
-	public void setB(int b) {
-		this.b = b;
-	}
-	
-	public void setA(int a) {
-		this.a = a;
-	}
-
 
 	
 	public static Color fromString(String value) {

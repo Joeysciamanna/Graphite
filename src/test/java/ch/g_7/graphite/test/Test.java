@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import ch.g_7.graphite.base.mesh.MeshKey;
+import ch.g_7.graphite.base.texture.SpriteKey;
+import ch.g_7.graphite.rendering.transformator.PixelTransformator;
 import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;
 
@@ -44,27 +47,28 @@ public class Test extends Application {
 		AppInitializer appInitializer = new AppInitializer(true, "Test", new Object() {});
 		appInitializer.addConsoleLoggers();
 
+		float[] positions = new float[]{
+				-0.5f, -0.5f, 0.0f,
+				0.5f, -0.5f, 0.0f,
+				0.5f,  0.5f, 0.0f,
+				-0.5f,  0.5f, 0.0f,
+		};
+		int[] indices = new int[]{
+				0, 1, 3, 3, 1, 2,
+		};
 
-		float maxX = 32;
-		float tileSize = 2f/32;
 
-//		Image image = ResourceManager.getActive().getResource(new ImageKey("C:\\-\\workspace\\java\\graphite\\src\\test\\resources\\textures\\square3.png"));
-		Image image = ResourceManager.getActive().getResource(new ImageKey("textures/square3.png"));
-		Mesh mesh = ResourceManager.getActive().getResource(MeshFactory2d.getSquare(tileSize).setCenter(MeshKeyBuilder2d.CENTER_MIDDLE));
+		Image image = ResourceManager.getActive().getResource(new SpriteKey("textures/square3.png", 16, 0, 16, 16));
+		//Mesh mesh = ResourceManager.getActive().getResource(MeshFactory2d.getSquare(1).setCenter(MeshKeyBuilder2d.CENTER_MIDDLE).build());
+		Mesh mesh = ResourceManager.getActive().getResource(new MeshKey(positions, indices));
 
 		viewModel1 = new ViewModel(mesh, image, Color.TRANSPARENT);
-
-
-//		for (float i = 0; i < 10; i++) {
-//			Entity entity = new Entity(viewModel1);
-//			entity.getTransformation().setPosition(new Vector3f( (i % maxX) * 2 / (100000/32) - 1,(i / maxX) * 2 / (100000/32) - 1, 0));
-//			getDimension().addObj(entity, RenderType.ENTITIES);
-//			entities.add(entity);
-//		}
-
 		Entity entity = new Entity(viewModel1);
 		entity.getTransformation().setPosition(new Vector3f( 0,0, 0));
+		entity.getTransformation().setScale(new Vector3f(1,1,1));
 		getDimension().addObj(entity, RenderType.ENTITIES);
+
+
 		getDimension().getRenderClass(RenderType.ENTITIES).getRenderer().setTransformator(new OrthographicTransformator());
 
 
@@ -72,6 +76,11 @@ public class Test extends Application {
 		getWindow().setSize(500, 500);
 
 	}
+
+
+
+
+
 
 	@Override
 	@SuppressWarnings("deprecation")

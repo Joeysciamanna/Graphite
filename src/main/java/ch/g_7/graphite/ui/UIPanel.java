@@ -14,7 +14,7 @@ import org.joml.Vector2ic;
 
 public class UIPanel extends UIContainer implements IUIPanel {
 
-	private static IMesh SQUARE_MESH = ResourceManager.getActive().getResource(MeshFactory2d.getSquare(1).setCenter(MeshKeyBuilder2d.CENTER_TOP_LEFT));
+	private static IMesh SQUARE_MESH = ResourceManager.getActive().getResource(MeshFactory2d.getSquare(1).setCenter(MeshKeyBuilder2d.CENTER_TOP_LEFT).build());
 	
 	private ViewModel viewModel;
 	
@@ -117,7 +117,7 @@ public class UIPanel extends UIContainer implements IUIPanel {
 	}
 	
 	@Override
-	public IViewModel getViewModel() {
+	public ViewModel getViewModel() {
 		return viewModel;
 	}
 	

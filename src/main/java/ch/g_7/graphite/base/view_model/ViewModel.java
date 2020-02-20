@@ -59,9 +59,12 @@ public class ViewModel implements IViewModel, IResource {
 	}
 
 	public void setTexture(ITexture texture) {
-		this.texture = texture;
-		if (texture != null)
+		if(this.texture == null){
+			this.vao.add(texture.getTextureCoordinatesVBO());
+		}else{
 			this.vao.replace(texture.getTextureCoordinatesVBO());
+		}
+		this.texture = texture;
 	}
 	
 	public Color getColor() {

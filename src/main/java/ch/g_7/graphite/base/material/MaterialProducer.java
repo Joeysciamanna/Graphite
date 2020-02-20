@@ -4,6 +4,7 @@ import ch.g_7.graphite.base.mesh.vao.VBO;
 import ch.g_7.graphite.base.mesh.vao.VBOFactory;
 import ch.g_7.graphite.base.texture.ITexture;
 import ch.g_7.graphite.base.texture.ImageKey;
+import ch.g_7.graphite.base.texture.SpriteKey;
 import ch.g_7.graphite.resource.*;
 import ch.g_7.graphite.util.Color;
 import org.json.JSONArray;
@@ -46,7 +47,7 @@ public class MaterialProducer extends BasicResourceProvider<Material, MaterialKe
 
 
     private Material parseMaterial(JSONObject jsonObject) {
-        String name = jsonObject.getString("name");
+        String name = extract(jsonObject, "name", Object::toString).get();
         Color color = extract(jsonObject, "color", this::parseColorRGB, Color::fromString).get();
         ITexture image = extract(jsonObject, "image", this::parseTexture).orElse(null);
         ITexture sprite = extract(jsonObject, "sprite", this::parseSprite).orElse(null);
@@ -87,12 +88,14 @@ public class MaterialProducer extends BasicResourceProvider<Material, MaterialKe
     }
 
     private ITexture parseSprite(JSONObject value) {
-        throw new RuntimeException("Sprites are currently not supported");
+        int[] area = extract(value, "area", this::parseArea).get();
+        String path = extract(value, "src", Object::toString).get();
+        return ResourceManager.getActive().getResource(new SpriteKey(path, area[0], area[1], area[2], area[3]));
     }
 
-    private final static String numberChars = "1234567890.";
-    private float[] parseArea(String coords) {
-        float[] box = new float[4];
+    private final static String numberChars = "1234567890";
+    private int[] parseArea(String coords) {
+        int[] box = new int[4];
         StringBuilder number = new StringBuilder();
         int i = 0;
         for (char c : coords.toCharArray()) {
