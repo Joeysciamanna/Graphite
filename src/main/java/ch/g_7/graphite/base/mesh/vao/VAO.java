@@ -19,7 +19,6 @@ import org.lwjgl.opengl.GL20;
 import ch.g_7.util.common.Closeable;
 
 
-
 public class VAO implements Closeable {
 
 	private final int id;
@@ -38,7 +37,7 @@ public class VAO implements Closeable {
 	}
 	
 	
-	public synchronized void add(VBO vbo) {
+	public void add(VBO vbo) {
 		if(adding) {
 			addables.add(vbo);
 			return;

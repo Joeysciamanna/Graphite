@@ -1,5 +1,7 @@
 package ch.g_7.graphite.base.material;
 
+import java.util.Optional;
+
 import ch.g_7.graphite.base.mesh.vao.VBO;
 import ch.g_7.graphite.base.texture.ITexture;
 import ch.g_7.graphite.util.Color;
@@ -10,7 +12,7 @@ public interface IMaterial {
 	
 	Color getColor();
 	
-	ITexture getTexture();
+	Optional<ITexture> getTexture();
 	
 	VBO[] getVBOs();
 

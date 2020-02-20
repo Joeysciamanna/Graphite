@@ -30,7 +30,7 @@ public class TextureProvider extends BasicResourceProvider<ITexture, ImageKey> {
     private Image loadImage(String path) {
         Image image = null;
         try {
-            image = TextureUtil.loadImage(path);
+            image = TextureLoader.loadImage(path);
             System.out.println("1");
         } catch (IOException e) {
         	System.out.println("2");
@@ -40,7 +40,7 @@ public class TextureProvider extends BasicResourceProvider<ITexture, ImageKey> {
     }
 
     private Sprite loadSprite(Image image, int x, int y, int width, int height){
-        return TextureUtil.loadSprite(image, x, y, width, height);
+        return TextureLoader.loadSprite(image, x, y, width, height);
     }
 
     @Override

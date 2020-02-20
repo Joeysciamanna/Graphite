@@ -1,5 +1,7 @@
 package ch.g_7.graphite.base.material;
 
+import java.util.Optional;
+
 import ch.g_7.graphite.base.mesh.vao.VBO;
 import ch.g_7.graphite.base.texture.ITexture;
 import ch.g_7.graphite.resource.IResource;
@@ -9,23 +11,16 @@ public class Material implements IMaterial, IResource {
 
 	private String name;
     private Color color;
-    private ITexture texture;
-    private final VBO[] vbos;
+    private Optional<ITexture> texture;
+
 
     public Material(String name, Color color, ITexture texture, VBO[] vbos) {
     	this.name = name;
         this.color = color;
-        this.texture = texture;
-        this.vbos = combine(new VBO[]{ texture.getTextureCoordinatesVBO() }, vbos);
+        this.texture = Optional.ofNullable(texture);
     }
 
-    private final static VBO[] combine(VBO[] vbos1,  VBO... vbos2){
-        VBO[] vbos = new VBO[vbos1.length + vbos2.length];
-        int i = 0;
-        for (VBO vbo : vbos1) vbos[i++] = vbo;
-        for (VBO vbo : vbos2) vbos[i++] = vbo;
-        return vbos;
-    }
+  
     
     
     @Override
@@ -39,13 +34,13 @@ public class Material implements IMaterial, IResource {
     }
 
     @Override
-    public ITexture getTexture() {
+    public Optional<ITexture> getTexture() {
         return texture;
     }
 
     @Override
     public VBO[] getVBOs() {
-        return vbos;
+        return getVBOs();
     }
 
     @Override

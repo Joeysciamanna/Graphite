@@ -93,10 +93,5 @@ public class Test extends Application {
 		}
 	}
 	
-	@Override
-	public void close() {
-		viewModel1.close();
-		ResourceManager.closeAll();
-		super.close();
-	}
+
 }
