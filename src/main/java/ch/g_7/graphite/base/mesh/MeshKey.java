@@ -1,6 +1,7 @@
 package ch.g_7.graphite.base.mesh;
 
 import ch.g_7.graphite.resource.IResourceKey;
+import ch.g_7.graphite.util.Util;
 
 public class MeshKey implements IResourceKey {
 
@@ -25,5 +26,10 @@ public class MeshKey implements IResourceKey {
     @Override
     public String getResourceName() {
         return NAME;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+    	return Util.isEqual(this, obj, MeshKey::getPositions, MeshKey::getIndices);
     }
 }

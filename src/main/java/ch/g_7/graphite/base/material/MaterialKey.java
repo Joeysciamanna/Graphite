@@ -1,6 +1,7 @@
 package ch.g_7.graphite.base.material;
 
 import ch.g_7.graphite.resource.NamedKey;
+import ch.g_7.graphite.util.Util;
 
 public class MaterialKey extends NamedKey {
 
@@ -13,5 +14,10 @@ public class MaterialKey extends NamedKey {
     @Override
     public String getResourceName() {
         return NAME;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+    	return Util.isEqual(this, obj, MaterialKey::getName);
     }
 }
