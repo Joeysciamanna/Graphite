@@ -1,7 +1,5 @@
 package ch.g_7.graphite.base.texture;
 
-import ch.g_7.graphite.resource.NamedKey;
-
 public class SpriteKey extends ImageKey {
 
 	public final static String NAME = "SPRITE";

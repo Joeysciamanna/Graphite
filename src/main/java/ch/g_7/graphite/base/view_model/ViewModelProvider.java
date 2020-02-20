@@ -4,8 +4,6 @@ import ch.g_7.graphite.resource.BasicResourceProvider;
 import ch.g_7.graphite.resource.IResourceKey;
 import ch.g_7.graphite.resource.IResourceProvider;
 
-import javax.swing.text.View;
-
 public class ViewModelProvider extends BasicResourceProvider<ViewModel, IViewModelKey> {
 
 

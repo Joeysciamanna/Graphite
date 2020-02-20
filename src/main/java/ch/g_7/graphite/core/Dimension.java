@@ -1,14 +1,14 @@
 package ch.g_7.graphite.core;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ch.g_7.graphite.node.INode;
 import ch.g_7.graphite.node.Updatable;
 import ch.g_7.graphite.rendering.IRenderer;
 import ch.g_7.graphite.rendering.RenderClass;
 import ch.g_7.util.common.Closeable;
 import ch.g_7.util.common.GenericProducerType;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public final class Dimension implements Closeable, Updatable {
 

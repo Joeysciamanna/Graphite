@@ -1,16 +1,17 @@
 package ch.g_7.graphite.rendering;
 
+import static org.lwjgl.glfw.GLFW.glfwPollEvents;
+import static org.lwjgl.glfw.GLFW.glfwSwapBuffers;
+import static org.lwjgl.opengl.GL11.GL_DEPTH_TEST;
+import static org.lwjgl.opengl.GL11.glEnable;
+
+import org.lwjgl.opengl.GL11;
+
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.Dimension;
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.util.common.Closeable;
 import ch.g_7.util.common.Initializable;
-import org.lwjgl.opengl.GL11;
-
-import static org.lwjgl.glfw.GLFW.glfwPollEvents;
-import static org.lwjgl.glfw.GLFW.glfwSwapBuffers;
-import static org.lwjgl.opengl.GL11.GL_DEPTH_TEST;
-import static org.lwjgl.opengl.GL11.glEnable;
 
 public class MasterRenderer implements Initializable, Closeable {
 

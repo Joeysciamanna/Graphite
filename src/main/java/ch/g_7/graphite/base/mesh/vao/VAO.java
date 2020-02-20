@@ -8,10 +8,15 @@ import static org.lwjgl.opengl.GL30.glBindVertexArray;
 import static org.lwjgl.opengl.GL30.glDeleteVertexArrays;
 import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Optional;
+import java.util.Queue;
+
+import org.lwjgl.opengl.GL20;
 
 import ch.g_7.util.common.Closeable;
-import org.lwjgl.opengl.GL20;
 
 
 

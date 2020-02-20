@@ -7,7 +7,6 @@ import org.joml.Vector2ic;
 import ch.g_7.graphite.base.transformation.ITransformation;
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
-import org.joml.Vector3f;
 
 public class PixelTransformator implements ITransformator<ITransformation>{
 

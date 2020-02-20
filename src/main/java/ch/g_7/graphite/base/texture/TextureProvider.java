@@ -2,7 +2,10 @@ package ch.g_7.graphite.base.texture;
 
 import java.io.IOException;
 
-import ch.g_7.graphite.resource.*;
+import ch.g_7.graphite.resource.BasicResourceProvider;
+import ch.g_7.graphite.resource.IFileLoader;
+import ch.g_7.graphite.resource.IResourceKey;
+import ch.g_7.graphite.resource.IResourceProvider;
 
 
 public class TextureProvider extends BasicResourceProvider<ITexture, ImageKey> {

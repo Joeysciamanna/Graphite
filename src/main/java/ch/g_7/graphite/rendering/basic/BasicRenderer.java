@@ -1,6 +1,10 @@
 package ch.g_7.graphite.rendering.basic;
 
-import ch.g_7.graphite.base.mesh.vao.VAO;
+import static org.lwjgl.opengl.GL11.GL_UNSIGNED_INT;
+import static org.lwjgl.opengl.GL11.glDrawElements;
+
+import java.util.List;
+
 import ch.g_7.graphite.base.transformation.ITransformation;
 import ch.g_7.graphite.base.view_model.IViewModel;
 import ch.g_7.graphite.core.Camera;
@@ -9,13 +13,6 @@ import ch.g_7.graphite.node.INode;
 import ch.g_7.graphite.node.Renderable;
 import ch.g_7.graphite.rendering.IRenderer;
 import ch.g_7.graphite.rendering.transformator.ITransformator;
-import ch.g_7.util.common.Closeable;
-import ch.g_7.util.common.Initializable;
-
-import java.util.List;
-
-import static org.lwjgl.opengl.GL11.GL_UNSIGNED_INT;
-import static org.lwjgl.opengl.GL11.glDrawElements;
 
 public abstract class BasicRenderer<T extends INode> implements IRenderer<T> {
 

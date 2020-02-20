@@ -2,8 +2,6 @@ package ch.g_7.graphite.base.mesh;
 
 import ch.g_7.graphite.resource.IResourceKey;
 
-import javax.print.attribute.standard.MediaSize;
-
 public class MeshKey implements IResourceKey {
 
     public final static String NAME = "MESH";

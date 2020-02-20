@@ -1,20 +1,24 @@
 package ch.g_7.graphite.base.material;
 
-import ch.g_7.graphite.base.mesh.vao.VBO;
-import ch.g_7.graphite.base.mesh.vao.VBOFactory;
-import ch.g_7.graphite.base.texture.ITexture;
-import ch.g_7.graphite.base.texture.ImageKey;
-import ch.g_7.graphite.base.texture.SpriteKey;
-import ch.g_7.graphite.resource.*;
-import ch.g_7.graphite.util.Color;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Optional;
 import java.util.function.Function;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import ch.g_7.graphite.base.mesh.vao.VBO;
+import ch.g_7.graphite.base.texture.ITexture;
+import ch.g_7.graphite.base.texture.ImageKey;
+import ch.g_7.graphite.base.texture.SpriteKey;
+import ch.g_7.graphite.resource.BasicResourceProvider;
+import ch.g_7.graphite.resource.IFileLoader;
+import ch.g_7.graphite.resource.IResourceKey;
+import ch.g_7.graphite.resource.IResourceProvider;
+import ch.g_7.graphite.resource.ResourceManager;
+import ch.g_7.graphite.util.Color;
 
 public class MaterialProducer extends BasicResourceProvider<Material, MaterialKey> {
 

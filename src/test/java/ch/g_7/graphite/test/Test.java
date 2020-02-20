@@ -1,21 +1,15 @@
 package ch.g_7.graphite.test;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.g_7.graphite.base.mesh.MeshKey;
-import ch.g_7.graphite.base.texture.SpriteKey;
-import ch.g_7.graphite.rendering.transformator.PixelTransformator;
 import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;
 
 import ch.g_7.graphite.base.mesh.Mesh;
-import ch.g_7.graphite.base.mesh.MeshFactory2d;
-import ch.g_7.graphite.base.mesh.MeshKeyBuilder2d;
+import ch.g_7.graphite.base.mesh.MeshKey;
 import ch.g_7.graphite.base.texture.Image;
-import ch.g_7.graphite.base.texture.ImageKey;
-import ch.g_7.graphite.base.texture.TextureUtil;
+import ch.g_7.graphite.base.texture.SpriteKey;
 import ch.g_7.graphite.base.view_model.ViewModel;
 import ch.g_7.graphite.core.Application;
 import ch.g_7.graphite.entity.Entity;

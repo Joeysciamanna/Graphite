@@ -1,9 +1,5 @@
 package ch.g_7.graphite.draw;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
 /*public class DrawContext2d extends Resource {
 
 	private final static IMesh SQUARE_MESH = MeshFactory2d.getSquare(1).setCenter(MeshKeyBuilder2d.CENTER_TOP_LEFT).build();

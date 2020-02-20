@@ -1,6 +1,8 @@
 package ch.g_7.graphite.resource;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 public class ResourcePool<T extends  IResource, K extends IResourceKey>{
 

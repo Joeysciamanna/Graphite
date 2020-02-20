@@ -6,8 +6,6 @@ import java.util.List;
 import org.joml.Rectangled;
 import org.joml.Vector2d;
 
-import ch.g_7.graphite.resource.ResourceManager;
-
 @Deprecated
 public class MeshKeyBuilder2d {
 

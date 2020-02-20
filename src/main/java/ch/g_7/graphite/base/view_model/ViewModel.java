@@ -8,7 +8,6 @@ import ch.g_7.graphite.base.mesh.vao.VAO;
 import ch.g_7.graphite.base.mesh.vao.VBOType;
 import ch.g_7.graphite.base.texture.ITexture;
 import ch.g_7.graphite.resource.IResource;
-import ch.g_7.graphite.resource.ResourceManager;
 import ch.g_7.graphite.util.Color;
 
 
