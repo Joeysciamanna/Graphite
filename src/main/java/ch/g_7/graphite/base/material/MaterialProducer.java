@@ -64,7 +64,8 @@ public class MaterialProducer extends BasicResourceProvider<Material, MaterialKe
         R value = null;
         if (jsonObject.has(name)) {
             value = valueHandler.apply((K) jsonObject.get(name));
-        } else if (jsonObject.has("$" + name)) {
+        } 
+        if (jsonObject.has("$" + name)) {
             if (value != null)
                 throw new IllegalArgumentException("Both value and type was supplied for [" + name + "]");
             value = typeHandler.apply((T) jsonObject.get("$" + name));
