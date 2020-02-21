@@ -30,13 +30,17 @@ public class ResourceManager implements Closeable {
 	}
 
 	@SuppressWarnings("unchecked")
-	public <T extends IResource, K extends IResourceKey> T getResource(K resourceKey) {
+	public <T extends IResource, K extends IResourceKey> T getResource(K resourceKey, IFileLoader fileLoader) {
 		for (IResourceProvider<?, ?> resourceLoader : resourceProviders) {
 			if (resourceLoader.canProvide(resourceKey)) {
-				return (T) resourceLoader.get(cast(resourceKey), ENGINE_FILE_LOADER);
+				return (T) resourceLoader.get(cast(resourceKey), fileLoader);
 			}
 		}
 		throw new IllegalArgumentException("No resource with key [" + resourceKey + "] found");
+	}
+	
+	public <T extends IResource, K extends IResourceKey> T getEngineResource(K resourceKey) {
+		return getResource(resourceKey, ENGINE_FILE_LOADER);
 	}
 
 	@SuppressWarnings("unchecked")
