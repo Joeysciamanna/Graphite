@@ -33,8 +33,8 @@ public class GUI extends Application {
 		AppInitializer appInitializer = new AppInitializer(true, "GUI Test", new Object() {});
 		appInitializer.addConsoleLoggers();
 
-		Image square1 = ResourceManager.getActive().getResource(new ImageKey("textures/square1.png"));  //imageLoader.apply("C:\\-\\workspace\\java\\graphite\\src\\test\\resources\\textures\\square1.png");
-		Image square2 = ResourceManager.getActive().getResource(new ImageKey("textures/square3.png"));  //imageLoader.apply("C:\\-\\workspace\\java\\graphite\\src\\test\\resources\\textures\\square3.png");
+		Image square1 = ResourceManager.getActive().getEngineResource(new ImageKey("textures/square1.png"));  //imageLoader.apply("C:\\-\\workspace\\java\\graphite\\src\\test\\resources\\textures\\square1.png");
+		Image square2 = ResourceManager.getActive().getEngineResource(new ImageKey("textures/square3.png"));  //imageLoader.apply("C:\\-\\workspace\\java\\graphite\\src\\test\\resources\\textures\\square3.png");
 		
 		mainMenu = new UIRootContainer(getWindow());
 		getDimension().addObj(mainMenu, RenderType.UI);

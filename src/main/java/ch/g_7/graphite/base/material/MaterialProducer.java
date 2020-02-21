@@ -82,13 +82,13 @@ public class MaterialProducer extends BasicResourceProvider<Material, MaterialKe
     }
 
     private ITexture parseTexture(String path) {
-        return ResourceManager.getActive().getResource(new ImageKey(path));
+        return ResourceManager.getActive().getEngineResource(new ImageKey(path));
     }
 
     private ITexture parseSprite(JSONObject value) {
         int[] area = extract(value, "area", this::parseArea).get();
         String path = extract(value, "src", Object::toString).get();
-        return ResourceManager.getActive().getResource(new SpriteKey(path, area[0], area[1], area[2], area[3]));
+        return ResourceManager.getActive().getEngineResource(new SpriteKey(path, area[0], area[1], area[2], area[3]));
     }
 
     private final static String numberChars = "1234567890";

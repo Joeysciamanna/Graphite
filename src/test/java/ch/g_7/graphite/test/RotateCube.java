@@ -1,6 +1,7 @@
 package ch.g_7.graphite.test;
 
 import ch.g_7.graphite.base.mesh.Mesh;
+import ch.g_7.graphite.base.mesh.MeshKey;
 import ch.g_7.graphite.base.mesh.MeshKeyBuilder2d;
 import ch.g_7.graphite.base.mesh.MeshProvider;
 import ch.g_7.graphite.base.view_model.ViewModel;
@@ -13,7 +14,7 @@ import ch.g_7.util.helper.AppInitializer;
 import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;
 
-/*public class RotateCube extends Application {
+public class RotateCube extends Application {
 
     private static RotateCube rotateCube;
 
@@ -67,14 +68,11 @@ import org.lwjgl.glfw.GLFW;
                 7, 6, 4, 7, 4, 5
         };
 
-        Mesh mesh = ResourceManager.getActive().getResource(new MeshKeyBuilder2d());
+        Mesh mesh = ResourceManager.getActive().getEngineResource(new MeshKey(positions, indices));
 
-        ViewModel viewModel = new ViewModel();
-        viewModel.setMesh(new Mesh(positions, indices));
-        viewModel.setColor(new Color(255, 255, 0));
+        ViewModel viewModel = new ViewModel(mesh, null, Color.PURPLE);
 
-        entity1 = new Entity();
-        entity1.setViewModel(viewModel);
+        entity1 = new Entity(viewModel);
         entity1.getTransformation().setPosition(new Vector3f(0, 0, -2 ));
 
         getDimension().addObj(entity1, RenderType.ENTITIES);
@@ -135,4 +133,4 @@ import org.lwjgl.glfw.GLFW;
     }
 
 
-}*/
+}

@@ -52,9 +52,9 @@ public class Test extends Application {
 		};
 
 
-		Image image = ResourceManager.getActive().getResource(new SpriteKey("textures/square3.png", 16, 0, 16, 16));
+		Image image = ResourceManager.getActive().getEngineResource(new SpriteKey("textures/square3.png", 16, 0, 16, 16));
 		//Mesh mesh = ResourceManager.getActive().getResource(MeshFactory2d.getSquare(1).setCenter(MeshKeyBuilder2d.CENTER_MIDDLE).build());
-		Mesh mesh = ResourceManager.getActive().getResource(new MeshKey(positions, indices));
+		Mesh mesh = ResourceManager.getActive().getEngineResource(new MeshKey(positions, indices));
 
 		viewModel1 = new ViewModel(mesh, image, Color.TRANSPARENT);
 		Entity entity = new Entity(viewModel1);
