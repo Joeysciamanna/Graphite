@@ -12,6 +12,9 @@ import ch.g_7.util.common.Closeable;
 public class ResourceManager implements Closeable {
 
 	public final static IFileLoader ENGINE_FILE_LOADER = new LocalFileLoader() {};
+	public static IFileLoader GAME_FILE_LOADER;
+	
+	
 	
 	private final static List<Closeable> GLOBAL_RESOURCES = new ArrayList<>();
 	private static final LinkedList<ResourceManager> STACK = new LinkedList<>();
@@ -43,6 +46,11 @@ public class ResourceManager implements Closeable {
 		return getResource(resourceKey, ENGINE_FILE_LOADER);
 	}
 
+	public <T extends IResource, K extends IResourceKey> T getGameResource(K resourceKey) {
+		if(GAME_FILE_LOADER == null) throw new IllegalStateException("GameFileLoader not set");
+		return getResource(resourceKey, GAME_FILE_LOADER);
+	}
+	
 	@SuppressWarnings("unchecked")
 	private <T> T cast(Object object) {
 		return (T) object;
@@ -135,4 +143,8 @@ public class ResourceManager implements Closeable {
 		return ACTIVE;
 	}
 
+	public static void setGameFileLoader(IFileLoader gameFileLoader) {
+		if(gameFileLoader != null) throw new IllegalStateException("GameFileLoader already set");
+		GAME_FILE_LOADER = gameFileLoader;
+	}
 }
