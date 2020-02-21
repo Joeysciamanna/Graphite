@@ -7,6 +7,7 @@ import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.node.INode;
 import ch.g_7.graphite.node.Updatable;
+import ch.g_7.graphite.util.Util;
 import ch.g_7.util.common.Closeable;
 import ch.g_7.util.common.Initializable;
 
@@ -56,7 +57,11 @@ public abstract class RenderClass<T extends INode, R extends IRenderer<? super T
 
 	@Override
 	public final boolean equals(Object obj) {
-		return obj instanceof RenderClass ? name.equals(((RenderClass) obj).name) : false;
+		return Util.isEqual(this, obj, RenderClass::getName);
+	}
+	
+	public String getName() {
+		return name;
 	}
 	
 	public R getRenderer() {

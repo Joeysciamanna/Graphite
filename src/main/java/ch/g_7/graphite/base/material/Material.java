@@ -59,7 +59,8 @@ public class Material implements IMaterial, IResource {
                 ts.add(supplier.get());
             }catch (NullPointerException e){ }
         }
-        T[] array = (T[]) new Object[ts.size()];
+        @SuppressWarnings("unchecked")
+		T[] array = (T[]) new Object[ts.size()];
         for (int i = 0; i < array.length; i++) {
             array[i] = ts.get(i);
         }

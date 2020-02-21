@@ -9,7 +9,6 @@ import java.util.function.Function;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import ch.g_7.graphite.base.mesh.vao.VBO;
 import ch.g_7.graphite.base.texture.ITexture;
 import ch.g_7.graphite.base.texture.ImageKey;
 import ch.g_7.graphite.base.texture.SpriteKey;
