@@ -18,8 +18,8 @@ public class ResourceManager implements Closeable {
 	private static ResourceManager ACTIVE = new ResourceManager();
 
 	static {
-		ACTIVE.addResourceLoader(new MaterialProducer(ENGINE_FILE_LOADER));
-		ACTIVE.addResourceLoader(new TextureProvider(ENGINE_FILE_LOADER));
+		ACTIVE.addResourceLoader(new MaterialProducer());
+		ACTIVE.addResourceLoader(new TextureProvider());
 		ACTIVE.addResourceLoader(new MeshProvider());
 	}
 
@@ -33,7 +33,7 @@ public class ResourceManager implements Closeable {
 	public <T extends IResource, K extends IResourceKey> T getResource(K resourceKey) {
 		for (IResourceProvider<?, ?> resourceLoader : resourceProviders) {
 			if (resourceLoader.canProvide(resourceKey)) {
-				return (T) resourceLoader.get(cast(resourceKey));
+				return (T) resourceLoader.get(cast(resourceKey), ENGINE_FILE_LOADER);
 			}
 		}
 		throw new IllegalArgumentException("No resource with key [" + resourceKey + "] found");

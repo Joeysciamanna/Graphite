@@ -1,6 +1,7 @@
 package ch.g_7.graphite.base.mesh;
 
 import ch.g_7.graphite.resource.BasicResourceProvider;
+import ch.g_7.graphite.resource.IFileLoader;
 import ch.g_7.graphite.resource.IResourceKey;
 import ch.g_7.graphite.resource.IResourceProvider;
 
@@ -8,7 +9,7 @@ import ch.g_7.graphite.resource.IResourceProvider;
 public class MeshProvider extends BasicResourceProvider<Mesh, MeshKey> {
 
 	@Override
-	protected Mesh loadResource(MeshKey resourceKey) throws IllegalArgumentException {
+	protected Mesh loadResource(MeshKey resourceKey, IFileLoader fileLoader) throws IllegalArgumentException {
 		checkResourceNames(resourceKey, MeshKey.NAME);
 		return new Mesh(resourceKey.getPositions(), resourceKey.getIndices());
 	}

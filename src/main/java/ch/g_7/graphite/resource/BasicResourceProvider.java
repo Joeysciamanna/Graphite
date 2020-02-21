@@ -15,20 +15,20 @@ public abstract class BasicResourceProvider<T extends IResource, K extends IReso
     }
 
     @Override
-    public T get(K resourceKey) {
+    public T get(K resourceKey, IFileLoader fileLoader) {
         Optional<T> resource = resourcePool.get(resourceKey);
         requests++;
         if(resource.isPresent()){
             return resource.get();
         }
         allocations++;
-        T res = loadResource(resourceKey);
+        T res = loadResource(resourceKey, fileLoader);
         resourcePool.add(res, resourceKey);
         res.init();
         return res;
     }
 
-    protected abstract T loadResource(K resourceKey) throws IllegalArgumentException;
+    protected abstract T loadResource(K resourceKey, IFileLoader fileLoader) throws IllegalArgumentException;
 
     protected void checkResourceNames(IResourceKey resourceKey, String... names){
         if(!containsResourceNames(resourceKey, names))

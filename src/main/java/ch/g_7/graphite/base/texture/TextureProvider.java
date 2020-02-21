@@ -10,19 +10,14 @@ import ch.g_7.graphite.resource.IResourceProvider;
 
 public class TextureProvider extends BasicResourceProvider<ITexture, ImageKey> {
 
-    private IFileLoader fileLoader;
-
-    public TextureProvider(IFileLoader fileLoader) {
-        this.fileLoader = fileLoader;
-    }
 
     @Override
-    protected ITexture loadResource(ImageKey resourceKey) throws IllegalArgumentException {
+    protected ITexture loadResource(ImageKey resourceKey, IFileLoader fileLoader) throws IllegalArgumentException {
         if(resourceKey.getResourceName().equals(ImageKey.NAME)){
             return loadImage(fileLoader.loadFile(resourceKey.getName()).getAbsolutePath().replace("%20", " "));
         }
         SpriteKey spriteKey = (SpriteKey) resourceKey;
-    	Image image = (Image) get(new ImageKey(spriteKey.getName()));
+    	Image image = (Image) get(new ImageKey(spriteKey.getName()), fileLoader);
         return loadSprite(image, spriteKey.getX(), spriteKey.getY(), spriteKey.getWidth(), spriteKey.getHeight());
      
     }
@@ -48,7 +43,7 @@ public class TextureProvider extends BasicResourceProvider<ITexture, ImageKey> {
 
     @Override
     public IResourceProvider<ITexture, ImageKey> newInstance() {
-        return new TextureProvider(fileLoader);
+        return new TextureProvider();
     }
 
 }

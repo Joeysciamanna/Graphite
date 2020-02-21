@@ -22,23 +22,17 @@ import ch.g_7.graphite.util.Color;
 
 public class MaterialProducer extends BasicResourceProvider<Material, MaterialKey> {
 
-    private IFileLoader fileLoader;
-
-    public MaterialProducer(IFileLoader fileLoader) {
-        this.fileLoader = fileLoader;
-    }
-
 
     @Override
-    protected Material loadResource(MaterialKey resourceKey) throws IllegalArgumentException {
-        String content = readFile(resourceKey.getName());
+    protected Material loadResource(MaterialKey resourceKey, IFileLoader fileLoader) throws IllegalArgumentException {
+        String content = readFile(resourceKey.getName(), fileLoader);
         JSONObject jsonObject = new JSONObject(content);
         Material material = parseMaterial(jsonObject);
         return material;
     }
 
 
-    private String readFile(String path) {
+    private String readFile(String path, IFileLoader fileLoader) {
         String content;
         try {
             File file = fileLoader.loadFile(path);
@@ -55,8 +49,8 @@ public class MaterialProducer extends BasicResourceProvider<Material, MaterialKe
         Color color = extract(jsonObject, "color", this::parseColorRGB, Color::fromString).get();
         ITexture image = extract(jsonObject, "image", this::parseTexture).orElse(null);
         ITexture sprite = extract(jsonObject, "sprite", this::parseSprite).orElse(null);
-
-        return new Material(name, color, image == null ? sprite : image, new VBO[]{});
+        if(image != null && sprite != null) throw new IllegalArgumentException("Both, Image and Sprite is present");
+        return new Material(name, color, image == null ? sprite : image);
     }
 
     @SuppressWarnings("unchecked")
@@ -67,7 +61,7 @@ public class MaterialProducer extends BasicResourceProvider<Material, MaterialKe
         } 
         if (jsonObject.has("$" + name)) {
             if (value != null)
-                throw new IllegalArgumentException("Both value and type was supplied for [" + name + "]");
+                throw new IllegalArgumentException("Both value and type was present for [" + name + "]");
             value = typeHandler.apply((T) jsonObject.get("$" + name));
         }
         return Optional.ofNullable(value);
@@ -124,7 +118,7 @@ public class MaterialProducer extends BasicResourceProvider<Material, MaterialKe
 
     @Override
     public IResourceProvider<Material, MaterialKey> newInstance() {
-        return new MaterialProducer(fileLoader);
+        return new MaterialProducer();
     }
 }
 
