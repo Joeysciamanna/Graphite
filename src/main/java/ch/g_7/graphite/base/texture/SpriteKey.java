@@ -1,6 +1,6 @@
 package ch.g_7.graphite.base.texture;
 
-import ch.g_7.graphite.util.Util;
+import ch.g_7.util.helper.Util;
 
 public class SpriteKey extends ImageKey {
 

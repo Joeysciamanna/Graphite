@@ -1,6 +1,7 @@
 package ch.g_7.graphite.util;
 
-import ch.g_7.util.helper.IOUtil;
+
+import ch.g_7.util.io.IOUtil;
 
 public class Resources {
 

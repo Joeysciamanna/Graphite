@@ -3,9 +3,12 @@ package ch.g_7.graphite.base.material;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
+import ch.g_7.util.helper.Formator;
+import ch.g_7.util.helper.Util;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -93,20 +96,13 @@ public class MaterialProducer extends BasicResourceProvider<Material, MaterialKe
 
     private final static String numberChars = "1234567890";
     private int[] parseArea(String coords) {
-        int[] box = new int[4];
-        StringBuilder number = new StringBuilder();
-        int i = 0;
-        for (char c : coords.toCharArray()) {
-            if (c == ',') {
-                box[i++] = Integer.valueOf(number.toString());
-                number.setLength(0);
-            } else if (numberChars.indexOf(c) != -1) {
-                number.append(c);
-            } else if (c != ' '){
-                throw new IllegalArgumentException("Invalid formatted sprite area");
-            }
+        List<String> strings = Formator.extract(coords, "[%,%,%,%]");
+        int[] ints = new int[4];
+        for (int i = 0; i < ints.length; i++) {
+            ints[i] = Integer.valueOf(strings.get(i));
+
         }
-        return box;
+        return ints;
     }
 
 

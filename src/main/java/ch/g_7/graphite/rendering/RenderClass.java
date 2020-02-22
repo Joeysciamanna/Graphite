@@ -7,9 +7,9 @@ import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.node.INode;
 import ch.g_7.graphite.node.Updatable;
-import ch.g_7.graphite.util.Util;
 import ch.g_7.util.common.Closeable;
 import ch.g_7.util.common.Initializable;
+import ch.g_7.util.helper.Util;
 
 public abstract class RenderClass<T extends INode, R extends IRenderer<? super T>> implements Closeable, Initializable, Updatable {
 
@@ -41,7 +41,7 @@ public abstract class RenderClass<T extends INode, R extends IRenderer<? super T
 	}
 
 	public void removeAllNodes(){
-		new ArrayList<>(nodes).forEach((n)->removeNode(n));
+		new ArrayList<>(nodes).forEach(this::removeNode);
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public abstract class RenderClass<T extends INode, R extends IRenderer<? super T
 	@Override
 	public void close() {
 		renderer.close();
-		nodes.forEach((n)->n.close());
+		nodes.forEach(Closeable::close);
 	}
 
 	@Override

@@ -1,7 +1,7 @@
 package ch.g_7.graphite.base.mesh;
 
 import ch.g_7.graphite.resource.IResourceKey;
-import ch.g_7.graphite.util.Util;
+import ch.g_7.util.helper.Util;
 
 public class MeshKey implements IResourceKey {
 
