@@ -16,10 +16,7 @@ public class ScreenDimension implements IScreenDimension{
 	private float pf;
 	private float pw;
 	private int pixel;
-	
-	/*
-	 * in pixel
-	 */
+
 	private int value;
 	private byte axis;
 	
@@ -45,10 +42,11 @@ public class ScreenDimension implements IScreenDimension{
 		return this;
 	}
 	
-	@Override
+
 	/**
 	 * all in pixel
 	 */
+	@Override
 	public ScreenDimension recalculate(int screenSize, int fatherSize) {
 		int value = 0;
 		value += pixel;
@@ -73,7 +71,7 @@ public class ScreenDimension implements IScreenDimension{
 		clone.addPW(pw);
 		clone.addPixel(pixel);
 		adds.forEach(clone::add);
-		rems.forEach(clone::remove);
+		rems.forEach(clone:: q);
 		return clone;
 	}
 	

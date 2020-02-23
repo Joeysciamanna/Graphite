@@ -10,7 +10,7 @@ import ch.g_7.graphite.core.window.MouseEvent;
 import ch.g_7.graphite.core.window.MouseListner;
 import ch.g_7.graphite.ui.IUIButton;
 
-public class MouseManager implements MouseListner {
+public class  MouseManager implements MouseListner {
 
 	private List<IUIButton> buttons;
 	private List<IUIButton> clickeds;
