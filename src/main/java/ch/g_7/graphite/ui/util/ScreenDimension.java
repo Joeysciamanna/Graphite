@@ -71,7 +71,7 @@ public class ScreenDimension implements IScreenDimension{
 		clone.addPW(pw);
 		clone.addPixel(pixel);
 		adds.forEach(clone::add);
-		rems.forEach(clone:: q);
+		rems.forEach(clone::remove);
 		return clone;
 	}
 	
