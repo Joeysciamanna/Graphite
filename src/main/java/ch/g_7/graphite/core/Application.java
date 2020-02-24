@@ -6,42 +6,46 @@ import ch.g_7.graphite.rendering.MasterRenderer;
 import ch.g_7.graphite.resource.ResourceManager;
 import ch.g_7.util.common.Closeable;
 import ch.g_7.util.common.Initializable;
-import ch.g_7.util.loop.Loop;
 
 public abstract class Application extends TaskLoop implements Updatable, Initializable, Closeable, Runnable {
-
-    private static boolean exists;
 
     private MasterRenderer masterRenderer;
     private Dimension dimension;
     private final Window window;
     private Camera camera;
 
+    private TaskLoop updateLoop;
 
+    
     public Application(String name) {
-        if (exists) {
-            throw new IllegalStateException("Only one Engine can exist at the same time");
-        }
-
         this.dimension = new Dimension();
         this.window = new Window(name);
         this.camera = new Camera();
         this.masterRenderer = new MasterRenderer();
-        exists = true;
+        
+        this.updateLoop = new TaskLoop();
     }
 
     @Override
     protected void onStart() {
         window.init();
         masterRenderer.init();
+        initUpdateLoop();
         init();
+        updateLoop.start();
     }
 
+    private void initUpdateLoop() {
+    	updateLoop.addUpdatable(this::update);
+    	updateLoop.addUpdatable(dimension::update);
+    }
+    
     @Override
     protected void onStop() {
         masterRenderer.close();
         dimension.close();
         close();
+        updateLoop.stop();
     }
 
     @Override
@@ -49,9 +53,6 @@ public abstract class Application extends TaskLoop implements Updatable, Initial
         super.run(deltaMillis);
         window.pullEvents();
         masterRenderer.render(dimension, window, camera);
-
-        update(deltaMillis);
-        dimension.update(deltaMillis);
 
         if (window.windowShouldClose()) {
             stop();

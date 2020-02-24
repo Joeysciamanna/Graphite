@@ -112,7 +112,7 @@ public class RotateCube extends Application {
 
 
         if(getWindow().isKeyPressed(GLFW.GLFW_KEY_F)) {
-            System.out.println("FPS:      " + renderLoop.getTimer().getLPS());
+            System.out.println("FPS:      " + getTimer().getLPS());
             System.out.println("Delta:    " + deltaMillis);
             System.out.println("FPS Calc: " + 1000/deltaMillis);
         }

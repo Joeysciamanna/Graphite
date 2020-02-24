@@ -1,37 +1,38 @@
 package ch.g_7.graphite.core;
 
-import ch.g_7.util.loop.Loop;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+import ch.g_7.graphite.node.Updatable;
+import ch.g_7.util.loop.Loop;
+
 public class TaskLoop extends Loop {
 
-    private List<Runnable> runnables;
-    private Queue<Runnable> tasks;
+    private List<Updatable> updatables;
+    private Queue<Updatable> tasks;
 
     public TaskLoop() {
-        this.runnables = new ArrayList<>();
+        this.updatables = new ArrayList<>();
         this.tasks = new LinkedList<>();
     }
 
     @Override
-    protected void run(float v) {
-        for (Runnable runnable : runnables) {
-            runnable.run();
-        }
+    protected void run(float deltaMillis) {
+        for (Updatable updatable : updatables) {
+			updatable.update(deltaMillis);
+		}
         while (!tasks.isEmpty()) {
-            tasks.poll().run();
+            tasks.poll().update(deltaMillis);
         }
     }
 
-    public synchronized void addRunnable(Runnable runnable){
-        this.runnables.add(runnable);
+    public synchronized void addUpdatable(Updatable updatable){
+        this.updatables.add(updatable);
     }
 
-    public synchronized void addTask(Runnable runnable){
+    public synchronized void addTask(Updatable runnable){
         this.tasks.add(runnable);
     }
 }
