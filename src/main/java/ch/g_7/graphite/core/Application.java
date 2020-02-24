@@ -8,7 +8,7 @@ import ch.g_7.util.common.Closeable;
 import ch.g_7.util.common.Initializable;
 import ch.g_7.util.loop.Loop;
 
-public abstract class Application extends Loop implements Updatable, Initializable, Closeable, Runnable {
+public abstract class Application extends TaskLoop implements Updatable, Initializable, Closeable, Runnable {
 
     private static boolean exists;
 
@@ -46,6 +46,7 @@ public abstract class Application extends Loop implements Updatable, Initializab
 
     @Override
     protected void run(float deltaMillis) {
+        super.run(deltaMillis);
         window.pullEvents();
         masterRenderer.render(dimension, window, camera);
 

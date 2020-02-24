@@ -73,9 +73,6 @@ public class Test extends Application {
 
 
 
-
-
-
 	@Override
 	@SuppressWarnings("deprecation")
 	public void update(float deltaMillis) {
@@ -84,7 +81,7 @@ public class Test extends Application {
 			System.out.println("Allocated resources: " + ResourceManager.getTotalAllocations());
 		}
 		if(getWindow().isKeyPressed(GLFW.GLFW_KEY_F)) {
-			System.out.println("FPS:      " + getTimer().getLPS());
+			System.out.println("FPS:      " + renderLoop.getTimer().getLPS());
 			System.out.println("Delta:    " + deltaMillis);
 			System.out.println("FPS Calc: " + 1000/deltaMillis);
 		}
