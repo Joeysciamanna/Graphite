@@ -70,7 +70,7 @@ public class RotateCube extends Application {
 
         Mesh mesh = ResourceManager.getActive().getEngineResource(new MeshKey(positions, indices));
 
-        ViewModel viewModel = new ViewModel(mesh, null, Color.PURPLE);
+        ViewModel viewModel = new ViewModel(mesh, null, Color.YELLOW);
 
         entity1 = new Entity(viewModel);
         entity1.getTransformation().setPosition(new Vector3f(0, 0, -2 ));
@@ -112,15 +112,10 @@ public class RotateCube extends Application {
 
 
         if(getWindow().isKeyPressed(GLFW.GLFW_KEY_F)) {
-            System.out.println("FPS:      " + getTimer().getLPS());
+            System.out.println("RENDER FPS:      " + getTimer().getLPS());
+            System.out.println("UPDATE FPS:      " + getTimer().getLPS());
             System.out.println("Delta:    " + deltaMillis);
             System.out.println("FPS Calc: " + 1000/deltaMillis);
-        }
-        if(getWindow().isKeyPressed(GLFW.GLFW_KEY_T)) {
-            double time = System.nanoTime() / 1_000_000;
-            System.out.println("Supplied millis: " + deltaMillis);
-            System.out.println("Real millis    : " + (time - lastTime));
-            lastTime = time;
         }
 
     }

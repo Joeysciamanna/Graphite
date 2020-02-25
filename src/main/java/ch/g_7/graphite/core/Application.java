@@ -9,12 +9,12 @@ import ch.g_7.util.common.Initializable;
 
 public abstract class Application extends TaskLoop implements Updatable, Initializable, Closeable, Runnable {
 
-    private MasterRenderer masterRenderer;
-    private Dimension dimension;
-    private final Window window;
-    private Camera camera;
+    protected final MasterRenderer masterRenderer;
+    protected final Dimension dimension;
+    protected final Window window;
+    protected final Camera camera;
 
-    private TaskLoop updateLoop;
+    protected final TaskLoop updateLoop;
 
     
     public Application(String name) {
@@ -73,10 +73,6 @@ public abstract class Application extends TaskLoop implements Updatable, Initial
 
     public Dimension getDimension() {
         return dimension;
-    }
-
-    public void setDimension(Dimension dimension) {
-        this.dimension = dimension;
     }
 
     public Camera getCamera() {
