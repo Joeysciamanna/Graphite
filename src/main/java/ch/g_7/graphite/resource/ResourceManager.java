@@ -8,6 +8,8 @@ import ch.g_7.graphite.base.material.MaterialProducer;
 import ch.g_7.graphite.base.mesh.MeshProvider;
 import ch.g_7.graphite.base.texture.TextureProvider;
 import ch.g_7.util.common.Closeable;
+import ch.g_7.util.io.IFileLoader;
+import ch.g_7.util.io.LocalFileLoader;
 
 public class ResourceManager implements Closeable {
 

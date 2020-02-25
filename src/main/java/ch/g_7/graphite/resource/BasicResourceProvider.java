@@ -3,6 +3,8 @@ package ch.g_7.graphite.resource;
 
 import java.util.Optional;
 
+import ch.g_7.util.io.IFileLoader;
+
 public abstract class BasicResourceProvider<T extends IResource, K extends IResourceKey> implements IResourceProvider<T, K> {
 
 

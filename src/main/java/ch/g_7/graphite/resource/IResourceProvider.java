@@ -1,5 +1,7 @@
 package ch.g_7.graphite.resource;
 
+import ch.g_7.util.io.IFileLoader;
+
 public interface IResourceProvider<T extends IResource, K extends IResourceKey> {
 
     boolean canProvide(IResourceKey resourceKey);

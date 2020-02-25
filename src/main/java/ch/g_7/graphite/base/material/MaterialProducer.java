@@ -1,14 +1,10 @@
 package ch.g_7.graphite.base.material;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
-import ch.g_7.util.helper.Formator;
-import ch.g_7.util.helper.Util;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -16,11 +12,13 @@ import ch.g_7.graphite.base.texture.ITexture;
 import ch.g_7.graphite.base.texture.ImageKey;
 import ch.g_7.graphite.base.texture.SpriteKey;
 import ch.g_7.graphite.resource.BasicResourceProvider;
-import ch.g_7.graphite.resource.IFileLoader;
 import ch.g_7.graphite.resource.IResourceKey;
 import ch.g_7.graphite.resource.IResourceProvider;
 import ch.g_7.graphite.resource.ResourceManager;
 import ch.g_7.graphite.util.Color;
+import ch.g_7.util.helper.Formator;
+import ch.g_7.util.io.IFileLoader;
+import ch.g_7.util.io.IOUtil;
 
 public class MaterialProducer extends BasicResourceProvider<Material, MaterialKey> {
 
@@ -37,8 +35,7 @@ public class MaterialProducer extends BasicResourceProvider<Material, MaterialKe
     private String readFile(String path, IFileLoader fileLoader) {
         String content;
         try {
-            File file = fileLoader.loadFile(path);
-            content = Files.readString(file.toPath());
+        	content = IOUtil.toString(fileLoader.loadFile(path));
         } catch (IOException e) {
             throw new IllegalArgumentException("Material file not found", e);
         }
@@ -94,7 +91,6 @@ public class MaterialProducer extends BasicResourceProvider<Material, MaterialKe
         return ResourceManager.getActive().getEngineResource(new SpriteKey(path, area[0], area[1], area[2], area[3]));
     }
 
-    private final static String numberChars = "1234567890";
     private int[] parseArea(String coords) {
         List<String> strings = Formator.extract(coords, "[%,%,%,%]");
         int[] ints = new int[4];
