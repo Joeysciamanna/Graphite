@@ -70,7 +70,7 @@ public class RotateCube extends Application {
 
         Mesh mesh = ResourceManager.getActive().getEngineResource(new MeshKey(positions, indices));
 
-        ViewModel viewModel = new ViewModel(mesh, null, Color.YELLOW);
+        ViewModel viewModel = new ViewModel(mesh, null, Color.RED);
 
         entity1 = new Entity(viewModel);
         entity1.getTransformation().setPosition(new Vector3f(0, 0, -2 ));
@@ -80,6 +80,7 @@ public class RotateCube extends Application {
         getWindow().setVisible(true);
         getWindow().setSize(500, 500);
 
+        getTimer().setLpsSmoothing(0);
 
 
     }

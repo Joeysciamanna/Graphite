@@ -59,7 +59,6 @@ public class Test extends Application {
 		viewModel1 = new ViewModel(mesh, image, Color.TRANSPARENT);
 		Entity entity = new Entity(viewModel1);
 		entity.getTransformation().setPosition(new Vector3f( 0,0, 0));
-		entity.getTransformation().setScale(new Vector3f(1,1,1));
 		getDimension().addObj(entity, RenderType.ENTITIES);
 
 
