@@ -1,11 +1,12 @@
 package ch.g_7.graphite.base.texture;
 
-import java.io.IOException;
-
 import ch.g_7.graphite.resource.BasicResourceProvider;
 import ch.g_7.graphite.resource.IResourceKey;
 import ch.g_7.graphite.resource.IResourceProvider;
 import ch.g_7.util.io.IFileLoader;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 
 public class TextureProvider extends BasicResourceProvider<ITexture, ImageKey> {
@@ -14,7 +15,7 @@ public class TextureProvider extends BasicResourceProvider<ITexture, ImageKey> {
     @Override
     protected ITexture loadResource(ImageKey resourceKey, IFileLoader fileLoader) throws IllegalArgumentException {
         if(resourceKey.getResourceName().equals(ImageKey.NAME)){
-            return loadImage(fileLoader.loadFile(resourceKey.getName()).getAbsolutePath().replace("%20", " "));
+            return loadImage(fileLoader.loadFile(resourceKey.getName()));
         }
         SpriteKey spriteKey = (SpriteKey) resourceKey;
     	Image image = (Image) get(new ImageKey(spriteKey.getName()), fileLoader);
@@ -22,10 +23,10 @@ public class TextureProvider extends BasicResourceProvider<ITexture, ImageKey> {
      
     }
 
-    private Image loadImage(String path) {
+    private Image loadImage(InputStream inputStream) {
         Image image = null;
         try {
-            image = TextureLoader.loadImage(path);
+            image = TextureLoader.loadImage(inputStream);
         } catch (IOException e) {
             throw new RuntimeException("Image not found", e);
         }

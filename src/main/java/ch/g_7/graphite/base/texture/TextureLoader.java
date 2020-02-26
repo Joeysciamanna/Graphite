@@ -1,56 +1,36 @@
 package ch.g_7.graphite.base.texture;
 
-import static org.lwjgl.opengl.GL11.GL_NEAREST;
-import static org.lwjgl.opengl.GL11.GL_RGBA;
-import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
-import static org.lwjgl.opengl.GL11.GL_TEXTURE_MAG_FILTER;
-import static org.lwjgl.opengl.GL11.GL_TEXTURE_MIN_FILTER;
-import static org.lwjgl.opengl.GL11.GL_UNPACK_ALIGNMENT;
-import static org.lwjgl.opengl.GL11.GL_UNSIGNED_BYTE;
-import static org.lwjgl.opengl.GL11.glBindTexture;
-import static org.lwjgl.opengl.GL11.glGenTextures;
-import static org.lwjgl.opengl.GL11.glPixelStorei;
-import static org.lwjgl.opengl.GL11.glTexImage2D;
-import static org.lwjgl.opengl.GL11.glTexParameteri;
-import static org.lwjgl.opengl.GL30.glGenerateMipmap;
-import static org.lwjgl.stb.STBImage.stbi_failure_reason;
-import static org.lwjgl.stb.STBImage.stbi_image_free;
-import static org.lwjgl.stb.STBImage.stbi_load;
-import static org.lwjgl.stb.STBImage.stbi_load_from_memory;
+import org.lwjgl.system.MemoryStack;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 
-import org.lwjgl.system.MemoryStack;
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL30.glGenerateMipmap;
+import static org.lwjgl.stb.STBImage.*;
 
 
 public class TextureLoader {
-	
-	
-    static Image loadImage(String fileName) throws IOException {
-        ByteBuffer buf;
-        int id, height, width;
-        // Load Texture file
-        try (MemoryStack stack = MemoryStack.stackPush()) {
-            IntBuffer w = stack.mallocInt(1);
-            IntBuffer h = stack.mallocInt(1);
-            IntBuffer channels = stack.mallocInt(1);
-          
-            buf = stbi_load(fileName, w, h, channels, 4);
-            if (buf == null) {
-                throw new IOException("Image file [" + fileName  + "] not loaded: " + stbi_failure_reason());
-            }
 
-            width = w.get();
-            height = h.get();
+
+    static Image loadImage(InputStream inputStream) throws IOException {
+        ByteBuffer byteBuffer = ByteBuffer.allocate(inputStream.available());
+        while (inputStream.available() > 0) {
+            byteBuffer.put((byte) inputStream.read());
         }
 
-        id = createTexture(buf, width, height);
-        stbi_image_free(buf);
-        
-		return new Image(id, width, height);
+
+
+        //byte[] bytes = new byte[byteBuffer.remaining()];
+        //byteBuffer.get(bytes, 0, bytes.length);
+        //IOUtil.writeExternalBytes("C:\\Users\\zsciaj\\Desktop\\test.png", bytes);
+
+        return loadImage(byteBuffer);
     }
+
+
 
     static Image loadImage(ByteBuffer imageBuffer) {
         ByteBuffer buf;
@@ -63,7 +43,7 @@ public class TextureLoader {
 
             buf = stbi_load_from_memory(imageBuffer, w, h, channels, 4);
             if (buf == null) {
-                throw new RuntimeException("Image file not loaded: " + stbi_failure_reason());
+                throw new RuntimeException(stbi_failure_reason());
             }
 
             width = w.get();
