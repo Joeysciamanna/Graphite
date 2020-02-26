@@ -2,6 +2,10 @@ package ch.g_7.graphite.base.texture;
 
 import org.lwjgl.system.MemoryStack;
 
+import ch.g_7.graphite.test.Test;
+import ch.g_7.util.io.IOUtil;
+
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
@@ -16,17 +20,8 @@ public class TextureLoader {
 
 
     static Image loadImage(InputStream inputStream) throws IOException {
-        ByteBuffer byteBuffer = ByteBuffer.allocate(inputStream.available());
-        while (inputStream.available() > 0) {
-            byteBuffer.put((byte) inputStream.read());
-        }
-
-
-
-        //byte[] bytes = new byte[byteBuffer.remaining()];
-        //byteBuffer.get(bytes, 0, bytes.length);
-        //IOUtil.writeExternalBytes("C:\\Users\\zsciaj\\Desktop\\test.png", bytes);
-
+		ByteBuffer byteBuffer = ByteBuffer.wrap(inputStream.readAllBytes());
+		byteBuffer.flip();
         return loadImage(byteBuffer);
     }
 
