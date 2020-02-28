@@ -2,8 +2,6 @@ package ch.g_7.graphite.base.texture;
 
 import org.lwjgl.system.MemoryStack;
 
-import ch.g_7.graphite.test.Test;
-import ch.g_7.util.io.IOUtil;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -20,14 +18,17 @@ public class TextureLoader {
 
 
     static Image loadImage(InputStream inputStream) throws IOException {
-		ByteBuffer byteBuffer = ByteBuffer.wrap(inputStream.readAllBytes());
-		byteBuffer.flip();
+        byte[] bytes = inputStream.readAllBytes();
+        ByteBuffer byteBuffer = ByteBuffer.allocateDirect(bytes.length);
+        byteBuffer.put(bytes);
+        byteBuffer.flip();
         return loadImage(byteBuffer);
     }
 
 
 
     static Image loadImage(ByteBuffer imageBuffer) {
+        if(!imageBuffer.isDirect()) throw new IllegalArgumentException("ByteBuffer must be direct");
         ByteBuffer buf;
         int id, height, width;
         // Load Texture file
@@ -40,7 +41,6 @@ public class TextureLoader {
             if (buf == null) {
                 throw new RuntimeException(stbi_failure_reason());
             }
-
             width = w.get();
             height = h.get();
         }
@@ -71,34 +71,6 @@ public class TextureLoader {
 	
 	
 	static Sprite loadSprite(Image image, int x, int y, int width, int height) {
-
-//		float tlX, tlY, trX, trY, blX, blY, brX, brY;
-		
-/*		tlX = ((float) x / image.getWidth());
-		tlY = ((float) y / image.getHeight());
-		
-		trX = ((float) (x + width)  / image.getWidth());
-		trY = ((float) y / image.getHeight());
-		
-		blX = ((float) x / image.getWidth());
-		blY = ((float) (y + height) / image.getHeight());
-		
-		brX = ((float) (x + width)  / image.getWidth());
-		brY = ((float) (y + height) / image.getHeight());
-		
-//		float[] textCoords = new float[] {
-//				blX, blY,
-//				brX, brY,
-//				trX, trY,
-//				tlX, tlY,
-//		};
-		
-//		System.out.println(textCoords[6] + "," + textCoords[7] + "-------------" + textCoords[4] + ","+ textCoords[5]);
-//		System.out.println("   |                   |");
-//		System.out.println("   |                   |");
-//		System.out.println(textCoords[0] + "," + textCoords[1] + "-------------" + textCoords[2] + ","+ textCoords[3]);
- */
-
 		return new Sprite(image, x, y, width+x, height+y);
 	}
 
