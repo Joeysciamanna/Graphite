@@ -64,6 +64,9 @@ public class Color{
 		return a;
 	}
 
+	public String toHex(){
+		return Integer.toHexString(r) + Integer.toHexString(g) + Integer.toHexString(b) + Integer.toHexString(a);
+	}
 	
 	public static Color fromString(String value) {
 		switch (value) {
