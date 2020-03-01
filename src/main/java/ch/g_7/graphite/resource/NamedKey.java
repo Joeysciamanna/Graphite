@@ -1,5 +1,7 @@
 package ch.g_7.graphite.resource;
 
+import ch.g_7.util.helper.Util;
+
 public abstract class NamedKey implements IResourceKey {
 
 	private String name;
@@ -14,6 +16,6 @@ public abstract class NamedKey implements IResourceKey {
 
 	@Override
 	public boolean equals(Object obj) {
-		return obj instanceof NamedKey ? ((NamedKey)obj).name.equals(name) : false;
+		return Util.isEqual(this, obj, NamedKey::getName, NamedKey::getResourceName);
 	}
 }
