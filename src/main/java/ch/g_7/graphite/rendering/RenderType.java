@@ -10,6 +10,5 @@ public class RenderType {
 
 	public static final GenericProducerType<UIRenderClass<IUIRootContainer>>     UI       = new GenericProducerType<>(()->new UIRenderClass<>("UI"));
 	public static final GenericProducerType<EntityRenderClass<IEntity>> ENTITIES = new GenericProducerType<>(()->new EntityRenderClass<>("ENTITIES"));
-	//public static final GenericProducerType<DrawRenderClass<Drawable>>   DRAWABLE = new GenericProducerType<>(()->new DrawRenderClass("DRAWABLE"));
 
 }
