@@ -1,14 +1,14 @@
 package ch.g_7.graphite.base.material;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.function.Supplier;
-
 import ch.g_7.graphite.base.mesh.vao.VBO;
 import ch.g_7.graphite.base.texture.ITexture;
 import ch.g_7.graphite.resource.IResource;
 import ch.g_7.graphite.util.Color;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.function.Supplier;
 
 public class Material implements IMaterial, IResource {
 
@@ -52,7 +52,7 @@ public class Material implements IMaterial, IResource {
     }
 
     @SafeVarargs
-    private final static <T> T[] genListOfNullables(Supplier<T>... suppliers){
+    private static <T> T[] genListOfNullables(Supplier<T>... suppliers){
         List<T> ts = new ArrayList<>();
         for (Supplier<T> supplier : suppliers) {
             try {
