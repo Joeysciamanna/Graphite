@@ -9,7 +9,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import ch.g_7.graphite.base.texture.ITexture;
-import ch.g_7.graphite.base.texture.ImageKey;
+import ch.g_7.graphite.base.texture.TextureKey;
 import ch.g_7.graphite.base.texture.SpriteKey;
 import ch.g_7.graphite.resource.BasicResourceProvider;
 import ch.g_7.graphite.resource.IResourceKey;
@@ -82,7 +82,7 @@ public class MaterialProducer extends BasicResourceProvider<Material, MaterialKe
     }
 
     private ITexture parseTexture(String path) {
-        return ResourceManager.getActive().getEngineResource(new ImageKey(path));
+        return ResourceManager.getActive().getEngineResource(new TextureKey(path));
     }
 
     private ITexture parseSprite(JSONObject value) {

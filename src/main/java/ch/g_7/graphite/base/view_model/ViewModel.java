@@ -71,7 +71,6 @@ public class ViewModel implements IViewModel, IResource {
 	}
 	
 	public void setColor(Color color) {
-		Objects.requireNonNull(color);
 		this.color = color;
 	}
 
@@ -81,7 +80,7 @@ public class ViewModel implements IViewModel, IResource {
 
 	public void setMesh(IMesh mesh) {
 		this.mesh = mesh;
-		this.vao.replace(mesh.getPositionVBO());
+		this.mesh.allocate(vao);
 	}
 
 
