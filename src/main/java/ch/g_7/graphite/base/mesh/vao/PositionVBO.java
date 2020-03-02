@@ -19,6 +19,7 @@ public class PositionVBO extends FloatVBO {
 	}
 
 
+	@Override
 	protected void allocate(VAO vao) {
 		super.allocate(vao);
 		indicesVBO = new IndicesVBO(indices);

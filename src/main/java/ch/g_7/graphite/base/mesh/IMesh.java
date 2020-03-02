@@ -11,6 +11,6 @@ public interface IMesh {
 
     int getVerticesCount();
 
-    void allocate(VAO vao);
+    VAO getVAO();
 
 }

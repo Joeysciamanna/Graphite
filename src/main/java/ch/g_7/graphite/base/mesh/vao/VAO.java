@@ -119,7 +119,7 @@ public class VAO implements Closeable {
 
 		// Delete the VBOs
 		GL20.glBindBuffer(GL20.GL_ARRAY_BUFFER, 0);
-//		vbos.forEach((vbo) -> vbo.close());
+		vbos.forEach((vbo) -> vbo.close());
 
 		// Delete the VAO
 		glBindVertexArray(0);
