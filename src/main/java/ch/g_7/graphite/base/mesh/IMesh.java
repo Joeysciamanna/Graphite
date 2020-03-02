@@ -1,6 +1,6 @@
 package ch.g_7.graphite.base.mesh;
 
-import ch.g_7.graphite.base.mesh.vao.VBO;
+import ch.g_7.graphite.base.mesh.vao.VAO;
 
 /**
  * textCoords starting at bottom left, clockwise
@@ -11,6 +11,6 @@ public interface IMesh {
 
     int getVerticesCount();
 
-    VBO getPositionVBO();
+    void allocate(VAO vao);
 
 }
