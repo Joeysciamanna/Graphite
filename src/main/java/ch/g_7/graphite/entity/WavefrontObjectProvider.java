@@ -1,5 +1,6 @@
 package ch.g_7.graphite.entity;
 
+import ch.g_7.graphite.base.material.Material;
 import ch.g_7.graphite.base.material.MaterialKey;
 import ch.g_7.graphite.math.vec2.Vector2f;
 import ch.g_7.graphite.math.vec3.Vector3f;
@@ -25,8 +26,10 @@ public class WavefrontObjectProvider extends BasicResourceProvider<Entity, Entit
         BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
 
         try {
+            EmptyEntity rootEntity = new EmptyEntity();
 
             String name;
+            Material material;
 
             List<Vector3f> positions = new ArrayList<>();
             List<Vector2f> textureCoords = new ArrayList<>();
@@ -58,7 +61,10 @@ public class WavefrontObjectProvider extends BasicResourceProvider<Entity, Entit
                             Float.valueOf(values[2]),
                             Float.valueOf(values[3])
                     ));
+                }else if(values[0].equals("usemtl")){
+                    material =  ResourceManager.getActive().getResource(new MaterialKey(resourceKey.getName() + ":" + values[1]), fileLoader);
                 }
+
             }
 
 
