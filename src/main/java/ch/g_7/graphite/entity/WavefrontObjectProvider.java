@@ -41,7 +41,7 @@ public class WavefrontObjectProvider extends BasicResourceProvider<Entity, Entit
 
                 String[] values = line.split("\\s+");
                 if(values[0].equals("mtllib")){
-                    ResourceManager.getActive().getResource(new MaterialKey(values[1]), fileLoader);
+                    ResourceManager.getActive().allocate(new MaterialKey(values[1]), fileLoader);
                 }else if(values[0].equals("o")){
                     name = values[1];
                 }else if(values[0].equals("v")){
@@ -62,7 +62,7 @@ public class WavefrontObjectProvider extends BasicResourceProvider<Entity, Entit
                             Float.valueOf(values[3])
                     ));
                 }else if(values[0].equals("usemtl")){
-                    material =  ResourceManager.getActive().getResource(new MaterialKey(resourceKey.getName() + ":" + values[1]), fileLoader);
+                    material =  ResourceManager.getActive().allocate(new MaterialKey(resourceKey.getName() + ":" + values[1]), fileLoader);
                 }
 
             }

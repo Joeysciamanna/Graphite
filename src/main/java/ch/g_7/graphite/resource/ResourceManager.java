@@ -8,6 +8,7 @@ import ch.g_7.graphite.base.material.MaterialProducer;
 import ch.g_7.graphite.base.mesh.MeshProvider;
 import ch.g_7.graphite.base.texture.TextureProvider;
 import ch.g_7.util.common.Closeable;
+import ch.g_7.util.helper.Util;
 import ch.g_7.util.io.IFileLoader;
 import ch.g_7.util.io.LocalFileLoader;
 
@@ -34,30 +35,27 @@ public class ResourceManager implements Closeable {
 		this.resourceProviders = new ArrayList<>();
 	}
 
+	public <T extends IResource, K extends IResourceKey> T allocateFromEngine(K resourceKey) {
+		return allocate(resourceKey, ENGINE_FILE_LOADER);
+	}
+
+	public <T extends IResource, K extends IResourceKey> T allocateFromGame(K resourceKey) {
+		if(GAME_FILE_LOADER == null) throw new IllegalStateException("GameFileLoader not set");
+		return allocate(resourceKey, GAME_FILE_LOADER);
+	}
+	
 	@SuppressWarnings("unchecked")
-	public <T extends IResource, K extends IResourceKey> T getResource(K resourceKey, IFileLoader fileLoader) {
+	public <T extends IResource, K extends IResourceKey> T allocate(K resourceKey, IFileLoader fileLoader) {
 		for (IResourceProvider<?, ?> resourceLoader : resourceProviders) {
 			if (resourceLoader.canProvide(resourceKey)) {
-				return (T) resourceLoader.get(cast(resourceKey), fileLoader);
+				return (T) resourceLoader.allocate(Util.cast(resourceKey), fileLoader);
 			}
 		}
 		throw new IllegalArgumentException("No resource with key [" + resourceKey + "] found");
 	}
 	
-	public <T extends IResource, K extends IResourceKey> T getEngineResource(K resourceKey) {
-		return getResource(resourceKey, ENGINE_FILE_LOADER);
-	}
 
-	public <T extends IResource, K extends IResourceKey> T getGameResource(K resourceKey) {
-		if(GAME_FILE_LOADER == null) throw new IllegalStateException("GameFileLoader not set");
-		return getResource(resourceKey, GAME_FILE_LOADER);
-	}
 	
-	@SuppressWarnings("unchecked")
-	private <T> T cast(Object object) {
-		return (T) object;
-	}
-
 	public void addResourceLoader(IResourceProvider<?, ?> resourceLoader) {
 		this.resourceProviders.add(resourceLoader);
 	}

@@ -1,10 +1,17 @@
 package ch.g_7.graphite.base.mesh;
 
-import ch.g_7.graphite.base.mesh.vao.*;
+import ch.g_7.graphite.base.mesh.vao.IVBOType;
+import ch.g_7.graphite.base.mesh.vao.VAO;
+import ch.g_7.graphite.base.mesh.vao.VBO;
+import ch.g_7.graphite.base.mesh.vao.VBOFactory;
+import ch.g_7.graphite.base.mesh.vao.VBOType;
 import ch.g_7.graphite.resource.IResource;
+import ch.g_7.graphite.resource.IResourceKey;
 
-public class Mesh implements IMesh, IResource {
+public class Mesh implements IMesh, IResource, IResourceKey {
 
+	public final static String NAME = "MESH";
+	
 	private final static IVBOType[] DEFAULT_SUPPORTED_VBOS = new IVBOType[]{VBOType.POSITIONS, VBOType.INDICES, VBOType.TEXTURE_COORDINATES};
 
 	private VAO vao;
@@ -48,6 +55,11 @@ public class Mesh implements IMesh, IResource {
 	@Override
 	public void close() {
 		vao.close();
+	}
+
+	@Override
+	public String getResourceName() {
+		return NAME;
 	}
 
 }

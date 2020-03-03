@@ -6,7 +6,7 @@ public interface IResourceProvider<T extends IResource, K extends IResourceKey> 
 
     boolean canProvide(IResourceKey resourceKey);
 
-    T get(K resourceKey, IFileLoader fileLoader);
+    T allocate(K resourceKey, IFileLoader fileLoader);
 
     void closeResources();
     

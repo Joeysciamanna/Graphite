@@ -79,7 +79,7 @@ public class MaterialProducer extends BasicResourceProvider<Material, MaterialKe
     }
 
     private ITexture parseTexture(String path) {
-        return ResourceManager.getActive().getEngineResource(new TextureKey(path));
+        return ResourceManager.getActive().allocateFromEngine(new TextureKey(path));
     }
 
 

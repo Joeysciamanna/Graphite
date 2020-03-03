@@ -100,7 +100,7 @@ public class MeshBuilder2d {
 	}
 
 
-	public MeshKey build() {
+	public Mesh build() {
 		float[] positions = new float[points.size() * 3];
 		for (int i = 0; i < points.size(); i++) {
 			positions[i * 3 + 0] = (float) points.get(i).x;
@@ -133,7 +133,7 @@ public class MeshBuilder2d {
 			realIndices[j] = indices.get(j);
 		}
 
-		return new MeshKey(positions, realIndices);
+		return new Mesh(positions, realIndices);
 	}
 
 	private int fitIndex(int index, int from, int to) {

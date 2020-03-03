@@ -17,7 +17,7 @@ public abstract class BasicResourceProvider<T extends IResource, K extends IReso
     }
 
     @Override
-    public T get(K resourceKey, IFileLoader fileLoader) {
+    public T allocate(K resourceKey, IFileLoader fileLoader) {
         Optional<T> resource = resourcePool.get(resourceKey);
         requests++;
         if(resource.isPresent()){
