@@ -2,8 +2,11 @@ package ch.g_7.graphite.entity;
 
 import ch.g_7.graphite.base.transformation.Transformation;
 import ch.g_7.graphite.base.view_model.ViewModel;
+import ch.g_7.graphite.resource.IResource;
 
-public class Entity implements IEntity {
+import java.util.List;
+
+public class Entity implements IEntity, IResource {
 
 	private ViewModel viewModel;
 	private Transformation transformation;
@@ -39,4 +42,17 @@ public class Entity implements IEntity {
 	@Override
 	public void close() { }
 
+	//
+	//
+	//
+	//
+	@Override
+	public List<IEntity> getChildren() {
+		return null;
+	}
+
+	@Override
+	public void init() {
+
+	}
 }

@@ -1,22 +1,16 @@
 package ch.g_7.graphite.base.mesh.vao;
 
-import static org.lwjgl.opengl.GL20.glDisableVertexAttribArray;
-import static org.lwjgl.opengl.GL20.glEnableVertexAttribArray;
-import static org.lwjgl.opengl.GL30.glBindVertexArray;
-import static org.lwjgl.opengl.GL30.glDeleteVertexArrays;
-import static org.lwjgl.opengl.GL30.glGenVertexArrays;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Queue;
-
+import ch.g_7.graphite.node.IRenderResource;
+import ch.g_7.util.common.Closeable;
 import org.lwjgl.opengl.GL20;
 
-import ch.g_7.util.common.Closeable;
+import java.util.*;
 
-public class VAO implements Closeable {
+import static org.lwjgl.opengl.GL20.glDisableVertexAttribArray;
+import static org.lwjgl.opengl.GL20.glEnableVertexAttribArray;
+import static org.lwjgl.opengl.GL30.*;
+
+public class VAO implements Closeable, IRenderResource {
 
 	private final int id;
 	private final List<VBO> vbos;

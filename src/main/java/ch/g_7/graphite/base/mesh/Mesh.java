@@ -1,9 +1,6 @@
 package ch.g_7.graphite.base.mesh;
 
-import ch.g_7.graphite.base.mesh.vao.IVBOType;
-import ch.g_7.graphite.base.mesh.vao.VAO;
-import ch.g_7.graphite.base.mesh.vao.VBOFactory;
-import ch.g_7.graphite.base.mesh.vao.VBOType;
+import ch.g_7.graphite.base.mesh.vao.*;
 import ch.g_7.graphite.resource.IResource;
 
 public class Mesh implements IMesh, IResource {
@@ -26,13 +23,23 @@ public class Mesh implements IMesh, IResource {
 	}
 
 	
-	public void add() {
-		//TODO <- HERE ATTENTION!
+	public void add(VBO vbo) {
+		this.vao.add(vbo);
 	}
 	
 	@Override
 	public int getVerticesCount() {
 		return verticesCount;
+	}
+
+	@Override
+	public void bind() {
+		vao.bind();
+	}
+
+	@Override
+	public void unbind() {
+		vao.unbind();
 	}
 
 	@Override
@@ -42,9 +49,5 @@ public class Mesh implements IMesh, IResource {
 	public void close() {
 		vao.close();
 	}
-	
-	@Override
-	public VAO getVAO() {
-		return vao;
-	}
+
 }

@@ -1,14 +1,10 @@
 package ch.g_7.graphite.base.texture;
 
 
-import ch.g_7.graphite.resource.IResource;
+import ch.g_7.graphite.node.IRenderResource;
 
-public interface ITexture extends IResource {
+public interface ITexture extends IRenderResource {
 
 	int getId();
-	
-	void bind();
-	
-	void unbind();
 
 }

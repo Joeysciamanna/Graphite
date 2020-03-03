@@ -1,16 +1,7 @@
 package ch.g_7.graphite.base.material;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Optional;
-import java.util.function.Function;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import ch.g_7.graphite.base.texture.ITexture;
 import ch.g_7.graphite.base.texture.TextureKey;
-import ch.g_7.graphite.base.texture.SpriteKey;
 import ch.g_7.graphite.resource.BasicResourceProvider;
 import ch.g_7.graphite.resource.IResourceKey;
 import ch.g_7.graphite.resource.IResourceProvider;
@@ -19,6 +10,13 @@ import ch.g_7.graphite.util.Color;
 import ch.g_7.util.helper.Formator;
 import ch.g_7.util.io.IFileLoader;
 import ch.g_7.util.io.IOUtil;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
+import java.util.function.Function;
 
 public class MaterialProducer extends BasicResourceProvider<Material, MaterialKey> {
 
@@ -47,9 +45,7 @@ public class MaterialProducer extends BasicResourceProvider<Material, MaterialKe
         String name = extract(jsonObject, "name", Object::toString).get();
         Color color = extract(jsonObject, "color", this::parseColorRGB, Color::fromString).get();
         ITexture image = extract(jsonObject, "image", this::parseTexture).orElse(null);
-        ITexture sprite = extract(jsonObject, "sprite", this::parseSprite).orElse(null);
-        if(image != null && sprite != null) throw new IllegalArgumentException("Both, Image and Sprite is present");
-        return new Material(name, color, image == null ? sprite : image);
+        return new Material(name, color,image);
     }
 
     @SuppressWarnings("unchecked")
@@ -85,11 +81,6 @@ public class MaterialProducer extends BasicResourceProvider<Material, MaterialKe
         return ResourceManager.getActive().getEngineResource(new TextureKey(path));
     }
 
-    private ITexture parseSprite(JSONObject value) {
-        int[] area = extract(value, "area", this::parseArea).get();
-        String path = extract(value, "src", Object::toString).get();
-        return ResourceManager.getActive().getEngineResource(new SpriteKey(path, area[0], area[1], area[2], area[3]));
-    }
 
     private int[] parseArea(String coords) {
         List<String> strings = Formator.extract(coords, "[%,%,%,%]");

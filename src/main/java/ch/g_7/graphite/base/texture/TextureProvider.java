@@ -9,10 +9,10 @@ import java.io.IOException;
 import java.io.InputStream;
 
 
-public class TextureProvider extends BasicResourceProvider<ITexture, TextureKey> {
+public class TextureProvider extends BasicResourceProvider<Texture, TextureKey> {
 
     @Override
-    protected ITexture loadResource(TextureKey resourceKey, IFileLoader fileLoader) throws IllegalArgumentException {
+    protected Texture loadResource(TextureKey resourceKey, IFileLoader fileLoader) throws IllegalArgumentException {
     	return loadTexture(fileLoader.loadFile(resourceKey.getName()));
     }
 
@@ -32,7 +32,7 @@ public class TextureProvider extends BasicResourceProvider<ITexture, TextureKey>
     }
 
     @Override
-    public IResourceProvider<ITexture, TextureKey> newInstance() {
+    public IResourceProvider<Texture, TextureKey> newInstance() {
         return new TextureProvider();
     }
 
