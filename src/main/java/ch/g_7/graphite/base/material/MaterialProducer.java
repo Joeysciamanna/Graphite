@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
+@Deprecated
 public class MaterialProducer extends BasicResourceProvider<Material, MaterialKey> {
 
 
@@ -81,16 +82,6 @@ public class MaterialProducer extends BasicResourceProvider<Material, MaterialKe
         return ResourceManager.getActive().getEngineResource(new TextureKey(path));
     }
 
-
-    private int[] parseArea(String coords) {
-        List<String> strings = Formator.extract(coords, "[%,%,%,%]");
-        int[] ints = new int[4];
-        for (int i = 0; i < ints.length; i++) {
-            ints[i] = Integer.valueOf(strings.get(i));
-
-        }
-        return ints;
-    }
 
 
     @Override

@@ -70,9 +70,6 @@ public class WavefrontObjectProvider extends BasicResourceProvider<Entity, Entit
 
 
 
-
-
-
         } catch (IOException e){
            throw new RuntimeException(e);
         }
