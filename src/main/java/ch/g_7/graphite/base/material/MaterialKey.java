@@ -20,7 +20,7 @@ public class MaterialKey implements IResourceKey {
 
     @Override
     public boolean equals(Object obj) {
-        return  Util.isEqual(this, obj, MaterialKey::getName, MaterialKey::getPath, MaterialKey::getResourceName);
+        return  Util.isEqual(this, obj, MaterialKey::getName,  MaterialKey::getResourceName);
     }
 
     public String getName() {

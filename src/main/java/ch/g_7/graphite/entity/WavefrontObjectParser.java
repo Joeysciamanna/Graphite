@@ -31,7 +31,12 @@ public class WavefrontObjectParser {
 
 
     public void parse(){
-        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+        readTokens();
+    }
+
+    
+    private void readTokens() {
+    	BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         try {
             EmptyEntity rootEntity = new EmptyEntity();
             String name;
@@ -67,9 +72,6 @@ public class WavefrontObjectParser {
                                 Float.valueOf(values[3])
                         ));
                         break;
-                    case "usemtl":
-                        material =  ResourceManager.getActive().allocate(new MaterialKey(resourceKey.getName() + ":" + values[1]), fileLoader);
-                        break;
                     case "f":
                         faces.add(new Face(values[1], values[2], values[3]));
                     default:
@@ -77,25 +79,10 @@ public class WavefrontObjectParser {
                 }
             }
 
-
-
-
         } catch (IOException e){
             throw new RuntimeException(e);
         }
-
-
-
-        return null;
     }
-
-
-
-
-
-
-
-
 
 
     private static class Face {

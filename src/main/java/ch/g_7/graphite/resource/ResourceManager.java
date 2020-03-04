@@ -3,8 +3,9 @@ package ch.g_7.graphite.resource;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
-import ch.g_7.graphite.base.material.MaterialProducer;
+import ch.g_7.graphite.base.material.WavefrontMaterialProducer;
 import ch.g_7.graphite.base.mesh.MeshProvider;
 import ch.g_7.graphite.base.texture.TextureProvider;
 import ch.g_7.util.common.Closeable;
@@ -24,7 +25,7 @@ public class ResourceManager implements Closeable {
 	private static ResourceManager ACTIVE = new ResourceManager();
 
 	static {
-		ACTIVE.addResourceLoader(new MaterialProducer());
+		ACTIVE.addResourceLoader(new WavefrontMaterialProducer());
 		ACTIVE.addResourceLoader(new TextureProvider());
 		ACTIVE.addResourceLoader(new MeshProvider());
 	}
@@ -55,18 +56,20 @@ public class ResourceManager implements Closeable {
 	}
 	
 
-	
 	public void addResourceLoader(IResourceProvider<?, ?> resourceLoader) {
 		this.resourceProviders.add(resourceLoader);
 	}
 
-	@Override
-	public void close() {
-		for (IResourceProvider<?, ?> resourceProvider : resourceProviders) {
-			resourceProvider.closeResources();
+	@SuppressWarnings("unchecked")
+	public <T extends IResourceProvider<?,?>> Optional<T> getResourceProvider(Class<T> type) {
+		for (IResourceProvider<?,?> resourceProvider : resourceProviders) {
+			if(type.isAssignableFrom(resourceProvider.getClass())) {
+				return Optional.of((T) resourceProvider);
+			}
 		}
-		resourceProviders.clear();
+		return Optional.empty();
 	}
+	
 	
 	public int getAllocations() {
 		int i = 0;
@@ -82,6 +85,14 @@ public class ResourceManager implements Closeable {
 			i+=resourceProvider.getRequests();
 		}
 		return i;
+	}
+	
+	@Override
+	public void close() {
+		for (IResourceProvider<?, ?> resourceProvider : resourceProviders) {
+			resourceProvider.closeResources();
+		}
+		resourceProviders.clear();
 	}
 
 	public static void closeAll() {
