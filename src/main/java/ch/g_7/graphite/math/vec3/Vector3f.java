@@ -5,7 +5,7 @@ import ch.g_7.graphite.math.vec2.Vector2i;
 
 public class Vector3f implements IVector3f {
 
-	protected float x, y, z;
+	public float x, y, z;
 
 	public Vector3f() {}
 

@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
-import ch.g_7.graphite.base.material.WavefrontMaterialProducer;
+import ch.g_7.graphite.base.material.WavefrontMaterialProvider;
 import ch.g_7.graphite.base.mesh.MeshProvider;
 import ch.g_7.graphite.base.texture.TextureProvider;
 import ch.g_7.util.common.Closeable;
@@ -25,7 +25,7 @@ public class ResourceManager implements Closeable {
 	private static ResourceManager ACTIVE = new ResourceManager();
 
 	static {
-		ACTIVE.addResourceLoader(new WavefrontMaterialProducer());
+		ACTIVE.addResourceLoader(new WavefrontMaterialProvider());
 		ACTIVE.addResourceLoader(new TextureProvider());
 		ACTIVE.addResourceLoader(new MeshProvider());
 	}

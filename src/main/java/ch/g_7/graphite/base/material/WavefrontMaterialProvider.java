@@ -7,7 +7,7 @@ import ch.g_7.graphite.resource.IResourceKey;
 import ch.g_7.graphite.resource.IResourceProvider;
 import ch.g_7.util.io.IFileLoader;
 
-public class WavefrontMaterialProducer extends BasicResourceProvider<Material, MaterialKey> {
+public class WavefrontMaterialProvider extends BasicResourceProvider<Material, MaterialKey> {
 
 
     @Override
@@ -35,7 +35,7 @@ public class WavefrontMaterialProducer extends BasicResourceProvider<Material, M
 
     @Override
     public IResourceProvider<Material, MaterialKey> newInstance() {
-        return new WavefrontMaterialProducer();
+        return new WavefrontMaterialProvider();
     }
 }
 

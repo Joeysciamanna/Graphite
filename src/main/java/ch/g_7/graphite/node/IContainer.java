@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface IContainer<T extends  INode<T>>  {
 
-    List<T> getChildren();
+    List<? extends T> getChildren();
 
 }

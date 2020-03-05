@@ -4,22 +4,29 @@ import ch.g_7.graphite.base.transformation.Transformation;
 import ch.g_7.graphite.base.view_model.ViewModel;
 import ch.g_7.graphite.resource.IResource;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Entity implements IEntity, IResource {
 
-	private ViewModel viewModel;
-	private Transformation transformation;
 
+	protected ViewModel viewModel;
+	protected final Transformation transformation;
+	protected final ArrayList<Entity> childs;
 
 	public Entity(ViewModel viewModel) {
 		this.viewModel = viewModel;
 		this.transformation = new Transformation();
+		this.childs = new ArrayList<Entity>();
 	}
 	
+
 	@Override
-	public ViewModel getViewModel() {
-		return viewModel;
+	public void update(float deltaMillis) {}
+
+	@Override
+	public List<Entity> getChildren() {
+		return childs;
 	}
 
 	@Override
@@ -27,32 +34,18 @@ public class Entity implements IEntity, IResource {
 		return transformation;
 	}
 	
+	@Override
+	public ViewModel getViewModel() {
+		return viewModel;
+	}
+
 	public void setViewModel(ViewModel viewModel) {
 		this.viewModel = viewModel;
 	}
 	
-	public void setTransformation(Transformation transformation) {
-		this.transformation = transformation;
-	}
+	@Override
+	public void close() {}
 
 	@Override
-	public void update(float deltaMillis) {}
-
-
-	@Override
-	public void close() { }
-
-	//
-	//
-	//
-	//
-	@Override
-	public List<IEntity> getChildren() {
-		return null;
-	}
-
-	@Override
-	public void init() {
-
-	}
+	public void init() {}
 }

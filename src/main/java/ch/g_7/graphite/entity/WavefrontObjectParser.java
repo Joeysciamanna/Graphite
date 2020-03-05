@@ -2,9 +2,12 @@ package ch.g_7.graphite.entity;
 
 import ch.g_7.graphite.base.material.Material;
 import ch.g_7.graphite.base.material.MaterialKey;
+import ch.g_7.graphite.base.material.WavefrontMaterialProducer;
+import ch.g_7.graphite.base.material.WavefrontMaterialProvider;
 import ch.g_7.graphite.math.vec2.Vector2f;
 import ch.g_7.graphite.math.vec3.Vector3f;
 import ch.g_7.graphite.resource.ResourceManager;
+import ch.g_7.util.helper.Util;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,11 +23,11 @@ public class WavefrontObjectParser {
     private List<Vector2f> textureCoords = new ArrayList<>();
     private List<Vector3f> normals = new ArrayList<>();
     private List<Face> faces = new ArrayList<>();
-
-    private EmptyEntity rootEntity = new EmptyEntity();
-
+    
     private InputStream inputStream;
-
+    private Entity entity = new EmptyEntity();
+    private String name;
+    
     public WavefrontObjectParser(InputStream inputStream) {
         this.inputStream = inputStream;
     }
@@ -37,11 +40,8 @@ public class WavefrontObjectParser {
     
     private void readTokens() {
     	BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+    	Material material = null;
         try {
-            EmptyEntity rootEntity = new EmptyEntity();
-            String name;
-            Material material;
-
             while(reader.ready()) {
                 String line = reader.readLine();
                 if (line.startsWith("#")) continue;
@@ -73,7 +73,9 @@ public class WavefrontObjectParser {
                         ));
                         break;
                     case "f":
-                        faces.add(new Face(values[1], values[2], values[3]));
+                        faces.add(new Face(values[1], values[2], values[3], material));
+                    case "usemtl":
+                    	material = ResourceManager.getActive().allocate(new MaterialKey(values[1]), null);
                     default:
                         break;
                 }
@@ -84,16 +86,36 @@ public class WavefrontObjectParser {
         }
     }
 
+    
+    private void parseEntity() {
+    	int[] indices = new int[this.faces.size()];
+    	float[] positions = new float[this.positions.size() * 3];
+    	float[] textureCoords = new float[this.textureCoords.size() * 2];
+    	float[] normals = new float[this.normals.size() * 3];
+
+    	int i = 0;
+        for (Vector3f pos : this.positions) {
+        	positions[i * 3] = pos.x;
+        	positions[i * 3 + 1] = pos.y;
+        	positions[i * 3 + 2] = pos.z;
+            i++;
+        }
+   
+    }
+    
 
     private static class Face {
         Vector3f posIndices = new Vector3f();
         Vector3f textIndices = new Vector3f();
         Vector3f normalIndices = new Vector3f();
 
-        public Face(String i1, String i2, String i3) {
+        Material material;
+        
+        public Face(String i1, String i2, String i3, Material material) {
             parseIndexGroup(i1, Vector3f::setX);
             parseIndexGroup(i2, Vector3f::setY);
             parseIndexGroup(i3, Vector3f::setZ);
+            this.material = material;
         }
 
         private void parseIndexGroup(String indexGroup, BiConsumer<Vector3f, Float> setter) {
@@ -106,6 +128,9 @@ public class WavefrontObjectParser {
             setter.accept(normalIndices, Float.parseFloat(tokens[2]) - 1);
         }
 
+        public Material getMaterial() {
+			return material;
+		}
     }
 
 }
