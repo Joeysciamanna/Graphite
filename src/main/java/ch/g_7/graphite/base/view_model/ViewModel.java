@@ -1,56 +1,43 @@
 package ch.g_7.graphite.base.view_model;
 
+import ch.g_7.graphite.base.material.IMaterial;
 import ch.g_7.graphite.base.mesh.IMesh;
-import ch.g_7.graphite.base.texture.ITexture;
 import ch.g_7.graphite.node.IRenderResource;
-import ch.g_7.graphite.resource.IResource;
-import ch.g_7.graphite.util.Color;
 
 
-public class ViewModel implements IViewModel, IResource, IRenderResource {
+public class ViewModel implements IViewModel, IRenderResource {
 
 	private IMesh mesh;
-	private ITexture texture;
-	private Color color;
+	private IMaterial material;
 
-	@Deprecated
-	public ViewModel(IMesh mesh, ITexture texture, Color color) {
+	
+	public ViewModel(IMesh mesh, IMaterial material) {
 		this.mesh = mesh;
-		this.texture = texture;
-		this.color = color;
+		this.material = material;
 	}
-
 
 	@Override
 	public void bind() {
-		if (texture != null)
-			texture.bind();
+		material.bind();
 		mesh.bind();
 	}
 
 	@Override
 	public void unbind() {
-		if (texture != null)
-			texture.unbind();
+		material.unbind();
 		mesh.unbind();
 	}
 
-	public ITexture getTexture() {
-		return texture;
-	}
-
-	public void setTexture(ITexture texture) {
-		this.texture = texture;
+	@Override
+	public IMaterial getMaterial() {
+		return material;
 	}
 	
-	public Color getColor() {
-		return color;
-	}
-	
-	public void setColor(Color color) {
-		this.color = color;
+	public void setMaterial(IMaterial material) {
+		this.material = material;
 	}
 
+	@Override
 	public IMesh getMesh() {
 		return mesh;
 	}
@@ -58,14 +45,5 @@ public class ViewModel implements IViewModel, IResource, IRenderResource {
 	public void setMesh(IMesh mesh) {
 		this.mesh = mesh;
 	}
-
-	@Override
-	public void close() {
-
-	}
-
-	@Override
-	public void init() {
-
-	}
+	
 }

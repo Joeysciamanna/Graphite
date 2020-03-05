@@ -2,6 +2,7 @@ package ch.g_7.graphite.entity;
 
 import java.io.InputStream;
 
+import ch.g_7.graphite.parse.wavefront.ObjectParser;
 import ch.g_7.graphite.resource.BasicResourceProvider;
 import ch.g_7.graphite.resource.IResourceKey;
 import ch.g_7.graphite.resource.IResourceProvider;
@@ -13,7 +14,7 @@ public class WavefrontObjectProvider extends BasicResourceProvider<Entity, Entit
     @Override
     protected Entity loadResource(EntityKey resourceKey, IFileLoader fileLoader) throws IllegalArgumentException {
         InputStream stream = fileLoader.loadFile(resourceKey.getName());
-        WavefrontObjectParser parser = new WavefrontObjectParser(stream);
+        ObjectParser parser = new ObjectParser(stream);
         parser.parse();
         return parser.getEntity();
     }

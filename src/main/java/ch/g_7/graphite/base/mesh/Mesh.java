@@ -17,7 +17,7 @@ public class Mesh implements IMesh, IResource, IResourceKey {
 	private VAO vao;
 	private int verticesCount;
 
-	Mesh(float[] positions, int[] indices, IVBOType[] supportedVBOs) {
+	public Mesh(float[] positions, int[] indices, IVBOType[] supportedVBOs) {
 		if (indices.length % 2 != 0 && indices.length % 3 != 0)
 			throw new IllegalArgumentException("Invalid number of indices for 2d/3d mesh");
 		this.vao = new VAO(supportedVBOs);

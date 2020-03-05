@@ -1,13 +1,4 @@
-package ch.g_7.graphite.entity;
-
-import ch.g_7.graphite.base.material.Material;
-import ch.g_7.graphite.base.material.MaterialKey;
-import ch.g_7.graphite.base.material.WavefrontMaterialProducer;
-import ch.g_7.graphite.base.material.WavefrontMaterialProvider;
-import ch.g_7.graphite.math.vec2.Vector2f;
-import ch.g_7.graphite.math.vec3.Vector3f;
-import ch.g_7.graphite.resource.ResourceManager;
-import ch.g_7.util.helper.Util;
+package ch.g_7.graphite.parse.wavefront;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,9 +6,16 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.BiConsumer;
 
-public class WavefrontObjectParser {
+import ch.g_7.graphite.base.material.Material;
+import ch.g_7.graphite.base.material.MaterialKey;
+import ch.g_7.graphite.entity.EmptyEntity;
+import ch.g_7.graphite.entity.Entity;
+import ch.g_7.graphite.math.vec2.Vector2f;
+import ch.g_7.graphite.math.vec3.Vector3f;
+import ch.g_7.graphite.resource.ResourceManager;
+
+public class ObjectParser {
 
     private List<Vector3f> positions = new ArrayList<>();
     private List<Vector2f> textureCoords = new ArrayList<>();
@@ -28,7 +26,7 @@ public class WavefrontObjectParser {
     private Entity entity = new EmptyEntity();
     private String name;
     
-    public WavefrontObjectParser(InputStream inputStream) {
+    public ObjectParser(InputStream inputStream) {
         this.inputStream = inputStream;
     }
 
@@ -100,37 +98,63 @@ public class WavefrontObjectParser {
         	positions[i * 3 + 2] = pos.z;
             i++;
         }
+        
+        i = 0;
+        for (Face face : faces) {
+			for (IndexGroup group : face.indexGroups) {
+				int posIndex = group.position;
+				indices[i++] = posIndex;
+				
+				if (group.textCoord >= 0) {
+			        Vector2f textCoord = this.textureCoords.get(group.textCoord);
+			        textureCoords[posIndex * 2] = textCoord.x;
+			        textureCoords[posIndex * 2 + 1] = 1 - textCoord.y;
+			    }
+			    if (group.normal >= 0) {
+			        // Reorder vectornormals
+			        Vector3f vecNorm = this.normals.get(group.normal);
+			        normals[posIndex * 3] = vecNorm.x;
+			        normals[posIndex * 3 + 1] = vecNorm.y;
+			        normals[posIndex * 3 + 2] = vecNorm.z;
+			    }
+			}
+		}
    
+  
     }
     
 
     private static class Face {
-        Vector3f posIndices = new Vector3f();
-        Vector3f textIndices = new Vector3f();
-        Vector3f normalIndices = new Vector3f();
-
-        Material material;
+        
+    	private IndexGroup[] indexGroups = new IndexGroup[3];
+        private Material material;
         
         public Face(String i1, String i2, String i3, Material material) {
-            parseIndexGroup(i1, Vector3f::setX);
-            parseIndexGroup(i2, Vector3f::setY);
-            parseIndexGroup(i3, Vector3f::setZ);
+            parseIndexGroup(i1, 0);
+            parseIndexGroup(i2, 1);
+            parseIndexGroup(i3, 2);
             this.material = material;
         }
 
-        private void parseIndexGroup(String indexGroup, BiConsumer<Vector3f, Float> setter) {
-            String[] tokens = indexGroup.split("/");
-            setter.accept(posIndices, Float.parseFloat(tokens[0]) - 1);
-            if(!tokens[1].isBlank())
-                setter.accept(textIndices, Float.parseFloat(tokens[1]) - 1);
-            else
-                textIndices = null;
-            setter.accept(normalIndices, Float.parseFloat(tokens[2]) - 1);
+        private void parseIndexGroup(String indexGroup, int storeIndex) {
+	       String[] tokens = indexGroup.split("/");
+	       indexGroups[storeIndex] = new IndexGroup(Integer.valueOf(tokens[0]) - 1,
+	    		   									Integer.valueOf(tokens[1].isBlank() ? "0" : tokens[1]) - 1,
+	    		   									Integer.valueOf(tokens[2].isBlank() ? "0" : tokens[2]) - 1);
         }
 
-        public Material getMaterial() {
-			return material;
+    }
+    
+    
+    private static class IndexGroup{
+    	private int position, textCoord, normal;
+
+		public IndexGroup(int position, int textCoord, int normal) {
+			this.position = position;
+			this.textCoord = textCoord;
+			this.normal = normal;
 		}
+    	
     }
 
 }
