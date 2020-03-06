@@ -9,6 +9,8 @@ import java.util.List;
 
 import ch.g_7.graphite.base.material.Material;
 import ch.g_7.graphite.base.material.MaterialKey;
+import ch.g_7.graphite.base.mesh.Mesh;
+import ch.g_7.graphite.base.mesh.vao.IVBOType;
 import ch.g_7.graphite.entity.EmptyEntity;
 import ch.g_7.graphite.entity.Entity;
 import ch.g_7.graphite.math.vec2.Vector2f;
@@ -119,6 +121,8 @@ public class ObjectParser {
 			    }
 			}
 		}
+        
+        Mesh mesh = new Mesh(positions, indices, new IVBOType[] {});
    
   
     }
