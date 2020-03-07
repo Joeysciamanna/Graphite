@@ -1,17 +1,17 @@
 package ch.g_7.graphite.entity;
 
-import ch.g_7.graphite.base.transformation.Transformation;
+import ch.g_7.graphite.base.transformation.Transform;
 import ch.g_7.graphite.base.view_model.ViewModel;
 
 public class Entity implements IEntity {
 
 	private ViewModel viewModel;
-	private Transformation transformation;
+	private Transform transformation;
 
 
 	public Entity(ViewModel viewModel) {
 		this.viewModel = viewModel;
-		this.transformation = new Transformation();
+		this.transformation = new Transform();
 	}
 	
 	@Override
@@ -20,7 +20,7 @@ public class Entity implements IEntity {
 	}
 
 	@Override
-	public Transformation getTransformation() {
+	public Transform getTransformation() {
 		return transformation;
 	}
 	
@@ -28,7 +28,7 @@ public class Entity implements IEntity {
 		this.viewModel = viewModel;
 	}
 	
-	public void setTransformation(Transformation transformation) {
+	public void setTransformation(Transform transformation) {
 		this.transformation = transformation;
 	}
 

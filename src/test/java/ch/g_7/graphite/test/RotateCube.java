@@ -114,9 +114,9 @@ public class RotateCube extends Application {
 
         if(getWindow().isKeyPressed(GLFW.GLFW_KEY_F)) {
             System.out.println("RENDER FPS:      " + getTimer().getLPS());
-            System.out.println("UPDATE FPS:      " + getTimer().getLPS());
-            System.out.println("Delta:    " + deltaMillis);
-            System.out.println("FPS Calc: " + 1000/deltaMillis);
+            System.out.println("UPDATE FPS:      " + updateLoop.getTimer().getLPS());
+            System.out.println("Update Delta:    " + deltaMillis);
+            System.out.println("Update FPS Calc: " + 1000/deltaMillis);
         }
 
     }

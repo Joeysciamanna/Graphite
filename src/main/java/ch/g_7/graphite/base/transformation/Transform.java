@@ -4,13 +4,13 @@ import org.joml.Vector3f;
 import org.joml.Vector3i;
 import org.joml.Vector3ic;
 
-public class Transformation implements ITransformation {
+public class Transform implements ITransform {
 
 	private Vector3f position;
 	private Vector3f rotation;
 	private Vector3f scale;
 	
-	public Transformation() {
+	public Transform() {
 		this.position = new Vector3f();
 		this.rotation = new Vector3f();
 		this.scale = new Vector3f(1,1,1);
@@ -29,11 +29,6 @@ public class Transformation implements ITransformation {
 		return position;
 	}
 
-	@Override
-	public Vector3ic getIntPosition() {
-		return new Vector3i((int) position.x, (int) position.y, (int) position.z);
-	}
-	
 	public void setPosition(Vector3f position) {
 		this.position = position;
 	}
@@ -51,12 +46,7 @@ public class Transformation implements ITransformation {
 	public Vector3f getScale() {
 		return scale;
 	}
-	
-	@Override
-	public Vector3ic getIntScale() {
-		return new Vector3i((int) scale.x, (int) scale.y, (int) scale.z);
-	}
-	
+
 	public void setScale(Vector3f scale) {
 		this.scale = scale;
 	}

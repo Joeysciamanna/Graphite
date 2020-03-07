@@ -3,11 +3,11 @@ package ch.g_7.graphite.rendering.transformator;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
-import ch.g_7.graphite.base.transformation.ITransformation;
+import ch.g_7.graphite.base.transformation.ITransform;
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
 
-public class PerspectiveTransformator implements ITransformator<ITransformation> {
+public class PerspectiveTransformator implements ITransformator<ITransform> {
 
 	private float fov = (float) Math.toRadians(90.0f);
 
@@ -33,7 +33,7 @@ public class PerspectiveTransformator implements ITransformator<ITransformation>
 	}
 
 	@Override
-	public Matrix4f getModelViewMatrix(ITransformation transformation) {
+	public Matrix4f getModelViewMatrix(ITransform transformation) {
 		return modelViewMatrix.identity().identity().translate(transformation.getPosition())
 				.rotateXYZ(new Vector3f(transformation.getRotation())).scale(transformation.getScale());
 	}

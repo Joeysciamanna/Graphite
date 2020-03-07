@@ -5,7 +5,7 @@ import static org.lwjgl.opengl.GL11.glDrawElements;
 
 import java.util.List;
 
-import ch.g_7.graphite.base.transformation.ITransformation;
+import ch.g_7.graphite.base.transformation.ITransform;
 import ch.g_7.graphite.base.view_model.IViewModel;
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
@@ -16,10 +16,10 @@ import ch.g_7.graphite.rendering.transformator.ITransformator;
 
 public abstract class BasicRenderer<T extends INode> implements IRenderer<T> {
 
-	private ITransformator<ITransformation> transformator;
+	private ITransformator<ITransform> transformator;
 	protected final BasicShaderProgram shaderProgram;
 
-	public BasicRenderer(BasicShaderProgram shaderProgram, ITransformator<ITransformation> transformator) {
+	public BasicRenderer(BasicShaderProgram shaderProgram, ITransformator<ITransform> transformator) {
 		this.shaderProgram = shaderProgram;
 		this.transformator = transformator;
 	}
@@ -54,7 +54,7 @@ public abstract class BasicRenderer<T extends INode> implements IRenderer<T> {
 	}
 
 
-	public void setTransformator(ITransformator<ITransformation> transformator) {
+	public void setTransformator(ITransformator<ITransform> transformator) {
 		this.transformator = transformator;
 	}
 

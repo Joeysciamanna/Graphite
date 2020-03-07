@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.joml.Vector2ic;
 
-import ch.g_7.graphite.base.transformation.ITransformation2d;
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.node.INode;
 import ch.g_7.graphite.ui.util.ScreenDimension;

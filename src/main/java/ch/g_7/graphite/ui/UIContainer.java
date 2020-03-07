@@ -6,7 +6,6 @@ import java.util.List;
 import org.joml.Vector2i;
 import org.joml.Vector2ic;
 
-import ch.g_7.graphite.base.transformation.Transformation2d;
 import ch.g_7.graphite.ui.util.ScreenDimension;
 
 public abstract class UIContainer implements IUIContainer {

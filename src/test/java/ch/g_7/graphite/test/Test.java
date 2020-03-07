@@ -13,21 +13,6 @@ public class Test {
 
 	public static void main(String[] args) throws IOException {
 
-		InputStream inputStream = Test.class.getResourceAsStream("/textures/square1.png");
-
-		ByteBuffer byteBuffer = ByteBuffer.wrap(inputStream.readAllBytes());
-
-		try (FileOutputStream fos = new FileOutputStream("C:\\Users\\Joey Sciamanna\\Desktop\\square1.png")) {
-//			fos.write(b);
-//			inputStream.transferTo(fos);
-			
-			WritableByteChannel channel = Channels.newChannel(fos);
-			channel.write(byteBuffer);
-			channel.close();
-
-		}
-
-
 	}
 
 }

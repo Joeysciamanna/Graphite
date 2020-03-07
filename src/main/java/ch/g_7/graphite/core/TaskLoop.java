@@ -19,7 +19,7 @@ public class TaskLoop extends Loop {
     }
 
     @Override
-    protected void run(float deltaMillis) {
+    protected synchronized void run(float deltaMillis) {
         for (Updatable updatable : updatables) {
 			updatable.update(deltaMillis);
 		}

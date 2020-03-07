@@ -4,11 +4,11 @@ import org.joml.Matrix4f;
 import org.joml.Vector2f;
 import org.joml.Vector2ic;
 
-import ch.g_7.graphite.base.transformation.ITransformation;
+import ch.g_7.graphite.base.transformation.ITransform;
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
 
-public class PixelTransformator implements ITransformator<ITransformation>{
+public class PixelTransformator implements ITransformator<ITransform>{
 
 	private Matrix4f projectionMatrix;
 	private Matrix4f modelViewMatrix;
@@ -30,7 +30,7 @@ public class PixelTransformator implements ITransformator<ITransformation>{
 	
 	
 	@Override
-	public Matrix4f getModelViewMatrix(ITransformation transformation) {
+	public Matrix4f getModelViewMatrix(ITransform transformation) {
 		return modelViewMatrix.identity()
 				  .translate((transformation.getPosition().x()-cameraPosition.x) * 2f / windowSize.x() - 1f,
 						     (transformation.getPosition().y()-cameraPosition.y) * -2f / windowSize.y() + 1f, -1)
