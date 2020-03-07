@@ -7,10 +7,14 @@ import ch.g_7.graphite.util.Color;
 public interface IMaterial extends IRenderResource {
 	
 	String getName();
-	
-	Color getColor();
-	
+
 	ITexture getTexture();
-	
+
+	Color getBaseColor();
+
+	Color getShineColor();
+
+	float getNormalRoughness();
+
 
 }
