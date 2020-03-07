@@ -1,17 +1,41 @@
 package ch.g_7.graphite.entity;
 
-import ch.g_7.graphite.base.transformation.Transform;
+import java.util.ArrayList;
+import java.util.List;
+
+import ch.g_7.graphite.base.transformation.Transformation;
 import ch.g_7.graphite.base.view_model.ViewModel;
+import ch.g_7.graphite.resource.IResource;
 
-public class Entity implements IEntity {
+public class Entity implements IEntity, IResource {
 
-	private ViewModel viewModel;
-	private Transform transformation;
 
+	protected ViewModel viewModel;
+	protected final Transformation transformation;
+	protected final ArrayList<Entity> childs;
 
 	public Entity(ViewModel viewModel) {
 		this.viewModel = viewModel;
-		this.transformation = new Transform();
+		this.transformation = new Transformation();
+		this.childs = new ArrayList<Entity>();
+	}
+	
+
+	@Override
+	public void update(float deltaMillis) {}
+
+	public void addChild(Entity entity) {
+		childs.add(entity);
+	}
+	
+	@Override
+	public List<Entity> getChildren() {
+		return childs;
+	}
+
+	@Override
+	public Transformation getTransformation() {
+		return transformation;
 	}
 	
 	@Override
@@ -19,24 +43,13 @@ public class Entity implements IEntity {
 		return viewModel;
 	}
 
-	@Override
-	public Transform getTransformation() {
-		return transformation;
-	}
-	
 	public void setViewModel(ViewModel viewModel) {
 		this.viewModel = viewModel;
 	}
 	
-	public void setTransformation(Transform transformation) {
-		this.transformation = transformation;
-	}
+	@Override
+	public void close() {}
 
 	@Override
-	public void update(float deltaMillis) {}
-
-
-	@Override
-	public void close() { }
-
+	public void init() {}
 }

@@ -7,7 +7,7 @@ import ch.g_7.graphite.math.vec3.Vector3i;
 
 public class Vector2f implements IVector2f {
 
-	protected float x, y;
+	public float x, y;
 	
 	
 	public Vector2f() {}

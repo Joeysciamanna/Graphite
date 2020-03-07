@@ -1,7 +1,7 @@
 package ch.g_7.graphite.test;
 
-import ch.g_7.graphite.base.texture.Image;
-import ch.g_7.graphite.base.texture.ImageKey;
+import ch.g_7.graphite.base.texture.Texture;
+import ch.g_7.graphite.base.texture.TextureKey;
 import ch.g_7.graphite.core.Application;
 import ch.g_7.graphite.rendering.RenderType;
 import ch.g_7.graphite.resource.ResourceManager;
@@ -33,8 +33,8 @@ public class GUI extends Application {
 		AppInitializer appInitializer = new AppInitializer(true, "GUI Test", new Object() {});
 		appInitializer.addConsoleLoggers();
 
-		Image square1 = ResourceManager.getActive().getEngineResource(new ImageKey("textures/square1.png"));  //imageLoader.apply("C:\\-\\workspace\\java\\graphite\\src\\test\\resources\\textures\\square1.png");
-		Image square2 = ResourceManager.getActive().getEngineResource(new ImageKey("textures/square3.png"));  //imageLoader.apply("C:\\-\\workspace\\java\\graphite\\src\\test\\resources\\textures\\square3.png");
+		Texture square1 = ResourceManager.getActive().getEngineResource(new TextureKey("textures/square1.png"));  //imageLoader.apply("C:\\-\\workspace\\java\\graphite\\src\\test\\resources\\textures\\square1.png");
+		Texture square2 = ResourceManager.getActive().getEngineResource(new TextureKey("textures/square3.png"));  //imageLoader.apply("C:\\-\\workspace\\java\\graphite\\src\\test\\resources\\textures\\square3.png");
 		
 		mainMenu = new UIRootContainer(getWindow());
 		getDimension().addObj(mainMenu, RenderType.UI);

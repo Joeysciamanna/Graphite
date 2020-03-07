@@ -5,13 +5,13 @@ import org.lwjgl.opengl.GL11;
 import ch.g_7.graphite.base.mesh.vao.VBO;
 import ch.g_7.graphite.base.mesh.vao.VBOFactory;
 
-
-public class Sprite extends Image {
+@Deprecated
+public class Sprite extends Texture {
 
 	private final VBO textureCoordinates;
 
 
-	Sprite(Image image, int minX, int minY, int maxX, int maxY) {
+	Sprite(Texture image, int minX, int minY, int maxX, int maxY) {
 		super(image.getId(), (maxX - minX), (maxY - minY));
 		float minXT = (float) minX / image.getWidth();
 		float minYT = (float) maxY / image.getHeight();
@@ -40,8 +40,4 @@ public class Sprite extends Image {
 		GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 	}
 
-	@Override
-	public VBO getTextureCoordinatesVBO() {
-		return textureCoordinates;
-	}
 }

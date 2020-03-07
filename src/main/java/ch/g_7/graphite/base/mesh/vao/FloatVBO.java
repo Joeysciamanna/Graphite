@@ -18,7 +18,7 @@ public class FloatVBO extends VBO {
 		super(type);
 		this.floats = floats;
 		if(type.getGlNumber() != GL11.GL_FLOAT) {
-			throw new IllegalArgumentException("VBOType " + type.toString() + " is not for float");
+			throw new IllegalArgumentException("VBOType " + type + " is not for float");
 		}
 	}
 

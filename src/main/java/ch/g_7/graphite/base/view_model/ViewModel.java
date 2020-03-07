@@ -1,95 +1,49 @@
 package ch.g_7.graphite.base.view_model;
 
-import java.util.Objects;
-
+import ch.g_7.graphite.base.material.IMaterial;
 import ch.g_7.graphite.base.mesh.IMesh;
-import ch.g_7.graphite.base.mesh.vao.IVBOType;
-import ch.g_7.graphite.base.mesh.vao.VAO;
-import ch.g_7.graphite.base.mesh.vao.VBOType;
-import ch.g_7.graphite.base.texture.ITexture;
-import ch.g_7.graphite.resource.IResource;
-import ch.g_7.graphite.util.Color;
+import ch.g_7.graphite.node.IRenderResource;
 
 
-public class ViewModel implements IViewModel, IResource {
+public class ViewModel implements IViewModel, IRenderResource {
 
-	private final VAO vao;
 	private IMesh mesh;
-	private ITexture texture;
-	private Color color;
+	private IMaterial material;
 
-	@Deprecated
-	public ViewModel(IMesh mesh, ITexture texture, Color color) {
-		this.vao = new VAO(new IVBOType[]{VBOType.POSITIONS, VBOType.INDICES, VBOType.TEXTURE_COORDINATES});
-
+	
+	public ViewModel(IMesh mesh, IMaterial material) {
 		this.mesh = mesh;
-		vao.add(mesh.getPositionVBO());
-		
-		this.texture = texture;
-		if (texture != null)
-			this.vao.add(texture.getTextureCoordinatesVBO());
-		
-		setColor(color);
-		init();
+		this.material = material;
 	}
-
-	@Override
-	public ViewModel clone() {
-		return new ViewModel(mesh, texture, color);
-	}
-
 
 	@Override
 	public void bind() {
-		if (texture != null)
-			texture.bind();
-		vao.bind();
+		material.bind();
+		mesh.bind();
 	}
 
 	@Override
 	public void unbind() {
-		if (texture != null)
-			texture.unbind();
-		vao.unbind();
+		material.unbind();
+		mesh.unbind();
 	}
 
-	public ITexture getTexture() {
-		return texture;
-	}
-
-	public void setTexture(ITexture texture) {
-		if(this.texture == null){
-			this.vao.add(texture.getTextureCoordinatesVBO());
-		}else{
-			this.vao.replace(texture.getTextureCoordinatesVBO());
-		}
-		this.texture = texture;
+	@Override
+	public IMaterial getMaterial() {
+		return material;
 	}
 	
-	public Color getColor() {
-		return color;
-	}
-	
-	public void setColor(Color color) {
-		Objects.requireNonNull(color);
-		this.color = color;
+	public void setMaterial(IMaterial material) {
+		this.material = material;
 	}
 
+	@Override
 	public IMesh getMesh() {
 		return mesh;
 	}
 
 	public void setMesh(IMesh mesh) {
 		this.mesh = mesh;
-		this.vao.replace(mesh.getPositionVBO());
 	}
-
-
-	@Override
-	public void close() {
-		vao.close();
-	}
-
-	@Override
-	public void init() { }
+	
 }

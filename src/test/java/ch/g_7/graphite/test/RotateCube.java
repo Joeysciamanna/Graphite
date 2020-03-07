@@ -2,7 +2,7 @@ package ch.g_7.graphite.test;
 
 import ch.g_7.graphite.base.mesh.Mesh;
 import ch.g_7.graphite.base.mesh.MeshKey;
-import ch.g_7.graphite.base.mesh.MeshKeyBuilder2d;
+import ch.g_7.graphite.base.mesh.MeshBuilder2d;
 import ch.g_7.graphite.base.mesh.MeshProvider;
 import ch.g_7.graphite.base.view_model.ViewModel;
 import ch.g_7.graphite.core.Application;

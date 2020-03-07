@@ -6,24 +6,22 @@ import ch.g_7.graphite.resource.IResourceProvider;
 import ch.g_7.util.io.IFileLoader;
 
 
-public class MeshProvider extends BasicResourceProvider<Mesh, MeshKey> {
+public class MeshProvider extends BasicResourceProvider<Mesh, Mesh> {
 
 	@Override
-	protected Mesh loadResource(MeshKey resourceKey, IFileLoader fileLoader) throws IllegalArgumentException {
-		checkResourceNames(resourceKey, MeshKey.NAME);
-		return new Mesh(resourceKey.getPositions(), resourceKey.getIndices());
+	protected Mesh loadResource(Mesh mesh, IFileLoader fileLoader) throws IllegalArgumentException {
+		return mesh;
 	}
 
 
-
 	@Override
-	public IResourceProvider<Mesh, MeshKey> newInstance() {
+	public IResourceProvider<Mesh, Mesh> newInstance() {
 		return new MeshProvider();
 	}
 
 	@Override
 	public boolean canProvide(IResourceKey resourceKey) {
-		return containsResourceNames(resourceKey, MeshKey.NAME);
+		return containsResourceNames(resourceKey, Mesh.NAME);
 	}
 
 }

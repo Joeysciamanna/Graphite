@@ -4,7 +4,7 @@ import org.joml.Vector2ic;
 
 import ch.g_7.graphite.base.mesh.IMesh;
 import ch.g_7.graphite.base.mesh.MeshFactory2d;
-import ch.g_7.graphite.base.mesh.MeshKeyBuilder2d;
+import ch.g_7.graphite.base.mesh.MeshBuilder2d;
 import ch.g_7.graphite.base.texture.ITexture;
 import ch.g_7.graphite.base.view_model.ViewModel;
 import ch.g_7.graphite.core.window.Window;
@@ -14,7 +14,7 @@ import ch.g_7.graphite.util.Color;
 
 public class UIPanel extends UIContainer implements IUIPanel {
 
-	private static IMesh SQUARE_MESH = ResourceManager.getActive().getEngineResource(MeshFactory2d.getSquare(1).setCenter(MeshKeyBuilder2d.CENTER_TOP_LEFT).build());
+	private static IMesh SQUARE_MESH = ResourceManager.getActive().getEngineResource(MeshFactory2d.getSquare(1).setCenter(MeshBuilder2d.CENTER_TOP_LEFT).build());
 	
 	private ViewModel viewModel;
 	

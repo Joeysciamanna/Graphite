@@ -7,7 +7,7 @@ import org.joml.Rectangled;
 import org.joml.Vector2d;
 
 @Deprecated
-public class MeshKeyBuilder2d {
+public class MeshBuilder2d {
 
 	private List<Vector2d> points;
 	private Vector2d center;
@@ -20,23 +20,23 @@ public class MeshKeyBuilder2d {
 	public static final Vector2d CENTER_BUTTOM_RIGHT = new Vector2d(-1, 0);
 	public static final Vector2d CENTER_MIDDLE = new Vector2d(-0.5, -0.5);
 	
-	public MeshKeyBuilder2d() {
+	public MeshBuilder2d() {
 		points = new ArrayList<>();
 		points.add(new Vector2d(0, 0));
 		center = CENTER_BUTTOM_LEFT;
 	}
 
-	public MeshKeyBuilder2d setAngle(int angle) {
+	public MeshBuilder2d setAngle(int angle) {
 		this.angle = angle;
 		return this;
 	}
 
-	public MeshKeyBuilder2d turn(int angle) {
+	public MeshBuilder2d turn(int angle) {
 		this.angle += angle;
 		return this;
 	}
 
-	public MeshKeyBuilder2d forward(double distance) {
+	public MeshBuilder2d forward(double distance) {
 		Vector2d lastPos = points.get(points.size() - 1);
 		double x = lastPos.x + (Math.sin(Math.toRadians(angle)) * distance);
 		double y = lastPos.y + (Math.cos(Math.toRadians(angle)) * distance);
@@ -44,13 +44,13 @@ public class MeshKeyBuilder2d {
 		return this;
 	}
 
-	public MeshKeyBuilder2d goTo(Vector2d toPos) {
+	public MeshBuilder2d goTo(Vector2d toPos) {
 		points.add(toPos);
 		return this;
 	}
 
 
-	public MeshKeyBuilder2d setCenter(Vector2d center) {
+	public MeshBuilder2d setCenter(Vector2d center) {
 		double width = getWidth();
 		double height = getHeight();
 		for (Vector2d pos : points) {
@@ -65,7 +65,7 @@ public class MeshKeyBuilder2d {
 		return this;
 	}
 
-	public MeshKeyBuilder2d translate(Vector2d vector) {
+	public MeshBuilder2d translate(Vector2d vector) {
 		for (Vector2d p : points) {
 			p.add(vector);
 		}
@@ -100,7 +100,7 @@ public class MeshKeyBuilder2d {
 	}
 
 
-	public MeshKey build() {
+	public Mesh build() {
 		float[] positions = new float[points.size() * 3];
 		for (int i = 0; i < points.size(); i++) {
 			positions[i * 3 + 0] = (float) points.get(i).x;
@@ -133,7 +133,7 @@ public class MeshKeyBuilder2d {
 			realIndices[j] = indices.get(j);
 		}
 
-		return new MeshKey(positions, realIndices);
+		return new Mesh(positions, realIndices);
 	}
 
 	private int fitIndex(int index, int from, int to) {

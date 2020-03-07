@@ -1,19 +1,16 @@
 package ch.g_7.graphite.base.material;
 
-import java.util.Optional;
-
-import ch.g_7.graphite.base.mesh.vao.VBO;
 import ch.g_7.graphite.base.texture.ITexture;
+import ch.g_7.graphite.node.IRenderResource;
 import ch.g_7.graphite.util.Color;
 
-public interface IMaterial {
+public interface IMaterial extends IRenderResource {
 	
 	String getName();
 	
 	Color getColor();
 	
-	Optional<ITexture> getTexture();
+	ITexture getTexture();
 	
-	VBO[] getVBOs();
 
 }
