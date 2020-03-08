@@ -14,7 +14,5 @@ public interface IMaterial extends IRenderResource {
 
 	Color getShineColor();
 
-	float getNormalRoughness();
-
 
 }
