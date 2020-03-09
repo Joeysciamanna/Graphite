@@ -2,11 +2,7 @@ package ch.g_7.graphite.base.texture;
 
 import ch.g_7.graphite.resource.IResource;
 
-import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
-import static org.lwjgl.opengl.GL11.glBindTexture;
-import static org.lwjgl.opengl.GL11.glDeleteTextures;
-import static org.lwjgl.opengl.GL13.GL_TEXTURE0;
-import static org.lwjgl.opengl.GL13.glActiveTexture;
+import static org.lwjgl.opengl.GL11.*;
 
 public class Texture implements ITexture, IResource {
 
@@ -42,7 +38,6 @@ public class Texture implements ITexture, IResource {
 
 	@Override
 	public void bind() {
-		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, id);
 	}
 	

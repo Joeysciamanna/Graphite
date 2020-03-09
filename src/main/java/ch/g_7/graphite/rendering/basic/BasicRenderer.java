@@ -1,18 +1,21 @@
 package ch.g_7.graphite.rendering.basic;
 
-import static org.lwjgl.opengl.GL11.GL_UNSIGNED_INT;
-import static org.lwjgl.opengl.GL11.glDrawElements;
-
-import java.util.List;
-
+import ch.g_7.graphite.base.material.IMaterial;
+import ch.g_7.graphite.base.mesh.IMesh;
 import ch.g_7.graphite.base.transformation.ITransform;
-import ch.g_7.graphite.base.view_model.IViewModel;
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.node.INode;
 import ch.g_7.graphite.node.Renderable;
 import ch.g_7.graphite.rendering.IRenderer;
 import ch.g_7.graphite.rendering.transformator.ITransformator;
+
+import java.util.List;
+
+import static org.lwjgl.opengl.GL11.GL_UNSIGNED_INT;
+import static org.lwjgl.opengl.GL11.glDrawElements;
+import static org.lwjgl.opengl.GL13.GL_TEXTURE0;
+import static org.lwjgl.opengl.GL13.glActiveTexture;
 
 public abstract class BasicRenderer<T extends INode> implements IRenderer<T> {
 
@@ -37,20 +40,24 @@ public abstract class BasicRenderer<T extends INode> implements IRenderer<T> {
 
 	protected <R extends Renderable> void render(R renderable, int glDrawMethod) {
 
-		IViewModel viewModel = renderable.getViewModel();
-
+		IMaterial material = renderable.getViewModel().getMaterial();
+		IMesh mesh = renderable.getViewModel().getMesh();
 		shaderProgram.setModelViewMatrix(transformator.getModelViewMatrix(renderable.getTransformation()));
-		shaderProgram.setColor(viewModel.getColor());
+		shaderProgram.setColor(material.getAmbient());
 
-		viewModel.bind();
-		if (viewModel.getTexture() != null) {
+
+		if (material.getTexture() != null) {
+			glActiveTexture(GL_TEXTURE0);
 			shaderProgram.setTextureEnabled(true);
 		} else {
 			shaderProgram.setTextureEnabled(false);
 		}
 
-		glDrawElements(glDrawMethod, viewModel.getMesh().getVerticesCount(), GL_UNSIGNED_INT, 0);
-		viewModel.unbind();
+		material.bind();
+		mesh.bind();
+		glDrawElements(glDrawMethod, mesh.getVerticesCount(), GL_UNSIGNED_INT, 0);
+		material.bind();
+		mesh.bind();
 	}
 
 

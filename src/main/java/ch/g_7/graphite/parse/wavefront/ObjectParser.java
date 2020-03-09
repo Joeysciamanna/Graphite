@@ -1,21 +1,24 @@
 package ch.g_7.graphite.parse.wavefront;
 
+import ch.g_7.graphite.base.material.Material;
+import ch.g_7.graphite.base.material.MaterialKey;
+import ch.g_7.graphite.base.mesh.Mesh;
+import ch.g_7.graphite.base.mesh.vao.IVBOType;
+import ch.g_7.graphite.base.mesh.vao.VBOType;
+import ch.g_7.graphite.base.view_model.ViewModel;
+import ch.g_7.graphite.entity.EmptyEntity;
+import ch.g_7.graphite.entity.Entity;
+import ch.g_7.graphite.math.vec2.Vector2f;
+import ch.g_7.graphite.math.vec3.Vector3f;
+import ch.g_7.graphite.parse.wavefront.Face.IndexGroup;
+import ch.g_7.graphite.resource.ResourceManager;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-
-import ch.g_7.graphite.base.material.Material;
-import ch.g_7.graphite.base.material.MaterialKey;
-import ch.g_7.graphite.base.mesh.Mesh;
-import ch.g_7.graphite.base.mesh.vao.IVBOType;
-import ch.g_7.graphite.entity.EmptyEntity;
-import ch.g_7.graphite.entity.Entity;
-import ch.g_7.graphite.math.vec2.Vector2f;
-import ch.g_7.graphite.math.vec3.Vector3f;
-import ch.g_7.graphite.resource.ResourceManager;
 
 public class ObjectParser {
 
@@ -26,21 +29,22 @@ public class ObjectParser {
     
     private InputStream inputStream;
     private Entity entity = new EmptyEntity();
+    private Material material;
     private String name;
-    
+
+
     public ObjectParser(InputStream inputStream) {
         this.inputStream = inputStream;
     }
 
-
     public void parse(){
         readTokens();
+        parseEntity();
     }
 
     
     private void readTokens() {
     	BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-    	Material material = null;
         try {
             while(reader.ready()) {
                 String line = reader.readLine();
@@ -103,18 +107,18 @@ public class ObjectParser {
         
         i = 0;
         for (Face face : faces) {
-			for (IndexGroup group : face.indexGroups) {
-				int posIndex = group.position;
+			for (IndexGroup group : face.getIndexGroups()) {
+				int posIndex = group.getPosition();
 				indices[i++] = posIndex;
 				
-				if (group.textCoord >= 0) {
-			        Vector2f textCoord = this.textureCoords.get(group.textCoord);
+				if (group.getTextCoord() >= 0) {
+			        Vector2f textCoord = this.textureCoords.get(group.getTextCoord());
 			        textureCoords[posIndex * 2] = textCoord.x;
 			        textureCoords[posIndex * 2 + 1] = 1 - textCoord.y;
 			    }
-			    if (group.normal >= 0) {
+			    if (group.getNormal() >= 0) {
 			        // Reorder vectornormals
-			        Vector3f vecNorm = this.normals.get(group.normal);
+			        Vector3f vecNorm = this.normals.get(group.getNormal());
 			        normals[posIndex * 3] = vecNorm.x;
 			        normals[posIndex * 3 + 1] = vecNorm.y;
 			        normals[posIndex * 3 + 2] = vecNorm.z;
@@ -122,44 +126,14 @@ public class ObjectParser {
 			}
 		}
         
-        Mesh mesh = new Mesh(positions, indices, new IVBOType[] {});
-   
+        Mesh mesh = new Mesh(positions, indices, new IVBOType[]{VBOType.POSITIONS, VBOType.INDICES, VBOType.NORMALS, VBOType.TEXTURE_COORDINATES});
+        entity = new Entity(new ViewModel(mesh, material));
   
     }
-    
 
-    private static class Face {
-        
-    	private IndexGroup[] indexGroups = new IndexGroup[3];
-        private Material material;
-        
-        public Face(String i1, String i2, String i3, Material material) {
-            parseIndexGroup(i1, 0);
-            parseIndexGroup(i2, 1);
-            parseIndexGroup(i3, 2);
-            this.material = material;
-        }
 
-        private void parseIndexGroup(String indexGroup, int storeIndex) {
-	       String[] tokens = indexGroup.split("/");
-	       indexGroups[storeIndex] = new IndexGroup(Integer.valueOf(tokens[0]) - 1,
-	    		   									Integer.valueOf(tokens[1].isBlank() ? "0" : tokens[1]) - 1,
-	    		   									Integer.valueOf(tokens[2].isBlank() ? "0" : tokens[2]) - 1);
-        }
-
+    public Entity getEntity() {
+        return entity;
     }
-    
-    
-    private static class IndexGroup{
-    	private int position, textCoord, normal;
-
-		public IndexGroup(int position, int textCoord, int normal) {
-			this.position = position;
-			this.textCoord = textCoord;
-			this.normal = normal;
-		}
-    	
-    }
-
 }
 

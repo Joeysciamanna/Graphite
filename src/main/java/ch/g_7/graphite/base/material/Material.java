@@ -23,13 +23,38 @@ public class Material implements IMaterial, IResource {
     }
 
     @Override
-    public Color getColor() {
-        return color;
+    public ITexture getTexture() {
+        return texture;
     }
 
     @Override
-    public ITexture getTexture() {
-        return texture;
+    public Color getAmbient() {
+        return null;
+    }
+
+    @Override
+    public Color getDiffuse() {
+        return null;
+    }
+
+    @Override
+    public Color getSpecular() {
+        return null;
+    }
+
+    @Override
+    public float getShininess() {
+        return 0;
+    }
+
+    @Override
+    public void bind() {
+
+    }
+
+    @Override
+    public void unbind() {
+
     }
 
     @Override

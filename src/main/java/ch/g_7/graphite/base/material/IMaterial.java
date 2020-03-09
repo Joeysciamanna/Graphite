@@ -10,9 +10,12 @@ public interface IMaterial extends IRenderResource {
 
 	ITexture getTexture();
 
-	Color getBaseColor();
+	Color getAmbient();
 
-	Color getShineColor();
+	Color getDiffuse();
 
+	Color getSpecular();
+
+	float getShininess();
 
 }

@@ -1,23 +1,23 @@
 package ch.g_7.graphite.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import ch.g_7.graphite.base.transformation.Transformation;
+import ch.g_7.graphite.base.transformation.Transform;
 import ch.g_7.graphite.base.view_model.ViewModel;
 import ch.g_7.graphite.resource.IResource;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Entity implements IEntity, IResource {
 
 
 	protected ViewModel viewModel;
-	protected final Transformation transformation;
+	protected final Transform transformation;
 	protected final ArrayList<Entity> childs;
 
 	public Entity(ViewModel viewModel) {
 		this.viewModel = viewModel;
-		this.transformation = new Transformation();
-		this.childs = new ArrayList<Entity>();
+		this.transformation = new Transform();
+		this.childs = new ArrayList<>();
 	}
 	
 
@@ -34,7 +34,7 @@ public class Entity implements IEntity, IResource {
 	}
 
 	@Override
-	public Transformation getTransformation() {
+	public Transform getTransformation() {
 		return transformation;
 	}
 	

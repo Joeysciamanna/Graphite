@@ -12,7 +12,7 @@ public class Mesh implements IMesh, IResource, IResourceKey {
 
 	public final static String NAME = "MESH";
 	
-	private final static IVBOType[] DEFAULT_SUPPORTED_VBOS = new IVBOType[]{VBOType.POSITIONS, VBOType.INDICES, VBOType.TEXTURE_COORDINATES};
+	private final static IVBOType[] DEFAULT_SUPPORTED_VBOS = new IVBOType[]{VBOType.POSITIONS, VBOType.INDICES};
 
 	private VAO vao;
 	private int verticesCount;

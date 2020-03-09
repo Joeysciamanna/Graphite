@@ -20,17 +20,31 @@ public class Face {
     		   									Integer.valueOf(tokens[1].isBlank() ? "0" : tokens[1]) - 1,
     		   									Integer.valueOf(tokens[2].isBlank() ? "0" : tokens[2]) - 1);
     }
-    
-    
-    private static class IndexGroup{
-    	private int position, textCoord, normal;
+
+    public IndexGroup[] getIndexGroups() {
+        return indexGroups;
+    }
+
+    public static class IndexGroup {
+    	private final int position, textCoord, normal;
 
     	public IndexGroup(int position, int textCoord, int normal) {
     		this.position = position;
     		this.textCoord = textCoord;
     		this.normal = normal;
     	}
-    	
+
+        public int getNormal() {
+            return normal;
+        }
+
+        public int getPosition() {
+            return position;
+        }
+
+        public int getTextCoord() {
+            return textCoord;
+        }
     }
 
 }

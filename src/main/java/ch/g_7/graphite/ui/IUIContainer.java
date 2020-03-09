@@ -1,18 +1,14 @@
 package ch.g_7.graphite.ui;
 
-import java.util.List;
-
-import org.joml.Vector2ic;
-
+import ch.g_7.graphite.base.transformation.ITransform;
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.node.INode;
 import ch.g_7.graphite.ui.util.ScreenDimension;
+import org.joml.Vector2ic;
 
-public interface IUIContainer extends INode {
+public interface IUIContainer extends INode<IUIPanel> {
 
 	boolean isVisible();
-
-	List<IUIPanel> getChilds();
 
 	void recalculate();
 	
@@ -30,7 +26,7 @@ public interface IUIContainer extends INode {
 	ScreenDimension getY();
 	Vector2ic getPosition();
 	
-	ITransformation2d getTransformation();
+	ITransform getTransform();
 	
 	IUIRootContainer getRootContainer();
 }
