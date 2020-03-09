@@ -6,17 +6,30 @@ import ch.g_7.graphite.util.Color;
 
 public class Material implements IMaterial, IResource {
 
-	private final String name;
-    private final Color color;
+    private final String name;
     private final ITexture texture;
+    private final Color ambient;
+    private final Color diffuse;
+    private final Color specular;
+    private final float shininess;
 
-    public Material(String name, Color color, ITexture texture) {
-    	this.name = name;
-        this.color = color;
+    public Material(String name, ITexture texture, Color ambient, Color diffuse, Color specular, float shininess) {
+        this.name = name;
         this.texture = texture;
+        this.ambient = ambient;
+        this.diffuse = diffuse;
+        this.specular = specular;
+        this.shininess = shininess;
     }
 
-    
+    public Material(String name, Color ambient, Color diffuse, Color specular, float shininess) {
+        this(name, null, ambient, diffuse, specular, shininess);
+    }
+
+    public Material(String name, Color ambient) {
+        this(name, null, ambient, Color.TRANSPARENT, specular, shininess);
+    }
+
     @Override
     public String getName() {
     	return name;
@@ -49,12 +62,12 @@ public class Material implements IMaterial, IResource {
 
     @Override
     public void bind() {
-
+        texture.bind();
     }
 
     @Override
     public void unbind() {
-
+        texture.unbind();
     }
 
     @Override

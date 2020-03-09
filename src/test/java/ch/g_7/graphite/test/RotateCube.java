@@ -1,9 +1,7 @@
 package ch.g_7.graphite.test;
 
+import ch.g_7.graphite.base.material.Material;
 import ch.g_7.graphite.base.mesh.Mesh;
-import ch.g_7.graphite.base.mesh.MeshKey;
-import ch.g_7.graphite.base.mesh.MeshBuilder2d;
-import ch.g_7.graphite.base.mesh.MeshProvider;
 import ch.g_7.graphite.base.view_model.ViewModel;
 import ch.g_7.graphite.core.Application;
 import ch.g_7.graphite.entity.Entity;
@@ -68,9 +66,9 @@ public class RotateCube extends Application {
                 7, 6, 4, 7, 4, 5
         };
 
-        Mesh mesh = ResourceManager.getActive().getEngineResource(new MeshKey(positions, indices));
+        Mesh mesh = ResourceManager.getActive().allocateFromEngine(new Mesh(positions, indices));
 
-        ViewModel viewModel = new ViewModel(mesh, null, Color.RED);
+        ViewModel viewModel = new ViewModel(mesh, new Material());
 
         entity1 = new Entity(viewModel);
         entity1.getTransformation().setPosition(new Vector3f(0, 0, -2 ));

@@ -25,7 +25,7 @@ public class Mesh implements IMesh, IResource, IResourceKey {
 		this.verticesCount = indices.length;
 	}
 
-	Mesh(float[] positions, int[] indices) {
+	public Mesh(float[] positions, int[] indices) {
 		this(positions, indices, DEFAULT_SUPPORTED_VBOS);
 	}
 
