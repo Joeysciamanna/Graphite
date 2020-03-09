@@ -68,7 +68,7 @@ public class RotateCube extends Application {
 
         Mesh mesh = ResourceManager.getActive().allocateFromEngine(new Mesh(positions, indices));
 
-        ViewModel viewModel = new ViewModel(mesh, new Material());
+        ViewModel viewModel = new ViewModel(mesh, new Material("RED", Color.RED));
 
         entity1 = new Entity(viewModel);
         entity1.getTransformation().setPosition(new Vector3f(0, 0, -2 ));

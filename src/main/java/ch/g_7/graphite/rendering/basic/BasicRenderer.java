@@ -17,7 +17,7 @@ import static org.lwjgl.opengl.GL11.glDrawElements;
 import static org.lwjgl.opengl.GL13.GL_TEXTURE0;
 import static org.lwjgl.opengl.GL13.glActiveTexture;
 
-public abstract class BasicRenderer<T extends INode> implements IRenderer<T> {
+public abstract class BasicRenderer<T extends INode<T>> implements IRenderer<T> {
 
 	private ITransformator<ITransform> transformator;
 	protected final BasicShaderProgram shaderProgram;

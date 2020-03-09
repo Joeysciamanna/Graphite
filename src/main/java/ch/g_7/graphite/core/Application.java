@@ -36,8 +36,8 @@ public abstract class Application extends TaskLoop implements Updatable, Initial
     }
 
     private void initUpdateLoop() {
-    	updateLoop.addUpdatable(this::update);
-    	updateLoop.addUpdatable(dimension::update);
+    	updateLoop.addUpdatable(this);
+    	updateLoop.addUpdatable(dimension);
     }
     
     @Override

@@ -1,14 +1,14 @@
 package ch.g_7.graphite.core;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import ch.g_7.graphite.node.INode;
 import ch.g_7.graphite.node.Updatable;
 import ch.g_7.graphite.rendering.IRenderer;
 import ch.g_7.graphite.rendering.RenderClass;
 import ch.g_7.util.common.Closeable;
 import ch.g_7.util.common.GenericProducerType;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public final class Dimension implements Closeable, Updatable {
 
@@ -19,7 +19,7 @@ public final class Dimension implements Closeable, Updatable {
 		renderClasses = new ArrayList<>(20);
 	}
 	
-	public <T extends INode> void addObj(T renderable, GenericProducerType<? extends RenderClass<T, ? extends IRenderer<? super T>>> renderType) {
+	public <T extends INode<?>> void addObj(T renderable, GenericProducerType<? extends RenderClass<T, ? extends IRenderer<? super T>>> renderType) {
 		for (RenderClass<?, ?> renderClass : renderClasses) {
 			if(renderType.typeEquals(renderClass.getClass())) {
 				renderType.cast(renderClass).addNode(renderable);

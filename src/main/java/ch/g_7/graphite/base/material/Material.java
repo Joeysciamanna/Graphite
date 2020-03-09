@@ -27,7 +27,7 @@ public class Material implements IMaterial, IResource {
     }
 
     public Material(String name, Color ambient) {
-        this(name, null, ambient, Color.TRANSPARENT, specular, shininess);
+        this(name, null, ambient, Color.TRANSPARENT, Color.TRANSPARENT, 0);
     }
 
     @Override
@@ -42,32 +42,32 @@ public class Material implements IMaterial, IResource {
 
     @Override
     public Color getAmbient() {
-        return null;
+        return ambient;
     }
 
     @Override
     public Color getDiffuse() {
-        return null;
+        return diffuse;
     }
 
     @Override
     public Color getSpecular() {
-        return null;
+        return specular;
     }
 
     @Override
     public float getShininess() {
-        return 0;
+        return shininess;
     }
 
     @Override
     public void bind() {
-        texture.bind();
+        if(texture != null) texture.bind();
     }
 
     @Override
     public void unbind() {
-        texture.unbind();
+        if(texture != null) texture.unbind();
     }
 
     @Override

@@ -19,8 +19,8 @@ public class OrthographicTransformator implements ITransformator<ITransform> {
 
 	@Override
 	public Matrix4f getProjectionMatrix(Window window, Camera camera) {
-		return projectionMatrix.identity().translate(-camera.getPosition().x(),
-				-camera.getPosition().y(), -camera.getPosition().z());
+		return projectionMatrix.identity().translate(-camera.getTransform().getPosition().x(),
+				-camera.getTransform().getPosition().y(), -camera.getTransform().getPosition().z());
 	}
 
 	@Override

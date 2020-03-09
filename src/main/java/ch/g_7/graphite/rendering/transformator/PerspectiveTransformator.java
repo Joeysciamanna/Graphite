@@ -27,9 +27,9 @@ public class PerspectiveTransformator implements ITransformator<ITransform> {
 
 	@Override
 	public Matrix4f getProjectionMatrix(Window window, Camera camera) {
-		viewMatrix.identity().translate((float) -camera.getPosition().x(), (float) -camera.getPosition().y(),
-				(float) -camera.getPosition().z());
-		return projectionMatrix.identity().perspective(fov, window.getWidth() / window.getHeight(), zNear, zFar).mul(viewMatrix);
+		viewMatrix.identity().translate((float) -camera.getTransform().getPosition().x(), (float) -camera.getTransform().getPosition().y(),
+				(float) -camera.getTransform().getPosition().z());
+		return projectionMatrix.identity().perspective(fov, (float) window.getWidth() / window.getHeight(), zNear, zFar).mul(viewMatrix);
 	}
 
 	@Override
