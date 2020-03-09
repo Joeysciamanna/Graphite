@@ -26,7 +26,7 @@ public class Face {
     }
 
     public static class IndexGroup {
-    	private final int position, textCoord, normal;
+    	private int position, textCoord, normal;
 
     	public IndexGroup(int position, int textCoord, int normal) {
     		this.position = position;

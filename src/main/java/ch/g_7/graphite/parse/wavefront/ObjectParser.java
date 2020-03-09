@@ -1,7 +1,13 @@
 package ch.g_7.graphite.parse.wavefront;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+
 import ch.g_7.graphite.base.material.Material;
-import ch.g_7.graphite.base.material.MaterialKey;
 import ch.g_7.graphite.base.mesh.Mesh;
 import ch.g_7.graphite.base.mesh.vao.IVBOType;
 import ch.g_7.graphite.base.mesh.vao.VBOType;
@@ -11,14 +17,7 @@ import ch.g_7.graphite.entity.Entity;
 import ch.g_7.graphite.math.vec2.Vector2f;
 import ch.g_7.graphite.math.vec3.Vector3f;
 import ch.g_7.graphite.parse.wavefront.Face.IndexGroup;
-import ch.g_7.graphite.resource.ResourceManager;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
+import ch.g_7.graphite.util.Color;
 
 public class ObjectParser {
 
@@ -29,7 +28,7 @@ public class ObjectParser {
     
     private InputStream inputStream;
     private Entity entity = new EmptyEntity();
-    private Material material;
+    private Material material = new Material("default", Color.WHITE);
     private String name;
 
 
@@ -79,7 +78,7 @@ public class ObjectParser {
                     case "f":
                         faces.add(new Face(values[1], values[2], values[3], material));
                     case "usemtl":
-                    	material = ResourceManager.getActive().allocate(new MaterialKey(values[1]), null);
+                    	//material = ResourceManager.getActive().allocate(new MaterialKey(values[1]), null);
                     default:
                         break;
                 }
