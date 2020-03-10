@@ -1,27 +1,13 @@
 package ch.g_7.graphite.test;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.nio.ByteBuffer;
-import java.nio.channels.Channels;
-import java.nio.channels.WritableByteChannel;
-import java.util.Objects;
-
-import org.joml.Vector3f;
-import org.lwjgl.glfw.GLFW;
-
-import ch.g_7.graphite.base.material.Material;
-import ch.g_7.graphite.base.mesh.Mesh;
-import ch.g_7.graphite.base.view_model.ViewModel;
 import ch.g_7.graphite.core.Application;
 import ch.g_7.graphite.entity.Entity;
 import ch.g_7.graphite.entity.EntityKey;
 import ch.g_7.graphite.rendering.RenderType;
 import ch.g_7.graphite.resource.ResourceManager;
-import ch.g_7.graphite.util.Color;
 import ch.g_7.util.helper.AppInitializer;
+import org.joml.Vector3f;
+import org.lwjgl.glfw.GLFW;
 
 public class Test extends Application {
 
@@ -43,7 +29,8 @@ public class Test extends Application {
       
 
         Entity entity = ResourceManager.getActive().allocateFromEngine(new EntityKey("untitled.obj"));
-
+		entity.getTransformation().setScale(new Vector3f(0.1f,0.1f,0.1f));
+		entity.getTransformation().setPosition(new Vector3f(0, 0, -0.5f));
         getDimension().addObj(entity, RenderType.ENTITIES);
 
         getWindow().setVisible(true);

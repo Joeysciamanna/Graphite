@@ -1,12 +1,5 @@
 package ch.g_7.graphite.parse.wavefront;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-
 import ch.g_7.graphite.base.material.Material;
 import ch.g_7.graphite.base.mesh.Mesh;
 import ch.g_7.graphite.base.mesh.vao.IVBOType;
@@ -19,6 +12,13 @@ import ch.g_7.graphite.math.vec3.Vector3f;
 import ch.g_7.graphite.parse.wavefront.Face.IndexGroup;
 import ch.g_7.graphite.util.Color;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+
 public class ObjectParser {
 
     private List<Vector3f> positions = new ArrayList<>();
@@ -28,7 +28,7 @@ public class ObjectParser {
     
     private InputStream inputStream;
     private Entity entity = new EmptyEntity();
-    private Material material = new Material("default", Color.WHITE);
+    private Material material = new Material("default", Color.RED);
     private String name;
 
 
@@ -91,10 +91,10 @@ public class ObjectParser {
 
     
     private void parseEntity() {
-    	int[] indices = new int[this.faces.size()];
+    	int[] indices = new int[this.faces.size() * 3];
     	float[] positions = new float[this.positions.size() * 3];
     	float[] textureCoords = new float[this.textureCoords.size() * 2];
-    	float[] normals = new float[this.normals.size() * 3];
+    	float[] normals = new float[this.faces.size() * 3];
 
     	int i = 0;
         for (Vector3f pos : this.positions) {
