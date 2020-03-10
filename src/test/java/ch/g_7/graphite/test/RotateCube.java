@@ -31,7 +31,7 @@ public class RotateCube extends Application {
     public void init() {
 
 
-        entity = ResourceManager.getActive().allocateFromEngine(new EntityKey("untitled.obj"));
+        entity = ResourceManager.getActive().allocateFromEngine(new EntityKey("obj/cube.obj"));
         entity.getTransformation().setScale(new Vector3f(0.1f,0.1f,0.1f));
         entity.getTransformation().setPosition(new Vector3f(0, 0, -0.5f));
         getDimension().addObj(entity, RenderType.ENTITIES);
