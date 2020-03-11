@@ -1,5 +1,8 @@
 package ch.g_7.graphite.rendering;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.node.INode;
@@ -7,9 +10,6 @@ import ch.g_7.graphite.node.Updatable;
 import ch.g_7.util.common.Closeable;
 import ch.g_7.util.common.Initializable;
 import ch.g_7.util.helper.Util;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public abstract class RenderClass<T extends INode<? extends INode<?>>, R extends IRenderer<? super T>> implements Closeable, Initializable, Updatable {
 

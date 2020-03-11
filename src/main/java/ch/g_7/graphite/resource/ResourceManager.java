@@ -5,7 +5,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
-import ch.g_7.graphite.base.material.WavefrontMaterialProvider;
 import ch.g_7.graphite.base.mesh.MeshProvider;
 import ch.g_7.graphite.base.texture.TextureProvider;
 import ch.g_7.graphite.entity.WavefrontObjectProvider;

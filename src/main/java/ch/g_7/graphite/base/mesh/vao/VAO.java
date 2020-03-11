@@ -1,14 +1,21 @@
 package ch.g_7.graphite.base.mesh.vao;
 
-import ch.g_7.graphite.node.IRenderResource;
-import ch.g_7.util.common.Closeable;
-import org.lwjgl.opengl.GL20;
-
-import java.util.*;
-
 import static org.lwjgl.opengl.GL20.glDisableVertexAttribArray;
 import static org.lwjgl.opengl.GL20.glEnableVertexAttribArray;
-import static org.lwjgl.opengl.GL30.*;
+import static org.lwjgl.opengl.GL30.glBindVertexArray;
+import static org.lwjgl.opengl.GL30.glDeleteVertexArrays;
+import static org.lwjgl.opengl.GL30.glGenVertexArrays;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Optional;
+import java.util.Queue;
+
+import org.lwjgl.opengl.GL20;
+
+import ch.g_7.graphite.node.IRenderResource;
+import ch.g_7.util.common.Closeable;
 
 public class VAO implements Closeable, IRenderResource {
 

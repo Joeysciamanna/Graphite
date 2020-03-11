@@ -1,11 +1,11 @@
 package ch.g_7.graphite.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ch.g_7.graphite.base.transformation.Transform;
 import ch.g_7.graphite.base.view_model.ViewModel;
 import ch.g_7.graphite.resource.IResource;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Entity implements IEntity, IResource {
 

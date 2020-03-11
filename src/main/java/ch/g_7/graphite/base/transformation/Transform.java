@@ -1,8 +1,6 @@
 package ch.g_7.graphite.base.transformation;
 
 import org.joml.Vector3f;
-import org.joml.Vector3i;
-import org.joml.Vector3ic;
 
 public class Transform implements ITransform {
 

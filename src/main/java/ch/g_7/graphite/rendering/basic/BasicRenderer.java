@@ -1,5 +1,12 @@
 package ch.g_7.graphite.rendering.basic;
 
+import static org.lwjgl.opengl.GL11.GL_UNSIGNED_INT;
+import static org.lwjgl.opengl.GL11.glDrawElements;
+import static org.lwjgl.opengl.GL13.GL_TEXTURE0;
+import static org.lwjgl.opengl.GL13.glActiveTexture;
+
+import java.util.List;
+
 import ch.g_7.graphite.base.material.IMaterial;
 import ch.g_7.graphite.base.mesh.IMesh;
 import ch.g_7.graphite.base.transformation.ITransform;
@@ -9,13 +16,6 @@ import ch.g_7.graphite.node.INode;
 import ch.g_7.graphite.node.Renderable;
 import ch.g_7.graphite.rendering.IRenderer;
 import ch.g_7.graphite.rendering.transformator.ITransformator;
-
-import java.util.List;
-
-import static org.lwjgl.opengl.GL11.GL_UNSIGNED_INT;
-import static org.lwjgl.opengl.GL11.glDrawElements;
-import static org.lwjgl.opengl.GL13.GL_TEXTURE0;
-import static org.lwjgl.opengl.GL13.glActiveTexture;
 
 public abstract class BasicRenderer<T extends INode<T>> implements IRenderer<T> {
 
