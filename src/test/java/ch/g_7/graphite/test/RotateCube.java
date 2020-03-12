@@ -30,7 +30,6 @@ public class RotateCube extends Application {
     @Override
     public void init() {
 
-
         entity = ResourceManager.getActive().allocateFromEngine(new EntityKey("obj/cube.obj"));
         entity.getTransformation().setScale(new Vector3f(0.1f,0.1f,0.1f));
         entity.getTransformation().setPosition(new Vector3f(0, 0, -0.5f));
@@ -40,7 +39,6 @@ public class RotateCube extends Application {
         getWindow().setSize(500, 500);
 
         getTimer().setLpsSmoothing(0);
-
 
     }
 
