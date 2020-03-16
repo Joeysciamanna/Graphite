@@ -5,7 +5,9 @@
 bin/
 tmp/
 target/
+gradle/
+.gradle/
 
 
-/.idea/
-/graphite.iml
+.idea/
+graphite.iml
