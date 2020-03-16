@@ -8,6 +8,6 @@ target/
 gradle/
 .gradle/
 
-
+build/
 .idea/
 graphite.iml
