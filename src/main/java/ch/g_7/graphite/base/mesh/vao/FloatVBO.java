@@ -14,7 +14,7 @@ public class FloatVBO extends VBO {
 	
 	protected float[] floats;
 	
-	protected FloatVBO(IVBOType type, float[] floats) {
+	public FloatVBO(IVBOType type, float[] floats) {
 		super(type);
 		this.floats = floats;
 		if(type.getGlNumber() != GL11.GL_FLOAT) {

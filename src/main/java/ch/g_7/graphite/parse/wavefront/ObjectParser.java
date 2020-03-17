@@ -9,7 +9,9 @@ import java.util.List;
 
 import ch.g_7.graphite.base.material.Material;
 import ch.g_7.graphite.base.mesh.Mesh;
+import ch.g_7.graphite.base.mesh.vao.FloatVBO;
 import ch.g_7.graphite.base.mesh.vao.IVBOType;
+import ch.g_7.graphite.base.mesh.vao.VBOFactory;
 import ch.g_7.graphite.base.mesh.vao.VBOType;
 import ch.g_7.graphite.base.view_model.ViewModel;
 import ch.g_7.graphite.entity.EmptyEntity;
@@ -126,6 +128,12 @@ public class ObjectParser {
 		}
         
         Mesh mesh = new Mesh(positions, indices, new IVBOType[]{VBOType.POSITIONS, VBOType.INDICES, VBOType.NORMALS, VBOType.TEXTURE_COORDINATES});
+        if(textureCoords.length > 0){
+            mesh.add(new FloatVBO(VBOType.TEXTURE_COORDINATES, textureCoords));
+        }
+        if(normals.length > 0){
+            mesh.add(new FloatVBO(VBOType.NORMALS, normals));
+        }
         entity = new Entity(new ViewModel(mesh, material));
   
     }
