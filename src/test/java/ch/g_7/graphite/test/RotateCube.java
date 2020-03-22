@@ -11,8 +11,6 @@ import org.lwjgl.glfw.GLFW;
 
 public class RotateCube extends Application {
 
-    private static RotateCube rotateCube;
-
     public RotateCube(String name) {
         super(name);
     }
@@ -21,7 +19,7 @@ public class RotateCube extends Application {
         AppInitializer appInitializer = new AppInitializer(true,"RotateCube Test", new Object() {});
         appInitializer.addConsoleLoggers();
 
-        rotateCube = new RotateCube("Rotate Cube Test");
+        RotateCube rotateCube = new RotateCube("Rotate Cube Test");
         rotateCube.start();
     }
 
@@ -42,7 +40,6 @@ public class RotateCube extends Application {
 
     }
 
-    double lastTime;
 	@Override
 	@SuppressWarnings("deprecation")
     public void update(float deltaMillis) {
