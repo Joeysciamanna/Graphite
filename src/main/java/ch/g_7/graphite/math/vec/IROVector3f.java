@@ -1,7 +1,4 @@
-package ch.g_7.graphite.math.vec3;
-
-import ch.g_7.graphite.math.vec2.IVector2f;
-import ch.g_7.graphite.math.vec2.IVector2i;
+package ch.g_7.graphite.math.vec;
 
 public interface IROVector3f {
 

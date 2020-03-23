@@ -1,11 +1,8 @@
-package ch.g_7.graphite.math.vec3;
-
-import ch.g_7.graphite.math.vec2.Vector2f;
-import ch.g_7.graphite.math.vec2.Vector2i;
+package ch.g_7.graphite.math.vec;
 
 public class Vector3i implements IVector3i {
 
-    protected int x, y, z;
+    public int x, y, z;
 
     public Vector3i() {}
 

@@ -11,13 +11,12 @@ import ch.g_7.graphite.base.material.Material;
 import ch.g_7.graphite.base.mesh.Mesh;
 import ch.g_7.graphite.base.mesh.vao.FloatVBO;
 import ch.g_7.graphite.base.mesh.vao.IVBOType;
-import ch.g_7.graphite.base.mesh.vao.VBOFactory;
 import ch.g_7.graphite.base.mesh.vao.VBOType;
 import ch.g_7.graphite.base.view_model.ViewModel;
 import ch.g_7.graphite.entity.EmptyEntity;
 import ch.g_7.graphite.entity.Entity;
-import ch.g_7.graphite.math.vec2.Vector2f;
-import ch.g_7.graphite.math.vec3.Vector3f;
+import ch.g_7.graphite.math.vec.Vector2f;
+import ch.g_7.graphite.math.vec.Vector3f;
 import ch.g_7.graphite.parse.wavefront.Face.IndexGroup;
 import ch.g_7.graphite.util.Color;
 

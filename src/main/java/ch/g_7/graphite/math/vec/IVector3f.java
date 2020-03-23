@@ -1,4 +1,4 @@
-package ch.g_7.graphite.math.vec3;
+package ch.g_7.graphite.math.vec;
 
 public interface IVector3f extends IROVector3f {
 	
