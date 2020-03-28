@@ -19,7 +19,25 @@ public class Matrix4x4f implements IMatrix4x4f {
 
     @Override
     public IMatrix4x4f add(IROMatrix4x4f mat, IMatrix4x4f des) {
-        //TODO
+        des.set1x1(_1x1 + mat.get1x1());
+        des.set1x2(_1x2 + mat.get1x2());
+        des.set1x3(_1x3 + mat.get1x3());
+        des.set1x4(_1x4 + mat.get1x4());
+
+        des.set2x1(_2x1 + mat.get2x1());
+        des.set2x2(_2x2 + mat.get2x2());
+        des.set2x3(_2x3 + mat.get2x3());
+        des.set2x4(_2x4 + mat.get2x4());
+
+        des.set3x1(_3x1 + mat.get3x1());
+        des.set3x2(_3x2 + mat.get3x2());
+        des.set3x3(_3x3 + mat.get3x3());
+        des.set3x4(_3x4 + mat.get3x4());
+
+        des.set4x1(_4x1 + mat.get4x1());
+        des.set4x2(_4x2 + mat.get4x2());
+        des.set4x3(_4x3 + mat.get4x3());
+        des.set4x4(_4x4 + mat.get4x4());
         return des;
     }
 
@@ -31,7 +49,25 @@ public class Matrix4x4f implements IMatrix4x4f {
 
     @Override
     public IMatrix4x4f sub(IROMatrix4x4f mat, IMatrix4x4f des) {
-        //TODO
+        des.set1x1(_1x1 - mat.get1x1());
+        des.set1x2(_1x2 - mat.get1x2());
+        des.set1x3(_1x3 - mat.get1x3());
+        des.set1x4(_1x4 - mat.get1x4());
+
+        des.set2x1(_2x1 - mat.get2x1());
+        des.set2x2(_2x2 - mat.get2x2());
+        des.set2x3(_2x3 - mat.get2x3());
+        des.set2x4(_2x4 - mat.get2x4());
+
+        des.set3x1(_3x1 - mat.get3x1());
+        des.set3x2(_3x2 - mat.get3x2());
+        des.set3x3(_3x3 - mat.get3x3());
+        des.set3x4(_3x4 - mat.get3x4());
+
+        des.set4x1(_4x1 - mat.get4x1());
+        des.set4x2(_4x2 - mat.get4x2());
+        des.set4x3(_4x3 - mat.get4x3());
+        des.set4x4(_4x4 - mat.get4x4());
         return des;
     }
 
