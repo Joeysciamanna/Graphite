@@ -1,5 +1,6 @@
 package ch.g_7.graphite.math.vec;
 
+
 import java.util.Objects;
 
 public class Vector2i implements IVector2i {

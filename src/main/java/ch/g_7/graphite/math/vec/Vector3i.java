@@ -1,5 +1,7 @@
 package ch.g_7.graphite.math.vec;
 
+import java.util.Objects;
+
 public class Vector3i implements IVector3i {
 
     public int x, y, z;
@@ -467,5 +469,25 @@ public class Vector3i implements IVector3i {
     @Override
     public Vector3i clone() {
         return new Vector3i(x, y, z);
+    }
+
+    @Override
+    public String toString() {
+        return "Vec3i["+x+", "+y+", "+z+" ]";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Vector3i vec = (Vector3i) o;
+        return vec.x == x &&
+                vec.y == y &&
+                vec.z == z;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y, z);
     }
 }

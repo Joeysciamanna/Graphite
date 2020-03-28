@@ -1,5 +1,7 @@
 package ch.g_7.graphite.math.vec;
 
+import java.util.Objects;
+
 public class Vector3f implements IVector3f {
 
 	public float x, y, z;
@@ -495,4 +497,23 @@ public class Vector3f implements IVector3f {
 		return new Vector3f(x, y, z);
 	}
 
+	@Override
+	public String toString() {
+		return "Vec3f["+x+", "+y+", "+z+" ]";
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Vector3f vec = (Vector3f) o;
+		return vec.x == x &&
+				vec.y == y &&
+				vec.z == z;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(x, y, z);
+	}
 }
