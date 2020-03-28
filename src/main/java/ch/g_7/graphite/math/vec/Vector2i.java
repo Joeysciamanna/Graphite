@@ -400,16 +400,16 @@ public class Vector2i implements IVector2i {
 	public String toString() {
 		return "Vec2f["+x+", "+y+"]";
 	}
-	
+
 	@Override
-	public boolean equals(Object obj) {
-		if(obj instanceof IROVector2f) {
-			IROVector2f vec = (IROVector2f) obj;
-			return vec.getX() == x && vec.getY() == y;
-		}
-		return false;
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Vector2i vec = (Vector2i) o;
+		return x == vec.x &&
+				y == vec.y;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(x, y);
