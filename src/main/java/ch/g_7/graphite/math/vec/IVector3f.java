@@ -54,10 +54,6 @@ public interface IVector3f extends IROVector3f {
 	IVector3f normalize(float len);
 
 	
-	IVector3f rotate(IROVector3f vec, float angle);
-	
-	IVector3f rotate(float x, float y, float z, float angle);
-	
 	IVector3f rotateX(float angle);
 	
 	IVector3f rotateY(float angle);

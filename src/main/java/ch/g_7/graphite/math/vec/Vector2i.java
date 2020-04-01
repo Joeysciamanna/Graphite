@@ -271,9 +271,10 @@ public class Vector2i implements IVector2i {
 	public IVector2i rotate(float angle, IVector2i des) {
 		float cs = (float) Math.cos(angle);
 		float sn = (float) Math.sin(angle);
-		
-		des.setX((int) (x * cs - y * sn));
-		des.setY((int) (x * sn + y * cs));
+
+		int newX = (int) (x * cs - y * sn);
+		int newY = (int) (x * sn + y * cs);
+		set(newX, newY);
 		return des;
 	}
 	
@@ -285,7 +286,7 @@ public class Vector2i implements IVector2i {
 
 	@Override
 	public float dot(int x, int y) {
-		return this.x * x + this.y + y;
+		return this.x * x + this.y * y;
 	}
 
 	

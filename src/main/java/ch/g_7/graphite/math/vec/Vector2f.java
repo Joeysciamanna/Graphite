@@ -278,8 +278,8 @@ public class Vector2f implements IVector2f {
 		float cs = (float) Math.cos(angle);
 		float sn = (float) Math.sin(angle);
 		
-		float newX = des.getX() - x;
-		float newY = des.getY() - y;
+		float newX = this.x - x;
+		float newY = this.y - y;
 		des.setX(newX * cs - newY * sn);
 		des.setY(newX * sn + newY * cs);
 		des.add(x, y);
@@ -296,9 +296,10 @@ public class Vector2f implements IVector2f {
 	public IVector2f rotate(float angle, IVector2f des) {
 		float cs = (float) Math.cos(angle);
 		float sn = (float) Math.sin(angle);
-		
-		des.setX(x * cs - y * sn);
-		des.setY(x * sn + y * cs);
+
+		float newX = x * cs - y * sn;
+		float newY = x * sn + y * cs;
+		set(newX, newY);
 		return des;
 	}
 	
@@ -310,7 +311,7 @@ public class Vector2f implements IVector2f {
 
 	@Override
 	public float dot(float x, float y) {
-		return this.x * x + this.y + y;
+		return this.x * x + this.y * y;
 	}
 
 	@Override

@@ -255,35 +255,13 @@ public class Vector3i implements IVector3i {
 	
 	@Override
 	public IVector3i cross(int x, int y, int z, IVector3i des) {
-		des.setX(this.y*z - this.z*y);
-		des.setY(this.z*x - this.x*z);
-		des.setZ(this.x*y - this.y*x);
+		int newX = this.y*z - this.z*y;
+		int newY = this.z*x - this.x*z;
+		int newZ = this.x*y - this.y*x;
+		set(newX, newY, newZ);
 		return des;
 	}
-	
-	
-	@Override
-	public Vector3i rotate(IROVector3i vec, float angle) {
-		rotate(vec.getX(), vec.getY(), vec.getZ(), angle, this);
-		return this;
-	}
-	
-	@Override
-	public Vector3i rotate(int x, int y, int z, float angle) {
-		rotate(x, y, z, angle, this);
-		return this;
-	}
-	
-	@Override
-	public IVector3i rotate(IROVector3i vec, float angle, IVector3i des) {
-		return rotate(vec.getX(), vec.getY(), vec.getZ(), angle, des);
-	}
-	
-	@Override
-	public IVector3i rotate(int x, int y, int z, float angle, IVector3i des) {
-		//TODO
-		throw new UnsupportedOperationException("Method not implemented yet, please feel free to do so");
-	}
+
 	
 	@Override
 	public Vector3i rotateX(float angle) {
@@ -295,9 +273,9 @@ public class Vector3i implements IVector3i {
 	public IVector3i rotateX(float angle, IVector3i des) {
 		float cs = (float) Math.cos(angle);
 		float sn = (float) Math.sin(angle);
-		des.setX(x);
-		des.setY((int) (y * cs - z * sn));
-		des.setZ((int) (y * sn + z * cs));
+		int newY = (int) (y * cs - z * sn);
+		int newZ = (int) (y * sn + z * cs);
+        set(x, newY, newZ);
 		return des;
 	}
 	
@@ -311,9 +289,9 @@ public class Vector3i implements IVector3i {
 	public IVector3i rotateY(float angle, IVector3i des) {
 		float cs = (float) Math.cos(angle);
 		float sn = (float) Math.sin(angle);
-		des.setX((int) (x * cs + z * sn));
-		des.setY(y);
-		des.setZ((int) (-x * sn + z * cs));
+		int newX = (int) (x * cs + z * sn);
+		int newZ = (int) (-x * sn + z * cs);
+        set(newX, y, newZ);
 		return des;
 	}
 	
@@ -327,9 +305,9 @@ public class Vector3i implements IVector3i {
 	public IVector3i rotateZ(float angle, IVector3i des) {
 		float cs = (float) Math.cos(angle);
 		float sn = (float) Math.sin(angle);
-		des.setX((int) (x * cs - y * sn));
-		des.setY((int) (x * sn + y * cs));
-		des.setZ(z);
+		int newX = (int) (x * cs - y * sn);
+		int newY = (int) (x * sn + y * cs);
+        set(newX, newY, z);
 		return des;
 	}
 	

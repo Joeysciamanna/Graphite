@@ -255,9 +255,10 @@ public class Vector3f implements IVector3f {
 	
 	@Override
 	public IVector3f cross(float x, float y, float z, IVector3f des) {
-		des.setX(this.y*z - this.z*y);
-		des.setY(this.z*x - this.x*z);
-		des.setZ(this.x*y - this.y*x);
+		float newX = this.y*z - this.z*y;
+		float newY = this.z*x - this.x*z;
+		float newZ = this.x*y - this.y*x;
+		set(newX, newY, newZ);
 		return des;
 	}
 	
@@ -288,30 +289,6 @@ public class Vector3f implements IVector3f {
 		return des;
 	}
 	
-	
-	@Override
-	public Vector3f rotate(IROVector3f vec, float angle) {
-		rotate(vec.getX(), vec.getY(), vec.getZ(), angle, this);
-		return this;
-	}
-	
-	@Override
-	public Vector3f rotate(float x, float y, float z, float angle) {
-		rotate(x, y, z, angle, this);
-		return this;
-	}
-	
-	@Override
-	public IVector3f rotate(IROVector3f vec, float angle, IVector3f des) {
-		return rotate(vec.getX(), vec.getY(), vec.getZ(), angle, des);
-	}
-	
-	@Override
-	public IVector3f rotate(float x, float y, float z, float angle, IVector3f des) {
-		//TODO
-		throw new UnsupportedOperationException("Method not implemented yet, please feel free to do so");
-	}
-	
 	@Override
 	public Vector3f rotateX(float angle) {
 		rotateX(angle, this);
@@ -322,9 +299,9 @@ public class Vector3f implements IVector3f {
 	public IVector3f rotateX(float angle, IVector3f des) {
 		float cs = (float) Math.cos(angle);
 		float sn = (float) Math.sin(angle);
-		des.setX(x);
-		des.setY(y * cs - z * sn);
-		des.setZ(y * sn + z * cs);
+		float newY = y * cs - z * sn;
+		float newZ = y * sn + z * cs;
+		set(x, newY, newZ);
 		return des;
 	}
 	
@@ -338,9 +315,9 @@ public class Vector3f implements IVector3f {
 	public IVector3f rotateY(float angle, IVector3f des) {
 		float cs = (float) Math.cos(angle);
 		float sn = (float) Math.sin(angle);
-		des.setX( x * cs + z * sn);
-		des.setY(y);
-		des.setZ(-x * sn + z * cs);
+		float newX =  x * cs + z * sn;
+		float newZ = -x * sn + z * cs;
+		set(newX, y, newZ);
 		return des;
 	}
 	
@@ -354,9 +331,9 @@ public class Vector3f implements IVector3f {
 	public IVector3f rotateZ(float angle, IVector3f des) {
 		float cs = (float) Math.cos(angle);
 		float sn = (float) Math.sin(angle);
-		des.setX(x * cs - y * sn);
-		des.setY(x * sn + y * cs);
-		des.setZ(z);
+		float newX = x * cs - y * sn;
+		float newY = x * sn + y * cs;
+		set(newX, newY, z);
 		return des;
 	}
 	
