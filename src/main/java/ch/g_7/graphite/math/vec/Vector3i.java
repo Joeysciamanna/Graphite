@@ -468,4 +468,5 @@ public class Vector3i implements IVector3i {
     public int hashCode() {
         return Objects.hash(x, y, z);
     }
+
 }

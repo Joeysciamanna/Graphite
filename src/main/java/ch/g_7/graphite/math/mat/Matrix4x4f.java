@@ -2,6 +2,8 @@ package ch.g_7.graphite.math.mat;
 
 import ch.g_7.graphite.math.vec.IROVector3f;
 import ch.g_7.graphite.math.vec.IVector3f;
+import ch.g_7.graphite.math.vec.Vector3f;
+import org.joml.Matrix4f;
 
 public class Matrix4x4f implements IMatrix4x4f {
 
@@ -100,60 +102,62 @@ public class Matrix4x4f implements IMatrix4x4f {
         float m4x3 = mat.get4x3();
         float m4x4 = mat.get4x4();
 
-        des.set1x1(_1x1 * m1x1 + _1x2 * m2x1 + _1x3 * m3x1 + _1x4 + m4x1);
-        des.set1x2(_1x1 * m1x2 + _1x2 * m2x2 + _1x3 * m3x2 + _1x4 + m4x2);
-        des.set1x3(_1x1 * m1x3 + _1x2 * m2x3 + _1x3 * m3x3 + _1x4 + m4x3);
-        des.set1x4(_1x1 * m1x4 + _1x2 * m2x4 + _1x3 * m3x4 + _1x4 + m4x4);
+        float new1x1 = _1x1 * m1x1 + _1x2 * m2x1 + _1x3 * m3x1 + _1x4 * m4x1;
+        float new1x2 = _1x1 * m1x2 + _1x2 * m2x2 + _1x3 * m3x2 + _1x4 * m4x2;
+        float new1x3 = _1x1 * m1x3 + _1x2 * m2x3 + _1x3 * m3x3 + _1x4 * m4x3;
+        float new1x4 = _1x1 * m1x4 + _1x2 * m2x4 + _1x3 * m3x4 + _1x4 * m4x4;
 
-        des.set2x1(_2x1 * m1x1 + _2x2 * m2x1 + _2x3 * m3x1 + _2x4 + m4x1);
-        des.set2x2(_2x1 * m1x2 + _2x2 * m2x2 + _2x3 * m3x2 + _2x4 + m4x2);
-        des.set2x3(_2x1 * m1x3 + _2x2 * m2x3 + _2x3 * m3x3 + _2x4 + m4x3);
-        des.set2x4(_2x1 * m1x4 + _2x2 * m2x4 + _2x3 * m3x4 + _2x4 + m4x4);
+        float new2x1 = _2x1 * m1x1 + _2x2 * m2x1 + _2x3 * m3x1 + _2x4 * m4x1;
+        float new2x2 = _2x1 * m1x2 + _2x2 * m2x2 + _2x3 * m3x2 + _2x4 * m4x2;
+        float new2x3 = _2x1 * m1x3 + _2x2 * m2x3 + _2x3 * m3x3 + _2x4 * m4x3;
+        float new2x4 = _2x1 * m1x4 + _2x2 * m2x4 + _2x3 * m3x4 + _2x4 * m4x4;
 
-        des.set3x1(_3x1 * m1x1 + _3x2 * m2x1 + _3x3 * m3x1 + _3x4 + m4x1);
-        des.set3x2(_3x1 * m1x2 + _3x2 * m2x2 + _3x3 * m3x2 + _3x4 + m4x2);
-        des.set3x3(_3x1 * m1x3 + _3x2 * m2x3 + _3x3 * m3x3 + _3x4 + m4x3);
-        des.set3x4(_3x1 * m1x4 + _3x2 * m2x4 + _3x3 * m3x4 + _3x4 + m4x4);
+        float new3x1 = _3x1 * m1x1 + _3x2 * m2x1 + _3x3 * m3x1 + _3x4 * m4x1;
+        float new3x2 = _3x1 * m1x2 + _3x2 * m2x2 + _3x3 * m3x2 + _3x4 * m4x2;
+        float new3x3 = _3x1 * m1x3 + _3x2 * m2x3 + _3x3 * m3x3 + _3x4 * m4x3;
+        float new3x4 = _3x1 * m1x4 + _3x2 * m2x4 + _3x3 * m3x4 + _3x4 * m4x4;
 
-        des.set4x1(_4x1 * m1x1 + _4x2 * m2x1 + _4x3 * m3x1 + _4x4 + m4x1);
-        des.set4x2(_4x1 * m1x2 + _4x2 * m2x2 + _4x3 * m3x2 + _4x4 + m4x2);
-        des.set4x3(_4x1 * m1x3 + _4x2 * m2x3 + _4x3 * m3x3 + _4x4 + m4x3);
-        des.set4x4(_4x1 * m1x4 + _4x2 * m2x4 + _4x3 * m3x4 + _4x4 + m4x4);
+        float new4x1 = _4x1 * m1x1 + _4x2 * m2x1 + _4x3 * m3x1 + _4x4 * m4x1;
+        float new4x2 = _4x1 * m1x2 + _4x2 * m2x2 + _4x3 * m3x2 + _4x4 * m4x2;
+        float new4x3 = _4x1 * m1x3 + _4x2 * m2x3 + _4x3 * m3x3 + _4x4 * m4x3;
+        float new4x4 = _4x1 * m1x4 + _4x2 * m2x4 + _4x3 * m3x4 + _4x4 * m4x4;
+
+        des.set1x1(new1x1);
+        des.set1x2(new1x2);
+        des.set1x3(new1x3);
+        des.set1x4(new1x4);
+
+        des.set2x1(new2x1);
+        des.set2x2(new2x2);
+        des.set2x3(new2x3);
+        des.set2x4(new2x4);
+
+        des.set3x1(new3x1);
+        des.set3x2(new3x2);
+        des.set3x3(new3x3);
+        des.set3x4(new3x4);
+
+        des.set4x1(new4x1);
+        des.set4x2(new4x2);
+        des.set4x3(new4x3);
+        des.set4x4(new4x4);
         return des;
     }
 
     @Override
-    public Matrix4x4f mul(IROVector3f vec) {
-        mul(vec, this);
-        return this;
+    public Vector3f mul(IROVector3f vec) {
+        return (Vector3f) mul(vec, new Vector3f());
     }
 
     @Override
-    public IMatrix4x4f mul(IROVector3f vec, IMatrix4x4f des) {<
+    public IVector3f mul(IROVector3f vec, IVector3f des) {
         float x = vec.getX();
         float y = vec.getY();
         float z = vec.getZ();
-
-
-        des.set1x1(_1x1 * m1x1 + _1x2 * m2x1 + _1x3 * m3x1 + _1x4 + m4x1);
-        des.set1x2(_1x1 * m1x2 + _1x2 * m2x2 + _1x3 * m3x2 + _1x4 + m4x2);
-        des.set1x3(_1x1 * m1x3 + _1x2 * m2x3 + _1x3 * m3x3 + _1x4 + m4x3);
-        des.set1x4(_1x1 * m1x4 + _1x2 * m2x4 + _1x3 * m3x4 + _1x4 + m4x4);
-
-        des.set2x1(_2x1 * m1x1 + _2x2 * m2x1 + _2x3 * m3x1 + _2x4 + m4x1);
-        des.set2x2(_2x1 * m1x2 + _2x2 * m2x2 + _2x3 * m3x2 + _2x4 + m4x2);
-        des.set2x3(_2x1 * m1x3 + _2x2 * m2x3 + _2x3 * m3x3 + _2x4 + m4x3);
-        des.set2x4(_2x1 * m1x4 + _2x2 * m2x4 + _2x3 * m3x4 + _2x4 + m4x4);
-
-        des.set3x1(_3x1 * m1x1 + _3x2 * m2x1 + _3x3 * m3x1 + _3x4 + m4x1);
-        des.set3x2(_3x1 * m1x2 + _3x2 * m2x2 + _3x3 * m3x2 + _3x4 + m4x2);
-        des.set3x3(_3x1 * m1x3 + _3x2 * m2x3 + _3x3 * m3x3 + _3x4 + m4x3);
-        des.set3x4(_3x1 * m1x4 + _3x2 * m2x4 + _3x3 * m3x4 + _3x4 + m4x4);
-
-        des.set4x1(_4x1 * m1x1 + _4x2 * m2x1 + _4x3 * m3x1 + _4x4 + m4x1);
-        des.set4x2(_4x1 * m1x2 + _4x2 * m2x2 + _4x3 * m3x2 + _4x4 + m4x2);
-        des.set4x3(_4x1 * m1x3 + _4x2 * m2x3 + _4x3 * m3x3 + _4x4 + m4x3);
-        des.set4x4(_4x1 * m1x4 + _4x2 * m2x4 + _4x3 * m3x4 + _4x4 + m4x4);
+        float newX = _1x1 * x + _1x2 * y + _1x3 * z + _1x4;
+        float newY = _2x1 * x + _2x2 * y + _2x3 * z + _2x4;
+        float newZ = _3x1 * x + _3x2 * y + _3x3 * z + _3x4;
+        des.set(newX, newY, newZ);
         return des;
     }
 
@@ -166,22 +170,20 @@ public class Matrix4x4f implements IMatrix4x4f {
 
     @Override
     public IMatrix4x4f div(IROMatrix4x4f mat, IMatrix4x4f des) {
-        //TODO
-        return des;
+        return mul(des.invert(new Matrix4x4f()), des);
     }
 
     @Override
-    public Matrix4x4f div(IROVector3f vec) {
-        div(vec, this);
+    public Matrix4x4f invert() {
+        invert(this);
         return this;
     }
 
     @Override
-    public IMatrix4x4f div(IROVector3f vec, IMatrix4x4f des) {
+    public IMatrix4x4f invert(IMatrix4x4f des) {
         //TODO
-        return des;
+        throw new RuntimeException("Sorry, but this method is not yet implemented");
     }
-
 
     @Override
     public Matrix4x4f translate(IROVector3f vec) {
@@ -191,7 +193,10 @@ public class Matrix4x4f implements IMatrix4x4f {
 
     @Override
     public IMatrix4x4f translate(IROVector3f vec, IMatrix4x4f des) {
-        //TODO
+        des.set1x4(_1x4 + vec.getX());
+        des.set2x4(_2x4 + vec.getY());
+        des.set3x4(_3x4 + vec.getZ());
+        des.set4x4(1);
         return des;
     }
 
@@ -203,7 +208,7 @@ public class Matrix4x4f implements IMatrix4x4f {
 
     @Override
     public IMatrix4x4f translateX(float x, IMatrix4x4f des) {
-        //TODO
+        des.set1x4(_1x4 + x);
         return des;
     }
 
@@ -215,7 +220,7 @@ public class Matrix4x4f implements IMatrix4x4f {
 
     @Override
     public IMatrix4x4f translateY(float y, IMatrix4x4f des) {
-        //TODO
+        des.set2x4(_2x4 + y);
         return des;
     }
 
@@ -227,7 +232,7 @@ public class Matrix4x4f implements IMatrix4x4f {
 
     @Override
     public IMatrix4x4f translateZ(float z, IMatrix4x4f des) {
-        //TODO
+        des.set3x4(_3x4 + z);
         return des;
     }
 
@@ -242,6 +247,8 @@ public class Matrix4x4f implements IMatrix4x4f {
     public IMatrix4x4f rotate(IROVector3f vec, IMatrix4x4f des) {
         //TODO
         return des;
+        Matrix4f f;
+        f.rotateXYZ()
     }
 
     @Override

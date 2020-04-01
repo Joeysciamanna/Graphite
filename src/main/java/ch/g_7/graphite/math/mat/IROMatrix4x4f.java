@@ -1,9 +1,6 @@
 package ch.g_7.graphite.math.mat;
 
-import ch.g_7.graphite.math.vec.IROVector2f;
-import ch.g_7.graphite.math.vec.IROVector3f;
-import ch.g_7.graphite.math.vec.IVector2f;
-import ch.g_7.graphite.math.vec.IVector3f;
+import ch.g_7.graphite.math.vec.*;
 
 public interface IROMatrix4x4f {
 
@@ -11,11 +8,11 @@ public interface IROMatrix4x4f {
     IMatrix4x4f sub(IROMatrix4x4f mat, IMatrix4x4f des);
 
     IMatrix4x4f mul(IROMatrix4x4f mat, IMatrix4x4f des);
-    IMatrix4x4f mul(IROVector3f vec, IMatrix4x4f des);
+    IVector3f mul(IROVector3f vec, IVector3f des);
 
     IMatrix4x4f div(IROMatrix4x4f mat, IMatrix4x4f des);
-    IMatrix4x4f div(IROVector3f vec, IMatrix4x4f des);
 
+    IMatrix4x4f invert(IMatrix4x4f des);
 
     IMatrix4x4f translate(IROVector3f vec, IMatrix4x4f des);
     IMatrix4x4f translateX(float x, IMatrix4x4f des);

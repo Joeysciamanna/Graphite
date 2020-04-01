@@ -9,11 +9,11 @@ public interface IMatrix4x4f extends IROMatrix4x4f {
     IMatrix4x4f sub(IROMatrix4x4f mat);
 
     IMatrix4x4f mul(IROMatrix4x4f mat);
-    IMatrix4x4f mul(IROVector3f vec);
+    IVector3f mul(IROVector3f vec);
 
     IMatrix4x4f div(IROMatrix4x4f mat);
-    IMatrix4x4f div(IROVector3f vec);
 
+    IMatrix4x4f invert();
 
     IMatrix4x4f translate(IROVector3f vec);
     IMatrix4x4f translateX(float x);

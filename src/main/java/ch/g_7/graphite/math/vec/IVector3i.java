@@ -66,5 +66,4 @@ public interface IVector3i extends IROVector3i {
 
     IVector3i setZ(int z);
 
-    
 }

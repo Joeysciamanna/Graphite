@@ -70,21 +70,5 @@ public interface IVector3f extends IROVector3f {
 	IVector3f setY(float y);
 	
 	IVector3f setZ(float z);
-	
-	
-
-
-	
-//	default void test() {
-//		org.joml.Vector3f vector3f;
-//		org.joml.Vector2f vector2f;
-//		org.joml.Matrix2d matrix2d;
-//	}	
-	
-	/*
-	 * TODO
-	 * rotate (Quaternion n stuff
-	 * 
-	 */
 
 }

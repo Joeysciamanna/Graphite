@@ -101,4 +101,5 @@ public interface IROVector2f {
 	boolean equals(Object obj);
 
 	String toString();
+
 }
