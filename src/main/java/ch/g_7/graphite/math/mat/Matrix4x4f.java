@@ -7,6 +7,15 @@ import org.joml.Matrix4f;
 
 public class Matrix4x4f implements IMatrix4x4f {
 
+    private static final int AFFINE      = 1<<0;
+    private static final int IDENTITY    = 1<<1;
+    private static final int ORTHONORMAL = 1<<2;
+    private static final int PERSPECTIVE = 1<<3;
+    private static final int TRANSLATION = 1<<4;
+
+
+    private int properties;
+
     public float _1x1, _1x2, _1x3, _1x4,
                  _2x1, _2x2, _2x3, _2x4,
                  _3x1, _3x2, _3x3, _3x4,
@@ -170,7 +179,7 @@ public class Matrix4x4f implements IMatrix4x4f {
 
     @Override
     public IMatrix4x4f div(IROMatrix4x4f mat, IMatrix4x4f des) {
-        return mul(des.invert(new Matrix4x4f()), des);
+        return mul(mat.invert(new Matrix4x4f()), des);
     }
 
     @Override
@@ -182,6 +191,8 @@ public class Matrix4x4f implements IMatrix4x4f {
     @Override
     public IMatrix4x4f invert(IMatrix4x4f des) {
         //TODO
+        Matrix4f f;
+
         throw new RuntimeException("Sorry, but this method is not yet implemented");
     }
 
@@ -247,8 +258,7 @@ public class Matrix4x4f implements IMatrix4x4f {
     public IMatrix4x4f rotate(IROVector3f vec, IMatrix4x4f des) {
         //TODO
         return des;
-        Matrix4f f;
-        f.rotateXYZ()
+
     }
 
     @Override
