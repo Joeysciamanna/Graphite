@@ -3,6 +3,7 @@ package ch.g_7.graphite.test;
 import ch.g_7.graphite.core.Application;
 import ch.g_7.graphite.entity.Entity;
 import ch.g_7.graphite.entity.EntityKey;
+import ch.g_7.graphite.rendering.BasicViewModel;
 import ch.g_7.graphite.rendering.RenderType;
 import ch.g_7.graphite.rendering.entity.EntityRenderer;
 import ch.g_7.graphite.resource.ResourceManager;
@@ -24,7 +25,7 @@ public class RotateCube extends Application {
         rotateCube.start();
     }
 
-    Entity entity;
+    Entity<BasicViewModel> entity;
 
     @Override
     public void init() {

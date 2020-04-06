@@ -21,6 +21,25 @@ public class Matrix4x4f implements IMatrix4x4f {
                  _3x1, _3x2, _3x3, _3x4,
                  _4x1, _4x2, _4x3, _4x4;
 
+    private void determineProperties() {
+        int properties = 0;
+        if (_1x4 == 0.0f && _2x4 == 0.0f) {
+            if (_3x4 == 0.0f && _4x4 == 1.0f) {
+                properties |= AFFINE;
+                if (_1x1 == 1.0f && _1x2 == 0.0f && _1x3 == 0.0f && _2x1 == 0.0f && _2x2 == 1.0f && _2x3 == 0.0f
+                        && _3x1 == 0.0f && _3x2 == 0.0f && _3x3 == 1.0f) {
+                    properties |= TRANSLATION | ORTHONORMAL;
+                    if (_4x1 == 0.0f && _4x2 == 0.0f && _4x3 == 0.0f)
+                        properties |= IDENTITY;
+                }
+            } else if (_1x2 == 0.0f && _1x3 == 0.0f && _2x1 == 0.0f && _2x3 == 0.0f && _3x1 == 0.0f && _3x2 == 0.0f
+                    && _4x1 == 0.0f && _4x2 == 0.0f && _4x4 == 0.0f) {
+                properties |= PERSPECTIVE;
+            }
+        }
+        this.properties = properties;
+    }
+
 
     @Override
     public Matrix4x4f add(IROMatrix4x4f mat) {
@@ -192,7 +211,6 @@ public class Matrix4x4f implements IMatrix4x4f {
     public IMatrix4x4f invert(IMatrix4x4f des) {
         //TODO
         Matrix4f f;
-
         throw new RuntimeException("Sorry, but this method is not yet implemented");
     }
 
