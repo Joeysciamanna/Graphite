@@ -1,18 +1,16 @@
 package ch.g_7.graphite.xjfx.injfx.input;
 
-import static com.ss.rlib.common.util.linkedlist.LinkedListFactory.newLinkedList;
+import ch.g_7.graphite.xjfx.injfx.JmeOffscreenSurfaceContext;
 import com.jme3.input.KeyInput;
 import com.jme3.input.event.KeyInputEvent;
-import com.jme3.jfx.injfx.JmeOffscreenSurfaceContext;
-import com.ss.rlib.common.util.linkedlist.LinkedList;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
 /**
@@ -135,22 +133,21 @@ public class JfxKeyInput extends JfxInput implements KeyInput {
         KEY_CODE_TO_JME.put(KeyCode.META, KEY_RCONTROL);
     }
 
-    @NotNull
+
     private final EventHandler<KeyEvent> processKeyPressed = this::processKeyPressed;
 
-    @NotNull
+
     private final EventHandler<KeyEvent> processKeyReleased = this::processKeyReleased;
 
-    @NotNull
     private final LinkedList<KeyInputEvent> keyInputEvents;
 
-    public JfxKeyInput(@NotNull JmeOffscreenSurfaceContext context) {
+    public JfxKeyInput(JmeOffscreenSurfaceContext context) {
         super(context);
         this.keyInputEvents = newLinkedList(KeyInputEvent.class);
     }
 
     @Override
-    public void bind(@NotNull Node node) {
+    public void bind(Node node) {
         super.bind(node);
         node.addEventHandler(KeyEvent.KEY_PRESSED, processKeyPressed);
         node.addEventHandler(KeyEvent.KEY_RELEASED, processKeyReleased);
@@ -160,7 +157,7 @@ public class JfxKeyInput extends JfxInput implements KeyInput {
     public void unbind() {
 
         if (hasNode()) {
-            var node = getNode();
+            Node node = getNode();
             node.removeEventHandler(KeyEvent.KEY_PRESSED, processKeyPressed);
             node.removeEventHandler(KeyEvent.KEY_RELEASED, processKeyReleased);
         }
@@ -178,11 +175,11 @@ public class JfxKeyInput extends JfxInput implements KeyInput {
 
     private void onKeyEvent(@NotNull KeyEvent keyEvent, boolean pressed) {
 
-        var code = convertKeyCode(keyEvent.getCode());
-        var character = keyEvent.getText();
-        var keyChar = character.isEmpty() ? '\0' : character.charAt(0);
+        int code = convertKeyCode(keyEvent.getCode());
+        String character = keyEvent.getText();
+        char keyChar = character.isEmpty() ? '\0' : character.charAt(0);
 
-        var event = new KeyInputEvent(code, keyChar, pressed, false);
+        KeyInputEvent event = new KeyInputEvent(code, keyChar, pressed, false);
         event.setTime(getInputTimeNanos());
 
         EXECUTOR.addToExecute(() -> keyInputEvents.add(event));

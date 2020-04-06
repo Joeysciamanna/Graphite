@@ -1,10 +1,10 @@
 package ch.g_7.graphite.xjfx.injfx;
 
-import com.ss.rlib.common.util.ArrayUtils;
-import com.ss.rlib.common.util.array.Array;
-import com.ss.rlib.common.util.array.ArrayFactory;
-import com.ss.rlib.common.util.array.ConcurrentArray;
-import org.jetbrains.annotations.NotNull;
+
+import com.sun.tools.javac.util.ArrayUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The executor for executing tasks in application thread.
@@ -15,25 +15,23 @@ public class ApplicationThreadExecutor {
 
     private static final ApplicationThreadExecutor INSTANCE = new ApplicationThreadExecutor();
 
-    public static @NotNull ApplicationThreadExecutor getInstance() {
+    public static ApplicationThreadExecutor getInstance() {
         return INSTANCE;
     }
 
     /**
      * The list of waiting tasks.
      */
-    @NotNull
-    private final ConcurrentArray<Runnable> waitTasks;
+    private final List<Runnable> waitTasks;
 
     /**
      * The list of tasks to execute.
      */
-    @NotNull
-    private final Array<Runnable> execute;
+    private final List<Runnable> execute;
 
     private ApplicationThreadExecutor() {
-        this.waitTasks = ArrayFactory.newConcurrentAtomicARSWLockArray(Runnable.class);
-        this.execute = ArrayFactory.newArray(Runnable.class);
+        this.waitTasks = new ArrayList<>();
+        this.execute = new ArrayList<>();
     }
 
     /**
@@ -41,20 +39,18 @@ public class ApplicationThreadExecutor {
      *
      * @param task the new task.
      */
-    public void addToExecute(@NotNull Runnable task) {
-        waitTasks.runInWriteLock(task, Array::add);
+    public void addToExecute(Runnable task) {
+        waitTasks.add(task);
     }
 
     /**
      * Execute the waiting tasks.
      */
     public void execute() {
-
         if (waitTasks.isEmpty()) {
             return;
         }
-
-        waitTasks.runInWriteLock(execute, ArrayUtils::move);
+        execute.addAll(waitTasks);
         try {
             execute.forEach(Runnable::run);
         } finally {

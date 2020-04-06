@@ -1,15 +1,14 @@
 package ch.g_7.graphite.xjfx.injfx;
 
-import com.jme3.jfx.injfx.processor.CanvasFrameTransferSceneProcessor;
-import com.jme3.jfx.injfx.processor.FrameTransferSceneProcessor;
-import com.jme3.jfx.injfx.processor.ImageViewFrameTransferSceneProcessor;
+import ch.g_7.graphite.xjfx.injfx.processor.CanvasFrameTransferSceneProcessor;
+import ch.g_7.graphite.xjfx.injfx.processor.FrameTransferSceneProcessor;
+import ch.g_7.graphite.xjfx.injfx.processor.ImageViewFrameTransferSceneProcessor;
 import com.jme3.renderer.ViewPort;
 import com.jme3.system.AppSettings;
 import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.ImageView;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Function;
 
@@ -43,7 +42,8 @@ public class JmeToJfxIntegrator {
      * @param transferMode the transferMode
      * @return the frame transfer scene processor
      */
-    public static @NotNull FrameTransferSceneProcessor startAndBind(
+    public static @NotNull
+    FrameTransferSceneProcessor startAndBind(
             @NotNull final JmeToJfxApplication application,
             @NotNull final ImageView imageView,
             @NotNull final Function<Runnable, Thread> factory,

@@ -1,24 +1,19 @@
 package ch.g_7.graphite.xjfx.injfx.processor;
 
-import static com.ss.rlib.common.util.ObjectUtils.notNull;
-import com.jme3.jfx.injfx.JmeOffscreenSurfaceContext;
-import com.jme3.jfx.injfx.JmeToJfxApplication;
-import com.jme3.jfx.injfx.transfer.FrameTransfer;
-import com.jme3.jfx.util.JfxPlatform;
+
+import ch.g_7.graphite.xjfx.injfx.JmeOffscreenSurfaceContext;
+import ch.g_7.graphite.xjfx.injfx.JmeToJfxApplication;
+import ch.g_7.graphite.xjfx.injfx.transfer.FrameTransfer;
+import ch.g_7.graphite.xjfx.util.JfxPlatform;
 import com.jme3.profile.AppProfiler;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
 import com.jme3.renderer.queue.RenderQueue;
 import com.jme3.texture.FrameBuffer;
 import com.jme3.texture.Image;
-import com.ss.rlib.logger.api.Logger;
-import com.ss.rlib.logger.api.LoggerLevel;
-import com.ss.rlib.logger.api.LoggerManager;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.scene.Node;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -31,66 +26,54 @@ import java.util.concurrent.atomic.AtomicInteger;
 @SuppressWarnings("WeakerAccess")
 public abstract class AbstractFrameTransferSceneProcessor<T extends Node> implements FrameTransferSceneProcessor {
 
-    protected static final Logger LOGGER = LoggerManager.getLogger(JfxPlatform.class);
-
     /**
      * The width listener.
      */
-    @NotNull
     protected final ChangeListener<? super Number> widthListener;
 
     /**
      * The height listener.
      */
-    @NotNull
     protected final ChangeListener<? super Number> heightListener;
 
     /**
      * The ration listener.
      */
-    @NotNull
     protected final ChangeListener<? super Boolean> rationListener;
 
     /**
      * The flag to decide when we should resize.
      */
-    @NotNull
     private final AtomicInteger reshapeNeeded;
 
     /**
      * The render manager.
      */
-    @Nullable
     private RenderManager renderManager;
 
     /**
      * The source view port.
      */
-    @Nullable
     private ViewPort viewPort;
 
     /**
      * The frame transfer.
      */
-    @Nullable
     private FrameTransfer frameTransfer;
 
     /**
      * The transfer mode.
      */
-    @NotNull
     private TransferMode transferMode;
 
     /**
      * The JME application.
      */
-    @Nullable
     private volatile JmeToJfxApplication application;
 
     /**
      * The destination of jMe frames.
      */
-    @Nullable
     protected volatile T destination;
 
     /**
@@ -120,7 +103,7 @@ public abstract class AbstractFrameTransferSceneProcessor<T extends Node> implem
      *
      * @param newValue the new value of the ratio.
      */
-    protected void notifyChangedRatio(@NotNull Boolean newValue) {
+    protected void notifyChangedRatio(Boolean newValue) {
         notifyComponentResized(getDestinationWidth(), getDestinationHeight(), newValue);
     }
 
@@ -129,7 +112,7 @@ public abstract class AbstractFrameTransferSceneProcessor<T extends Node> implem
      *
      * @param newValue the new value of the height.
      */
-    protected void notifyChangedHeight(@NotNull Number newValue) {
+    protected void notifyChangedHeight(Number newValue) {
         notifyComponentResized(getDestinationWidth(), newValue.intValue(), isPreserveRatio());
     }
 
@@ -138,7 +121,7 @@ public abstract class AbstractFrameTransferSceneProcessor<T extends Node> implem
      *
      * @param newValue the new value of the width.
      */
-    protected void notifyChangedWidth(@NotNull Number newValue) {
+    protected void notifyChangedWidth(Number newValue) {
         notifyComponentResized(newValue.intValue(), getDestinationHeight(), isPreserveRatio());
     }
 
@@ -147,7 +130,7 @@ public abstract class AbstractFrameTransferSceneProcessor<T extends Node> implem
      *
      * @return the application.
      */
-    protected @NotNull JmeToJfxApplication getApplication() {
+    protected JmeToJfxApplication getApplication() {
         return notNull(application);
     }
 
@@ -156,7 +139,7 @@ public abstract class AbstractFrameTransferSceneProcessor<T extends Node> implem
      *
      * @return the current destination.
      */
-    protected @NotNull T getDestination() {
+    protected T getDestination() {
         return notNull(destination);
     }
 
@@ -183,7 +166,7 @@ public abstract class AbstractFrameTransferSceneProcessor<T extends Node> implem
      *
      * @return the file transfer.
      */
-    protected @Nullable FrameTransfer getFrameTransfer() {
+    protected FrameTransfer getFrameTransfer() {
         return frameTransfer;
     }
 
@@ -253,7 +236,7 @@ public abstract class AbstractFrameTransferSceneProcessor<T extends Node> implem
         askFixAspect = fixAspect;
         reshapeNeeded.set(2);
 
-        LOGGER.debug(this, processor -> "notify resized to " + processor.askWidth + "x" + processor.askHeight);
+
     }
 
     @Override

@@ -1,15 +1,12 @@
 package ch.g_7.graphite.xjfx.injfx;
 
+import ch.g_7.graphite.xjfx.injfx.input.JfxKeyInput;
+import ch.g_7.graphite.xjfx.injfx.input.JfxMouseInput;
 import com.jme3.input.JoyInput;
 import com.jme3.input.TouchInput;
-import com.jme3.jfx.injfx.input.JfxKeyInput;
-import com.jme3.jfx.injfx.input.JfxMouseInput;
 import com.jme3.opencl.Context;
 import com.jme3.renderer.Renderer;
 import com.jme3.system.*;
-import com.ss.rlib.common.util.ObjectUtils;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * The implementation of the {@link JmeContext} for integrating to JavaFX.

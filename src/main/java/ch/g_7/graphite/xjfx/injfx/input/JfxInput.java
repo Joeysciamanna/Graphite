@@ -1,12 +1,13 @@
 package ch.g_7.graphite.xjfx.injfx.input;
 
-import static com.ss.rlib.common.util.ObjectUtils.notNull;
+import ch.g_7.graphite.xjfx.injfx.ApplicationThreadExecutor;
+import ch.g_7.graphite.xjfx.injfx.JmeOffscreenSurfaceContext;
 import com.jme3.input.Input;
 import com.jme3.input.RawInputListener;
-import com.jme3.jfx.injfx.ApplicationThreadExecutor;
-import com.jme3.jfx.injfx.JmeOffscreenSurfaceContext;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+
+import java.util.Objects;
 
 
 /**
@@ -33,13 +34,11 @@ public class JfxInput implements Input {
     /**
      * The input node.
      */
-    @Nullable
     protected Node node;
 
     /**
      * The scene.
      */
-    @Nullable
     protected Scene scene;
 
     /**
@@ -47,7 +46,7 @@ public class JfxInput implements Input {
      */
     protected boolean initialized;
 
-    public JfxInput(@NotNull JmeOffscreenSurfaceContext context) {
+    public JfxInput(JmeOffscreenSurfaceContext context) {
         this.context = context;
     }
 
@@ -65,8 +64,8 @@ public class JfxInput implements Input {
      *
      * @return the bound node.
      */
-    protected @NotNull Node getNode() {
-        return notNull(node);
+    protected Node getNode() {
+        return Objects.requireNonNull(node);
     }
 
     /**
@@ -74,8 +73,8 @@ public class JfxInput implements Input {
      *
      * @return the raw listener.
      */
-    protected @NotNull RawInputListener getListener() {
-        return notNull(listener);
+    protected RawInputListener getListener() {
+        return Objects.requireNonNull(listener);
     }
 
     /**
@@ -83,9 +82,9 @@ public class JfxInput implements Input {
      *
      * @param node the node.
      */
-    public void bind(@NotNull Node node) {
+    public void bind(Node node) {
         this.node = node;
-        this.scene = notNull(node.getScene());
+        this.scene = Objects.requireNonNull(node.getScene());
     }
 
     /**
@@ -132,7 +131,7 @@ public class JfxInput implements Input {
     }
 
     @Override
-    public void setInputListener(@NotNull RawInputListener listener) {
+    public void setInputListener(RawInputListener listener) {
         this.listener = listener;
     }
 

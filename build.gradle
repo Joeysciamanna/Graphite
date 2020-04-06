@@ -4,6 +4,11 @@ plugins {
     id 'org.openjfx.javafxplugin' version '0.0.8'
 }
 
+ext {
+    jMonkeyVersion = "3.2.4-stable"
+}
+
+
 group 'ch.g_7'
 version '0.4.0'
 
@@ -19,6 +24,7 @@ project.ext.lwjglNatives = "natives-windows"
 
 repositories {
     mavenCentral()
+    jcenter()
     maven {
         url "http://ftp.g-7.ch:1001/maven/"
     }
@@ -28,6 +34,12 @@ dependencies {
     compile group: 'ch.g_7', name: 'Util', version: '0.3.13'
 
     implementation platform("org.lwjgl:lwjgl-bom:$lwjglVersion")
+
+
+
+    implementation  "org.jmonkeyengine:jme3-core:$jMonkeyVersion"
+    implementation  "org.jmonkeyengine:jme3-lwjgl3:$jMonkeyVersion"
+
 
     implementation "org.lwjgl:lwjgl"
     implementation "org.lwjgl:lwjgl-assimp"

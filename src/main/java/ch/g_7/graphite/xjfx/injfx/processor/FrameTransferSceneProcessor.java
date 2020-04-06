@@ -1,7 +1,6 @@
 package ch.g_7.graphite.xjfx.injfx.processor;
 
 import com.jme3.post.SceneProcessor;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * The interface for implementing frame transfer processor.
@@ -46,12 +45,12 @@ public interface FrameTransferSceneProcessor extends SceneProcessor {
      *
      * @return the transfer mode.
      */
-    @NotNull TransferMode getTransferMode();
+    TransferMode getTransferMode();
 
     /**
      * Get the transfer mode.
      *
      * @param transferMode the transfer mode.
      */
-    void setTransferMode(@NotNull TransferMode transferMode);
+    void setTransferMode(TransferMode transferMode);
 }

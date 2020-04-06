@@ -1,13 +1,12 @@
 package ch.g_7.graphite.xjfx.injfx.processor;
 
-import com.jme3.jfx.injfx.JmeToJfxApplication;
-import com.jme3.jfx.injfx.transfer.FrameTransfer;
-import com.jme3.jfx.injfx.transfer.impl.ImageFrameTransfer;
+import ch.g_7.graphite.xjfx.injfx.JmeToJfxApplication;
+import ch.g_7.graphite.xjfx.injfx.transfer.FrameTransfer;
+import ch.g_7.graphite.xjfx.injfx.transfer.impl.ImageFrameTransfer;
 import com.jme3.post.SceneProcessor;
 import com.jme3.texture.FrameBuffer;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * The implementation of the {@link SceneProcessor} for transferring content between jME and ImageView.
@@ -58,7 +57,8 @@ public class ImageViewFrameTransferSceneProcessor extends AbstractFrameTransferS
     }
 
     @Override
-    protected @NotNull FrameTransfer createFrameTransfer(@NotNull FrameBuffer frameBuffer, int width, int height) {
+    protected @NotNull
+    FrameTransfer createFrameTransfer(@NotNull FrameBuffer frameBuffer, int width, int height) {
         return new ImageFrameTransfer(getDestination(), getTransferMode(), isMain() ? null : frameBuffer, width, height);
     }
 }

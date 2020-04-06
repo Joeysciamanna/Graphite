@@ -1,11 +1,8 @@
 package ch.g_7.graphite.xjfx.injfx;
 
-import static com.ss.rlib.common.util.ObjectUtils.notNull;
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.post.FilterPostProcessor;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * The base implementation of {@link Application} for using in the JavaFX.
@@ -19,7 +16,6 @@ public class JmeToJfxApplication extends SimpleApplication {
     /**
      * The post filter processor.
      */
-    @Nullable
     protected FilterPostProcessor postProcessor;
 
     public JmeToJfxApplication() {

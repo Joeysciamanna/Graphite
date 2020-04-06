@@ -1,12 +1,11 @@
 package ch.g_7.graphite.xjfx.injfx.input;
 
-import static com.ss.rlib.common.util.linkedlist.LinkedListFactory.newLinkedList;
+
+import ch.g_7.graphite.xjfx.injfx.JmeOffscreenSurfaceContext;
 import com.jme3.cursors.plugins.JmeCursor;
 import com.jme3.input.MouseInput;
 import com.jme3.input.event.MouseButtonEvent;
 import com.jme3.input.event.MouseMotionEvent;
-import com.jme3.jfx.injfx.JmeOffscreenSurfaceContext;
-import com.ss.rlib.common.util.linkedlist.LinkedList;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
@@ -15,9 +14,9 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Region;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
 /**
