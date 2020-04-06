@@ -1,4 +1,4 @@
-package ch.g_7.graphite.rendering.basic;
+package ch.g_7.graphite.rendering;
 
 import org.joml.Matrix4f;
 

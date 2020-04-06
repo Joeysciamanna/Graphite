@@ -1,4 +1,4 @@
-package ch.g_7.graphite.rendering.basic;
+package ch.g_7.graphite.rendering;
 
 import static org.lwjgl.opengl.GL11.GL_UNSIGNED_INT;
 import static org.lwjgl.opengl.GL11.glDrawElements;
@@ -9,40 +9,38 @@ import java.util.List;
 
 import ch.g_7.graphite.base.material.IMaterial;
 import ch.g_7.graphite.base.mesh.IMesh;
-import ch.g_7.graphite.base.transformation.ITransform;
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.node.INode;
-import ch.g_7.graphite.node.Renderable;
-import ch.g_7.graphite.rendering.IRenderer;
 import ch.g_7.graphite.rendering.transformator.ITransformator;
+import org.lwjgl.opengl.GL11;
 
-public abstract class BasicRenderer<T extends INode<T>> implements IRenderer<T> {
+public abstract class BasicRenderer<T extends IBasicViewModel> implements IRenderer<T> {
 
-	private ITransformator<ITransform> transformator;
 	protected final BasicShaderProgram shaderProgram;
+	protected final RenderableList<T> renderableList;
+	private ITransformator transformator;
 
-	public BasicRenderer(BasicShaderProgram shaderProgram, ITransformator<ITransform> transformator) {
+
+	public BasicRenderer(BasicShaderProgram shaderProgram, RenderableList<T> viewModelList, ITransformator transformator) {
 		this.shaderProgram = shaderProgram;
+		this.renderableList = viewModelList;
 		this.transformator = transformator;
 	}
 
 	@Override
-	public final void render(List<? extends T> nodes, Window window, Camera camera) {
-		shaderProgram.bind();
-		shaderProgram.setTextureSampler(0);
+	public void render(Window window, Camera camera) {
 		shaderProgram.setProjectionMatrix(transformator.getProjectionMatrix(window, camera));
-		render(nodes);
-		shaderProgram.unbind();
+		render(renderableList.getViewModels());
 	}
 
-	protected abstract void render(List<? extends T> nodes);
+	protected abstract void render(List<INode<?,T>> nodes);
 
-	protected <R extends Renderable> void render(R renderable, int glDrawMethod) {
+	protected <R extends INode<?,T>> void render(R renderable) {
 
 		IMaterial material = renderable.getViewModel().getMaterial();
 		IMesh mesh = renderable.getViewModel().getMesh();
-		shaderProgram.setModelViewMatrix(transformator.getModelViewMatrix(renderable.getTransformation()));
+		shaderProgram.setModelViewMatrix(transformator.getModelViewMatrix(renderable.getTransform()));
 		shaderProgram.setColor(material.getAmbient());
 
 
@@ -55,14 +53,30 @@ public abstract class BasicRenderer<T extends INode<T>> implements IRenderer<T> 
 
 		material.bind();
 		mesh.bind();
-		glDrawElements(glDrawMethod, mesh.getVerticesCount(), GL_UNSIGNED_INT, 0);
+		glDrawElements(GL11.GL_TRIANGLES, mesh.getVerticesCount(), GL_UNSIGNED_INT, 0);
 		material.bind();
 		mesh.bind();
 	}
 
+	@Override
+	public void addRenderable(INode<?, T> n) {
+		renderableList.add(n);
+	}
 
-	public void setTransformator(ITransformator<ITransform> transformator) {
-		this.transformator = transformator;
+	@Override
+	public void removeRenderable(INode<?, T> n) {
+		renderableList.remove(n);
+	}
+
+	@Override
+	public void bind() {
+		shaderProgram.bind();
+		shaderProgram.setTextureSampler(0);
+	}
+
+	@Override
+	public void unbind() {
+		shaderProgram.unbind();
 	}
 
 	@Override
@@ -74,4 +88,9 @@ public abstract class BasicRenderer<T extends INode<T>> implements IRenderer<T> 
 	public void close() {
 		shaderProgram.close();
 	}
+
+	public void setTransformator(ITransformator transformator) {
+		this.transformator = transformator;
+	}
+
 }

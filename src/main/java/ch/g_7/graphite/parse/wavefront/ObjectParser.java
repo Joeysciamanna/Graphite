@@ -12,12 +12,12 @@ import ch.g_7.graphite.base.mesh.Mesh;
 import ch.g_7.graphite.base.mesh.vao.FloatVBO;
 import ch.g_7.graphite.base.mesh.vao.IVBOType;
 import ch.g_7.graphite.base.mesh.vao.VBOType;
-import ch.g_7.graphite.base.view_model.ViewModel;
 import ch.g_7.graphite.entity.EmptyEntity;
 import ch.g_7.graphite.entity.Entity;
 import ch.g_7.graphite.math.vec.Vector2f;
 import ch.g_7.graphite.math.vec.Vector3f;
 import ch.g_7.graphite.parse.wavefront.Face.IndexGroup;
+import ch.g_7.graphite.rendering.BasicViewModel;
 import ch.g_7.graphite.util.Color;
 
 public class ObjectParser {
@@ -28,7 +28,7 @@ public class ObjectParser {
     private List<Face> faces = new ArrayList<>();
     
     private InputStream inputStream;
-    private Entity entity = new EmptyEntity();
+    private Entity<BasicViewModel> entity;
     private Material material = new Material("default", Color.RED);
     private String name;
 
@@ -133,12 +133,12 @@ public class ObjectParser {
         if(normals.length > 0){
             mesh.add(new FloatVBO(VBOType.NORMALS, normals));
         }
-        entity = new Entity(new ViewModel(mesh, material));
+        entity = new Entity<>(null, new BasicViewModel(material, mesh));
   
     }
 
 
-    public Entity getEntity() {
+    public Entity<BasicViewModel> getEntity() {
         return entity;
     }
 }

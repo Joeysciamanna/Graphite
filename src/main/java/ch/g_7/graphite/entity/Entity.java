@@ -3,53 +3,57 @@ package ch.g_7.graphite.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import ch.g_7.graphite.base.transformation.IROTransform;
+import ch.g_7.graphite.base.transformation.ITransform;
 import ch.g_7.graphite.base.transformation.Transform;
-import ch.g_7.graphite.base.view_model.ViewModel;
+import ch.g_7.graphite.node.INodeIdentifier;
+import ch.g_7.graphite.node.IViewModel;
 import ch.g_7.graphite.resource.IResource;
 
-public class Entity implements IEntity, IResource {
+public class Entity<T extends IViewModel> implements IEntity<T>, IResource {
 
 
-	protected ViewModel viewModel;
-	protected final Transform transformation;
-	protected final ArrayList<Entity> childs;
+	protected final INodeIdentifier<?> id;
+	protected final Transform transform;
+	protected final ArrayList<Entity<?>> children;
+	private T viewModel;
 
-	public Entity(ViewModel viewModel) {
+	public Entity(INodeIdentifier<?> id, T viewModel) {
+		this.id = id;
 		this.viewModel = viewModel;
-		this.transformation = new Transform();
-		this.childs = new ArrayList<>();
+		this.transform = new Transform();
+		this.children = new ArrayList<>();
 	}
-	
 
 	@Override
 	public void update(float deltaMillis) {}
 
-	public void addChild(Entity entity) {
-		childs.add(entity);
-	}
-	
+
 	@Override
-	public List<Entity> getChildren() {
-		return childs;
+	public List<? extends IEntity<?>> getChildren() {
+		return children;
 	}
 
 	@Override
-	public Transform getTransformation() {
-		return transformation;
-	}
-	
-	@Override
-	public ViewModel getViewModel() {
+	public T getViewModel() {
 		return viewModel;
 	}
 
-	public void setViewModel(ViewModel viewModel) {
-		this.viewModel = viewModel;
+	@Override
+	public ITransform getTransform() {
+		return transform;
 	}
-	
+
+	@Override
+	public INodeIdentifier<?> getId() {
+		return id;
+	}
+
 	@Override
 	public void close() {}
 
 	@Override
 	public void init() {}
+
+
 }

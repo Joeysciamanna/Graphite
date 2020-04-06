@@ -1,10 +1,11 @@
 package ch.g_7.graphite.entity;
 
-public class EmptyEntity extends Entity {
+import ch.g_7.graphite.node.INodeIdentifier;
+import ch.g_7.graphite.rendering.BasicViewModel;
 
-	public EmptyEntity() {
-		super(null); //TODO
+public class EmptyEntity extends Entity<BasicViewModel> {
+
+	public EmptyEntity(INodeIdentifier<?> id, BasicViewModel viewModel) {
+		super(id, viewModel);
 	}
-
-
 }

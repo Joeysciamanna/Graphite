@@ -16,9 +16,9 @@ public class Face {
 
     private void parseIndexGroup(String indexGroup, int storeIndex) {
        String[] tokens = indexGroup.split("/");
-       indexGroups[storeIndex] = new IndexGroup(Integer.valueOf(tokens[0]) - 1,
-    		   									Integer.valueOf(tokens[1].isBlank() ? "0" : tokens[1]) - 1,
-    		   									Integer.valueOf(tokens[2].isBlank() ? "0" : tokens[2]) - 1);
+       indexGroups[storeIndex] = new IndexGroup(Integer.parseInt(tokens[0]) - 1,
+    		   									Integer.parseInt(tokens[1].isBlank() ? "0" : tokens[1]) - 1,
+    		   									Integer.parseInt(tokens[2].isBlank() ? "0" : tokens[2]) - 1);
     }
 
     public IndexGroup[] getIndexGroups() {

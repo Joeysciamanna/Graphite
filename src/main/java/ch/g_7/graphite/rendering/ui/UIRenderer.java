@@ -4,8 +4,8 @@ package ch.g_7.graphite.rendering.ui;//package ch.g_7.graphite.rendering.ui;
 //
 //import org.lwjgl.opengl.GL11;
 //
-//import ch.g_7.graphite.rendering.basic.BasicRenderer;
-//import ch.g_7.graphite.rendering.basic.BasicShaderProgram;
+//import ch.g_7.graphite.rendering.BasicRenderer;
+//import ch.g_7.graphite.rendering.BasicShaderProgram;
 //import ch.g_7.graphite.rendering.transformator.PixelTransformator;
 //import ch.g_7.graphite.ui.IUIPanel;
 //import ch.g_7.graphite.ui.IUIRootContainer;

@@ -4,6 +4,7 @@ import ch.g_7.graphite.core.Application;
 import ch.g_7.graphite.entity.Entity;
 import ch.g_7.graphite.entity.EntityKey;
 import ch.g_7.graphite.rendering.RenderType;
+import ch.g_7.graphite.rendering.entity.EntityRenderer;
 import ch.g_7.graphite.resource.ResourceManager;
 import ch.g_7.util.helper.AppInitializer;
 import org.joml.Vector3f;
@@ -28,10 +29,12 @@ public class RotateCube extends Application {
     @Override
     public void init() {
 
+        getWorld().getRenderManager().register(new EntityRenderer());
+
         entity = ResourceManager.getActive().allocateFromEngine(new EntityKey("obj/icosphere.obj"));
-        entity.getTransformation().setScale(new Vector3f(0.1f,0.1f,0.1f));
-        entity.getTransformation().setPosition(new Vector3f(0, 0, -0.5f));
-        getDimension().addObj(entity, RenderType.ENTITIES);
+        entity.getTransform().setScale(new Vector3f(0.1f,0.1f,0.1f));
+        entity.getTransform().setTranslation(new Vector3f(0, 0, -0.5f));
+        getWorld().add(entity);
 
         getWindow().setVisible(true);
         getWindow().setSize(500, 500);
@@ -63,7 +66,7 @@ public class RotateCube extends Application {
             rotateByDegrees(new Vector3f(0, 0,0.05f * deltaMillis));
 
         if (getWindow().isKeyPressed(GLFW.GLFW_KEY_I))
-            entity.getTransformation().getRotation().set(0,0,0);
+            entity.getTransform().getRotation().set(0,0,0);
 
 
         if(getWindow().isKeyPressed(GLFW.GLFW_KEY_F)) {
@@ -76,7 +79,7 @@ public class RotateCube extends Application {
     }
 
     public void rotateByDegrees(Vector3f vector3f){
-        Vector3f rotation = entity.getTransformation().getRotation();
+        Vector3f rotation = entity.getTransform().getRotation();
         rotation.set((float)Math.toRadians((Math.toDegrees(rotation.x) + vector3f.x) % 360),
                      (float)Math.toRadians((Math.toDegrees(rotation.y) + vector3f.y) % 360),
                      (float)Math.toRadians((Math.toDegrees(rotation.z) + vector3f.z) % 360));

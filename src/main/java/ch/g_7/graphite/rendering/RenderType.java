@@ -1,12 +1,7 @@
 package ch.g_7.graphite.rendering;
 
-import ch.g_7.graphite.entity.IEntity;
-import ch.g_7.graphite.rendering.entity.EntityRenderClass;
-import ch.g_7.util.common.GenericProducerType;
+public enum RenderType implements IRenderType<RenderType> {
 
-public class RenderType {
-
-	//public static final GenericProducerType<UIRenderClass<IUIRootContainer>> UI = new GenericProducerType<>(()->new UIRenderClass<>("UI"));
-	public static final GenericProducerType<EntityRenderClass<IEntity>> ENTITIES = new GenericProducerType<>(()->new EntityRenderClass<>("ENTITIES"));
+    ENTITY;
 
 }

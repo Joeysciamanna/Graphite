@@ -2,34 +2,33 @@ package ch.g_7.graphite.core;
 
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.node.Updatable;
-import ch.g_7.graphite.rendering.MasterRenderer;
 import ch.g_7.graphite.resource.ResourceManager;
 import ch.g_7.util.common.Closeable;
 import ch.g_7.util.common.Initializable;
 
+import java.awt.*;
+
 public abstract class Application extends TaskLoop implements Updatable, Initializable, Closeable, Runnable {
 
-    protected final MasterRenderer masterRenderer;
-    protected final Dimension dimension;
+    protected final World world;
     protected final Window window;
     protected final Camera camera;
 
     protected final TaskLoop updateLoop;
 
-    
+
     public Application(String name) {
-        this.dimension = new Dimension();
+        this.world = new World();
         this.window = new Window(name);
         this.camera = new Camera();
-        this.masterRenderer = new MasterRenderer();
-        
+
         this.updateLoop = new TaskLoop();
     }
 
     @Override
     protected void onStart() {
         window.init();
-        masterRenderer.init();
+        world.init();
         initUpdateLoop();
         init();
         updateLoop.start();
@@ -37,13 +36,11 @@ public abstract class Application extends TaskLoop implements Updatable, Initial
 
     private void initUpdateLoop() {
     	updateLoop.addUpdatable(this);
-    	updateLoop.addUpdatable(dimension);
     }
-    
+
     @Override
     protected void onStop() {
-        masterRenderer.close();
-        dimension.close();
+        world.close();
         close();
         updateLoop.stop();
     }
@@ -52,8 +49,7 @@ public abstract class Application extends TaskLoop implements Updatable, Initial
     protected void run(float deltaMillis) {
         super.run(deltaMillis);
         window.pullEvents();
-        masterRenderer.render(dimension, window, camera);
-
+        world.getRenderManager().render(window, camera);
         if (window.windowShouldClose()) {
             stop();
         }
@@ -71,8 +67,8 @@ public abstract class Application extends TaskLoop implements Updatable, Initial
         System.exit(0);
     }
 
-    public Dimension getDimension() {
-        return dimension;
+    public World getWorld() {
+        return world;
     }
 
     public Camera getCamera() {
@@ -81,10 +77,6 @@ public abstract class Application extends TaskLoop implements Updatable, Initial
 
     public Window getWindow() {
         return window;
-    }
-
-    public MasterRenderer getMasterRenderer() {
-        return masterRenderer;
     }
 
 }

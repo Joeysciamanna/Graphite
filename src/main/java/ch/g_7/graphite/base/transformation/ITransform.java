@@ -1,13 +1,26 @@
 package ch.g_7.graphite.base.transformation;
 
+import ch.g_7.graphite.math.vec.IVector3f;
+import org.joml.Vector3f;
 import org.joml.Vector3fc;
 
-public interface ITransform {
+public interface ITransform extends IROTransform {
 
-	Vector3fc getPosition();
-	
-	Vector3fc getRotation();
-	
-	Vector3fc getScale();
+
+	Vector3f getTranslation();
+
+	void setTranslation(Vector3f translation);
+
+
+	Vector3f getRotation();
+
+	void setRotation(Vector3f translation);
+
+
+	Vector3f getScale();
+
+	void setScale(Vector3f scale);
+
+
 	
 }

@@ -29,6 +29,7 @@ import java.nio.IntBuffer;
 import java.util.HashMap;
 import java.util.Map;
 
+import ch.g_7.graphite.node.IRenderResource;
 import org.joml.Matrix4f;
 import org.joml.Vector2i;
 import org.joml.Vector4f;
@@ -38,7 +39,7 @@ import org.lwjgl.system.MemoryStack;
 import ch.g_7.util.common.Closeable;
 import ch.g_7.util.common.Initializable;
 
-public abstract class ShaderProgram implements Initializable, Closeable {
+public abstract class ShaderProgram implements Initializable, Closeable, IRenderResource {
 
 	protected final Map<String, Integer> uniforms;
 
@@ -124,7 +125,7 @@ public abstract class ShaderProgram implements Initializable, Closeable {
 		uniforms.put(uniformName, uniformLocation);
 	}
 
-	private final int createShader(String shaderCode, int shaderType) {
+	private int createShader(String shaderCode, int shaderType) {
 		int shaderId = glCreateShader(shaderType);
 		if (shaderId == 0) {
 			throw new RuntimeException("Error creating shader. Type: " + shaderType);

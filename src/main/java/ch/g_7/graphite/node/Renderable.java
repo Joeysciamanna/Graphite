@@ -1,12 +1,11 @@
 package ch.g_7.graphite.node;
 
-import ch.g_7.graphite.base.transformation.ITransform;
-import ch.g_7.graphite.base.view_model.IViewModel;
+import ch.g_7.graphite.base.transformation.IROTransform;
 
-public interface Renderable {
+public interface Renderable<T extends IViewModel> {
 
-	IViewModel getViewModel();
+	T getViewModel();
 	
-	ITransform getTransformation();
+	IROTransform getTransform();
 	
 }

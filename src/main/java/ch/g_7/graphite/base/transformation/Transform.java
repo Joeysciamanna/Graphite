@@ -4,49 +4,51 @@ import org.joml.Vector3f;
 
 public class Transform implements ITransform {
 
-	private Vector3f position;
+	private Vector3f translation;
 	private Vector3f rotation;
 	private Vector3f scale;
 	
 	public Transform() {
-		this.position = new Vector3f();
+		this.translation = new Vector3f();
 		this.rotation = new Vector3f();
 		this.scale = new Vector3f(1,1,1);
 	}
 
 	public void translate(Vector3f v) {
-		position.add(v);
+		translation.add(v);
 	}
 	
 	public void translate(float x, float y, float z) {
-		position.add(x, y, z);
+		translation.add(x, y, z);
 	}
 
 	@Override
-	public Vector3f getPosition() {
-		return position;
+	public Vector3f getTranslation() {
+		return translation;
 	}
 
-	public void setPosition(Vector3f position) {
-		this.position = position;
+	@Override
+	public void setTranslation(Vector3f translation) {
+		this.translation = translation;
 	}
-	
+
 	@Override
 	public Vector3f getRotation() {
 		return rotation;
 	}
 
+	@Override
 	public void setRotation(Vector3f rotation) {
 		this.rotation = rotation;
 	}
-	
+
 	@Override
 	public Vector3f getScale() {
 		return scale;
 	}
 
+	@Override
 	public void setScale(Vector3f scale) {
 		this.scale = scale;
 	}
-
 }
