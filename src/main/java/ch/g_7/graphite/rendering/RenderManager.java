@@ -59,6 +59,22 @@ public class RenderManager implements Initializable, Closeable {
         throw new IllegalArgumentException("Node cant be removed, no renderer for ["+node+"] registered");
     }
 
+    public <T extends IViewModel> void clear(IRenderType<?> renderType){
+        for (IRenderer<?> renderer : renderers) {
+            if(renderer.getRenderType().equals(renderType)){
+                renderer.clear();
+                return;
+            }
+        }
+        throw new IllegalArgumentException("Renderer cant be cleared, no renderer ["+renderType+"] registered");
+    }
+
+    public <T extends IViewModel> void clear(){
+        for (IRenderer<?> renderer : renderers) {
+            renderer.clear();
+        }
+    }
+
     public void register(IRenderer<?> renderer){
         if(renderers.contains(renderer)){
             throw new IllegalArgumentException("Renderer ["+renderer+"] already registered");

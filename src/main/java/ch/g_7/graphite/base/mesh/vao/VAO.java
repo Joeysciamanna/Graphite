@@ -14,7 +14,7 @@ import java.util.Queue;
 
 import org.lwjgl.opengl.GL20;
 
-import ch.g_7.graphite.node.IRenderResource;
+import ch.g_7.graphite.rendering.IRenderResource;
 import ch.g_7.util.common.Closeable;
 
 public class VAO implements Closeable, IRenderResource {

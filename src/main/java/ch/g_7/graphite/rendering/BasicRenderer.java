@@ -12,6 +12,7 @@ import ch.g_7.graphite.base.mesh.IMesh;
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.node.INode;
+import ch.g_7.graphite.node.Renderable;
 import ch.g_7.graphite.rendering.transformator.ITransformator;
 import org.lwjgl.opengl.GL11;
 
@@ -34,9 +35,9 @@ public abstract class BasicRenderer<T extends IBasicViewModel> implements IRende
 		render(renderableList.getViewModels());
 	}
 
-	protected abstract void render(List<INode<?,T>> nodes);
+	protected abstract void render(List<Renderable<T>> nodes);
 
-	protected <R extends INode<?,T>> void render(R renderable) {
+	protected <R extends Renderable<T>> void render(R renderable) {
 
 		IMaterial material = renderable.getViewModel().getMaterial();
 		IMesh mesh = renderable.getViewModel().getMesh();
@@ -59,13 +60,18 @@ public abstract class BasicRenderer<T extends IBasicViewModel> implements IRende
 	}
 
 	@Override
-	public void addRenderable(INode<?, T> n) {
+	public void addRenderable(Renderable<T> n) {
 		renderableList.add(n);
 	}
 
 	@Override
-	public void removeRenderable(INode<?, T> n) {
+	public void removeRenderable(Renderable<T> n) {
 		renderableList.remove(n);
+	}
+
+	@Override
+	public void clear() {
+		renderableList.clear();
 	}
 
 	@Override

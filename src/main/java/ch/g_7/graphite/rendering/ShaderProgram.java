@@ -29,7 +29,6 @@ import java.nio.IntBuffer;
 import java.util.HashMap;
 import java.util.Map;
 
-import ch.g_7.graphite.node.IRenderResource;
 import org.joml.Matrix4f;
 import org.joml.Vector2i;
 import org.joml.Vector4f;

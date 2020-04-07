@@ -1,8 +1,8 @@
 package ch.g_7.graphite.core;
 
-import ch.g_7.graphite.entity.IEntity;
+import ch.g_7.graphite.node.IEntity;
 import ch.g_7.graphite.node.INode;
-import ch.g_7.graphite.node.INodeIdentifier;
+import ch.g_7.graphite.node.IEntityIdentifier;
 import ch.g_7.graphite.rendering.RenderManager;
 import ch.g_7.util.common.Closeable;
 import ch.g_7.util.common.Initializable;
@@ -10,30 +10,31 @@ import ch.g_7.util.common.Initializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Consumer;
 
 public class World implements Initializable, Closeable {
 
     private final RenderManager renderManager;
-    private final List<INode<?, ?>> nodes;
+
+    private final List<IEntity<?>> entities;
+
 
     public World() {
         this.renderManager = new RenderManager();
-        this.nodes = new ArrayList<>();
+        this.entities = new ArrayList<>();
     }
 
-    public List<INode<?,?>> getNodesOfId(INodeIdentifier<?> id) {
-        List<INode<?,?>> resultList = new ArrayList<>();
-        for (INode<?, ?> node : nodes) {
-            if(node.getId().equals(id)){
-                resultList.add(node);
+    public List<IEntity<?>> getEntitiesOfId(IEntityIdentifier<?> id) {
+        List<IEntity<?>> resultList = new ArrayList<>();
+        for (IEntity<?> entity : entities) {
+            if(entity.getId().equals(id)){
+                resultList.add(entity);
             }
         }
         return resultList;
     }
 
-    public Optional<INode<?,?>> getNodeOfId(INodeIdentifier<?> id) {
-        for (INode<?, ?> node : nodes) {
+    public Optional<IEntity<?>> getEntityOfId(IEntityIdentifier<?> id) {
+        for (IEntity<?> node : entities) {
             if(node.getId().equals(id)){
                 return Optional.of(node);
             }
@@ -41,18 +42,27 @@ public class World implements Initializable, Closeable {
         return Optional.empty();
     }
 
-    public void add(INode<?,?> node){
-        nodes.add(node);
+    public void addEntity(IEntity<?> entity){
+        entities.add(entity);
+        renderManager.add(entity);
+    }
+
+    public void removeEntity(IEntity<?> entity){
+        entities.remove(entity);
+        renderManager.remove(entity);
+    }
+
+    public void addNode(INode<?,?> node){
         renderManager.add(node);
     }
 
-    public void remove(INode<?,?> node){
-        nodes.remove(node);
-        renderManager.add(node);
+    public void removeNode(INode<?,?> node){
+        renderManager.remove(node);
     }
 
     public void removeAll(){
-        nodes.clear();
+        entities.clear();
+        renderManager.clear();
     }
 
     @Override
@@ -62,12 +72,10 @@ public class World implements Initializable, Closeable {
 
     @Override
     public void close() {
+        removeAll();
         renderManager.close();
     }
 
-    public List<INode<?, ?>> getNodes() {
-        return nodes;
-    }
 
     public RenderManager getRenderManager() {
         return renderManager;

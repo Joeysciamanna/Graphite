@@ -8,11 +8,11 @@ import ch.g_7.graphite.resource.IResourceKey;
 import ch.g_7.graphite.resource.IResourceProvider;
 import ch.g_7.util.io.IFileLoader;
 
-public class WavefrontObjectProvider extends BasicResourceProvider<Entity, EntityKey> {
+public class WavefrontObjectProvider extends BasicResourceProvider<GameObject, EntityKey> {
 
 
     @Override
-    protected Entity loadResource(EntityKey resourceKey, IFileLoader fileLoader) throws IllegalArgumentException {
+    protected GameObject loadResource(EntityKey resourceKey, IFileLoader fileLoader) throws IllegalArgumentException {
         InputStream stream = fileLoader.loadFile(resourceKey.getName());
         ObjectParser parser = new ObjectParser(stream);
         parser.parse();
@@ -25,7 +25,7 @@ public class WavefrontObjectProvider extends BasicResourceProvider<Entity, Entit
     }
 
     @Override
-    public IResourceProvider<Entity, EntityKey> newInstance() {
+    public IResourceProvider<GameObject, EntityKey> newInstance() {
         return new WavefrontObjectProvider();
     }
 

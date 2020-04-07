@@ -5,6 +5,4 @@ import ch.g_7.util.common.Closeable;
 
 public interface INode<T extends INode<T, ?>, R extends IViewModel> extends Closeable, IContainer<T>, Renderable<R> {
 
-    INodeIdentifier<?> getId();
-
 }

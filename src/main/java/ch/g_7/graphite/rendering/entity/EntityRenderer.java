@@ -2,13 +2,9 @@ package ch.g_7.graphite.rendering.entity;
 
 import java.util.List;
 
-import ch.g_7.graphite.node.INode;
+import ch.g_7.graphite.node.Renderable;
 import ch.g_7.graphite.rendering.*;
-import ch.g_7.graphite.rendering.transformator.ITransformator;
-import ch.g_7.util.fdt.data.Response;
-import org.lwjgl.opengl.GL11;
 
-import ch.g_7.graphite.entity.IEntity;
 import ch.g_7.graphite.rendering.transformator.PerspectiveTransformator;
 import ch.g_7.graphite.util.Resources;
 
@@ -20,8 +16,8 @@ public class EntityRenderer extends BasicRenderer<BasicViewModel> {
 	}
 
 	@Override
-	protected void render(List<INode<?, BasicViewModel>> nodes) {
-		for (INode<?, BasicViewModel> node : nodes) {
+	protected void render(List<Renderable<BasicViewModel>> nodes) {
+		for (Renderable<BasicViewModel> node : nodes) {
 			render(node);
 		}
 	}
