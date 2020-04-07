@@ -2,6 +2,7 @@ package ch.g_7.graphite.xjfx.injfx.input;
 
 import ch.g_7.graphite.xjfx.injfx.JmeOffscreenSurfaceContext;
 import com.jme3.input.KeyInput;
+import com.jme3.input.RawInputListener;
 import com.jme3.input.event.KeyInputEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -143,7 +144,7 @@ public class JfxKeyInput extends JfxInput implements KeyInput {
 
     public JfxKeyInput(JmeOffscreenSurfaceContext context) {
         super(context);
-        this.keyInputEvents = newLinkedList(KeyInputEvent.class);
+        this.keyInputEvents = new LinkedList<>();
     }
 
     @Override
@@ -165,15 +166,15 @@ public class JfxKeyInput extends JfxInput implements KeyInput {
         super.unbind();
     }
 
-    private void processKeyReleased(@NotNull KeyEvent keyEvent) {
+    private void processKeyReleased(KeyEvent keyEvent) {
         onKeyEvent(keyEvent, false);
     }
 
-    private void processKeyPressed(@NotNull KeyEvent keyEvent) {
+    private void processKeyPressed(KeyEvent keyEvent) {
         onKeyEvent(keyEvent, true);
     }
 
-    private void onKeyEvent(@NotNull KeyEvent keyEvent, boolean pressed) {
+    private void onKeyEvent(KeyEvent keyEvent, boolean pressed) {
 
         int code = convertKeyCode(keyEvent.getCode());
         String character = keyEvent.getText();
@@ -187,14 +188,14 @@ public class JfxKeyInput extends JfxInput implements KeyInput {
 
     @Override
     protected void updateImpl() {
-        var listener = getListener();
+        RawInputListener listener = getListener();
         while (!keyInputEvents.isEmpty()) {
             listener.onKeyEvent(keyInputEvents.poll());
         }
     }
 
-    private int convertKeyCode(@NotNull KeyCode keyCode) {
-        var code = KEY_CODE_TO_JME.get(keyCode);
+    private int convertKeyCode(KeyCode keyCode) {
+        Integer code = KEY_CODE_TO_JME.get(keyCode);
         return code == null ? KEY_UNKNOWN : code;
     }
 }

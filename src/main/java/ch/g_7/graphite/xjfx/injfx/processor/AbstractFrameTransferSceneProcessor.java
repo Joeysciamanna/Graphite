@@ -5,16 +5,23 @@ import ch.g_7.graphite.xjfx.injfx.JmeOffscreenSurfaceContext;
 import ch.g_7.graphite.xjfx.injfx.JmeToJfxApplication;
 import ch.g_7.graphite.xjfx.injfx.transfer.FrameTransfer;
 import ch.g_7.graphite.xjfx.util.JfxPlatform;
+import com.jme3.post.SceneProcessor;
 import com.jme3.profile.AppProfiler;
+import com.jme3.renderer.Camera;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
 import com.jme3.renderer.queue.RenderQueue;
 import com.jme3.texture.FrameBuffer;
 import com.jme3.texture.Image;
+import com.jme3.util.SafeArrayList;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -131,7 +138,7 @@ public abstract class AbstractFrameTransferSceneProcessor<T extends Node> implem
      * @return the application.
      */
     protected JmeToJfxApplication getApplication() {
-        return notNull(application);
+        return Objects.requireNonNull(application);
     }
 
     /**
@@ -140,7 +147,7 @@ public abstract class AbstractFrameTransferSceneProcessor<T extends Node> implem
      * @return the current destination.
      */
     protected T getDestination() {
-        return notNull(destination);
+        return Objects.requireNonNull(destination);
     }
 
     /**
@@ -175,7 +182,7 @@ public abstract class AbstractFrameTransferSceneProcessor<T extends Node> implem
      *
      * @param frameTransfer the file transfer.
      */
-    protected void setFrameTransfer(@Nullable FrameTransfer frameTransfer) {
+    protected void setFrameTransfer(FrameTransfer frameTransfer) {
         this.frameTransfer = frameTransfer;
     }
 
@@ -184,7 +191,7 @@ public abstract class AbstractFrameTransferSceneProcessor<T extends Node> implem
      *
      * @param destination the destination.
      */
-    protected void setDestination(@Nullable T destination) {
+    protected void setDestination(T destination) {
         this.destination = destination;
     }
 
@@ -193,7 +200,7 @@ public abstract class AbstractFrameTransferSceneProcessor<T extends Node> implem
      *
      * @param application the application.
      */
-    protected void setApplication(@Nullable JmeToJfxApplication application) {
+    protected void setApplication(JmeToJfxApplication application) {
         this.application = application;
     }
 
@@ -202,8 +209,8 @@ public abstract class AbstractFrameTransferSceneProcessor<T extends Node> implem
      *
      * @return the view port.
      */
-    protected @NotNull ViewPort getViewPort() {
-        return notNull(viewPort);
+    protected ViewPort getViewPort() {
+        return Objects.requireNonNull(viewPort);
     }
 
     /**
@@ -211,8 +218,8 @@ public abstract class AbstractFrameTransferSceneProcessor<T extends Node> implem
      *
      * @return the render manager.
      */
-    protected @NotNull RenderManager getRenderManager() {
-        return notNull(renderManager);
+    protected RenderManager getRenderManager() {
+        return Objects.requireNonNull(renderManager);
     }
 
     /**
@@ -277,7 +284,7 @@ public abstract class AbstractFrameTransferSceneProcessor<T extends Node> implem
      * @param destination the destination.
      * @param application the application.
      */
-    public void bind(@NotNull T destination, @NotNull JmeToJfxApplication application) {
+    public void bind(T destination, JmeToJfxApplication application) {
         bind(destination, application, destination);
     }
 
@@ -288,7 +295,7 @@ public abstract class AbstractFrameTransferSceneProcessor<T extends Node> implem
      * @param application the application.
      * @param viewPort    the view port.
      */
-    public void bind(@NotNull T destination, @NotNull JmeToJfxApplication application, @NotNull ViewPort viewPort) {
+    public void bind(T destination, JmeToJfxApplication application, ViewPort viewPort) {
         bind(destination, application, destination, viewPort, true);
     }
 
@@ -300,10 +307,10 @@ public abstract class AbstractFrameTransferSceneProcessor<T extends Node> implem
      * @param application the application.
      * @param inputNode   the input node.
      */
-    public void bind(@NotNull T destination, @NotNull JmeToJfxApplication application, @NotNull Node inputNode) {
+    public void bind(T destination, JmeToJfxApplication application, Node inputNode) {
 
-        var renderManager = application.getRenderManager();
-        var postViews = renderManager.getPostViews();
+        RenderManager renderManager = application.getRenderManager();
+        List<ViewPort> postViews = renderManager.getPostViews();
 
         if (postViews.isEmpty()) {
             throw new RuntimeException("the list of a post view is empty.");
@@ -322,10 +329,10 @@ public abstract class AbstractFrameTransferSceneProcessor<T extends Node> implem
      * @param main        true if this processor is main.
      */
     public void bind(
-            @NotNull T destination,
-            @NotNull JmeToJfxApplication application,
-            @NotNull Node inputNode,
-            @NotNull ViewPort viewPort,
+            T destination,
+            JmeToJfxApplication application,
+            Node inputNode,
+            ViewPort viewPort,
             boolean main
     ) {
 
@@ -351,9 +358,9 @@ public abstract class AbstractFrameTransferSceneProcessor<T extends Node> implem
      * @param inputNode   the input node.
      */
     protected void bindDestination(
-            @NotNull JmeToJfxApplication application,
-            @NotNull T destination,
-            @NotNull Node inputNode
+            JmeToJfxApplication application,
+            T destination,
+            Node inputNode
     ) {
 
         if (!Platform.isFxApplicationThread()) {
@@ -361,7 +368,7 @@ public abstract class AbstractFrameTransferSceneProcessor<T extends Node> implem
         }
 
         if (isMain()) {
-            var context = (JmeOffscreenSurfaceContext) application.getContext();
+            JmeOffscreenSurfaceContext context = (JmeOffscreenSurfaceContext) application.getContext();
             context.getMouseInput().bind(inputNode);
             context.getKeyInput().bind(inputNode);
         }
@@ -403,7 +410,7 @@ public abstract class AbstractFrameTransferSceneProcessor<T extends Node> implem
         }
 
         if (hasApplication() && isMain()) {
-            var context = (JmeOffscreenSurfaceContext) getApplication().getContext();
+            JmeOffscreenSurfaceContext context = (JmeOffscreenSurfaceContext) getApplication().getContext();
             context.getMouseInput().unbind();
             context.getKeyInput().unbind();
         }
@@ -445,23 +452,19 @@ public abstract class AbstractFrameTransferSceneProcessor<T extends Node> implem
      * @param fixAspect true if need to fix aspect ration.
      * @return the new frame transfer.
      */
-    protected @NotNull FrameTransfer reshapeInThread(int width, int height, boolean fixAspect) {
-
-        if (LOGGER.isEnabled(LoggerLevel.DEBUG)) {
-            LOGGER.debug("Reshape in the jME thread to " + width + "x" + height);
-        }
+    protected FrameTransfer reshapeInThread(int width, int height, boolean fixAspect) {
 
         reshapeCurrentViewPort(width, height);
 
-        var viewPort = getViewPort();
-        var renderManager = getRenderManager();
-        var frameBuffer = viewPort.getOutputFrameBuffer();
+        ViewPort viewPort = getViewPort();
+        RenderManager renderManager = getRenderManager();
+        FrameBuffer frameBuffer = viewPort.getOutputFrameBuffer();
 
-        var frameTransfer = createFrameTransfer(frameBuffer, width, height);
+        FrameTransfer frameTransfer = createFrameTransfer(frameBuffer, width, height);
         frameTransfer.initFor(renderManager.getRenderer(), isMain());
 
         if (isMain()) {
-            var context = (JmeOffscreenSurfaceContext) getApplication().getContext();
+            JmeOffscreenSurfaceContext context = (JmeOffscreenSurfaceContext) getApplication().getContext();
             context.setHeight(height);
             context.setWidth(width);
         }
@@ -477,7 +480,7 @@ public abstract class AbstractFrameTransferSceneProcessor<T extends Node> implem
      * @param height      the height.
      * @return the new frame transfer.
      */
-    protected @NotNull FrameTransfer createFrameTransfer(@NotNull FrameBuffer frameBuffer, int width, int height) {
+    protected FrameTransfer createFrameTransfer(FrameBuffer frameBuffer, int width, int height) {
         throw new UnsupportedOperationException();
     }
 
@@ -488,15 +491,10 @@ public abstract class AbstractFrameTransferSceneProcessor<T extends Node> implem
      * @param height the height.
      */
     protected void reshapeCurrentViewPort(int width, int height) {
-
-        if (LOGGER.isEnabled(LoggerLevel.DEBUG)) {
-            LOGGER.debug("reshape the current view port to " + width + "x" + height);
-        }
-
-        var viewPort = getViewPort();
-        var camera = viewPort.getCamera();
-        var cameraAngle = getCameraAngle();
-        var aspect = (float) camera.getWidth() / camera.getHeight();
+        ViewPort viewPort = getViewPort();
+        Camera camera = viewPort.getCamera();
+        int cameraAngle = getCameraAngle();
+        float aspect = (float) camera.getWidth() / camera.getHeight();
 
         if (isMain()) {
             getRenderManager().notifyReshape(width, height);
@@ -507,14 +505,14 @@ public abstract class AbstractFrameTransferSceneProcessor<T extends Node> implem
         camera.resize(width, height, true);
         camera.setFrustumPerspective(cameraAngle, aspect, 1f, 10000);
 
-        var processors = viewPort.getProcessors();
-        var any = processors.stream()
+        SafeArrayList<SceneProcessor> processors = viewPort.getProcessors();
+        Optional<SceneProcessor> any = processors.stream()
                 .filter(sceneProcessor -> !(sceneProcessor instanceof FrameTransferSceneProcessor))
                 .findAny();
 
         if (!any.isPresent()) {
 
-            var frameBuffer = new FrameBuffer(width, height, 1);
+            FrameBuffer frameBuffer = new FrameBuffer(width, height, 1);
             frameBuffer.setDepthBuffer(Image.Format.Depth);
             frameBuffer.setColorBuffer(Image.Format.RGBA8);
             frameBuffer.setSrgb(true);
@@ -522,7 +520,7 @@ public abstract class AbstractFrameTransferSceneProcessor<T extends Node> implem
             viewPort.setOutputFrameBuffer(frameBuffer);
         }
 
-        for (var sceneProcessor : processors) {
+        for (SceneProcessor sceneProcessor : processors) {
             if (!sceneProcessor.isInitialized()) {
                 sceneProcessor.initialize(renderManager, viewPort);
             } else {
@@ -537,17 +535,17 @@ public abstract class AbstractFrameTransferSceneProcessor<T extends Node> implem
      * @return the camera angle.
      */
     protected int getCameraAngle() {
-        var angle = System.getProperty("jfx.frame.transfer.camera.angle", "45");
+        String angle = System.getProperty("jfx.frame.transfer.camera.angle", "45");
         return Integer.parseInt(angle);
     }
 
     @Override
-    public void initialize(@NotNull RenderManager renderManager, @NotNull ViewPort viewPort) {
+    public void initialize(RenderManager renderManager, ViewPort viewPort) {
         this.renderManager = renderManager;
     }
 
     @Override
-    public void reshape(@NotNull ViewPort viewPort, int w, int h) {
+    public void reshape(ViewPort viewPort, int w, int h) {
     }
 
     @Override
@@ -561,18 +559,18 @@ public abstract class AbstractFrameTransferSceneProcessor<T extends Node> implem
     }
 
     @Override
-    public void postQueue(@NotNull RenderQueue renderQueue) {
+    public void postQueue(RenderQueue renderQueue) {
 
     }
 
     @Override
-    public void postFrame(@Nullable FrameBuffer out) {
+    public void postFrame(FrameBuffer out) {
 
         if (!isEnabled()) {
             return;
         }
 
-        var frameTransfer = getFrameTransfer();
+        FrameTransfer frameTransfer = getFrameTransfer();
         if (frameTransfer != null) {
             frameTransfer.copyFrameBufferToImage(getRenderManager());
         }
@@ -591,7 +589,7 @@ public abstract class AbstractFrameTransferSceneProcessor<T extends Node> implem
     @Override
     public void cleanup() {
 
-        var frameTransfer = getFrameTransfer();
+        FrameTransfer frameTransfer = getFrameTransfer();
 
         if (frameTransfer != null) {
             frameTransfer.dispose();
@@ -600,16 +598,16 @@ public abstract class AbstractFrameTransferSceneProcessor<T extends Node> implem
     }
 
     @Override
-    public void setProfiler(@NotNull AppProfiler profiler) {
+    public void setProfiler(AppProfiler profiler) {
     }
 
     @Override
-    public @NotNull TransferMode getTransferMode() {
+    public TransferMode getTransferMode() {
         return transferMode;
     }
 
     @Override
-    public void setTransferMode(@NotNull TransferMode transferMode) {
+    public void setTransferMode(TransferMode transferMode) {
         this.transferMode = transferMode;
     }
 }

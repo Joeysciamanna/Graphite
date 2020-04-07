@@ -27,7 +27,7 @@ public class JmeToJfxIntegrator {
      * @param settings  the settings
      * @return the correct render settings applied to the settings
      */
-    public static @NotNull AppSettings prepareSettings(@NotNull AppSettings settings) {
+    public static AppSettings prepareSettings(AppSettings settings) {
         settings.setFullscreen(false);
         settings.setCustomRenderer(JmeOffscreenSurfaceContext.class);
         return settings;
@@ -42,17 +42,16 @@ public class JmeToJfxIntegrator {
      * @param transferMode the transferMode
      * @return the frame transfer scene processor
      */
-    public static @NotNull
-    FrameTransferSceneProcessor startAndBind(
-            @NotNull final JmeToJfxApplication application,
-            @NotNull final ImageView imageView,
-            @NotNull final Function<Runnable, Thread> factory,
-            @NotNull final FrameTransferSceneProcessor.TransferMode transferMode
+    public static FrameTransferSceneProcessor startAndBind(
+            final JmeToJfxApplication application,
+            final ImageView imageView,
+            final Function<Runnable, Thread> factory,
+            final FrameTransferSceneProcessor.TransferMode transferMode
     ) {
 
         factory.apply(application::start).start();
 
-        var processor = new ImageViewFrameTransferSceneProcessor();
+        ImageViewFrameTransferSceneProcessor processor = new ImageViewFrameTransferSceneProcessor();
         processor.setTransferMode(transferMode);
 
         Platform.runLater(() ->
@@ -71,16 +70,16 @@ public class JmeToJfxIntegrator {
      * @param transferMode the transferMode
      * @return the frame transfer scene processor
      */
-    public static @NotNull FrameTransferSceneProcessor startAndBindMainViewPort(
-            @NotNull final JmeToJfxApplication application,
-            @NotNull final ImageView imageView,
-            @NotNull final Function<Runnable, Thread> factory,
-            @NotNull final FrameTransferSceneProcessor.TransferMode transferMode
+    public static FrameTransferSceneProcessor startAndBindMainViewPort(
+            final JmeToJfxApplication application,
+            final ImageView imageView,
+            final Function<Runnable, Thread> factory,
+            final FrameTransferSceneProcessor.TransferMode transferMode
     ) {
 
         factory.apply(application::start).start();
 
-        var processor = new ImageViewFrameTransferSceneProcessor();
+        ImageViewFrameTransferSceneProcessor processor = new ImageViewFrameTransferSceneProcessor();
         processor.setTransferMode(transferMode);
 
         EXECUTOR.addToExecute(() ->
@@ -98,16 +97,16 @@ public class JmeToJfxIntegrator {
      * @param transferMode the transferMode
      * @return the frame transfer scene processor
      */
-    public static @NotNull FrameTransferSceneProcessor startAndBind(
-            @NotNull final JmeToJfxApplication application,
-            @NotNull final Canvas canvas,
-            @NotNull final Function<Runnable, Thread> factory,
-            @NotNull final FrameTransferSceneProcessor.TransferMode transferMode
+    public static FrameTransferSceneProcessor startAndBind(
+            final JmeToJfxApplication application,
+            final Canvas canvas,
+            final Function<Runnable, Thread> factory,
+            final FrameTransferSceneProcessor.TransferMode transferMode
     ) {
 
         factory.apply(application::start).start();
 
-        var processor = new CanvasFrameTransferSceneProcessor();
+        CanvasFrameTransferSceneProcessor processor = new CanvasFrameTransferSceneProcessor();
         processor.setTransferMode(transferMode);
 
         Platform.runLater(() ->
@@ -126,16 +125,16 @@ public class JmeToJfxIntegrator {
      * @param transferMode the transferMode
      * @return the frame transfer scene processor
      */
-    public static @NotNull FrameTransferSceneProcessor startAndBindMainViewPort(
-            @NotNull final JmeToJfxApplication application,
-            @NotNull final Canvas canvas,
-            @NotNull final Function<Runnable, Thread> factory,
-            @NotNull final FrameTransferSceneProcessor.TransferMode transferMode
+    public static FrameTransferSceneProcessor startAndBindMainViewPort(
+            final JmeToJfxApplication application,
+            final Canvas canvas,
+            final Function<Runnable, Thread> factory,
+            final FrameTransferSceneProcessor.TransferMode transferMode
     ) {
 
         factory.apply(application::start).start();
 
-        var processor = new CanvasFrameTransferSceneProcessor();
+        CanvasFrameTransferSceneProcessor processor = new CanvasFrameTransferSceneProcessor();
         processor.setTransferMode(transferMode);
 
         EXECUTOR.addToExecute(() ->
@@ -151,12 +150,12 @@ public class JmeToJfxIntegrator {
      * @param imageView   the image view
      * @return the frame transfer scene processor
      */
-    public static @NotNull FrameTransferSceneProcessor bind(
-            @NotNull JmeToJfxApplication application,
-            @NotNull ImageView imageView
+    public static FrameTransferSceneProcessor bind(
+            JmeToJfxApplication application,
+            ImageView imageView
     ) {
 
-        var processor = new ImageViewFrameTransferSceneProcessor();
+        ImageViewFrameTransferSceneProcessor processor = new ImageViewFrameTransferSceneProcessor();
         processor.bind(imageView, application);
 
         return processor;
@@ -169,12 +168,12 @@ public class JmeToJfxIntegrator {
      * @param canvas      the canvas
      * @return the frame transfer scene processor
      */
-    public static @NotNull FrameTransferSceneProcessor bind(
-            @NotNull JmeToJfxApplication application,
-            @NotNull Canvas canvas
+    public static FrameTransferSceneProcessor bind(
+            JmeToJfxApplication application,
+            Canvas canvas
     ) {
 
-        var processor = new CanvasFrameTransferSceneProcessor();
+        CanvasFrameTransferSceneProcessor processor = new CanvasFrameTransferSceneProcessor();
         processor.bind(canvas, application);
 
         return processor;
@@ -188,13 +187,13 @@ public class JmeToJfxIntegrator {
      * @param viewPort    the view port
      * @return the frame transfer scene processor
      */
-    public static @NotNull FrameTransferSceneProcessor bind(
-            @NotNull JmeToJfxApplication application,
-            @NotNull ImageView imageView,
-            @NotNull ViewPort viewPort
+    public static FrameTransferSceneProcessor bind(
+            JmeToJfxApplication application,
+            ImageView imageView,
+            ViewPort viewPort
     ) {
 
-        var processor = new ImageViewFrameTransferSceneProcessor();
+        ImageViewFrameTransferSceneProcessor processor = new ImageViewFrameTransferSceneProcessor();
         processor.bind(imageView, application, viewPort);
 
         return processor;
@@ -208,13 +207,13 @@ public class JmeToJfxIntegrator {
      * @param viewPort    the view port
      * @return the frame transfer scene processor
      */
-    public static @NotNull FrameTransferSceneProcessor bind(
-            @NotNull JmeToJfxApplication application,
-            @NotNull Canvas canvas,
-            @NotNull ViewPort viewPort
+    public static FrameTransferSceneProcessor bind(
+            JmeToJfxApplication application,
+            Canvas canvas,
+            ViewPort viewPort
     ) {
 
-        var processor = new CanvasFrameTransferSceneProcessor();
+        CanvasFrameTransferSceneProcessor processor = new CanvasFrameTransferSceneProcessor();
         processor.bind(canvas, application, viewPort);
 
         return processor;
@@ -228,13 +227,13 @@ public class JmeToJfxIntegrator {
      * @param inputNode   the input node
      * @return the frame transfer scene processor
      */
-    public static @NotNull FrameTransferSceneProcessor bind(
-            @NotNull JmeToJfxApplication application,
-            @NotNull ImageView imageView,
-            @NotNull Node inputNode
+    public static FrameTransferSceneProcessor bind(
+            JmeToJfxApplication application,
+            ImageView imageView,
+            Node inputNode
     ) {
 
-        var processor = new ImageViewFrameTransferSceneProcessor();
+        ImageViewFrameTransferSceneProcessor processor = new ImageViewFrameTransferSceneProcessor();
         processor.bind(imageView, application, inputNode);
 
         return processor;
@@ -248,13 +247,13 @@ public class JmeToJfxIntegrator {
      * @param inputNode   the input node
      * @return the frame transfer scene processor
      */
-    public static @NotNull FrameTransferSceneProcessor bind(
-            @NotNull JmeToJfxApplication application,
-            @NotNull Canvas canvas,
-            @NotNull Node inputNode
+    public static FrameTransferSceneProcessor bind(
+            JmeToJfxApplication application,
+            Canvas canvas,
+            Node inputNode
     ) {
 
-        var processor = new CanvasFrameTransferSceneProcessor();
+        CanvasFrameTransferSceneProcessor processor = new CanvasFrameTransferSceneProcessor();
         processor.bind(canvas, application, inputNode);
 
         return processor;
@@ -270,15 +269,15 @@ public class JmeToJfxIntegrator {
      * @param main        the main
      * @return the frame transfer scene processor
      */
-    public static @NotNull FrameTransferSceneProcessor bind(
-            @NotNull JmeToJfxApplication application,
-            @NotNull ImageView imageView,
-            @NotNull Node inputNode,
-            @NotNull ViewPort viewPort,
+    public static FrameTransferSceneProcessor bind(
+            JmeToJfxApplication application,
+            ImageView imageView,
+            Node inputNode,
+            ViewPort viewPort,
             boolean main
     ) {
 
-        var processor = new ImageViewFrameTransferSceneProcessor();
+        ImageViewFrameTransferSceneProcessor processor = new ImageViewFrameTransferSceneProcessor();
         processor.bind(imageView, application, inputNode, viewPort, main);
 
         return processor;
@@ -295,15 +294,15 @@ public class JmeToJfxIntegrator {
      * @return the frame transfer scene processor
      */
 
-    public static @NotNull FrameTransferSceneProcessor bind(
-            @NotNull JmeToJfxApplication application,
-            @NotNull Canvas canvas,
-            @NotNull Node inputNode,
-            @NotNull ViewPort viewPort,
+    public static FrameTransferSceneProcessor bind(
+            JmeToJfxApplication application,
+            Canvas canvas,
+            Node inputNode,
+            ViewPort viewPort,
             boolean main
     ) {
 
-        var processor = new CanvasFrameTransferSceneProcessor();
+        CanvasFrameTransferSceneProcessor processor = new CanvasFrameTransferSceneProcessor();
         processor.bind(canvas, application, inputNode, viewPort, main);
 
         return processor;

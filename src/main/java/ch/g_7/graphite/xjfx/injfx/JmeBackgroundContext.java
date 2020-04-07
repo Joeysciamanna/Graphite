@@ -13,8 +13,6 @@ import static org.lwjgl.glfw.GLFW.*;
  */
 public class JmeBackgroundContext extends LwjglOffscreenBuffer {
 
-    private static final Logger LOGGER = Logger.getLogger(JmeBackgroundContext.class.getName());
-
     private double frameSleepTime;
     private int frameRateLimit = -1;
 
@@ -34,10 +32,9 @@ public class JmeBackgroundContext extends LwjglOffscreenBuffer {
                 destroyContext();
                 createContext(settings);
             } catch (Exception ex) {
-                LOGGER.log(Level.SEVERE, "Failed to set display settings!", ex);
+              throw new RuntimeException(ex);
             }
 
-            LOGGER.fine("Display restarted.");
         }
 
         if (!created.get()) {

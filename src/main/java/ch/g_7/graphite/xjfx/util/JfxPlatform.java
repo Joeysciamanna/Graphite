@@ -1,7 +1,6 @@
 package ch.g_7.graphite.xjfx.util;
 
 import javafx.application.Platform;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * The class with additional utility methods for JavaFX Platform.
@@ -15,7 +14,7 @@ public class JfxPlatform {
      *
      * @param task the task.
      */
-    public static void runInFxThread(@NotNull Runnable task) {
+    public static void runInFxThread(Runnable task) {
         if (Platform.isFxApplicationThread()) {
             task.run();
         } else {

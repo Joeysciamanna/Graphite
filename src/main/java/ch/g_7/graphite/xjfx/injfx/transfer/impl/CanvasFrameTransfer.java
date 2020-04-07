@@ -1,12 +1,13 @@
 package ch.g_7.graphite.xjfx.injfx.transfer.impl;
 
-import com.jme3.jfx.injfx.processor.FrameTransferSceneProcessor.TransferMode;
+
+import ch.g_7.graphite.xjfx.injfx.processor.FrameTransferSceneProcessor;
+import ch.g_7.graphite.xjfx.injfx.processor.FrameTransferSceneProcessor.TransferMode;
 import com.jme3.texture.FrameBuffer;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+
 
 /**
  * The class for transferring content from the jME to {@link Canvas}.
@@ -15,17 +16,17 @@ import org.jetbrains.annotations.Nullable;
  */
 public class CanvasFrameTransfer extends AbstractFrameTransfer<Canvas> {
 
-    @NotNull
+
     private GraphicsContext g;
 
-    public CanvasFrameTransfer(@NotNull Canvas canvas, @NotNull TransferMode transferMode, int width, int height) {
+    public CanvasFrameTransfer(Canvas canvas, TransferMode transferMode, int width, int height) {
         this(canvas, transferMode, null, width, height);
     }
 
     public CanvasFrameTransfer(
-            @NotNull Canvas canvas,
-            @NotNull TransferMode transferMode,
-            @Nullable FrameBuffer frameBuffer,
+            Canvas canvas,
+            TransferMode transferMode,
+            FrameBuffer frameBuffer,
             int width,
             int height
     ) {

@@ -6,7 +6,6 @@ import com.jme3.app.Application;
 import com.jme3.system.AppSettings;
 import com.jme3.system.JmeContext;
 import com.jme3.system.lwjgl.LwjglWindow;
-import org.jetbrains.annotations.NotNull;
 import org.lwjgl.glfw.GLFW;
 
 import java.nio.IntBuffer;
@@ -18,13 +17,11 @@ import java.nio.IntBuffer;
  */
 public class JmeWindowUtils {
 
-    @NotNull
     private static final ThreadLocal<IntBuffer> LOCAL_FIRST_INT_BUFFER = withInitial(() -> createIntBuffer(1));
 
-    @NotNull
     private static final ThreadLocal<IntBuffer> LOCAL_SECOND_INT_BUFFER = withInitial(() -> createIntBuffer(1));
 
-    public static int getX(@NotNull final JmeContext context) {
+    public static int getX(final JmeContext context) {
 
         final LwjglWindow lwjglContext = (LwjglWindow) context;
         final long windowHandle = lwjglContext.getWindowHandle();
@@ -39,7 +36,7 @@ public class JmeWindowUtils {
         return x.get(0);
     }
 
-    public static int getY(@NotNull final JmeContext context) {
+    public static int getY(final JmeContext context) {
 
         final LwjglWindow lwjglContext = (LwjglWindow) context;
         final long windowHandle = lwjglContext.getWindowHandle();
@@ -54,7 +51,7 @@ public class JmeWindowUtils {
         return y.get(0);
     }
 
-    public static int getWidth(@NotNull final JmeContext context) {
+    public static int getWidth(final JmeContext context) {
 
         final LwjglWindow lwjglContext = (LwjglWindow) context;
         final long windowHandle = lwjglContext.getWindowHandle();
@@ -69,7 +66,7 @@ public class JmeWindowUtils {
         return width.get(0);
     }
 
-    public static int getHeight(@NotNull final JmeContext context) {
+    public static int getHeight(final JmeContext context) {
 
         final LwjglWindow lwjglContext = (LwjglWindow) context;
         final long windowHandle = lwjglContext.getWindowHandle();
@@ -84,12 +81,12 @@ public class JmeWindowUtils {
         return height.get(0);
     }
 
-    public static boolean isFullscreen(@NotNull final JmeContext jmeContext) {
+    public static boolean isFullscreen(final JmeContext jmeContext) {
         final AppSettings settings = jmeContext.getSettings();
         return settings.isFullscreen();
     }
 
-    public static void requestFocus(@NotNull final Application application) {
+    public static void requestFocus(final Application application) {
         final LwjglWindow lwjglContext = (LwjglWindow) application.getContext();
         GLFW.glfwShowWindow(lwjglContext.getWindowHandle());
     }

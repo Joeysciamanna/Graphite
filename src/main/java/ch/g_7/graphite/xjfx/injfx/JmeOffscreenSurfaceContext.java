@@ -2,11 +2,14 @@ package ch.g_7.graphite.xjfx.injfx;
 
 import ch.g_7.graphite.xjfx.injfx.input.JfxKeyInput;
 import ch.g_7.graphite.xjfx.injfx.input.JfxMouseInput;
+import ch.g_7.graphite.xjfx.injme.JmeFxContainer;
 import com.jme3.input.JoyInput;
 import com.jme3.input.TouchInput;
 import com.jme3.opencl.Context;
 import com.jme3.renderer.Renderer;
 import com.jme3.system.*;
+
+import java.util.Objects;
 
 /**
  * The implementation of the {@link JmeContext} for integrating to JavaFX.
@@ -18,19 +21,16 @@ public class JmeOffscreenSurfaceContext implements JmeContext {
     /**
      * The settings.
      */
-    @NotNull
     protected final AppSettings settings;
 
     /**
      * The key input.
      */
-    @NotNull
     protected final JfxKeyInput keyInput;
 
     /**
      * The mouse input.
      */
-    @NotNull
     protected final JfxMouseInput mouseInput;
 
     /**
@@ -46,7 +46,6 @@ public class JmeOffscreenSurfaceContext implements JmeContext {
     /**
      * The background context.
      */
-    @Nullable
     protected JmeContext backgroundContext;
 
     public JmeOffscreenSurfaceContext() {
@@ -99,8 +98,8 @@ public class JmeOffscreenSurfaceContext implements JmeContext {
      *
      * @return the new app settings.
      */
-    protected @NotNull AppSettings createSettings() {
-        var settings = new AppSettings(true);
+    protected AppSettings createSettings() {
+        AppSettings settings = new AppSettings(true);
         settings.setRenderer(AppSettings.LWJGL_OPENGL3);
         return settings;
     }
@@ -110,7 +109,7 @@ public class JmeOffscreenSurfaceContext implements JmeContext {
      *
      * @return the new background jme context.
      */
-    protected @NotNull JmeContext createBackgroundContext() {
+    protected JmeContext createBackgroundContext() {
         return new JmeBackgroundContext(settings);
     }
 
@@ -119,74 +118,74 @@ public class JmeOffscreenSurfaceContext implements JmeContext {
      *
      * @return the current background context.
      */
-    protected @Nullable JmeContext getBackgroundContext() {
+    protected JmeContext getBackgroundContext() {
         return backgroundContext;
     }
 
     @Override
-    public @NotNull Type getType() {
+    public Type getType() {
         return Type.OffscreenSurface;
     }
 
     @Override
-    public void setSettings(@NotNull AppSettings settings) {
+    public void setSettings(AppSettings settings) {
         this.settings.copyFrom(settings);
         this.settings.setRenderer(AppSettings.LWJGL_OPENGL3);
 
-        ObjectUtils.notNull(getBackgroundContext())
+        Objects.requireNonNull(getBackgroundContext())
                 .setSettings(settings);
     }
 
     @Override
-    public void setSystemListener(@NotNull SystemListener listener) {
-        ObjectUtils.notNull(getBackgroundContext())
+    public void setSystemListener(SystemListener listener) {
+        Objects.requireNonNull(getBackgroundContext())
                 .setSystemListener(listener);
     }
 
     @Override
-    public @NotNull AppSettings getSettings() {
+    public AppSettings getSettings() {
         return settings;
     }
 
     @Override
-    public @NotNull Renderer getRenderer() {
-        return ObjectUtils.notNull(getBackgroundContext())
+    public Renderer getRenderer() {
+        return Objects.requireNonNull(getBackgroundContext())
                 .getRenderer();
     }
 
     @Override
-    public @Nullable Context getOpenCLContext() {
+    public Context getOpenCLContext() {
         return null;
     }
 
     @Override
-    public @NotNull JfxMouseInput getMouseInput() {
+    public JfxMouseInput getMouseInput() {
         return mouseInput;
     }
 
     @Override
-    public @NotNull JfxKeyInput getKeyInput() {
+    public JfxKeyInput getKeyInput() {
         return keyInput;
     }
 
     @Override
-    public @Nullable JoyInput getJoyInput() {
+    public JoyInput getJoyInput() {
         return null;
     }
 
     @Override
-    public @Nullable TouchInput getTouchInput() {
+    public TouchInput getTouchInput() {
         return null;
     }
 
     @Override
-    public @NotNull Timer getTimer() {
-        return ObjectUtils.notNull(getBackgroundContext())
+    public Timer getTimer() {
+        return Objects.requireNonNull(getBackgroundContext())
                 .getTimer();
     }
 
     @Override
-    public void setTitle(@NotNull String title) {
+    public void setTitle(String title) {
     }
 
     @Override
@@ -206,8 +205,8 @@ public class JmeOffscreenSurfaceContext implements JmeContext {
 
     @Override
     public void create(boolean waitFor) {
-        var render = System.getProperty("jfx.background.render", AppSettings.LWJGL_OPENGL3);
-        var backgroundContext = ObjectUtils.notNull(getBackgroundContext());
+        String render = System.getProperty("jfx.background.render", AppSettings.LWJGL_OPENGL3);
+        JmeContext backgroundContext = Objects.requireNonNull(getBackgroundContext());
         backgroundContext.getSettings().setRenderer(render);
         backgroundContext.create(waitFor);
     }

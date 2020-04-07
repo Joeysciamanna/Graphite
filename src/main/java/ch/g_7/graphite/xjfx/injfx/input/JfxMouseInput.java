@@ -4,9 +4,12 @@ package ch.g_7.graphite.xjfx.injfx.input;
 import ch.g_7.graphite.xjfx.injfx.JmeOffscreenSurfaceContext;
 import com.jme3.cursors.plugins.JmeCursor;
 import com.jme3.input.MouseInput;
+import com.jme3.input.RawInputListener;
 import com.jme3.input.event.MouseButtonEvent;
 import com.jme3.input.event.MouseMotionEvent;
+import javafx.collections.ObservableMap;
 import javafx.event.EventHandler;
+import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.ImageView;
@@ -42,22 +45,16 @@ public class JfxMouseInput extends JfxInput implements MouseInput {
      */
     private static final int WHEEL_SCALE = 10;
 
-    @NotNull
     private final EventHandler<MouseEvent> processMotion = this::processMotion;
 
-    @NotNull
     private final EventHandler<MouseEvent> processPressed = this::processPressed;
 
-    @NotNull
     private final EventHandler<MouseEvent> processReleased = this::processReleased;
 
-    @NotNull
     private final EventHandler<ScrollEvent> processScroll = this::processScroll;
 
-    @NotNull
     private final LinkedList<MouseMotionEvent> mouseMotionEvents;
 
-    @NotNull
     private final LinkedList<MouseButtonEvent> mouseButtonEvents;
 
     private int mouseX;
@@ -67,14 +64,14 @@ public class JfxMouseInput extends JfxInput implements MouseInput {
     private boolean useLocalCoords;
     private boolean inverseYCoord;
 
-    public JfxMouseInput(@NotNull JmeOffscreenSurfaceContext context) {
+    public JfxMouseInput(JmeOffscreenSurfaceContext context) {
         super(context);
-        this.mouseMotionEvents = newLinkedList(MouseMotionEvent.class);
-        this.mouseButtonEvents = newLinkedList(MouseButtonEvent.class);
+        this.mouseMotionEvents = new LinkedList<>();
+        this.mouseButtonEvents = new LinkedList<>();
     }
 
     @Override
-    public void bind(@NotNull Node node) {
+    public void bind(Node node) {
         super.bind(node);
 
         node.addEventHandler(MouseEvent.MOUSE_MOVED, processMotion);
@@ -83,7 +80,7 @@ public class JfxMouseInput extends JfxInput implements MouseInput {
         node.addEventHandler(MouseEvent.MOUSE_DRAGGED, processMotion);
         node.addEventHandler(ScrollEvent.ANY, processScroll);
 
-        var properties = node.getProperties();
+        ObservableMap<Object, Object> properties = node.getProperties();
 
         useLocalCoords = properties.get(PROP_USE_LOCAL_COORDS) == Boolean.TRUE;
         inverseYCoord = properties.get(PROP_INVERSE_Y_COORD) == Boolean.TRUE;
@@ -93,7 +90,7 @@ public class JfxMouseInput extends JfxInput implements MouseInput {
     public void unbind() {
 
         if (hasNode()) {
-            var node = getNode();
+            Node node = getNode();
             node.removeEventHandler(MouseEvent.MOUSE_MOVED, processMotion);
             node.removeEventHandler(MouseEvent.MOUSE_DRAGGED, processMotion);
             node.removeEventHandler(MouseEvent.MOUSE_PRESSED, processPressed);
@@ -107,7 +104,7 @@ public class JfxMouseInput extends JfxInput implements MouseInput {
     @Override
     protected void updateImpl() {
 
-        var listener = getListener();
+        RawInputListener listener = getListener();
 
         while (!mouseMotionEvents.isEmpty()) {
             listener.onMouseMotionEvent(mouseMotionEvents.poll());
@@ -121,37 +118,37 @@ public class JfxMouseInput extends JfxInput implements MouseInput {
     /**
      * Handle the scroll event.
      */
-    private void processScroll(@NotNull ScrollEvent mouseEvent) {
+    private void processScroll(ScrollEvent mouseEvent) {
         onWheelScroll(mouseEvent.getDeltaX() * WHEEL_SCALE, mouseEvent.getDeltaY() * WHEEL_SCALE);
     }
 
     /**
      * Handle the mouse released event.
      */
-    private void processReleased(@NotNull MouseEvent mouseEvent) {
+    private void processReleased( MouseEvent mouseEvent) {
         onMouseButton(mouseEvent.getButton(), false);
     }
 
     /**
      * Handle the mouse pressed event.
      */
-    private void processPressed(@NotNull MouseEvent mouseEvent) {
+    private void processPressed(MouseEvent mouseEvent) {
         onMouseButton(mouseEvent.getButton(), true);
     }
 
     /**
      * Handle the mouse motion event.
      */
-    private void processMotion(@NotNull MouseEvent mouseEvent) {
+    private void processMotion(MouseEvent mouseEvent) {
 
-        var sceneX = mouseEvent.getSceneX();
-        var sceneY = mouseEvent.getSceneY();
+        double sceneX = mouseEvent.getSceneX();
+        double sceneY = mouseEvent.getSceneY();
 
         if (!useLocalCoords) {
             onCursorPos(sceneX, sceneY);
         } else {
 
-            var point2D = getNode()
+            Point2D point2D = getNode()
                     .sceneToLocal(sceneX, sceneY, true);
 
             onCursorPos(point2D.getX(), point2D.getY());
@@ -162,7 +159,7 @@ public class JfxMouseInput extends JfxInput implements MouseInput {
 
         mouseWheel += yOffset;
 
-        var mouseMotionEvent = new MouseMotionEvent(mouseX, mouseY, 0, 0, mouseWheel, (int) Math.round(yOffset));
+        MouseMotionEvent mouseMotionEvent = new MouseMotionEvent(mouseX, mouseY, 0, 0, mouseWheel, (int) Math.round(yOffset));
         mouseMotionEvent.setTime(getInputTimeNanos());
 
         EXECUTOR.addToExecute(() -> mouseMotionEvents.add(mouseMotionEvent));
@@ -201,22 +198,22 @@ public class JfxMouseInput extends JfxInput implements MouseInput {
             return;
         }
 
-        var mouseMotionEvent = new MouseMotionEvent(x, y, xDelta, yDelta, mouseWheel, 0);
+        MouseMotionEvent mouseMotionEvent = new MouseMotionEvent(x, y, xDelta, yDelta, mouseWheel, 0);
         mouseMotionEvent.setTime(getInputTimeNanos());
 
         EXECUTOR.addToExecute(() -> mouseMotionEvents.add(mouseMotionEvent));
     }
 
-    private void onMouseButton(@NotNull MouseButton button, boolean pressed) {
+    private void onMouseButton(MouseButton button, boolean pressed) {
 
-        var mouseButtonEvent = new MouseButtonEvent(convertButton(button), pressed, mouseX, mouseY);
+        MouseButtonEvent mouseButtonEvent = new MouseButtonEvent(convertButton(button), pressed, mouseX, mouseY);
         mouseButtonEvent.setTime(getInputTimeNanos());
 
         EXECUTOR.addToExecute(() -> mouseButtonEvents.add(mouseButtonEvent));
     }
 
-    private int convertButton(@NotNull MouseButton button) {
-        var result = MOUSE_BUTTON_TO_JME.get(button);
+    private int convertButton(MouseButton button) {
+        Integer result = MOUSE_BUTTON_TO_JME.get(button);
         return result == null ? 0 : result;
     }
 
@@ -230,6 +227,6 @@ public class JfxMouseInput extends JfxInput implements MouseInput {
     }
 
     @Override
-    public void setNativeCursor(@NotNull JmeCursor cursor) {
+    public void setNativeCursor(JmeCursor cursor) {
     }
 }

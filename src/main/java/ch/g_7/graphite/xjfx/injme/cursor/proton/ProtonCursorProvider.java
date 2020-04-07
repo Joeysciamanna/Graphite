@@ -1,17 +1,14 @@
 package ch.g_7.graphite.xjfx.injme.cursor.proton;
 
+import ch.g_7.graphite.xjfx.injme.cursor.CursorDisplayProvider;
 import com.jme3.app.Application;
 import com.jme3.asset.AssetManager;
 import com.jme3.asset.plugins.ClasspathLocator;
 import com.jme3.cursors.plugins.JmeCursor;
-import com.jme3.jfx.injme.cursor.CursorDisplayProvider;
-import com.jme3.jfx.util.JfxPlatform;
 import com.jme3.input.InputManager;
-import com.ss.rlib.logger.api.Logger;
-import com.ss.rlib.logger.api.LoggerManager;
 import com.sun.javafx.cursor.CursorFrame;
 import com.sun.javafx.cursor.CursorType;
-import org.jetbrains.annotations.NotNull;
+
 
 import java.util.Map;
 import java.util.concurrent.Callable;
@@ -25,23 +22,17 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class ProtonCursorProvider implements CursorDisplayProvider {
 
-    @NotNull
-    private static final Logger LOGGER = LoggerManager.getLogger(JfxPlatform.class);
 
-    @NotNull
     private Map<CursorType, JmeCursor> cache = new ConcurrentHashMap<>();
 
-    @NotNull
     private AssetManager assetManager;
 
-    @NotNull
     private InputManager inputManager;
 
-    @NotNull
     private Application application;
 
-    public ProtonCursorProvider(@NotNull final Application application, @NotNull final AssetManager assetManager,
-                                @NotNull final InputManager inputManager) {
+    public ProtonCursorProvider(final Application application, final AssetManager assetManager,
+                                final InputManager inputManager) {
         this.assetManager = assetManager;
         this.inputManager = inputManager;
         this.application = application;
@@ -49,7 +40,7 @@ public class ProtonCursorProvider implements CursorDisplayProvider {
     }
 
     @Override
-    public void prepare(@NotNull final CursorType cursorType) {
+    public void prepare(final CursorType cursorType) {
 
         JmeCursor jmeCursor = null;
 
@@ -120,12 +111,11 @@ public class ProtonCursorProvider implements CursorDisplayProvider {
     }
 
     @Override
-    public void show(@NotNull final CursorFrame cursorFrame) {
+    public void show(final CursorFrame cursorFrame) {
 
         CursorType cursorType = cursorFrame.getCursorType();
 
         if (cache.get(cursorType) == null) {
-            LOGGER.debug(cursorType, type -> "Unknown Cursor! " + type);
             cursorType = CursorType.DEFAULT;
         }
 

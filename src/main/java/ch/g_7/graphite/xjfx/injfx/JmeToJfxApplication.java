@@ -4,6 +4,8 @@ import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.post.FilterPostProcessor;
 
+import java.util.Objects;
+
 /**
  * The base implementation of {@link Application} for using in the JavaFX.
  *
@@ -39,7 +41,7 @@ public class JmeToJfxApplication extends SimpleApplication {
      *
      * @return the post filter processor.
      */
-    protected @NotNull FilterPostProcessor getPostProcessor() {
-        return notNull(postProcessor);
+    protected FilterPostProcessor getPostProcessor() {
+        return Objects.requireNonNull(postProcessor);
     }
 }

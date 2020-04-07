@@ -1,14 +1,10 @@
 package ch.g_7.graphite.xjfx.injme;
 
-import static com.jme3.jfx.injme.util.JmeWindowUtils.*;
+import ch.g_7.graphite.xjfx.injme.util.JmeWindowUtils;
 import com.jme3.system.JmeContext;
 import com.jme3.ui.Picture;
-import com.jme3.jfx.util.JfxPlatform;
-import com.ss.rlib.logger.api.Logger;
-import com.ss.rlib.logger.api.LoggerLevel;
-import com.ss.rlib.logger.api.LoggerManager;
 import com.sun.javafx.embed.EmbeddedStageInterface;
-import org.jetbrains.annotations.NotNull;
+import org.lwjgl.system.windows.WindowsUtil;
 
 /**
  * The implementation of the {@link Picture} to represent javaFX UI Scene.
@@ -17,16 +13,14 @@ import org.jetbrains.annotations.NotNull;
  */
 public class JavaFxPicture extends Picture {
 
-    @NotNull
-    private static final Logger LOGGER = LoggerManager.getLogger(JfxPlatform.class);
+
 
     /**
      * The JavaFX container.
      */
-    @NotNull
     private final JmeFxContainerInternal container;
 
-    public JavaFxPicture(@NotNull final JmeFxContainerInternal container) {
+    public JavaFxPicture(final JmeFxContainerInternal container) {
         super("JavaFxContainer", true);
         this.container = container;
     }
@@ -36,7 +30,7 @@ public class JavaFxPicture extends Picture {
      *
      * @return the JavaFX container.
      */
-    private @NotNull JmeFxContainerInternal getContainer() {
+    private JmeFxContainerInternal getContainer() {
         return container;
     }
 
@@ -52,22 +46,17 @@ public class JavaFxPicture extends Picture {
                 return;
             }
 
-            final int windowWidth = getWidth(jmeContext);
-            final int windowHeight = getHeight(jmeContext);
+            final int windowWidth = JmeWindowUtils.getWidth(jmeContext);
+            final int windowHeight = JmeWindowUtils.getHeight(jmeContext);
 
             if (windowWidth != container.getSceneWidth() || windowHeight != container.getSceneHeight()) {
                 container.fitSceneToWindowSize();
             }
 
-            final int currentX = getX(jmeContext);
-            final int currentY = getY(jmeContext);
+            final int currentX = JmeWindowUtils.getX(jmeContext);
+            final int currentY = JmeWindowUtils.getY(jmeContext);
 
             if (container.getPositionX() != currentX || container.getPositionY() != currentY) {
-
-                if (LOGGER.isEnabled(LoggerLevel.DEBUG)) {
-                    LOGGER.debug("moved window to [original: " + currentX + ", " + currentY + "]");
-                }
-
                 container.move(currentX, currentY);
             }
 

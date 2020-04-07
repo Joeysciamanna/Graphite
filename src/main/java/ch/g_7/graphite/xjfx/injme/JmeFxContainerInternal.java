@@ -1,14 +1,12 @@
 package ch.g_7.graphite.xjfx.injme;
 
+import ch.g_7.graphite.xjfx.injme.input.JmeFXInputListener;
 import com.jme3.app.Application;
-import com.jme3.jfx.injme.input.JmeFXInputListener;
 import com.jme3.system.JmeContext;
 import com.sun.javafx.cursor.CursorFrame;
 import com.sun.javafx.embed.EmbeddedSceneInterface;
 import com.sun.javafx.embed.EmbeddedStageInterface;
 import com.sun.javafx.stage.EmbeddedWindow;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * The internal interface to work with container of javaFX UI.
@@ -37,14 +35,14 @@ public interface JmeFxContainerInternal extends JmeFxContainer {
      *
      * @return the jME application.
      */
-    @NotNull Application getApplication();
+    Application getApplication();
 
     /**
      * Gets the jME context.
      *
      * @return the jME context.
      */
-    @NotNull JmeContext getJmeContext();
+    JmeContext getJmeContext();
 
     /**
      * Gets the X position.
@@ -114,42 +112,42 @@ public interface JmeFxContainerInternal extends JmeFxContainer {
      *
      * @return the current scene interface.
      */
-    @Nullable EmbeddedSceneInterface getSceneInterface();
+    EmbeddedSceneInterface getSceneInterface();
 
     /**
      * Sets the current scene interface.
      *
      * @param sceneInterface the current scene interface.
      */
-    void setSceneInterface(@Nullable EmbeddedSceneInterface sceneInterface);
+    void setSceneInterface(EmbeddedSceneInterface sceneInterface);
 
     /**
      * Gets the embedded window.
      *
      * @return the embedded window.
      */
-    @Nullable EmbeddedWindow getEmbeddedWindow();
+    EmbeddedWindow getEmbeddedWindow();
 
     /**
      * Sets the embedded window.
      *
      * @param embeddedWindow the embedded window.
      */
-    void setEmbeddedWindow(@Nullable EmbeddedWindow embeddedWindow);
+    void setEmbeddedWindow(EmbeddedWindow embeddedWindow);
 
     /**
      * Gets the current stage interface.
      *
      * @return the current stage interface.
      */
-    @Nullable EmbeddedStageInterface getStageInterface();
+    EmbeddedStageInterface getStageInterface();
 
     /**
      * Sets the current stage interface.
      *
      * @param stageInterface the current stage interface.
      */
-    void setStageInterface(@Nullable EmbeddedStageInterface stageInterface);
+    void setStageInterface(EmbeddedStageInterface stageInterface);
 
     /**
      * Fit scene to window size.
@@ -183,7 +181,7 @@ public interface JmeFxContainerInternal extends JmeFxContainer {
      *
      * @param cursorFrame the cursor frame.
      */
-    void requestShowingCursor(@NotNull CursorFrame cursorFrame);
+    void requestShowingCursor(CursorFrame cursorFrame);
 
     /**
      * Requests the status of enabled scene.
@@ -212,5 +210,5 @@ public interface JmeFxContainerInternal extends JmeFxContainer {
      *
      * @return the user input listener.
      */
-    @NotNull JmeFXInputListener getInputListener();
+    JmeFXInputListener getInputListener();
 }

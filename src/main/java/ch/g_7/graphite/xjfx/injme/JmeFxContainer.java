@@ -1,12 +1,10 @@
 package ch.g_7.graphite.xjfx.injme;
 
+import ch.g_7.graphite.xjfx.injme.cursor.CursorDisplayProvider;
 import com.jme3.app.Application;
-import com.jme3.jfx.injme.cursor.CursorDisplayProvider;
 import com.jme3.scene.Node;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * The interface to work with container of javaFX UI.
@@ -22,7 +20,7 @@ public interface JmeFxContainer {
      * @param guiNode     the GUI node.
      * @return the javaFX container.
      */
-    static @NotNull JmeFxContainer install(@NotNull final Application application, @NotNull final Node guiNode) {
+    static JmeFxContainer install(final Application application, final Node guiNode) {
         return JmeFxContainerImpl.install(application, guiNode);
     }
 
@@ -34,8 +32,8 @@ public interface JmeFxContainer {
      * @param cursorProvider the cursor provider.
      * @return the javaFX container.
      */
-    static @NotNull JmeFxContainer install(@NotNull final Application application, @NotNull final Node guiNode,
-                                           @NotNull final CursorDisplayProvider cursorProvider) {
+    static JmeFxContainer install(final Application application, final Node guiNode,
+                                           final CursorDisplayProvider cursorProvider) {
         return JmeFxContainerImpl.install(application, guiNode, cursorProvider);
     }
 
@@ -57,26 +55,26 @@ public interface JmeFxContainer {
      * @param newScene the new scene or null.
      * @param rootNode the new root of the scene.
      */
-    void setScene(@Nullable Scene newScene, @NotNull Group rootNode);
+    void setScene(Scene newScene, Group rootNode);
 
     /**
      * Gets the current cursor provider.
      *
      * @return the current cursor provider.
      */
-    @NotNull CursorDisplayProvider getCursorProvider();
+    CursorDisplayProvider getCursorProvider();
 
     /**
      * Gets the current scene.
      *
      * @return the current scene.
      */
-    @Nullable Scene getScene();
+    Scene getScene();
 
     /**
      * Gets the root UI node.
      *
      * @return the root UI node.
      */
-    @Nullable Group getRootNode();
+    Group getRootNode();
 }

@@ -1,8 +1,9 @@
 package ch.g_7.graphite.xjfx.injfx.transfer.impl;
 
-import static com.jme3.jfx.injfx.processor.FrameTransferSceneProcessor.TransferMode;
-import com.jme3.jfx.injfx.transfer.FrameTransfer;
-import com.jme3.jfx.util.JfxPlatform;
+
+import ch.g_7.graphite.xjfx.injfx.processor.FrameTransferSceneProcessor;
+import ch.g_7.graphite.xjfx.injfx.transfer.FrameTransfer;
+import ch.g_7.graphite.xjfx.util.JfxPlatform;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.Renderer;
 import com.jme3.texture.FrameBuffer;
@@ -13,8 +14,6 @@ import javafx.scene.image.PixelBuffer;
 import javafx.scene.image.PixelFormat;
 import javafx.scene.image.WritableImage;
 import javafx.scene.image.WritablePixelFormat;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.lwjgl.opengl.*;
 
 import java.nio.ByteBuffer;
@@ -37,56 +36,47 @@ public abstract class AbstractFrameTransfer<T> implements FrameTransfer {
     /**
      * The Frame state.
      */
-    @NotNull
     protected final AtomicInteger frameState;
 
     /**
      * The Image state.
      */
-    @NotNull
     protected final AtomicInteger imageState;
 
     /**
      * The Frame buffer.
      */
-    @NotNull
     protected final FrameBuffer frameBuffer;
 
     /**
      * The Frame byte buffer.
      */
-    @NotNull
     protected final ByteBuffer frameByteBuffer;
 
     /**
      * The pixel buffer.
      */
-    @NotNull
     protected final PixelBuffer<ByteBuffer> pixelBuffer;
 
     /**
      * The default pixel format.
      */
-    @NotNull
     protected final WritablePixelFormat<ByteBuffer> pixelFormat;
 
     /**
      * The update buffer.
      */
-    @NotNull
     protected final Rectangle2D updatedBuffer;
 
     /**
      * The writable image that holds the pixelbuffer.
      */
-    @NotNull
     protected final WritableImage img;
 
     /**
      * The transfer mode.
      */
-    @NotNull
-    protected final TransferMode transferMode;
+    protected final FrameTransferSceneProcessor.TransferMode transferMode;
 
     /**
      * How many frames need to write else.
@@ -113,14 +103,14 @@ public abstract class AbstractFrameTransfer<T> implements FrameTransfer {
      */
     private int index;
 
-    public AbstractFrameTransfer(@NotNull T destination, int width, int height, @NotNull TransferMode transferMode) {
+    public AbstractFrameTransfer(T destination, int width, int height, FrameTransferSceneProcessor.TransferMode transferMode) {
         this(destination, transferMode, null, width, height);
     }
 
     public AbstractFrameTransfer(
-            @NotNull T destination,
-            @NotNull TransferMode transferMode,
-            @Nullable FrameBuffer frameBuffer,
+            T destination,
+            FrameTransferSceneProcessor.TransferMode transferMode,
+            FrameBuffer frameBuffer,
             int width,
             int height
     ) {
@@ -147,7 +137,7 @@ public abstract class AbstractFrameTransfer<T> implements FrameTransfer {
         updatedBuffer = new Rectangle2D(0, 0, width, height);
 
         pixelBufferObjects = new IntBuffer[2];
-        if (transferMode == TransferMode.DOUBLE_BUFFERED) {
+        if (transferMode == FrameTransferSceneProcessor.TransferMode.DOUBLE_BUFFERED) {
             index = 0;
             
             final int dataSize = width * height * 4;
@@ -172,7 +162,7 @@ public abstract class AbstractFrameTransfer<T> implements FrameTransfer {
     protected void setImage() { }
 
     @Override
-    public void initFor(@NotNull Renderer renderer, boolean main) {
+    public void initFor(Renderer renderer, boolean main) {
         if (main) {
             renderer.setMainFrameBufferOverride(frameBuffer);
         }
@@ -189,7 +179,7 @@ public abstract class AbstractFrameTransfer<T> implements FrameTransfer {
     }
 
     @Override
-    public void copyFrameBufferToImage(@NotNull RenderManager renderManager) {
+    public void copyFrameBufferToImage(RenderManager renderManager) {
 
         while (!frameState.compareAndSet(WAITING_STATE, RUNNING_STATE)) {
             if (frameState.get() == DISPOSED_STATE) {
@@ -199,7 +189,7 @@ public abstract class AbstractFrameTransfer<T> implements FrameTransfer {
 
         // Convert screenshot.
         try {
-            if (transferMode == TransferMode.DOUBLE_BUFFERED) {
+            if (transferMode == FrameTransferSceneProcessor.TransferMode.DOUBLE_BUFFERED) {
                 index = (index + 1) % 2;
                 final int nextIndex = (index + 1) % 2;
 
