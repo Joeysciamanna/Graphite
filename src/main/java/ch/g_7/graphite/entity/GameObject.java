@@ -3,8 +3,8 @@ package ch.g_7.graphite.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.g_7.graphite.base.transformation.ITransform;
-import ch.g_7.graphite.base.transformation.Transform;
+import ch.g_7.graphite.base.transform.ITransform;
+import ch.g_7.graphite.base.transform.Transform;
 import ch.g_7.graphite.node.IEntity;
 import ch.g_7.graphite.node.IEntityIdentifier;
 import ch.g_7.graphite.node.IViewModel;

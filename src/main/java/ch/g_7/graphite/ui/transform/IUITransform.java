@@ -1,7 +1,6 @@
 package ch.g_7.graphite.ui.transform;
 
-import ch.g_7.graphite.base.transformation.IROTransform;
-import org.joml.Vector2fc;
+import ch.g_7.graphite.base.transform.IROTransform;
 import org.joml.Vector2ic;
 
 public interface IUITransform extends IROTransform {

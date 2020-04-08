@@ -1,11 +1,10 @@
 package ch.g_7.graphite.rendering.transformator;
 
-import ch.g_7.graphite.base.transformation.IROTransform;
+import ch.g_7.graphite.base.transform.IROTransform;
 import org.joml.Matrix4f;
 import org.joml.Vector2f;
 import org.joml.Vector2ic;
 
-import ch.g_7.graphite.base.transformation.ITransform;
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
 

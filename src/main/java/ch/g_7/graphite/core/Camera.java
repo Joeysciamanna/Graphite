@@ -1,6 +1,6 @@
 package ch.g_7.graphite.core;
 
-import ch.g_7.graphite.base.transformation.Transform;
+import ch.g_7.graphite.base.transform.Transform;
 
 public class Camera {
 

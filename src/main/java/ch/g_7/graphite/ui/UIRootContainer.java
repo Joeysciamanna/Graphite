@@ -2,18 +2,15 @@ package ch.g_7.graphite.ui;//package ch.g_7.graphite.ui;
 
 import java.util.concurrent.CompletableFuture;
 
-import ch.g_7.graphite.base.transformation.IROTransform;
 import ch.g_7.graphite.node.IViewModel;
 import ch.g_7.graphite.rendering.IUIViewIdentifier;
 import ch.g_7.graphite.ui.transform.IUITransform;
 import ch.g_7.graphite.ui.transform.SimpleUITransform;
 import org.joml.Vector2i;
-import org.joml.Vector2ic;
 
 import ch.g_7.graphite.core.window.ResizeEvent;
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.ui.util.MouseManager;
-import ch.g_7.graphite.ui.util.ScreenDimension;
 
 public class UIRootContainer extends UIContainer implements IUIRootContainer {
 
