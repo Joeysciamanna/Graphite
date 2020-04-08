@@ -13,30 +13,9 @@ public abstract class UIContainer implements IUIContainer {
 
 	protected final List<IUIPanel> children;
 
-	protected final Transform transformation;
-
-	protected final ScreenDimension width;
-	protected final ScreenDimension height;
-
-	protected final ScreenDimension x;
-	protected final ScreenDimension y;
-
-
-
-	protected boolean visible;
 
 	public UIContainer() {
 		this.children = new ArrayList<>();
-		this.transformation = new Transform();
-
-		this.width = new ScreenDimension(ScreenDimension.X_AXIS);
-		this.height = new ScreenDimension(ScreenDimension.Y_AXIS);
-
-		this.x = new ScreenDimension(ScreenDimension.X_AXIS);
-		this.y = new ScreenDimension(ScreenDimension.Y_AXIS);
-
-		this.visible = true;
-
 	}
 
 	@Override
@@ -78,36 +57,5 @@ public abstract class UIContainer implements IUIContainer {
 
 	protected abstract void recalculateDimension(ScreenDimension dimension, Vector2ic screenSize);
 
-
-	@Override
-	public boolean isVisible() {
-		return visible;
-	}
-
-	public void setVisible(boolean visible) {
-		this.visible = visible;
-	}
-
-
-
-	@Override
-	public ScreenDimension getWidth() {
-		return width;
-	}
-
-	@Override
-	public ScreenDimension getHeight() {
-		return height;
-	}
-
-	@Override
-	public ScreenDimension getX() {
-		return x;
-	}
-
-	@Override
-	public ScreenDimension getY() {
-		return y;
-	}
 
 }

@@ -2,6 +2,9 @@ package ch.g_7.graphite.ui;//package ch.g_7.graphite.ui;
 
 import java.util.concurrent.CompletableFuture;
 
+import ch.g_7.graphite.base.transformation.IROTransform;
+import ch.g_7.graphite.base.transformation.ITransform;
+import ch.g_7.graphite.node.IViewModel;
 import org.joml.Vector2i;
 import org.joml.Vector2ic;
 
@@ -10,19 +13,20 @@ import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.ui.util.MouseManager;
 import ch.g_7.graphite.ui.util.ScreenDimension;
 
-public class UIRootContainer extends UIContainer implements IUIRootContainer{
+public class UIRootContainer extends UIContainer implements IUIRootContainer {
 
 	private final Window window;
 	private final MouseManager mouseManager;
+	private final UITransform transform;
 
 	public UIRootContainer(Window window) {
 		this.window = window;
-		this.window.addResizeListner(this);
-		this.width.addPW(100);
-		this.height.addPW(100);
 		this.mouseManager = new MouseManager();
-
-		window.addMouseListner(mouseManager);
+		this.window.addResizeListner(this);
+		this.window.addMouseListner(mouseManager);
+		this.transform = new UITransform();
+		this.transform.getHeight().addPW(100);
+		this.transform.getHeight().addPW(100);
 	}
 
 	@Override
@@ -46,6 +50,42 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer{
 			Vector2i size = new Vector2i(action.getWidth(), action.getHeight());
 			recalculate(size, size);
 		});
+	}
+
+	@Override
+	public ScreenDimension getWidth() {
+		return transform.getWidth();
+	}
+
+	@Override
+	public ScreenDimension getHeight() {
+		return transform.getHeight();
+	}
+
+	@Override
+	public ScreenDimension getX() {
+		return transform.getX();
+	}
+
+	@Override
+	public ScreenDimension getY() {
+		return transform.getY();
+	}
+
+	@Override
+	public IROTransform getTransform() {
+		return transform;
+	}
+
+
+	@Override
+	public IViewModel getViewModel() {
+		return null;
+	}
+
+	@Override
+	public void init() {
+
 	}
 
 	@Override
@@ -83,4 +123,6 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer{
 	}
 
 
+
 }
+

@@ -1,18 +1,16 @@
 package ch.g_7.graphite.ui;
 
 import ch.g_7.graphite.base.transformation.IROTransform;
-import ch.g_7.graphite.base.transformation.ITransform;
 import ch.g_7.graphite.ui.util.ScreenDimension;
-import org.joml.Vector3f;
 import org.joml.Vector3fc;
 
 public class UITransform implements IROTransform {
 
-    protected final ScreenDimension width;
-    protected final ScreenDimension height;
+    private final ScreenDimension width;
+    private final ScreenDimension height;
 
-    protected final ScreenDimension x;
-    protected final ScreenDimension y;
+    private final ScreenDimension x;
+    private final ScreenDimension y;
 
 
     public UITransform() {
