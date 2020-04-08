@@ -1,5 +1,6 @@
 package ch.g_7.graphite.ui;//package ch.g_7.graphite.ui;
 
+import ch.g_7.graphite.ui.transform.AdvancedUITransform;
 import org.joml.Vector2ic;
 
 import ch.g_7.graphite.base.mesh.IMesh;
@@ -32,62 +33,9 @@ public class UIPanel extends UIContainer implements IUIPanel {
 
 
 	@Override
-	public void recalculate(Vector2ic screenSize, Vector2ic fatherSize) {
-		if(resized) {
-			recalculateDimension(maxWidth, screenSize);
-			recalculateDimension(maxHeight, screenSize);
-			recalculateDimension(minWidth, screenSize);
-			recalculateDimension(minHeight, screenSize);
-			recalculateDimension(preferedWidth, screenSize);
-			recalculateDimension(preferedHeight, screenSize);
-
-			recalculatePreferedSize();
-		}
-
-		super.recalculate(screenSize, fatherSize);
-		transformation.getPosition().add(father.getTransformation().getPosition());
+	public void recalculate() {
+		requestRecalculation(this);
 	}
-
-	@Override
-	public void init() { }
-
-	@Override
-	public void close() {
-		viewModel.close();
-	}
-
-	@Override
-	public void recalculatePreferedSize() {
-		this.width.reset();
-		this.height.reset();
-
-		if(preferedWidth.getValue() > maxWidth.getValue() || preferedWidth.getValue() < minWidth.getValue()) {
-			if(preferedWidth.getValue()-maxWidth.getValue()>preferedWidth.getValue()-minWidth.getValue()) {
-				width.add(minWidth);
-			}else {
-				width.add(maxWidth);
-			}
-		}else {
-			width.add(preferedWidth);
-		}
-		if(preferedHeight.getValue() > maxHeight.getValue() || preferedHeight.getValue() < minHeight.getValue()) {
-			if(preferedHeight.getValue()-maxHeight.getValue()>preferedHeight.getValue()-minHeight.getValue()) {
-				height.add(minHeight);
-			}else {
-				height.add(maxHeight);
-			}
-		}else {
-			height.add(preferedHeight);
-		}
-	}
-
-
-	@Override
-	protected void recalculateDimension(ScreenDimension dimension, Vector2ic screenSize) {
-		dimension.recalculate(screenSize, getFather().getTransformation().getIntScale2d());
-	}
-
-
 
 	@Override
 	public final void requestRecalculation(IUIContainer container) {
@@ -97,10 +45,16 @@ public class UIPanel extends UIContainer implements IUIPanel {
 	}
 
 
+
 	@Override
-	public void recalculate() {
-		requestRecalculation(this);
+	public void init() { }
+
+	@Override
+	public void close() {
 	}
+
+
+
 
 	@Override
 	public ViewModel getViewModel() {
@@ -117,11 +71,6 @@ public class UIPanel extends UIContainer implements IUIPanel {
 	}
 
 	@Override
-	public Window getWindow() {
-		return getFather() == null ? null : father.getWindow();
-	}
-
-	@Override
 	public IUIRootContainer getRootContainer() {
 		return getFather() == null ? null : father.getRootContainer();
 	}
@@ -134,47 +83,6 @@ public class UIPanel extends UIContainer implements IUIPanel {
 	@Override
 	public void setTexture(ITexture texture) {
 		viewModel.setTexture(texture);
-	}
-
-	@Override
-	public ScreenDimension getMaxWidth() {
-		resized = true;
-		return maxWidth;
-	}
-
-
-	@Override
-	public ScreenDimension getMaxHeight() {
-		resized = true;
-		return maxHeight;
-	}
-
-
-	@Override
-	public ScreenDimension getMinWidth() {
-		resized = true;
-		return minWidth;
-	}
-
-
-	@Override
-	public ScreenDimension getMinHeight() {
-		resized = true;
-		return minHeight;
-	}
-
-
-	@Override
-	public ScreenDimension getPreferedWidth() {
-		resized = true;
-		return preferedWidth;
-	}
-
-
-	@Override
-	public ScreenDimension getPreferedHeight() {
-		resized = true;
-		return preferedHeight;
 	}
 
 }

@@ -3,6 +3,7 @@ package ch.g_7.graphite.ui;//package ch.g_7.graphite.ui;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.joml.Vector2i;
 import org.joml.Vector2ic;
 
 import ch.g_7.graphite.ui.util.ScreenDimension;
@@ -41,13 +42,10 @@ public abstract class UIContainer implements IUIContainer {
 
 	@Override
 	public void recalculate(Vector2ic screenSize, Vector2ic fatherSize) {
-		getTransform().recalculate(screenSize, get);
+		getTransform().recalculate(screenSize, fatherSize);
 		for (IUIPanel child : getChildren()) {
-			child.recalculate(screenSize, fatherSize);
+			child.recalculate(screenSize, new Vector2i((int)getTransform().getScale().x(), (int) getTransform().getScale().y()));
 		}
 	}
-
-	protected abstract void recalculateDimension(ScreenDimension dimension, Vector2ic screenSize);
-
 
 }

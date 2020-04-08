@@ -1,4 +1,4 @@
-package ch.g_7.graphite.ui;
+package ch.g_7.graphite.ui.transform;
 
 import ch.g_7.graphite.base.transformation.IROTransform;
 import org.joml.Vector2fc;

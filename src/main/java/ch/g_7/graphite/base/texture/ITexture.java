@@ -7,4 +7,7 @@ public interface ITexture extends IRenderResource {
 
 	int getId();
 
+	int getWidth();
+
+	int getHeight();
 }

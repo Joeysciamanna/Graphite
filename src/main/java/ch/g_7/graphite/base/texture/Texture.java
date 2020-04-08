@@ -18,14 +18,17 @@ public class Texture implements ITexture, IResource {
 		this.height = height;
 	}
 
+	@Override
 	public int getId() {
 		return id;
 	}
 
+	@Override
 	public int getWidth() {
 		return width;
 	}
 
+	@Override
 	public int getHeight() {
 		return height;
 	}
