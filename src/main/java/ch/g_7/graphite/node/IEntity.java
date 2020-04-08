@@ -1,6 +1,6 @@
 package ch.g_7.graphite.node;
 
-public interface IEntity<T extends IViewModel> extends INode<IEntity<?>, T>, Updatable {
+public interface IEntity<T extends IViewModel, K extends INode<K,?>> extends INode<K, T>, Updatable {
 
     IEntityIdentifier<?> getId();
 

@@ -6,7 +6,7 @@ import ch.g_7.graphite.node.IEntity;
 import ch.g_7.graphite.node.IViewModel;
 import ch.g_7.graphite.ui.util.MouseManager;
 
-public interface IUIRootContainer extends IUIContainer, ResizeListner, IEntity<IViewModel> {
+public interface IUIRootContainer extends IUIContainer, ResizeListner, IEntity<IViewModel, IUIPanel> {
 
 	void add(IUIPanel panel);
 

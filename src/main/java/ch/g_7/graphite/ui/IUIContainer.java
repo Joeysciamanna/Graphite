@@ -22,5 +22,7 @@ public interface IUIContainer extends INode<IUIPanel, IViewModel>, Initializable
 	ScreenDimension getX();
 	ScreenDimension getY();
 
+	IUITransform getTransform();
+
 	IUIRootContainer getRootContainer();
 }

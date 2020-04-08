@@ -14,33 +14,19 @@ import ch.g_7.graphite.util.Color;
 
 public class UIPanel extends UIContainer implements IUIPanel {
 
-	private static IMesh SQUARE_MESH = ResourceManager.getActive().getEngineResource(MeshFactory2d.getSquare(1).setCenter(MeshBuilder2d.CENTER_TOP_LEFT).build());
+	private static IMesh SQUARE_MESH = ResourceManager.getActive().allocateFromEngine(MeshFactory2d.getSquare(1).setCenter(MeshBuilder2d.CENTER_TOP_LEFT).build());
+
+	private final AdvancedUITransform transform;
 
 	private ViewModel viewModel;
 
-	protected final ScreenDimension maxWidth;
-	protected final ScreenDimension maxHeight;
-
-	protected final ScreenDimension minWidth;
-	protected final ScreenDimension minHeight;
-
-	protected final ScreenDimension preferedWidth;
-	protected final ScreenDimension preferedHeight;
 
 	private boolean resized = true;
 
 	protected IUIContainer father;
 
 	public UIPanel() {
-		this.maxWidth = new ScreenDimension(ScreenDimension.X_AXIS).addPF(100);
-		this.maxHeight = new ScreenDimension(ScreenDimension.Y_AXIS).addPF(100);
-
-		this.minWidth = new ScreenDimension(ScreenDimension.X_AXIS);
-		this.minHeight = new ScreenDimension(ScreenDimension.Y_AXIS);
-
-		this.preferedWidth = new ScreenDimension(ScreenDimension.X_AXIS).addPF(100);
-		this.preferedHeight = new ScreenDimension(ScreenDimension.Y_AXIS).addPF(100);
-
+		this.transform = new AdvancedUITransform();
 		this.viewModel = new ViewModel(SQUARE_MESH, null, Color.TRANSPARENT);
 	}
 
