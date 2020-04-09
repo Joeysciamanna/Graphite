@@ -1,34 +1,23 @@
-package ch.g_7.graphite.ui;//package ch.g_7.graphite.ui;
+package ch.g_7.graphite.ui;
 
-import ch.g_7.graphite.ui.transform.AdvancedUITransform;
-import org.joml.Vector2ic;
-
-import ch.g_7.graphite.base.mesh.IMesh;
-import ch.g_7.graphite.base.mesh.MeshFactory2d;
-import ch.g_7.graphite.base.mesh.MeshBuilder2d;
 import ch.g_7.graphite.base.texture.ITexture;
-import ch.g_7.graphite.base.view_model.ViewModel;
-import ch.g_7.graphite.core.window.Window;
-import ch.g_7.graphite.resource.ResourceManager;
+import ch.g_7.graphite.ui.transform.AdvancedUITransform;
+import ch.g_7.graphite.ui.transform.IUITransform;
 import ch.g_7.graphite.ui.util.ScreenDimension;
+import ch.g_7.graphite.ui.view_model.UIViewModel;
 import ch.g_7.graphite.util.Color;
 
 public class UIPanel extends UIContainer implements IUIPanel {
 
-	private static IMesh SQUARE_MESH = ResourceManager.getActive().allocateFromEngine(MeshFactory2d.getSquare(1).setCenter(MeshBuilder2d.CENTER_TOP_LEFT).build());
-
 	private final AdvancedUITransform transform;
 
-	private ViewModel viewModel;
-
-
-	private boolean resized = true;
+	private UIViewModel viewModel;
 
 	protected IUIContainer father;
 
 	public UIPanel() {
 		this.transform = new AdvancedUITransform();
-		this.viewModel = new ViewModel(SQUARE_MESH, null, Color.TRANSPARENT);
+		this.viewModel = new UIViewModel(Color.TRANSPARENT);
 	}
 
 
@@ -44,22 +33,11 @@ public class UIPanel extends UIContainer implements IUIPanel {
 		}
 	}
 
-
-
 	@Override
 	public void init() { }
 
 	@Override
-	public void close() {
-	}
-
-
-
-
-	@Override
-	public ViewModel getViewModel() {
-		return viewModel;
-	}
+	public void close() { }
 
 	@Override
 	public final void setFather(IUIContainer father) {
@@ -71,8 +49,8 @@ public class UIPanel extends UIContainer implements IUIPanel {
 	}
 
 	@Override
-	public IUIRootContainer getRootContainer() {
-		return getFather() == null ? null : father.getRootContainer();
+	public UIViewModel getViewModel() {
+		return viewModel;
 	}
 
 	@Override
@@ -85,4 +63,64 @@ public class UIPanel extends UIContainer implements IUIPanel {
 		viewModel.setTexture(texture);
 	}
 
+	@Override
+	public boolean isVisible() {
+		return false;
+	}
+
+	@Override
+	public void setVisible(boolean visible) {
+		viewModel.setVisible(visible);
+	}
+
+	@Override
+	public IUITransform getTransform() {
+		return transform;
+	}
+
+	@Override
+	public IUIRootContainer getRootContainer() {
+		return getFather() == null ? null : father.getRootContainer();
+	}
+
+
+	@Override
+	public ScreenDimension getWidth() {
+		return transform.getPreferredWidth();
+	}
+
+	@Override
+	public ScreenDimension getHeight() {
+		return transform.getPreferredHeight();
+	}
+
+	@Override
+	public ScreenDimension getMinWidth() {
+		return transform.getMinWidth();
+	}
+
+	@Override
+	public ScreenDimension getMinHeight() {
+		return transform.getMinHeight();
+	}
+
+	@Override
+	public ScreenDimension getMaxWidth() {
+		return transform.getMaxWidth();
+	}
+
+	@Override
+	public ScreenDimension getMaxHeight() {
+		return transform.getMaxHeight();
+	}
+
+	@Override
+	public ScreenDimension getX() {
+		return transform.getX();
+	}
+
+	@Override
+	public ScreenDimension getY() {
+		return transform.getY();
+	}
 }

@@ -3,9 +3,11 @@ package ch.g_7.graphite.ui;//package ch.g_7.graphite.ui;
 import java.util.concurrent.CompletableFuture;
 
 import ch.g_7.graphite.node.IViewModel;
-import ch.g_7.graphite.rendering.IUIViewIdentifier;
+import ch.g_7.graphite.ui.util.IUIViewIdentifier;
 import ch.g_7.graphite.ui.transform.IUITransform;
 import ch.g_7.graphite.ui.transform.SimpleUITransform;
+import ch.g_7.graphite.ui.view_model.UIViewModel;
+import ch.g_7.graphite.util.Color;
 import org.joml.Vector2i;
 
 import ch.g_7.graphite.core.window.ResizeEvent;
@@ -18,6 +20,7 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer {
 	private final Window window;
 	private final MouseManager mouseManager;
 	private final SimpleUITransform transform;
+	private final UIViewModel viewModel;
 
 	public UIRootContainer(Window window, IUIViewIdentifier<?> id) {
 		this.id = id;
@@ -28,6 +31,7 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer {
 		this.transform = new SimpleUITransform();
 		this.transform.getHeight().addPW(100);
 		this.transform.getHeight().addPW(100);
+		this.viewModel = new UIViewModel(Color.TRANSPARENT);
 	}
 
 	@Override
@@ -82,7 +86,17 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer {
 
 	@Override
 	public IViewModel getViewModel() {
-		return null;
+		return viewModel;
+	}
+
+	@Override
+	public boolean isVisible() {
+		return viewModel.isVisible();
+	}
+
+	@Override
+	public void setVisible(boolean visible) {
+		viewModel.setVisible(visible);
 	}
 
 	@Override

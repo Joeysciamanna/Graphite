@@ -13,6 +13,7 @@ public class UIViewModel implements IUIViewModel {
 
     private static final IMesh SQUARE_MESH = ResourceManager.addGlobalResource(MeshFactory2d.getSquare(1).build());
 
+    private boolean visible;
     private IMesh mesh;
     private Color color;
     private ITexture texture;
@@ -36,14 +37,34 @@ public class UIViewModel implements IUIViewModel {
         return color;
     }
 
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
     @Override
     public ITexture getTexture() {
         return texture;
     }
 
+    public void setTexture(ITexture texture) {
+        this.texture = texture;
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
+    }
+
     @Override
     public IMesh getMesh() {
         return mesh;
+    }
+
+    public void setMesh(IMesh mesh) {
+        this.mesh = mesh;
     }
 
     @Override

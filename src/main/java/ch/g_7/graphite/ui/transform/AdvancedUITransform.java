@@ -74,11 +74,35 @@ public class AdvancedUITransform extends BasicUITransform {
         }
     }
 
-    public ScreenDimension getWidth() {
+    public ScreenDimension getMaxWidth() {
+        return maxWidth;
+    }
+
+    public ScreenDimension getMaxHeight() {
+        return maxHeight;
+    }
+
+    public ScreenDimension getMinWidth() {
+        return minWidth;
+    }
+
+    public ScreenDimension getMinHeight() {
+        return minHeight;
+    }
+
+    public ScreenDimension getPreferredWidth() {
+        return preferredWidth;
+    }
+
+    public ScreenDimension getPreferredHeight() {
+        return preferredHeight;
+    }
+
+    public ScreenDimension getActualWidth() {
         return actualWidth;
     }
 
-    public ScreenDimension getHeight() {
+    public ScreenDimension getActualHeight() {
         return actualHeight;
     }
 }

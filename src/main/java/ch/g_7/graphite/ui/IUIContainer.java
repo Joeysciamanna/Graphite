@@ -18,4 +18,8 @@ public interface IUIContainer extends INode<IUIPanel, IViewModel>, Initializable
 	IUITransform getTransform();
 
 	IUIRootContainer getRootContainer();
+
+	void setVisible(boolean visible);
+
+	boolean isVisible();
 }

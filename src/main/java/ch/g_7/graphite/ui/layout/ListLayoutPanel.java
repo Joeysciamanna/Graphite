@@ -23,21 +23,20 @@ public class ListLayoutPanel extends UIPanel {
 
 	public ListLayoutPanel(byte axis) {
 		this.axis = axis;
-		this.childs = new ArrayList<>();
 		this.placeHolder = new ScreenDimension(axis);
 	}
 
 
 	@Override
 	public void recalculate(Vector2ic screenSize, Vector2ic fatherSize) {
-		recalculateDimension(placeHolder, screenSize);
+		placeHolder.recalculate(screenSize, fatherSize);
 		super.recalculate(screenSize, fatherSize);
 	}
 
 	@Override
 	public void add(IUIPanel panel) {
 		super.add(panel);
-		place(panel, childs.size()-1);
+		place(panel, children.size()-1);
 	}
 
 
@@ -48,7 +47,7 @@ public class ListLayoutPanel extends UIPanel {
 		panel.getMinHeight().reset();
 		panel.getX().reset();
 		panel.getY().reset();
-		List<IUIPanel> bofore = childs.stream().limit(index).collect(Collectors.toList());
+		List<IUIPanel> bofore = children.stream().limit(index).collect(Collectors.toList());
 		if(axis == X_AXIS) {
 			bofore.forEach((p)-> panel.getX().add(p.getWidth()));
 			panel.getX().add(new ScaledScreenDimension(placeHolder, index));

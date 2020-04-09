@@ -1,20 +1,19 @@
 package ch.g_7.graphite.ui.scene;//package ch.g_7.graphite.ui.scene;
 
+import ch.g_7.graphite.core.World;
+
 import java.util.HashMap;
 import java.util.Map;
 
-import ch.g_7.graphite.core.Dimension;
-import ch.g_7.graphite.rendering.RenderType;
-
 public class SceneNavigator {
 
-	private Dimension dimension;
+	private World world;
 	private Map<ISceneIdentifier<?>, Scene> scenes;
 	private Scene activeScene;
 
 
-	public SceneNavigator(Dimension dimension) {
-		this.dimension = dimension;
+	public SceneNavigator(World world) {
+		this.world = world;
 		this.scenes = new HashMap<>();
 	}
 
@@ -37,6 +36,6 @@ public class SceneNavigator {
 	public void registerScene(ISceneIdentifier<?> key, Scene scene) {
 		scene.setVisible(false);
 		scenes.put(key, scene);
-		dimension.addObj(scene, RenderType.UI);
+		world.addEntity(scene);
 	}
 }

@@ -34,8 +34,8 @@ public class GridMergeLayoutPanel extends UIPanel {
 		panel.getMaxWidth().reset().addPF((float) 100 / gridSize.x * width);
 		panel.getMinWidth().reset().addPF((float) 100 / gridSize.x * width);
 
-		panel.getMaxHeight().reset().addPF((float) 100 / gridSize.y * width);
-		panel.getMinHeight().reset().addPF((float) 100 / gridSize.y * width);
+		panel.getMaxHeight().reset().addPF((float) 100 / gridSize.y * height);
+		panel.getMinHeight().reset().addPF((float) 100 / gridSize.y * height);
 
 		panel.getX().reset().addPF((float) 100 / gridSize.x * x);
 		panel.getY().reset().addPF((float) 100 / gridSize.y * y);

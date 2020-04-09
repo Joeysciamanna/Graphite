@@ -1,4 +1,4 @@
-package ch.g_7.graphite.rendering;
+package ch.g_7.graphite.ui.util;
 
 import ch.g_7.graphite.node.IEntityIdentifier;
 

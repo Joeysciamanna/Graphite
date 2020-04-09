@@ -15,7 +15,7 @@ public class World implements Initializable, Closeable {
 
     private final RenderManager renderManager;
 
-    private final List<IEntity<?>> entities;
+    private final List<IEntity<?, ?>> entities;
 
 
     public World() {
@@ -23,9 +23,9 @@ public class World implements Initializable, Closeable {
         this.entities = new ArrayList<>();
     }
 
-    public List<IEntity<?>> getEntitiesOfId(IEntityIdentifier<?> id) {
-        List<IEntity<?>> resultList = new ArrayList<>();
-        for (IEntity<?> entity : entities) {
+    public List<IEntity<?, ?>> getEntitiesOfId(IEntityIdentifier<?> id) {
+        List<IEntity<?, ?>> resultList = new ArrayList<>();
+        for (IEntity<?, ?> entity : entities) {
             if(entity.getId().equals(id)){
                 resultList.add(entity);
             }
@@ -33,8 +33,8 @@ public class World implements Initializable, Closeable {
         return resultList;
     }
 
-    public Optional<IEntity<?>> getEntityOfId(IEntityIdentifier<?> id) {
-        for (IEntity<?> node : entities) {
+    public Optional<IEntity<?, ?>> getEntityOfId(IEntityIdentifier<?> id) {
+        for (IEntity<?, ?> node : entities) {
             if(node.getId().equals(id)){
                 return Optional.of(node);
             }
@@ -42,12 +42,12 @@ public class World implements Initializable, Closeable {
         return Optional.empty();
     }
 
-    public void addEntity(IEntity<?> entity){
+    public void addEntity(IEntity<?, ?> entity){
         entities.add(entity);
         renderManager.add(entity);
     }
 
-    public void removeEntity(IEntity<?> entity){
+    public void removeEntity(IEntity<?, ?> entity){
         entities.remove(entity);
         renderManager.remove(entity);
     }
