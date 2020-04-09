@@ -1,9 +1,9 @@
 package ch.g_7.graphite.core.window;
 
-import ch.g_7.util.listner.IListner;
+import ch.g_7.util.listner.IListener;
 
 @FunctionalInterface
-public interface ResizeListner extends IListner<ResizeEvent>{
+public interface ResizeListner extends IListener<ResizeEvent> {
 
 
 	

@@ -81,7 +81,7 @@ public class GridLayoutPanel extends UIPanel{
 		panel.getX().reset().addPF((float) 100f/gridSize.x * x).add(new ScaledScreenDimension(columPlaceHolderPerCell, x));
 		panel.getY().reset().addPF((float) 100f/gridSize.y * y).add(new ScaledScreenDimension(rowPlaceHolderPerCell,  y));
 
-		requestRecalculation(this);
+		recalculate();
 	}
 
 

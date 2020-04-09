@@ -61,7 +61,7 @@ public class SpaceSharingLayoutPanel extends UIPanel {
 			break;
 		}
 		mainPanelPosition = stickySide;
-		requestRecalculation(this);
+		recalculate();
 	}
 
 	public void setAdjustablePanel(IUIPanel adjustablePanel) {
@@ -109,7 +109,7 @@ public class SpaceSharingLayoutPanel extends UIPanel {
 			adjustablePanel.getX().addPF(100).remove(mainPanel.getWidth()).remove(adjustablePanel.getWidth());
 			break;
 		}
-		requestRecalculation(this);
+		recalculate();
 	}
 
 

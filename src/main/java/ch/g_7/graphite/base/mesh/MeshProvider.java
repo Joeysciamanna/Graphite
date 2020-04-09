@@ -4,12 +4,13 @@ import ch.g_7.graphite.resource.BasicResourceProvider;
 import ch.g_7.graphite.resource.IResourceKey;
 import ch.g_7.graphite.resource.IResourceProvider;
 import ch.g_7.util.io.IFileLoader;
+import ch.g_7.util.io.IResourceLoader;
 
 
 public class MeshProvider extends BasicResourceProvider<Mesh, Mesh> {
 
 	@Override
-	protected Mesh loadResource(Mesh mesh, IFileLoader fileLoader) throws IllegalArgumentException {
+	protected Mesh loadResource(Mesh mesh, IResourceLoader resourceLoader) throws IllegalArgumentException {
 		return mesh;
 	}
 

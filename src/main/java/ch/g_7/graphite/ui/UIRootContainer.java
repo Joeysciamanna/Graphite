@@ -6,6 +6,7 @@ import ch.g_7.graphite.node.IViewModel;
 import ch.g_7.graphite.ui.util.IUIViewIdentifier;
 import ch.g_7.graphite.ui.transform.IUITransform;
 import ch.g_7.graphite.ui.transform.SimpleUITransform;
+import ch.g_7.graphite.ui.view_model.IUIViewModel;
 import ch.g_7.graphite.ui.view_model.UIViewModel;
 import ch.g_7.graphite.util.Color;
 import org.joml.Vector2i;
@@ -52,11 +53,6 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer {
 
 
 	@Override
-	public void requestRecalculation(IUIContainer container) {
-		container.recalculate(window.getSize(), window.getSize());
-	}
-
-	@Override
 	public void add(IUIPanel panel) {
 		super.add(panel);
 	}
@@ -85,7 +81,7 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer {
 	}
 
 	@Override
-	public IViewModel getViewModel() {
+	public IUIViewModel getViewModel() {
 		return viewModel;
 	}
 

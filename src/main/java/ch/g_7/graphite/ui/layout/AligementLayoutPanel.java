@@ -50,7 +50,7 @@ public class AligementLayoutPanel extends UIPanel {
 			panel.getY().addPF(100).remove(panel.getHeight());
 		break;
 		}
-		requestRecalculation(this);
+		recalculate();
 	}
 
 

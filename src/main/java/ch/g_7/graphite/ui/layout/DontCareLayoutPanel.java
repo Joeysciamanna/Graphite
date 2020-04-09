@@ -22,7 +22,7 @@ public class DontCareLayoutPanel extends UIPanel {
 		panel.getMinWidth().reset();
 		panel.getMinHeight().reset();
 
-		requestRecalculation(this);
+		recalculate();
 	}
 
 

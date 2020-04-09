@@ -7,23 +7,20 @@ import ch.g_7.graphite.node.Renderable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RenderableList<T extends IViewModel> {
+public class NodeRenderList<T extends INode<?, ?>> {
 
-    private final List<Renderable< T>> viewModels;
+    private final List<T> viewModels;
 
-    public RenderableList() {
+    public NodeRenderList() {
         this.viewModels = new ArrayList<>();
     }
 
-    public void sort(){
 
-    }
-
-    public void add(Renderable<T> viewModel){
+    public void add(T viewModel){
         viewModels.add(viewModel);
     }
 
-    public void remove(Renderable<T> viewModel){
+    public void remove(T viewModel){
         viewModels.remove(viewModel);
     }
 
@@ -31,7 +28,11 @@ public class RenderableList<T extends IViewModel> {
         viewModels.clear();
     }
 
-    public List<Renderable<T>> getViewModels() {
+    public boolean isEmpty(){
+        return viewModels.isEmpty();
+    }
+
+    public List<T> getViewModels() {
         return viewModels;
     }
 }

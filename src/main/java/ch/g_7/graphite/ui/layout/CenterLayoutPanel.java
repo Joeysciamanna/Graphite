@@ -22,7 +22,7 @@ public class CenterLayoutPanel extends UIPanel{
 		panel.getX().reset().addPF(50).remove(new ScaledScreenDimension(panel.getWidth(), 0.5f));
 		panel.getY().reset().addPF(50).remove(new ScaledScreenDimension(panel.getHeight(), 0.5f));
 
-		requestRecalculation(this);
+		recalculate();
 	}
 
 	public void clear() {

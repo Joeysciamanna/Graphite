@@ -40,7 +40,7 @@ public class GridMergeLayoutPanel extends UIPanel {
 		panel.getX().reset().addPF((float) 100 / gridSize.x * x);
 		panel.getY().reset().addPF((float) 100 / gridSize.y * y);
 
-		requestRecalculation(this);
+		recalculate();
 	}
 
 

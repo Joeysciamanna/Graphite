@@ -7,4 +7,7 @@ public interface IUITransform extends IROTransform {
 
     void recalculate(Vector2ic screenSize, Vector2ic fatherSize);
 
+    Vector2ic getSize();
+
+    Vector2ic getPosition();
 }

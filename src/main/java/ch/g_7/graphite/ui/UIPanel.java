@@ -23,15 +23,9 @@ public class UIPanel extends UIContainer implements IUIPanel {
 
 	@Override
 	public void recalculate() {
-		requestRecalculation(this);
+		recalculate(getRootContainer().getWindow().getSize(), getFather().getTransform().getSize());
 	}
 
-	@Override
-	public final void requestRecalculation(IUIContainer container) {
-		if(getFather()!=null) {
-			getFather().requestRecalculation(container);
-		}
-	}
 
 	@Override
 	public void init() { }
@@ -45,7 +39,10 @@ public class UIPanel extends UIContainer implements IUIPanel {
 	}
 
 	public IUIContainer getFather() {
-		return father;
+		if(father != null){
+			return father;
+		}
+		throw new IllegalStateException("UIPanel is not attached to any father");
 	}
 
 	@Override
@@ -65,7 +62,7 @@ public class UIPanel extends UIContainer implements IUIPanel {
 
 	@Override
 	public boolean isVisible() {
-		return false;
+		return viewModel.isVisible();
 	}
 
 	@Override
@@ -80,7 +77,10 @@ public class UIPanel extends UIContainer implements IUIPanel {
 
 	@Override
 	public IUIRootContainer getRootContainer() {
-		return getFather() == null ? null : father.getRootContainer();
+		if(getFather() != null){
+			return father.getRootContainer();
+		}
+		throw new IllegalStateException("UIPanel is not attached to any root");
 	}
 
 

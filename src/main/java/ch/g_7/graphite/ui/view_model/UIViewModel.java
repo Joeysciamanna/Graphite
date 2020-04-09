@@ -4,10 +4,15 @@ import ch.g_7.graphite.base.mesh.IMesh;
 import ch.g_7.graphite.base.mesh.Mesh;
 import ch.g_7.graphite.base.mesh.MeshFactory2d;
 import ch.g_7.graphite.base.texture.ITexture;
+import ch.g_7.graphite.base.texture.Texture;
+import ch.g_7.graphite.rendering.IRenderResource;
 import ch.g_7.graphite.rendering.IRenderType;
 import ch.g_7.graphite.rendering.RenderType;
 import ch.g_7.graphite.resource.ResourceManager;
 import ch.g_7.graphite.util.Color;
+import ch.g_7.util.helper.Util;
+
+import java.util.Objects;
 
 public class UIViewModel implements IUIViewModel {
 
@@ -73,8 +78,14 @@ public class UIViewModel implements IUIViewModel {
     }
 
     @Override
-    public void bind() { }
+    public void bind() {
+        Util.ifNotNull(texture, IRenderResource::bind);
+        mesh.bind();
+    }
 
     @Override
-    public void unbind() { }
+    public void unbind() {
+        Util.ifNotNull(texture, IRenderResource::unbind);
+        mesh.unbind();
+    }
 }

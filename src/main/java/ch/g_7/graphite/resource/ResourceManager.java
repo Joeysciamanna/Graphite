@@ -11,12 +11,13 @@ import ch.g_7.graphite.entity.WavefrontObjectProvider;
 import ch.g_7.util.common.Closeable;
 import ch.g_7.util.helper.Util;
 import ch.g_7.util.io.IFileLoader;
+import ch.g_7.util.io.IResourceLoader;
 import ch.g_7.util.io.LocalFileLoader;
 
 public class ResourceManager implements Closeable {
 
-	public final static IFileLoader ENGINE_FILE_LOADER = new LocalFileLoader() {};
-	public static IFileLoader GAME_FILE_LOADER;
+	public final static IResourceLoader ENGINE_FILE_LOADER = new LocalFileLoader() {};
+	public static IResourceLoader GAME_FILE_LOADER;
 	
 	
 	
@@ -46,7 +47,7 @@ public class ResourceManager implements Closeable {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public <T extends IResource, K extends IResourceKey> T allocate(K resourceKey, IFileLoader fileLoader) {
+	public <T extends IResource, K extends IResourceKey> T allocate(K resourceKey, IResourceLoader fileLoader) {
 		for (IResourceProvider<?, ?> resourceLoader : resourceProviders) {
 			if (resourceLoader.canProvide(resourceKey)) {
 				return (T) resourceLoader.allocate(Util.cast(resourceKey), fileLoader);
@@ -154,8 +155,8 @@ public class ResourceManager implements Closeable {
 		return ACTIVE;
 	}
 
-	public static void setGameFileLoader(IFileLoader gameFileLoader) {
-		if(gameFileLoader != null) throw new IllegalStateException("GameFileLoader already set");
-		GAME_FILE_LOADER = gameFileLoader;
+	public static void setGameFileLoader(IResourceLoader gameResourceLoader) {
+		if(GAME_FILE_LOADER != null) throw new IllegalStateException("GameFileLoader already set");
+		GAME_FILE_LOADER = gameResourceLoader;
 	}
 }

@@ -21,7 +21,7 @@ repositories {
 }
 
 dependencies {
-    compile group: 'ch.g_7', name: 'Util', version: '0.3.13'
+    compile group: 'ch.g_7', name: 'Util', version: '0.4.1'
 
     implementation platform("org.lwjgl:lwjgl-bom:$lwjglVersion")
 

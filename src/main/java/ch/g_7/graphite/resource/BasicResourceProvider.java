@@ -4,6 +4,7 @@ package ch.g_7.graphite.resource;
 import java.util.Optional;
 
 import ch.g_7.util.io.IFileLoader;
+import ch.g_7.util.io.IResourceLoader;
 
 public abstract class BasicResourceProvider<T extends IResource, K extends IResourceKey> implements IResourceProvider<T, K> {
 
@@ -17,7 +18,7 @@ public abstract class BasicResourceProvider<T extends IResource, K extends IReso
     }
 
     @Override
-    public T allocate(K resourceKey, IFileLoader fileLoader) {
+    public T allocate(K resourceKey, IResourceLoader fileLoader) {
         Optional<T> resource = resourcePool.get(resourceKey);
         requests++;
         if(resource.isPresent()){
@@ -30,7 +31,7 @@ public abstract class BasicResourceProvider<T extends IResource, K extends IReso
         return res;
     }
 
-    protected abstract T loadResource(K resourceKey, IFileLoader fileLoader) throws IllegalArgumentException;
+    protected abstract T loadResource(K resourceKey, IResourceLoader resourceLoader);
 
     protected static void checkResourceNames(IResourceKey resourceKey, String... names){
         if(!containsResourceNames(resourceKey, names))

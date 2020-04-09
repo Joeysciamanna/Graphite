@@ -2,6 +2,7 @@ package ch.g_7.graphite.ui.transform;
 
 import ch.g_7.graphite.ui.util.IScreenDimension;
 import ch.g_7.graphite.ui.util.ScreenDimension;
+import org.joml.Vector2i;
 import org.joml.Vector2ic;
 import org.joml.Vector3f;
 import org.joml.Vector3fc;
@@ -47,6 +48,16 @@ public abstract class BasicUITransform implements IUITransform {
         return scale;
     }
 
+    @Override
+    public Vector2ic getSize() {
+        return new Vector2i((int)scale.x, (int) scale.y);
+    }
+
+    @Override
+    public Vector2ic getPosition() {
+        return new Vector2i((int)translation.x, (int) translation.y);
+    }
+
     public ScreenDimension getX() {
         return x;
     }
@@ -54,4 +65,6 @@ public abstract class BasicUITransform implements IUITransform {
     public ScreenDimension getY() {
         return y;
     }
+
+
 }

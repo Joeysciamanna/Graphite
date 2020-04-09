@@ -13,4 +13,6 @@ public interface IUIViewModel extends IViewModel {
 
     IMesh getMesh();
 
+    boolean isVisible();
+
 }

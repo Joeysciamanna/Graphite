@@ -58,7 +58,8 @@ public class ListLayoutPanel extends UIPanel {
 			panel.getY().add(new ScaledScreenDimension(placeHolder, index));
 			panel.getMinWidth().reset().addPF(100);
 		}
-		requestRecalculation(this);
+
+		recalculate();
 	}
 
 

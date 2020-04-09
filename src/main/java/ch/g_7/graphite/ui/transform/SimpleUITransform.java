@@ -13,7 +13,9 @@ public class SimpleUITransform extends BasicUITransform {
 
     public SimpleUITransform() {
         this.width = new ScreenDimension(ScreenDimension.X_AXIS);
+        this.width.addPF(100);
         this.height = new ScreenDimension(ScreenDimension.Y_AXIS);
+        this.height.addPF(100);
     }
 
     @Override
