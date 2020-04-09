@@ -34,17 +34,17 @@ public abstract class BasicUITransform implements IUITransform {
     }
 
     @Override
-    public Vector3fc getTranslation() {
+    public Vector3f getTranslation() {
         return translation;
     }
 
     @Override
-    public Vector3fc getRotation() {
+    public Vector3f getRotation() {
         return new Vector3f();
     }
 
     @Override
-    public Vector3fc getScale() {
+    public Vector3f getScale() {
         return scale;
     }
 

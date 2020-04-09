@@ -24,6 +24,7 @@ public class UIPanel extends UIContainer implements IUIPanel {
 	@Override
 	public void recalculate() {
 		recalculate(getRootContainer().getWindow().getSize(), getFather().getTransform().getSize());
+		getTransform().getTranslation().add(father.getTransform().getTranslation());
 	}
 
 
@@ -71,7 +72,7 @@ public class UIPanel extends UIContainer implements IUIPanel {
 	}
 
 	@Override
-	public IUITransform getTransform() {
+	public AdvancedUITransform getTransform() {
 		return transform;
 	}
 

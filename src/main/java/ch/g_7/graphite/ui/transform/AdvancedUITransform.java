@@ -14,8 +14,8 @@ public class AdvancedUITransform extends BasicUITransform {
     private final ScreenDimension preferredWidth;
     private final ScreenDimension preferredHeight;
 
-    protected ScreenDimension actualWidth;
-    protected ScreenDimension actualHeight;
+    protected final ScreenDimension actualWidth;
+    protected final ScreenDimension actualHeight;
 
     public AdvancedUITransform() {
         this.maxWidth = new ScreenDimension(ScreenDimension.X_AXIS).addPF(100);
@@ -27,8 +27,8 @@ public class AdvancedUITransform extends BasicUITransform {
         this.preferredWidth = new ScreenDimension(ScreenDimension.X_AXIS).addPF(100);
         this.preferredHeight = new ScreenDimension(ScreenDimension.Y_AXIS).addPF(100);
 
-        this.actualWidth = new ScreenDimension(ScreenDimension.X_AXIS);
-        this.actualHeight = new ScreenDimension(ScreenDimension.Y_AXIS);
+        this.actualWidth = new ScreenDimension(ScreenDimension.X_AXIS).addPF(100);
+        this.actualHeight = new ScreenDimension(ScreenDimension.Y_AXIS).addPF(100);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class AdvancedUITransform extends BasicUITransform {
         recalculateDimension(actualHeight, screenSize, fatherSize);
         scale.set(actualWidth.getValue(), actualHeight.getValue(), 0);
 
-        //transformation.getPosition().add(father.getTransformation().getPosition());
+        //
     }
 
 

@@ -93,7 +93,15 @@ public class GUI extends Application {
 	public void update(float deltaMillis) {
 		if(getWindow().isKeyPressed(GLFW.GLFW_KEY_R)){
 			mainMenu.recalculate();
+			System.out.println("recalculated");
 		}
+		if(getWindow().isKeyPressed(GLFW.GLFW_KEY_F)) {
+			System.out.println("RENDER FPS:      " + getTimer().getLPS());
+			System.out.println("UPDATE FPS:      " + updateLoop.getTimer().getLPS());
+			System.out.println("Update Delta:    " + deltaMillis);
+			System.out.println("Update FPS Calc: " + 1000/deltaMillis);
+		}
+
 	}
 
 	enum ViewId implements IUIViewIdentifier<ViewId>{
