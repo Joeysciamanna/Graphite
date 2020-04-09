@@ -1,11 +1,20 @@
 plugins {
     id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.8'
 }
 
+ext {
+    jMonkeyVersion = "3.2.4-stable"
+}
+
+
 group 'ch.g_7'
-version '1.0-SNAPSHOT'
+version '0.4.0'
 
 sourceCompatibility = 1.8
+compileJava.options.encoding = 'UTF-8'
+mainClassName = 'ch.g_7.graphite.xjfx.test.Main'
 
 project.ext.lwjglVersion = "3.2.3"
 project.ext.jomlVersion = "1.9.17"
@@ -15,6 +24,7 @@ project.ext.lwjglNatives = "natives-windows"
 
 repositories {
     mavenCentral()
+    jcenter()
     maven {
         url "http://ftp.g-7.ch:1001/maven/"
     }
@@ -24,6 +34,12 @@ dependencies {
     compile group: 'ch.g_7', name: 'Util', version: '0.4.1'
 
     implementation platform("org.lwjgl:lwjgl-bom:$lwjglVersion")
+
+
+
+    implementation  "org.jmonkeyengine:jme3-core:$jMonkeyVersion"
+    implementation  "org.jmonkeyengine:jme3-lwjgl3:$jMonkeyVersion"
+
 
     implementation "org.lwjgl:lwjgl"
     implementation "org.lwjgl:lwjgl-assimp"
@@ -45,3 +61,7 @@ dependencies {
 }
 
 
+javafx {
+    version = "14"
+    modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.media', 'javafx.graphics']
+}
