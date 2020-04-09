@@ -33,6 +33,7 @@ public class AdvancedUITransform extends BasicUITransform {
 
     @Override
     public void recalculate(Vector2ic screenSize, Vector2ic fatherSize) {
+        super.recalculate(screenSize, fatherSize);
         //if(recalculate) {
             recalculateDimension(maxWidth, screenSize, fatherSize);
             recalculateDimension(maxHeight, screenSize, fatherSize);
@@ -46,6 +47,7 @@ public class AdvancedUITransform extends BasicUITransform {
         recalculateDimension(actualWidth, screenSize, fatherSize);
         recalculateDimension(actualHeight, screenSize, fatherSize);
         scale.set(actualWidth.getValue(), actualHeight.getValue(), 0);
+
         //transformation.getPosition().add(father.getTransformation().getPosition());
     }
 
@@ -98,11 +100,4 @@ public class AdvancedUITransform extends BasicUITransform {
         return preferredHeight;
     }
 
-    public ScreenDimension getActualWidth() {
-        return actualWidth;
-    }
-
-    public ScreenDimension getActualHeight() {
-        return actualHeight;
-    }
 }

@@ -30,8 +30,6 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer {
 		this.window.addResizeListner(this);
 		this.window.addMouseListner(mouseManager);
 		this.transform = new SimpleUITransform();
-		this.transform.getHeight().addPW(100);
-		this.transform.getHeight().addPW(100);
 		this.viewModel = new UIViewModel(Color.TRANSPARENT);
 	}
 
@@ -50,7 +48,6 @@ public class UIRootContainer extends UIContainer implements IUIRootContainer {
 	public void recalculate() {
 		recalculate(window.getSize(), window.getSize());
 	}
-
 
 	@Override
 	public void add(IUIPanel panel) {

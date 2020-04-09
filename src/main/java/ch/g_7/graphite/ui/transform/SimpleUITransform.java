@@ -20,6 +20,7 @@ public class SimpleUITransform extends BasicUITransform {
 
     @Override
     public void recalculate(Vector2ic screenSize, Vector2ic fatherSize) {
+        super.recalculate(screenSize, fatherSize);
         recalculateDimension(width, screenSize, fatherSize);
         recalculateDimension(height, screenSize, fatherSize);
         scale.set(width.getValue(), height.getValue(), 0);

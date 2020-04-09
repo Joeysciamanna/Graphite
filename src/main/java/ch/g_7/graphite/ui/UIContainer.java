@@ -44,7 +44,7 @@ public abstract class UIContainer implements IUIContainer {
 	public void recalculate(Vector2ic screenSize, Vector2ic fatherSize) {
 		getTransform().recalculate(screenSize, fatherSize);
 		for (IUIPanel child : getChildren()) {
-			child.recalculate(screenSize, new Vector2i((int)getTransform().getScale().x(), (int) getTransform().getScale().y()));
+			child.recalculate(screenSize, getTransform().getSize());
 		}
 	}
 

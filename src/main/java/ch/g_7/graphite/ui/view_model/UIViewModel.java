@@ -18,7 +18,7 @@ public class UIViewModel implements IUIViewModel {
 
     private static final IMesh SQUARE_MESH = ResourceManager.addGlobalResource(MeshFactory2d.getSquare(1).build());
 
-    private boolean visible;
+    private boolean visible = true;
     private IMesh mesh;
     private Color color;
     private ITexture texture;
