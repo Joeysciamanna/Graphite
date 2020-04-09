@@ -1,13 +1,13 @@
 package ch.g_7.graphite.test;
 
 import ch.g_7.graphite.core.Application;
-import ch.g_7.graphite.entity.Entity;
+import ch.g_7.graphite.entity.GameObject;
 import ch.g_7.graphite.entity.EntityKey;
 import ch.g_7.graphite.rendering.BasicViewModel;
-import ch.g_7.graphite.rendering.RenderType;
 import ch.g_7.graphite.rendering.entity.EntityRenderer;
 import ch.g_7.graphite.resource.ResourceManager;
 import ch.g_7.util.helper.AppInitializer;
+import ch.g_7.util.io.LocalFileLoader;
 import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;
 
@@ -18,24 +18,21 @@ public class RotateCube extends Application {
     }
 
     public static void main(String[] args) {
-        AppInitializer appInitializer = new AppInitializer(true,"RotateCube Test", new Object() {});
+        AppInitializer appInitializer = new AppInitializer(true,"RotateCube Test", new LocalFileLoader() {});
         appInitializer.addConsoleLoggers();
 
         RotateCube rotateCube = new RotateCube("Rotate Cube Test");
         rotateCube.start();
     }
 
-    Entity<BasicViewModel> entity;
+    GameObject<BasicViewModel> entity;
 
     @Override
     public void init() {
-
-        getWorld().getRenderManager().register(new EntityRenderer());
-
         entity = ResourceManager.getActive().allocateFromEngine(new EntityKey("obj/icosphere.obj"));
         entity.getTransform().setScale(new Vector3f(0.1f,0.1f,0.1f));
         entity.getTransform().setTranslation(new Vector3f(0, 0, -0.5f));
-        getWorld().add(entity);
+        getWorld().addNode(entity);
 
         getWindow().setVisible(true);
         getWindow().setSize(500, 500);

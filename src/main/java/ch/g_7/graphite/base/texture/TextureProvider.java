@@ -7,13 +7,14 @@ import ch.g_7.graphite.resource.BasicResourceProvider;
 import ch.g_7.graphite.resource.IResourceKey;
 import ch.g_7.graphite.resource.IResourceProvider;
 import ch.g_7.util.io.IFileLoader;
+import ch.g_7.util.io.IResourceLoader;
 
 
 public class TextureProvider extends BasicResourceProvider<Texture, TextureKey> {
 
     @Override
-    protected Texture loadResource(TextureKey resourceKey, IFileLoader fileLoader) throws IllegalArgumentException {
-    	return loadTexture(fileLoader.loadFile(resourceKey.getName()));
+    protected Texture loadResource(TextureKey resourceKey, IResourceLoader resourceLoader) throws IllegalArgumentException {
+    	return loadTexture(resourceLoader.loadResourceThrowRuntime(resourceKey.getName()));
     }
 
     private Texture loadTexture(InputStream inputStream) {

@@ -1,4 +1,4 @@
-package ch.g_7.graphite.base.transformation;
+package ch.g_7.graphite.base.transform;
 
 import org.joml.Vector3f;
 

@@ -1,4 +1,4 @@
-package ch.g_7.graphite.node;
+package ch.g_7.graphite.rendering;
 
 public interface IRenderResource {
 

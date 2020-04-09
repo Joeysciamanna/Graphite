@@ -6,6 +6,7 @@ public class Vector3i implements IVector3i {
 
     public int x, y, z;
 
+
     public Vector3i() {}
 
     public Vector3i(int x, int y, int z) {

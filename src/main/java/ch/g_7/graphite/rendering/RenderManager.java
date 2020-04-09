@@ -1,9 +1,12 @@
 package ch.g_7.graphite.rendering;
 
+import ch.g_7.graphite.node.IEntity;
 import ch.g_7.graphite.node.IViewModel;
 import ch.g_7.graphite.core.Camera;
 import ch.g_7.graphite.core.window.Window;
 import ch.g_7.graphite.node.INode;
+import ch.g_7.graphite.rendering.entity.EntityRenderer;
+import ch.g_7.graphite.rendering.ui.UIRenderer;
 import ch.g_7.util.common.Closeable;
 import ch.g_7.util.common.Initializable;
 import org.lwjgl.opengl.GL11;
@@ -38,7 +41,7 @@ public class RenderManager implements Initializable, Closeable {
     }
 
     @SuppressWarnings("unchecked")
-    public <T extends IViewModel> void add(INode<?, T> node){
+    public <T extends INode<?,?>> void add(T node){
         for (IRenderer<?> renderer : renderers) {
             if(renderer.getRenderType().equals(node.getViewModel().getRenderType())){
                 ((IRenderer<T>)renderer).addRenderable(node);
@@ -49,7 +52,7 @@ public class RenderManager implements Initializable, Closeable {
     }
 
     @SuppressWarnings("unchecked")
-    public <T extends IViewModel> void remove(INode<?, T> node){
+    public  <T extends INode<?,?>> void remove(T node){
         for (IRenderer<?> renderer : renderers) {
             if(renderer.getRenderType().equals(node.getViewModel().getRenderType())){
                 ((IRenderer<T>)renderer).removeRenderable(node);
@@ -57,6 +60,22 @@ public class RenderManager implements Initializable, Closeable {
             }
         }
         throw new IllegalArgumentException("Node cant be removed, no renderer for ["+node+"] registered");
+    }
+
+    public <T extends IViewModel> void clear(IRenderType<?> renderType){
+        for (IRenderer<?> renderer : renderers) {
+            if(renderer.getRenderType().equals(renderType)){
+                renderer.clear();
+                return;
+            }
+        }
+        throw new IllegalArgumentException("Renderer cant be cleared, no renderer ["+renderType+"] registered");
+    }
+
+    public <T extends IViewModel> void clear(){
+        for (IRenderer<?> renderer : renderers) {
+            renderer.clear();
+        }
     }
 
     public void register(IRenderer<?> renderer){
@@ -69,6 +88,9 @@ public class RenderManager implements Initializable, Closeable {
 
     @Override
     public void init() {
+        register(new EntityRenderer());
+        register(new UIRenderer());
+
         glEnable(GL_DEPTH_TEST);
 
         GL11.glDisable(GL11.GL_CULL_FACE);

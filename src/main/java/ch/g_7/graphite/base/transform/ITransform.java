@@ -1,8 +1,6 @@
-package ch.g_7.graphite.base.transformation;
+package ch.g_7.graphite.base.transform;
 
-import ch.g_7.graphite.math.vec.IVector3f;
 import org.joml.Vector3f;
-import org.joml.Vector3fc;
 
 public interface ITransform extends IROTransform {
 

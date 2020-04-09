@@ -13,8 +13,7 @@ public class Vector2f implements IVector2f {
 		this.x = x;
 		this.y = y;
 	}
-	
-	
+
 	@Override
 	public Vector2f add(float i) {
 		add(i, i, this);
