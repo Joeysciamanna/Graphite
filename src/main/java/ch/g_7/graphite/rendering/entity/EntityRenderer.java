@@ -49,8 +49,8 @@ public class EntityRenderer extends BasicRenderer<BasicViewModel, IEntity<?, Bas
 		material.bind();
 		mesh.bind();
 		glDrawElements(GL11.GL_TRIANGLES, mesh.getVerticesCount(), GL_UNSIGNED_INT, 0);
-		material.bind();
-		mesh.bind();
+		material.unbind();
+		mesh.unbind();
 	}
 
 	@Override
