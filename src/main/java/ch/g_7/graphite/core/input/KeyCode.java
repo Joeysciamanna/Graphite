@@ -37,6 +37,10 @@ public enum KeyCode {
     KEY_8('8'),
     KEY_9('9'),
     KEY_0('0'),
+    KEY_ESC((char)27),
+    KEY_SPACE(' '),
+
+
     MOUSE_LEFT('\0'),
     MOUSE_RIGHT('\0'),
     MOUSE_MIDDLE('\0');

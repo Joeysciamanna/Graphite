@@ -128,6 +128,7 @@ public class GLFWWindow implements IWindow {
     @Override
     public boolean setSize(int width, int height) {
         glfwSetWindowSize(id, width, height);
+        glViewport(0, 0, width, height);
         this.width = width;
         this.height = height;
         return true;
