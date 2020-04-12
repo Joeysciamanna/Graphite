@@ -1,24 +1,34 @@
 package ch.g_7.graphite.xjfxi;
 
+import ch.g_7.graphite.core.Application;
 import com.sun.javafx.cursor.CursorFrame;
 import com.sun.javafx.embed.EmbeddedSceneInterface;
 import com.sun.javafx.embed.EmbeddedStageInterface;
 import com.sun.javafx.embed.HostInterface;
 
 public class GraphiteHostInterface implements HostInterface {
+
+    private final Application application;
+    private EmbeddedSceneInterface sceneInterface;
+    private EmbeddedStageInterface stageInterface;
+
+    public GraphiteHostInterface(Application application) {
+        this.application = application;
+    }
+
     @Override
     public void setEmbeddedStage(EmbeddedStageInterface embeddedStage) {
-
+        this.stageInterface = embeddedStage;
     }
 
     @Override
     public void setEmbeddedScene(EmbeddedSceneInterface embeddedScene) {
-
+        this.sceneInterface = embeddedScene;
     }
 
     @Override
     public boolean requestFocus() {
-        return false;
+        return application.getWindow().r;
     }
 
     @Override
