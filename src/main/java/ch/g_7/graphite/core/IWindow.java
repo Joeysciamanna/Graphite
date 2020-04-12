@@ -11,20 +11,21 @@ public interface IWindow extends Initializable, Closeable, IRenderResource, Upda
 
     boolean setTitle(String title);
 
-    boolean setSize(int width, int height);
+    void setSize(int width, int height);
 
     Vector2ic getSize();
 
-    boolean setPosition(int x, int y);
+    void setPosition(int x, int y);
 
     Vector2ic getPosition();
 
-    boolean setVisible(boolean visible);
+    void setVisible(boolean visible);
 
     boolean isVisible();
 
     boolean shouldClose();
 
-    boolean setClearColor(Color color);
+    void setClearColor(Color color);
 
+    void requestFocus();
 }

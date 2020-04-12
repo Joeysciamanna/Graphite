@@ -126,12 +126,11 @@ public class GLFWWindow implements IWindow {
     }
 
     @Override
-    public boolean setSize(int width, int height) {
+    public void setSize(int width, int height) {
         glfwSetWindowSize(id, width, height);
         glViewport(0, 0, width, height);
         this.width = width;
         this.height = height;
-        return true;
     }
 
     @Override
@@ -140,11 +139,10 @@ public class GLFWWindow implements IWindow {
     }
 
     @Override
-    public boolean setPosition(int x, int y) {
+    public void setPosition(int x, int y) {
         glfwSetWindowPos(id, x, y);
         this.x = x;
         this.y = y;
-        return true;
     }
 
 /*  TODO  private void reposition() {
@@ -156,14 +154,13 @@ public class GLFWWindow implements IWindow {
 
 
     @Override
-    public boolean setVisible(boolean visible) {
+    public void setVisible(boolean visible) {
         if (visible) {
             glfwShowWindow(id);
         } else {
             glfwHideWindow(id);
         }
         this.visible = visible;
-        return true;
     }
 
     @Override
@@ -172,9 +169,8 @@ public class GLFWWindow implements IWindow {
     }
 
     @Override
-    public boolean setClearColor(Color color) {
+    public void setClearColor(Color color) {
         glClearColor(color.getR(), color.getG(), color.getB(), color.getA());
-        return true;
     }
 
     @Override
