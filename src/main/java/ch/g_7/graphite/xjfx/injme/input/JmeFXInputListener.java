@@ -4,8 +4,6 @@
  */
 package ch.g_7.graphite.xjfx.injme.input;
 
-import static java.util.Objects.requireNonNull;
-
 import ch.g_7.graphite.xjfx.injme.JmeFxContainerInternal;
 import ch.g_7.graphite.xjfx.injme.JmeFxDnDHandler;
 import ch.g_7.graphite.xjfx.util.JfxPlatform;
@@ -22,6 +20,8 @@ import javafx.scene.Scene;
 import java.awt.event.KeyEvent;
 import java.util.BitSet;
 import java.util.Objects;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * Converts Jme Events to JavaFx Events

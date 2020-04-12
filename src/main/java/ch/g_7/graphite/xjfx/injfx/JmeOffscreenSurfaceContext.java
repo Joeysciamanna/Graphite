@@ -2,12 +2,14 @@ package ch.g_7.graphite.xjfx.injfx;
 
 import ch.g_7.graphite.xjfx.injfx.input.JfxKeyInput;
 import ch.g_7.graphite.xjfx.injfx.input.JfxMouseInput;
-import ch.g_7.graphite.xjfx.injme.JmeFxContainer;
 import com.jme3.input.JoyInput;
 import com.jme3.input.TouchInput;
 import com.jme3.opencl.Context;
 import com.jme3.renderer.Renderer;
-import com.jme3.system.*;
+import com.jme3.system.AppSettings;
+import com.jme3.system.JmeContext;
+import com.jme3.system.SystemListener;
+import com.jme3.system.Timer;
 
 import java.util.Objects;
 

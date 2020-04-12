@@ -9,7 +9,6 @@ import com.jme3.input.InputManager;
 import com.sun.javafx.cursor.CursorFrame;
 import com.sun.javafx.cursor.CursorType;
 
-
 import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ConcurrentHashMap;

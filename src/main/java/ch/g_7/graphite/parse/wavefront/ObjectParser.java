@@ -1,12 +1,5 @@
 package ch.g_7.graphite.parse.wavefront;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-
 import ch.g_7.graphite.base.material.Material;
 import ch.g_7.graphite.base.mesh.Mesh;
 import ch.g_7.graphite.base.mesh.vao.FloatVBO;
@@ -18,6 +11,13 @@ import ch.g_7.graphite.math.vec.Vector3f;
 import ch.g_7.graphite.parse.wavefront.Face.IndexGroup;
 import ch.g_7.graphite.rendering.BasicViewModel;
 import ch.g_7.graphite.util.Color;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ObjectParser {
 

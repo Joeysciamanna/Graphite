@@ -1,6 +1,7 @@
 package ch.g_7.graphite.test;
 
 import ch.g_7.graphite.core.Application;
+import ch.g_7.graphite.core.glfw.GLFWWindow;
 import ch.g_7.graphite.entity.GameObject;
 import ch.g_7.graphite.entity.EntityKey;
 import ch.g_7.graphite.rendering.BasicViewModel;
@@ -45,29 +46,29 @@ public class RotateCube extends Application {
 	@SuppressWarnings("deprecation")
     public void update(float deltaMillis) {
 
-		if (getWindow().isKeyPressed(GLFW.GLFW_KEY_W))
+		if (((GLFWWindow)getWindow()).isKeyPressed(GLFW.GLFW_KEY_W))
 		    rotateByDegrees(new Vector3f(-0.05f * deltaMillis, 0, 0));
 
-        if (getWindow().isKeyPressed(GLFW.GLFW_KEY_S))
+        if (((GLFWWindow)getWindow()).isKeyPressed(GLFW.GLFW_KEY_S))
             rotateByDegrees(new Vector3f(0.05f * deltaMillis, 0, 0));
 
-        if (getWindow().isKeyPressed(GLFW.GLFW_KEY_A))
+        if (((GLFWWindow)getWindow()).isKeyPressed(GLFW.GLFW_KEY_A))
             rotateByDegrees(new Vector3f(0, -0.05f * deltaMillis, 0));
 
-        if (getWindow().isKeyPressed(GLFW.GLFW_KEY_D))
+        if (((GLFWWindow)getWindow()).isKeyPressed(GLFW.GLFW_KEY_D))
             rotateByDegrees(new Vector3f(0, 0.05f * deltaMillis, 0));
 
-        if (getWindow().isKeyPressed(GLFW.GLFW_KEY_Q))
+        if (((GLFWWindow)getWindow()).isKeyPressed(GLFW.GLFW_KEY_Q))
             rotateByDegrees(new Vector3f(0, 0,-0.05f * deltaMillis));
 
-        if (getWindow().isKeyPressed(GLFW.GLFW_KEY_E))
+        if (((GLFWWindow)getWindow()).isKeyPressed(GLFW.GLFW_KEY_E))
             rotateByDegrees(new Vector3f(0, 0,0.05f * deltaMillis));
 
-        if (getWindow().isKeyPressed(GLFW.GLFW_KEY_I))
+        if (((GLFWWindow)getWindow()).isKeyPressed(GLFW.GLFW_KEY_I))
             entity.getTransform().getRotation().set(0,0,0);
 
 
-        if(getWindow().isKeyPressed(GLFW.GLFW_KEY_F)) {
+        if(((GLFWWindow)getWindow()).isKeyPressed(GLFW.GLFW_KEY_F)) {
             System.out.println("RENDER FPS:      " + getTimer().getLPS());
             System.out.println("UPDATE FPS:      " + updateLoop.getTimer().getLPS());
             System.out.println("Update Delta:    " + deltaMillis);

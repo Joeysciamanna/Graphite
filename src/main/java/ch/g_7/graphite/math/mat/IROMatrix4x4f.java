@@ -1,6 +1,7 @@
 package ch.g_7.graphite.math.mat;
 
-import ch.g_7.graphite.math.vec.*;
+import ch.g_7.graphite.math.vec.IROVector3f;
+import ch.g_7.graphite.math.vec.IVector3f;
 
 public interface IROMatrix4x4f {
 

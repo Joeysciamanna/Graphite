@@ -1,6 +1,7 @@
 package ch.g_7.graphite.test;
 
 import ch.g_7.graphite.core.Application;
+import ch.g_7.graphite.core.glfw.GLFWWindow;
 import ch.g_7.graphite.entity.GameObject;
 import ch.g_7.graphite.entity.EntityKey;
 import ch.g_7.graphite.rendering.BasicViewModel;
@@ -44,7 +45,7 @@ public class Test extends Application {
 	@Override
 	@SuppressWarnings("deprecation")
     public void update(float deltaMillis) {
-        if(getWindow().isKeyPressed(GLFW.GLFW_KEY_F)) {
+        if(((GLFWWindow)getWindow()).isKeyPressed(GLFW.GLFW_KEY_F)) {
             System.out.println("RENDER FPS:      " + getTimer().getLPS());
             System.out.println("UPDATE FPS:      " + updateLoop.getTimer().getLPS());
             System.out.println("Update Delta:    " + deltaMillis);

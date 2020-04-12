@@ -1,9 +1,7 @@
 package ch.g_7.graphite.rendering;
 
-import org.joml.Matrix4f;
-
-import ch.g_7.graphite.rendering.ShaderProgram;
 import ch.g_7.graphite.util.Color;
+import org.joml.Matrix4f;
 
 public class BasicShaderProgram extends ShaderProgram {
 

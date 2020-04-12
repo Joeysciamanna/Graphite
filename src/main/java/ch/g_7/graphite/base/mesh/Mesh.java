@@ -1,10 +1,6 @@
 package ch.g_7.graphite.base.mesh;
 
-import ch.g_7.graphite.base.mesh.vao.IVBOType;
-import ch.g_7.graphite.base.mesh.vao.VAO;
-import ch.g_7.graphite.base.mesh.vao.VBO;
-import ch.g_7.graphite.base.mesh.vao.VBOFactory;
-import ch.g_7.graphite.base.mesh.vao.VBOType;
+import ch.g_7.graphite.base.mesh.vao.*;
 import ch.g_7.graphite.resource.IResource;
 import ch.g_7.graphite.resource.IResourceKey;
 

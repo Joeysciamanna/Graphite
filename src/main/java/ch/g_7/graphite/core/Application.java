@@ -1,6 +1,7 @@
 package ch.g_7.graphite.core;
 
-import ch.g_7.graphite.core.window.Window;
+import ch.g_7.graphite.core.glfw.GLFWWindow;
+import ch.g_7.graphite.core.input.InputManager;
 import ch.g_7.graphite.node.Updatable;
 import ch.g_7.graphite.resource.ResourceManager;
 import ch.g_7.util.common.Closeable;
@@ -10,8 +11,10 @@ import java.awt.*;
 
 public abstract class Application extends TaskLoop implements Updatable, Initializable, Closeable, Runnable {
 
+
+    protected final InputManager inputManager;
     protected final World world;
-    protected final Window window;
+    protected final IWindow window;
     protected final Camera camera;
 
     protected final TaskLoop updateLoop;
@@ -19,7 +22,8 @@ public abstract class Application extends TaskLoop implements Updatable, Initial
 
     public Application(String name) {
         this.world = new World();
-        this.window = new Window(name);
+        this.inputManager = new InputManager();
+        this.window = new GLFWWindow(inputManager, name);
         this.camera = new Camera();
 
         this.updateLoop = new TaskLoop();
@@ -48,9 +52,9 @@ public abstract class Application extends TaskLoop implements Updatable, Initial
     @Override
     protected void run(float deltaMillis) {
         super.run(deltaMillis);
-        window.pullEvents();
+        window.update(deltaMillis);
         world.getRenderManager().render(window, camera);
-        if (window.windowShouldClose()) {
+        if (window.shouldClose()) {
             stop();
         }
     }
@@ -75,7 +79,7 @@ public abstract class Application extends TaskLoop implements Updatable, Initial
         return camera;
     }
 
-    public Window getWindow() {
+    public IWindow getWindow() {
         return window;
     }
 

@@ -1,8 +1,6 @@
 package ch.g_7.graphite.xjfx.injfx;
 
 
-import com.sun.tools.javac.util.ArrayUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 

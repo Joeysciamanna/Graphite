@@ -1,11 +1,8 @@
 package ch.g_7.graphite.base.mesh.vao;
 
-import static org.lwjgl.opengl.GL15.GL_ARRAY_BUFFER;
-import static org.lwjgl.opengl.GL15.glBindBuffer;
-import static org.lwjgl.opengl.GL15.glDeleteBuffers;
-import static org.lwjgl.opengl.GL15.glGenBuffers;
-
 import ch.g_7.util.common.Closeable;
+
+import static org.lwjgl.opengl.GL15.*;
 
 
 public abstract class VBO implements Closeable {

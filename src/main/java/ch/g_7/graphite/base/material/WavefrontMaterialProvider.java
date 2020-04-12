@@ -1,12 +1,11 @@
 package ch.g_7.graphite.base.material;
 
-import java.io.InputStream;
-
 import ch.g_7.graphite.resource.BasicResourceProvider;
 import ch.g_7.graphite.resource.IResourceKey;
 import ch.g_7.graphite.resource.IResourceProvider;
-import ch.g_7.util.io.IFileLoader;
 import ch.g_7.util.io.IResourceLoader;
+
+import java.io.InputStream;
 
 @Deprecated
 public class WavefrontMaterialProvider extends BasicResourceProvider<Material, MaterialKey> {

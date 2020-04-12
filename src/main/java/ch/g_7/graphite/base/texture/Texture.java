@@ -1,10 +1,8 @@
 package ch.g_7.graphite.base.texture;
 
-import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
-import static org.lwjgl.opengl.GL11.glBindTexture;
-import static org.lwjgl.opengl.GL11.glDeleteTextures;
-
 import ch.g_7.graphite.resource.IResource;
+
+import static org.lwjgl.opengl.GL11.*;
 
 public class Texture implements ITexture, IResource {
 

@@ -1,14 +1,12 @@
 package ch.g_7.graphite.base.mesh.vao;
 
-import static org.lwjgl.opengl.GL15.GL_STATIC_DRAW;
-import static org.lwjgl.opengl.GL15.glBindBuffer;
-import static org.lwjgl.opengl.GL15.glBufferData;
-import static org.lwjgl.opengl.GL20.glVertexAttribPointer;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.system.MemoryUtil;
 
 import java.nio.FloatBuffer;
 
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.system.MemoryUtil;
+import static org.lwjgl.opengl.GL15.*;
+import static org.lwjgl.opengl.GL20.glVertexAttribPointer;
 
 public class FloatVBO extends VBO {
 	

@@ -4,7 +4,6 @@ import ch.g_7.graphite.xjfx.injme.util.JmeWindowUtils;
 import com.jme3.system.JmeContext;
 import com.jme3.ui.Picture;
 import com.sun.javafx.embed.EmbeddedStageInterface;
-import org.lwjgl.system.windows.WindowsUtil;
 
 /**
  * The implementation of the {@link Picture} to represent javaFX UI Scene.

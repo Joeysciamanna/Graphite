@@ -1,16 +1,14 @@
 package ch.g_7.graphite.rendering.entity;
 
-import java.util.List;
-
 import ch.g_7.graphite.base.material.IMaterial;
 import ch.g_7.graphite.base.mesh.IMesh;
 import ch.g_7.graphite.node.IEntity;
-import ch.g_7.graphite.node.Renderable;
 import ch.g_7.graphite.rendering.*;
-
 import ch.g_7.graphite.rendering.transformator.PerspectiveTransformator;
 import ch.g_7.graphite.util.Resources;
 import org.lwjgl.opengl.GL11;
+
+import java.util.List;
 
 import static org.lwjgl.opengl.GL11.GL_UNSIGNED_INT;
 import static org.lwjgl.opengl.GL11.glDrawElements;

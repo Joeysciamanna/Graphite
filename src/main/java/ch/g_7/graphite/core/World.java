@@ -1,8 +1,8 @@
 package ch.g_7.graphite.core;
 
 import ch.g_7.graphite.node.IEntity;
-import ch.g_7.graphite.node.INode;
 import ch.g_7.graphite.node.IEntityIdentifier;
+import ch.g_7.graphite.node.INode;
 import ch.g_7.graphite.rendering.RenderManager;
 import ch.g_7.util.common.Closeable;
 import ch.g_7.util.common.Initializable;

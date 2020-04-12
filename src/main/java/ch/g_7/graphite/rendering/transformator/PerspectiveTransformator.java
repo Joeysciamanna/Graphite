@@ -1,11 +1,10 @@
 package ch.g_7.graphite.rendering.transformator;
 
 import ch.g_7.graphite.base.transform.IROTransform;
+import ch.g_7.graphite.core.Camera;
+import ch.g_7.graphite.core.IWindow;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
-
-import ch.g_7.graphite.core.Camera;
-import ch.g_7.graphite.core.window.Window;
 
 public class PerspectiveTransformator implements ITransformator {
 
@@ -26,10 +25,10 @@ public class PerspectiveTransformator implements ITransformator {
 	}
 
 	@Override
-	public Matrix4f getProjectionMatrix(Window window, Camera camera) {
+	public Matrix4f getProjectionMatrix(IWindow window, Camera camera) {
 		viewMatrix.identity().translate((float) -camera.getTransform().getTranslation().x(), (float) -camera.getTransform().getTranslation().y(),
 				(float) -camera.getTransform().getTranslation().z());
-		return projectionMatrix.identity().perspective(fov, (float) window.getWidth() / window.getHeight(), zNear, zFar).mul(viewMatrix);
+		return projectionMatrix.identity().perspective(fov, (float) window.getSize().x() / window.getSize().y(), zNear, zFar).mul(viewMatrix);
 	}
 
 	@Override

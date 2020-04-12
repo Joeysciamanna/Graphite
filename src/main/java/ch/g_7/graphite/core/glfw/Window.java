@@ -1,3 +1,4 @@
+/*
 package ch.g_7.graphite.core.window;
 
 import static org.lwjgl.glfw.GLFW.GLFW_CONTEXT_VERSION_MAJOR;
@@ -34,6 +35,9 @@ import static org.lwjgl.system.MemoryUtil.NULL;
 
 import java.nio.DoubleBuffer;
 
+import ch.g_7.graphite.core.input.KeyListener;
+import ch.g_7.graphite.core.input.MouseListener;
+import ch.g_7.util.listener.IListener;
 import org.joml.Vector2i;
 import org.joml.Vector2ic;
 import org.lwjgl.BufferUtils;
@@ -46,7 +50,7 @@ import ch.g_7.graphite.util.Color;
 import ch.g_7.util.common.Initializable;
 import ch.g_7.util.listner.Notifier;
 
-public class Window implements Initializable, ResizeListner {
+public class Window implements Initializable, IListener<ResizeEvent> {
 
 	private long id;
 	private final String title;
@@ -176,19 +180,19 @@ public class Window implements Initializable, ResizeListner {
 		return id;
 	}
 
-	public void addKeyListner(KeyListner keyListner) {
+	public void addKeyListner(KeyListener keyListner) {
 		keyNotifier.addListner(keyListner);
 	}
 
-	public void removeKeyListner(KeyListner keyListner) {
+	public void removeKeyListner(KeyListener keyListner) {
 		keyNotifier.removeListner(keyListner);
 	}
 	
-	public void addMouseListner(MouseListner mouseListner) {
+	public void addMouseListner(MouseListener mouseListner) {
 		mouseNotifier.addListner(mouseListner);
 	}
 
-	public void removeMouseListner(MouseListner mouseListner) {
+	public void removeMouseListner(MouseListener mouseListner) {
 		mouseNotifier.removeListner(mouseListner);
 	}
 
@@ -226,3 +230,4 @@ public class Window implements Initializable, ResizeListner {
 	}
 
 }
+*/

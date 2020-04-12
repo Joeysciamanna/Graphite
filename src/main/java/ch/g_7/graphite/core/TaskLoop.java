@@ -1,12 +1,12 @@
 package ch.g_7.graphite.core;
 
+import ch.g_7.graphite.node.Updatable;
+import ch.g_7.util.loop.Loop;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-
-import ch.g_7.graphite.node.Updatable;
-import ch.g_7.util.loop.Loop;
 
 public class TaskLoop extends Loop {
 

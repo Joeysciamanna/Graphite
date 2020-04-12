@@ -1,3 +1,4 @@
+/*
 package ch.g_7.graphite.test;
 
 import ch.g_7.graphite.base.texture.Texture;
@@ -111,3 +112,4 @@ public class GUI extends Application {
 
 
 }
+*/

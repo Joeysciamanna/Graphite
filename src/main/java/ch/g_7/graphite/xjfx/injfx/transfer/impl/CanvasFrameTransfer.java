@@ -1,7 +1,6 @@
 package ch.g_7.graphite.xjfx.injfx.transfer.impl;
 
 
-import ch.g_7.graphite.xjfx.injfx.processor.FrameTransferSceneProcessor;
 import ch.g_7.graphite.xjfx.injfx.processor.FrameTransferSceneProcessor.TransferMode;
 import com.jme3.texture.FrameBuffer;
 import javafx.scene.canvas.Canvas;

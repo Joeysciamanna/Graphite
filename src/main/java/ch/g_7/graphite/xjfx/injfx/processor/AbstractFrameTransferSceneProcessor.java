@@ -17,7 +17,6 @@ import com.jme3.util.SafeArrayList;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 
 import java.util.List;
 import java.util.Objects;

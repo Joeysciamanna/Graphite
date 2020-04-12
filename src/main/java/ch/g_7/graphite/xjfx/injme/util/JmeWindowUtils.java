@@ -1,7 +1,5 @@
 package ch.g_7.graphite.xjfx.injme.util;
 
-import static com.jme3.util.BufferUtils.createIntBuffer;
-import static java.lang.ThreadLocal.withInitial;
 import com.jme3.app.Application;
 import com.jme3.system.AppSettings;
 import com.jme3.system.JmeContext;
@@ -9,6 +7,9 @@ import com.jme3.system.lwjgl.LwjglWindow;
 import org.lwjgl.glfw.GLFW;
 
 import java.nio.IntBuffer;
+
+import static com.jme3.util.BufferUtils.createIntBuffer;
+import static java.lang.ThreadLocal.withInitial;
 
 /**
  * The utility class to work with jME contexts.

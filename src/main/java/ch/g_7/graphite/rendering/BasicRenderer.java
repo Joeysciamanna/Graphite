@@ -1,15 +1,12 @@
 package ch.g_7.graphite.rendering;
 
-import static org.lwjgl.opengl.GL11.glDrawElements;
-
-import java.util.List;
-
 import ch.g_7.graphite.core.Camera;
-import ch.g_7.graphite.core.window.Window;
+import ch.g_7.graphite.core.IWindow;
 import ch.g_7.graphite.node.IEntity;
 import ch.g_7.graphite.node.IViewModel;
-import ch.g_7.graphite.node.Renderable;
 import ch.g_7.graphite.rendering.transformator.ITransformator;
+
+import java.util.List;
 
 public abstract class BasicRenderer<R extends IViewModel, T extends IEntity<?, R>> implements IRenderer<T> {
 
@@ -25,7 +22,7 @@ public abstract class BasicRenderer<R extends IViewModel, T extends IEntity<?, R
 	}
 
 	@Override
-	public void render(Window window, Camera camera) {
+	public void render(IWindow window, Camera camera) {
 		shaderProgram.setProjectionMatrix(transformator.getProjectionMatrix(window, camera));
 		render(renderableList.getViewModels());
 	}

@@ -1,12 +1,10 @@
 package ch.g_7.graphite.rendering;
 
-import ch.g_7.graphite.node.IEntity;
-import ch.g_7.graphite.node.IViewModel;
 import ch.g_7.graphite.core.Camera;
-import ch.g_7.graphite.core.window.Window;
+import ch.g_7.graphite.core.IWindow;
 import ch.g_7.graphite.node.INode;
+import ch.g_7.graphite.node.IViewModel;
 import ch.g_7.graphite.rendering.entity.EntityRenderer;
-import ch.g_7.graphite.rendering.ui.UIRenderer;
 import ch.g_7.util.common.Closeable;
 import ch.g_7.util.common.Initializable;
 import org.lwjgl.opengl.GL11;
@@ -14,8 +12,6 @@ import org.lwjgl.opengl.GL11;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.lwjgl.glfw.GLFW.glfwPollEvents;
-import static org.lwjgl.glfw.GLFW.glfwSwapBuffers;
 import static org.lwjgl.opengl.GL11.GL_DEPTH_TEST;
 import static org.lwjgl.opengl.GL11.glEnable;
 
@@ -27,7 +23,8 @@ public class RenderManager implements Initializable, Closeable {
         this.renderers = new ArrayList<>();
     }
 
-    public void render(Window window, Camera camera){
+    public void render(IWindow window, Camera camera){
+        window.bind();
         for (IRenderer<?> renderer : renderers) {
             if(renderer.isUsed()){
                 renderer.bind();
@@ -35,9 +32,7 @@ public class RenderManager implements Initializable, Closeable {
                 renderer.unbind();
             }
         }
-        glfwSwapBuffers(window.getId());
-        glfwPollEvents();
-        GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
+        window.unbind();
     }
 
     @SuppressWarnings("unchecked")
@@ -89,7 +84,6 @@ public class RenderManager implements Initializable, Closeable {
     @Override
     public void init() {
         register(new EntityRenderer());
-        register(new UIRenderer());
 
         glEnable(GL_DEPTH_TEST);
 

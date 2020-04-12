@@ -1,12 +1,11 @@
 package ch.g_7.graphite.rendering.transformator;
 
 import ch.g_7.graphite.base.transform.IROTransform;
+import ch.g_7.graphite.core.Camera;
+import ch.g_7.graphite.core.IWindow;
 import org.joml.Matrix4f;
 import org.joml.Vector2f;
 import org.joml.Vector2ic;
-
-import ch.g_7.graphite.core.Camera;
-import ch.g_7.graphite.core.window.Window;
 
 public class PixelTransformator implements ITransformator {
 
@@ -22,7 +21,7 @@ public class PixelTransformator implements ITransformator {
 	}
 	
 	@Override
-	public Matrix4f getProjectionMatrix(Window window, Camera camera) {
+	public Matrix4f getProjectionMatrix(IWindow window, Camera camera) {
 		windowSize = window.getSize();
 		cameraPosition = new Vector2f(camera.getTransform().getTranslation().x, camera.getTransform().getTranslation().y);
 		return projectionMatrix;

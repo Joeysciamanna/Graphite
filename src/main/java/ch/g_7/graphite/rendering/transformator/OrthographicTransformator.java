@@ -1,11 +1,10 @@
 package ch.g_7.graphite.rendering.transformator;
 
 import ch.g_7.graphite.base.transform.IROTransform;
+import ch.g_7.graphite.core.Camera;
+import ch.g_7.graphite.core.IWindow;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
-
-import ch.g_7.graphite.core.Camera;
-import ch.g_7.graphite.core.window.Window;
 
 public class OrthographicTransformator implements ITransformator {
 
@@ -18,7 +17,7 @@ public class OrthographicTransformator implements ITransformator {
     }
 
     @Override
-    public Matrix4f getProjectionMatrix(Window window, Camera camera) {
+    public Matrix4f getProjectionMatrix(IWindow window, Camera camera) {
 	return projectionMatrix.identity().translate(-camera.getTransform().getTranslation().x(),
 			-camera.getTransform().getTranslation().y(), -camera.getTransform().getTranslation().z());
 }

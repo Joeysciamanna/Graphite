@@ -1,12 +1,10 @@
 package ch.g_7.graphite.base.mesh.vao;
 
-import static org.lwjgl.opengl.GL15.GL_STATIC_DRAW;
-import static org.lwjgl.opengl.GL15.glBindBuffer;
-import static org.lwjgl.opengl.GL15.glBufferData;
+import org.lwjgl.system.MemoryUtil;
 
 import java.nio.IntBuffer;
 
-import org.lwjgl.system.MemoryUtil;
+import static org.lwjgl.opengl.GL15.*;
 
 public class PositionVBO extends FloatVBO {
 

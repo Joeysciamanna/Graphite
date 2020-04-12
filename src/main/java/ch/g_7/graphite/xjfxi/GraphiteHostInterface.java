@@ -28,7 +28,8 @@ public class GraphiteHostInterface implements HostInterface {
 
     @Override
     public boolean requestFocus() {
-        return application.getWindow().r;
+       // return application.getWindow();
+        return true;
     }
 
     @Override

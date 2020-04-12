@@ -1,6 +1,5 @@
 package ch.g_7.graphite.xjfx.injme;
 
-import static javafx.scene.image.PixelFormat.getByteBgraInstance;
 import ch.g_7.graphite.xjfx.injme.input.JmeFXInputListener;
 import com.sun.javafx.embed.EmbeddedSceneDSInterface;
 import com.sun.javafx.embed.EmbeddedSceneDTInterface;
@@ -15,8 +14,9 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.TransferMode;
 
-
 import java.nio.ByteBuffer;
+
+import static javafx.scene.image.PixelFormat.getByteBgraInstance;
 
 /**
  * A very hacky implementation of a DND system, similar to SwingDND but for jme context. <br> Allows

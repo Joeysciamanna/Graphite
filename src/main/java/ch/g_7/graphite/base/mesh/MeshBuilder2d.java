@@ -1,10 +1,10 @@
 package ch.g_7.graphite.base.mesh;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.joml.Rectangled;
 import org.joml.Vector2d;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Deprecated
 public class MeshBuilder2d {

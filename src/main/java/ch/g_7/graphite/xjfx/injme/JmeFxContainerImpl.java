@@ -10,7 +10,6 @@ import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppState;
 import com.jme3.app.state.AppStateManager;
 import com.jme3.asset.AssetManager;
-
 import com.jme3.input.InputManager;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial.CullHint;

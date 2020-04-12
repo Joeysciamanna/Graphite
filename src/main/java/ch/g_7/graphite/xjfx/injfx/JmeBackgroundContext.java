@@ -3,9 +3,9 @@ package ch.g_7.graphite.xjfx.injfx;
 import com.jme3.system.AppSettings;
 import com.jme3.system.lwjgl.LwjglOffscreenBuffer;
 import com.jme3.system.lwjgl.LwjglWindow;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import static org.lwjgl.glfw.GLFW.*;
+
+import static org.lwjgl.glfw.GLFW.glfwPollEvents;
+import static org.lwjgl.glfw.GLFW.glfwSwapBuffers;
 
 
 /**
