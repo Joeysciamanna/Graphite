@@ -11,10 +11,8 @@ public class JFXIntegration {
 
     public static void init(Application application){
         JFXIntegration.application = application;
-        JFXIntegration.hostInterface = new GraphiteHostInterface(null);
+        JFXIntegration.hostInterface = new GraphiteHostInterface(application);
         JFXIntegration.embeddedWindow = new EmbeddedWindow(hostInterface);
-
-
     }
 
 }
