@@ -14,13 +14,11 @@ import java.awt.*;
 public class GraphiteHostInterface implements HostInterface {
 
 
-
-    private final Application application;
     private final IWindow window;
     private EmbeddedSceneInterface sceneInterface;
     private EmbeddedStageInterface stageInterface;
 
-    public GraphiteHostInterface(Application application) {
+    public GraphiteHostInterface(Window window) {
         this.application = application;
         this.window = application.getWindow();
     }

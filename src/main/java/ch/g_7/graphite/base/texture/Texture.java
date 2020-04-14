@@ -17,11 +17,6 @@ public class Texture implements ITexture, IResource {
 	}
 
 	@Override
-	public int getId() {
-		return id;
-	}
-
-	@Override
 	public int getWidth() {
 		return width;
 	}

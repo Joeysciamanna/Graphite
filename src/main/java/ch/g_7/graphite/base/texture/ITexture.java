@@ -5,8 +5,6 @@ import ch.g_7.graphite.rendering.IRenderResource;
 
 public interface ITexture extends IRenderResource {
 
-	int getId();
-
 	int getWidth();
 
 	int getHeight();
