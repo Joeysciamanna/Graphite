@@ -1,7 +1,7 @@
 package ch.g_7.graphite.core.glfw;
 
-import ch.g_7.graphite.core.input.KeyAction;
-import ch.g_7.graphite.core.input.KeyCode;
+import ch.g_7.graphite.input.KeyAction;
+import ch.g_7.graphite.input.KeyCode;
 import ch.g_7.util.logging.Logging;
 import org.lwjgl.glfw.GLFW;
 

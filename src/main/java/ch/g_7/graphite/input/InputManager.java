@@ -1,4 +1,4 @@
-package ch.g_7.graphite.core.input;
+package ch.g_7.graphite.input;
 
 import ch.g_7.util.listener.Store;
 

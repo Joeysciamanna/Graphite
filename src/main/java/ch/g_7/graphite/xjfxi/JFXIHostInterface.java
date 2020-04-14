@@ -11,16 +11,15 @@ import com.sun.javafx.embed.HostInterface;
 
 import java.awt.*;
 
-public class GraphiteHostInterface implements HostInterface {
+public class JFXIHostInterface implements HostInterface {
 
 
     private final IWindow window;
     private EmbeddedSceneInterface sceneInterface;
     private EmbeddedStageInterface stageInterface;
 
-    public GraphiteHostInterface(Window window) {
-        this.application = application;
-        this.window = application.getWindow();
+    public JFXIHostInterface(IWindow window) {
+        this.window = window;
     }
 
     @Override
@@ -56,7 +55,7 @@ public class GraphiteHostInterface implements HostInterface {
 
     @Override
     public void repaint() {
-        sceneInterface.getPixels()
+       // sceneInterface.getPixels()
     }
 
     @Override

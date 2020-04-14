@@ -1,7 +1,7 @@
 package ch.g_7.graphite.core.glfw;
 
-import ch.g_7.graphite.core.input.IInputAction;
-import ch.g_7.graphite.core.input.InputAction;
+import ch.g_7.graphite.input.IInputAction;
+import ch.g_7.graphite.input.InputAction;
 import ch.g_7.util.listener.StoreEvent;
 
 public class ResizeEvent extends StoreEvent<IInputAction<?>> {

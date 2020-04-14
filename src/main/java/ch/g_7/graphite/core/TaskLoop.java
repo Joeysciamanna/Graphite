@@ -11,7 +11,7 @@ import java.util.Queue;
 public class TaskLoop extends Loop {
 
     private List<Updatable> updatables;
-    private Queue<Updatable> tasks;
+    private Queue<Runnable> tasks;
 
     public TaskLoop() {
         this.updatables = new ArrayList<>();
@@ -24,7 +24,7 @@ public class TaskLoop extends Loop {
 			updatable.update(deltaMillis);
 		}
         while (!tasks.isEmpty()) {
-            tasks.poll().update(deltaMillis);
+            tasks.poll().run();
         }
     }
 
@@ -32,7 +32,7 @@ public class TaskLoop extends Loop {
         this.updatables.add(updatable);
     }
 
-    public synchronized void addTask(Updatable runnable){
+    public synchronized void addTask(Runnable runnable){
         this.tasks.add(runnable);
     }
 }

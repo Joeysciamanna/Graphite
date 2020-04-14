@@ -7,20 +7,34 @@ import ch.g_7.graphite.rendering.RenderManager;
 import ch.g_7.util.common.Closeable;
 import ch.g_7.util.common.Initializable;
 
+import javax.swing.text.html.parser.Entity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Consumer;
 
 public class World implements Initializable, Closeable {
 
     private final RenderManager renderManager;
 
-    private final List<IEntity<?, ?>> entities;
+    private final List<IEntity<?,?>> entities;
 
 
     public World() {
         this.renderManager = new RenderManager();
         this.entities = new ArrayList<>();
+    }
+
+    public void forEachEntity(Consumer<IEntity<?,?>> consumer){
+        for (IEntity<?, ?> entity : entities) {
+            consumer.accept(entity);
+        }
+    }
+
+    public void saveForEachEntity(Consumer<IEntity<?,?>> consumer){
+        for (IEntity<?, ?> entity : new ArrayList<>(entities)) {
+            consumer.accept(entity);
+        }
     }
 
     public List<IEntity<?, ?>> getEntitiesOfId(IEntityIdentifier<?> id) {

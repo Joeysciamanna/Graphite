@@ -1,4 +1,4 @@
-package ch.g_7.graphite.core.input;
+package ch.g_7.graphite.input;
 
 public enum KeyCode {
     KEY_Q('q'),

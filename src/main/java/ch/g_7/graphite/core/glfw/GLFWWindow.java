@@ -1,9 +1,9 @@
 package ch.g_7.graphite.core.glfw;
 
 import ch.g_7.graphite.core.IWindow;
-import ch.g_7.graphite.core.input.InputManager;
-import ch.g_7.graphite.core.input.KeyEvent;
-import ch.g_7.graphite.core.input.MouseEvent;
+import ch.g_7.graphite.input.InputManager;
+import ch.g_7.graphite.input.KeyEvent;
+import ch.g_7.graphite.input.MouseEvent;
 import ch.g_7.graphite.util.Color;
 import org.joml.Vector2i;
 import org.joml.Vector2ic;
