@@ -91,7 +91,9 @@ public class GLFWWindow implements IWindow {
     }
 
     @Override
-    public void close() { }
+    public void close() {
+        glfwDestroyWindow(id);
+    }
 
     @Override
     public void update(float deltaMillis) {
@@ -109,16 +111,6 @@ public class GLFWWindow implements IWindow {
         glfwSwapBuffers(id);
     }
 
-
-/* TODO
-    @Override
-    public void onAction(ResizeEvent action) {
-        this.width = action.getWidth();
-        this.height = action.getHeight();
-        glViewport(0, 0, width, height);
-        org.lwjgl.glfw.GLFW.glfwSetWindowSize(id, width, height);
-    }
-*/
 
     @Override
     public Vector2ic getSize() {
@@ -145,14 +137,6 @@ public class GLFWWindow implements IWindow {
         this.y = y;
     }
 
-/*  TODO  private void reposition() {
-        if (repositioned) {
-            glfwSetWindowPos(id, x, y);
-            repositioned = false;
-        }
-    }*/
-
-
     @Override
     public void setVisible(boolean visible) {
         if (visible) {
@@ -166,6 +150,12 @@ public class GLFWWindow implements IWindow {
     @Override
     public boolean isVisible() {
         return visible;
+    }
+
+
+    @Override
+    public void requestFocus() {
+        glfwRequestWindowAttention(id);
     }
 
     @Override

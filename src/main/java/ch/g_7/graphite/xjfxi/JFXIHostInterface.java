@@ -8,18 +8,31 @@ import com.sun.javafx.embed.AbstractEvents;
 import com.sun.javafx.embed.EmbeddedSceneInterface;
 import com.sun.javafx.embed.EmbeddedStageInterface;
 import com.sun.javafx.embed.HostInterface;
+import org.lwjgl.BufferUtils;
 
 import java.awt.*;
+import java.nio.IntBuffer;
 
 public class JFXIHostInterface implements HostInterface {
 
-
+    private final IJFXImage image;
     private final IWindow window;
     private EmbeddedSceneInterface sceneInterface;
     private EmbeddedStageInterface stageInterface;
 
-    public JFXIHostInterface(IWindow window) {
+    private final IntBuffer pixels;
+
+    public JFXIHostInterface(IJFXImage image, IWindow window) {
+        this.image = image;
         this.window = window;
+        this.pixels = BufferUtils.createIntBuffer(image.getWidth() * image.getHeight() * 4);
+    }
+
+
+    @Override
+    public void repaint() {
+        sceneInterface.getPixels(pixels, image.getWidth(), image.getHeight());
+        image.draw(pixels);
     }
 
     @Override
@@ -27,40 +40,22 @@ public class JFXIHostInterface implements HostInterface {
         this.stageInterface = embeddedStage;
 
         if(stageInterface == null) return;
-
-        int width = window.getSize().x();
-        int height = window.getSize().y();
-
-        stageInterface.setSize(width, height);
+        stageInterface.setSize(image.getWidth(), image.getHeight());
         stageInterface.setFocused(true, AbstractEvents.FOCUSEVENT_ACTIVATED);
     }
 
     @Override
     public void setEmbeddedScene(EmbeddedSceneInterface embeddedScene) {
         this.sceneInterface = embeddedScene;
-
-
         if (sceneInterface == null) return;
-
-
         sceneInterface.setPixelScaleFactors(1, 1);
-
-        int width = window.getSize().x();
-        int height = window.getSize().y();
-
-
-        sceneInterface.setSize(width, height);
-    }
-
-
-    @Override
-    public void repaint() {
-       // sceneInterface.getPixels()
+        sceneInterface.setSize(image.getWidth(), image.getHeight());
     }
 
     @Override
     public void setPreferredSize(int width, int height) {
-        window.setSize(width, height);
+        image.setWidth(width);
+        image.setHeight(height);
     }
 
     @Override
@@ -70,9 +65,7 @@ public class JFXIHostInterface implements HostInterface {
     }
 
     @Override
-    public void setEnabled(boolean enabled) {
-
-    }
+    public void setEnabled(boolean enabled) { }
 
     @Override
     public void setCursor(CursorFrame cursorFrame) {
@@ -81,8 +74,7 @@ public class JFXIHostInterface implements HostInterface {
 
     @Override
     public boolean grabFocus() {
-        requestFocus();
-        return true;
+        return requestFocus();
     }
 
     @Override

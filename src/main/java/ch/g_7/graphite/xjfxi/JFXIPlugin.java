@@ -28,7 +28,6 @@ public class JFXIPlugin implements IPlugin {
     @Override
     public void init() { }
 
-
     @Override
     public void close() { }
 

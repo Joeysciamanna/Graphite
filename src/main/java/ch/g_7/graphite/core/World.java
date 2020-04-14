@@ -1,13 +1,12 @@
 package ch.g_7.graphite.core;
 
 import ch.g_7.graphite.node.IEntity;
-import ch.g_7.graphite.node.IEntityIdentifier;
+import ch.g_7.graphite.node.IEntityId;
 import ch.g_7.graphite.node.INode;
 import ch.g_7.graphite.rendering.RenderManager;
 import ch.g_7.util.common.Closeable;
 import ch.g_7.util.common.Initializable;
 
-import javax.swing.text.html.parser.Entity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -37,7 +36,7 @@ public class World implements Initializable, Closeable {
         }
     }
 
-    public List<IEntity<?, ?>> getEntitiesOfId(IEntityIdentifier<?> id) {
+    public List<IEntity<?, ?>> getEntitiesOfId(IEntityId<?> id) {
         List<IEntity<?, ?>> resultList = new ArrayList<>();
         for (IEntity<?, ?> entity : entities) {
             if(entity.getId().equals(id)){
@@ -47,7 +46,7 @@ public class World implements Initializable, Closeable {
         return resultList;
     }
 
-    public Optional<IEntity<?, ?>> getEntityOfId(IEntityIdentifier<?> id) {
+    public Optional<IEntity<?, ?>> getEntityOfId(IEntityId<?> id) {
         for (IEntity<?, ?> node : entities) {
             if(node.getId().equals(id)){
                 return Optional.of(node);

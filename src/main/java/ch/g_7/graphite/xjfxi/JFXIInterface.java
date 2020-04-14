@@ -3,6 +3,7 @@ package ch.g_7.graphite.xjfxi;
 import ch.g_7.graphite.core.IWindow;
 import ch.g_7.graphite.input.InputManager;
 import ch.g_7.graphite.plugin.IPluginInterface;
+import ch.g_7.util.common.Initializable;
 import com.sun.javafx.stage.EmbeddedWindow;
 import javafx.scene.Scene;
 
@@ -17,10 +18,10 @@ public class JFXIInterface implements IPluginInterface {
         this.embeddedWindow = new EmbeddedWindow(hostInterface);
     }
 
+
     public void setScene(Scene scene){
         embeddedWindow.setScene(scene);
     }
-
 
 
 }

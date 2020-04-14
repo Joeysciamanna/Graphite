@@ -6,6 +6,8 @@ public interface IJFXImage {
 
     void draw(ByteBuffer pixels);
 
+    boolean requiresRedraw();
+
     boolean isResizable();
 
     int getWidth();
@@ -14,6 +16,6 @@ public interface IJFXImage {
 
     int getHeight();
 
-    int setHeight(int height);
+    void setHeight(int height);
 
 }
