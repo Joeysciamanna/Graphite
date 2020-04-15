@@ -32,6 +32,11 @@ public class TaskLoop extends Loop {
         this.updatables.add(updatable);
     }
 
+    public synchronized void removeUpdatable(Updatable updatable){
+        this.updatables.remove(updatable);
+    }
+
+
     public synchronized void addTask(Runnable runnable){
         this.tasks.add(runnable);
     }

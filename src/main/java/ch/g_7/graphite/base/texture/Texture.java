@@ -10,7 +10,7 @@ public class Texture implements ITexture, IResource {
 	private int width;
 	private int height;
 
-	Texture(int id, int width, int height) {
+	public Texture(int id, int width, int height) {
 		this.id = id;
 		this.width = width;
 		this.height = height;

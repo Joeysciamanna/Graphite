@@ -5,7 +5,7 @@ import ch.g_7.graphite.rendering.BasicViewModel;
 
 public class EmptyEntity extends GameObject<BasicViewModel> {
 
-	public EmptyEntity(IEntityId<?> id, BasicViewModel viewModel) {
+	public EmptyEntity(IEntityId id, BasicViewModel viewModel) {
 		super(id, viewModel);
 	}
 }

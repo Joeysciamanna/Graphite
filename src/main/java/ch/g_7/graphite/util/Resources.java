@@ -12,11 +12,10 @@ public class Resources {
 	public static final String ENTITY_FRAGMENT_SHADER = loadShader("entity_fragment");
 	public static final String ENTITY_VERTEX_SHADER = loadShader("entity_vertex");
 
-	public static final String DRAW_FRAGMENT_SHADER = loadShader("draw_fragment");
-	public static final String DRAW_VERTEX_SHADER = loadShader("draw_vertex");
-	
-	
+	public static final String JFXI_FRAGMENT_SHADER = loadShader("jfxi_fragment");
+	public static final String JFXI_VERTEX_SHADER = loadShader("jfxi_vertex");
+
 	private static String loadShader(String name) {
-		return IOUtil.readInternalString("shaders/" + name + ".sp", new Object() {});
+		return IOUtil.readInternalString("shaders/" + name + ".glsl", new Object() {});
 	}
 }

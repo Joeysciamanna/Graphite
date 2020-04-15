@@ -1,96 +1,111 @@
 package ch.g_7.graphite.core;
 
-import ch.g_7.graphite.node.IEntity;
-import ch.g_7.graphite.node.IEntityId;
-import ch.g_7.graphite.node.INode;
+import ch.g_7.graphite.node.*;
 import ch.g_7.graphite.rendering.RenderManager;
 import ch.g_7.util.common.Closeable;
 import ch.g_7.util.common.Initializable;
+import ch.g_7.util.listener.Event;
+import ch.g_7.util.listener.IListener;
+import ch.g_7.util.listener.Notifier;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 
-public class World implements Initializable, Closeable {
+public class World implements Initializable, Closeable, Updatable {
 
-    private final RenderManager renderManager;
+    private final Notifier<WorldEvent> onAddNotifier;
+    private final Notifier<WorldEvent> onRemoveNotifier;
 
-    private final List<IEntity<?,?>> entities;
+    private final List<INode<?,?>> nodes;
 
 
     public World() {
-        this.renderManager = new RenderManager();
-        this.entities = new ArrayList<>();
+        this.onAddNotifier = new Notifier<>();
+        this.onRemoveNotifier = new Notifier<>();
+
+        this.nodes = new ArrayList<>();
     }
 
-    public void forEachEntity(Consumer<IEntity<?,?>> consumer){
-        for (IEntity<?, ?> entity : entities) {
-            consumer.accept(entity);
-        }
+    @Override
+    public void update(float deltaMillis) {
+        onAddNotifier.reportAll();
+        onRemoveNotifier.reportAll();
     }
 
-    public void saveForEachEntity(Consumer<IEntity<?,?>> consumer){
-        for (IEntity<?, ?> entity : new ArrayList<>(entities)) {
-            consumer.accept(entity);
-        }
-    }
-
-    public List<IEntity<?, ?>> getEntitiesOfId(IEntityId<?> id) {
+    public List<IEntity<?, ?>> getEntitiesWithId(IEntityId id) {
         List<IEntity<?, ?>> resultList = new ArrayList<>();
-        for (IEntity<?, ?> entity : entities) {
-            if(entity.getId().equals(id)){
-                resultList.add(entity);
+        for (INode<?, ?> node : nodes) {
+            if((node.getAbilities() & Identifiable.ABILITY) != 0 && ((IEntity<?,?>)node).getId().equals(id)){
+                resultList.add((IEntity<?, ?>) node);
             }
         }
         return resultList;
     }
 
-    public Optional<IEntity<?, ?>> getEntityOfId(IEntityId<?> id) {
-        for (IEntity<?, ?> node : entities) {
-            if(node.getId().equals(id)){
-                return Optional.of(node);
+    public Optional<IEntity<?, ?>> getEntityWithId(IEntityId id) {
+        for (INode<?, ?> node : nodes) {
+            if((node.getAbilities() & Identifiable.ABILITY) != 0 && ((IEntity<?,?>)node).getId().equals(id)){
+                return Optional.of((IEntity<?, ?>) node);
             }
         }
         return Optional.empty();
     }
 
-    public void addEntity(IEntity<?, ?> entity){
-        entities.add(entity);
-        renderManager.add(entity);
-    }
-
-    public void removeEntity(IEntity<?, ?> entity){
-        entities.remove(entity);
-        renderManager.remove(entity);
+    public List<INode<?, ?>> getNodesWithAbility(int ability) {
+        List<INode<?, ?>> resultList = new ArrayList<>();
+        for (INode<?, ?> node : nodes) {
+            if((node.getAbilities() & ability) != 0){
+                resultList.add(node);
+            }
+        }
+        return resultList;
     }
 
     public void addNode(INode<?,?> node){
-        renderManager.add(node);
+        nodes.add(node);
+        onAddNotifier.register(new WorldEvent(node));
     }
 
     public void removeNode(INode<?,?> node){
-        renderManager.remove(node);
+        nodes.remove(node);
+        onRemoveNotifier.register(new WorldEvent(node));
     }
 
     public void removeAll(){
-        entities.clear();
-        renderManager.clear();
+        for (INode<?, ?> node : new ArrayList<>(nodes)) {
+            node.close();
+            removeNode(node);
+        }
     }
 
     @Override
-    public void init() {
-        renderManager.init();
-    }
+    public void init() { }
 
     @Override
     public void close() {
         removeAll();
-        renderManager.close();
     }
 
+    public void onAdd(IListener<WorldEvent> listener) {
+        onAddNotifier.addListner(listener);
+    }
 
-    public RenderManager getRenderManager() {
-        return renderManager;
+    public void onRemove(IListener<WorldEvent> listener) {
+        onRemoveNotifier.addListner(listener);
+    }
+
+    public static class WorldEvent extends Event{
+
+        private final INode<?, ?> node;
+
+        private WorldEvent(INode<?, ?> node) {
+            this.node = node;
+        }
+
+        public INode<?, ?> getNode() {
+            return node;
+        }
     }
 }

@@ -14,7 +14,7 @@ public interface IPlugin extends Initializable, Closeable, Updatable {
 
     String getName();
 
-    IPluginType<?> getType();
+    IPluginType getType();
 
     String getVersion();
 

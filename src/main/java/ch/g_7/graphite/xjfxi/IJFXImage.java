@@ -8,14 +8,8 @@ public interface IJFXImage {
 
     boolean requiresRedraw();
 
-    boolean isResizable();
-
     int getWidth();
 
-    void setWidth(int width);
-
     int getHeight();
-
-    void setHeight(int height);
 
 }

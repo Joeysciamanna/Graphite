@@ -5,17 +5,21 @@ import ch.g_7.graphite.input.InputManager;
 import ch.g_7.graphite.plugin.IPluginInterface;
 import ch.g_7.util.common.Initializable;
 import com.sun.javafx.stage.EmbeddedWindow;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 
 public class JFXIInterface implements IPluginInterface {
 
-    private final EmbeddedWindow embeddedWindow;
-    private final JFXIHostInterface hostInterface;
+    private EmbeddedWindow embeddedWindow;
+    private JFXIHostInterface hostInterface;
 
 
     public JFXIInterface(IWindow window, InputManager inputManager) {
-        this.hostInterface = new JFXIHostInterface(window);
-        this.embeddedWindow = new EmbeddedWindow(hostInterface);
+        Platform.runLater(()->{
+            this.hostInterface = new JFXIHostInterface(new JFXImage(), window);
+            this.embeddedWindow = new EmbeddedWindow(hostInterface);
+        });
+
     }
 
 

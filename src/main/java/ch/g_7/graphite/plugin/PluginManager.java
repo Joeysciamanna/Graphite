@@ -41,18 +41,18 @@ public class PluginManager implements Initializable, Closeable {
         }
     }
 
-    public <T extends IPlugin> T getPlugin(IPluginType<?> type) {
+    public IPlugin getPlugin(IPluginType type) {
         for (IPlugin plugin : plugins) {
             if(plugin.getType().equals(type))
-                return (T) plugin;
+                return plugin;
         }
         return null;
     }
 
-    public <T extends IPluginInterface> Optional<T> getPlugin(String name) {
+    public Optional<IPluginInterface> getPlugin(String name) {
         for (IPlugin plugin : plugins) {
             if(plugin.getName().equals(name))
-                return Optional.of((T) plugin.getInterface());
+                return Optional.of(plugin.getInterface());
         }
         return Optional.empty();
     }

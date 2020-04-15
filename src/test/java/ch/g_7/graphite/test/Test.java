@@ -28,13 +28,12 @@ public class Test extends Application {
 
     @Override
     public void init() {
-        getWorld().getRenderManager().register(new EntityRenderer());
-      
+
 
         GameObject<BasicViewModel> entity = ResourceManager.getActive().allocateFromEngine(new EntityKey("obj/cube.obj"));
 		entity.getTransform().setScale(new Vector3f(0.1f,0.1f,0.1f));
 		entity.getTransform().setTranslation(new Vector3f(0, 0, -0.5f));
-        getWorld().addEntity(entity);
+        getWorld().addNode(entity);
 
         getWindow().setVisible(true);
         getWindow().setSize(500, 500);
@@ -47,7 +46,7 @@ public class Test extends Application {
     public void update(float deltaMillis) {
         if(((GLFWWindow)getWindow()).isKeyPressed(GLFW.GLFW_KEY_F)) {
             System.out.println("RENDER FPS:      " + getTimer().getLPS());
-            System.out.println("UPDATE FPS:      " + updateLoop.getTimer().getLPS());
+            System.out.println("UPDATE FPS:      " + getUpdateLoop().getTimer().getLPS());
             System.out.println("Update Delta:    " + deltaMillis);
             System.out.println("Update FPS Calc: " + 1000/deltaMillis);
         }
